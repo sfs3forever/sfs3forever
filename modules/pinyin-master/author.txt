@@ -1,0 +1,3 @@
+// $Id: author.txt 5310 2016-2 $
+pinyin	姓名譯音
+pinyin v1.4.x Designed by 臺中市蕭聖哲,吳嘉祥,吳篤衡

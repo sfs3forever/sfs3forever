@@ -1,0 +1,31 @@
+<div ng-controller="mainCtrl as pageCtrl">	
+	<h4 class="text-danger text-center" >?∪?雿?甈?/h4>
+	<div class="col-md-12 text-center">
+	<button type="button" class="btn btn-primary btn-sm" ng-click="previousPage()">銝???/button>
+	<button type="button" class="btn btn-primary btn-sm" ng-click="nextPage()">銝???/button>
+	</div>
+
+	<div class="container">
+	<table class = "table table-hover">
+
+	<tr>
+		<th class="col-md-3"> 銝餅 </th>
+		<th class="col-md-1"> ?砍??桐?</th>
+		<th class="col-md-1"> ?砍???</th>
+		<th class="col-md-1"> 閰喟敦?批捆 </th>
+	</tr>
+	<tr ng-repeat="article in articles">
+		
+		<td>{{article.headline}} </td>
+		<td>{{article.jobUnit}} </td>
+		<td>{{article.postTime}} </td>
+		<td> 
+			<a href="#/page/{{main.page}}/article/{{article.articleId}}" class="btn btn-info" role="button">more</a>
+		</td>
+
+	</tr>
+
+	</table>
+
+	</div>
+</div>

@@ -1,0 +1,2 @@
+score_certi  列印成績證明
+score_certi 1.1 --- 2003-09-20 --- brucelyc( brucelyc@seed.net.tw )

@@ -1,0 +1,23 @@
+/* Ukrainian (UTF-8) initialisation for the jQuery UI date picker plugin. */
+/* Written by Maxim Drogobitskiy (maxdao@gmail.com). */
+jQuery(function($){
+	$.datepicker.regional['uk'] = {
+		closeText: '?訄郕?邽?邽',
+		prevText: '&#x3c;',
+		nextText: '&#x3e;',
+		currentText: '苤?郋迣郋迡郇?',
+		monthNames: ['苤??迮郇?','???邽邿','?迮?迮郱迮郇?','?赲??迮郇?','苠?訄赲迮郇?','虴迮?赲迮郇?',
+		'?邽郈迮郇?','苤迮?郈迮郇?','?迮?迮?迮郇?','?郋赲?迮郇?','?邽??郋郈訄迡','???迡迮郇?'],
+		monthNamesShort: ['苤??','???','?迮?','?赲?','苠?訄','虴迮?',
+		'?邽郈','苤迮?','?迮?','?郋赲','?邽?','???'],
+		dayNames: ['郇迮迡?郅?','郈郋郇迮迡?郅郋郕','赲?赲?郋?郋郕','?迮?迮迡訄','?迮?赲迮?','郈?請解?,'??訇郋?訄'],
+		dayNamesShort: ['郇迮迡','郈郇迡','赲?赲','??迡','??赲','郈?郇','?訇?'],
+		dayNamesMin: ['?迡','?郇','??','苤?','虴?','??','苤訇'],
+		weekHeader: '?迮',
+		dateFormat: 'dd/mm/yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''};
+	$.datepicker.setDefaults($.datepicker.regional['uk']);
+});

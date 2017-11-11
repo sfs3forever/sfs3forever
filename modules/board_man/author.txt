@@ -1,0 +1,2 @@
+board_man - 公布欄管理
+board_man2.0  -- 2001-10-1 -- HaMi( cik@mail.wpes.tcc.edu.tw )

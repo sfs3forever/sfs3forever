@@ -1,0 +1,36 @@
+<?php
+// Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+// For licensing, see LICENSE.html or http://ckfinder.com/license
+
+//  Defines the object for the Danish language.
+
+$GLOBALS['CKFLang'] = array (
+	'ErrorUnknown' => 'Det var ikke muligt at fuldf繪re handlingen. (Fejl: %1)',
+	'Errors' => array (
+		'10' => 'Ugyldig handling.',
+		'11' => 'Ressourcetypen blev ikke angivet i anmodningen.',
+		'12' => 'Ressourcetypen er ikke gyldig.',
+		'102' => 'Ugyldig fil eller mappenavn.',
+		'103' => 'Det var ikke muligt at fuldf繪re handlingen p疇 grund af en begr疆nsning i rettigheder.',
+		'104' => 'Det var ikke muligt at fuldf繪re handlingen p疇 grund af en begr疆nsning i filsystem rettigheder.',
+		'105' => 'Ugyldig filtype.',
+		'109' => 'Ugyldig anmodning.',
+		'110' => 'Ukendt fejl.',
+		'111' => 'It was not possible to complete the request due to resulting file size.',
+		'115' => 'En fil eller mappe med det samme navn eksisterer allerede.',
+		'116' => 'Mappen blev ikke fundet. Opdat矇r listen eller pr繪v igen.',
+		'117' => 'Filen blev ikke fundet. Opdat矇r listen eller pr繪v igen.',
+		'118' => 'Originalplacering og destination er ens.',
+		'201' => 'En fil med det samme filnavn eksisterer allerede. Den uploadede fil er blevet omd繪bt til "%1".',
+		'202' => 'Ugyldig fil.',
+		'203' => 'Ugyldig fil. Filst繪rrelsen er for stor.',
+		'204' => 'Den uploadede fil er korrupt.',
+		'205' => 'Der er ikke en midlertidig mappe til upload til r疇dighed p疇 serveren.',
+		'206' => 'Upload annulleret af sikkerhedsm疆ssige 疇rsager. Filen indeholder HTML-lignende data.',
+		'207' => 'Den uploadede fil er blevet omd繪bt til "%1".',
+		'300' => 'Flytning af fil(er) fejlede.',
+		'301' => 'Kopiering af fil(er) fejlede.',
+		'500' => 'Filbrowseren er deaktiveret af sikkerhedsm疆ssige 疇rsager. Kontakt systemadministratoren eller kontroll矇r CKFinders konfigurationsfil.',
+		'501' => 'Underst繪ttelse af thumbnails er deaktiveret.',
+	)
+);

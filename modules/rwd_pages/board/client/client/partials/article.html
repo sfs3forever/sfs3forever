@@ -1,0 +1,21 @@
+<div ng-controller="articleCtrl">
+	<label><input ng-model="articleId" type="hidden"></label>
+	<div class="container">
+	  <ul class="list-group" ng-repeat="article in articles | filter:articleId |limitTo:1">
+	    <li class="list-group-item">璅?:{{article.headline}}</li>
+	    <li class="list-group-item">?祆?:<p ng-bind-html="article.content"> </p></li>
+	    <li class="list-group-item">?砍??交?:{{article.postTime}}</li>
+	    <li class="list-group-item">?潭??桐?:{{article.jobUnit}}-{{article.jobTitle}}</li>
+	    <li class="list-group-item">
+
+	      <ul ng-repeat="attach in article.attachFile">
+						 <li> ?辣:<a href="download/{{articleId}}/{{attach.linkFile}}">{{attach.displayFile}}</a></li>
+					</ul>
+			</li>
+			<li class="list-group-item">
+	 <a href="#/page/{{$routeParams.page}}" class="btn btn-info" role="button">餈?</a>
+			</li>
+	</div>
+		</ul>
+
+</div>
