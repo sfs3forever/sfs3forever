@@ -208,6 +208,10 @@ function write_config() {
 
 $cfg1=<<<HERE
 <?php
+define("FATAL", E_USER_ERROR);
+define("ERROR", E_USER_WARNING);
+define("WARNING", E_USER_NOTICE);
+
 // set to the user defined error handler
 session_start();
 \$old_error_handler = set_error_handler("error_die");
@@ -385,8 +389,8 @@ require "\$SFS_PATH/include/sfs_API.php"; //系統核心函式庫
 //重新認證檔案url
 \$rlogin = \$SFS_PATH."/rlogin.php";
 
-\$conID = @mysqli_connect ("\$mysql_host","\$mysql_user","\$mysql_pass") or trigger_error("資料庫無法連上，或許網路斷線，也或許您的資料庫設定有誤，請檢查資料庫設定並重新啟動資料庫。", E_USER_ERROR);
-@mysqli_select_db(\$mysql_db,\$conID); 
+\$conID = mysqli_connect ("\$mysql_host","\$mysql_user","\$mysql_pass") or trigger_error("資料庫無法連上，或許網路斷線，也或許您的資料庫設定有誤，請檢查資料庫設定並重新啟動資料庫。", E_USER_ERROR);
+mysqli_select_db(\$conID,\$mysql_db); 
 
 
 //ADODB 物件
@@ -424,9 +428,9 @@ if(!file_exists(\$UPLOAD_PATH."Module_Path.txt")){
 function error_die (\$errno, \$errstr, \$errfile, \$errline) {
 	global \$HAVE_SHOW_HEADER;
 	switch (\$errno) {
-		case FATAL:
-		case ERROR:
-		case WARNING:
+		case constant("FATAL"):
+		case constant("ERROR"):
+		case constant("WARNING"):
 		case 256:
 		//default:
 		\$msg=&error_tbl("執行錯誤","\$errstr<p>程式目前執行位置：\$errfile 的第 \$errline 行</p>");
