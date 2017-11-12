@@ -19,6 +19,8 @@ set_time_limit(180) ;
 
 // 檢查 config.php 是否可讀且可寫入?
 if(!chk_permit($cfg_file)){
+	$memo = "";
+	$memo2 = "";
 	if (!is_file($cfg_file)){
 		$memo = "找不到 $cfg_file 的檔案!";
 		$memo2 = "建立一個 config.php 的空白檔案";
@@ -31,7 +33,7 @@ if(!chk_permit($cfg_file)){
 	原因：
 	<p>安裝過程中的一些設定值會寫入 $cfg_file ，若是 $cfg_file 無讀寫權，那麼參數無法寫入，系統便無法正常運作，所以，請修改 $cfg_file 的屬性。</p>
 	方法：
-	<p>請在 include 目錄下$memo2 ， 執行 chmod 666 config.php，使 config.php 具讀寫權！</p>
+	<p>請在 include 目錄下 $memo2 ， 執行 chmod 666 config.php，使 config.php 具讀寫權！</p>
 	<p>當然也可以用FTP軟體直接修改權限屬性成666，也很方便！</p>
 	</td></tr></table>
 	";
@@ -59,7 +61,7 @@ if(!chk_permit($cfg_file)){
     .small{font-size: 12px}
     </style>
 <body background='images/bg.png'>
-<?php echo @$main;?>
+<?php if(isset($main)) echo $main;?>
 </body>
 </html>
 
@@ -296,7 +298,7 @@ session_start();
 HERE;
 
 
- if ($_POST[SFS_JHORES] == 1) {
+ if (isset($_POST['SFS_JHORES']) && $_POST['SFS_JHORES'] == 1) {
 
 $cfg2=<<<HERE2A
 
@@ -383,7 +385,7 @@ require "\$SFS_PATH/include/sfs_API.php"; //系統核心函式庫
 //重新認證檔案url
 \$rlogin = \$SFS_PATH."/rlogin.php";
 
-\$conID = @mysql_connect ("\$mysql_host","\$mysql_user","\$mysql_pass") or trigger_error("資料庫無法連上，或許網路斷線，也或許您的資料庫設定有誤，請檢查資料庫設定並重新啟動資料庫。", E_USER_ERROR);
+\$conID = @mysqli_connect ("\$mysql_host","\$mysql_user","\$mysql_pass") or trigger_error("資料庫無法連上，或許網路斷線，也或許您的資料庫設定有誤，請檢查資料庫設定並重新啟動資料庫。", E_USER_ERROR);
 @mysqli_select_db(\$mysql_db,\$conID); 
 
 
@@ -446,7 +448,8 @@ HERE3;
 
  fputs($hfile, $cfg1);
  fputs($hfile, $cfg2);
- fputs($hfile, $cfg22);
+ if(isset($cfg22)) fputs($hfile, $cfg22);
+
  fputs($hfile, $cfg3);
 
  fclose($hfile);

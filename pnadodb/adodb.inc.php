@@ -412,7 +412,7 @@
 	 //
 	var $_oldRaiseFn =  false;
 	var $_transOK = null;
-	var $_connectionID	= false;	/// The returned link identifier whenever a successful database connection is made.	
+	var $_connectionID = false;	/// The returned link identifier whenever a successful database connection is made.	
 	var $_errorMsg = false;		/// A variable which was used to keep the returned last error message.  The value will
 								/// then returned by the errorMsg() function	
 	var $_errorCode = false;	/// Last error code, not guaranteed to be used - only by oci8					

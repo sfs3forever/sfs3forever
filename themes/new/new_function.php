@@ -179,7 +179,7 @@ function &print_location() {
 	global $SFS_PATH_HTML,$SFS_THEME,$CDCLOGIN,$HTTPS;
 	//取得連結
 	
-	if ($_SESSION['session_log_id']){
+	if (isset($_SESSION['session_log_id'])){
 		$b=$_SESSION['session_tea_name'] . "登入｜<a href='".$SFS_PATH_HTML."login.php?logout=yes'><img src='".$SFS_PATH_HTML."themes/$SFS_THEME/images/exit.png' alt='' width='16' height='16' hspace='3' border='0' align='absmiddle'>登出</a>";
 	}else{
 		if ($HTTPS=="") $LOGINURL=$SFS_PATH_HTML;
@@ -187,7 +187,7 @@ function &print_location() {
 		$b=($CDCLOGIN)?"<a href=\"$SFS_PATH_HTML"."login.php?cdc=1\">憑證登入</a> &nbsp; | &nbsp; <a href=\"$SFS_PATH_HTML"."login.php\">一般登入</a>":"<a href=\"$LOGINURL"."login.php\">登入系統</a>";
 	}
 
-	$main[]=get_sfs_path($_REQUEST["_Msn"]);
+	$main[]=get_sfs_path($_REQUEST['_Msn']);
 	$main[]=$b;
 	return $main;
 }

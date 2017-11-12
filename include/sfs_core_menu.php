@@ -28,7 +28,7 @@ function join_sfs_text($gid,$text_name,$temp_arr) {
 			//if (strtolower($DATA_VAR[character_set]) == 'big5')
 			//$val = myAddSlashes($val);
 			$val = AddSlashes($val);	
-			$query = "insert into sfs_text(t_kind,g_id,d_id,t_name,t_parent,p_id,p_dot,t_order_id) values('$text_name',$gid,'$tid','$val','$p_id,',$p_id,'.',$i)";
+			$query = "insert into sfs_text(t_kind,g_id,d_id,t_name,t_parent,p_id,p_dot,t_order_id) values('$text_name',$gid,'$tid','$val','$p_id','$p_id','.',$i)";
 			
 			$CONN->Execute($query) or trigger_error($query, E_USER_ERROR);
 		}

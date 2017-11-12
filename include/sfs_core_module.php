@@ -211,11 +211,23 @@ function who_chk($sn="",$who=""){
 	//$where .=" and (p_end_date is null or p_end_date >= now())";
 
 	//過渡時期作法，檢查學校是否有更新權限資料表，有加上權限到期日
-	$fields = mysql_list_fields($mysql_db, "pro_check_new", $conID);
-	$columns = mysql_num_fields($fields);
+	$sql = 'SHOW COLUMNS FROM pro_check_new';
+	
+	$res = mysqli_query($CONN->_connectionID, $sql);
+	while($row = $res->fetch_assoc()){
+		$columns[] = $row['Field'];
+	}
+	//$fields = mysql_list_fields($mysql_db, "pro_check_new", $conID);
+	//$columns = mysql_num_fields($fields);
 	$chk_end_date=false;
+	/*
 	for ($i = 0; $i < $columns; $i++) {
 		if(mysql_field_name($fields, $i) =="p_end_date"){
+			$chk_end_date=true;
+		}
+	}*/
+	foreach($columns as &$field) {
+		if ($field == 'p_end_date') {
 			$chk_end_date=true;
 		}
 	}

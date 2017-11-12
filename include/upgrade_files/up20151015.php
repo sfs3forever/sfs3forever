@@ -12,7 +12,7 @@ if(!$CONN){
 //$tablename鞈?銵其?摮?撱箇?
 $tablename="grad_stud";
 
-if(mysql_num_rows(mysql_query("SHOW TABLES LIKE '$tablename'")) == 0) 
+if(mysqli_num_rows(mysqli_query($CONN, "SHOW TABLES LIKE '$tablename'")) == 0) 
 { 
   $SQL="CREATE TABLE $tablename (
    grad_sn int(10) NOT NULL auto_increment,
@@ -51,14 +51,14 @@ $rs=$CONN->Execute($SQL);
 }		
 
  //?斗$tablename鞈?銵函揣撘tudent_sn?臬摮
- if(mysql_num_rows(mysql_query("SHOW INDEXES FROM $tablename WHERE Key_name = 'student_sn'")) == 0) 
+ if(mysqli_num_rows(mysqli_query($CONN,"SHOW INDEXES FROM $tablename WHERE Key_name = 'student_sn'")) == 0) 
 { 
  $SQL="ALTER TABLE $tablename ADD INDEX(student_sn)";
  $rs=$CONN->Execute($SQL);
  }	
 
  //?斗$tablename鞈?銵函揣撘tud_id?臬摮
- if(mysql_num_rows(mysql_query("SHOW INDEXES FROM $tablename WHERE Key_name = 'stud_id'")) == 0) 
+ if(mysqli_num_rows(mysqli_query($CONN,"SHOW INDEXES FROM $tablename WHERE Key_name = 'stud_id'")) == 0) 
  { 
  $SQL="ALTER TABLE $tablename ADD INDEX(stud_id)";
  $rs=$CONN->Execute($SQL);

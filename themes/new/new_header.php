@@ -55,7 +55,7 @@ if (is_file($UPLOAD_PATH."school/".$title_img))
 		$temp_img = get_themes_img('logo.png');
 if($show_logo){
 	echo show_title($temp_img)."\n";
-}elseif ($_GET['HT']=='1' or $SFS_IS_HIDDEN_TITLE=='1'){
+}elseif ( (isset($_GET['HT']) && $_GET['HT']=='1')  ||  $SFS_IS_HIDDEN_TITLE=='1'){
 
 }else{
 	if(empty($logo_title))$logo_title="學務管理系統";

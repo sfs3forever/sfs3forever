@@ -14,7 +14,7 @@ function Recordset($SQL) {
 	if (($this->stdpass != "") && ($this->stduser != "") && ($this->server != "")) {
 	$link = @mysql_connect($this->server, $this->stduser, $this->stdpass) or  $this->DBDie("無法連接資料庫,請檢查連線資訊!<BR>"); 
 	}
-//	mysql_select_db($this->db);
+//	mysqli_select_db($this->db);
 	$rs = mysql_db_query($this->db, $SQL) or $this->DBDie($SQL."<BR>無法連接資料庫,請檢查資料庫名稱是否設定正確!<BR>");
 //	$rs = mysql_query($SQL ,$link) or $this->DBDie();
 	return $rs;// 

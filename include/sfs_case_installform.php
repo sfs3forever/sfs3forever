@@ -20,11 +20,17 @@ if(substr($SFS_INSTALL_URL,-1,1)!="/")$SFS_INSTALL_URL.="/";
 //$SFS_INSTALL_PATH=$_SERVER['DOCUMENT_ROOT'];
 $Install_Path=$_SERVER['SCRIPT_FILENAME'];
 $Install_dirName= pathinfo($Install_Path);
-@$SFS_INSTALL_PATH=$Install_dirName[dirname];
+$SFS_INSTALL_PATH=$Install_dirName['dirname'];
 
 $SCHOOL_INSTALL_URL="http://".$sfshostname."/";
 $GIP=explode(".",$_SERVER['SERVER_ADDR']);
-@$SCHOOL_IP=$GIP[0].".".$GIP[1].".".$GIP[2];
+
+$SCHOOL_IP = "";
+for($i=0;$i < count($GIP); $i++) {
+  if($i !=0 ) $SCHOOL_IP = $SCHOOL_IP.".";
+  $SCHOOL_IP = $SCHOOL_IP . $GIP[$i];
+}
+//$SCHOOL_IP=$GIP[0].".".$GIP[1].".".$GIP[2];
 //$UPDATA_PATH={$_SERVER['DOCUMENT_ROOT']}."/$UPLOAD_PATH/";
 $UPDATA_PATH=$SFS_INSTALL_PATH."/data/";
 $sfsnameman=$sfsname."man";

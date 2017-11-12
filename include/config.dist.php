@@ -1,4 +1,8 @@
 <?php
+define("FATAL", E_USER_ERROR);
+define("ERROR", E_USER_WARNING);
+define("WARNING", E_USER_NOTICE);
+
 // set to the user defined error handler
 session_start();
 $old_error_handler = set_error_handler("error_die");
@@ -7,7 +11,7 @@ $old_error_handler = set_error_handler("error_die");
  系統設定
 ***********************************/
 //程式根目錄 PATH
-$SFS_PATH = "/var/www/sfs3";
+$SFS_PATH = "";
 
 //學務管理首頁程式 URL (設定時，保留最後的 "/" )
 $SFS_PATH_HTML ="http://localhost/sfs3/"; 
@@ -136,7 +140,7 @@ require "$SFS_PATH/include/sfs_API.php"; //系統核心函式庫
 $rlogin = $SFS_PATH."/rlogin.php";
 
 $conID = @mysql_connect ("$mysql_host","$mysql_user","$mysql_pass") or trigger_error("資料庫無法連上，或許網路斷線，也或許您的資料庫設定有誤，請檢查資料庫設定並重新啟動資料庫。", E_USER_ERROR);
-@mysql_select_db($mysql_db,$conID); 
+@mysqli_select_db($mysql_db,$conID); 
 
 
 //ADODB 物件
@@ -174,9 +178,9 @@ $input_kind=array("","text","password","select","textarea","checkbox","radio");
 function error_die ($errno, $errstr, $errfile, $errline) {
 	global $HAVE_SHOW_HEADER;
 	switch ($errno) {
-		case 'FATAL':
-		case 'ERROR':
-		case 'WARNING':
+		case constant("FATAL"):
+		case constant("ERROR"):
+		case constant("WARNING"):
 		case 256:
 		//default:
 		$msg=&error_tbl("執行錯誤","$errstr<p>程式目前執行位置：$errfile 的第 $errline 行</p>");

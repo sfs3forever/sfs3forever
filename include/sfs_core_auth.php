@@ -367,13 +367,17 @@ function check_home_ip($man_ip="") {
 }
 
 //取得學校授權 session
-function get_session_prot() {
+function get_session_prot() {	
 	//$session_prob = $_COOKIE[cookie_sch_id];	
 	//屏東縣特製 config.php 定義 PreFix
-	$session_prob = defined('PreFix') ? PreFix.$_COOKIE[cookie_sch_id] : $_COOKIE[cookie_sch_id] ;
+	$session_prob = '';
+	if(isset($_COOKIE['cookie_sch_id'])) {
+		$session_prob = defined('PreFix') ? PreFix.$_COOKIE['cookie_sch_id'] : $_COOKIE['cookie_sch_id'] ;
+	
+	}
 	
 	if ($session_prob=='')
-	$session_prob  = "DEFAULT";
+		$session_prob  = "DEFAULT";
 	return $session_prob;
 }
 

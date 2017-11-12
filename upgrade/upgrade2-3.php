@@ -13,7 +13,7 @@ if(!$testCONN = mysql_pconnect ("$mysql_host","$mysql_user","$mysql_pass")){
 	exit;
 }
 //未先建立 sfs3 資料庫
-else if (!mysql_select_db($mysql_db,$testCONN)){
+else if (!mysqli_select_db($mysql_db,$testCONN)){
 	$str =read_file("yet_create_newdb.htm");
 	echo $str;
 	exit;

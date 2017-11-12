@@ -8,5 +8,5 @@ if(!$CONN){
 }
 
 $query="alter table stud_base change addr_zip addr_zip varchar(5)";
-mysql_query($query);
+mysqli_query($CONN, $query);
 ?>

@@ -13,5 +13,5 @@ $query="CREATE TABLE if not exists login_log_new (
 	   `no` smallint(4) unsigned NOT NULL default 0,
 	   `login_time` datetime NOT NULL default '0000-00-00 00:00:00',
 	   PRIMARY KEY(teacher_sn,who,no))";
-mysql_query($query);
+mysqli_query($CONN, $query);
 ?>

@@ -25,7 +25,8 @@ function run_sql(&$sql_query, $db, $link) {
 
     // Copy of the cleaned sql statement for display purpose only (see near the
     // beginning of "db_details.php" & "tbl_properties.php")
-    if ($sql_file != 'none' && $pieces_count > 10) {
+    //if ($sql_file != 'none' && $pieces_count > 10) {
+    if ($pieces_count > 10) {
          // Be nice with bandwidth...
         $sql_query_cpy = $sql_query = '';
     } else {

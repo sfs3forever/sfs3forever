@@ -35,7 +35,7 @@
 			exit;
 		}
 		$checkID = @mysql_connect ("$host","$user","$password");	
-		@mysql_select_db($database,$checkID);
+		@mysqli_select_db($database,$checkID);
 		if (!$checkID) {
 			echo "<center><b><h3>失敗!!<br>檢查mysql的設定是否正確?!<b></h3></center>";
 			exit;
@@ -536,7 +536,7 @@
 	}
 	
 //尚未建立資料庫
-if (!@mysql_select_db($mysql_db,$conID) && $dostep=='') {
+if (!@mysqli_select_db($mysql_db,$conID) && $dostep=='') {
 	include "ustep0.php";
 	include "footer.php";
 	exit;

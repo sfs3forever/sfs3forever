@@ -38,7 +38,7 @@ function curr_year($date="",$sp="-"){
 	//以開始日設定回應
 	$query = "select * from school_day where  day<=now() and day_kind='start' order by day desc limit 1";
 	$res = $CONN->Execute($query);
-	return $res->fields[year];
+	return $res->fields['year'];
 	/*
 	if(!empty($date)){
 		$d=explode($sp,$date);
@@ -63,7 +63,7 @@ function curr_seme($date="",$sp="-"){
 	//以開始日設定回應
 	$query = "select * from school_day where  day<=now() and day_kind='start' order by day desc limit 1";
 	$res = $CONN->Execute($query);
-	return $res->fields[seme];
+	return $res->fields['seme'];
 	/*
 	if(!empty($date)){
 		$d=explode($sp,$date);

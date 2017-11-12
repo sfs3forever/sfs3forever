@@ -9,7 +9,7 @@ if(!$CONN){
 
 $d_arr=array("..","templates_c");
 write_scan();
-find_php();
+find_php('');
 $d_arr=array();
 
 function write_scan() {

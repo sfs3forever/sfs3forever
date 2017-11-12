@@ -6,11 +6,14 @@
 function head($logo_title="",$logo_image="",$show_logo=0,$show_left_menu=1) {
     global $SFS_PATH_HTML,$THEME_FILE,$THEME_URL,$SCHOOL_BASE,$UPLOAD_PATH,$UPLOAD_URL,$SFS_IS_HIDDEN_TITLE,$ENABLE_AJAX,$ON_LOAD;
 	if (!isset($_SESSION['session_log_id'])) {
-		session_start();
+		if (session_status() == PHP_SESSION_NONE)	session_start();
 	}
-	else
+	else {
 		check_user_state();
-	require_once "$THEME_FILE"."_header.php";
+	}
+
+	$path=$THEME_FILE.'_header.php';
+	require_once($path);	
 }
 
 //找出管理者姓名

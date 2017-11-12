@@ -10,8 +10,8 @@
 // 2. config.php 引入 sfs_API.php (主要功能函式檔)
 // 3. sfs_API.php 再引入 $THEME_FILE_function.php
 if (is_file('./include/config.php'))
-	require "include/config.php";
-	
+	require "./include/config.php";
+
 if (empty($SFS_PATH)){
 	if(is_readable('./install.php'))
 		header("Location: install.php");
@@ -47,6 +47,7 @@ foot($str);
 function sys_check(){
 	global $SFS_PATH;
 	$text = '';
+
 	if(is_writable ($SFS_PATH."/include/config.php")){
 		$text = "<li>您的 $SFS_PATH"."/include/config.php 檔目前是可以寫入的，請將之屬性改為唯讀。</li>";
 	}

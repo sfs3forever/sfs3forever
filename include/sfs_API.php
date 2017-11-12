@@ -4,10 +4,11 @@
 // 本檔為核心函式庫上層檔，
 // 若非必要，請由相關核心函式庫去新增修改維護。
 
+   
 	// 時間相關
-	require_once( "sfs_core_time.php" );
+	require_once( "$SFS_PATH/include/sfs_core_time.php" );
 	// 系統界面/themes
-	require_once( "sfs_core_html.php" );
+	require_once "$SFS_PATH/include/sfs_core_html.php" ;
 	// 認證函式
 	require_once( "sfs_core_auth.php" );
 	// 模組相關
