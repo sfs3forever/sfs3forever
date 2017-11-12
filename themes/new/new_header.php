@@ -10,7 +10,7 @@ $HAVE_SHOW_HEADER=true;
 <head>
 <meta http-equiv="Content-Type" content="text/html; Charset=Big5">
 
-<title><?php echo "$SCHOOL_BASE[sch_cname_s] 學務管理系統 -- $logo_title" ?></title>
+<title><?php echo "{$SCHOOL_BASE['sch_cname_s']} 學務管理系統 -- $logo_title" ?></title>
 <?php if ($ENABLE_AJAX) echo "<script type=\"text/javascript\" src=\"/javascript/prototype.js\"></script>\n";?>
 <link type="text/css" href="<?php echo $THEME_URL ?>/new.css" rel="stylesheet" />
 <link type="text/css" href="<?php echo $SFS_PATH_HTML; ?>themes/base/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
@@ -72,8 +72,9 @@ if($show_logo){
 }
 
 //印出程式連結
+$top_tool="";
 $link_location=&print_location();
-if ($_COOKIE[close_left_menu]==1){
+if ($_COOKIE['close_left_menu']==1){
 	$top_tool=&get_big_module(1,"small");
 	$tool="";
 }elseif($show_left_menu){

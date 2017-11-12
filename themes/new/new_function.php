@@ -92,13 +92,14 @@ function print_module($msn="",$index=0,$col_num=4) {
 
 //取得左邊模組連結
 function &get_big_module($col_num=4,$mode="") {
+	$main = null;
 	global $SFS_PATH_HTML,$nocols,$SFS_PATH, $CONN,$THEME_URL,$THEME_URL,$FOLDER,$FOLDER_OPEN;
 	
 	//取得學校授權 session ,hami 2003-3-25
 	$session_prob = get_session_prot();
 	
 	//若是目前在第一層，則不要秀出左邊圖示選單
-	if(empty($_SESSION['session_tea_name']))return;
+	if(empty($_SESSION['session_tea_name'])) return $main;
 	
 	$close_pic="<img src='".$THEME_URL."/images/close.png' width=16 height=16 border=0>";
 

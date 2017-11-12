@@ -26,7 +26,7 @@ function up_button(){
 					$SFS_VER_DECLARE,$SFS_BUILD_DATE,$SFS_SCHOOL_LOGIN_PATH,
 					$SFS_IS_CENTER_VER;
 
-	$updir = updir(updir($_SERVER[SCRIPT_NAME]));
+	$updir = updir(updir($_SERVER['SCRIPT_NAME']));
 
 	if($updir){
 		$main="<a href=\"$updir/\"><img src=\"$THEME_URL/images/u_arrow.png\" border=0 alt=上一層></a>";

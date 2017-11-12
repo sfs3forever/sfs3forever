@@ -6,9 +6,9 @@
 
    
 	// 時間相關
-	require_once( "$SFS_PATH/include/sfs_core_time.php" );
+	require_once( "sfs_core_time.php" );
 	// 系統界面/themes
-	require_once "$SFS_PATH/include/sfs_core_html.php" ;
+	require_once("sfs_core_html.php" );
 	// 認證函式
 	require_once( "sfs_core_auth.php" );
 	// 模組相關
