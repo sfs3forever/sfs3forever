@@ -144,12 +144,16 @@ mysqli_select_db($conID, $mysql_db);
 
 
 //ADODB 物件
-require_once("$SFS_PATH/pnadodb/adodb.inc.php"); # load code common to ADODB
-require_once("$SFS_PATH/include/sfs_case_ado.php"); # 函式庫
+//require_once("$SFS_PATH/pnadodb/adodb.inc.php"); # load code common to ADODB
+//require_once("$SFS_PATH/include/sfs_case_ado.php"); # 函式庫
 
-$DB_TYPE = 'mysql';
-$CONN = &ADONewConnection($DB_TYPE);  # create a connection
-$CONN->Connect($mysql_host,$mysql_user,$mysql_pass,$mysql_db);# connect to postgresSQL, agora db
+//$DB_TYPE = 'mysql';
+//$CONN = &ADONewConnection($DB_TYPE);  # create a connection
+//$CONN->Connect($mysql_host,$mysql_user,$mysql_pass,$mysql_db);# connect to postgresSQL, agora db
+
+require_once "pdo_ado.php";
+$CONN = new sdb("mysql:host=$mysql_host;dbname=$mysql_db;charset=utf8mb4", $mysql_user, $mysql_pass);
+
 
 //取得 Mysql 環境變數
 if ($DB_TYPE == 'mysql')
