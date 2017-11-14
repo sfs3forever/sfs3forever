@@ -104,7 +104,7 @@ if($menu){
 	} else $content_list="<center><font size=5 color='#ff0000'><br><br>未發現任何{$menu_arr[$menu]}紀錄！<br><br></font></center>";
 }
 
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'>$memu_select $content_list</form></font>";
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'>$memu_select $content_list</form></font>";
 
 echo $main;
 

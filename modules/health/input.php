@@ -197,8 +197,8 @@ switch ($_POST['sub_menu_id']) {
 		break;
 	case "11":
 		$query="select * from health_fday where year='$sel_year' and semester='$sel_seme' order by week_no";
-		$res=$CONN->Execute($query);
-		$r=$res->GetRows();
+		//$res=$CONN->Execute($query);
+		$r=$CONN->queryFetchAllAssoc($query);
 		$smarty->assign("date_arr",$r);
 		$maxd=$r[count($r)-1]['week_no'];
 		$smarty->assign("maxd",$maxd);

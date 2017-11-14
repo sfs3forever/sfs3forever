@@ -189,6 +189,6 @@ if($_POST['student_sn']){
 	</td></tr></table>";
 }
 
-echo "<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><input type='hidden' name='cancel_sn' value=''>$class_list $studentdata <br> $subitem_data</form>";
+echo "<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><input type='hidden' name='cancel_sn' value=''>$class_list $studentdata <br> $subitem_data</form>";
 foot();
 ?>

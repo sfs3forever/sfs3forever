@@ -64,7 +64,7 @@ function foot($foot_str="") {
 function sfs_themes() {
     global $THEME_FILE ;
 	if (is_file ("$THEME_FILE"."_function.php"))
-		require_once "$THEME_FILE"."_function.php";
+		include_once "$THEME_FILE"."_function.php";
 }
 
 

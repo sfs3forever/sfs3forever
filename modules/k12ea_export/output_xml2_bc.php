@@ -89,8 +89,8 @@ if ($_POST[move_kind]=="8") {
 
 $query="select a.*,b.stud_name from stud_move a ,stud_base b where a.student_sn=b.student_sn and a.move_year_seme='".intval($year_seme)."' and a.move_kind='$_POST[move_kind]' order by a.move_date desc,a.stud_id desc";
 //取出所有記錄
-$res=$CONN->Execute($query) or die($query);
-$smarty->assign("stud_move",$res->GetRows());
+//$res=$CONN->Execute($query) or die($query);
+$smarty->assign("stud_move",$CONN->queryFetchAllAssoc($res));
 
 if ($_POST[out_arr]) {
 	$xml_obj=new sfsxmlfile();

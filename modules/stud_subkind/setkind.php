@@ -93,8 +93,8 @@ if(checkid($SCRIPT_FILENAME,1) OR $class_num) {
 	$type_select="SELECT student_sn,left(curr_class_num,3) as class_id,right(curr_class_num,2)as class_num,stud_id,stud_name,stud_sex,stud_birthday,stud_person_id,stud_tel_1 FROM stud_base WHERE stud_study_cond='0'";
 	if(checkid($SCRIPT_FILENAME,1) and $class_id<>'000') $type_select.=" and curr_class_num like '$class_id%'"; else $type_select.=" and curr_class_num like '$class_num%'";
 	$type_select.=" and stud_kind like '%,$type_id,%' order by class_id,class_num";
-	$recordSet=$CONN->Execute($type_select) or user_error("讀取失敗！<br>$type_select",256);
-	$data=$recordSet->GetRows();
+	//$recordSet=$CONN->Execute($type_select) or user_error("讀取失敗！<br>$type_select",256);
+	$data=$CONN->queryFetchAllAssoc($type_select);
 	//echo $type_select;
 	$listdata.="<table width='100%' cellspacing='0' cellpadding='3' bordercolor=#AAFFAA border=1>
 				 <tr bgcolor='#AAFFAA' align='center'><td>NO.</td><td>班級</td><td>座號</td><td>學號</td><td>姓名</td><td>性別</td><td>出生年月日</td><td>身分證字號</td><td>聯絡電話</td><td><img src='images/delete.png'>解除身份設定</td></tr>";

@@ -138,7 +138,7 @@ if($_POST['act']=='依格式新增'){
 	}
 };
 
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><input type='hidden' name='item_sn' value=$item_sn>
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><input type='hidden' name='item_sn' value=$item_sn>
 	※顯示限定：<input type='radio' value=0 ".($select_item==0?'checked':'')." name='select_item' onclick='this.form.submit()'>全部 
 				<input type='radio' value=1 ".($select_item==1?'checked':'')." name='select_item' onclick='this.form.submit()'>認證中 
 				<input type='radio' value=2 ".($select_item==2?'checked':'')." name='select_item' onclick='this.form.submit()'>停止認證 

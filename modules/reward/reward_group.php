@@ -231,12 +231,12 @@ function &mainForm($sel_year,$sel_seme,$reward_id=""){
 	$main="
 	$tool_bar
 	<table cellspacing='1' cellpadding='3' bgcolor='#C6D7F2'>
-	<form action='$_SERVER[SCRIPT_NAME]' name='base_form' method='post'>
+	<form action='{$_SERVER['SCRIPT_NAME']}' name='base_form' method='post'>
 	<tr class='title_sbody2'>
 	<td>請選學年度<td align='left' bgcolor='white' colspan='2'>$year_seme_select<input type='hidden' name='reward_kind' value='$reward_kind'><input type='hidden' name='reward_reason' value='$reward_reason'><input type='hidden' name='reward_base' value='$reward_base'><input type='hidden' name='temp_reward_date' value='$reward_date'>
 	</tr>
 	</form>
-	<form action='$_SERVER[SCRIPT_NAME]' method='post'>
+	<form action='{$_SERVER['SCRIPT_NAME']}' method='post'>
 	<tr class='title_sbody2'>
 	<td>獎懲類別<td align='left' bgcolor='white'>$reward_select<td align='left' bgcolor='white' rowspan='4'><input type='submit' name='act' value='$submit_msg'><br><input type='submit' name='act' value='清除內容'><input type='hidden' name='reward_id' value='$reward_id'><input type='hidden' name='year_seme' value='$seme_year_seme'>
 	</tr>
@@ -320,7 +320,7 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 		$query_more="select count(reward_id) from reward where dep_id='$reward_id'";
 		$res_more=$CONN->Execute($query_more);
 		$dep=$res_more->fields[0];
-		$url_more="<a href='$_SERVER[SCRIPT_NAME]?sel_year=$sel_year&sel_seme=$sel_seme&sel_week=$sel_week";
+		$url_more="<a href='$_SERVER['SCRIPT_NAME']?sel_year=$sel_year&sel_seme=$sel_seme&sel_week=$sel_week";
 		$stud_table="";
 		if ($sel_dep==$reward_id) {
 			$url_more.="'><img src='images/tree_collapse.gif' border='0'></a>";
@@ -336,13 +336,13 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 					$add_table="
 						<tr bgcolor='#E8F9C8'><td colspan='2' align='center'>增一班<td align='right' colspan='4'>請選班級<td colspan='10' bgcolor='white'>$class_select <input type='submit' name='addclass' value='確定新增'><input type='hidden' name='stud_id' value='all'><input type='hidden' name='year_seme' value='$year_seme'><input type='hidden' name='sel_week' value='$sel_week'><input type='hidden' name='sel_dep' value='$reward_id'></tr>
 						</form>
-						<form action='$_SERVER[SCRIPT_NAME]' method='post'>
+						<form action='{$_SERVER['SCRIPT_NAME']}' method='post'>
 						<tr bgcolor='#E8F9C8'><td colspan='2' rowspan='3' align='center'>增一人<td align='right' colspan='4'>請選擇班級和姓名<td colspan='10' bgcolor='white'>$class_select2 $stud_select $hidden_str $submit_str<input type='hidden' name='past_class_id' value='$class_id'></tr>
 						</form>
-						<form action='$_SERVER[SCRIPT_NAME]' method='post'>
+						<form action='{$_SERVER['SCRIPT_NAME']}' method='post'>
 						<tr bgcolor='#E8F9C8'><td align='right' colspan='4'>或直接輸入學號<td colspan='10' bgcolor='white'><input type='text' size='10' maxsize='10' name='One' value='$One'>$hidden_str</tr>
 						</form>
-						<form action='$_SERVER[SCRIPT_NAME]' method='post'>
+						<form action='{$_SERVER['SCRIPT_NAME']}' method='post'>
 						<tr bgcolor='#E8F9C8'><td align='right' colspan='4'>或直接輸入班級座號<td colspan='10' bgcolor='white'><input type='text' size='2' maxsize='2' name='year_name' value='$year_name'> 年級 <input type='text' size='2' maxsize='2' name='class_name' value='$class_name'> 班 <input type='text' size='2' maxsize='2' name='class_num' value='$class_num'> 號 <input type='submit' value='確定新增'></tr>
 						$hidden_str
 						</form>";
@@ -351,7 +351,7 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 						<tr><td colspan='7' bgcolor='#FBF8B9'><table cellspacing='0' cellpadding='0'0class='small'>
 						<tr><td valign='top'>
 						<table cellspacing='1' cellpadding='3' bgcolor='#9ebcdd' class='small'>
-						<form action='$_SERVER[SCRIPT_NAME]' method='post' name='myform1'>
+						<form action='{$_SERVER['SCRIPT_NAME']}' method='post' name='myform1'>
 						$add_table
 						<tr bgcolor='#E8F9C8'><td>學號<td>班級<td>座號<td>姓名<td>選項<td>學號<td>班級<td>座號<td>姓名<td>選項<td>學號<td>班級<td>座號<td>姓名<td>選項</tr>";
 				$table_num=0;
@@ -368,7 +368,7 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 					$res_stud=$CONN->Execute($query_stud);
 					$stud_name=addslashes($res_stud->fields[stud_name]);
 					if ($table_num==1) $stud_table.="<tr bgcolor='#E8F9C8'>";
-					$stud_table.="<td>$stud_id<td>".$c_name[$seme_class]."<td>$seme_num<td>$stud_name<td><a href='$_SERVER[SCRIPT_NAME]?act=del&sel_year=$sel_year&sel_seme=$sel_seme&sel_week=$sel_week&reward_id=$reward_id&sel_dep=$sel_dep' onClick=\"return confirm('確定刪除".$stud_name."的這一筆記錄?')\"><img src='images/del.png' border='0'></a>";
+					$stud_table.="<td>$stud_id<td>".$c_name[$seme_class]."<td>$seme_num<td>$stud_name<td><a href='$_SERVER['SCRIPT_NAME']?act=del&sel_year=$sel_year&sel_seme=$sel_seme&sel_week=$sel_week&reward_id=$reward_id&sel_dep=$sel_dep' onClick=\"return confirm('確定刪除".$stud_name."的這一筆記錄?')\"><img src='images/del.png' border='0'></a>";
 					if ($table_num==3) $stud_table.="</tr>\n";
 					$res_more->MoveNext();
 				}
@@ -386,7 +386,7 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 		$mr=($dep>0)?$url_more:"";
 		$bgcolor=($reward_kind>0)?"#FFE6D9":"#E6F2FF";
 		if ($reward_id==$id) $bgcolor="#FFFF00";
-		$url_str="$_SERVER[SCRIPT_NAME]?sel_year=$sel_year&sel_seme=$sel_seme&sel_week=$sel_week&reward_id=$deps";
+		$url_str="$_SERVER['SCRIPT_NAME']?sel_year=$sel_year&sel_seme=$sel_seme&sel_week=$sel_week&reward_id=$deps";
 		$reward_data.="
 		<tr bgcolor=$bgcolor>
 		<td align='center' rowspan='$rows'>$mr
@@ -407,7 +407,7 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 	<table cellspacing='0' cellpadding='0'0class='small'>
 	<tr><td valign='top'>
 		<table cellspacing='1' cellpadding='3' bgcolor='#9ebcdd' class='small'>
-		<form action='$_SERVER[SCRIPT_NAME]' method='post' name='myform'>
+		<form action='{$_SERVER['SCRIPT_NAME']}' method='post' name='myform'>
 		<tr class='title_sbody1'>
 		<td colspan='7' align='left'>週次&gt;$weeks_url
 		</tr>

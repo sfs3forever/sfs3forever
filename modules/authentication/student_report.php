@@ -172,7 +172,7 @@ HERE;
 echo print_menu($MENU_P);
 
 
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'>";
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'>";
 //顯示班級
 $sql_select="select * from school_class where year=".curr_year()." AND semester=".curr_seme()." order by class_id ";
 $recordSet=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);

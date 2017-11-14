@@ -34,8 +34,8 @@ if ($_POST['year_name']) {
 		if ($all_sn) $all_sn=substr($all_sn,0,-1);
 		//取出空白成績資料列
 		$query="select a.*,b.stud_name from $score_semester a left join stud_base b on a.student_sn=b.student_sn where a.score='-100' and a.student_sn in ($all_sn) order by a.student_sn,a.ss_id,a.test_sort,a.test_kind";
-		$res=$CONN->Execute($query);
-		$score_data=$res->GetRows();
+		//$res=$CONN->Execute($query);
+		$score_data=$CONN->queryFetchAllAssoc($sql);
 		//取科目中文名
 		$query="select subject_id,subject_name from score_subject";
 		$res=$CONN->Execute($query);

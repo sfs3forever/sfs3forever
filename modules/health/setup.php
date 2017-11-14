@@ -31,8 +31,8 @@ switch ($_POST[sub_menu_id]) {
 			$res=$CONN->Execute($query);
 		}
 		$query="select distinct concat(subject,hospital,doctor),year,semester,subject,hospital,doctor,measure_date,cyear,count(*) as nums from health_checks_doctor where year='$sel_year' and semester='$sel_seme' and cyear='".$_POST['class_name']."' group by subject,hospital,doctor order by subject,hospital,doctor";
-		$res=$CONN->Execute($query);
-		$smarty->assign("rowdata",$res->GetRows());
+		//$res=$CONN->Execute($query);
+		$smarty->assign("rowdata",$CONN->queryFetchAllAssoc($query));
 		$smarty->assign("checks_item_arr",array("Oph"=>"眼","Ent"=>"耳鼻喉","Hea"=>"頭頸、胸、腹、脊柱四肢","Uro"=>"泌尿生殖","Der"=>"皮膚","Ora"=>"口腔"));
 		$smarty->assign("third_menu",$year_seme_menu." ".class_menu($sel_year,$sel_seme,$_POST['class_name'],"",2));
 		$smarty->assign("class_arr",class_base($_POST['year_seme'],array($_POST['class_name'])));

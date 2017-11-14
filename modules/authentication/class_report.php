@@ -128,7 +128,7 @@ HERE;
 echo print_menu($MENU_P);
 
 //取得認證中項目的下拉選單
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]' target='_BLANK'>";
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}' target='_BLANK'>";
 $sql_select="select * from authentication_item WHERE CURDATE() BETWEEN start_date AND end_date order by room_id,code";
 $res=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
 

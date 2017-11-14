@@ -223,7 +223,7 @@ echo print_menu($MENU_P,$linkstr);
 
 //取得年度與學期的下拉選單
 $seme_list=get_class_seme();
-$main="<table border='1' cellpadding='3' cellspacing='0' style='border-collapse: collapse' bordercolor='#AAAAAA' width='100%'><form enctype='multipart/form-data' name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'>
+$main="<table border='1' cellpadding='3' cellspacing='0' style='border-collapse: collapse' bordercolor='#AAAAAA' width='100%'><form enctype='multipart/form-data' name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'>
 	<select name='work_year_seme' onchange='this.form.submit()'>";
 foreach($seme_list as $key=>$value){
 	$main.="<option ".($key==$work_year_seme?"selected":"")." value=$key>$value</option>";

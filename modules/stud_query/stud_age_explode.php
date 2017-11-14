@@ -15,7 +15,7 @@ $smarty->assign("sex_arr",array("1"=>"男","2"=>"女"));
 $smarty->assign("class_arr",class_base());
 
 $query = "select *,left(curr_class_num,length(curr_class_num)-2) as stud_class,right(curr_class_num,2) as stud_site from stud_base where (stud_study_cond=0 or stud_study_cond=15) and stud_birthday >= '$sdate' and stud_birthday <= '$edate' order by ".$_GET[order];
-$res = $CONN->Execute($query) or die ($query);
-$smarty->assign("data_arr",$res->GetRows());
+//$res = $CONN->Execute($query) or die ($query);
+$smarty->assign("data_arr",$CONN->queryFetchAllAssoc($query));
 $smarty->display("stud_query_stud_age_explode.tpl");
 ?>

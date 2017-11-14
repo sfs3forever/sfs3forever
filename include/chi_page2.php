@@ -27,7 +27,7 @@ class Chi_Page {
 	function Chi_Page($tol,$size,$page,$url='') {
 		($page=='') ? $this->page=0:$this->page=$page;
 		if 	($url=='') {
-			$this->url=$_SERVER[SCRIPT_NAME];
+			$this->url=$_SERVER['SCRIPT_NAME'];
 			$this->sy='?';
 			}else{
 			$this->url=$url;
@@ -51,7 +51,7 @@ class Chi_Page {
 		$tol=ceil($this->tol/$this->size);
 		$now=$this->page;
 		$URL=$this->url;
-		($URL==$_SERVER[SCRIPT_NAME]) ? $ln='?':$ln='&';
+		($URL==$_SERVER['SCRIPT_NAME']) ? $ln='?':$ln='&';
 		if ( $tol==1 ) return $this->button("共".$this->tol."筆資料").$this->button('第1頁').$this->button('上頁').$this->button('下頁').$this->button('最末頁');
 		if ( $tol==2 ) {
 			if ($now==0) $tt= $this->button('第1頁').$this->button('上頁').$this->button('下頁',$URL.$ln."page=1").$this->button('最末頁',$URL.$ln."page=1");
@@ -97,7 +97,7 @@ class Chi_Page {
 		$tol=ceil($this->tol/$this->size);
 		$now=$this->page;
 		$URL=$this->url;
-		($URL==$_SERVER[SCRIPT_NAME]) ? $ln='?':$ln='&';
+		($URL==$_SERVER['SCRIPT_NAME']) ? $ln='?':$ln='&';
 		if ( $tol==1 ) return $this->Wd("共".$this->tol."筆資料").$this->Wd(1).$this->Wd(2).$this->Wd(3).$this->Wd(4);
 		if ( $tol==2 ) {
 			if ($now==0) $tt= $this->Wd(1).$this->Wd(2).$this->Wd(3,$URL.$ln."page=1").$this->Wd(4,$URL.$ln."page=1");

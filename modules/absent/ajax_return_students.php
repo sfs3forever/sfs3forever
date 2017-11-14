@@ -12,8 +12,9 @@ if ($_POST['the_class']) {
   
   $seme_year_seme=sprintf("%03d%d",curr_year(),curr_seme());
 	$query="select a.student_sn,a.seme_num,b.stud_name from stud_seme a,stud_base b where a.seme_year_seme='$seme_year_seme' and a.seme_class='".$_POST['the_class']."' and a.student_sn=b.student_sn order by seme_num";
-	$res_stud_list=$CONN->Execute($query) or die("SQL錯誤:".$query);
-	$select_students=$res_stud_list->GetRows();
+	//$res_stud_list=$CONN->Execute($query) or die("SQL錯誤:".$query);
+  //$select_students=$res_stud_list->GetRows();
+  $select_students = $CONN->queryFetchAllAssoc($query)  or die("SQL錯誤:".$query);
   $data="<table border='0'>";
   $i=0;
   foreach($select_students as $v) {

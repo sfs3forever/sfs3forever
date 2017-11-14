@@ -6,8 +6,8 @@ include "teach_config.php";
 sfs_check();
 
 $query="select * from login_log_new where teacher_sn = '".$_SESSION['session_tea_sn']."' and who = '".$_SESSION['session_who']."' order by no";
-$res=$CONN->Execute($query);
-$smarty->assign("rowdata",$res->GetRows());
+//$res=$CONN->Execute($query);
+$smarty->assign("rowdata",$CONN->queryFetchAllAssoc($query));
 
 $smarty->assign("SFS_TEMPLATE",$SFS_TEMPLATE);
 $smarty->assign("module_name","個人登入資訊");

@@ -175,7 +175,7 @@ if($stud_class && $work_year_seme==$curr_year_seme) {
 	$tool_icon.="<input type='submit' name='act' value='輸出成績證明單' onclick=\"document.myform.target='ts{$academic_year}'\">";
 }
 
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'>$recent_semester $class_list $tool_icon";
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'>$recent_semester $class_list $tool_icon";
 
 //產出學生名單
 $data="";

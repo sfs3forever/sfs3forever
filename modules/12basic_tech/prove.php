@@ -175,7 +175,7 @@ if($stud_class and $work_year_seme==$curr_year_seme){
 	$tool_icon.="<input type='button' name='all_stud' value='全選' onClick='javascript:tagall(1);'> <input type='button' name='clear_stud'  value='全不選' onClick='javascript:tagall(0);'> 
 		<input type='submit' name='go' value='確定輸出' onclick=\"this.form.target='$stud_class';\">";
 }
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]' target='$stud_class'><input type='hidden' name='student_sn' value=''>$recent_semester $class_list $tool_icon <table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse; collapse; font-size:9pt;' bordercolor='#111111' id='AutoNumber1' width='100%'>";
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}' target='$stud_class'><input type='hidden' name='student_sn' value=''>$recent_semester $class_list $tool_icon <table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse; collapse; font-size:9pt;' bordercolor='#111111' id='AutoNumber1' width='100%'>";
 
 //檢查是否有可修改紀錄的參與免試學生
 $editable_sn_array=get_editable_sn($work_year);

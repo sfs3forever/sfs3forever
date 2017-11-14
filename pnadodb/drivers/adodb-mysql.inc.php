@@ -367,14 +367,22 @@ class ADODB_mysql extends ADOConnection {
 			//									$this->forceNewConnect,$this->clientFlags);
 			$this->_connectionID = mysqli_connect($argHostname,$argUsername,$argPassword,$argDatabasename);	
 			$this->conn =  mysqli_connect($argHostname,$argUsername,$argPassword,$argDatabasename);	
+			
+			mysqli_query($this->conn,"SET NAMES utf8'"); 
+			mysqli_query($this->conn,"SET CHARACTER_SET_CLIENT utf8");//for chinese words
+			mysqli_query($this->conn, "SET CHARACTER_SET_RESULTS utf8");
+			mysqli_set_charset($this->conn,'utf8mb4');
 			$a=5;
 		}
-		else if (ADODB_PHPVER >= 0x4200)
+		else if (ADODB_PHPVER >= 0x4200) {
 			$this->_connectionID = mysqli_connect($argHostname,$argUsername,$argPassword,
 												$this->forceNewConnect);
-		else
+			mysqli_set_charset($this->conn,'utf8mb4');
+
+		} else {
 			$this->_connectionID = mysqli_connect($argHostname,$argUsername,$argPassword);
-	
+		}
+
 		if ($this->_connectionID === false) return false;
 		if ($argDatabasename) return $this->SelectDB($argDatabasename);
 		return true;	

@@ -265,8 +265,8 @@ if($_POST){
 			
 			$smarty->assign("reward_kind",$reward_arr);
 			$query="select * from reward where student_sn='$student_sn' and reward_year_seme='".$seme_year_seme."' order by reward_div,reward_date desc";
-			$res=$CONN->Execute($query);
-			$smarty->assign("reward_rows",$res->GetRows());
+			//$res=$CONN->Execute($query);
+			$smarty->assign("reward_rows",$CONN->queryFetchAllAssoc($query));
 			for($i=1;$i<=6;$i++) { $f[$i]=0; $t[$i]=0; }
 			$smarty->assign("f",$f);
 		}

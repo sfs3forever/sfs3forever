@@ -102,7 +102,7 @@ function get_stu_arr($sel_year,$sel_seme,$id) {
 	global $CONN,$study_str;
 
 	$query = "select a.student_sn,a.stud_name,a.stud_sex,b.seme_num from stud_base a,stud_seme b where a.student_sn=b.student_sn and b.seme_year_seme='".sprintf("%03d",$sel_year).$sel_seme."' and b.seme_class='$id' and a.stud_study_cond in ($study_str) order by b.seme_num";
-	$res=$CONN->Execute($query);
-	return $res->GetRows();
+	//$res=$CONN->Execute($query);
+	return $CONN->queryFetchAllAssoc($query);
 }
 ?>

@@ -84,7 +84,7 @@ if($_POST['grad_year']) {
                 $rs->MoveNext();
 	}
 }
-echo "<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'>$grad_year_radio
+echo "<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'>$grad_year_radio
 		<table border='2' cellpadding='0' cellspacing='0' style='border-collapse: collapse; font-size:9pt' bordercolor='#111111' id='AutoNumber1' width='100%'>
 		$data
 		</table></form>";

@@ -55,17 +55,17 @@ if ($One) {
 if($act=="儲存登記"){
 	if ($One) {
 		add_one($sel_year,$sel_seme,$_POST[class_id],$One,$_POST[s]);
-		header("location: $_SERVER[SCRIPT_NAME]?class_id=$_POST[class_id]&One=$_POST[One]&this_date=$_POST[date]");
+		header("location: $_SERVER['SCRIPT_NAME']?class_id=$_POST[class_id]&One=$_POST[One]&this_date=$_POST[date]");
 	} else {
 		add_all($sel_year,$sel_seme,$_POST[class_id],$_POST[date],$_POST[s]);
-		header("location: $_SERVER[SCRIPT_NAME]?this_date=$_POST[date]&class_id=$_POST[class_id]");
+		header("location: $_SERVER['SCRIPT_NAME']?this_date=$_POST[date]&class_id=$_POST[class_id]");
 	}
 }elseif($act=="clear"){
 	clear_data($_GET[this_date],$_GET[stud_id]);
 	if ($One)
-		header("location: $_SERVER[SCRIPT_NAME]?this_date=$_GET[this_date]&class_id=$_GET[class_id]&One=$One");
+		header("location: $_SERVER['SCRIPT_NAME']?this_date=$_GET[this_date]&class_id=$_GET[class_id]&One=$One");
 	else
-		header("location: $_SERVER[SCRIPT_NAME]?this_date=$_GET[this_date]&class_id=$_GET[class_id]");
+		header("location: $_SERVER['SCRIPT_NAME']?this_date=$_GET[this_date]&class_id=$_GET[class_id]");
 }else{
 	$main=&mainForm($sel_year,$sel_seme,$class_name[3],$_POST[thisOne],$One);
 }
@@ -156,7 +156,7 @@ function &mainForm($sel_year,$sel_seme,$class_id="",$thisOne=array(),$One=""){
 		<table cellspacing='1' cellpadding='2' bgcolor='#E2ECFC' class='small'>
 		<tr bgcolor='#FEFBDA'>
 		<td align='center'>		
-		<a href='$_SERVER[SCRIPT_NAME]?act=$_REQUEST[act]&this_day=$today&class_id=$class_id' class='box'><img src='".$SFS_PATH_HTML."images/today.png' alt='回到今天' width='16' height='16' hspace='2' border='0' align='absmiddle'>回到今天</a>
+		<a href='$_SERVER['SCRIPT_NAME']?act=$_REQUEST[act]&this_day=$today&class_id=$class_id' class='box'><img src='".$SFS_PATH_HTML."images/today.png' alt='回到今天' width='16' height='16' hspace='2' border='0' align='absmiddle'>回到今天</a>
 		</td></tr>
 		<tr bgcolor='#FFFFFF'><td>$mc</td></tr>
 		</table>
@@ -166,17 +166,17 @@ function &mainForm($sel_year,$sel_seme,$class_id="",$thisOne=array(),$One=""){
 	$main="
 	$tool_bar
 	<table cellspacing='1' cellpadding='3' bgcolor='#C6D7F2'>
-	<form action='$_SERVER[SCRIPT_NAME]' method='post'>
+	<form action='{$_SERVER['SCRIPT_NAME']}' method='post'>
 	<tr bgcolor='#FFFFFF'><td>
 	紀錄日期： <font color='blue'>$year</font> 年 <font color='blue'>$month</font> 月 <font color='blue'>$day</font> 日</td></tr>
 	</form>
 <!--
-	<form action='$_SERVER[SCRIPT_NAME]' method='post'>
+	<form action='{$_SERVER['SCRIPT_NAME']}' method='post'>
 	<tr bgcolor='#ffffff'>
 	<td>或直接輸入學號：<input type='text' size='10' maxsize='10' name='One'><input type='hidden' name='this_date' value='$year-$month-$day'>
 	</tr>
 	</form>
-	<form action='$_SERVER[SCRIPT_NAME]' method='post'>
+	<form action='{$_SERVER['SCRIPT_NAME']}' method='post'>
 	<tr bgcolor='#ffffff'>
 	<td>或直接輸入班級座號：<input type='text' size='2' maxsize='2' name='year_name'> 年級 <input type='text' size='2' maxsize='2' name='class_name'> 班 <input type='text' size='2' maxsize='2' name='class_num'> 號 <input type='submit' value='確定'><input type='hidden' name='this_date' value='$year-$month-$day'>
 	</tr>
@@ -307,7 +307,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$thisOne=array(),$One=""){
 			$df=(!empty($aaa[allday]))?"":"<td bgcolor='#FFE6D9'>$aaa[df]</td>";
 			$all_day=(!empty($aaa[allday]))?"":"<td bgcolor='#E8F9C8'>$aaa[allday]</td>";
 			$tool="功能";
-			$select_col="<td bgcolor='#ECff8F9' align='center'><a href='$_SERVER[SCRIPT_NAME]?class_id=$class_id&One=$id&this_date=$year-$month-$day'>編輯</a>|<a href='$_SERVER[SCRIPT_NAME]?act=clear&class_id=$class_id&stud_id=$id&this_date=$year-$month-$day'>清除</a></td>";
+			$select_col="<td bgcolor='#ECff8F9' align='center'><a href='$_SERVER['SCRIPT_NAME']?class_id=$class_id&One=$id&this_date=$year-$month-$day'>編輯</a>|<a href='$_SERVER['SCRIPT_NAME']?act=clear&class_id=$class_id&stud_id=$id&this_date=$year-$month-$day'>清除</a></td>";
 		}
 		
 		//勾選盒
@@ -319,7 +319,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$thisOne=array(),$One=""){
 		<tr bgcolor='#FFFFFF'>
 		<td>$id</td>
 		<td>".$num[$id]."</td>
-		<td>$chkBox<a href='$_SERVER[SCRIPT_NAME]?class_id=$class_id&One=$id&this_date=$year-$month-$day'>$name</a></td>		
+		<td>$chkBox<a href='$_SERVER['SCRIPT_NAME']?class_id=$class_id&One=$id&this_date=$year-$month-$day'>$name</a></td>		
 		$uf
 		$sections_data
 		$df		
@@ -393,14 +393,14 @@ function &signForm($sel_year,$sel_seme,$class_id,$thisOne=array(),$One=""){
 			else
 				$data.="<tr bgcolor='#FFFFFF'>";
 			$data.="
-			<td align='center'><a href='$_SERVER[SCRIPT_NAME]?class_id=$class_id&this_date=$did'>".$did."<br>(".$weekN[$dd[wday]-1].")</a></td>	
+			<td align='center'><a href='$_SERVER['SCRIPT_NAME']?class_id=$class_id&this_date=$did'>".$did."<br>(".$weekN[$dd[wday]-1].")</a></td>	
 			$uf
 			$sections_data
 			$df		
 			$all_day
 			<td bgcolor='#ECff8F9'>
 			$select
-			<a href='$_SERVER[SCRIPT_NAME]?act=clear&class_id=$class_id&stud_id=$One&this_date=$did&One=$One'><img src='images/del.png' border='0' alt='刪除這一天($did)所有記錄'></a></td>
+			<a href='$_SERVER['SCRIPT_NAME']?act=clear&class_id=$class_id&stud_id=$One&this_date=$did&One=$One'><img src='images/del.png' border='0' alt='刪除這一天($did)所有記錄'></a></td>
 			</tr>";
 		}
 	}
@@ -421,7 +421,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$thisOne=array(),$One=""){
 		<td bgcolor='#E8F9C8'>整天</td>
 		<td bgcolor='#ECff8F9'>$tool</td>
 		</tr>
-		<form action='$_SERVER[SCRIPT_NAME]' method='post' name='myform'>
+		<form action='{$_SERVER['SCRIPT_NAME']}' method='post' name='myform'>
 		$data	
 		</table>
 	</td><td valign='top'>

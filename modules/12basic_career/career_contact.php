@@ -61,7 +61,7 @@ if($student_sn){
 	$act="<br><center><input type='submit' value='儲存紀錄' name='go' onclick='return confirm(\"確定要\"+this.value+\"?\")' style='border-width:1px; cursor:hand; color:white; background:#5555ff; font-size:20px; height=42'></center>";
 }
 
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'><table style='border-collapse: collapse; font-size=12px;'><tr><td valign='top'>$class_select<br>$student_select</td><td valign='top'>$showdata $act</td></tr></table></form></font>";
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'><table style='border-collapse: collapse; font-size=12px;'><tr><td valign='top'>$class_select<br>$student_select</td><td valign='top'>$showdata $act</td></tr></table></form></font>";
 
 echo $main;
 

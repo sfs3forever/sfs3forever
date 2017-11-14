@@ -101,7 +101,7 @@ $class_base = class_base($work_year_seme);
 $type_select="SELECT $group_fields,count(*) as `人數` FROM stud_subkind a LEFT JOIN stud_base b ON a.student_sn=b.student_sn WHERE b.stud_study_cond=0 and a.type_id='$type_id'"; // LEFT JOIN stud_seme_eduh c ON a.stud_id=c.stud_id   
 $type_select.=(!checkid($SCRIPT_FILENAME,1) AND $class_num<>'')?" AND b.curr_class_num like '$class_num%'":"";
 $type_select.=" GROUP BY $group_fields";
-$recordSet=$CONN->Execute($type_select) or user_error("讀取失敗！<br>$type_select",256);
+//$recordSet=$CONN->Execute($type_select) or user_error("讀取失敗！<br>$type_select",256);
 
 $listdata.="<table width='100%' cellspacing='1' cellpadding='3' bgcolor='#FFCCCC'>
              <form name=\"stud_subkind\" method=\"post\" action=\"$_SERVER[PHP_SELF]\">
@@ -110,7 +110,7 @@ $listdata.="<table width='100%' cellspacing='1' cellpadding='3' bgcolor='#FFCCCC
              $typedata</select></td></tr><tr><td>※分組統計項目： $sta_options</td></tr>
              </form></table>";
 //<input type='submit' value='依選定項目統計列示' name='replace'>
-$data=$recordSet->GetRows();
+$data=$CONN->queryFetchAllAssoc($type_select);
 
 $listdata.="<table bordercolor=#55AAAA border=1 cellspacing=0 cellpadding=5><tr bgcolor=#AAFFAA>$fields_title</tr>";
 $total=0;
@@ -129,8 +129,8 @@ echo $listdata;
 //檢查是否有類別屬性尚未設定
 $type_select="SELECT count(student_sn) as members FROM stud_base WHERE stud_kind like '%,$type_id,%' AND stud_study_cond=0";
 $type_select.=($class_num<>'')?" AND curr_class_num like '$class_num%'":"";
-$recordSet=$CONN->Execute($type_select) or user_error("讀取失敗！<br>$type_select",256);
-$data=$recordSet->FetchRow();
+//$recordSet=$CONN->Execute($type_select) or user_error("讀取失敗！<br>$type_select",256);
+$data=$CONN->queryFetchRowAssoc($type_select);
 if($total<>$data['members'])
         echo "<BR><font color=#FF5555>PS.系統發現身份別設定 [ ".$data['members' ]."] 與類別屬性設定統計數據 [ $total ] 不同，<BR>　 您可能尚有[ ".($data['members']-$total)." ]位此類學生的類別屬性尚未設定！<a href='setsubkind.php?type_id=$type_id'>[<img src='./images/set.gif' border=0>按此設定]</a>";
 

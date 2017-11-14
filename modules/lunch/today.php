@@ -13,9 +13,10 @@ $bgcolor=$_GET['bgcolor']?$_GET['bgcolor']:'white';
 
 
 $sql="select * from lunchtb where pDate=curdate()";
-$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
-if($res->recordCount()){
-$days_list=$res->GetRows();
+//$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
+$rs = $CONN->queryFetchAllAssoc($sql);
+if(count($rs) > 0){
+	$days_list=$rs;
 	$main="<marquee direction=$direction scrolldelay=$scrolldelay scrollamount=$scrollamount behavior=scroll bgcolor=$bgcolor height=$height width=$width><center>◎今日午餐◎".date()."</center><table border='1' cellpadding='3' cellspacing='0' style='border-collapse: collapse' bordercolor='#008000' width='100%'>";
 	foreach($days_list as $day) {
 		$pDesign=$day['pDesign'];

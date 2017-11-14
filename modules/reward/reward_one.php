@@ -362,7 +362,7 @@ function &mainForm($sel_year,$sel_seme,$class_id="",$One="",$reward_id=""){
 	$main.="
 	<table border='0'>
 	<!-- 個人獎懲表單 -->
-	<form action='$_SERVER[SCRIPT_NAME]' name='base_form' method='post'>
+	<form action='{$_SERVER['SCRIPT_NAME']}' name='base_form' method='post'>
 	<tr id='reward_form'>
 	<td>
 	<table cellspacing='1' cellpadding='3' bgcolor='#C6D7F2'>
@@ -382,7 +382,7 @@ function &mainForm($sel_year,$sel_seme,$class_id="",$One="",$reward_id=""){
 		$main.="<tr class='title_sbody2'><td>編輯選項<td align='left' bgcolor='white' colspan='2'><input type='checkbox' name='on_reward' $chk_r onClick='this.form.submit()'>連續輸入獎懲資料<input type='hidden' name='past_on_reward' value='".(!$on_reward)."'></tr>";
 	$main.="
 	</form>
-	<form action='$_SERVER[SCRIPT_NAME]' method='post' name='reward_one_form'>
+	<form action='{$_SERVER['SCRIPT_NAME']}' method='post' name='reward_one_form'>
 	<tr class='title_sbody2'>
 	<td>獎懲類別<td align='left' bgcolor='white'>$reward_select<td align='left' bgcolor='white' rowspan='5' valign='bottom'>
 	<input type='submit' name='act' value='$submit_msg'><br>
@@ -511,7 +511,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$One="",$id=""){
 				$cancel_date=DtoCh($cancel_date);
 			$oo_path="bad";
 		}
-		$url_str="$_SERVER[SCRIPT_NAME]?sel_year=$sel_year&sel_seme=$sel_seme&sel_week=$sel_week&reward_id=$reward_id";
+		$url_str="$_SERVER['SCRIPT_NAME']?sel_year=$sel_year&sel_seme=$sel_seme&sel_week=$sel_week&reward_id=$reward_id";
 		$chked=($chk_id[$reward_id])?"checked":"";
 		$reward_data.="
 		<tr bgcolor=$bgcolor>
@@ -533,7 +533,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$One="",$id=""){
 	<table cellspacing='0' cellpadding='0'0class='small'>
 	<tr><td valign='top'>
 		<table cellspacing='1' cellpadding='3' bgcolor='#9ebcdd' class='small'>
-		<form action='$_SERVER[SCRIPT_NAME]' method='post' name='myform'>
+		<form action='{$_SERVER['SCRIPT_NAME']}' method='post' name='myform'>
 		<tr class='title_sbody1'>
 		<td colspan='12' align='left'>週次&gt;$weeks_url
 		</tr>

@@ -109,8 +109,8 @@ $query .=" order by start_date  desc ";
 
 
 
-$res=$CONN->Execute($query);
-$smarty->assign("absent",$res->GetRows());
+//$res=$CONN->Execute($query);
+$smarty->assign("absent", $CONN->queryFetchAllAssoc($query));
 $smarty->assign('upload_url',$UPLOAD_URL);
 $smarty->display('list.tpl'); 
 

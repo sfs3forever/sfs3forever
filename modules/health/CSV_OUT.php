@@ -70,18 +70,22 @@ if($table_id){
 		else
 		$sql_select="SELECT b.stud_person_id, a.*  FROM $table_name a LEFT JOIN stud_base b  ON a.student_sn=b.student_sn ";
 	}
-	$res=$CONN->Execute($sql_select) or user_error("資料表  $table_id $table_name 讀取失敗！<br>$sql_select",256);
-	$field_count=$res->FieldCount();
-	for($i=0;$i<$field_count;$i++) {
-		$field_data=$res->FetchField($i);
-		$field_name=$field_data->name;
+	
+	//$res=$CONN->Execute($sql_select) or user_error("資料表  $table_id $table_name 讀取失敗！<br>$sql_select",256);
+	$rs = $CONN->query($sql_select);
+	$field_count = $rs->columnCount();
+	for($i=0;$i< $field_count;$i++) {
+		//$field_data=$res->FetchField($i);
+		$col = $rs->getColumnMeta($i);
+		//$field_data=$res->FetchField($i);
+		$field_name=$col['name'];
 		$fields_name.="\"$field_name\",";
 	}
 	$all_str=substr($fields_name,0,-1)."\r\n";
 
 	if ($web_id) {
 		$smarty->assign("IS_JHORES",$IS_JHORES);
-		$smarty->assign("rowdata",$res->GetRows());
+		$smarty->assign("rowdata",$rs);
 		header("Content-disposition: attachment; filename=web_WH.csv");
 		header("Content-type: text/x-csv ; Charset=Big5");
 		//header("Pragma: no-cache");

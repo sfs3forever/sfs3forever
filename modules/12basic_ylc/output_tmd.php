@@ -201,7 +201,7 @@ if($full_sealed_check) {
 	if($editable_sn_array) $data="<font size=5 color='red'><br><br><center>有學生資料尚未封存！<br>模組變數設定您必須先封存所有資料才可以進行輸出。</center></font>";
 }
 	
-echo "<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><br>※要輸出的學年：$radio_year_seme	<br><br>$data</form>";
+echo "<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><br>※要輸出的學年：$radio_year_seme	<br><br>$data</form>";
 
 foot();
 ?>

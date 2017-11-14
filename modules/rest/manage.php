@@ -87,9 +87,9 @@ if ($_POST['act']=="drop") {
 if ($_POST['act']=="") {
 
     $sql = "select * from rest_manage";
-    $res = $CONN->Execute($sql) or die("SQL=" . $sql);
+    //$res = $CONN->Execute($sql) or die("SQL=" . $sql);
 
-    $rows = $res->GetRows();
+    $rows = $CONN->queryFetchAllAssoc($sql);
 
     ?>
     <table border="0" width="100%">

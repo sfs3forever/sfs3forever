@@ -215,9 +215,9 @@ $query="select a.*,c.title_kind from teacher_absent a , teacher_post b , teacher
 
 $query .=" order by a.start_date  desc ";
 
-$res=$CONN->Execute($query);
+//$res=$CONN->Execute($query);
 
-$TT=$res->GetRows();
+$TT=$CONN->queryFetchAllAssoc($query);
 
 $smarty->assign("absent",$TT);
 //選擇假別

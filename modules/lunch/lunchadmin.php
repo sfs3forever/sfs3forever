@@ -93,7 +93,7 @@ if(checkid($_SERVER['SCRIPT_FILENAME'],1))
 	}
 	$Designer.="</select>";	
 	$main.="<td>$Designer</td>";
-	$main="<form method='post' enctype='multipart/form-data' action='$_SERVER[SCRIPT_NAME]'>
+	$main="<form method='post' enctype='multipart/form-data' action='{$_SERVER['SCRIPT_NAME']}'>
 			<table><tr>
 			<td>
 			◎用餐日期：".DtoCh($begdate)." ~ ".DtoCh($enddate)."　<a href='$linkprev'> <img src='./images/prev.png' width=12 border=0 alt='前一週' title='前一週'></a>

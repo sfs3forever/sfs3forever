@@ -110,7 +110,7 @@ echo "</table></center>";
 	//橫向選單標籤
 	echo print_menu($MENU_P);
 
-	$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]' target='_BLANK'><br>
+	$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}' target='_BLANK'><br>
 	※群組選擇：<input type='radio' value=0 name='select_group' checked>班級 
 					<input type='radio' value=1 name='select_group'>年級
 					<input type='radio' value=2 name='select_group'>全校

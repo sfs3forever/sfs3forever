@@ -186,7 +186,7 @@ foreach($addition_array as $teacher_sn=>$data){
 }
 $addition_data.="</table>";
 
-echo "<form name='myform' action='$_SERVER[SCRIPT_NAME]' method='POST'>※學期：$sel_seme_str 　　※統計區間：
+echo "<form name='myform' action='{$_SERVER['SCRIPT_NAME']}' method='POST'>※學期：$sel_seme_str 　　※統計區間：
 	<input type='text' name='start' value='$start' size=10 id='start'>
  		<script type=\"text/javascript\">
 		new Calendar({

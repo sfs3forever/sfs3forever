@@ -201,8 +201,8 @@ function DelImgNotInHTML() {
 	//先取得所有的圖檔
 	$b_id=intval($b_id);
 	$sql="select filename from jboard_images where b_id='$b_id'";
-	$res=$CONN->Execute($sql);
-	$files_check=$res->GetRows();
+	//$res=$CONN->Execute($sql);
+	$files_check=$CONN->queryFetchAllAssoc($sql);
 	
   if ($res->RecordCount()>0) {
     if (stripos($b_con, '<img') !== false) {    	

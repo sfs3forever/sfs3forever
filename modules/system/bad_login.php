@@ -15,8 +15,8 @@ if ($_POST[clean]) {
 
 
 $query="select * from bad_login order by log_time desc,log_ip,log_id";
-$res=$CONN->Execute($query);
-$smarty->assign("rowdata",$res->GetRows());
+//$res=$CONN->Execute($query);
+$smarty->assign("rowdata",$CONN->queryFetchAllAssoc($query));
 
 if ($_POST[export]) {
 	header("Content-type: application/csv; Charset=Big5");

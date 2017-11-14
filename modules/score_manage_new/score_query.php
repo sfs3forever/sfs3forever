@@ -189,7 +189,7 @@ if ($year_name && $stage) {
 	$special_menu="<input type='checkbox' name='print_special' $special_checked onclick='this.form.submit()';>套用排除名單";
 }
 
-$menu="<form name=\"myform\" method=\"post\" action=\"$_SERVER[SCRIPT_NAME]\">
+$menu="<form name=\"myform\" method=\"post\" action=\"$_SERVER['SCRIPT_NAME']\">
 	<table>
 	<tr>
 	<td>$year_seme_menu</td><td>$class_year_menu</td><td>$stage_menu</td><td>$kind_menu</td>

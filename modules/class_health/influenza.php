@@ -50,8 +50,8 @@ if ($_POST['act']=="edit" && $_POST['student_sn'] && $_POST['dis_date']) {
 	if (count($sn_arr)>0) {
 		$sn_str="'".implode("','",$sn_arr)."'";
 		$query="select * from health_disease_report where student_sn in ($sn_str) order by dis_date,student_sn";
-		$res=$CONN->Execute($query);
-		$smarty->assign("rowdata",$res->GetRows());
+		//$res=$CONN->Execute($query);
+		$smarty->assign("rowdata",$CONN->queryFetchAllAssoc($query));
 		$smarty->assign("studdata",$temp_arr);
 		$smarty->assign("status",array("A"=>"生病仍上課","B"=>"生病在家休息","C"=>"生病住院"));
 	}

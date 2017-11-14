@@ -37,7 +37,7 @@ if($student_sn){
 		</tr></table>";
 }
 
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'>
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'>
 	<table style='border-collapse: collapse; font-size=12px;'><tr><td valign='top'>$class_select<br>$student_select</td><td valign='top'>$mydata<br>$msg</td></tr></table><font>";
 
 echo $main;

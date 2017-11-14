@@ -168,7 +168,7 @@ if($_POST['go']=='HTML輸出')
 	
 	$page_memo="◎報表備註：<input type='text' name='page_memo' size=70 value=''>";
 	
-	echo "<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]' target='_BLANK'>
+	echo "<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}' target='_BLANK'>
 			<table STYLE='font-size: x-small' border='1' cellpadding=5 cellspacing=0 style='border-collapse: collapse' bordercolor='#111111' width='100%'>
 			<tr><td align='center' width='200' bgcolor='#FFCCCC'>◎任教的科目◎ 　　　<input type='checkbox' name='tag' checked onclick='javascript:tagall(this.checked);'>全選</td>
 			<td rowspan=2 valign='top'><BR>$page_title<BR><BR>$lead_field<BR><BR> $groups<BR> $groups_title<BR><BR> $cols<BR> $cols_title<BR><BR>$added_field<BR><BR>$page_memo

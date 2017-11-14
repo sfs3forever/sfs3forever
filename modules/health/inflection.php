@@ -35,8 +35,8 @@ switch ($_POST[sub_menu_id]) {
 
 		//取得通報項目
 		$query="select * from health_inflection_item where enable='1' order by iid";
-		$res=$CONN->Execute($query);
-		$smarty->assign("inf_arr",$res->GetRows());
+		//$res=$CONN->Execute($query);
+		$smarty->assign("inf_arr",$CONN->queryFetchAllAssoc($query));
 
 		//刪除記錄
 		if ($_POST['act']=="del" && $_POST['student_sn'] && $_POST['iid'] && $_POST['sel_week']) {

@@ -15,8 +15,8 @@ else {
 		$res=$CONN->Execute($query);
 	}
 	$query="select a.*,b.* from pro_check_new a left join sfs_module b on a.pro_kind_id=b.msn where id_kind='".$_POST['kind']."' order by a.id_sn,a.pro_kind_id";
-	$res=$CONN->Execute($query);
-	$rowdata=$res->GetRows();
+	//$res=$CONN->Execute($query);
+	$rowdata=$CONN->queryFetchAllAssoc($query);
 }
 $temp_arr=array();
 switch($_POST['kind']) {

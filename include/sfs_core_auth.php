@@ -8,13 +8,13 @@ function sfs_check($go_back=1) {
 	if (!$CONN) user_error("資料庫連線不存在！請檢查相關設定！",256);
 	// 認證模式
 	$auth_kind = 0;
-	if(!empty($_REQUEST[_Msn])){
-		$curr_msn=$_REQUEST[_Msn];
-	}elseif(empty($_REQUEST[_Msn]) and $_SERVER[SCRIPT_NAME]!="/index.php"){
-		$SCRIPT_NAME=$_SERVER[SCRIPT_NAME];
+	if(!empty($_REQUEST['_Msn'])){
+		$curr_msn=$_REQUEST['_Msn'];
+	}elseif(empty($_REQUEST['_Msn']) and $_SERVER['SCRIPT_NAME']!="/index.php"){
+		$SCRIPT_NAME=$_SERVER['SCRIPT_NAME'];
 		$SN=explode("/",$SCRIPT_NAME);
 		$m=getDBdata("",$SN[count($SN)-2]);
-		$curr_msn=$m[msn];
+		$curr_msn=$m['msn'];
 		$auth_kind = $m['auth_kind'];		
 	}
 	
@@ -273,8 +273,8 @@ function checkid2($who=""){
 		return false;
 	}
 
-	$r=$CONN->Execute($query);
-	return $r->GetRows();
+	$r=$CONN->queryFetchAllAssoc($query);
+	return $r;
 }
 
 //檢查認證模組陣列的個數,避免教師無設定任一權限時,認證錯誤

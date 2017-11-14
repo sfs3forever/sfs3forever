@@ -176,8 +176,8 @@ if ($admin==1){
 
 if ($class_num) {
 	$query="select a.student_sn,a.stud_name,a.stud_id,a.stud_sex,a.stud_birthday,b.seme_num from stud_base a,stud_seme b where a.student_sn=b.student_sn and b.seme_year_seme='$seme_year_seme' and b.seme_class='$class_num' and a.stud_study_cond in ($in_study) order by curr_class_num";
-	$res=$CONN->Execute($query);
-	$r=$res->GetRows();
+	//$res=$CONN->Execute($query);
+	$r=$CONN->queryFetchAllAssoc($query);
 	//如果按下[儲存]
 	if ($_POST['act']=='save') {
 	  foreach ($r as $v) {

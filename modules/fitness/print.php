@@ -68,8 +68,8 @@ if ($class_num) {
 		$file_name="{$seme_year_seme}_學生體適能匯出資料_{$class_num}.csv";
 	}
 	
-	$res=$CONN->Execute($query) or die("SQL無法執行：$query");
-	$r=$res->GetRows();
+	//$res=$CONN->Execute($query) or die("SQL無法執行：$query");
+	$r=$CONN->queryFetchAllAssoc($query);
 	$stud_arr=array();
 	$b_arr=array();
 	$g_arr=array();

@@ -551,7 +551,7 @@ switch($menu){
 		$showdata="<center><font size=5 color='#ff0000'><br><br>請選取要檢視或設定的項目！<br><br></font></center>";
 }
 
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'>$memu_select $act $showdata</form></font><br>◎學校設定可填寫月份：$m_arr[study_spe_months]";
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'>$memu_select $act $showdata</form></font><br>◎學校設定可填寫月份：$m_arr[study_spe_months]";
 
 echo $main;
 

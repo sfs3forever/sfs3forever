@@ -85,7 +85,7 @@ while(!$rs->EOF){
 	$rs->MoveNext();
 }
 
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><input type='hidden' name='taskid' value=''><font size=2 color='brown'>$year_month_radio<br>$msg</font>
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><input type='hidden' name='taskid' value=''><font size=2 color='brown'>$year_month_radio<br>$msg</font>
 	<table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse; font-size:9pt;' bordercolor='#111111' id='AutoNumber1' width='100%'>
 	<tr align='center' bgcolor='#ffcccc'><td>No.</td><td>請求時刻</td><td>企業代表號</td><td>主旨</td><td>簡訊內容</td><td>交易代號</td><td>筆數</td><td>簡訊狀態</td><td>狀態回報時刻</td></tr>";
 

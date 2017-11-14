@@ -51,8 +51,8 @@ if ($_POST['act']=="save" and $comproom!="") {
 
     //3. 讀出所有要 lock 的 ip
     $sql="select * from comp_roomsite where iflock='1'";
-    $res=$CONN->Execute($sql) or die ("Error! SQL=".$sql);
-    $row=$res->GetRows();
+   // $res=$CONN->Execute($sql) or die ("Error! SQL=".$sql);
+    $row=$CONN->queryFetchAllAssoc($sql);
     $lock_address="\"sfs3_addrgrp_deny_tag\"";
     foreach ($row as $v) {
         $lock_address.=" \"".$v['net_ip']."\"";

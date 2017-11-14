@@ -481,7 +481,7 @@ if($student_sn){
 			$showdata="<center><font size=5 color='#ff0000'><br><br>請選取要檢視或設定的項目！<br><br></font></center>";
 	}
 }
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'><table style='border-collapse: collapse; font-size=12px;'><tr><td valign='top'>$class_select<br>$student_select</td><td valign='top'>$memu_select $act $showdata</form></td></tr></table></font>";
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'><table style='border-collapse: collapse; font-size=12px;'><tr><td valign='top'>$class_select<br>$student_select</td><td valign='top'>$memu_select $act $showdata</form></td></tr></table></font>";
 
 echo $main;
 

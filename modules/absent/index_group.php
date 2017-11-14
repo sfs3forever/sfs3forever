@@ -50,7 +50,7 @@ $mc=$cal->getMonthView($month,$year,$day);
    <table cellspacing='1' cellpadding='2' bgcolor='#E2ECFC' class='small'>
        <tr bgcolor='#FEFBDA'>
          <td align='center'>
-           <a href='$_SERVER[SCRIPT_NAME]?act=$_REQUEST[act]&this_day=$today&class_id=$class_id' class='box'><img src='".$SFS_PATH_HTML."images/today.png' alt='回到今天' width='16' height='16' hspace='2' border='0' align='absmiddle'>回到今天</a>
+           <a href='$_SERVER['SCRIPT_NAME']?act=$_REQUEST[act]&this_day=$today&class_id=$class_id' class='box'><img src='".$SFS_PATH_HTML."images/today.png' alt='回到今天' width='16' height='16' hspace='2' border='0' align='absmiddle'>回到今天</a>
          </td></tr>
          <tr bgcolor='#FFFFFF'><td>$mc</td></tr>
     </table>";
@@ -106,7 +106,7 @@ echo "<style type=\"text/css\">
 
 $main=&signForm($sel_year,$sel_seme);
 echo $tool_bar;
-$main="<form action='$_SERVER[SCRIPT_NAME]' method='post' name='myform'>
+$main="<form action='{$_SERVER['SCRIPT_NAME']}' method='post' name='myform'>
 <table border='1' style='border-collapse:collapse' cellpadding='5' bordercolor='#D1D1D1' bgcolor='#F0F0F0'>
  <tr><td>
 <table border='0'>
@@ -317,7 +317,7 @@ function &signForm($sel_year,$sel_seme){
                         </tr>";
                 }
                 $site_title=$pre_str."座號".$next_str;
-                $date_title="<td align='center'><a href='$_SERVER[SCRIPT_NAME]?this_date=$pid'>▲</a><br>日期<br><a href='$_SERVER[SCRIPT_NAME]?this_date=$fid'>▼</a></td>";
+                $date_title="<td align='center'><a href='$_SERVER['SCRIPT_NAME']?this_date=$pid'>▲</a><br>日期<br><a href='$_SERVER['SCRIPT_NAME']?this_date=$fid'>▼</a></td>";
         
 
         $main="        
@@ -334,7 +334,7 @@ function &signForm($sel_year,$sel_seme){
                 <td bgcolor='#E8F9C8'>整天</td>
                 <td bgcolor='#ECff8F9'>缺曠課種類</td>
                 </tr>
-                <form action='$_SERVER[SCRIPT_NAME]' method='post' name='myform'>
+                <form action='{$_SERVER['SCRIPT_NAME']}' method='post' name='myform'>
                 $data
                 </table>
         </td><td valign='top'>

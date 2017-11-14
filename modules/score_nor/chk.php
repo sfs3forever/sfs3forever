@@ -132,19 +132,19 @@ $sel1->is_submit = true;
 $smarty->assign("item_sel",$sel1->get_select());
 
 $query="select main,sub,item from score_nor_chk_item where year='$sel_year' and seme='$sel_seme' order by main,sub";
-$res=$CONN->Execute($query);
-$smarty->assign("rowdata",$res->GetRows());
+//$res=$CONN->Execute($query);
+$smarty->assign("rowdata",$CONN->queryFetchAllAssoc($query));
 $smarty->assign("current_records",$res->recordcount());
 
 $query="select count(item) as num from score_nor_chk_item where year='$sel_year' and seme='$sel_seme' group by main order by main,sub";
-$res=$CONN->Execute($query);
-$smarty->assign("rownum",$res->GetRows());
+//$res=$CONN->Execute($query);
+$smarty->assign("rownum",$CONN->queryFetchAllAssoc($query));
 $query="select count(item) from score_nor_chk_item where year='$sel_year' and seme='$sel_seme' and sub='0'";
-$res=$CONN->Execute($query);
-$smarty->assign("maxnum",$res->fields[0]);
+//$res=$CONN->Execute($query);
+$smarty->assign("maxnum",$CONN->queryFetchAllAssoc($query)[0]);
 $query="select count(item) as num from score_nor_chk_item where year='$sel_year' and seme='$sel_seme' group by main";
-$res=$CONN->Execute($query);
-$smarty->assign("submax",$res->GetRows());
+//$res=$CONN->Execute($query);
+$smarty->assign("submax",$CONN->queryFetchAllAssoc($query));
 
 $smarty->assign("SFS_TEMPLATE",$SFS_TEMPLATE);
 $smarty->assign("module_name","設定學生日常生活檢核表");

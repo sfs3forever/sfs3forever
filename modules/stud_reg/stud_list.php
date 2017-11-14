@@ -268,7 +268,7 @@ if ($_GET[c_curr_class] <>''){
 //顯示班級
 	$tmp=&get_class_select($s_y,$s_s,"","c_curr_class","this.form.submit",$c_curr_class);
 	$upstr .= $tmp;
-	$grid1 = new ado_grid_menu($_SERVER[SCRIPT_NAME],$URI,$CONN);  //建立選單	   
+	$grid1 = new ado_grid_menu($_SERVER['SCRIPT_NAME'],$URI,$CONN);  //建立選單	   
 	$grid1->bgcolor = $gridBgcolor;  // 顏色   
 	$grid1->row = $gridRow_num ;	     //顯示筆數   
 	$grid1->key_item = "student_sn";  // 索引欄名  	
@@ -392,7 +392,7 @@ function do_same(){
 </td> 
 <td  valign="top" width="100%" >   
 
-<form name="myform" action="<?php echo $_SERVER[SCRIPT_NAME] ?>" method="post" encType="multipart/form-data"
+<form name="myform" action="<?php echo $_SERVER['SCRIPT_NAME'] ?>" method="post" encType="multipart/form-data"
 <?php
 //當mnu筆數為0時 讓 form 為 disabled
 	if ($grid1->count_row==0 && !($key == $newBtn || $key == $postBtn)) 

@@ -74,9 +74,9 @@ if ($_POST['act']=="edit" && $_POST['student_sn'] && $_POST['iid']) {
 
 //取得通報項目
 $query="select * from health_inflection_item where enable='1' order by iid";
-$res=$CONN->Execute($query);
-$smarty->assign("inf_arr",$res->GetRows());
-	
+//$res=$CONN->Execute($query);
+//$smarty->assign("inf_arr",$res->GetRows());
+$smarty->assign("inf_arr", $CONN->queryFetchAllAssoc($query));
 $smarty->assign("SFS_TEMPLATE",$SFS_TEMPLATE);
 $smarty->assign("SFS_PATH_HTML",$SFS_PATH_HTML);
 $smarty->assign("module_name","流感登錄");

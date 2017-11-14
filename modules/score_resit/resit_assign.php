@@ -478,8 +478,8 @@ if ($_POST['act']=='list_paper_subject_save') {
 			$scope=$_POST['opt1'];
  			$main=$SETUP['now_year_seme']."-".$Cyear."-".$scope."\r\n";
  			$sql="select a.* from resit_exam_items a, resit_paper_setup b where a.paper_sn=b.sn and b.seme_year_seme='".$SETUP['now_year_seme']."' and b.class_year='$Cyear' and b.scope='$scope'";
- 			$res=$CONN->Execute($sql);
- 			$row=$res->GetRows();
+ 			//$res=$CONN->Execute($sql);
+ 			$row=$CONN->queryFetchAllAssoc($sql);
  			foreach ($row as $K) {
        $main.=$K['sort']."\r\n";
        $main.=$K['question']."\r\n";
@@ -1113,8 +1113,8 @@ if ($_POST['act']=='paste_paper_submit') {
 		<?php
 		$i=0;
  			$sql="select a.sn from resit_exam_items a, resit_paper_setup b where a.paper_sn=b.sn and b.seme_year_seme='".$SETUP['now_year_seme']."' and b.class_year='$Cyear' and b.scope='$item_scope'";
- 			$res=$CONN->Execute($sql);
- 			$row=$res->GetRows();
+ 			//$res=$CONN->Execute($sql);
+ 			$row=$CONN->queryFetchAllAssoc($sql);
  			foreach ($row as $K) {
  			  $sn=$K['sn'];
  			  $i++;
@@ -1150,8 +1150,8 @@ if ($_POST['act']=='paste_paper_submit') {
 		<?php
 		$i=0;
  			$sql="select a.sn from resit_exam_items a, resit_paper_setup b where a.paper_sn=b.sn and b.seme_year_seme='".$SETUP['now_year_seme']."' and b.class_year='$Cyear' and b.scope='$item_scope'";
- 			$res=$CONN->Execute($sql);
- 			$row=$res->GetRows();
+ 			//$res=$CONN->Execute($sql);
+ 			$row=$CONN->queryFetchAllAssoc($sql);
  			foreach ($row as $K) {
  				$i++;
  			  $sn=$K['sn'];
@@ -1186,8 +1186,8 @@ if ($_POST['act']=='paste_paper_submit') {
 		<?php
 		$i=0;
  			$sql="select a.sn from resit_exam_items a, resit_paper_setup b where a.paper_sn=b.sn and b.seme_year_seme='".$SETUP['now_year_seme']."' and b.class_year='$Cyear' and b.scope='$item_scope'";
- 			$res=$CONN->Execute($sql) or die($sql);
- 			$row=$res->GetRows();
+ 			//$res=$CONN->Execute($sql) or die($sql);
+ 			$row=$CONN->queryFetchAllAssoc($sql);
  			foreach ($row as $K) {
  				$i++;
  			  $sn=$K['sn'];

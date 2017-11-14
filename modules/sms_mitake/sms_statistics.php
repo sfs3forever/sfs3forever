@@ -50,7 +50,7 @@ while(!$rs->EOF) {
 	$rs->MoveNext();
 }
 $year_seme_radio.="</td></tr></table>";
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><table><tr valign='top'><td>$year_seme_radio</td><td>";
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><table><tr valign='top'><td>$year_seme_radio</td><td>";
 
 
 //抓取紀錄

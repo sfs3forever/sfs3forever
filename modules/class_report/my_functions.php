@@ -51,8 +51,8 @@ function get_report($mode,$the_seme,$seme_class="",$page="") {
  		}	
  	break;
  }
-	 $res=$CONN->Execute($sql);
-	 $rec=$res->GetRows();
+	 //$res=$CONN->Execute($sql);
+	 $rec=$CONN->queryFetchAllAssoc($sql);
 	 
 	 foreach ($rec as $k=>$v) {
 	 	$rec[$k]['seme_class_cname']=$school_kind_name[substr($v['seme_class'],0,1)].sprintf('%d',substr($v['seme_class'],1,2))."班";
@@ -516,8 +516,8 @@ function get_report_test($sn) {
 function get_report_test_all($report_sn) {
 	global $CONN;
 	$sql="select * from class_report_test where report_sn='$report_sn' order by test_date";
-	$res=$CONN->Execute($sql);
-	$T=$res->GetRows();
+	//$res=$CONN->Execute($sql);
+	$T=$CONN->queryFetchAllAssoc($sql);
 	
 	return $T;
 
@@ -591,9 +591,9 @@ function get_report_score_all($report_sn,$REAL_SUM=0) {
 function get_report_score($test_sn) {
   global $CONN;
   $sql="select * from class_report_score where test_sn='$test_sn'";
-  $res=$CONN->Execute($sql) or die("SQL錯誤:".$sql);
+  //$res=$CONN->Execute($sql) or die("SQL錯誤:".$sql);
   
-  $S=$res->GetRows();
+  $S=$CONN->queryFetchAllAssoc($sql);
   
   $SCORE=array();
   
@@ -638,8 +638,8 @@ function get_seme_class_students($the_seme,$seme_class) {
 	global $CONN;
 	
 	$query="select a.student_sn,a.seme_num,b.stud_name from stud_seme a,stud_base b where a.seme_year_seme='$the_seme' and a.seme_class='$seme_class' and a.student_sn=b.student_sn order by seme_num";
-	$res_stud_list=$CONN->Execute($query) or die("SQL錯誤:".$query);
-	$select_students=$res_stud_list->GetRows();
+	//$res_stud_list=$CONN->Execute($query) or die("SQL錯誤:".$query);
+	$select_students=$CONN->queryFetchAllAssoc($query);
 	
 	return $select_students;
 	

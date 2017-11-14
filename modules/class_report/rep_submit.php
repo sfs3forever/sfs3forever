@@ -378,7 +378,7 @@ if ($is_allow=='y')
 	}
 
 // 上方選單
-$top_str = "<form action=\"$_SERVER[SCRIPT_NAME]\" name=\"myform\" method=\"post\">$course_sel &nbsp; $select_stage_bar &nbsp;$check_allow ";
+$top_str = "<form action=\"$_SERVER['SCRIPT_NAME']\" name=\"myform\" method=\"post\">$course_sel &nbsp; $select_stage_bar &nbsp;$check_allow ";
 
 //檢查是否繳至教務處
 if($yorn=='n' && $curr_sort != 255 ){

@@ -254,7 +254,7 @@ if($student_sn){
 			break;
 	}
 }
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'><table width=100%><tr><td valign='top' width=100>$class_select<br>$student_select</td><td valign='top'>$memu_select $showdata<br>$act</td></tr></table></form></font>";
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'><table width=100%><tr><td valign='top' width=100>$class_select<br>$student_select</td><td valign='top'>$memu_select $showdata<br>$act</td></tr></table></form></font>";
 
 echo $main;
 

@@ -52,8 +52,8 @@ if ($student_sn) {
 	}
 } elseif ($_POST['stud_id'] && $_POST['student_sn']==0) {
 	$query="select * from stud_base where stud_id='".$_POST['stud_id']."' order by stud_study_year";
-	$res=$CONN->Execute($query) or trigger_error("錯誤訊息： $query", E_USER_ERROR);
-	$smarty->assign("stud_arr",$res->GetRows());
+	//$res=$CONN->Execute($query) or trigger_error("錯誤訊息： $query", E_USER_ERROR);
+	$smarty->assign("stud_arr",$CONN->queryFetchAllAssoc($query));
 	$smarty->assign("cond_arr",study_cond());
 }
 

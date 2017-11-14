@@ -47,8 +47,9 @@ $stmt->close();
 		
 	$smarty->assign("data_arr",$arr);
 	$query="select * from book where TRIM(book_name)='$book_name'";
-	$res=$CONN->Execute($query);
-	$smarty->assign("oth_data_arr",$res->GetRows());
+	//$res=$CONN->Execute($query);
+	//$smarty->assign("oth_data_arr",$res->GetRows());
+	$smarty->assign("oth_data_arr",$CONN->queryFetchAllAssoc($query));
 	$smarty->display("book_query_display.tpl");
 } elseif ($_POST[query]) {
 //判斷按鈕狀況
@@ -85,8 +86,9 @@ $stmt->close();
 			$_SESSION["str"]=$str;
 		}
 		$query="select * from book where $str";
-		$res=$CONN->Execute($query);
-		$d=$res->GetRows();
+		//$res=$CONN->Execute($query);
+		//$d=$res->GetRows();
+		$d = $CONN->queryFetchAllAssoc($query);
 		//配合agent，所以放在此處
 		if ($_POST[query]=="next_est")$_POST[start_num]=(ceil(count($d)/$_POST[num])-1)*$_POST[num];
 		//配合agent，所以放在此處

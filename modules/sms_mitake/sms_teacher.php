@@ -97,7 +97,7 @@ if($room_select){
 	$room_list.="</td></tr></table><br>";
 }
 
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><table><tr valign='top'><td>$room_list</td><td>";
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><table><tr valign='top'><td>$room_list</td><td>";
 
 //if($class_id)
 //{

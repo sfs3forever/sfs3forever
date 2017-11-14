@@ -362,7 +362,7 @@ $print_msg=($c_name)?"<input type='submit' name='friendly_print' value='友善�
 
 if (empty($friendly_print) && empty($save_csv) && empty($excel)) 
 {
-	echo "<form name=\"myform\" method=\"post\" action=\"$_SERVER[SCRIPT_NAME]\">";
+	echo "<form name=\"myform\" method=\"post\" action=\"$_SERVER['SCRIPT_NAME']\">";
 	echo "<table><tr>
         <td>$year_seme_menu</td><td>$class_year_menu</td><td>$stage_menu</td><td>$kind_menu</td><td>$subject_menu</td><td>$percent_menu</td><td><input type='checkbox' name='rate' value='1' $is_show_rate onchange=\"this.form.submit();\">分數加權</td>
         </tr>

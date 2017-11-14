@@ -69,7 +69,7 @@ function get_store_path($path=""){
 
 //取得程式路徑名稱函數
 function get_sfs_path($curr_msn=""){
-	global $CONN,$SFS_PATH_HTML,$UPLOAD_PATH;
+	global $CONN,$SFS_PATH_HTML,$UPLOAD_PATH, $SCRIPT_NAME;
 	
 	//@include_once($UPLOAD_PATH."Module_Path.php");
 	$file = $UPLOAD_PATH."Module_Path.txt";
@@ -77,10 +77,10 @@ function get_sfs_path($curr_msn=""){
 	$contents = fread($fp, filesize($file));
 	$MPath = unserialize($contents);
 	if(empty($curr_msn) and $SCRIPT_NAME!="/index.php"){
-		$SCRIPT_NAME=$_SERVER[SCRIPT_NAME];
+		$SCRIPT_NAME=$_SERVER['SCRIPT_NAME'];
 		$SN=explode("/",$SCRIPT_NAME);
 		$m=getDBdata("",$SN[count($SN)-2]);
-		$curr_msn=$m[msn];
+		$curr_msn=$m['msn'];
 	}
 	$path="<a href='$SFS_PATH_HTML' accesskey='H'><img src='".$SFS_PATH_HTML."images/gohome.png' alt='' width='16' height='16' hspace='3' border='0' align='absmiddle'>學務管理系統首頁</a> / $MPath[$curr_msn]";
 	
@@ -128,12 +128,11 @@ function getDBdata($msn="",$dirname=""){
 	}
 
 	// init $theData
-	$theData=array();
-
 	$sql_select="select * from sfs_module where $where";
-	$recordSet=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
-	$theData=$recordSet->FetchRow();
-	return $theData;
+	$rs=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
+	if($rs->fields) return $rs->fields;
+	
+	return array();
 }
 
 

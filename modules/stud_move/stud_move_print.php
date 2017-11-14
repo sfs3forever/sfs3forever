@@ -135,8 +135,8 @@ switch ($move_kind) {
 }
 
 //取出所有記錄
-$res=$CONN->Execute($query) or die($query);
-$smarty->assign("stud_move",$res->GetRows());
+//$res=$CONN->Execute($query) or die($query);
+$smarty->assign("stud_move",$CONN->queryFetchAllAssoc($query));
 
 $smarty->assign("SFS_TEMPLATE",$SFS_TEMPLATE);
 $smarty->assign("module_name","異動報表作業");

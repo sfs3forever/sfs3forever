@@ -283,7 +283,7 @@ if ($is_allow=='y')
 	}
 
 // 上方選單
-$top_str = "<form action=\"$_SERVER[SCRIPT_NAME]\" name=\"myform\" method=\"post\">$course_sel &nbsp; $select_stage_bar &nbsp;$check_allow </form>";
+$top_str = "<form action=\"$_SERVER['SCRIPT_NAME']\" name=\"myform\" method=\"post\">$course_sel &nbsp; $select_stage_bar &nbsp;$check_allow </form>";
 
 //檢查是否繳至教務處，($yorn模組變數:是否顯示平時成績)
 if($yorn=='n' && $curr_sort != 255 ){
@@ -312,7 +312,7 @@ if(($teacher_course)&&($curr_sort)){
 		$url_str_2 = "a href=\"".$SFS_PATH_HTML.get_store_path()."/quick_input_m.php?edit=s2&class_id=$class_id&teacher_course=$teacher_course&ss_id=$ss_id&curr_sort=$curr_sort&KeepThis=true&TB_iframe=true&height=400&width=700\" class=\"thickbox\" id=\"openWin\"";
 	else
 		$url_str_2 = "a href=\"".$_SERVER['SCRIPT_NAME']."?edit=s2&teacher_course=$teacher_course&curr_sort=$curr_sort&is_openWin=1\"";
-	$main="	<small><a href='$_SERVER[SCRIPT_NAME]?teacher_course=$teacher_course&class_id=$class_id&ss_id=$ss_id&curr_sort=$curr_sort&is_print=1' target='new'>友善列印</a></small>
+	$main="	<small><a href='$_SERVER['SCRIPT_NAME']?teacher_course=$teacher_course&class_id=$class_id&ss_id=$ss_id&curr_sort=$curr_sort&is_print=1' target='new'>友善列印</a></small>
 		<table bgcolor=#000000 border=0 cellpadding=2 cellspacing=1>
 		<tr bgcolor=#ffffff align=center>
 		<td>學號</td>
@@ -679,7 +679,7 @@ if ($is_print!=1) {
 		echo "<link href=\"../../themes/new/thickbox.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\"><script type=\"text/javascript\" src=\"../../javascripts/thickbox.js\"></script><table border=0 cellspacing=1 cellpadding=2 width=100% bgcolor=#cccccc><tr><td bgcolor='#FFFFFF'>";
 		echo $top_str;
 		echo $temp_script;
-		echo "<form name=\"form9\" method=\"post\" action=\"$_SERVER[SCRIPT_NAME]\">";
+		echo "<form name=\"form9\" method=\"post\" action=\"$_SERVER['SCRIPT_NAME']\">";
 		echo $main;
 		echo "
 		<input type=\"hidden\" name=\"class_id\" value=\"$class_id\">

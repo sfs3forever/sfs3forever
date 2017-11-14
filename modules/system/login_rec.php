@@ -17,8 +17,8 @@ $offset=$detail_list*$_POST[curr_page];;
 $query="SELECT a.login_time,a.who,b.name,a.ip,a.teacher_sn FROM `login_log_new` a left join teacher_base b on a.teacher_sn=b.teacher_sn order by login_time desc limit $offset,$detail_list";
 //echo $query;
 
-$res=$CONN->Execute($query);
-$smarty->assign("rowdata",$res->GetRows());
+//$res=$CONN->Execute($query);
+$smarty->assign("rowdata",$CONN->queryFetchAllAssoc($query));
 
 $smarty->assign("detail_list",$detail_list);
 $smarty->assign("pages_array",$pages_array);

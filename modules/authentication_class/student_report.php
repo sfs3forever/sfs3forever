@@ -123,7 +123,7 @@ HERE;
 echo print_menu($MENU_P);
 
 if($my_class_id){   //判定是否為班級導師
-	$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><input type='hidden' name='curr_class_id' value='$my_class_id'>";
+	$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><input type='hidden' name='curr_class_id' value='$my_class_id'>";
 	$main.="班級：$class_base[$my_class_id] 　　<font size=2 color='#FF0000'><input type='checkbox' name='this_semester' value='checked' $checked>僅提列本學期認證項目 <input type='checkbox' name='sch_name' value='checked' $checked_sch>印學校全銜</font>";
 	//if($show_student)
 	//{

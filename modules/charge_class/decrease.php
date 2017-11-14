@@ -115,7 +115,7 @@ if($_POST['act']=='清空本項名單'){
 };
 
 
-$main="<table><form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'>
+$main="<table><form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'>
 	<select name='item_id' onchange='this.form.submit()'><option></option>";
 
 //取得年度項目

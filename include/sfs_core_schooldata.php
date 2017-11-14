@@ -23,9 +23,16 @@ function get_school_base(){
 	$sql_select = "select * from school_base"; 
 
 	$rs = $CONN->Execute($sql_select) ; 
+	/*
 	if ($rs and $ro=$rs->FetchNextObject(false)) { 
 		$arr=get_object_vars($ro); 
 	}
+	*/
+
+	if ($rs->RecordCount() > 0) {
+		$arr=get_object_vars($rs->current()); 
+	}
+
 	return $arr; 
 }
 

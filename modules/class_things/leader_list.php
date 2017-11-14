@@ -61,7 +61,7 @@ if($class_id)
 	if ($recno==0) $data.="<tr style='text-align:center;'><td colspan='4'>無幹部記錄</td></tr>";
 	$absent_data.="</table>";
 	
-	$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><table><tr valign='top'><td>$class_list</td><td>$data</td></tr></table></form>";
+	$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><table><tr valign='top'><td>$class_list</td><td>$data</td></tr></table></form>";
 	echo $main; 
 } else echo "您並非班級導師！";	
 

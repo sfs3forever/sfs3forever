@@ -134,7 +134,7 @@ while(!$rs->EOF)
 	$rs->MoveNext();
 }
 
-echo "<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><br>※要輸出的學年：$radio_year_seme <br><br>※要輸出的格式：<input type='submit' name='act' value='HTML' onclick=\"document.myform.target='$academic_year'\"><input type='submit' name='act' value='EXCEL' onclick=\"document.myform.target=''\"></form>";
+echo "<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><br>※要輸出的學年：$radio_year_seme <br><br>※要輸出的格式：<input type='submit' name='act' value='HTML' onclick=\"document.myform.target='$academic_year'\"><input type='submit' name='act' value='EXCEL' onclick=\"document.myform.target=''\"></form>";
 
 foot();
 ?>

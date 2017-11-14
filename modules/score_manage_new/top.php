@@ -315,8 +315,8 @@ if ($year_name && $stage && count($sel)!=0) {
 			//列出組距表
 			if ($bank_data) {
 				$query="select * from score_top order by score desc";
-				$res=$CONN->Execute($query);
-				$smarty->assign("rowdata",$res->GetRows());
+				//$res=$CONN->Execute($query);
+				$smarty->assign("rowdata", $CONN->queryFetchAllAssoc($sql));
 				$smarty->assign("sel_year",$sel_year);
 				$smarty->assign("sel_seme",$sel_seme);
 				$smarty->assign("school",get_school_base());

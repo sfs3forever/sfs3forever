@@ -236,8 +236,8 @@ $temp_move_kind = "a.move_kind='" . implode("' or a.move_kind='", array_keys($re
 $query = "select a.*,b.stud_name,b.stud_person_id,b.stud_birthday,c.seme_class from stud_move a,stud_seme c,stud_base b where a.student_sn=c.student_sn and  a.student_sn=b.student_sn and c.seme_year_seme='$seme_year_seme' and a.move_year_seme='$curr_seme' and ($temp_move_kind) order by a.move_date desc";
 
 
-$res = $CONN->Execute($query) or die($query);
-$smarty->assign("stud_move", $res->GetRows());
+//$res = $CONN->Execute($query) or die($query);
+$smarty->assign("stud_move", $CONN->queryFetchAllAssoc($type_select));
 $session_path = $SFS_PATH_HTML . 'modules/stud_move/session_in.php?para=';
 $session_schoolnameeduno = $SCHOOL_BASE["sch_cname_ss"] . '(' . $SCHOOL_BASE['sch_id'] . ')';
 $smarty->assign("sesion_path", $session_path);

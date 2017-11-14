@@ -30,6 +30,7 @@
 	// 版本資訊 相關
 	require_once( "sfs_core_version.php" );
 
+	$SCRIPT_NAME ="";
 	//https設定
 	$temp_file=$UPLOAD_PATH."system/ssl_setup";
 	if (is_file($temp_file)) {

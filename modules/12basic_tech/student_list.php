@@ -101,7 +101,7 @@ if($stud_class and $work_year_seme==$curr_year_seme){
 	$tool_icon.="<input type='submit' value='開列選擇的學生' name='act'>";
 	if(!$listed) $tool_icon.="<input type='submit' value='開列本學年所有的學生' name='act' onclick='return confirm(\"確定要\"+this.value+\"?\")'>";
 }
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><input type='hidden' name='student_sn' value=''>$recent_semester $class_list $tool_icon <table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse; collapse; font-size:9pt;' bordercolor='#111111' id='AutoNumber1' width='100%'>";
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><input type='hidden' name='student_sn' value=''>$recent_semester $class_list $tool_icon <table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse; collapse; font-size:9pt;' bordercolor='#111111' id='AutoNumber1' width='100%'>";
 
 if($stud_class)
 {

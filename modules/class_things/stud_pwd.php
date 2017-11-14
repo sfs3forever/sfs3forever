@@ -74,7 +74,7 @@ if($is_pwd){
 		</tr></table>";
 	}
 
-	$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'>要更改密碼的學生： $student_select <br> $mydata<br>$msg</font></form>";
+	$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'>要更改密碼的學生： $student_select <br> $mydata<br>$msg</font></form>";
 } else $main="<BR><center><font color=red size=4>模組變數尚未開放本功能，請洽詢學校系統管理者！</font></center>";
 
 echo $main;

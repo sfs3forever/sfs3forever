@@ -44,8 +44,8 @@ if ($_POST['act']=='edit') {
    	$id_name=$res->fields['id_name'];
 
    	$sql="select * from jshow_check where kind_id='".$_POST['kind_id']."'";
-   	$res=$CONN->Execute($sql) or die ("SQL Error! query=".$sql);
-   	$row_rights=$res->GetRows();
+   	//$res=$CONN->Execute($sql) or die ("SQL Error! query=".$sql);
+   	$row_rights = $CONN->queryFetchAllAssoc($sql);
 } 
 
 

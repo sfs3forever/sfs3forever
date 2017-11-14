@@ -66,7 +66,7 @@ while(!$rs->EOF) {
 			<td>{$rs->fields['seme_year_seme']}</td><td>{$rs->fields['association_name']}</td><td>{$rs->fields['stud_post']}</td><td>{$rs->fields['score']}</td><td>{$rs->fields['description']}</td><td>{$rs->fields['update_time']}</td>";
 	$rs->MoveNext();
 }
-echo "<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'>
+echo "<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'>
 		<table border='2' cellpadding='0' cellspacing='0' style='border-collapse: collapse; font-size:11pt' bordercolor='#111111' id='AutoNumber1' width='100%'>
 		$data
 		</table></form>";

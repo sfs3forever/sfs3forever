@@ -24,10 +24,10 @@ if ($_POST['v']) {
 }
 //取得學籍表中資料
 $query="select stud_study_year,stud_study_cond,count(student_sn) as num from stud_base group by stud_study_year,stud_study_cond order by stud_study_year,stud_study_cond";
-$res=$CONN->Execute($query);
+//$res=$CONN->Execute($query);
 // 替代變數
 $smarty->assign("template_dir",$template_dir);
-$smarty->assign("rowdata",$res->GetRows());
+$smarty->assign("rowdata",$CONN->queryFetchAllAssoc($query));
 $smarty->assign("cond_arr",study_cond());
 $smarty->assign("PHP_SELF",$_SERVER[PHP_SELF]);
 $smarty->display("$template_dir/fix_grad.htm");

@@ -208,7 +208,7 @@ if($year_name){
 	$stage_menu =stage_menu($sel_year,$sel_seme,$year_name,$me,$stage,"1","this.form.target=''");
 }
 
-echo "<form name=\"myform\" method=\"post\" action=\"$_SERVER[SCRIPT_NAME]\">$year_seme_menu $class_year_menu $stage_menu";
+echo "<form name=\"myform\" method=\"post\" action=\"$_SERVER['SCRIPT_NAME']\">$year_seme_menu $class_year_menu $stage_menu";
 
 if ($act=="cal" && $me){
 	$class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,$year_name,$me);

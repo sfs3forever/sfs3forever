@@ -103,7 +103,7 @@ if($student_sn){
 	}
 }
 
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'><table style='border-collapse: collapse; font-size=12px;'><tr><td valign='top'>$class_select<br>$student_select</td><td valign='top'>$memu_select $content_list</td></tr></table>$import_data</form></font>";
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'><table style='border-collapse: collapse; font-size=12px;'><tr><td valign='top'>$class_select<br>$student_select</td><td valign='top'>$memu_select $content_list</td></tr></table>$import_data</form></font>";
 
 echo $main;
 

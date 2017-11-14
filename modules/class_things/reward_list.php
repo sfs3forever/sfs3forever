@@ -52,7 +52,7 @@ if($is_rewrad) {
 		}
 		$reward_data.="</table>";
 		
-		$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><table><tr valign='top'><td>$class_list</td><td>$reward_data</td></tr></table></form>";
+		$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><table><tr valign='top'><td>$class_list</td><td>$reward_data</td></tr></table></form>";
 		echo $main; 
 	} else echo "您並非班級導師！";	
 } else echo "系統管理者未設定班級導師可觀視學生獎懲記錄！";	

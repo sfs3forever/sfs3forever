@@ -243,6 +243,11 @@ class sdb
     	if(!$stmt = self::query($statement)) return false;
     	return new ADODOB_PDOStatement($stmt);
     }    
+
+    //get original pdo object
+    public function pdo() {
+      return self::$PDOInstance;
+    }
 }
 
 /**
@@ -264,7 +269,7 @@ class ADODOB_PDOStatement implements Iterator
 	/* init query */
 	public function __construct($handle) { 		
 		$this->handle =& $handle;		
-    $this->fields =& $this->handle->fetch(PDO::FETCH_ASSOC);
+    $this->fields = $this->handle->fetch(PDO::FETCH_ASSOC);
     if($this->fields) $this->EOF=false;
 	}
 	
@@ -282,7 +287,7 @@ class ADODOB_PDOStatement implements Iterator
 		return false;		
 	} 
 
-	public function & current(){
+	public function current(){
 		return $this->fields;
 	}
 	
@@ -304,6 +309,13 @@ class ADODOB_PDOStatement implements Iterator
 	
 	public function _close() {
 		$this->handle->closeCursor();
-	} 
+  } 
+
+  function FetchRow() {
+    if($this->EOF) return false;
+    $rs = $this->fields;
+    $this->MoveNext();
+    return $rs;
+  }
 }
 ?>

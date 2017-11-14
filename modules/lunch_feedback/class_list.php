@@ -17,8 +17,8 @@ if(checkid($_SERVER['SCRIPT_FILENAME'],1))
 $list_period=$m_arr[list_period];
 
 $sql="select pDate,pMday from lunchtb where TO_DAYS(curdate())-TO_DAYS(pDate) between 0 AND $list_period ORDER BY pDate DESC";
-$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
-$days_list=$res->GetRows();
+//$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
+$days_list=$CONN->queryFetchAllAssoc($sql);
 
 $list_date=$_POST[list_date];
 if(!$list_date) $list_date=date("Y-m-d");

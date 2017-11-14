@@ -152,7 +152,7 @@ function select() {
 		$year_seme=$ro->year."_".$ro->seme;
 		$obj_stu[$year_seme]=$ro->year."學年度第".$ro->seme."學期";
 	}
-	$str="<select name='".$this->YS."' onChange=\"location.href='".$_SERVER[SCRIPT_NAME]."?".$this->YS."='+this.options[this.selectedIndex].value;\" disabled>\n";
+	$str="<select name='".$this->YS."' onChange=\"location.href='".$_SERVER['SCRIPT_NAME']."?".$this->YS."='+this.options[this.selectedIndex].value;\" disabled>\n";
 		//$str.="<option value=''>-未選擇-</option>\n";
 	foreach($obj_stu as $key=>$val) {
 		($key==$this->year_seme) ? $bb=' selected':$bb='';

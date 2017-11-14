@@ -120,7 +120,7 @@ $type_radio="<table border='2' cellpadding='6' cellspacing='0' style='border-col
 	<tr><td align='center' bgcolor='#ccccff'>選擇身分類別</td></tr><tr><td>$radio_list</td></tr></table><br>";
 
 
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><table><tr valign='top'><td>$type_radio</td><td>";
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><table><tr valign='top'><td>$type_radio</td><td>";
 
 if($type_id){
 	//取得班級列表

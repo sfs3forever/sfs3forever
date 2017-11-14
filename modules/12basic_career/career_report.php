@@ -1542,7 +1542,7 @@ if($c_id){
 	}
 }
 
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'><table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse; font-size=12px;' bordercolor='#aa1111' width=700>
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'><table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse; font-size=12px;' bordercolor='#aa1111' width=700>
 <tr><td valign='top'>$class_select</td></tr><tr><td>$student_select</td></tr></table></form></font>";
 
 echo $main;

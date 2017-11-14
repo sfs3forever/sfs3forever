@@ -25,8 +25,8 @@ $sex_arr=array("1"=>"男","2"=>"女");
 if($_POST[csv_out_all]) {
 	$seme_year_seme=sprintf("%03d",curr_year()).curr_seme();
 	$query="select a.*,b.stud_name,b.stud_sex from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme='$seme_year_seme' and b.stud_study_cond in ('0','15') order by seme_class,seme_num";
-	$res=$CONN->Execute($query);
-	$smarty->assign("class_arr",$res->GetRows());
+	//$res=$CONN->Execute($query);
+	$smarty->assign("class_arr",$CONN->queryFetchAllAssoc($query));
 	$smarty->assign("class_array",$class_array);
 	header("Content-disposition: filename=stud_list.csv");
 	header("Content-type: application/octetstream ; Charset=Big5");

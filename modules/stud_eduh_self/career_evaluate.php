@@ -300,7 +300,7 @@ switch($menu){
 }
 
 
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'>$memu_select $showdata $act</form></font><br>◎學校設定可填寫月份：$m_arr[evaluate_months]";
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'>$memu_select $showdata $act</form></font><br>◎學校設定可填寫月份：$m_arr[evaluate_months]";
 
 echo $main;
 

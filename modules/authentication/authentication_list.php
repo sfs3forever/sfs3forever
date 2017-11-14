@@ -163,7 +163,7 @@ HERE;
 echo print_menu($MENU_P);
 
 
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'>";
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'>";
 
 //顯示認證項目(自動核取目前認證學期的項目)
 

@@ -154,7 +154,7 @@ if($class_select){
 
 $class_list="<table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse; font-size:9pt;' bordercolor='#111111' id='AutoNumber1'><tr><td bgcolor='#ccffff'>◎任教班級◎</td></tr><tr><td align='center'>{$class_name[1]}</td></tr></table>";
 
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><table><tr valign='top'><td>$class_list</td><td>";
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><table><tr valign='top'><td>$class_list</td><td>";
 
 if($class_id)
 {

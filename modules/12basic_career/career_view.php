@@ -286,7 +286,7 @@ if($student_sn){
 	<DIV style="WIDTH: 100%; font-size: 12px; color:blue;" id=directions_panel></DIV></DIV>':'';
 
 }
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'><table style='border-collapse: collapse; font-size=12px;'><tr><td valign='top'>$class_select<br>$student_select</td><td valign='top'>$memu_select $showdata<br>$act $geodata</td></tr></table></form></font>";
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'><table style='border-collapse: collapse; font-size=12px;'><tr><td valign='top'>$class_select<br>$student_select</td><td valign='top'>$memu_select $showdata<br>$act $geodata</td></tr></table></form></font>";
 
 echo $main;
 

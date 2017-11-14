@@ -204,7 +204,7 @@ function tagall(status) {
 HERE;
 
 
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]' target='_BLANK'>
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}' target='_BLANK'>
 <table border='1' cellpadding='3' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111'>
 <tr bgcolor='#CCFFCC' align='center'><td><input type='checkbox' name='select_all' onClick='javascript:tagall(this.checked);'>學期選擇</td>
 <td>群組依據</td>

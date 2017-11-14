@@ -227,7 +227,7 @@ if($class_id){
 	$stage_menu = stage_menu_class($class_id,$stage,"this.form.target=''");
 }
 
-echo "<form name=\"myform\" method=\"post\" action=\"$_SERVER[SCRIPT_NAME]\" target=\"_BLANK\">$year_seme_menu $class_menu $stage_menu";
+echo "<form name=\"myform\" method=\"post\" action=\"$_SERVER['SCRIPT_NAME']\" target=\"_BLANK\">$year_seme_menu $class_menu $stage_menu";
 
 if ($act=="cal" && $me){
 	$class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,$year_name,$me);

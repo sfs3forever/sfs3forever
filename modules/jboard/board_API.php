@@ -147,8 +147,8 @@ if ($_GET['act'] == 'GetSearch') {
   //完成 sql
   $sql_select.=" order by b_open_date desc limit 100";
 
-  $result = $CONN->Execute($sql_select) or die ($sql_select);
-  $ROW=$result->GetRows();
+  //$result = $CONN->Execute($sql_select) or die ($sql_select);
+  $ROW=$CONN->queryFetchAllAssoc($sql_select) or die($sql_select);
   //轉碼
   $row=array();
   foreach ($ROW as $k=>$v) {
@@ -340,8 +340,8 @@ if ($_GET['act'] == 'GetOne' and $_GET['b_id'] != '') {
 if ($_GET['act'] == 'GetFileNameList' and $_GET['b_id'] != '') {
     $b_id = intval($_GET['b_id']);
     $query = "select new_filename,org_filename from jboard_files where b_id='$b_id'";
-    $result = $CONN->Execute($query);
-    $ROW = $result->GetRows();
+    //$result = $CONN->Execute($query);
+    $ROW = $CONN->queryFetchAllAssoc($query);
 
     //轉碼
     $row = array();

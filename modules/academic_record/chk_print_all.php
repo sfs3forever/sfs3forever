@@ -126,7 +126,7 @@ HERE;
 echo print_menu($school_menu_p);
 
 $main="<table border='1' cellpadding='3' cellspacing='0' style='border-collapse: collapse' bordercolor='#AAAAAA' width='100%'>
-		<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]' target='_BLANK'>";
+		<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}' target='_BLANK'>";
 
 //取得stud_base中班級學生列表並據以與前sql對照後顯示
 $stud_select="SELECT a.student_sn,a.seme_num,b.stud_name,b.stud_sex FROM stud_seme a,stud_base b WHERE seme_year_seme='$curr_year_seme' and a.seme_class='$class_num' and a.student_sn=b.student_sn ORDER BY seme_num";

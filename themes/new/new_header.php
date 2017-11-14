@@ -74,7 +74,7 @@ if($show_logo){
 //印出程式連結
 $top_tool="";
 $link_location=&print_location();
-if ($_COOKIE['close_left_menu']==1){
+if (isset($_COOKIE['close_left_menu']) && $_COOKIE['close_left_menu']==1){
 	$top_tool=&get_big_module(1,"small");
 	$tool="";
 }elseif($show_left_menu){
@@ -102,7 +102,7 @@ $top_tool
 
 //判斷PHP版本
 function chkUP() {
-	global $SFS_VER_DECLARE, $SFS_IS_CENTER_VER;
+	global $SFS_VER_DECLARE, $SFS_IS_CENTER_VER, $top_tool;
 
 	$up_msg="";
 	if ( !function_exists('version_compare') || version_compare( phpversion(), '5', '<' ) ) {

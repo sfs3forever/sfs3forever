@@ -335,7 +335,7 @@ $geodata=($menu==3)?'<SCRIPT type=text/javascript src="http://maps.googleapis.co
 <DIV style="WIDTH: 100%; font-size: 12px; color:blue;" id=directions_panel></DIV></DIV>':'';
 
 
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'>$memu_select $showdata<br>$act </form></font>$geodata";
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'>$memu_select $showdata<br>$act </form></font>$geodata";
 
 echo $main;
 

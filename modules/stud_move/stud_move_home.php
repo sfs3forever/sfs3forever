@@ -52,8 +52,8 @@ $smarty->assign("stud_sel",$sel1->get_select());
 
 //取得在家自學記錄
 $query="select stud_id,student_sn,stud_name,left(curr_class_num,length(curr_class_num)-2) as stud_class from stud_base where stud_study_cond='15' order by curr_class_num,stud_id";
-$res=$CONN->Execute($query) or die ($query);
-$smarty->assign("stud_move",$res->GetRows());
+//$res=$CONN->Execute($query) or die ($query);
+$smarty->assign("stud_move",$CONN->queryFetchAllAssoc($query));
 
 $smarty->assign("SFS_TEMPLATE",$SFS_TEMPLATE);
 $smarty->assign("module_name","在家自學作業");

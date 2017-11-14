@@ -106,8 +106,8 @@ switch ($_POST[sub_menu_id]) {
 	case "2":
 		$class_menu="";
 		$query="select distinct di_id from health_disease order by di_id";
-		$res=$CONN->Execute($query);
-		$smarty->assign("dis_arr",$res->GetRows());
+		//$res=$CONN->Execute($query);
+		$smarty->assign("dis_arr",$CONN->queryFetchAllAssoc($query));
 		$query="select student_sn from health_disease";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {

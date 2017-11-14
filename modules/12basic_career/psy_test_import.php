@@ -72,7 +72,7 @@ if(checkid($_SERVER['SCRIPT_FILENAME'],1)) {
 	}
 } else $import_data="<center><font size=5 color='#ff0000'><br><br>您不具有系統管理權，無法使用本功能！<br><br></font></center>";
 
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'>$memu_select $import_data</form></font>";
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'>$memu_select $import_data</form></font>";
 
 echo $main;
 

@@ -60,9 +60,8 @@ if ($_POST['act']=='delete') {
 
 $sql="select * from sc_msn_folder where open_upload='1' order by idnumber";
 //$sql="select * from sc_msn_folder order by idnumber";
-$res=$CONN->Execute($sql);
-$folders=$res->GetRows();
-
+//$res=$CONN->Execute($sql);
+$folders=$CONN->queryFetchAllAssoc($sql);
 ?>
 <form method="post" name="myform" action="<?php echo $_SERVER['php_self'];?>">
 <input type="hidden" name="act" value="">

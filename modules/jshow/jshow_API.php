@@ -46,8 +46,8 @@ if ($_GET['act']=='GetPicByKindID') {
   //取得預設圖片與今日圖片
   $sql="select * from jshow_pic where kind_id='$kind_id' and display='1' order by sort";
   if ($_GET['visible']>0) $sql.=" limit ".$_GET['visible']; 
-  $res=$CONN->Execute($sql);
-  $ROW=$res->GetRows();
+  //$res=$CONN->Execute($sql);
+  $ROW=$CONN->queryFetchAllAssoc($sql);
   //轉碼
   $row=array();
   foreach ($ROW as $k=>$v) {
@@ -63,8 +63,8 @@ if ($_GET['act']=='GetPicByKindIDorderByRand') {
     $must="and id not in (".$_GET['visible_must'].")";
     //取得必選圖片
     $sql="select * from jshow_pic where kind_id='$kind_id' and display='1' and id in (".$_GET['visible_must'].") order by sort";
-  	$res=$CONN->Execute($sql);
-  	$ROW_MUST=$res->GetRows();
+  	//$res=$CONN->Execute($sql);
+  	$ROW_MUST=$CONN->queryFetchAllAssoc($sql);
   } else {
     $must="";
   }
@@ -72,8 +72,8 @@ if ($_GET['act']=='GetPicByKindIDorderByRand') {
   //取得預設圖片與今日圖片
   $sql="select * from jshow_pic where kind_id='$kind_id' and display='1' ".$must." order by RAND()";
   if ($_GET['visible']>0) $sql.=" limit ".$_GET['visible']; 
-  $res=$CONN->Execute($sql);
-  $ROW=$res->GetRows();
+  //$res=$CONN->Execute($sql);
+  $ROW=$CONN->queryFetchAllAssoc($sql);
   //轉碼
   $row=array();
   $i=0;

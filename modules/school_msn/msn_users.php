@@ -39,8 +39,8 @@ $O[0]="離線";
 
 $sql="select * from sc_msn_online order by teach_id";
 //$sql="select * from sc_msn_folder order by idnumber";
-$res=$CONN->Execute($sql);
-$USERS=$res->GetRows();
+//$res=$CONN->Execute($sql);
+$USERS=$CONN->queryFetchAllAssoc($sql);
  
  $CONN->Execute("SET NAMES 'latin1'");
 

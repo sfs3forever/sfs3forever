@@ -57,7 +57,7 @@ if($class_id)
 	}
 	$absent_data.="</table>";
 	
-	$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><table><tr valign='top'><td>$class_list</td><td>$absent_data</td></tr></table></form>";
+	$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><table><tr valign='top'><td>$class_list</td><td>$absent_data</td></tr></table></form>";
 	echo $main; 
 } else echo "您並非班級導師！";	
 

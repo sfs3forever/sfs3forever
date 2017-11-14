@@ -15,7 +15,7 @@ echo print_menu($MENU_P,$linkstr);
 
 $suported_item=array('pay_csv.php'=>'台灣銀行','pay_csv_2.php'=>'中國信託商業銀行','pay_csv_3.php'=>'台中商業銀行','pay_csv_4.php'=>'玉山銀行');
 
-$item_select="<BR><BR><center><form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><B>◎選擇代收金融機構◎</B><BR><BR>";
+$item_select="<BR><BR><center><form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><B>◎選擇代收金融機構◎</B><BR><BR>";
 foreach($suported_item as $key=>$value)
 {
 	$item_select.="<input type='radio' value='$key' name='item_selected' onclick='this.form.submit();'>$value<BR><BR>";

@@ -67,7 +67,7 @@ function print_module($msn="",$index=0,$col_num=4) {
 			$show_pic=(is_file($real_pic) and file_exists($real_pic))?$pic:$THEME_URL."/images/no_icon.gif";
 
 			$show_pic=($m['kind']=="分類")?$THEME_URL."/images/".$FOLDER:$show_pic;
-			$url=($kind=="模組")?$SFS_PATH_HTML."modules/$pro_dir_name/":"$_SERVER[SCRIPT_NAME]?_Msn=$pro_kind_id";
+			$url=($kind=="模組")?$SFS_PATH_HTML."modules/$pro_dir_name/":"{$_SERVER['SCRIPT_NAME']}?_Msn=$pro_kind_id";
 			
 			//假設有連結、圖示
 			if(!is_null($_SESSION[$session_prob][$pro_kind_id]) || $pro_isopen=='1') {
@@ -188,7 +188,7 @@ function &print_location() {
 		$b=($CDCLOGIN)?"<a href=\"$SFS_PATH_HTML"."login.php?cdc=1\">憑證登入</a> &nbsp; | &nbsp; <a href=\"$SFS_PATH_HTML"."login.php\">一般登入</a>":"<a href=\"$LOGINURL"."login.php\">登入系統</a>";
 	}
 
-	$main[]=get_sfs_path($_REQUEST['_Msn']);
+	$main[]=get_sfs_path(isset($_REQUEST['_Msn']) ? $_REQUEST['_Msn'] : '');
 	$main[]=$b;
 	return $main;
 }
@@ -206,7 +206,7 @@ function &make_menu($menu,$link="",$page=0) {
 	if ($link !=""){
 		$link ="?".$link;
 	}
-	$the_script  = substr (strrchr ($_SERVER[SCRIPT_NAME], "/"), 1);
+	$the_script  = substr (strrchr ($_SERVER['SCRIPT_NAME'], "/"), 1);
 	$button="";
 	while (list($tid,$tname) = each($menu)) {
 		if ($tid == $the_script ) {
@@ -285,7 +285,7 @@ function fast_link(){
 	$session_prob = get_session_prot();
 	
 	//取得目前網頁所在的模組目錄名稱
-	$SCRIPT_NAME=$_SERVER[SCRIPT_NAME];
+	$SCRIPT_NAME=$_SERVER['SCRIPT_NAME'];
 	$SN=explode("/",$SCRIPT_NAME);
 	$dirname=$SN[count($SN)-2];
 	//取出模組編號
@@ -302,11 +302,11 @@ function fast_link(){
 		$sort=$prob['sort'];
 		$blank=($prob['kind']=="分類")?"◎ ":"　‧";
 
-		//$selected=($_REQUEST[_Msn]==$prob['msn'])?"selected":"";
+		//$selected=($_REQUEST['_Msn']==$prob['msn'])?"selected":"";
 		
-		if($_REQUEST[_Msn]==$prob['msn']){
+		if($_REQUEST['_Msn']==$prob['msn']){
 			$selected="selected";
-		}elseif(empty($_REQUEST[_Msn]) and $msn==$prob['msn']){
+		}elseif(empty($_REQUEST['_Msn']) and $msn==$prob['msn']){
 			$selected="selected";
 		}else{
 			$selected="";

@@ -41,8 +41,8 @@ if (empty($_POST[year_seme])) {
 		
 		//取出>100成績資料列
 		$query="select a.*,b.stud_name,b.curr_class_num from $score_semester a left join stud_base b on a.student_sn=b.student_sn where a.score>100 order by a.student_sn,a.ss_id,a.test_sort,a.test_kind";
-		$res=$CONN->Execute($query);
-		$score_data=$res->GetRows();
+		//$res=$CONN->Execute($query);
+		$score_data=$CONN->queryFetchAllAssoc($query);
 	
 		//取科目中文名
 		$query="select subject_id,subject_name from score_subject";

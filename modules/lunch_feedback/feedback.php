@@ -109,7 +109,7 @@ if($class_id)
 		}		
 	}
 		
-	$main="<table><form name='form_day' method='post' action='$_SERVER[SCRIPT_NAME]'>
+	$main="<table><form name='form_day' method='post' action='{$_SERVER['SCRIPT_NAME']}'>
 		※填報人:$session_tea_name 　※用餐日期:$date_select 　※班級:$class_str 　※供應廠商:$pDesign_radio";
 	$showdata="$last_update<table border='1' cellpadding='3' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='100%'>
 			<tr bgcolor='$tr_bgcolor'>

@@ -78,7 +78,7 @@ while(!$rs->EOF){
 	$rs->MoveNext();
 }
 
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'><input type='submit' name='act' value='更新簡訊狀態'> <font size=2 color='brown'>$year_month_radio<br>$msg</font>
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'><input type='submit' name='act' value='更新簡訊狀態'> <font size=2 color='brown'>$year_month_radio<br>$msg</font>
 	<table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse; font-size:9pt;' bordercolor='#111111' id='AutoNumber1' width='100%'>
 	<tr align='center' bgcolor='#ffcccc'><td>No.</td><td>請求時間</td><td>使用帳號</td><td>對象名稱</td><td>手機號碼</td><td>簡訊內容</td><td>發送序號</td><td>簡訊狀態</td><td>狀態查詢時間</td></tr>";
 

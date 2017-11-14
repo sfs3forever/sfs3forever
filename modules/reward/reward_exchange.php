@@ -32,9 +32,10 @@ if ($_POST['year_name'] && $_POST['class_num'] && $_POST['site_num'] && $_POST['
 //取出學生名單
 if ($where !="") {
 	$query="select distinct a.student_sn,b.stud_name,b.stud_sex,b.stud_study_cond,b.stud_study_year from stud_seme a,stud_base b where $where and a.student_sn=b.student_sn order by b.stud_study_year desc";
-	$res=$CONN->Execute($query);
-	$smarty->assign("stud_nums",$res->RecordCount());
-	$smarty->assign("stud_rows",$res->GetRows());
+	////$res=$CONN->Execute($query);
+	$rs = $CONN->queryFetchAllAssoc($query);
+	$smarty->assign("stud_nums", count($rs));
+	$smarty->assign("stud_rows", $rs);
 }
 
 //以學生流水號處理資料
@@ -47,8 +48,8 @@ if ($_POST['student_sn']) {
 	//if ($_POST['list']) $sub_kind="and reward_div = '".$_POST['list']."'";
 	if ($_POST['only_this']) $seme_sel="and reward_year_seme='".curr_year().curr_seme()."'";
 	$query="select * from reward_exchange where student_sn='$sn' $sub_kind $seme_sel order by reward_date desc";
-	$res=$CONN->Execute($query);
-	$smarty->assign("reward_rows",$res->GetRows());
+	//$res=$CONN->Execute($query);
+	$smarty->assign("reward_rows",$CONN->queryFetchAllAssoc($query));
 }
 
 $smarty->assign("SFS_TEMPLATE",$SFS_TEMPLATE);

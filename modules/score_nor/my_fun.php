@@ -674,8 +674,8 @@ class data_student {
 		$PASS[0]="未合格";
 			if (!empty($student_sn)) {
   		$sql="select * from association where student_sn='$student_sn' order by seme_year_seme";
-			$res = $CONN->Execute($sql) or die("Sql error, ".$sql);
-			$row=$res->GetRows();
+			//$res = $CONN->Execute($sql) or die("Sql error, ".$sql);
+			$row=$CONN->queryFetchAllAssoc($sql);
 			//若為校內社團, 檢查是否通過 , 增加一個 pass 變數 0未過 1通過
 			foreach ($row as $k=>$v) {
 			 if ($v['club_sn']>0) {
@@ -700,8 +700,8 @@ class data_student {
 		global $CONN;
 			if (!empty($student_sn)) {
   		$sql="select a.*,b.student_sn,b.item_sn,b.minutes,b.studmemo from stud_service a,stud_service_detail b where a.sn=b.item_sn and b.student_sn='$student_sn' and a.confirm=1 order by service_date";
-			$res = $CONN->Execute($sql) or die("Sql error, ".$sql);
-			return $res->GetRows();
+			//$res = $CONN->Execute($sql) or die("Sql error, ".$sql);
+			return $CONN->queryFetchAllAssoc($sql);
 		}	
 	}
 	
@@ -725,8 +725,8 @@ class data_student {
 		global $CONN;
 		if (!empty($student_sn)) {
 			$sql = "SELECT * FROM stud_move WHERE student_sn='$student_sn'";
-			$res = $CONN->Execute($sql) or die("Sql error, ".$sql);
-			return $res->GetRows();
+			//$res = $CONN->Execute($sql) or die("Sql error, ".$sql);
+			return $CONN->queryFetchAllAssoc($sql);
 		}
 	}
 
@@ -809,8 +809,8 @@ class data_student {
 
 		if (!empty($student_sn)) {
 			$query="select * from reward where student_sn='$student_sn' order by reward_year_seme,reward_date";
-			$res=$CONN->Execute($query);
-			$this->rew_record=$res->GetRows();
+			//$res=$CONN->Execute($query);
+			$this->rew_record=$CONN->queryFetchAllAssoc($query);
 		}
 	}
 }

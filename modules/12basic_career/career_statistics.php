@@ -551,7 +551,7 @@ if(checkid($_SERVER['SCRIPT_FILENAME'],1)) {
 				break;		
 		}
 	}
-	$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'>
+	$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'>
 		<table width='100%' cellspacing=6  cellpadding=5 style='border-collapse: collapse; font-size=12px;'>
 			<tr>
 				<td valign='top' width=100 bgcolor='#fccfcf'>$semester_select<br>$garde_select<br>$memu_select</td>

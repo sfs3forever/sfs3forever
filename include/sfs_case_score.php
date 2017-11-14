@@ -376,12 +376,13 @@ function get_chk_item($sel_year,$sel_seme) {
 
 	$ary=array();
 	$query="select * from score_nor_chk_item where year='$sel_year' and seme='$sel_seme' order by main,sub";
-	$res=$CONN->Execute($query);
-	$ary[items]=$res->GetRows();
+	//$res=$CONN->Execute($query);
+	//$ary[items]=$res->GetRows();
+	$ary[items] = $CONN->queryFetchAllAssoc($query);
 	$query="select count(item) as num from score_nor_chk_item where year='$sel_year' and seme='$sel_seme' group by main order by main,sub";
-	$res=$CONN->Execute($query);
-	$ary[nums]=$res->GetRows();
-
+	//$res=$CONN->Execute($query);
+	//$ary[nums]=$res->GetRows();
+	$ary[nums] = $CONN->queryFetchAllAssoc($query);
 	return $ary;
 }
 

@@ -51,7 +51,7 @@ HERE;
 echo print_menu($MENU_P);
 if($my_class_id){   //判定是否為班級導師
 	//取得認證中項目的下拉選單，判斷是否有班級應認證細目
-	$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'>
+	$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'>
 			<table border='1' cellpadding='3' cellspacing='0' style='border-collapse: collapse;' bordercolor='#111111' width='100%'>
 			<tr align='center' bgcolor='#FAFCAA'><td colspan=6><B>$class_base[$my_class_id]</B></td><td colspan=2><input type='submit' name='act' value='撤除選取的已授權名單' onclick='return confirm(\"確定要撤除選定的授權?\")'></td></tr>
 			<tr align='center' bgcolor='#FFCCCC'><td>管理處室</td><td>認證項目</td><td>認證日期</td><td>細目</td><td>年級</td><td>積分</td>

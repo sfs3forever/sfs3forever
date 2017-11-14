@@ -207,9 +207,11 @@ function login_chk_teacher($log_id = "", $log_pass = ""){
 
 
 	$sql_select = " select teacher_sn,name, login_pass, last_chpass_time from teacher_base where teach_condition = 0 and teach_id='$log_id' and login_pass='$log_pass' and teach_id<>''";
-	$recordSet = $CONN -> Execute($sql_select) or trigger_error("資料連結錯誤：" . $sql_select, E_USER_ERROR);
-        
-	while(list($teacher_sn, $name , $login_pass, $last_chpass_time) = $recordSet -> FetchRow()){
+	//$recordSet = $CONN -> Execute($sql_select) or trigger_error("資料連結錯誤：" . $sql_select, E_USER_ERROR);
+	$rs = $CONN->query($sql_select) or trigger_error("資料連結錯誤：" . $sql_select, E_USER_ERROR);			
+	//while(list($teacher_sn, $name , $login_pass, $last_chpass_time) = $recordSet -> FetchRow()){
+	foreach($rs as $row) {	
+		list($teacher_sn, $name , $login_pass, $last_chpass_time) = $row;
 		$_SESSION['session_log_id'] = $log_id;
 		$_SESSION['session_log_pass'] = $login_pass;
 		$_SESSION['session_tea_sn'] = $teacher_sn;
@@ -228,15 +230,15 @@ function login_chk_teacher($log_id = "", $log_pass = ""){
 		$CONN -> Execute($query) or user_error("新增失敗！<br>$query",256);
 		$REFERER=($_SERVER[HTTP_REFERER]==($SFS_PATH_HTML."login.php"))?$SFS_PATH_HTML."index.php":$_SERVER[HTTP_REFERER];
 
-//強制幾日後需更改新密碼		
-$m_arr = get_module_setup("chpass");
-$vd=$m_arr['chpass_period']?$m_arr['chpass_period']:30;
-$chdate=date("Y-m-d", strtotime("-$vd days"));
-if($last_chpass_time<$chdate)
-{
-$REFERER=$SFS_PATH_HTML."modules/chpass/teach_cpass.php?alert=ok";
-}
-//強制幾日後需更改新密碼
+		//強制幾日後需更改新密碼		
+		$m_arr = get_module_setup("chpass");
+		$vd=$m_arr['chpass_period']?$m_arr['chpass_period']:30;
+		$chdate=date("Y-m-d", strtotime("-$vd days"));
+		if($last_chpass_time<$chdate)
+		{
+		$REFERER=$SFS_PATH_HTML."modules/chpass/teach_cpass.php?alert=ok";
+		}
+		//強制幾日後需更改新密碼
 
 		return $REFERER;
 	} // end while 

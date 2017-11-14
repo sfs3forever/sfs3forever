@@ -24,8 +24,8 @@ else
 	$query = "select a.*,b.*,left(a.curr_class_num,length(a.curr_class_num)-2) as stud_class,right(a.curr_class_num,2) as stud_site from stud_base a left join stud_domicile b on a.student_sn=b.student_sn where (a.stud_kind like '%,$stud_kind,%' or a.stud_kind = $stud_kind) and a.stud_study_cond=0 order by a.curr_class_num";
 
 //echo $stud_kind."|".$query."|<BR>\n";
-$res = $CONN->Execute($query) or die ($query);
-$smarty->assign("data_arr",$res->GetRows());
+//$res = $CONN->Execute($query) or die ($query);
+$smarty->assign("data_arr",$CONN->queryFetchAllAssoc($query));
 if ($_POST[csv_out]) {
 	header("Content-disposition: filename=".curr_year()."_".curr_seme()."_".$stud_kind.".csv");
 	header("Content-type: application/octetstream ; Charset=Big5");

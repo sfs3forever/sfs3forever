@@ -284,7 +284,7 @@ switch($menu){
 		break;
 }
 
-$main="<font size=2><form method='post' action='$_SERVER[SCRIPT_NAME]' name='myform'>$memu_select $showdata<br>$act</form></font><br>◎學校設定可填寫月份：$m_arr[guidance_months]";
+$main="<font size=2><form method='post' action='{$_SERVER['SCRIPT_NAME']}' name='myform'>$memu_select $showdata<br>$act</form></font><br>◎學校設定可填寫月份：$m_arr[guidance_months]";
 
 echo $main;
 

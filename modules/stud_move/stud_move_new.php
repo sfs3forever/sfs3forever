@@ -82,8 +82,8 @@ $smarty->assign("girl",$res->fields[girl]);
 
 //取出所有記錄
 $query="select distinct concat(move_c_unit,move_c_word,move_c_num) as dif,count(move_id) as num,left(move_year_seme,length(move_year_seme)-1) as move_year,move_year_seme,move_date,move_c_unit,move_c_date,move_c_word,move_c_num from stud_move where move_kind='13' group by move_year_seme order by move_date desc";
-$res=$CONN->Execute($query) or die($query);
-$smarty->assign("stud_move",$res->GetRows());
+//$res=$CONN->Execute($query) or die($query);
+$smarty->assign("stud_move",$CONN->queryFetchAllAssoc($query));
 
 $smarty->assign("SFS_TEMPLATE",$SFS_TEMPLATE);
 $smarty->assign("module_name","新生入學作業");

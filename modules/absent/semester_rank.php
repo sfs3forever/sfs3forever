@@ -85,7 +85,7 @@ if($_POST['kind_radio']){
 
 }
 
-echo "<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'>$upstr<br>$kind_radio<br>$data</form>";
+echo "<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'>$upstr<br>$kind_radio<br>$data</form>";
 
 foot();
 

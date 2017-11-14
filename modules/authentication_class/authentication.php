@@ -61,7 +61,7 @@ if($cancel_sn AND $_POST['act']=='取消簽認'){
 };
 
 //取得認證中項目的下拉選單
-$main="<form name='myform' method='post' action='$_SERVER[SCRIPT_NAME]'>※認證項目：<select name='item_sn' onchange='this.form.submit()'>";
+$main="<form name='myform' method='post' action='{$_SERVER['SCRIPT_NAME']}'>※認證項目：<select name='item_sn' onchange='this.form.submit()'>";
 $sql_select="select * from authentication_item WHERE (CURDATE() BETWEEN start_date AND end_date) order by end_date desc";
 $res=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
 if(! $item_sn) $item_sn=$res->fields[sn]; //預設為第一項

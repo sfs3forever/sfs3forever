@@ -213,7 +213,7 @@ function who_chk($sn="",$who=""){
 	//過渡時期作法，檢查學校是否有更新權限資料表，有加上權限到期日
 	$sql = 'SHOW COLUMNS FROM pro_check_new';
 	
-	$res = mysqli_query($CONN->_connectionID, $sql);
+	$res = mysqli_query($conID, $sql);
 	while($row = $res->fetch_assoc()){
 		$columns[] = $row['Field'];
 	}
@@ -504,7 +504,7 @@ function Creat_Module_Path(){
 function get_module_title(){
 	global $CONN,$SFS_PATH_HTML,$UPLOAD_PATH,$MODULE_DIR;
 	//模組標題取得優先順序：資料庫模組的標題，module-cfg.php中的標題，都沒有則自訂標題
-	$SCRIPT_NAME=$_SERVER[SCRIPT_NAME];
+	$SCRIPT_NAME=$_SERVER['SCRIPT_NAME'];
 	$SN=explode("/",$SCRIPT_NAME);
 	$dirname=$SN[count($SN)-2];
 

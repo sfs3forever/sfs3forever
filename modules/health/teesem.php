@@ -165,9 +165,12 @@ switch ($_POST[sub_menu_id]) {
 		}
 		if ($_POST['class_name']) {
 			$query="select * from health_fday where year='$sel_year' and semester='$sel_seme' order by week_no";
-			$res=$CONN->Execute($query);
-			$smarty->assign("rows",$res->RecordCount()+2);
-			$smarty->assign("date_arr",$res->GetRows());
+			//$res=$CONN->Execute($query);
+			$rs = $CONN->queryFetchAllAssoc($query);
+			//$smarty->assign("rows",$res->RecordCount()+2);
+			//$smarty->assign("date_arr",$res->GetRows());
+			$smarty->assign("rows",count($rs) + 2);
+			$smarty->assign("date_arr",$rs);
 			if ($_POST['allchart']) {
 				$c=class_base($_POST['year_seme']);
 				$smarty->assign("class_data",$c);
@@ -201,8 +204,8 @@ switch ($_POST[sub_menu_id]) {
 	case "5":
 		$class_menu="";
 		$query="select * from health_fday where year='$sel_year' and semester='$sel_seme' order by week_no";
-		$res=$CONN->Execute($query);
-		$r=$res->GetRows();
+		//$res=$CONN->Execute($query);
+		$r=$CONN->queryFetchAllAssoc($query);
 		$smarty->assign("date_arr",$r);
 		$maxd=$r[count($r)-1]['week_no'];
 		$smarty->assign("maxd",$maxd);

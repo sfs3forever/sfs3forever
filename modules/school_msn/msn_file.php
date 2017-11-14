@@ -43,8 +43,8 @@ foreach ($file_list as $filename) {
 //取得資料夾
 $CONN->Execute("SET NAMES 'utf8'");
 $sql="select * from sc_msn_folder order by idnumber";
-$res=$CONN->Execute($sql);
-$folders=$res->GetRows();
+//$res=$CONN->Execute($sql);
+$folders=$CONN->queryFetchAllAssoc($sql);
 
 //echo "<pre>";
 //print_r($folders);

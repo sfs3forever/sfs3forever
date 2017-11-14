@@ -163,8 +163,8 @@ if ($_POST['act']=='save') {
 
         //讀取所有電腦ip
         $sql="select * from comp_roomsite";
-        $res=$CONN->Execute($sql);
-        $row=$res->GetRows();
+       // $res=$CONN->Execute($sql);
+        $row=$CONN->queryFetchAllAssoc($sql);
         $addrgrp="\"sfs3_addrgrp_deny_tag\"";
         foreach ($row as $v) {
             $addrgrp.=" \"".$v['net_ip']."\"";

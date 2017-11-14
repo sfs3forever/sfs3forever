@@ -13,8 +13,8 @@ $smarty->assign(hc,($_REQUEST["hc"]=="")?"#CC3300":$_REQUEST["hc"]);
 
 $today=date("Y-m-d");
 $query="select * from jboard_p where (b_open_date + INTERVAL b_days DAY) >= '$today' order by b_id desc";
-$res=$CONN->Execute($query);
-$smarty->assign(data_arr,$res->GetRows());
+//$res=$CONN->Execute($query);
+$smarty->assign(data_arr,$CONN->queryFetchAllAssoc($query));
 $smarty->assign("SFS_PATH_HTML",$SFS_PATH_HTML);
 $smarty->assign("school_short_name",$school_short_name);
 $smarty->display("board_ticker.tpl");
