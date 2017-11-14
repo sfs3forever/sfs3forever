@@ -41,12 +41,16 @@ if(!chk_permit($cfg_file)){
 	//開設資料庫
 	install_sfs_db($_POST['mysql_host'], $_POST['mysql_adm_user'], $_POST['mysql_adm_pass'],$_POST['mysql_db'],$_POST['mysql_user'],$_POST['mysql_pass']);
 	// 將設定寫入 /include/config.php 中
-	write_config();
+	write_config();	
+	include "./include/config.php";
+	include "./include/sfs_upgrade_list.php";
+
 	header("Location: {$_SERVER['SCRIPT_NAME']}?act=sfs_result&ud={$_POST['UPLOAD_PATH']}&uu={$_POST['UPLOAD_URL']}&sfsurl={$_POST['SFS_PATH_HTML']}");
 }elseif(isset($_GET['act']) && $_GET['act']=="sfs_result"){
 	$main=sfs_result($_GET['ud'],$_GET['uu'],$_GET['sfsurl']);
 }else{
 	require "./include/sfs_case_installform.php";
+	return;
 }
 
 ?>
@@ -132,6 +136,11 @@ function install_sfs_db($host, $adm_user, $adm_pass,$db,$user,$passwd){
 			trigger_error("資料庫 $db 無法建立！請回上頁修改！", E_USER_ERROR);
 		}
 	}
+
+	
+
+	//DB schema migration
+//	include dirname(__FILE__)."/include/sfs_upgrade_list.php";
 
 	/* Closing connection */
 	mysqli_close($link);
@@ -457,7 +466,6 @@ HERE3;
  fputs($hfile, $cfg3);
 
  fclose($hfile);
-
 }
 
 

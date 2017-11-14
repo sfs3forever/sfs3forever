@@ -10,7 +10,7 @@ function get_module($msn="") {
 	if (!$CONN) user_error("資料庫連線不存在！請檢查相關設定！",256);
 
 	//檢查資料庫更新程式
-	include dirname(__FILE__)."/sfs_upgrade_list.php";
+	//include dirname(__FILE__)."/sfs_upgrade_list.php";
 
 	$arr = array();
 

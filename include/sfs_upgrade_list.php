@@ -1,10 +1,17 @@
 <?php
 
 //$Id: sfs_upgrade_list.php 9101 2017-07-06 07:28:41Z infodaes $
+require_once "sfs_core_path.php";
+require_once "sfs_core_schooldata.php";
+require_once( "sfs_core_systext.php" );
+require_once( "sfs_core_menu.php" );
+
+require_once "pdo_ado.php";
+$CONN = new sdb("mysql:host=$mysql_host;dbname=$mysql_db;charset=utf8mb4", $mysql_user, $mysql_pass);
 
 if(!$CONN){
         echo "go away !!";
-        exit;
+		exit;
 }
 
 // 本檔案為系統重要更新檔案,更新記錄將自動寫入 上傳檔案目錄 $UPLOAD_PATH/upgrade/include 下

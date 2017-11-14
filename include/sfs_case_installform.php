@@ -33,7 +33,8 @@ for($i=0;$i < count($GIP); $i++) {
 //$SCHOOL_IP=$GIP[0].".".$GIP[1].".".$GIP[2];
 //$UPDATA_PATH={$_SERVER['DOCUMENT_ROOT']}."/$UPLOAD_PATH/";
 $UPDATA_PATH=$SFS_INSTALL_PATH."/data/";
-$sfsnameman=$sfsname."man";
+//$sfsnameman=$sfsname."man";
+$sfsnameman="sfs3man";
 
 echo <<<HERE
 <html>

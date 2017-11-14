@@ -519,11 +519,19 @@ function teacher_base() {
 	$teacher_array=array();
 
 	$sql_select = "select name,teacher_sn from teacher_base where teach_condition='0' order by name";
-	$recordSet=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
+	$stmt=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
+	/*
 	while (list($name,$teacher_sn) = $recordSet->FetchRow()) {
 		$teacher_array[$teacher_sn]=$name;
 	}
 	return $teacher_array;
+	*/
+	//pdo - ado
+	while($stmt->MoveNext()) {
+		$sn = $CONN->fields['teacher_sn']; 		
+		$name = $CONN->fields['name'];
+		$teacher_array[$sn] = $name;
+	}
 }
 
 

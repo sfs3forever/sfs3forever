@@ -9,7 +9,7 @@ if(!$CONN){
 
 $SQL="select * from sfs_text where t_kind='平時成績選項'";
 $rs1=$CONN->Execute($SQL);
-if(!$rs->fields[t_id]) {
+if(!$rs->fields['t_id']) {
 	//增加平時成績項目參照
 	$SQL="ALTER TABLE `score_ss` ADD `nor_item_kind` VARCHAR( 20 ) NULL;";
 	$rs=$CONN->Execute($SQL);

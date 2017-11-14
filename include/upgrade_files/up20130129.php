@@ -1,7 +1,7 @@
 <?php
 
 //$Id:$
-include '../sfs_core_menu.php';
+//include '../sfs_core_menu.php';
 
 /*
 if(!$CONN){
