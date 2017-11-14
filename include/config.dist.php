@@ -12,12 +12,13 @@ $old_error_handler = set_error_handler("error_die");
 ***********************************/
 //程式根目錄 PATH
 $SFS_PATH = "";
+if(empty($SFS_PATH)) return;
 
 //學務管理首頁程式 URL (設定時，保留最後的 "/" )
-$SFS_PATH_HTML ="http://localhost/sfs3/"; 
+$SFS_PATH_HTML =""; 
 
 //學校首頁 URL
-$HOME_URL ="http://localhost/";
+$HOME_URL ="";
 
 //學校IP 範圍
 /*半個c class 設定 (起始IP 與 結束IP 以 - 隔開)

@@ -88,7 +88,7 @@ function CHECK() {
 </div>
 <p></p>
 <br>
-<form name="inst" method="post" action="$_SERVER['SCRIPT_NAME']" onSubmit="return CHECK()">
+<form name="inst" method="post" action="{$_SERVER['SCRIPT_NAME']}" onSubmit="return CHECK()">
 <table border=0 align="center" cellspacing="0" cellpadding="1" bgcolor="#E5E5E5">
 <tr><td>
 
