@@ -99,8 +99,10 @@ function get_main_prob($id="",$pro_islive="",$name=""){
 
 	$sql_select = "SELECT * FROM sfs_module where $w $and_pro_islive";
     // 要檢查是否讀取成功?
-	$recordSet=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
-	$main=$recordSet->FetchRow();
+	//$recordSet=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
+	//$main=$recordSet->FetchRow();
+	$stmt=$CONN->query($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
+	$main=$stmt->fetch();
 	return $main;
 }
 
@@ -250,13 +252,15 @@ function get_prob_power($sn="",$who=""){
 	$where=who_chk($sn,$who);
 	//取得授權給該使用者可使用的分類或模組權限
 	$sql_select = "select pro_kind_id from pro_check_new where $where";
-	$recordSet=$CONN->Execute($sql_select)  or trigger_error("資料連結錯誤：".$sql_select, E_USER_ERROR);
-
+	//$recordSet=$CONN->Execute($sql_select)  or trigger_error("資料連結錯誤：".$sql_select, E_USER_ERROR);
+	$stmt=$CONN->query($sql_select)  or trigger_error("資料連結錯誤：".$sql_select, E_USER_ERROR);
 
 	// init $ok_prob
 	$ok_prob=array();
 
-	while(list($pro_kind_id) = $recordSet->FetchRow()){
+	//while(list($pro_kind_id) = $recordSet->FetchRow()){
+	foreach($stmt as $row) {
+		list($pro_kind_id) = $row;
 		//$prob[$pro_kind_id]=$is_admin;
 
 		//看此$pro_kind_id是屬於分類還是模組
@@ -288,12 +292,13 @@ function parent_prob_poser($pro_kind_id="",$who,$sn){
 	if (!$sn) user_error("沒有傳入參數！請檢查。",256);
 
 	$sql_select = "select msn, isopen,of_group,kind from sfs_module where of_group='$pro_kind_id'";
-	$recordSet=$CONN->Execute($sql_select)  or trigger_error("資料連結錯誤：".$sql_select, E_USER_ERROR);
-
+	//$recordSet=$CONN->Execute($sql_select)  or trigger_error("資料連結錯誤：".$sql_select, E_USER_ERROR);
+	$stmt=$CONN->query($sql_select)  or trigger_error("資料連結錯誤：".$sql_select, E_USER_ERROR);
 	// init $main
 	$main=array();
 
-	while(list($id,$isopen,$of_group,$kind) = $recordSet->FetchRow()){
+	//while(list($id,$isopen,$of_group,$kind) = $recordSet->FetchRow()){
+	while(list($id,$isopen,$of_group,$kind) = $stmt->fetch()){
 		//該模組的使用者相關設定。
 
 		if($kind=="分類"){
@@ -326,9 +331,11 @@ function check_kind_have_power($msn){
 
 	//取得授權給該使用者可使用的分類或模組權限
 	$sql_select = "select pro_kind_id from pro_check_new where pro_kind_id=$msn";
-	$recordSet=$CONN->Execute($sql_select)  or trigger_error("資料連結錯誤：".$sql_select, E_USER_ERROR);
+	//$recordSet=$CONN->Execute($sql_select)  or trigger_error("資料連結錯誤：".$sql_select, E_USER_ERROR);
+	$stmt=$CONN->query($sql_select)  or trigger_error("資料連結錯誤：".$sql_select, E_USER_ERROR);
 
-	while(list($pro_kind_id) = $recordSet->FetchRow()){
+	//while(list($pro_kind_id) = $recordSet->FetchRow()){
+	while(list($pro_kind_id) = $stmt->fetch()){
 		if($pro_kind_id) return true;
 	}
 	return false;
@@ -442,10 +449,10 @@ function &get_module_setup($pm_name) {
 	$sql="SELECT pm_item, pm_value FROM pro_module WHERE pm_name='$pm_name'";
 
 	// 對 select 結果一定要檢查是否有取出東東
-	if (!($res=$CONN->Execute($sql))) {
+	if (!($res=$CONN->query($sql))) {
 		print $CONN->ErrorMsg();
 	} else {
-		while ($ar=$res->FetchRow()) {
+		while ($ar=$res->fetch()) {
 			$MSETUP[$ar[0]]=$ar[1];
 		}
 	}

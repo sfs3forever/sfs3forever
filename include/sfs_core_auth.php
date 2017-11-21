@@ -115,14 +115,15 @@ function checkid($chk,$chk_admin=0){
 	if(!$chk_admin)	$chk = $_SERVER['SCRIPT_FILENAME'];
  	$curr_file= get_path($chk); //取得程式路徑
 	$dirname=explode("/",$curr_file);
-	$query = "select *  from sfs_module where  islive='1' and dirname='$dirname[1]'";
-	$result = $CONN->Execute($query) or $CONN->ErrorMsg();
-	if ($result->EOF){
+	$query = "select msn, isopen from sfs_module where  islive='1' and dirname='$dirname[1]'";
+	$stmt = $CONN->query($query) or $CONN->ErrorMsg();
+	if (!$stmt){
 		return false;
 	}
 	//print_r($result->FetchRow());
 	//print_r($_SESSION);
-	list($pro_kind_id,$isopen)=$result->FetchRow();
+	list($pro_kind_id,$isopen)= $stmt->fetch();
+	//list($pro_kind_id,$isopen)= $result->rows;	
 	if($chk_admin==0 and !is_null($_SESSION[$session_prob][$pro_kind_id])){
 		return true;
 	}elseif($chk_admin=='1'){
@@ -373,7 +374,6 @@ function get_session_prot() {
 	$session_prob = '';
 	if(isset($_COOKIE['cookie_sch_id'])) {
 		$session_prob = defined('PreFix') ? PreFix.$_COOKIE['cookie_sch_id'] : $_COOKIE['cookie_sch_id'] ;
-	
 	}
 	
 	if ($session_prob=='')

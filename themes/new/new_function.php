@@ -226,7 +226,7 @@ function &make_menu($menu,$link="",$page=0) {
 
 //個人化介面
 function &my_web(){
-	global $SFS_PATH_HTML,$nocols,$SFS_PATH, $CONN;
+	global $SFS_PATH_HTML,$nocols,$SFS_PATH, $CONN, $conID;
 	include_once $SFS_PATH."/include/sfs_case_signpost.php";
 
 	//檢查系統設定
@@ -246,13 +246,13 @@ function &my_web(){
 	   teacher_sn smallint(6) unsigned NOT NULL  ,
 	   login_time datetime NOT NULL default '0000-00-00 00:00:00' ,
 	   PRIMARY KEY  (log_id))";
-	mysql_query($Create_db);
-	$result = mysql_query("select login_time from $tableName where teacher_sn = $teacher_sn");
-	$recordSet = mysql_fetch_row($result);
+	mysqli_query($conID, $Create_db);
+	$result = mysqli_query($conID, "select login_time from $tableName where teacher_sn = $teacher_sn");
+	$recordSet = mysqli_fetch_row($result);
 	if ($recordSet != NULL) {
 	list($login_time) = $recordSet;
-	$result = mysql_query("update $tableName set login_time = '$today' where teacher_sn = $teacher_sn");
-	$recordSet = mysql_fetch_row($result);
+	$result = mysqli_query($conID, "update $tableName set login_time = '$today' where teacher_sn = $teacher_sn");
+	$recordSet = mysqli_fetch_row($result);
 	} else {
 	$login_time = $today;
 	$sql_select = "insert into $tableName (teacher_sn,login_time) values ('$teacher_sn','$today')";
