@@ -401,7 +401,7 @@ function del_setup(){
 	if (!$CONN->Execute($query)) {
 		$query="select count(score) from $score_semester where score>'0'";
 		$res=$CONN->Execute($query);
-		if ($res->fields[0]>0) return 1;
+		if ($res->rs[0]>0) return 1;
 	}
 	$CONN->Execute("delete from school_class where year='$sel_year' and semester='$sel_seme'");
 	$CONN->Execute("delete from score_setup where year='$sel_year' and semester='$sel_seme'");

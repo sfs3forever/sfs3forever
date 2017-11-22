@@ -454,8 +454,8 @@ function get_student_seme_abs($absence_semester)
 	$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
 	while(!$res->EOF)
 	{
-		$stud_id=$res->fields[0];
-		$counter=$res->fields[1];
+		$stud_id=$res->rs[0];
+		$counter=$res->rs[1];
 		$absence[$stud_id]=$absence_score_array[$counter];
 		$res->MoveNext();
 	}
@@ -551,11 +551,11 @@ function count_student_score_competetion()
 	$recordSet=$CONN->Execute($sql_select) or user_error("讀取失敗，有可能是未安裝生涯輔導相關模組！<br>$sql_select",256);
 	while(!$recordSet->EOF)
 	{
-		$student_sn=$recordSet->fields[0];
-		$level=$recordSet->fields[1];		//競賽範圍
-		$squad=$recordSet->fields[2];		//競賽性質：個人賽1,團體賽2
-		$rank=$recordSet->fields[3];		//得獎名次
-		$weight=$recordSet->fields[4];		//權重1,0.5,0.25
+		$student_sn=$recordSet->rs[0];
+		$level=$recordSet->rs[1];		//競賽範圍
+		$squad=$recordSet->rs[2];		//競賽性質：個人賽1,團體賽2
+		$rank=$recordSet->rs[3];		//得獎名次
+		$weight=$recordSet->rs[4];		//權重1,0.5,0.25
 		//依競賽性質及權重計分
 		if($squad==1) {		//個人賽
 			if($weight==1) $score_competetion[$student_sn]+=$race_score[$level][$rank];

@@ -43,18 +43,18 @@ if ($_SESSION['MSN_LOGIN_ID']!="") {
 //銝?鈭箸
 $query="select count(*) from sc_msn_online where ifonline=1";
 $result=$CONN->Execute($query);
-$online=$result->fields[0];
+$online=$result->rs[0];
  
 //蝘犖閮 ?嗾??
 if ($_SESSION['MSN_LOGIN_ID']!="") {
  $query="select count(*) from sc_msn_data where to_id='".$_SESSION['MSN_LOGIN_ID']."' and ifread=0";
  $result=$CONN->Execute($query);
- $message=$result->fields[0];
+ $message=$result->rs[0];
  if ($message>0) {
    $query="select sound,sound_kind from sc_msn_online where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
  	 $result=$CONN->Execute($query);
-   $sound=$result->fields[0];
-   $sound_kind=$result->fields[1];
+   $sound=$result->rs[0];
+   $sound_kind=$result->rs[1];
  }
 }
 

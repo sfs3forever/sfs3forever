@@ -146,7 +146,7 @@ function get_sfs_module_set($module_name='',$del=0) {
                 //已有預設值
                 if (!$res->EOF) {
                         while(!$res->EOF) {
-                                $res_arr[$res->fields[0]] = $res->fields[1];
+                                $res_arr[$res->rs[0]] = $res->rs[1];
                                 $res->MoveNext();
                         }
                         return $res_arr;
@@ -184,7 +184,7 @@ function get_sfs_module_set($module_name='',$del=0) {
 		$query = "select pm_item,pm_value from pro_module where pm_name='$module_name'";
 		$res = $CONN->Execute($query);
 		while(!$res->EOF) {
-			$res_arr[$res->fields[0]] = $res->fields[1];
+			$res_arr[$res->rs[0]] = $res->rs[1];
 			$res->MoveNext();
 		}
 		return $res_arr;

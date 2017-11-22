@@ -84,9 +84,9 @@ while(!$res->EOF) {
 		if($i) $target=$res->fields[$i]; else $target=$tran_arr[$res->fields[$i]];
 		$showdata.="<td>$target</td>";
 	}
-	$key=$res->fields[0];
+	$key=$res->rs[0];
 	$value=$tran_arr[$key];
-	$summary=$res->fields[1]+$res->fields[2];
+	$summary=$res->rs[1]+$res->rs[2];
 	$showdata.="<td>$summary</td><td align='center'><a href='csv_export.php?item=$selection&key=$key&value=$value&semester=$c_curr_seme'><img src='images/csv.png' border=0></a></td></tr>";
 	$res->MoveNext();
 }

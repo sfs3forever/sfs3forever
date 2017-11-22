@@ -163,7 +163,7 @@ HERE;
 				
 		$query="select stud_study_year from stud_base where student_sn='".pos($sn)."'";  //取得入學年
 		$res=$CONN->Execute($query);
-		$stud_study_year=$res->fields[0];
+		$stud_study_year=$res->rs[0];
 		if ($IS_JHORES==0)
 			$f_year=5;
 		else

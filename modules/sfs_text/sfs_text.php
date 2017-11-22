@@ -46,8 +46,8 @@ if ($row_num) {
 		$result2 = $CONN->Execute("select count(t_id) as cc from sfs_text where p_id='".$result->fields[t_id]."' ");
 		$tol = "" ;
 		if(!$result2->EOF) {
-			if ($result2->fields[0])
-				$tol = "(".$result2->fields[0].")";
+			if ($result2->rs[0])
+				$tol = "(".$result2->rs[0].")";
 		}
 		
 		if (!$this_item && $i++ == 0)

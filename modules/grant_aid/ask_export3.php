@@ -631,7 +631,7 @@ $main.="<style>
 //全校學生數
 $sql_select="select count(*) from stud_base where stud_study_cond in (0,15)";
 $res=$CONN->Execute($sql_select) or user_error("全校學生數讀取失敗！<br>$sql_select",256);
-$total=$res->fields[0];
+$total=$res->rs[0];
 $data.="</table><BR>全校學生數：[$total]人。選送人數  低收入戶：[ $num_count ]人。　　　　　申請日期：[ $today ]</CENTER>";
 $main.=$newpage.$data."";
 

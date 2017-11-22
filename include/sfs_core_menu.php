@@ -22,7 +22,7 @@ function join_sfs_text($gid,$text_name,$temp_arr) {
 		$CONN->Execute($query) or trigger_error($query, E_USER_ERROR);
 		$query = "select t_id from sfs_text where t_kind='$text_name'";
 		$res = $CONN->Execute($query) or trigger_error($query, E_USER_ERROR);
-		$p_id = $res->fields[0];
+		$p_id = $res->rs[0];
 		while (list($tid,$val) = each($temp_arr)) {
 			$i++;
 			//if (strtolower($DATA_VAR[character_set]) == 'big5')

@@ -72,9 +72,9 @@ $query = "select day from score_course where year=$year and semester=$semester g
 $res = $CONN->Execute($query);
 $day_arr = array();
 while(!$res->EOF){	
-	$day_arr[$res->fields[0]] = "星期".Num2CNum($res->fields[0]);
+	$day_arr[$res->rs[0]] = "星期".Num2CNum($res->rs[0]);
 	if ($_GET[curr_day]=='')
-		$_GET[curr_day] = $res->fields[0];
+		$_GET[curr_day] = $res->rs[0];
 	$res->MoveNext();
 }
 
@@ -152,7 +152,7 @@ while (!$res->EOF) {
 $sql_select = "select name,teacher_sn from teacher_base ";
 $res= $CONN->Execute($sql_select);
 while(!$res->EOF){
-	$teacher_arr[$res->fields[1]]=$res->fields[0];
+	$teacher_arr[$res->rs[1]]=$res->rs[0];
 	$res->MoveNext();
 }
 

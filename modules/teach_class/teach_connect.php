@@ -65,7 +65,7 @@ $res = $CONN->Execute($query) or die($query);
 //未設定或改變在職狀況或刪除記錄後 到第一筆
 if ($teacher_sn =="" || $teacher_sn != $res->fields[teacher_sn]) {
 	$result= $CONN->Execute("select teacher_base.teacher_sn,teacher_base.teach_condition from teacher_base left join teacher_post on teacher_base.teacher_sn=teacher_post.teacher_sn where  teacher_base.teach_condition ='$sel' limit 0,1");
-	$teacher_sn = $result->fields[0];	
+	$teacher_sn = $result->rs[0];	
 }	
 $sql_select = "select a.name,b.* from teacher_base a left join teacher_connect b on a.teacher_sn=b.teacher_sn where a.teacher_sn='$teacher_sn'";
 $recordSet = $CONN->Execute($sql_select) or die ($sql_select);

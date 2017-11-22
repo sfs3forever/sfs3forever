@@ -43,8 +43,8 @@ while(!$res->EOF) {
 
 $sql_select = "select max(sector),max(day) from score_course where year=$sel_year and semester=$sel_seme";
 $recordSet=$CONN->Execute($sql_select) or trigger_error("錯誤訊息： $sql_select", E_USER_ERROR);
-$ms= $recordSet->fields[0];
-$md= $recordSet->fields[1];
+$ms= $recordSet->rs[0];
+$md= $recordSet->rs[1];
 
 $sql_select = "select distinct class_id from score_course where year=$sel_year and semester=$sel_seme order by class_id ";
 $rs=$CONN->Execute($sql_select) or trigger_error("錯誤訊息： $sql_select", E_USER_ERROR);
@@ -59,8 +59,8 @@ while(!$rs->EOF){
 	//抓取班級導師
 	$sql="select teacher_1,teacher_2 from school_class where year='$sel_year' and semester='$sel_seme' and class_id='$class_id' and enable='1'";
 	$r=$CONN->Execute($sql) or trigger_error("錯誤訊息： $sql",E_USER_ERROR);
-	$class_data[$class_id]['tutor']=$r->fields[0].' '.$r->fields[1];
-	$class_data[$class_id]['tutor'].=($r->fields[1]?'、'.$r->fields[1]:'');
+	$class_data[$class_id]['tutor']=$r->rs[0].' '.$r->rs[1];
+	$class_data[$class_id]['tutor'].=($r->rs[1]?'、'.$r->rs[1]:'');
 
 	//抓取課表資料
 	$sql_course="select course_id,teacher_sn,cooperate_sn,day,sector,ss_id,room,c_kind from score_course where class_id='$class_id' order by day,sector";

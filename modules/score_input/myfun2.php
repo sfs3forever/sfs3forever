@@ -27,7 +27,7 @@ function save_semester_score($sel_year,$sel_seme) {
 		$temp_sn_arr = array();
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
-			$temp_sn_arr[$res->fields[1]][]=$res->fields[0];
+			$temp_sn_arr[$res->rs[1]][]=$res->rs[0];
 			$res->MoveNext();
 		}
 		
@@ -49,7 +49,7 @@ function save_semester_score($sel_year,$sel_seme) {
 		$temp_sn_arr = array();
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
-			$temp_sn_arr[]=$res->fields[0];
+			$temp_sn_arr[]=$res->rs[0];
 			$res->MoveNext();
 		}
 		while(list($id,$val) = each($temp_arr)) {
@@ -84,7 +84,7 @@ function seme_score_input($sel_year,$sel_seme) {
 	$temp_sn_seme_arr = "";
 	$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 	while(!$res->EOF){
-		$temp_sn_seme_arr.="'".$res->fields[0]."',";
+		$temp_sn_seme_arr.="'".$res->rs[0]."',";
 		$res->MoveNext();
 	}
 
@@ -390,7 +390,7 @@ function save_import_score($targetFile = 'manage2.php') {
 		$res = $CONN->Execute($query);
 		$student_sn_arr = array();
 		while(!$res->EOF){
-			$student_sn_arr[$res->fields[1]][]=$res->fields[0];
+			$student_sn_arr[$res->rs[1]][]=$res->rs[0];
 			$res->MoveNext();
 		}
 		if ($_FILES['scoredata']['size'] >0 && $_FILES['scoredata']['name'] != ""){
@@ -437,7 +437,7 @@ function save_import_score($targetFile = 'manage2.php') {
 		$res = $CONN->Execute($query);
 		$student_sn_arr = array();
 		while(!$res->EOF) {
-			$student_sn_arr[]=$res->fields[0];
+			$student_sn_arr[]=$res->rs[0];
 			$res->MoveNext();
 		}
 
@@ -501,13 +501,13 @@ function select_stage2($year_seme,$year_name){
 
 	$rs=&$CONN->Execute($sql) or die($sql);
         while (!$rs->EOF) {
-		if($rs->fields[0]==255)
+		if($rs->rs[0]==255)
 			$temp_name="全學期";
-		elseif($rs->fields[0]==254)
+		elseif($rs->rs[0]==254)
 			$temp_name="平時成績";
 		else
-			$temp_name="第".$rs->fields[0]."階段";
-		$test_sort[$rs->fields[0]]= $temp_name;
+			$temp_name="第".$rs->rs[0]."階段";
+		$test_sort[$rs->rs[0]]= $temp_name;
 		$rs->MoveNext();
         }
 	return $test_sort;
@@ -519,7 +519,7 @@ function get_all_subject_arr(){
 	$query = "select subject_id,subject_name from score_subject";
 	$res = $CONN->Execute($query);
 	while(!$res->EOF){
-		$res_arr[$res->fields[0]] = $res->fields[1];
+		$res_arr[$res->rs[0]] = $res->rs[1];
 		$res->MoveNext();
 	}
 	return $res_arr;

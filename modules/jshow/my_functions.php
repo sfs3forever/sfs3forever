@@ -11,7 +11,7 @@ function get_setup($kind_id) {
 			//統計本分類有幾張圖
 			$sql="select count(*) from jshow_pic where kind_id='$kind_id'";
    		$res=$CONN->Execute($sql) or die ("SQL Error! query=".$sql);
-			$row['Number_pic']=$res->fields[0];
+			$row['Number_pic']=$res->rs[0];
     }
     return $row;
 }

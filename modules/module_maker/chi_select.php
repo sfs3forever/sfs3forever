@@ -104,8 +104,8 @@ $sql_get_tables = "SHOW TABLES FROM $mysql_db ";
 $rs = $CONN->Execute($sql_get_tables);
 $tb_all='';
 while (!$rs->EOF) {
-//	echo $rs->fields[0]."<BR>";
-	$tb_all[$rs->fields[0]]='';
+//	echo $rs->rs[0]."<BR>";
+	$tb_all[$rs->rs[0]]='';
 	$rs->MoveNext(); // 移至下一筆記錄
 	}
 $SQL="select d_table_name ,d_table_cname from sys_data_table ";

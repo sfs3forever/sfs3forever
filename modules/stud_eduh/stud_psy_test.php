@@ -38,7 +38,7 @@ if($_POST['go']=='匯入'){
 				$query="select student_sn from stud_seme where seme_year_seme='$sel_seme_year_seme' and stud_id='$stud_id' and seme_class=$seme_class";
 				$res=$CONN->Execute($query) or die("SQL錯誤:$query");
 				if($res->recordcount()){
-					$student_sn=$res->fields[0];
+					$student_sn=$res->rs[0];
 					$batch_values.="('$work_year','$work_seme','{$student_data[4]}','$student_sn','{$student_data[5]}','{$student_data[6]}','{$student_data[7]}','{$student_data[8]}','{$student_data[9]}','{$student_data[10]}','{$_SESSION[session_tea_sn]}',now()),";
 					$ok_msg.="班級：$seme_class 座號：$seme_num 學號：$stud_id ，資料匯入OK！<br>";
 				} else $err_msg.="班級：$seme_class  學號：$stud_id ，$sel_seme_year_seme 學期的就學紀錄不符，拒絕匯入！ ( 匯入資料之座號：$seme_num )<br>";
@@ -169,10 +169,10 @@ $res = $CONN->Execute($query) or die($res->ErrorMsg());
 if ($student_sn =="" || $res->RecordCount()==0) {
 	$temp_sql = "select a.student_sn,a.stud_name from stud_base a,stud_seme b where a.student_sn=b.student_sn  and  (a.stud_study_cond=0 or a.stud_study_cond=5) and  b.seme_year_seme='$c_curr_seme' and b.seme_class='$seme_class' order by b.seme_num ";
 		$res = $CONN->Execute($temp_sql) or die($temp_sql);
-		$student_sn = $res->fields[0];
+		$student_sn = $res->rs[0];
 }
                                                                                                                     
-$stud_name = $res->fields[1];
+$stud_name = $res->rs[1];
 
 ?> 
 <script language="JavaScript">

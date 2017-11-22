@@ -67,7 +67,7 @@ if ($_POST[act]) {
 				$query="select reward_kind,count(reward_year_seme) from reward where reward_year_seme='$reward_year_seme' and stud_id in ($all_id) group by reward_kind order by reward_kind";
 				$res=$CONN->Execute($query) or trigger_error("SQL語法錯誤：$query", E_USER_ERROR);
 				while (!$res->EOF) {
-					$num=intval($res->fields[1]);
+					$num=intval($res->rs[1]);
 					$rk=intval($res->fields[reward_kind]);
 					$ow=($rk>0)?0:3;
 					switch (abs($rk)) {

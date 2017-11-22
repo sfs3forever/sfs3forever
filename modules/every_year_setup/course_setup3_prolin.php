@@ -433,7 +433,7 @@ function list_class_table($sel_year,$sel_seme,$class_id="",$mode=""){
 			$query = "select teacher_sn,name from teacher_base where teacher_sn in($tea_temp_str) order by name";
 			$res = $CONN->Execute($query);
 			while(!$res->EOF){
-				$tea_temp_arr[$res->fields[0]] = $res->fields[1];
+				$tea_temp_arr[$res->rs[0]] = $res->rs[1];
 				$res->MoveNext();
 			}
 		}
@@ -814,7 +814,7 @@ function my_teacher_array(){
 	$res=$CONN->Execute($query);
 	$temp_arr = array();
 	while(!$res->EOF){
-		$temp_arr[$res->fields[0]] = $res->fields[1];
+		$temp_arr[$res->rs[0]] = $res->rs[1];
 		$res->MoveNext();
 	}
 	return $temp_arr;
@@ -833,7 +833,7 @@ function &set_class_teacher($sel_year="",$sel_seme="",$class_id=""){
 		$query = "select teacher_sn,name from teacher_base where teacher_sn in($tea_temp_str)";
 		$res = $CONN->Execute($query);
 		while(!$res->EOF){
-			$tea_temp_arr[$res->fields[0]] = $res->fields[1];
+			$tea_temp_arr[$res->rs[0]] = $res->rs[1];
 			$res->MoveNext();
 		}
 	}

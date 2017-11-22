@@ -247,8 +247,8 @@ function _adodb_getmenu(&$zthis, $name,$defstr='',$blank1stItem=true,$multiple=f
 		}
 
         if ($fieldsize > 1) {
-			if (isset($zthis->fields[1]))
-				$zval2 = rtrim($zthis->fields[1]);
+			if (isset($zthis->rs[1]))
+				$zval2 = rtrim($zthis->rs[1]);
 			else
 				$zval2 = rtrim(next($zthis->fields));
 		}
@@ -256,7 +256,7 @@ function _adodb_getmenu(&$zthis, $name,$defstr='',$blank1stItem=true,$multiple=f
 		
         $group = '';
 		if ($fieldsize > 2) {
-            $group = rtrim($zthis->fields[2]);
+            $group = rtrim($zthis->rs[2]);
         }
 /* 
         if ($optgroup != $group) {
@@ -333,16 +333,16 @@ function _adodb_getmenu_gp(&$zthis, $name,$defstr='',$blank1stItem=true,$multipl
 		}
 
         if ($fieldsize > 1) {
-			if (isset($zthis->fields[1]))
-				$zval2 = rtrim($zthis->fields[1]);
+			if (isset($zthis->rs[1]))
+				$zval2 = rtrim($zthis->rs[1]);
 			else
 				$zval2 = rtrim(next($zthis->fields));
 		}
 		$selected = ($compareFields0) ? $zval : $zval2;
 		
         $group = '';
-		if (isset($zthis->fields[2])) {
-            $group = rtrim($zthis->fields[2]);
+		if (isset($zthis->rs[2])) {
+            $group = rtrim($zthis->rs[2]);
         }
  
         if ($optgroup != $group) {
@@ -602,7 +602,7 @@ function _adodb_getupdatesql(&$zthis,&$rs, $arrFields,$forceUpdate=false,$magicq
 		$fieldUpdatedCount = 0;
 		$arrFields = _array_change_key_case($arrFields);
 
-		$hasnumeric = isset($rs->fields[0]);
+		$hasnumeric = isset($rs->rs[0]);
 		$setFields = '';
 		
 		// Loop through all of the fields in the recordset

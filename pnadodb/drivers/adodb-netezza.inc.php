@@ -77,21 +77,21 @@ class ADODB_netezza extends ADODB_postgres64 {
 		$retarr = array();
 		while (!$rs->EOF) { 	
 			$fld = new ADOFieldObject();
-			$fld->name = $rs->fields[0];
+			$fld->name = $rs->rs[0];
 			
 			// since we're returning type and length as one string, 
 			// split them out here.
 			
-			if ($first = strstr($rs->fields[1], "(")) {
+			if ($first = strstr($rs->rs[1], "(")) {
 			 $fld->max_length = trim($first, "()");
 			} else {
 			 $fld->max_length = -1;
 			}
 		
-			if ($first = strpos($rs->fields[1], "(")) {
-			 $fld->type = substr($rs->fields[1], 0, $first);
+			if ($first = strpos($rs->rs[1], "(")) {
+			 $fld->type = substr($rs->rs[1], 0, $first);
 			} else {
-			 $fld->type = $rs->fields[1];
+			 $fld->type = $rs->rs[1];
 			}
 			
 			switch ($fld->type) {

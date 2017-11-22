@@ -172,13 +172,13 @@ function &chpass_a(){
 		//新帳號是否已被用了
 		$sql1="select count(*) from parent_auth where login_id='$new_loginid'";
 		$rs1=$CONN->Execute($sql1);
-		$A1=$rs1->fields[0];
+		$A1=$rs1->rs[0];
 	}
 	if ($A1==0) {
 		//新帳號是否已被用了(檢查是否使用別人的身份證字號)
 		$sql1="select count(*) from parent_auth where parent_id='$new_loginid'";
 		$rs1=$CONN->Execute($sql1);
-		$A1=$rs1->fields[0];
+		$A1=$rs1->rs[0];
 	}
 
 	//密碼是否相符

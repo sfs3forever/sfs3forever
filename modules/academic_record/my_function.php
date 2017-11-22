@@ -41,7 +41,7 @@ function get_ss_score_memo($class_id="",$stud_id="",$student_sn="",$ss_id=""){
 	$seme_year_seme = sprintf("%03d%d",$year,$seme);
 	$query = "select ss_score_memo from stud_seme_score where seme_year_seme='$seme_year_seme' and student_sn = $student_sn and ss_id =$ss_id ";
 	$res = $CONN->Execute($query) or trigger_error($query);
-	return $res->fields[0];
+	return $res->rs[0];
 }
 
 //規則口語化

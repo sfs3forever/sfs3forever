@@ -17,7 +17,7 @@ function get_zip_arr() {
 	$query = "select zip,country,town from stud_addr_zip order by zip";
 	$res= $CONN->Execute($query) or trigger_error("語法錯誤!",E_USER_ERROR);
 	while(!$res->EOF){
-		$zip_arr[$res->fields[0]] = $res->fields[1].$res->fields[2];
+		$zip_arr[$res->rs[0]] = $res->rs[1].$res->rs[2];
 		$res->MoveNext();
 	}
 	return $zip_arr;

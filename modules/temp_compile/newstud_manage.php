@@ -88,12 +88,12 @@ if($_GET['act']=="del_all"){
 if($_GET['act']=="add_one"){
 	$max_sql="select max(temp_id),max(newstud_sn),count(newstud_sn) from new_stud where class_year='$_GET[class_year_b]' and stud_study_year='$new_sel_year'";
 	$res=$CONN->Execute($max_sql) or die($max_sql);
-	$maxid=$res->fields[0];
+	$maxid=$res->rs[0];
 	if ($maxid=="") $maxid="A0000";
 	$max_len=strlen($maxid)-1;
 	$maxid="A".sprintf("%0".$max_len."d",(intval(substr($maxid,1))+1));
-	$edstu_sn=$res->fields[1]+1;
-	$offset=floor($res->fields[2]/$limit)*$limit;
+	$edstu_sn=$res->rs[1]+1;
+	$offset=floor($res->rs[2]/$limit)*$limit;
 	$limit_s="limit $offset,$limit";
 }
 if($_POST['Submit2']=='儲存'){
@@ -478,7 +478,7 @@ switch($work){
 					$chk=($k==0)?"":$k;
 					$query="select count(newstud_sn) from new_stud where stud_study_year='$new_sel_year' and stud_sex='$j' and $chk_str = '$name_arr[$i]' and sure_study='$k'";
 					$res_num=$CONN->Execute($query) or trigger_error("SQL語法錯誤：$query", E_USER_ERROR);
-					$num[$name_arr[$i]][$j][$k]=$res_num->fields[0];
+					$num[$name_arr[$i]][$j][$k]=$res_num->rs[0];
 				}
 			}
 			$i++;

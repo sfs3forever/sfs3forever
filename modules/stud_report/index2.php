@@ -1256,7 +1256,7 @@ if($class_id<>'') {
 			if($stud_study_cond==5) {
 					$query = "select grad_kind from grad_stud where student_sn=$student_sn";
 					$rt = $CONN->Execute($query) or die ($query);
-					if($rt->fields[0]==2) $move_kind= "<font color='#cccccc'>修業</font>";				
+					if($rt->rs[0]==2) $move_kind= "<font color='#cccccc'>修業</font>";				
 			}
 				
 

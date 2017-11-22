@@ -21,13 +21,13 @@ function get_grad_year() {
 	$result = $CONN->Execute($query) or trigger_error("SQL語法錯誤： $query", E_USER_ERROR);
 	$i=0;
 	while(!$result->EOF){ 
-		$index[$i] = $result->fields[0];
+		$index[$i] = $result->rs[0];
 		$i++;
 		$result->MoveNext();
 	}
 	//去除重複值
 	$rr=deldup($index);
-	//$rr[$index_temp] = $result->fields[0]."學年第度";
+	//$rr[$index_temp] = $result->rs[0]."學年第度";
 	// return $rr;	
 	return (!$rr) ? array() : $rr; 
 

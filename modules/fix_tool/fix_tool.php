@@ -119,8 +119,8 @@ function initArray3($F1,$SQL){
     Return $CONN->ErrorMsg(); 
 	} else {
 		while (!$rs->EOF) {
-		$col[0][$rs->fields[0]][$col[1]]=$rs->fields[1];
-		$col[0][$rs->fields[0]][$col[2]]=$rs->fields[2];
+		$col[0][$rs->rs[0]][$col[1]]=$rs->rs[1];
+		$col[0][$rs->rs[0]][$col[2]]=$rs->rs[2];
 	$rs->MoveNext(); // 移至下一筆記錄
 	}
 	}
@@ -139,7 +139,7 @@ function initArray($F1,$SQL){
     Return $CONN->ErrorMsg(); 
 	} else {
 		while (!$rs->EOF) {
-		$sch_all[$rs->fields[0]]=$rs->fields[1]; 
+		$sch_all[$rs->rs[0]]=$rs->rs[1]; 
 	$rs->MoveNext(); // 移至下一筆記錄
 	}
 	}

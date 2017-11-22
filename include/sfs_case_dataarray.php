@@ -97,7 +97,7 @@ function title_kind() {
 
 	$res = $CONN->Execute("select  teach_title_id ,title_name from teacher_title  where enable=1 order by teach_title_id ") or user_error("讀取失敗！",256);
 	while (!$res->EOF) {
-		$arr[$res->fields[0]] = $res->fields[1];
+		$arr[$res->rs[0]] = $res->rs[1];
 		$res->MoveNext();	
 	}
 	return $arr;
@@ -132,7 +132,7 @@ function room_kind(){
 
 	$result = $CONN->Execute("select room_id , room_name from school_room where enable=1 order by room_id") or user_error("讀取失敗！",256);
 	while (!$result->EOF){
-		$arr[$result->fields[0]] = $result->fields[1];
+		$arr[$result->rs[0]] = $result->rs[1];
 		$result->MoveNext();
 	}
 	return $arr;

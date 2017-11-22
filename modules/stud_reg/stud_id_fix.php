@@ -10,12 +10,12 @@ head();
 $sql_sfs3="SHOW TABLES FROM $mysql_db";
 $rs_sfs3=$CONN->Execute($sql_sfs3) or trigger_error($sql_sfs3,256);
 while(!$rs_sfs3->EOF) {
-        $tbname=$rs_sfs3->fields[0];
+        $tbname=$rs_sfs3->rs[0];
 
         $sql="SHOW COLUMNS FROM `$tbname`";
         $rs=$CONN->Execute($sql) or trigger_error($sql,256);
         while(!$rs->EOF) {
-                $colname=$rs->fields[0];
+                $colname=$rs->rs[0];
                 if($colname == 'stud_id') {
                         //echo "<li>$tbname</li>";
                         $tables[]=$tbname;
@@ -38,7 +38,7 @@ if(!$IS_JHORES) {
                 //檢查有無學號重複
                 $sql="SELECT COUNT(*) FROM stud_base WHERE stud_id='$bad'";
                 $rs=$CONN->Execute($sql) or trigger_error($sql,256);
-                if($rs->fields[0]>1) echo "學生基本資料表(stud_base)學號 $bad 有重複現象，為了避免衍生其他錯誤，程式不予校正處理
+                if($rs->rs[0]>1) echo "學生基本資料表(stud_base)學號 $bad 有重複現象，為了避免衍生其他錯誤，程式不予校正處理
 ！"; else {
                         echo "<li>$bad --> $right</li>";
                         foreach($tables as $k => $v) {

@@ -141,7 +141,7 @@ if ($do_key=="批次建立資料")
 		}
 		else {
 			while (!$res->EOF) {
-				$temp_class_name[$res->fields[0]] = $res->fields[1];
+				$temp_class_name[$res->rs[0]] = $res->rs[1];
 				$res->MoveNext();
 			}
 			
@@ -450,7 +450,7 @@ if ($do_key=="批次建立資料")
 							//取得 student_sn
 							$query = "select student_sn from stud_base where stud_id='$stud_id' and stud_study_year=$stud_study_year";
 							$resss = $CONN->Execute($query);
-							$student_sn= $resss->fields[0];
+							$student_sn= $resss->rs[0];
 
 							//加入家庭狀況資料
 							//$query = "replace into stud_domicile (stud_id,fath_name,moth_name,guardian_name,guardian_hand_phone,student_sn) values('$stud_id','$fath_name','$moth_name','$guardian_name','$guardian_hand_phone','$student_sn')";

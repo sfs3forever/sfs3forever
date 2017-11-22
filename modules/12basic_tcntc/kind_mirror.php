@@ -87,7 +87,7 @@ if($_POST['act']=='儲存並重新設定報名身分'){
 						$sql="SELECT $fieldname FROM stud_subkind WHERE student_sn='$student_sn' AND type_id='$native_id'";
 					
 						$rs=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
-						if( $rs->fields[0] == $native_language_text ) {
+						if( $rs->rs[0] == $native_language_text ) {
 							$sql="UPDATE 12basic_tcntc SET language_certified=1 WHERE academic_year='$work_year' AND student_sn='$student_sn'";
 							$rs_up=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);						
 						}				

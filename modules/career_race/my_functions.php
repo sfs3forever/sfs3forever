@@ -140,7 +140,7 @@ function get_race_record($c_curr_seme='',$teacher_sn='',$student_sn='') {
  */
  /* ADODB 寫法 */
  $res=$CONN->Execute($sql) or die("SQL錯誤:$sql");
- $st_date=$res->fields[0];
+ $st_date=$res->rs[0];
  
  //結束日
  $sql="select day from school_day where year='$year' and seme='$seme' and day_kind='end'";
@@ -150,7 +150,7 @@ function get_race_record($c_curr_seme='',$teacher_sn='',$student_sn='') {
  */
   /* ADODB 寫法 */
  $res=$CONN->Execute($sql) or die("SQL錯誤:$sql");
- $end_date=$res->fields[0];
+ $end_date=$res->rs[0];
  
  $sql_limit[]="certificate_date>='$st_date' and certificate_date<='$end_date'";
 

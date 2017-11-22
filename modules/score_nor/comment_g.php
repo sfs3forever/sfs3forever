@@ -70,8 +70,8 @@ function &list_comment($cq){
 	$sel="select * from comment_kind where kind_teacher_id='0' or kind_teacher_id='$teacher_id'";
 	$comm_len=$CONN->Execute($sel);
 	while(!$comm_len->EOF){
-		$tmp_value=$comm_len->fields[0];
-		$tmp_name=$comm_len->fields[2];
+		$tmp_value=$comm_len->rs[0];
+		$tmp_name=$comm_len->rs[2];
 		$selected=($comm_length==$tmp_value)?"selected":"";
 		$len.="<option value='$tmp_value' $selected>$tmp_name</option>\n";
 		if($selected=='selected') $tmp_kind=$tmp_name;
@@ -83,8 +83,8 @@ function &list_comment($cq){
 	$sel="select * from comment_level where level_teacher_id='0' or level_teacher_id='$teacher_id'";
 	$comm_lev=$CONN->Execute($sel);
 	while(!$comm_lev->EOF){
-		$tmp_value=$comm_lev->fields[0];
-		$tmp_name=$comm_lev->fields[2];
+		$tmp_value=$comm_lev->rs[0];
+		$tmp_name=$comm_lev->rs[2];
 		$selected=($level==$tmp_value)?"selected":"";
 		$select.="<option value='$tmp_value' $selected>$tmp_name</option>\n";
 		if($selected=='selected') $tmp_level=$tmp_name;
@@ -104,9 +104,9 @@ function &list_comment($cq){
 	$sel="select serial,comm from comment where kind='$comm_length' and level='$level' and (teacher_id='0' or teacher_id='$teacher_id')";
 	$comm_text=$CONN->Execute($sel);
 	while(!$comm_text->EOF){
-	        $c=(strlen($comm_text->fields[1])<=8)?$comm_text->fields[1]:substr($comm_text->fields[1],0,8)."...";
-		$ser=$comm_text->fields[0];
-		$selected=($comment==$comm_text->fields[0])?"selected":"";
+	        $c=(strlen($comm_text->rs[1])<=8)?$comm_text->rs[1]:substr($comm_text->rs[1],0,8)."...";
+		$ser=$comm_text->rs[0];
+		$selected=($comment==$comm_text->rs[0])?"selected":"";
 		$comment_line.="<option value='$ser' $selected>$ser".":"."$c</option>\n";
 		$comm_text->MoveNext();
 	}
@@ -168,9 +168,9 @@ function &list_comment($cq){
 	$sel="select comm from comment where serial='$comment' and kind='$comm_length' and level='$level'";
 	$sel_comment=$CONN->Execute($sel);
 	$end=substr($comm,-2);
-	if($comm!='' and $end!='。' and $end!='，' and $sel_comment->fields[0]!='' and $add_one==1)
-		$sel_comment->fields[0]='，'.$sel_comment->fields[0];
-	$word=($add_one==1)?$comm.$sel_comment->fields[0]:$sel_comment->fields[0];
+	if($comm!='' and $end!='。' and $end!='，' and $sel_comment->rs[0]!='' and $add_one==1)
+		$sel_comment->rs[0]='，'.$sel_comment->rs[0];
+	$word=($add_one==1)?$comm.$sel_comment->rs[0]:$sel_comment->rs[0];
 
 	if($send_comm=='確定執行'||$send_comm_back=='確定')    $mainc.='';
 	elseif($data==1)   $mainc.=$tmp_kind;

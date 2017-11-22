@@ -272,7 +272,7 @@ function count_student_score_fitness($sn_array)
 				//身心障礙給4分($fitness_score_disability) 如果體適能記錄高於四分 取其高值
 				$sql="SELECT disability_id FROM 12basic_ptc WHERE academic_year=$work_year AND student_sn=$student_sn";
 				$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
-				if($res->fields[0]) {
+				if($res->rs[0]) {
 					$score_fitness[$student_sn]=max($fitness_score_disability,$score_fitness[$student_sn]);
 				}
         }
@@ -309,7 +309,7 @@ function count_student_score_fitness($sn_array)
 				//身心障礙給8分($fitness_score_disability) 如果體適能記錄高於8分 取其高值
 				$sql="SELECT disability_id FROM 12basic_ptc WHERE academic_year=$work_year AND student_sn=$student_sn";
 				$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
-				if($res->fields[0]) {
+				if($res->rs[0]) {
 					$score_fitness[$student_sn]=max($fitness_score_disability,$score_fitness[$student_sn]);
 				}
         }

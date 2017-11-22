@@ -132,8 +132,8 @@ function &main_form($interface_sn="",$sel_year="",$sel_seme="",$class_id="",$stu
 	$res = $CONN->Execute($query) or trigger_error("SQL 錯誤",E_USER_ERROR);
 	if ($res->RecordCount()>0) {
 		while (!$res->EOF){
-			$memo_str .= $res->fields[1].",";
-			$stud_id_temp .=$res->fields[0].",";
+			$memo_str .= $res->rs[1].",";
+			$stud_id_temp .=$res->rs[0].",";
 			$res->MoveNext();
 		}
 		$stud_id_temp = substr($stud_id_temp,0,-1);

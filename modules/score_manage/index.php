@@ -120,14 +120,14 @@ else
 $res = $CONN->Execute($query) or trigger_error("SQL 錯誤",E_USER_ERROR);
 
 if (empty($stage))
-	$stage = $res->fields[0];
+	$stage = $res->rs[0];
 while(!$res->EOF){
-	if ($res->fields[0]==254)
-		$stage_arr[$res->fields[0]] = "平時成績";
-	else if ($res->fields[0]==255)
-		$stage_arr[$res->fields[0]] = "不分階段";
+	if ($res->rs[0]==254)
+		$stage_arr[$res->rs[0]] = "平時成績";
+	else if ($res->rs[0]==255)
+		$stage_arr[$res->rs[0]] = "不分階段";
 	else
-		$stage_arr[$res->fields[0]] = "第".$res->fields[0]."階段";	
+		$stage_arr[$res->rs[0]] = "第".$res->rs[0]."階段";	
 	$res->MoveNext();
 }
 //顯示階段 下拉選單
@@ -185,7 +185,7 @@ while (!$rs->EOF) {
 for($i=0;$i<count($ss_id);$i++){
 	$sql2="select count(*) from $score_semester where class_id='$temp_class_id' and test_sort='$stage' and ss_id='$ss_id[$i]' and sendmit='0'";
 	$rs2=$CONN->Execute($sql2);
-	$k = $rs2->fields[0];		
+	$k = $rs2->rs[0];		
 	if($k>0)
 		$send="<img src='images/yes.png'>";
 	else

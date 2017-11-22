@@ -17,7 +17,7 @@ $post_office = "";
 if($_SESSION[session_tea_sn] !=""){
 	$query = "select post_office from teacher_post where teach_id='$_SESSION[session_tea_sn]' ";
 	$result = $CONN->Execute($query);
-	$post_office = $result->fields[0];
+	$post_office = $result->rs[0];
 }
 
 if ($is_standalone!="1") head("文件資料庫");

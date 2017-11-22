@@ -81,7 +81,7 @@ function add_school_ans_data($schfi_sn,$teacher_sn,$ofsn,$col,$mode="add"){
 					// 刪除舊檔
 					$query = "select value from form_value where schfi_sn=$schfi_sn and ofsn=$ofsn and col_sn=$col_sn";
 					$res2 = $CONN->Execute($query);
-					unlink($file_path."/".$res2->fields[0]);
+					unlink($file_path."/".$res2->rs[0]);
 					$temp_arr = explode(".",$_FILES[$col_name]['name']);
 					$file_name = $teacher_sn.".".end($temp_arr);
 					copy($_FILES[$col_name]['tmp_name'], $file_path.$file_name);
@@ -101,7 +101,7 @@ function add_school_ans_data($schfi_sn,$teacher_sn,$ofsn,$col,$mode="add"){
 	while (list($col_sn,$value) = each($col)){
 		$sql="SELECT value_sn FROM form_value WHERE schfi_sn=$schfi_sn and teacher_sn=$teacher_sn and ofsn=$ofsn and col_sn=$col_sn";
 		$detect=$CONN->Execute($sql);
-		if(! $detect->fields[0])
+		if(! $detect->rs[0])
 			$str="insert into form_value (schfi_sn,teacher_sn,ofsn,col_sn,value) values($schfi_sn,$teacher_sn,$ofsn,$col_sn,'$value')";
 		else
 			$str="update form_value set value='$value' where schfi_sn=$schfi_sn and teacher_sn=$teacher_sn and ofsn=$ofsn and col_sn=$col_sn";

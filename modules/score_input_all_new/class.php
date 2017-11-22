@@ -126,7 +126,7 @@ if ($year_name && $me) {
 				//計算目前應在第幾階段 (sendmit = 0 表示已送至教務處成績)
 				$query ="select max(test_sort) as mm from $score_semester where class_id='$class_id' and ss_id='$ss_id' and sendmit='0' and test_sort<254";
 				$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
-				$mm = $res->fields[0]+1;
+				$mm = $res->rs[0]+1;
 				if ($curr_sort =='')
 					$curr_sort = $mm;
 				if ($curr_sort>$performance_test_times)

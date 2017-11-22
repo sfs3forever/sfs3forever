@@ -116,7 +116,7 @@ if ($_GET[sel]=='refine'){
 	$res = $CONN->Execute($query);
 	$temp_sn ='';
 	while(!$res->EOF){
-		$temp_sn .= $res->fields[0].",";
+		$temp_sn .= $res->rs[0].",";
 		$res->MoveNext();
 	}
 	if ($temp_sn<>'')
@@ -221,7 +221,7 @@ $in_study="'0','15'";
 //判斷 stud_move 是否有資料
 $query = "select count(*) from stud_move ";
 $res = $CONN->Execute($query);
-if ($res->fields[0]==0){
+if ($res->rs[0]==0){
 	$query = "select student_sn from stud_base where stud_study_cond not in ($in_study)";
 
 }else{
@@ -261,7 +261,7 @@ while (list($tid,$tname)= each($class_year)) {
 	}	
 	$result = $CONN->Execute($query) or die($query);
  //if ($tid=='6')	echo$query;
-	$seme_tol = $result->fields[0];
+	$seme_tol = $result->rs[0];
 	if ($seme_tol==0) {
 		echo "<tr><td class=title_sbody1>$tname 級</td><td align=center>尚未編班</td>";
 		if ($j == 1)  //新生 
@@ -271,7 +271,7 @@ while (list($tid,$tname)= each($class_year)) {
 		echo "</tr>";
 	}
 	else {
-		echo "<tr><td class=title_sbody1>$tname 級</td><td align=center>已編班人數 ".$result->fields[0]."</td>";
+		echo "<tr><td class=title_sbody1>$tname 級</td><td align=center>已編班人數 ".$result->rs[0]."</td>";
 		if ($not_count<>''){
 			$query = "select student_sn from stud_base where $curr_year-stud_study_year+1+$IS_JHORES='$tid' and curr_class_num like '$tid%' and student_sn not in ($not_count) order by student_sn";
 		}
@@ -294,10 +294,10 @@ while (list($tid,$tname)= each($class_year)) {
 			$query = "select count(*) from stud_base where $curr_year-stud_study_year+1+$IS_JHORES='$tid' and curr_class_num like '$tid%' and stud_study_cond in ($in_study)";
 		$res1 = $CONN->Execute($query) or die($query);
 		$check_str ='';
-		if ($seme_tol <> $res1->fields[0]) {
-			$check_str =" , <B><a href=\"$_SERVER[PHP_SELF]?sel=refine&s_year=$tid\">班級座號不符 , 重新調整</a></b>($seme_tol---".$res1->fields[0].")";
-			if ($seme_tol < $res1->fields[0]) $dif[$tid]='1';
-			if ($seme_tol > $res1->fields[0]) $dif[$tid]='-1';
+		if ($seme_tol <> $res1->rs[0]) {
+			$check_str =" , <B><a href=\"$_SERVER[PHP_SELF]?sel=refine&s_year=$tid\">班級座號不符 , 重新調整</a></b>($seme_tol---".$res1->rs[0].")";
+			if ($seme_tol < $res1->rs[0]) $dif[$tid]='1';
+			if ($seme_tol > $res1->rs[0]) $dif[$tid]='-1';
 			$df='1';
 		}
 		echo "<td><a href=\"stud_year_2.php?s_year=$tid\">重新編班後班級學生名單調整</a> $check_str";

@@ -39,7 +39,7 @@ if ($_GET[sel] =="delete"){
 	$e_kind_id=intval($e_kind_id);
 	$query = "select class_id from exam_kind where e_kind_id = '$e_kind_id' ";
 	$result = $CONN->Execute($query);
-	$class_id = $result->fields[0];
+	$class_id = $result->rs[0];
 	$temp_year = substr($class_id,4,1); //取得年級	
 	$temp_class = substr($class_id,5); //取得班級
 	//作業名稱
@@ -47,7 +47,7 @@ if ($_GET[sel] =="delete"){
 	$result = $CONN->Execute($query);
 	$tt ="";
 	while(!$result->EOF){
-		$tt.= "<li>".$result->fields[0];
+		$tt.= "<li>".$result->rs[0];
 		$result->MOveNext();
 	}
 	
@@ -69,9 +69,9 @@ if ($_POST[key] =="確定刪除"){
 	$query = "select exam_id from exam where e_kind_id ='$e_kind_id'";
 	$result = $CONN->Execute($query)or die($query);
 	while (!$result->EOF) {
-		$exam_id = $result->fields[0];
+		$exam_id = $result->rs[0];
 		//檔案目錄
-		$e_path = $upload_path."/e_".$result->fields[0]; 
+		$e_path = $upload_path."/e_".$result->rs[0]; 
 		if (is_dir($e_path))
 			exec( "rm -rf $e_path", $val );
 		//刪除學生上傳記錄

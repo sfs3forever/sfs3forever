@@ -69,7 +69,7 @@ while(!$res->EOF) {
 		if ($ss[$class_id][$subject_id][teacher_sn][$j]=="") break;
 	}
 	$ss[$class_id][$subject_id][teacher_sn][$j]=$res->fields[teacher_sn];
-	$ss[$class_id][$subject_id][sector][$j]=$res->fields[1];
+	$ss[$class_id][$subject_id][sector][$j]=$res->rs[1];
 	$res->MoveNext();
 }
 reset($ss);

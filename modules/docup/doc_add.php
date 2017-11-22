@@ -29,8 +29,8 @@ if ($_POST[key] == "新增"){ //新增文件
 			$CONN->Execute($sql_insert)or trigger_error("SQL 錯誤 $sql_insert ",E_USER_ERROR);
 			$query = "select count(docup_id) as cc ,max(docup_id) as mm from docup where docup_p_id='$_POST[docup_p_id]'";
 			$result = $CONN->Execute($query)or trigger_error("SQL 錯誤 ",E_USER_ERROR);
-			$cc =$result->fields[0];
-			$mm =$result->fields[1];
+			$cc =$result->rs[0];
+			$mm =$result->rs[1];
 			$query = "update docup_p set docup_p_count = $cc where docup_p_id='$_POST[docup_p_id]'";
 			$CONN->Execute($query)or trigger_error("SQL 錯誤 ",E_USER_ERROR);
 

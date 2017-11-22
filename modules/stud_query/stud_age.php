@@ -225,7 +225,7 @@ $result= $CONN->Execute($query) or die ($query);
 $temp ='';
 while (!$result->EOF) {
 	$temp .= $class_year[substr($result->fields["curr_class_num"],0,1)] . $class_name[substr($result->fields["curr_class_num"],1,2)]."班";
-	$temp .= "-- 學號: ".$result->fields[0]. "-- 姓名: ".$result->fields[1]." <BR>";
+	$temp .= "-- 學號: ".$result->rs[0]. "-- 姓名: ".$result->rs[1]." <BR>";
 	$result->MoveNext();
 }
 if ($temp<>'') {

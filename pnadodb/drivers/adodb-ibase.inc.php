@@ -20,7 +20,7 @@ v4.991 16 Oct 2008  (c) 2000-2008 John Lim (jlim#natsoft.com). All rights reserv
    http://www.volny.cz/iprenosil/interbase/ip_ib_code.htm#_code_creategen
    
    $rs = $conn->Execute('select gen_id(adodb,1) from rdb$database');
-   $id = $rs->fields[0];
+   $id = $rs->rs[0];
    $conn->Execute("insert into table (id, col1,...) values ($id, $val1,...)");
 */
 
@@ -498,16 +498,16 @@ class ADODB_ibase extends ADOConnection {
 		//OPN STUFF end
 		while (!$rs->EOF) { //print_r($rs->fields);
 			$fld = new ADOFieldObject();
-			$fld->name = trim($rs->fields[0]);
+			$fld->name = trim($rs->rs[0]);
 			//OPN STUFF start
-			$this->_ConvertFieldType($fld, $rs->fields[7], $rs->fields[3], $rs->fields[4], $rs->fields[5], $rs->fields[6], $dialect3);
-			if (isset($rs->fields[1]) && $rs->fields[1]) {
+			$this->_ConvertFieldType($fld, $rs->fields[7], $rs->rs[3], $rs->rs[4], $rs->rs[5], $rs->fields[6], $dialect3);
+			if (isset($rs->rs[1]) && $rs->rs[1]) {
 				$fld->not_null = true;
 			}				
-			if (isset($rs->fields[2])) {
+			if (isset($rs->rs[2])) {
 				
 				$fld->has_default = true;
-				$d = substr($rs->fields[2],strlen('default '));
+				$d = substr($rs->rs[2],strlen('default '));
 				switch ($fld->type)
 				{
 				case 'smallint':
@@ -522,8 +522,8 @@ class ADODB_ibase extends ADOConnection {
 				}
 		//	case 35:$tt = 'TIMESTAMP'; break;
 			}
-			if ((isset($rs->fields[5])) && ($fld->type == 'blob')) {
-				$fld->sub_type = $rs->fields[5];
+			if ((isset($rs->rs[5])) && ($fld->type == 'blob')) {
+				$fld->sub_type = $rs->rs[5];
 			} else {
 				$fld->sub_type = null;
 			}

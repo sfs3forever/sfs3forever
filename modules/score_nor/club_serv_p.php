@@ -83,12 +83,12 @@ if($_POST){
 			//起始日
  			$sql="select day from school_day where year='$sel_year' and seme='$sel_seme' and day_kind='start'";
   		$res=$CONN->Execute($sql) or die("SQL錯誤:$sql");
- 			$seme_start_date=$res->fields[0];
+ 			$seme_start_date=$res->rs[0];
  
  			//結束日
  			$sql="select day from school_day where year='$sel_year' and seme='$sel_seme' and day_kind='end'";
  			$res=$CONN->Execute($sql) or die("SQL錯誤:$sql");
- 			$seme_end_date=$res->fields[0];
+ 			$seme_end_date=$res->rs[0];
  			
  $smarty->assign("seme_start_date",$seme_start_date);  	//學期起始日
  $smarty->assign("seme_end_date",$seme_end_date); 			//學期結束日

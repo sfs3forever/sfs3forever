@@ -40,7 +40,7 @@ if($submit=="確定"){
 	/*
 	$sql="select count(*) from parent_auth where parent_id='$parent_id' and start_code='$start_code' and enable='1'";
 	$rs=$CONN->Execute($sql) or die($sql);
-	$CK=$rs->fields[0];
+	$CK=$rs->rs[0];
      */
 //mysqli	
 $sql="select count(*) from parent_auth where parent_id=? and start_code=? and enable='1'";

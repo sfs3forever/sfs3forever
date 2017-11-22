@@ -63,7 +63,7 @@ elseif($act=="del_seme"){
 	if($del_student_sn!=""){
 		$sql_score="select count(*) from stud_seme_score where student_sn='$del_student_sn' ";
 		$rs_score=$CONN->Execute($sql_score) or trigger_error($sql,256);
-		$count_score=$rs_score->fields[0];
+		$count_score=$rs_score->rs[0];
 	}	
 	if($count_score==0){  		
 		$main_del.="<table width='100%' bgcolor='#CDCDCD'><tr><td>";
@@ -100,7 +100,7 @@ elseif($act=="del"){
 	//刪除前檢查該生的成績資料是否有存在，有則不准刪除
 	$sql_score="select count(*) from stud_seme_score where student_sn='$del_student_sn' ";
 	$rs_score=$CONN->Execute($sql_score) or trigger_error($sql,256);
-	$count_score=$rs_score->fields[0];
+	$count_score=$rs_score->rs[0];
 	if($count_score==0){  		
 		$main_del.="<table width='100%' bgcolor='#CDCDCD'><tr><td>";
 		//將該生stud_base給刪除掉
@@ -505,7 +505,7 @@ function IsClassNum($curr_class_num,$stud_id){
 	}		
 	$sql="select count(*) from school_class where enable=1 and c_year='$c_year' and c_sort='$c_sort' and year='$curr_year' and semester='$curr_seme' ";	
 	$rs=$CONN->Execute($sql) or trigger_error($sql,256);
-	$c=$rs->fields[0];
+	$c=$rs->rs[0];
 	if($c==0) {
 		$msg="該生所在的班級不存在";
 		return $msg;

@@ -91,7 +91,7 @@ if ($_POST[do_key]) {
 				//$curr_year_seme=sprintf("%03d%d",curr_year(),curr_seme());
 				$sql="SELECT sse_family_kind FROM stud_seme_eduh WHERE stud_id='$stud_id' ORDER BY seme_year_seme DESC";
 				$res2=$CONN->Execute($sql) or die('缺少學生輔導資料表 stud_seme_eduh');
-				$family_kind=$res2->fields[0]?$res2->fields[0]:1;  //若無記錄則預設為~~ 1.雙親 
+				$family_kind=$res2->rs[0]?$res2->rs[0]:1;  //若無記錄則預設為~~ 1.雙親 
 				
 				
 				if($quoted) $sss.="$sel_year,\"".sprintf("%06d",$sch_id)."\",\"$student_name\",\"$s\",".sprintf("%03d%02d",intval($bday[0])-1911,$bday[1],$bday[2]).",\"$lv\",\"$st\",$years,$r,$l,$fs,$family_kind\r\n";

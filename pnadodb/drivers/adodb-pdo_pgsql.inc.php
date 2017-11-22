@@ -181,10 +181,10 @@ select viewname,'V' from pg_views where viewname like $mask";
 		$retarr = array();
 		while (!$rs->EOF) { 	
 			$fld = new ADOFieldObject();
-			$fld->name = $rs->fields[0];
-			$fld->type = $rs->fields[1];
-			$fld->max_length = $rs->fields[2];
-			if ($fld->max_length <= 0) $fld->max_length = $rs->fields[3]-4;
+			$fld->name = $rs->rs[0];
+			$fld->type = $rs->rs[1];
+			$fld->max_length = $rs->rs[2];
+			if ($fld->max_length <= 0) $fld->max_length = $rs->rs[3]-4;
 			if ($fld->max_length <= 0) $fld->max_length = -1;
 			if ($fld->type == 'numeric') {
 				$fld->scale = $fld->max_length & 0xFFFF;
@@ -192,13 +192,13 @@ select viewname,'V' from pg_views where viewname like $mask";
 			}
 			// dannym
 			// 5 hasdefault; 6 num-of-column
-			$fld->has_default = ($rs->fields[5] == 't');
+			$fld->has_default = ($rs->rs[5] == 't');
 			if ($fld->has_default) {
 				$fld->default_value = $rsdefa[$rs->fields[6]];
 			}
 
 			//Freek
-			if ($rs->fields[4] == $this->true) {
+			if ($rs->rs[4] == $this->true) {
 				$fld->not_null = true;
 			}
 			

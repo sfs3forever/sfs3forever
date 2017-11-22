@@ -296,7 +296,7 @@ function get_teach_class() {
 	//教師任教班級
 	$query = "select class_num from teacher_post where teacher_sn='{$_SESSION['session_tea_sn']}'";
 	$result = $CONN->Execute($query) or $CONN->ErrorMsg();
-	return  $result->fields[0];
+	return  $result->rs[0];
 }
 
 //檢查授權學生操作班級函式

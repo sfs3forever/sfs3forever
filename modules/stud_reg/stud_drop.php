@@ -39,7 +39,7 @@ if($sure_del=="yes"){
 		//刪除前檢查該生的成績資料是否有存在，有則不准刪除
 		$sql_score="select count(*) from stud_seme_score where student_sn='$del_student_sn' ";
 		$rs_score=$CONN->Execute($sql_score) or trigger_error($sql,256);
-		$count_score=$rs_score->fields[0];
+		$count_score=$rs_score->rs[0];
 		if($count_score==0){  				
 
 			//將該生stud_base給刪除掉		

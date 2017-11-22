@@ -252,11 +252,11 @@ $stud_numbers=$i;
 $query = "select count(student_sn) as cc from stud_seme_score_nor where student_sn in ($all_sn) and seme_year_seme='$seme_year_seme'";
 $res = $CONN->Execute($query);
 
-if ($res->fields[0]<$stud_numbers) {
+if ($res->rs[0]<$stud_numbers) {
 	$query = "select student_sn from stud_base where curr_class_num like '$class_id%' and stud_study_cond=0";
 	$res = $CONN->Execute($query);
 	while (!$res->EOF){
-		$sst = $res->fields[0];
+		$sst = $res->rs[0];
 		$sql="select student_sn from stud_seme_score_nor where student_sn='$sst'  and seme_year_seme='$seme_year_seme'";
 		$rs=$CONN->Execute($sql);
 		if (empty($rs->fields[student_sn])) {
@@ -508,8 +508,8 @@ function export_memo(){
 	$sel="select * from comment_kind where kind_teacher_id='0' or kind_teacher_id='$teacher_id'";
 	$comm_len=$CONN->Execute($sel);
 	while(!$comm_len->EOF){
-		$tmp_value=$comm_len->fields[0];
-		$tmp_name=$comm_len->fields[2];
+		$tmp_value=$comm_len->rs[0];
+		$tmp_name=$comm_len->rs[2];
 		$selected=($comm_length==$tmp_value)?"selected":"";
 		$len.="<option value='$tmp_value' $selected>$tmp_name</option>\n";
 		if($selected=='selected') $tmp_kind=$tmp_name;
@@ -521,8 +521,8 @@ function export_memo(){
 	$sel="select * from comment_level where level_teacher_id='0' or level_teacher_id='$teacher_id'";
 	$comm_lev=$CONN->Execute($sel);
 	while(!$comm_lev->EOF){
-		$tmp_value=$comm_lev->fields[0];
-		$tmp_name=$comm_lev->fields[2];
+		$tmp_value=$comm_lev->rs[0];
+		$tmp_name=$comm_lev->rs[2];
 		$selected=($level==$tmp_value)?"selected":"";
 		$select.="<option value='$tmp_value' $selected>$tmp_name</option>\n";
 		if($selected=='selected') $tmp_level=$tmp_name;
@@ -617,8 +617,8 @@ function import_comm(){
 	$comm_len=$CONN->Execute($sel);
 	
 	while(!$comm_len->EOF){
-		$tmp_value=$comm_len->fields[0];
-		$tmp_name=$comm_len->fields[2];
+		$tmp_value=$comm_len->rs[0];
+		$tmp_name=$comm_len->rs[2];
 		$selected=($comm_length==$tmp_value)?"selected":"";
 		$len.="<option value='$tmp_value' $selected>$tmp_name</option>\n";
 		if($selected=='selected') $tmp_kind=$tmp_name;
@@ -632,8 +632,8 @@ function import_comm(){
 		$sel="select * from comment_level where level_teacher_id='0' or level_teacher_id='$teacher_id'";
 	$comm_lev=$CONN->Execute($sel);
 	while(!$comm_lev->EOF){
-		$tmp_value=$comm_lev->fields[0];
-		$tmp_name=$comm_lev->fields[2];
+		$tmp_value=$comm_lev->rs[0];
+		$tmp_name=$comm_lev->rs[2];
 		$selected=($level==$tmp_value)?"selected":"";
 		$select.="<option value='$tmp_value' $selected>$tmp_name</option>\n";
 		if($selected=='selected') $tmp_level=$tmp_name;

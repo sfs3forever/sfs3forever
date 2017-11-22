@@ -426,7 +426,7 @@ function list_teacher_table($sel_year,$sel_seme,$teacher_sn="",$set_class_id="",
 			//echo $query ;
 			$res = $CONN->Execute($query);
 			while(!$res->EOF){
-				$tea_temp_arr[$res->fields[0]] = $res->fields[1];
+				$tea_temp_arr[$res->rs[0]] = $res->rs[1];
 				$res->MoveNext();
 			}
 		}
@@ -880,8 +880,8 @@ function my_teacher_array(){
 	$res=$CONN->Execute($query);
 	$temp_arr = array();
 	while(!$res->EOF){
-		$temp_arr[$res->fields[0]] = $res->fields[1];
-		//echo $res->fields[1];
+		$temp_arr[$res->rs[0]] = $res->rs[1];
+		//echo $res->rs[1];
 		$res->MoveNext();
 
 	}

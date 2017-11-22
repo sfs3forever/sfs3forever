@@ -92,8 +92,8 @@ class ADODB_fbsql extends ADOConnection {
 			$retarr = array();
 			while (!$rs->EOF){
 				$fld = new ADOFieldObject();
-				$fld->name = $rs->fields[0];
-				$fld->type = $rs->fields[1];
+				$fld->name = $rs->rs[0];
+				$fld->type = $rs->rs[1];
 					
 				// split type into type(length):
 				if (preg_match("/^(.+)\((\d+)\)$/", $fld->type, $query_array)) {
@@ -102,9 +102,9 @@ class ADODB_fbsql extends ADOConnection {
 				} else {
 					$fld->max_length = -1;
 				}
-				$fld->not_null = ($rs->fields[2] != 'YES');
-				$fld->primary_key = ($rs->fields[3] == 'PRI');
-				$fld->auto_increment = (strpos($rs->fields[5], 'auto_increment') !== false);
+				$fld->not_null = ($rs->rs[2] != 'YES');
+				$fld->primary_key = ($rs->rs[3] == 'PRI');
+				$fld->auto_increment = (strpos($rs->rs[5], 'auto_increment') !== false);
 				$fld->binary = (strpos($fld->type,'blob') !== false);
 				
 				$retarr[strtoupper($fld->name)] = $fld;	

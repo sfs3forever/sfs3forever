@@ -121,12 +121,12 @@ if ($year_name && $stage) {
 					$sql="select count(score),ss_id,test_kind,sendmit from $score_semester where test_sort='$fstage' and student_sn in (".$group_data[$i][$id][all_sn].") and ss_id='$id' group by ss_id,test_kind,sendmit";
 					$rs=$CONN->Execute($sql);
 					while(!$rs->EOF) {
-						$inputs[$i][$id][$rs->fields["test_kind"]][$rs->fields["sendmit"]]=$rs->fields[0];
+						$inputs[$i][$id][$rs->fields["test_kind"]][$rs->fields["sendmit"]]=$rs->rs[0];
 						$rs->MoveNext();
 					}
 					$sql="select count(score),ss_id,test_kind from $score_semester where test_sort='$fstage' and student_sn in (".$group_data[$i][$id][all_sn].") and score='-100' and ss_id='$id' group by ss_id,test_kind";
 					$rs=$CONN->Execute($sql);
-					$chks[$i][$id][$rs->fields["test_kind"]]=$rs->fields[0];
+					$chks[$i][$id][$rs->fields["test_kind"]]=$rs->rs[0];
 				}
 			}
 		}

@@ -271,7 +271,7 @@ function count_student_score_fitness($sn_array)
 				//檢查是否是身心障礙生
 				$sql="SELECT kind_id FROM 12basic_tech WHERE academic_year=$work_year AND student_sn=$student_sn";
 				$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
-				if($res->fields[0]==10) {
+				if($res->rs[0]==10) {
 					$score_fitness[$student_sn]['bonus']=$fitness_score_max;
 					$score_fitness[$student_sn]['1']=1;
 					$score_fitness[$student_sn]['2']=1;

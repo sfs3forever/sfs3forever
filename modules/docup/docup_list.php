@@ -18,8 +18,8 @@ while (list($tid, $tname) = each($post_office_p)){
 	$tid=intval($tid);
 	$sql_select = "select count(docup_p_id) as cc ,sum(docup_p_count) as ccc from docup_p where doc_kind_id ='$tid'";
 	$result = $CONN->Execute($sql_select) or die ($sql_select);
-	$cc =$result->fields[0];
-	$ccc =$result->fields[1];
+	$cc =$result->rs[0];
+	$ccc =$result->rs[1];
 	if ($cc>0) {
 		echo ($i++ % 2 == 0)?"<TR class=nom_1>":"<TR class=nom_2>";	
         	echo "<TD align=center><a href=\"doc_kind_list.php?doc_kind_id=$tid\">$tname</a></TD>";

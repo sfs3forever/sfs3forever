@@ -117,10 +117,10 @@ function test_main($tsn,$admin) {
 	   if ($TEST['active']>4 and $TEST['active']<7) {
 		   $sql="select article from contest_typebank where id='".$TEST['type_id_1']."'";
 		   $res=$CONN->Execute($sql);
-		   $type1=$res->fields[0];
+		   $type1=$res->rs[0];
 		   $sql="select article from contest_typebank where id='".$TEST['type_id_2']."'";
 		   $res=$CONN->Execute($sql);
-		   $type2=$res->fields[0];
+		   $type2=$res->rs[0];
 		   ?>
 		   <tr>
 			   <td width="80" align="center" style="font-size:10pt;color:#800000">競賽題目</td>

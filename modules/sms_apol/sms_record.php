@@ -79,7 +79,7 @@ $year_month=$_POST['year_month'];
 $sql="SELECT DISTINCT DATE_FORMAT(ask_time,'%Y-%m') FROM sms_apol_task WHERE teacher_sn='$session_tea_sn' AND year_seme='$curr_year_seme'";
 $rs=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
 while(!$rs->EOF){
-	$this_year_month=$rs->fields[0];
+	$this_year_month=$rs->rs[0];
 	$checked=($this_year_month==$year_month)?'checked':'';
 	$year_month_radio.="<input type='radio' value='$this_year_month' name='year_month' $checked onclick=\"document.myform.taskid.value=''; this.form.submit();\">{$year}$this_year_month ";
 	$rs->MoveNext();

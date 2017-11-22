@@ -71,7 +71,7 @@ switch ($do_key){
             // 根據 $teach_id 來找出新增教師的 teacher_sn
             $sql_query = "select teacher_sn from teacher_base where teach_id='$teach_id'";
             $res=$CONN->Execute($sql_query) or die ($sql_query);
-            $teacher_sn=$res->fields[0];
+            $teacher_sn=$res->rs[0];
 
             $teacher_post_insert = "insert into teacher_post(teacher_sn, post_kind, post_office,post_level,official_level,post_class,post_num,bywork_num,salay,appoint_date,arrive_date,approve_date,approve_number,teach_title_id, class_num,update_time,update_id) VALUES ('$teacher_sn', '0','8','0','$official_level','$post_class','$post_num','$bywork_num','0','$appoint_date','$arrive_date','$approve_date','$approve_number','19','0','$update_time','admin')";
             $CONN->Execute($teacher_post_insert) or die ($teacher_post_insert);
@@ -93,7 +93,7 @@ switch ($do_key){
 		if($your_pro_kind=="1"){
 			$sql_pro_check2="select count(*) from pro_check_new where pro_kind_id='1'";
 			$rs_pro_check2=$CONN->Execute($sql_pro_check2);
-			$howmany_admin=$rs_pro_check2->fields[0];											
+			$howmany_admin=$rs_pro_check2->rs[0];											
 		}										
 		//echo $howmany_adm; exit;		
 		if($howmany_admin!=1){
@@ -164,7 +164,7 @@ else {
 	if ($teacher_sn =="" || $res->RecordCount()==0) {
 		$temp_sql = "select teacher_sn from teacher_base where teach_condition ='$sel' order by teacher_sn  ";
 		$res2 = $CONN->Execute($temp_sql) or die($temp_sql);
-		$teacher_sn = $res2->fields[0];
+		$teacher_sn = $res2->rs[0];
 	}
 
 	$sql_select = "select teach_id,teach_person_id,name,sex,age,birthday,birth_place,marriage,address,home_phone,cell_phone,office_home,teach_condition,teach_memo,teach_edu_kind,teach_edu_abroad,teach_sub_kind,teach_check_kind,teach_check_word,teach_is_cripple,update_time,update_id from teacher_base where teacher_sn='$teacher_sn' ";

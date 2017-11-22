@@ -57,7 +57,7 @@ switch ($do_key){
 		$query = " select kin_id from stud_kinfolk where student_sn='$student_sn' order by kin_id";
 		$result = $CONN->Execute($query);
 		while(!$result->EOF) {	
-			$temp_id = $result->fields[0];	
+			$temp_id = $result->rs[0];	
 			$kin_id = "kin_id_$temp_id";			
 			$kin_name = "kin_name_$temp_id";
 			$kin_calling = "kin_calling_$temp_id";
@@ -87,10 +87,10 @@ if ($chknext)
 	if ($student_sn =="" || $res->RecordCount()==0) {	
 		$temp_sql = "select a.student_sn,a.stud_id,a.stud_name from stud_base a,stud_seme b where a.student_sn=b.student_sn and a.stud_study_cond=0 and b.seme_year_seme='$c_curr_seme' and b.seme_class='$class_num' order by b.seme_num ";
 		$res = $CONN->Execute($temp_sql) or die($temp_sql);
-		$student_sn = $res->fields[0];
+		$student_sn = $res->rs[0];
 	}
-$stud_id = $res->fields[1];
-$stud_name = $res->fields[1];
+$stud_id = $res->rs[1];
+$stud_name = $res->rs[1];
 ?> 
 <script language="JavaScript">
 

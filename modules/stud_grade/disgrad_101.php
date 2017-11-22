@@ -47,7 +47,7 @@ $query="select distinct stud_grad_year from grad_stud order by stud_grad_year de
 $res=$CONN->Execute($query);
 while(!$res->EOF) {
 	$checked=($stud_grad_year==$res->fields['stud_grad_year'])?'checked':'';
-	$grad_year_radio.="<input type='radio' name='stud_grad_year' value='{$res->fields[0]}' $checked>{$res->fields[0]} ";
+	$grad_year_radio.="<input type='radio' name='stud_grad_year' value='{$res->rs[0]}' $checked>{$res->rs[0]} ";
 	$res->MoveNext();
 }
 
@@ -144,7 +144,7 @@ if($abs_base_days){
 	while(!$res->EOF)
 	{
 		$stud_id=$res->fields['stud_id'];
-		$abs_data_arr[$stud_id]=$res->fields[1];
+		$abs_data_arr[$stud_id]=$res->rs[1];
 		$res->MoveNext();
 	}
 

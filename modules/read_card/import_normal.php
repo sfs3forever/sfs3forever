@@ -45,7 +45,7 @@ if($trans && $tkind) {
 	//科目代號
 	$sql="SELECT scope_id,subject_id FROM score_ss WHERE ss_id=$des_subject";
 	$rs=$CONN->Execute($sql) or die('SQL錯誤：'.$sql);			
-	$subject_id=$rs->fields[1]?$rs->fields[1]:$rs->fields[0];
+	$subject_id=$rs->rs[1]?$rs->rs[1]:$rs->rs[0];
 
 	//取出 csv 的值
 	$file_name=$temp_path.$sel_file;
@@ -81,7 +81,7 @@ if($trans && $tkind) {
 		if(intval($curr_class_num)) {
 			$sql="SELECT student_sn FROM stud_base WHERE curr_class_num='$curr_class_num' AND stud_study_cond=0";
 			$rs=$CONN->Execute($sql) or die($sql);
-			$stud_sn=$rs->fields[0];
+			$stud_sn=$rs->rs[0];
 			if($stud_sn){
 				$class_subj=sprintf("%03d_%1d_%02d_%02d_%1d",curr_year(),curr_seme(),substr($tt[0],0,-2),substr($tt[0],-2),$subject_id);
 				//$stage=255;
@@ -240,7 +240,7 @@ if (!$trans || ($trans && (!$des_subject || !($stage||$spec_test_arr[$des_subjec
 								$teach_id=$teach_id_arr[$rs->fields[teacher_sn]];
 								$sql="select max(freq) from $score_semester where teach_id='$teach_id' and class_subj='$class_subj' and stage='$stage'and enable='1'";
 								$rs=$CONN->Execute($sql);
-								$freq=$rs->fields[0]+1;
+								$freq=$rs->rs[0]+1;
 							}
 							$old_subj=$class_subj;
 							$sql="insert into $score_semester (teach_id,stud_sn,class_subj,stage,test_name,test_score,weighted,enable,freq) values ('$teach_id','$student_sn','$class_subj','$stage','$test_name','$score','1','1','$freq')";
@@ -372,7 +372,7 @@ if (($sel_file && !$trans) || ($trans && (!$des_subject || !$stage))) {
 		$sql="SELECT nor_item_kind from score_ss WHERE ss_id={$_POST[des_subject]}";
 		$rs=$CONN->Execute($sql);
 		
-		$nor_item=$nor_item_array[$rs->fields[0]];
+		$nor_item=$nor_item_array[$rs->rs[0]];
 		
 		$nor_item=explode(',',$nor_item);
 

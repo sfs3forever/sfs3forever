@@ -10,7 +10,7 @@ if ($_GET[act]=="edit") {
 	if ($_GET[id]) {
 		$query="select * from teacher_absent where id='".$_GET[id]."'";
 		$res=$CONN->Execute($query);
-		if ($res->fields[0]) {
+		if ($res->rs[0]) {
 			$_POST=$res->FetchRow();
 			$sel_year=$_POST[year];
 			$sel_seme=$_POST[semester];

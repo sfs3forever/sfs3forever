@@ -32,16 +32,16 @@ if($_POST['tables'] || $_POST['all_tables']) {
 			$result='';
 			//$xml_table=$xml->$table_name;
 			while(! $res2->EOF){
-				$field_name=$res2->fields[0];
+				$field_name=$res2->rs[0];
 				$xml_field=$xml->$table_name->Fields->$field_name;
 				
 				$is_different=False;
-				$field_type=$res2->fields[1]; $xml_field_type=$xml_field->Type; if($field_type<>$xml_field_type) { $is_different=true; }
-				$field_null=$res2->fields[2]; $xml_field_null=$xml_field->Null; if($field_null<>$xml_field_null) { $is_different=true; }
-				$field_key=$res2->fields[3]; $xml_field_key=$xml_field->Key; if($field_key<>$xml_field_key) { $is_different=true; }
+				$field_type=$res2->rs[1]; $xml_field_type=$xml_field->Type; if($field_type<>$xml_field_type) { $is_different=true; }
+				$field_null=$res2->rs[2]; $xml_field_null=$xml_field->Null; if($field_null<>$xml_field_null) { $is_different=true; }
+				$field_key=$res2->rs[3]; $xml_field_key=$xml_field->Key; if($field_key<>$xml_field_key) { $is_different=true; }
 					if($field_key=='PRI') { $pri_key.=" $field_name ,"; } if($field_key=='UNI') { $uni_key.=" $field_name ,"; }
-				$field_Default=$res2->fields[4]; $xml_field_Default=$xml_field->Default;
-				//$field_Extra=$res2->fields[5];
+				$field_Default=$res2->rs[4]; $xml_field_Default=$xml_field->Default;
+				//$field_Extra=$res2->rs[5];
 
 				if($is_different) {
 					$result.="<br>◎欄位名稱：$field_name";

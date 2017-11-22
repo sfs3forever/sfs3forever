@@ -86,7 +86,7 @@ $folders=$CONN->queryFetchAllAssoc($sql);
  foreach ($folders as $FOLDER) {
    $sql="select count(*) from sc_msn_data where folder='".$FOLDER['idnumber']."'";
    $res=$CONN->Execute($sql);
-   $num=$res->fields[0];
+   $num=$res->rs[0];
    $i++;
    if ($_POST['act']=='edit' and $_POST['option1']==$FOLDER['idnumber']) {
  		?>

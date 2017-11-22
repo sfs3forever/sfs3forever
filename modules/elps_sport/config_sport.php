@@ -219,13 +219,13 @@ function initArray($F1,$SQL){
 //	print $rs->fields['sch_id'] . " " . $rs->fields['sch_name'];
 	if(count($col)==2) {
 //		$index=$col[0];$val=$col[1];
-//		$index=$rs->fields[0];
+//		$index=$rs->rs[0];
 //		$sch_all[$rs->fields[$index]]=$rs->fields[$val]; 
-		$sch_all[$rs->fields[0]]=$rs->fields[1]; 
-//		echo $rs->fields[0]."_".$rs->fields[1]."<BR>";
+		$sch_all[$rs->rs[0]]=$rs->rs[1]; 
+//		echo $rs->rs[0]."_".$rs->rs[1]."<BR>";
 		}
 	if(count($col)==3) {
-		$sch_all[$rs->fields[0]]=array($val=>$rs->fields[1],$val2=>$rs->fields[2]);
+		$sch_all[$rs->rs[0]]=array($val=>$rs->rs[1],$val2=>$rs->rs[2]);
 //		$index=$col[0];$val=$col[1];$val2=$col[2];
 //		$sch_all[$rs->fields[$index]]=array($val=>$rs->fields[$val],$val2=>$rs->fields[$val2]);
 		}

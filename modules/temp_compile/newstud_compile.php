@@ -122,18 +122,18 @@ if($_POST['Submit4']){
 	$proc=$_POST[proc];
 	$query="select count(stud_name) from new_stud where stud_study_year='$new_sel_year' and class_year='$class_year_b' $class_str";
 	$res=$CONN->Execute($query);
-	$studs[0]=$res->fields[0];
+	$studs[0]=$res->rs[0];
 	$query="select count(stud_name) from new_stud where stud_study_year='$new_sel_year' and class_year='$class_year_b' and stud_sex='1' $class_str";
 	$res=$CONN->Execute($query);
-	$studs[1]=$res->fields[0];
+	$studs[1]=$res->rs[0];
 	$query="select count(stud_name) from new_stud where stud_study_year='$new_sel_year' and class_year='$class_year_b' and stud_sex='2' $class_str";
 	$res=$CONN->Execute($query);
-	$studs[2]=$res->fields[0];
+	$studs[2]=$res->rs[0];
 	$query="update new_stud set $class_sort='',$class_site='' where stud_study_year='$new_sel_year'";
 	$CONN->Execute($query);
 	$query="select max(class_id) from $class_kind where year='$new_sel_year' and class_id like '$class_year_b%'";
 	$res=$CONN->Execute($query);
-	$classs=intval(substr($res->fields[0],1));
+	$classs=intval(substr($res->rs[0],1));
 	switch ($kind) {
 		case 0:
 			$class_order="order by temp_id";
@@ -176,7 +176,7 @@ if($_POST['Submit4']){
 					$temp_class=$class_year_b.sprintf("%02d",$i);
 					$query="select max($class_site) from new_stud where stud_study_year='$new_sel_year' and $class_sort='$temp_class'";
 					$res1=$CONN->Execute($query);
-					$start_site=intval($res1->fields[0]);
+					$start_site=intval($res1->rs[0]);
 					if ($cyc>0) {
 						$k=(($studs[0]-1)%$classs)+1;
 						$pp=($i<=$k)?$perss+1:$perss;
@@ -255,7 +255,7 @@ switch($work){
 		$end_txt="級";
 		$query="select max(class_id) from $class_kind where year='$new_sel_year' and class_id like '$chk%'";
 		$res=$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
-		$c_num=$res->fields[0];
+		$c_num=$res->rs[0];
 		$c_num=intval(substr($c_num,1,2));
 		$query="select c_name from $class_kind where year='$new_sel_year' and class_id like '$chk%'";
 		$res=$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
@@ -385,7 +385,7 @@ switch($work){
 			$query="select stud_sex,count(stud_name) from new_stud where stud_study_year='$new_sel_year' and $class_sort='$class_id' group by stud_sex";
 			$res_sex=$CONN->Execute($query);
 			while (!$res_sex->EOF) {
-				$sex[$class_id][$res_sex->fields[stud_sex]]=intval($res_sex->fields[1]);
+				$sex[$class_id][$res_sex->fields[stud_sex]]=intval($res_sex->rs[1]);
 				$res_sex->MoveNext();
 			}
 			echo "	<tr bgcolor='#FFF7CD'>
@@ -465,8 +465,8 @@ switch($work){
 	case 6:
 		$query="select min(class_id),max(class_id) from $class_kind where year='$new_sel_year' and class_id like '$class_year_b%'";
 		$res=$CONN->Execute($query);
-		$min_class=intval(substr($res->fields[0],1,2));
-		$max_class=intval(substr($res->fields[1],1,2));
+		$min_class=intval(substr($res->rs[0],1,2));
+		$max_class=intval(substr($res->rs[1],1,2));
 		$start_class=$_POST[start_class];
 		if (empty($start_class)) $start_class=$min_class;
 		$end_class=$_POST[end_class];

@@ -28,9 +28,9 @@ if($_POST['act']){
 						break;
 				}
 				$res=$CONN->Execute($sql) or trigger_error("錯誤訊息： $sql", E_USER_ERROR);
-				$student_sn=$res->fields[0];
-				$stud_grade=substr($res->fields[1],0,-4);
-				$stud_name=$res->fields[2];
+				$student_sn=$res->rs[0];
+				$stud_grade=substr($res->rs[1],0,-4);
+				$stud_name=$res->rs[2];
 				if($student_sn){
 					if($stud_grade==$grade)	$value_list.="('$group_id','$student_sn'),";
 				} else $error_list.="<br>NO.$group_id - <font color='blue' size=5>$value</font> $stud_name";

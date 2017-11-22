@@ -119,7 +119,7 @@ if ($_SESSION['timer']) {
         $type_times=$_POST['type_times'];    //第 ? 次檢測
         $sql="select sttime_{$_POST['type_times']} from contest_typerec where id='{$_POST['rec_id']}' and student_sn='{$_SESSION['session_tea_sn']}'";
         $res=$CONN->Execute($sql);
-        $sttime=$res->fields[0];
+        $sttime=$res->rs[0];
         $type_timer=NowAllSec(date("Y-m-d H:i:s"))-NowAllSec($sttime);
         $timer=599;   //正式比賽, 時間 10分鐘
     } else {

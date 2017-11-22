@@ -125,7 +125,7 @@ switch ($key) {
                 //加入學生資料
                 $query1 = "select max(seme_num) as mm from stud_seme where seme_class='$temp_class_no_num' and seme_year_seme='$seme_year_seme'";
                 $result1 = $CONN->Execute($query1) or die($query1);
-                $new_site_num = intval($result1->fields[0]) + 1;
+                $new_site_num = intval($result1->rs[0]) + 1;
                 $temp_class_num = ($temp_class_no_num + ($curr_y - $sel_year) * 100) . $new_site_num;
                 $stud_study_year = $sel_year - $sel_class_year + 1 + $IS_JHORES;
                 $sql_insert = "insert into stud_base (stud_id,stud_name,stud_person_id,stud_birthday,stud_sex,stud_study_year,curr_class_num,stud_study_cond,enroll_school) values('$stud_id','$stud_name','$stud_person_id','$stud_birthday','$stud_sex','$stud_study_year','$temp_class_num','0','$enroll_school')";
@@ -134,7 +134,7 @@ switch ($key) {
                 //取得 student_sn
                 $query = "select student_sn from stud_base where stud_id='$stud_id' and stud_study_year='$stud_study_year'";
                 $resss = $CONN->Execute($query);
-                $student_sn = $resss->fields[0];
+                $student_sn = $resss->rs[0];
 
                 //加入異動記錄
                 $update_ip = getip();
@@ -186,7 +186,7 @@ switch ($key) {
         $CONN->Execute($sql_update) or die($sql_update);
         $sql = "select max(seme_num) as mm from stud_seme where seme_class='$temp_class_no_num' and seme_year_seme='$seme_year_seme'";
         $rs = $CONN->Execute($sql) or die($sql);
-        $new_site_num = intval($rs->fields[0]) + 1;
+        $new_site_num = intval($rs->rs[0]) + 1;
         $rs = $CONN->Execute("select c_name from school_class where class_id='$stud_class' and enable=1");
         $seme_class_name = $rs->fields[c_name];
         $stud_study_year = curr_year();
@@ -532,7 +532,7 @@ echo $do_xcatest_script;
                                     $query = "select stud_id from stud_move where move_kind='9' and year(now())-year(update_time)<7";
                                     $result = $CONN->Execute($query) or die($query);
                                     while (!$result->EOF) {
-                                        $stud_id_list .= "'{$result->fields[0]}',";
+                                        $stud_id_list .= "'{$result->rs[0]}',";
                                         $result->MoveNext();
                                     }
                                     if ($stud_id_list) {
@@ -555,14 +555,14 @@ echo $do_xcatest_script;
 
                                     //修正國中學號以0開頭的問題(入學年度尾數為0時的問題,例如:100,90等)
                                     //前一步驟取出的最大值是unsigned的,前面的0會被取消
-                                    if ($result->fields[1] == 3) {
-                                        $result->fields[1] = 5;
+                                    if ($result->rs[1] == 3) {
+                                        $result->rs[1] = 5;
                                     }
 
 
-                                    $max_length = '%0' . $result->fields[1] . 'd';
+                                    $max_length = '%0' . $result->rs[1] . 'd';
 
-                                    $max_stud_id = sprintf($max_length, $result->fields[0] + 1);
+                                    $max_stud_id = sprintf($max_length, $result->rs[0] + 1);
 
                                     if ($edit == '' || $stud_id == '') {
                                         $stud_id = $max_stud_id;

@@ -84,7 +84,7 @@ $stmt->close();
 	/*
 	$sqlstr ="select stud_study_year from stud_base where stud_id='$stud_id' order by stud_study_year desc";
 	$result = $CONN->Execute($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256) ;
-	$stud_study_year=$result->fields[0];
+	$stud_study_year=$result->rs[0];
 	*/
 	
 	$stud_ima="photo/student/$stud_study_year/". $stud_id;

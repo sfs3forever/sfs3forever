@@ -69,7 +69,7 @@ if ($_POST[year_name]) {
 		}
 		$query="select stud_study_year from stud_base where student_sn='".pos($sn)."'";
 		$res=$CONN->Execute($query);
-		$stud_study_year=$res->fields[0];
+		$stud_study_year=$res->rs[0];
 		for ($i=$starty;$i<=$f_year;$i++) {
 			for ($j=1;$j<=2;$j++) {
 				$semes[]=sprintf("%03d",$stud_study_year+$i).$j;

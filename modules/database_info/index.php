@@ -29,9 +29,9 @@ switch($do_key) {
 	case $btnPost:
 	while (!$recordSet->EOF){
 		
-		$table = $recordSet->fields[0];
-		$cname = "cname_".$recordSet->fields[0];			
-		$table_group = "group_".$recordSet->fields[0];
+		$table = $recordSet->rs[0];
+		$cname = "cname_".$recordSet->rs[0];			
+		$table_group = "group_".$recordSet->rs[0];
 		if($$table_group <>'') {
 			$query = "replace into sys_data_table (d_table_name ,d_table_cname,d_table_group) values('$table','".trim($$cname)."','".trim($$table_group)."')";
 			$CONN->Execute($query) or die ($query);
@@ -47,7 +47,7 @@ switch($do_key) {
 if(isset($sel_d_table_name)) {
 	$query = "select d_table_group from sys_data_table where d_table_name='$sel_d_table_name'"; 
 	$res = $CONN->Execute($query) or die($query);
-	$d_table_group_id = $res->fields[0];	
+	$d_table_group_id = $res->rs[0];	
 }
 
 //取得資料表群組
@@ -113,7 +113,7 @@ echo "			</td>
 echo "		</tr>";
 $recordSet->MoveFirst()	;
 while (!$recordSet->EOF) {
-	$table = $recordSet->fields[0];
+	$table = $recordSet->rs[0];
 	if((!@in_array($table,array_keys($data))&& $d_table_group_id=='none') || ( $d_table_group_id<>'none' && $data[$table][group] <>'')) {
 		$bgcolor = $cfgBgcolorOne;
 		$i++ % 2 ? 0 : $bgcolor = $cfgBgcolorTwo;

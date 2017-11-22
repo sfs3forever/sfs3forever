@@ -20,7 +20,7 @@ $da_arr=array("Field","Type","Null","Key","Default");
 $sql='SHOW TABLES;';
 $res=$CONN->Execute($sql) or user_error("SHOW TABLES失敗！<br>$sql",256);
 while(! $res->EOF){
-	$table_name=$res->fields[0];
+	$table_name=$res->rs[0];
 	echo "<$table_name>\n";
 	echo "<Fields>\n";
 	//echo "<Name>$table_name</Name>\n";
@@ -28,7 +28,7 @@ while(! $res->EOF){
 	$res2=$CONN->Execute($sql2) or user_error("SHOW COLUMNS失敗！<br>$sql2",256);
 	while(! $res2->EOF){
 		reset($da_arr);
-		$field_name=$res2->fields[0];		
+		$field_name=$res2->rs[0];		
 		echo "<$field_name>\n";
 		foreach($da_arr as $d) if($d<>'Field') { echo "<".$d.">".$res2->fields[$d]."</".$d.">\n"; }
 		echo "</$field_name>\n";		

@@ -378,10 +378,10 @@ class ADODB_db2 extends ADOConnection {
 
 		$foreign_keys = array();	 	 
 		while (!$rs->EOF) {
-			if (strtoupper(trim($rs->fields[2])) == $table && (!$schema || strtoupper($rs->fields[1]) == $schema)) {
-				if (!is_array($foreign_keys[$rs->fields[5].'.'.$rs->fields[6]])) 
-					$foreign_keys[$rs->fields[5].'.'.$rs->fields[6]] = array();
-				$foreign_keys[$rs->fields[5].'.'.$rs->fields[6]][$rs->fields[7]] = $rs->fields[3];	 		
+			if (strtoupper(trim($rs->rs[2])) == $table && (!$schema || strtoupper($rs->rs[1]) == $schema)) {
+				if (!is_array($foreign_keys[$rs->rs[5].'.'.$rs->fields[6]])) 
+					$foreign_keys[$rs->rs[5].'.'.$rs->fields[6]] = array();
+				$foreign_keys[$rs->rs[5].'.'.$rs->fields[6]][$rs->fields[7]] = $rs->rs[3];	 		
 			}
 			$rs->MoveNext();
 		}
@@ -536,15 +536,15 @@ See http://msdn.microsoft.com/library/default.asp?url=/library/en-us/db2/htm/db2
 		11 REMARKS
 		*/
 		while (!$rs->EOF) {
-			if (strtoupper(trim($rs->fields[2])) == $table && (!$schema || strtoupper($rs->fields[1]) == $schema)) {
+			if (strtoupper(trim($rs->rs[2])) == $table && (!$schema || strtoupper($rs->rs[1]) == $schema)) {
 				$fld = new ADOFieldObject();
-				$fld->name = $rs->fields[3];
-				$fld->type = $this->DB2Types($rs->fields[4]);
+				$fld->name = $rs->rs[3];
+				$fld->type = $this->DB2Types($rs->rs[4]);
 				
 				// ref: http://msdn.microsoft.com/library/default.asp?url=/archive/en-us/dnaraccgen/html/msdn_odk.asp
 				// access uses precision to store length for char/varchar
 				if ($fld->type == 'C' or $fld->type == 'X') {
-					if ($rs->fields[4] <= -95) // UNICODE
+					if ($rs->rs[4] <= -95) // UNICODE
 						$fld->max_length = $rs->fields[7]/2;
 					else
 						$fld->max_length = $rs->fields[7];
@@ -580,8 +580,8 @@ See http://msdn.microsoft.com/library/default.asp?url=/library/en-us/db2/htm/db2
 		5 PK_NAME
 		*/
 		while (!$rs->EOF) {
-			if (strtoupper(trim($rs->fields[2])) == $table && (!$schema || strtoupper($rs->fields[1]) == $schema)) {
-				$retarr[strtoupper($rs->fields[3])]->primary_key = true;
+			if (strtoupper(trim($rs->rs[2])) == $table && (!$schema || strtoupper($rs->rs[1]) == $schema)) {
+				$retarr[strtoupper($rs->rs[3])]->primary_key = true;
 			} else if (sizeof($retarr)>0)
 				break;
 			$rs->MoveNext();

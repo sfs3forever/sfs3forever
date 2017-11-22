@@ -83,7 +83,7 @@ if($_POST[act]==$go_caption){
 			//抓取姓名
 			$sql="SELECT stud_name FROM stud_base WHERE student_sn=$student_sn";
 			$res = $CONN->Execute($sql) or trigger_error($sql,E_USER_ERROR);
-			$student_name=$res->fields[0];
+			$student_name=$res->rs[0];
 
 			//抓取成績(只論是否已經傳到教務處、不分完整與否，成績由科目選項抓取後再計算)
 			$sql="SELECT ss_id,score,test_name,test_sort FROM $score_db WHERE student_sn=$student_sn AND class_id='$score_class_id' AND sendmit=1";
@@ -241,7 +241,7 @@ if($_POST[act]==$go_caption){
 			//抓取姓名
 			$sql="SELECT stud_name FROM stud_base WHERE student_sn=$student_sn";
 			$res = $CONN->Execute($sql) or trigger_error($sql,E_USER_ERROR);
-			$student_name=$res->fields[0];
+			$student_name=$res->rs[0];
 
 			//抓取成績(只抓取已經傳到教務處全學期的成績)
 			$sql="SELECT ss_id,score,test_name,test_sort FROM $score_db WHERE student_sn=$student_sn AND class_id='$score_class_id' AND test_sort='255' AND sendmit=1";
@@ -438,7 +438,7 @@ if($class_id){
 	$score_class_id=sprintf('%03d_%d_%02d_%02d',$sel_year,$sel_seme,$class_year,substr($class_id,-2));
 	$sql="SELECT teacher_1 FROM school_class WHERE class_id='$score_class_id'";
 	$res = $CONN->Execute($sql) or trigger_error($sql,E_USER_ERROR);
-	$teacher_name=$res->fields[0];
+	$teacher_name=$res->rs[0];
 	
 	
 	//要不要顯示全選按鈕
@@ -471,9 +471,9 @@ if($class_id){
 	if($stage_radio==1){
 		$sql="SELECT performance_test_times,test_ratio,score_mode FROM score_setup WHERE enable=1 AND year=$sel_year AND semester=$sel_seme AND class_year=$class_year";
 		$res = $CONN->Execute($sql) or trigger_error($sql,E_USER_ERROR);
-		$stages=$res->fields[0];
-		$test_ratio=$res->fields[1];
-		$score_mode=$res->fields[2];
+		$stages=$res->rs[0];
+		$test_ratio=$res->rs[1];
+		$score_mode=$res->rs[2];
 		$stage_check="";
 		for($i=1;$i<=$stages;$i++){
 			$checked=array_search($i,$stage_arr)?'checked':'';

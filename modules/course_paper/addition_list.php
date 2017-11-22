@@ -71,7 +71,7 @@ while (!$res->EOF) {
 $sql_select = "select name,teacher_sn from teacher_base ";
 $res= $CONN->Execute($sql_select);
 while(!$res->EOF){
-	$teacher_arr[$res->fields[1]]=$res->fields[0];
+	$teacher_arr[$res->rs[1]]=$res->rs[0];
 	$res->MoveNext();
 }
 

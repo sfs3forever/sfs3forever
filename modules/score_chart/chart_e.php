@@ -92,7 +92,7 @@ $class_id=old_class_2_new_id($class_num,$sel_year,$sel_seme);
 //取得本學期上課總日數
 $query = "select days from seme_course_date where seme_year_seme='$year_seme' and class_year=".substr($class_num,0,1);
 $res= $CONN->Execute($query) or die($query);
-$TOTAL_DAYS = $res->fields[0];
+$TOTAL_DAYS = $res->rs[0];
 
 //取得考試樣板編號
 $exam_setup=&get_all_setup("",$sel_year,$sel_seme,$class_all[year]);

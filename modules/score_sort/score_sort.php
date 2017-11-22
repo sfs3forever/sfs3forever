@@ -90,13 +90,13 @@ function get_class_seme2($s_z=0,$add=0) {
 
 
         while(!$result->EOF){
-                $index_temp = sprintf("%03d%d",$result->fields[0],$result->fields[1]);
-                $index_temp1 = sprintf("%03d%d",$result->fields[0],"");
+                $index_temp = sprintf("%03d%d",$result->rs[0],$result->rs[1]);
+                $index_temp1 = sprintf("%03d%d",$result->rs[0],"");
 
                 //echo substr($index_temp,3);
 
-                if (substr($index_temp,3)==2)$rr[$index_temp1] = $result->fields[0]."學年度";
-                $rr[$index_temp] = $result->fields[0]."學年第".$result->fields[1]."學期";
+                if (substr($index_temp,3)==2)$rr[$index_temp1] = $result->rs[0]."學年度";
+                $rr[$index_temp] = $result->rs[0]."學年第".$result->rs[1]."學期";
 
                 $result->MoveNext();
         }

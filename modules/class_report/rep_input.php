@@ -31,7 +31,7 @@ if ($_POST['act']=='insert') {
 	
 	//取回自動新增的 sn  值, 以登錄個別學生分數的對應
 	$res=$CONN->Execute("SELECT LAST_INSERT_ID()");
-	$test_sn=$res->fields[0];	
+	$test_sn=$res->rs[0];	
 	
 	//存入所有登錄的成績 $_POST['score'];
 	foreach ($_POST['score'] as $student_sn=>$score) {
@@ -72,7 +72,7 @@ if ($_POST['act']=='update') {
 		$sql="select sn from `class_report_score` where test_sn='{$_POST['option1']}' and student_sn='$student_sn'";
 		$res=$CONN->Execute($sql) or die("SQL錯誤:$sql");
 		if ($res) {
-		  $sn=$res->fields[0];
+		  $sn=$res->rs[0];
 			if ($sn>0) {
 		  	$sql="update `class_report_score` set score='$score',update_sn='$update_sn' where sn='$sn'";
 				$res=$CONN->Execute($sql) or die("SQL錯誤:$sql");
@@ -125,7 +125,7 @@ switch ($_SESSION['session_who']) {
 	case '學生':
 		$sql="select seme_class from stud_seme where seme_year_seme='$c_curr_seme' and student_sn='{$_SESSION['session_tea_sn']}'";
 		$res=$CONN->execute($sql) or die("SQL錯誤:$sql");
-		$class_num=$res->fields[0];
+		$class_num=$res->rs[0];
 		//該班級已在學的總學期數
 		$select_seme=get_class_seme_select($class_num);
 		//取得目前學期的所有可讀取的成績單

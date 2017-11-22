@@ -61,7 +61,7 @@ if($_POST[act]==$go_caption){
 		//抓取姓名
 		$sql="SELECT stud_name FROM stud_base WHERE student_sn=$student_sn";
 		$res = $CONN->Execute($sql) or trigger_error($sql,E_USER_ERROR);
-		$student_name=$res->fields[0];
+		$student_name=$res->rs[0];
 
 		//抓取平時成績
 		$nor_score_db="nor_score_".intval($sel_year).'_'.$sel_seme;
@@ -306,7 +306,7 @@ if($class_id){
 	$score_class_id=sprintf('%03d_%d_%02d_%02d',$sel_year,$sel_seme,$class_year,substr($class_id,-2));
 	$sql="SELECT teacher_1 FROM school_class WHERE class_id='$score_class_id'";
 	$res = $CONN->Execute($sql) or trigger_error($sql,E_USER_ERROR);
-	$teacher_name=$res->fields[0];
+	$teacher_name=$res->rs[0];
 	
 	//要不要顯示全選按鈕
 	$select_deselect=" 導師：$teacher_name 　<input type='hidden' name='teacher_name' value='$teacher_name'>

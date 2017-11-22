@@ -23,7 +23,7 @@ if($_POST['go']=='儲存紀錄'){
 	//檢查是否已有舊紀錄
 	$query="select sn from career_self_ponder where student_sn=$student_sn and id='$menu'";
 	$res=$CONN->Execute($query) or die("SQL錯誤:$query");
-	$sn=$res->fields[0];
+	$sn=$res->rs[0];
 	if($sn) $query="update career_self_ponder set id='$menu',content='$content' where sn=$sn";
 		else $query="insert into career_self_ponder set student_sn=$student_sn,id='$menu',content='$content'";
 		$res=$CONN->Execute($query) or die("SQL錯誤:$query");

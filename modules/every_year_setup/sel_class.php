@@ -26,10 +26,10 @@ if(!empty($_COOKIE[cookie_sel_teacher])) {
 $query = "select a.teacher_sn,a.name from teacher_base a ,teacher_post b where a.teacher_sn=b.teacher_sn and a.teach_condition=0";
 $res = $CONN->Execute($query) or die($query);
 while(!$res->EOF) {
-	if(in_array($res->fields[0],$sel_teacher_arr))
-		$in_arr[$res->fields[0]]= $res->fields[1];
+	if(in_array($res->rs[0],$sel_teacher_arr))
+		$in_arr[$res->rs[0]]= $res->rs[1];
 	else
-		$yet_arr[$res->fields[0]]= $res->fields[1];
+		$yet_arr[$res->rs[0]]= $res->rs[1];
 		
 	$res->MoveNext();
 }

@@ -116,7 +116,7 @@ function import($newstuddata,$newstuddata_name,$newstuddata_size){
 		}
 		$query="select max(temp_id) from new_stud where stud_study_year='$stud_study_year'";
 		$res=$CONN->Execute($query);
-		$temp_id=$res->fields[0];
+		$temp_id=$res->rs[0];
 		$start_id=intval(substr($temp_id,1));
 		rewind($fd);
 		$fd = fopen ($temp_file,"r");

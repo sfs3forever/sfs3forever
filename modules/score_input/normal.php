@@ -152,7 +152,7 @@ if ($err==0) {
 			//計算目前應在第幾階段 (sendmit = 0 表示已送至教務處成績)
 			$query ="select max(test_sort) as mm from $score_semester where student_sn in ($all_sn) and ss_id='$ss_id' and sendmit='0' and test_sort<254";
 			$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
-			$mm = $res->fields[0]+1;
+			$mm = $res->rs[0]+1;
 			if ($curr_sort =='')	$curr_sort = $mm;
 			if ($curr_sort>$performance_test_times)	$curr_sort = $performance_test_times;
 		}
@@ -204,7 +204,7 @@ if ($err==0) {
 			$test_name=ss_id_to_subject_name($ss_id)."平".date("is");
 		$query="select max(freq) from $nor_score where class_subj='$class_subj' and stage='$curr_sort' and enable='1'";
 		$res=$CONN->Execute($query);
-		$next_freq=$res->fields[0]+1;
+		$next_freq=$res->rs[0]+1;
 		reset($stud_list);
 		//while(list($student_sn,$v)=each($stud_list)) {
 		foreach( $stud_list as $student_sn=>$v) {
@@ -247,7 +247,7 @@ if ($err==0) {
 		$query = "select count(*) from $score_semester where student_sn in ($all_sn) and ss_id='$ss_id' and test_sort='$curr_sort' and sendmit='0'";
 	}
 	$res= $CONN->Execute($query);
-	$is_send = $res->fields[0];
+	$is_send = $res->rs[0];
 	$smarty->assign("is_send",$is_send);
 
 	//取得成績
@@ -259,7 +259,7 @@ if ($err==0) {
 		//抓取平時成績預定項目
 		$query = "select nor_item_kind from score_ss where ss_id=$ss_id";
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
-		$nor_item=$res->fields[0];
+		$nor_item=$res->rs[0];
 		if($nor_item){
 			//抓取設定的項目
 			$nor_item_array=sfs_text('平時成績選項');

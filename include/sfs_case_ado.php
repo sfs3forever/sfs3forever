@@ -23,7 +23,7 @@ function get_mysqli_conn($tablename = "stud_base") {
             $sql_charset = "SELECT SUBSTR(A.TABLE_COLLATION,1,LOCATE('_',A.TABLE_COLLATION)-1)  From information_schema.TABLES as A where TABLE_SCHEMA ='" . $mysql_db . "' and TABLE_NAME ='" . $tablename . "'";
             $res = $CONN->Execute($sql_charset) or user_error("讀取失敗！<br>$query", 256);
             while (!$res->EOF) {
-                $MYSQL_CHARSET = $res->fields[0];
+                $MYSQL_CHARSET = $res->rs[0];
                 $res->MoveNext();
             }
             $mysqliconn->set_charset($MYSQL_CHARSET);
@@ -46,7 +46,7 @@ function get_mysql_var() {
     $query = "show variables ";
     $res = $CONN->Execute($query) or user_error("讀取失敗！<br>$query", 256);
     while (!$res->EOF) {
-        $resarr[$res->fields[0]] = $res->fields[1];
+        $resarr[$res->rs[0]] = $res->rs[1];
         $res->MoveNext();
     }
     return $resarr;

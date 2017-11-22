@@ -43,7 +43,7 @@ if ($_POST[save] && $IS_JHORES==0) {
 //統計班級現有人數
 $sql="select count(student_sn) from stud_seme where seme_year_seme='$seme_year_seme' and seme_class='$class_num'";
 $res=$CONN->Execute($sql);
-$student_number=$res->fields[0];
+$student_number=$res->rs[0];
 
 //取得學生名單
 $sql="select student_sn from stud_base where curr_class_num like '$class_name[0]%' and stud_study_cond='0' order by curr_class_num";

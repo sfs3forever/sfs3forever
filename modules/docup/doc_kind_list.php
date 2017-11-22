@@ -38,7 +38,7 @@ while (list($tid, $tname) = each($post_office_p)){
 	$tid=intval($tid);
 	$sql_select = "select count(docup_p_id) as cc from docup_p where doc_kind_id ='$tid'";
 	$result = $CONN->Execute($sql_select) or die ($sql_select);
-	$cc =$result->fields[0];	
+	$cc =$result->rs[0];	
 	if ($cc>0) {
 		if($doc_kind_id == $tid)
 			$state_kind .= "<option value=\"$tid\" selected >$tname</option> \n";

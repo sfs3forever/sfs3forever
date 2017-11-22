@@ -49,7 +49,7 @@ $max=$IS_JHORES?9:6;
 //抓取學生戶籍地址
 $query="select stud_addr_2 from stud_base where student_sn=$student_sn";
 $res=$CONN->Execute($query);
-$stud_addr=$res->fields[0];
+$stud_addr=$res->rs[0];
 
 //抓取學生本學期就讀班級
 $query="select * from stud_seme where student_sn=$student_sn and seme_year_seme='$seme_year_seme'";
@@ -67,7 +67,7 @@ if($_POST['go']=='儲存紀錄'){
 			//檢查是否已有舊紀錄
 			$query="select sn from career_view where student_sn=$student_sn";
 			$res=$CONN->Execute($query) or die("SQL錯誤:$query");
-			$sn=$res->fields[0];
+			$sn=$res->rs[0];
 			if($sn) $query="update career_view set ponder='$ponder' where sn=$sn";
 				else $query="insert into career_view set student_sn=$student_sn,ponder='$ponder'";
 			$res=$CONN->Execute($query) or die("SQL錯誤:$query");	
@@ -77,7 +77,7 @@ if($_POST['go']=='儲存紀錄'){
 			//檢查是否已有舊紀錄
 			$query="select sn from career_view where student_sn=$student_sn";
 			$res=$CONN->Execute($query) or die("SQL錯誤:$query");
-			$sn=$res->fields[0];
+			$sn=$res->rs[0];
 			if($sn) $query="update career_view set direction='$direction' where sn=$sn";
 			else $query="insert into career_view set student_sn=$student_sn,direction='$direction'";
 			$res=$CONN->Execute($query) or die("SQL錯誤:$query");	

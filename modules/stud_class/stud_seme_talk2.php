@@ -165,11 +165,11 @@ if ($chknext)
 	if ($stud_id =="" || $res->RecordCount()==0) {	
 		$temp_sql = "select a.stud_id,a.stud_name from stud_base a,stud_seme b where a.student_sn=b.student_sn and a.stud_study_cond=0 and b.seme_year_seme='$c_curr_seme' and b.seme_class='$class_num' order by b.seme_num ";
 		$res2 = $CONN->Execute($temp_sql) or die($temp_sql);
-		$stud_id = $res2->fields[0];
+		$stud_id = $res2->rs[0];
 	}
 
-$stud_name = $res->fields[1];
-$student_sn = $res->fields[2]; // by smallduh 2012/10/05
+$stud_name = $res->rs[1];
+$student_sn = $res->rs[2]; // by smallduh 2012/10/05
 
 
 ?> 

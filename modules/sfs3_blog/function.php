@@ -127,7 +127,7 @@
 		//檢查本類別是否有文章
 		$sql="select count(*) from blog_content where kind_sn='$kind_sn' ";
 		$rs=$CONN->Execute($sql) or trigger_error($sql,256);
-		$counter=$rs->fields[0];
+		$counter=$rs->rs[0];
 		if($counter=="0"){
 			$sql="delete from blog_kind where kind_sn='$kind_sn' ";
 			$CONN->Execute($sql) or trigger_error($sql,256);

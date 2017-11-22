@@ -186,9 +186,9 @@ function get_class_year($s_z=0,$add=0,$order='a') {
 	// init $rr
 	$rr=array();
 	while(!$result->EOF){ 
-		$temp_id = sprintf("%03d",$result->fields[0]);
-		if ($result->fields[0] || $s_z)
-			$rr[$temp_id] = intval($result->fields[0])."學年";
+		$temp_id = sprintf("%03d",$result->rs[0]);
+		if ($result->rs[0] || $s_z)
+			$rr[$temp_id] = intval($result->rs[0])."學年";
 		$result->MoveNext();
 	}	
 	
@@ -216,8 +216,8 @@ function get_class_seme($s_z=0,$add=0) {
 	$result = $CONN->Execute($query) or trigger_error("SQL語法錯誤： $query", E_USER_ERROR);
 	
 	while(!$result->EOF){ 
-		$index_temp = sprintf("%03d%d",$result->fields[0],$result->fields[1]);
-		$rr[$index_temp] = $result->fields[0]."學年第".$result->fields[1]."學期";
+		$index_temp = sprintf("%03d%d",$result->rs[0],$result->rs[1]);
+		$rr[$index_temp] = $result->rs[0]."學年第".$result->rs[1]."學期";
 		$result->MoveNext();
 	}
 	
@@ -328,8 +328,8 @@ function get_class_num($curr_seme="") {
 	$rr=array();
 
 	while (!$result->EOF) {
-		$index_temp = sprintf("%03d%d",$result->fields[0],$result->fields[1]);
-		$rr[$index_temp]=$result->fields[2];	
+		$index_temp = sprintf("%03d%d",$result->rs[0],$result->rs[1]);
+		$rr[$index_temp]=$result->rs[2];	
 		$result->MoveNext();
 	}
 	return $rr;

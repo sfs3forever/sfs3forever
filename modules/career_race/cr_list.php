@@ -21,7 +21,7 @@ $c_curr_seme=$_POST['c_curr_seme'];
  */
  /* ADODB 寫法*/
  $res=$CONN->Execute($sql) or die("SQL錯誤:$sql");
- $st_date=$res->fields[0];
+ $st_date=$res->rs[0];
  
  //結束日
  $sql="select day from school_day where year='$year' and seme='$seme' and day_kind='end'";
@@ -31,7 +31,7 @@ $c_curr_seme=$_POST['c_curr_seme'];
  */
   /* ADODB 寫法*/
  $res=$CONN->Execute($sql) or die("SQL錯誤:$sql");
- $end_date=$res->fields[0];
+ $end_date=$res->rs[0];
 
 
 

@@ -156,7 +156,7 @@ if($ss_id){
 			//檢查該生原先是否已經選修了
 			//$sql_s="select count(*) from elective_stu where group_id='$group_id' and student_sn='$sn_val' ";
 			//$rs_s=$CONN->Execute($sql_s) or trigger_error($sql_s,256);
-			//$c[$i]=$rs_s->fields[0];
+			//$c[$i]=$rs_s->rs[0];
 			//$checked[$i]=($c[$i]==1)?" checked":"";
 			$checked[$i]=(in_array($group_id,$group_u))?" checked":"";
 			//全選時

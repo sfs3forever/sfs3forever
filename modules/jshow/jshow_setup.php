@@ -64,7 +64,7 @@ if($_POST['act']=="edit") {
 		//統計本分類有幾張圖
 		$sql="select count(*) from jshow_pic where kind_id='".$_POST['kind_id']."'";
    	$res=$CONN->Execute($sql) or die ("SQL Error! query=".$sql);
-		$Number_pic=$res->fields[0];
+		$Number_pic=$res->rs[0];
 		*/
 		$row=get_setup($_POST['kind_id']);
 		

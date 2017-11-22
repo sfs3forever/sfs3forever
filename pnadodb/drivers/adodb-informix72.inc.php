@@ -166,24 +166,24 @@ class ADODB_informix72 extends ADOConnection {
 			$retarr = array();
 			while (!$rs->EOF) { //print_r($rs->fields);
 				$fld = new ADOFieldObject();
-				$fld->name = $rs->fields[0];
+				$fld->name = $rs->rs[0];
 /*  //!eos.
-						$rs->fields[1] is not the correct adodb type
-						$rs->fields[2] is not correct max_length, because can include not-null bit
+						$rs->rs[1] is not the correct adodb type
+						$rs->rs[2] is not correct max_length, because can include not-null bit
 
-				$fld->type = $rs->fields[1];
-				$fld->primary_key=$rspkey->fields && array_search($rs->fields[4],$rspkey->fields); //Added to set primary key flag
-				$fld->max_length = $rs->fields[2];*/
-				$pr=ifx_props($rs->fields[1],$rs->fields[2]); //!eos
+				$fld->type = $rs->rs[1];
+				$fld->primary_key=$rspkey->fields && array_search($rs->rs[4],$rspkey->fields); //Added to set primary key flag
+				$fld->max_length = $rs->rs[2];*/
+				$pr=ifx_props($rs->rs[1],$rs->rs[2]); //!eos
 				$fld->type = $pr[0] ;//!eos
-				$fld->primary_key=$rspkey->fields && array_search($rs->fields[4],$rspkey->fields);
+				$fld->primary_key=$rspkey->fields && array_search($rs->rs[4],$rspkey->fields);
 				$fld->max_length = $pr[1]; //!eos
 				$fld->precision = $pr[2] ;//!eos
 				$fld->not_null = $pr[3]=="N"; //!eos
 
-				if (trim($rs->fields[3]) != "AAAAAA 0") {
+				if (trim($rs->rs[3]) != "AAAAAA 0") {
 	                    		$fld->has_default = 1;
-	                    		$fld->default_value = $rs->fields[3];
+	                    		$fld->default_value = $rs->rs[3];
 				} else {
 					$fld->has_default = 0;
 				}

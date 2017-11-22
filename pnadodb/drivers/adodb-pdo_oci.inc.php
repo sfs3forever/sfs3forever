@@ -65,15 +65,15 @@ class ADODB_pdo_oci extends ADODB_pdo_base {
 		$retarr = array();
 		while (!$rs->EOF) { //print_r($rs->fields);
 			$fld = new ADOFieldObject();
-	   		$fld->name = $rs->fields[0];
-	   		$fld->type = $rs->fields[1];
-	   		$fld->max_length = $rs->fields[2];
-			$fld->scale = $rs->fields[3];
-			if ($rs->fields[1] == 'NUMBER' && $rs->fields[3] == 0) {
+	   		$fld->name = $rs->rs[0];
+	   		$fld->type = $rs->rs[1];
+	   		$fld->max_length = $rs->rs[2];
+			$fld->scale = $rs->rs[3];
+			if ($rs->rs[1] == 'NUMBER' && $rs->rs[3] == 0) {
 				$fld->type ='INT';
-	     		$fld->max_length = $rs->fields[4];
+	     		$fld->max_length = $rs->rs[4];
 	    	}	
-		   	$fld->not_null = (strncmp($rs->fields[5], 'NOT',3) === 0);
+		   	$fld->not_null = (strncmp($rs->rs[5], 'NOT',3) === 0);
 			$fld->binary = (strpos($fld->type,'BLOB') !== false);
 			$fld->default_value = $rs->fields[6];
 			

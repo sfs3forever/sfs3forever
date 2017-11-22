@@ -119,10 +119,10 @@ $stud_select = $grid1->get_grid_str($stud_id,$upstr,$downstr); // 顯示畫面
 $query = "select subject_id,subject_name,subject_kind from score_subject ";
 $res = $CONN->Execute($query);
 while(!$res->EOF) {
-	if ($res->fields[2] == 'scope')
-		$score_arr[$res->fields[0]] = $res->fields[1];
+	if ($res->rs[2] == 'scope')
+		$score_arr[$res->rs[0]] = $res->rs[1];
 	else
-		$subject_arr[$res->fields[0]] = $res->fields[1];
+		$subject_arr[$res->rs[0]] = $res->rs[1];
 		
 	$res->MoveNext();
 }

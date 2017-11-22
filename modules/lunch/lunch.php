@@ -78,7 +78,7 @@ $sqlstr= "SELECT DISTINCT pDesign FROM lunchtb $filter";
 $rs = $CONN->Execute($sqlstr);
 $DESIGN=array();
 while(!$rs->EOF) {
-	$DESIGN[]=$rs->fields[0];
+	$DESIGN[]=$rs->rs[0];
 	$rs->MoveNext();
 }
 

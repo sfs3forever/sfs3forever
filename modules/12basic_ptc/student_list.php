@@ -85,7 +85,7 @@ if($_POST['act']=='撤除') {
 	$recordSet=$CONN->Execute($stud_select) or user_error("讀取失敗！<br>$stud_select",256);
 	$sn_list='';
 	while(! $recordSet->EOF) {
-		$sn_list.=$recordSet->fields[0].",";
+		$sn_list.=$recordSet->rs[0].",";
 		$recordSet->MoveNext();
 	}
 	$sn_list=substr($sn_list,0,-1);

@@ -70,13 +70,13 @@ if ($act=="開始檢查" || $del) {
 					$ss_id_str=substr($ss_id_arr[$oy][$os][$oyn][$ocn],0,-1);
 					$query_del="select count(seme_year_seme) from stud_seme_score where seme_year_seme='$osys' and student_sn in ($all_sn) and ss_id not in ($ss_id_str)";
 					$res_del=$CONN->Execute($query_del);
-					if ($res_del->fields[0]>0) {
+					if ($res_del->rs[0]>0) {
 						$err=1;
-						echo "<table><tr><td bgcolor=yellow>".$oy."學年度第".$os."學期".$class_year[$oyn].$ocn."班有".$res_del->fields[0]."筆多餘資料</td></tr>";
+						echo "<table><tr><td bgcolor=yellow>".$oy."學年度第".$os."學期".$class_year[$oyn].$ocn."班有".$res_del->rs[0]."筆多餘資料</td></tr>";
 					    $query_del1="select ss_id,student_sn,ss_score,ss_score_memo from stud_seme_score where seme_year_seme='$osys' and student_sn in ($all_sn) and ss_id not in ($ss_id_str)";
 					    $res_del1=$CONN->Execute($query_del1);
 				        while(!$res_del1->EOF){
-						echo "<tr><td>課程代碼:".$res_del1->fields[0]."學生流水號:".$res_del1->fields[1]." ".$res_del1->fields[3]."</td></tr>";
+						echo "<tr><td>課程代碼:".$res_del1->rs[0]."學生流水號:".$res_del1->rs[1]." ".$res_del1->rs[3]."</td></tr>";
 					    $res_del1->MoveNext();
 						}	
 						echo "</table>";
@@ -108,13 +108,13 @@ if ($act=="開始檢查" || $del) {
 			$ss_id_str=substr($ss_id_arr[$oy][$os][$oyn][$ocn],0,-1);
 			$query_del="select count(seme_year_seme),seme_year_seme,ss_id,student_sn,ss_score from stud_seme_score where seme_year_seme='$osys' and student_sn in ($all_sn) and ss_id not in ($ss_id_str)";
 			$res_del=$CONN->Execute($query_del);
-			if ($res_del->fields[0]>0) {
+			if ($res_del->rs[0]>0) {
 				$err=1;
-				echo "<table><tr><td bgcolor=yellow>".$oy."學年度第".$os."學期".$class_year[$oyn].$ocn."班有".$res_del->fields[0]."筆多餘資料</td></tr>";
+				echo "<table><tr><td bgcolor=yellow>".$oy."學年度第".$os."學期".$class_year[$oyn].$ocn."班有".$res_del->rs[0]."筆多餘資料</td></tr>";
 			    $query_del1="select ss_id,student_sn,ss_score,ss_score_memo from stud_seme_score where seme_year_seme='$osys' and student_sn in ($all_sn) and ss_id not in ($ss_id_str)";
 				$res_del1=$CONN->Execute($query_del1);
 				while(!$res_del1->EOF){
-				echo "<tr><td>課程代碼:".$res_del1->fields[0]."學生流水號:".$res_del1->fields[1]." ".$res_del1->fields[3]."</td></tr>";
+				echo "<tr><td>課程代碼:".$res_del1->rs[0]."學生流水號:".$res_del1->rs[1]." ".$res_del1->rs[3]."</td></tr>";
 				$res_del1->MoveNext();
 				}	
 				echo "</table>";		

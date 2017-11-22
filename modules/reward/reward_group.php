@@ -319,7 +319,7 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 		$oo_path=($reward_kind>0)?"good":"bad";
 		$query_more="select count(reward_id) from reward where dep_id='$reward_id'";
 		$res_more=$CONN->Execute($query_more);
-		$dep=$res_more->fields[0];
+		$dep=$res_more->rs[0];
 		$url_more="<a href='$_SERVER['SCRIPT_NAME']?sel_year=$sel_year&sel_seme=$sel_seme&sel_week=$sel_week";
 		$stud_table="";
 		if ($sel_dep==$reward_id) {

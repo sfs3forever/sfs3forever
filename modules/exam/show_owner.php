@@ -20,18 +20,18 @@ if($e_kind_id == '')
 $e_kind_id=intval($e_kind_id);
 $query = "select substring(class_id,5,3)as cc from exam_kind where e_kind_id='$e_kind_id'";
 $result = $CONN->Execute($query);
-$cc = $result->fields[0];
+$cc = $result->rs[0];
 //取得該班學生學號、姓名
 $query = "select stud_id,stud_name,curr_class_num from stud_base where curr_class_num like'$cc%' and stud_base.stud_study_cond=0 order by curr_class_num";
 $result = $CONN->Execute($query) ;
 //echo $query;
 $temp_stud = "<select name=stud_id onchange=\"document.chgform.submit()\">\n";
 while (!$result->EOF){ 
-	$sitnum = substr($result->fields[2],-2);
-	if ($stud_id == $result->fields[0])		
-		$temp_stud .= "<option value=\"".$result->fields[0]."\" selected>$sitnum--".$result->fields[1]."</option>\n";
+	$sitnum = substr($result->rs[2],-2);
+	if ($stud_id == $result->rs[0])		
+		$temp_stud .= "<option value=\"".$result->rs[0]."\" selected>$sitnum--".$result->rs[1]."</option>\n";
 	else
-		$temp_stud .= "<option value=\"".$result->fields[0]."\">$sitnum--".$result->fields[1]."</option>\n";
+		$temp_stud .= "<option value=\"".$result->rs[0]."\">$sitnum--".$result->rs[1]."</option>\n";
 	$result->MoveNext();
 }
 $temp_stud .= "</select>";

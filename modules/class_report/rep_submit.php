@@ -105,7 +105,7 @@ if ($_POST['act']=="SUBMIT_NORMAL") {
 
 		$query="select max(freq) from $nor_score where class_subj='$class_subj' and stage='$curr_sort' and enable='1'";
 		$res=$CONN->Execute($query);
-		$next_freq=$res->fields[0]+1;						//第幾次
+		$next_freq=$res->rs[0]+1;						//第幾次
 		$weighted=1;														//加權
 		foreach ($STUD as $V) {
 			$student_sn=$V['student_sn'];	
@@ -316,7 +316,7 @@ if ($print=="1") {
 		//計算目前應在第幾階段 (sendmit = 0 表示已送至教務處成績)
 		$query ="select max(test_sort) as mm from $score_semester where student_sn in ($all_sn) and ss_id='$ss_id' and sendmit='0' and test_sort<254";
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
-		$mm = $res->fields[0]+1;
+		$mm = $res->rs[0]+1;
 		if ($curr_sort =='')	$curr_sort = $mm;
 		if ($curr_sort>$performance_test_times)	$curr_sort = $performance_test_times;
 			
@@ -391,7 +391,7 @@ if($yorn=='n' && $curr_sort != 255 ){
 	$query = "select count(*) from $score_semester where student_sn in ($all_sn) and ss_id='$ss_id' and test_sort='$curr_sort' and sendmit='0'";
 }
 $res= $CONN->Execute($query);
-$is_send = $res->fields[0];
+$is_send = $res->rs[0];
 
 //取得班級及科目名稱
 $full_class_name = $course_arr[$teacher_course];
@@ -451,7 +451,7 @@ if ($_POST['teacher_course']) {
 		  if ($all_sn) $all_sn=substr($all_sn,0,-1);
 			$query = "select count(*) from $score_semester where student_sn in ($all_sn) and ss_id='$ss_id' and test_sort='".$_POST['curr_sort']."' and test_kind='定期評量' and sendmit='0'";
 			$res= $CONN->Execute($query) or die("SQL錯誤, query=".$query);
-			$is_send = $res->fields[0];
+			$is_send = $res->rs[0];
 			
 		if ($is_send==0 and $REP_SETUP['locked']==0) {		
 		?>

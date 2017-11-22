@@ -59,7 +59,7 @@ function seme_score2($student_sn,$ss_id,$sel_year="",$sel_seme=""){
 	if ($res->EOF)
 		return -1;
 	else
-		return $res->fields[0];
+		return $res->rs[0];
 }
 
 //轉換成績甲乙丙丁為結果

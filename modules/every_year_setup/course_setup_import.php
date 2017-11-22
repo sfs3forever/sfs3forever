@@ -48,7 +48,7 @@ switch ($_POST['act']) {
 			//統計匯入班級
 			$query="select count(class_id) from tmp_score_course";
 			$res=$CONN->Execute($query);
-			$smarty->assign("enable_class",$res->fields[0]);
+			$smarty->assign("enable_class",$res->rs[0]);
 		break;
 	case "清除匯入資料":
 		$delete_sql="drop table tmp_score_course";
@@ -217,7 +217,7 @@ switch ($_POST['act']) {
 		$query="select count(os_id),os_id from tmp_score_course where class_year='".$_POST['c_year']."' group by os_id";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$so_data[$res->fields['os_id']]=$res->fields[0];
+			$so_data[$res->fields['os_id']]=$res->rs[0];
 			$res->MoveNext();
 		}
 		$smarty->assign("so_data",$so_data);
@@ -225,7 +225,7 @@ switch ($_POST['act']) {
 		$query="select count(ss_id),ss_id from tmp_score_course where class_year='".$_POST['c_year']."' group by ss_id";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$sm_data[$res->fields['ss_id']]=$res->fields[0];
+			$sm_data[$res->fields['ss_id']]=$res->rs[0];
 			$res->MoveNext();
 		}
 		$smarty->assign("sm_data",$sm_data);
@@ -239,13 +239,13 @@ switch ($_POST['act']) {
 		}
 		$query="select count(os_id) from tmp_score_course where ss_id='0'";
 		$res=$CONN->Execute($query);
-		$unmappings['sector']=$res->fields[0];
+		$unmappings['sector']=$res->rs[0];
 		$smarty->assign("unmappings",$unmappings);
 		//統計各年級節次
 		$query="select class_year,count(os_id) from tmp_score_course group by class_year";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$snum[$res->fields['class_year']]=$res->fields[1];
+			$snum[$res->fields['class_year']]=$res->rs[1];
 			$res->MoveNext();
 		}
 		$smarty->assign("snum",$snum);
@@ -282,7 +282,7 @@ switch ($_POST['act']) {
 			if (in_array($res->fields['ss_id'],$ss_id_arr[$id])) {
 				$query2="select course_id from score_course where year='$sel_year' and semester='$sel_seme' and class_year='".$res->fields['class_year']."' and class_name='".$res->fields['class_name']."' and day='".$res->fields['day']."' and sector='".$res->fields['sector']."'";
 				$res2=$CONN->Execute($query2);
-				$course_id=$res2->fields[0];
+				$course_id=$res2->rs[0];
 				if ($course_id)
 					$query="update score_course set teacher_sn='".$res->fields['teacher_sn']."',ss_id='".$res->fields['ss_id']."',c_kind='".$res->fields['c_kind']."' where course_id='$course_id'";
 				else
@@ -471,11 +471,11 @@ if ($ifile=="") {
 	if (is_object($res)) $data[s][2]=$res->RecordCount();
 	$query="select count(os_id) from tmp_score_course";
 	$res=$CONN->Execute($query);
-	if (is_object($res)) $data[ss][0]=$res->fields[0];
+	if (is_object($res)) $data[ss][0]=$res->rs[0];
 	$query="select count(os_id) from tmp_score_course where ss_id<>'0' and teacher_sn <>'0'";
 	$res=$CONN->Execute($query);
 	if (is_object($res)) {
-		$data[ss][1]=$res->fields[0];
+		$data[ss][1]=$res->rs[0];
 		$data[ss][2]=$data[ss][0]-$data[ss][1];
 	}
 }

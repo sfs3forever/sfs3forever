@@ -220,7 +220,7 @@ if (!$trans || ($trans && (!$des_subject || !($stage||$spec_test_arr[$des_subjec
 								$teach_id=$teach_id_arr[$rs->fields[teacher_sn]];
 								$sql="select max(freq) from $score_semester where teach_id='$teach_id' and class_subj='$class_subj' and stage='$stage'and enable='1'";
 								$rs=$CONN->Execute($sql);
-								$freq=$rs->fields[0]+1;
+								$freq=$rs->rs[0]+1;
 							}
 							$old_subj=$class_subj;
 							$sql="insert into $score_semester (teach_id,stud_sn,class_subj,stage,test_name,test_score,weighted,enable,freq) values ('$teach_id','$student_sn','$class_subj','$stage','$test_name','$score','1','1','$freq')";

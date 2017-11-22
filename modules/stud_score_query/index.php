@@ -21,7 +21,7 @@ $seme_year_seme=sprintf("%03d",$sel_year).$sel_seme;
 $class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,$c_year,substr($stud_data[curr_class_num],-4,2));
 $query="select days from seme_course_date where seme_year_seme='$seme_year_seme' and class_year='$c_year'";
 $res=$CONN->Execute($query) or die($query);
-$TOTAL_DAYS=$res->fields[0];
+$TOTAL_DAYS=$res->rs[0];
 
 //取得考試樣板編號
 $exam_setup=&get_all_setup("",$sel_year,$sel_seme,$c_year);

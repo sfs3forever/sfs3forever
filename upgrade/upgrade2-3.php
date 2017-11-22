@@ -271,7 +271,7 @@ while(!$res->EOF) {
 	if ($teach_id<>'') {
 		$query = "select teacher_sn from teacher_base where teach_id='$teach_id'";
 		$res2 = $CONN->Execute($query) or trigger_error("SQL 錯誤<br>$query",E_USER_ERROR);
-		$teacher_sn = $res2->fields[0];
+		$teacher_sn = $res2->rs[0];
 		$CONN->Execute("INSERT INTO pro_check_new VALUES ('', 1, '教師',$teacher_sn, '$is_admin')") or trigger_error("處室新增錯誤",E_USER_ERROR);
 	}
 

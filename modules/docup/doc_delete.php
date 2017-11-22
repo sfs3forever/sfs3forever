@@ -14,7 +14,7 @@ if (! checkid($_SERVER[SCRIPT_FILENAME],1)) { //非管理者
 	if($_SESSION[session_tea_sn] !=""){
 		$query = "select post_office from teacher_post where teach_id='$_SESSION[session_tea_sn]' ";
 		$res = $CONN->Execute($query);
-		$post_office = $res->fields[0];
+		$post_office = $res->rs[0];
 	}
 	//------------------------
 	//檢查修改權
@@ -48,7 +48,7 @@ if ($_POST[key] == "確定刪除"){
 	$CONN->Execute($sql_delete);
 	$query = "select count(docup_id) as cc from docup where docup_p_id='$_POST[docup_p_id]'";
 	$result = $CONN->Execute($query)or die ($query);
-	$query = "update docup_p set docup_p_count = ".$result->fields[0]." where docup_p_id='$_POST[docup_p_id]'";
+	$query = "update docup_p set docup_p_count = ".$result->rs[0]." where docup_p_id='$_POST[docup_p_id]'";
 	$CONN->Execute($query)or die ($query);
 	$alias = $filePath."/".$_SESSION[session_log_id]."_".$_POST[docup_id]."_".$_POST[docup_store];  
 	if (file_exists($alias))

@@ -283,7 +283,7 @@ function board_checksort($chk) {
    global $CONN;
    $sql="select board_is_sort from jboard_kind where bk_id='$chk'";
    $res=$CONN->Execute($sql);
-   $board_is_sort=$res->fields[0];
+   $board_is_sort=$res->rs[0];
    
    return $board_is_sort;
 }

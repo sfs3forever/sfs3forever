@@ -9,7 +9,7 @@ if(!$CONN){
 	//檢查輔導訪談記錄表interview欄位是否有資料
 	$SQL="select count(*) from stud_seme_talk where length(interview)=0";
 	$rs=$CONN->Execute($SQL);
-	if($rs->fields[0]) {
+	if($rs->rs[0]) {
 		//取得教師teach_id與name對照
 		$teacher_array=array();
         $sql_select = "select teach_id,name from teacher_base";

@@ -120,7 +120,7 @@ function import($userdata,$userdata_name,$userdata_size){
 			//檢查該師的身分證是否已存於teacher_base，若無則新增，若無則更新
 			$sql="select count(*) from teacher_base where teach_person_id='$teach_person_id' ";						
 			$rs=$CONN->Execute($sql) or trigger_error("$sql",256);
-			$ether_live=$rs->fields[0];
+			$ether_live=$rs->rs[0];
 			if($ether_live>0){//存在，更新
 				//teach_id,和login_pass不更新
 				 //name='$name',sex='$sex',age='$age',birthday='$birthday',birth_place='$birth_place',marriage='$marriage',address='$address',home_phone='$home_phone',cell_phone='$cell_phone',office_home='$office_home',teach_condition='$teach_condition',teach_memo='$teach_memo',teach_edu_kind='$teach_edu_kind',teach_edu_abroad='$teach_edu_abroad',teach_sub_kind='$teach_sub_kind',teach_check_kind='$teach_check_kind',teach_check_word='$teach_check_word',teach_is_cripple='$teach_is_cripple',update_time='$update_time',update_id='$update_id'
@@ -140,7 +140,7 @@ function import($userdata,$userdata_name,$userdata_size){
 			$teacher_sn=$rs3->fields['teacher_sn'];
 			$sql4="select count(*) from teacher_post where teacher_sn='$teacher_sn' ";
 			$rs4=$CONN->Execute($sql4) or trigger_error("$sql4",256);
-			$ether_live2=$rs4->fields[0];
+			$ether_live2=$rs4->rs[0];
 			if($ether_live2>0){//存在，更新
 				//class_num（任教班級）不更新				
 				$sql5="update teacher_post set post_kind='$post_kind',post_office='$post_office',post_level='$post_level',official_level='$official_level',post_class='$post_class',post_num='$post_num',bywork_num='$bywork_num',salay='$salay',appoint_date='$appoint_date',arrive_date='$arrive_date',approve_date='$approve_date',approve_number='$approve_number',teach_title_id='$teach_title_id',update_time='$update_time',update_id='$update_id'  where teacher_sn='$teacher_sn' ";

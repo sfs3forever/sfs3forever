@@ -18,7 +18,7 @@ if(!checkid(substr($_SERVER[$PHP_SELF],1))){
 
 $query = "select class_id from exam_kind where e_kind_id = '$_SESSION[session_e_kind_id]'";
 $result = $CONN->Execute($query);
-$class_id = $result->fields[0];
+$class_id = $result->rs[0];
 $temp_clasee = substr($class_id,4); //取得年級班級
 $query = "select a.stud_id,a.stud_num,a.stud_pass,a.stud_sit_num ,b.stud_name from exam_stud_data a ,stud_base b where b.stud_study_cond= 0 and a.stud_id = b.stud_id and b.curr_class_num like '$temp_clasee%' order by a.stud_num";
 

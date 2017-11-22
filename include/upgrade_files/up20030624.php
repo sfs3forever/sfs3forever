@@ -14,7 +14,7 @@ $res = $CONN->Execute($query);
 	$query = "select stud_id,student_sn from stud_base ";
 	$res = $CONN->Execute($query);
 	while(!$res->EOF){
-		$query = "update stud_seme set student_sn='".$res->fields[1]."' where stud_id='".$res->fields[0]."'";
+		$query = "update stud_seme set student_sn='".$res->rs[1]."' where stud_id='".$res->rs[0]."'";
 		$CONN->Execute($query);
 		$res->MoveNext();
 	}

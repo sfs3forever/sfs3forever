@@ -60,8 +60,8 @@ $class_select= $sel->get_select();
 $query = "select substring(class_id,1,4)as cc from exam_kind group by cc";
 $result = $CONN->Execute($query) or trigger_error("SQL 錯誤",E_USER_ERROR);
 while(!$result->EOF){
-	$temp_name = substr($result->fields[0],0,3)."學年第".substr($result->fields[0],-1)."學期";
-	$curr_class_select_arr[$result->fields[0]] = $temp_name;
+	$temp_name = substr($result->rs[0],0,3)."學年第".substr($result->rs[0],-1)."學期";
+	$curr_class_select_arr[$result->rs[0]] = $temp_name;
 	$result->MoveNext();
 }
 

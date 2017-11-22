@@ -292,7 +292,7 @@ if ($year_name && $stage) {
 				$rs=$CONN->Execute($sql);
 				if ($rs->recordcount() > 0) {
 					while (!$rs->EOF) {
-						$inputs[$me][$rs->fields["ss_id"]][$rs->fields["test_kind"]][$rs->fields["sendmit"]]=$rs->fields[0];
+						$inputs[$me][$rs->fields["ss_id"]][$rs->fields["test_kind"]][$rs->fields["sendmit"]]=$rs->rs[0];
 						$rs->MoveNext();
 					}
 				}
@@ -300,7 +300,7 @@ if ($year_name && $stage) {
 				$rs=$CONN->Execute($sql);
 				if ($rs->recordcount() > 0) {
 					while (!$rs->EOF) {
-						$chks[$me][$rs->fields["ss_id"]][$rs->fields["test_kind"]]=$rs->fields[0];
+						$chks[$me][$rs->fields["ss_id"]][$rs->fields["test_kind"]]=$rs->rs[0];
 						$rs->MoveNext();
 					}
 				}

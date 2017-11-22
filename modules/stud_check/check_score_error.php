@@ -31,7 +31,7 @@ while(!$res->EOF){
 	if ($temp_arr[$seme_year_seme][$ss_id]<>1){
 			$query = "select count(*) from stud_seme_score where seme_year_seme='$seme_year_seme' and ss_id='$ss_id'";
 			$res2 = $CONN->Execute($query);
-			$cc = $res2->fields[0];
+			$cc = $res2->rs[0];
 			$temp_str .= "檢查出第 $seme_year_seme 學期錯誤科目代號 -- $ss_id 為錯誤資料,共有 $cc 筆資料,是否刪除? <a href=\"$_SERVER[PHP_SELF]?sel=delete&seme_year_seme=$seme_year_seme&ss_id=$ss_id\">刪除錯誤資料</a><BR>";
 			
 	}

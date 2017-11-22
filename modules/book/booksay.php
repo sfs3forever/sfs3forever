@@ -7,6 +7,6 @@ include "header.php";
 $sel = intval($_REQUEST['sel']);
 $query = "select bs_con from book_say where bs_id=$sel";
 $res=$CONN->Execute($query);
-echo $res->fields[0];
+echo $res->rs[0];
 include "footer.php";
 ?>

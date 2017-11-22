@@ -785,7 +785,7 @@ function section_table($sel_year,$sel_seme){
 	}
 	$query = "select MAX(sections) from score_setup where year = '$sel_year' and semester='$sel_seme'";
 	$res=$CONN->Execute($query);
-	$max_sector=$res->fields[0];
+	$max_sector=$res->rs[0];
 	for ($i=1;$i<=$max_sector;$i++) {
 		if ($section_table[$i][0]=="") {
 			$section_table[$i][0]=" ";

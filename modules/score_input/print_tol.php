@@ -202,7 +202,7 @@ if($year_name && $stage){
 			//檢查是否有設班級課程
 		$sql="SELECT count(*) FROM score_ss WHERE enable='1' and class_id='$class_id' ";
 		$rs=$CONN->Execute($sql) or trigger_error($sql,256);
-		$where_class_id=($rs->fields[0])?" and class_id='$class_id'":" and class_id=''";
+		$where_class_id=($rs->rs[0])?" and class_id='$class_id'":" and class_id=''";
         //該年級的共通設定
         if($stage==255)
 		$sql="select scope_id,subject_id,ss_id,rate,print from score_ss where year='$sel_year' and semester='$sel_seme' and class_year='$c_year' and enable='1' and need_exam='1' $where_class_id order by sort,sub_sort";

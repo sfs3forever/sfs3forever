@@ -25,7 +25,7 @@ if ($_POST['copy_to_cur'])
 	//檢驗本學期是否已有資料
 	$query="select count(*) from score_nor_chk_item where year='".curr_year()."' and seme='".curr_seme()."'";
 	$res=$CONN->Execute($query);
-	if($res->fields[0]) echo "<script language=\"Javascript\"> alert (\"本學期已經有設定了，系統禁止您進行複製！\")</script>";	
+	if($res->rs[0]) echo "<script language=\"Javascript\"> alert (\"本學期已經有設定了，系統禁止您進行複製！\")</script>";	
 	 else {
 		//取得列示學期資料
 		$query="select * from score_nor_chk_item where year='$sel_year' and seme='$sel_seme'";	
@@ -49,8 +49,8 @@ $smarty->assign("current",$current);
 //統計本學期記錄筆數
 $query="select count(*) from stud_seme_score_nor_chk where seme_year_seme='".$_POST['year_seme']."'";
 $res=$CONN->Execute($query);
-if ($res->fields[0]>0) {
-	$smarty->assign("msg_str","<font color=\"red\">本學期已有".$res->fields[0]."筆記錄存在，想修改或調整項目必須先刪除所有已存在資料。</font>");
+if ($res->rs[0]>0) {
+	$smarty->assign("msg_str","<font color=\"red\">本學期已有".$res->rs[0]."筆記錄存在，想修改或調整項目必須先刪除所有已存在資料。</font>");
 } else {
 	if ($_POST['default']) {
 		while(list($i,$v)=each($item_arr[$_POST['df_item']])) {

@@ -28,7 +28,7 @@ if (!is_file($up_file_name) or $_reUpgrade){
 
 		$year = 100;  // 100學年前的資料
 		while(!$res->EOF){
-			$query = "update grad_stud  set  student_sn=".$res->fields[0]." where stud_id='".$res->fields[1]."' and stud_grad_year <= ".$year;
+			$query = "update grad_stud  set  student_sn=".$res->rs[0]." where stud_id='".$res->rs[1]."' and stud_grad_year <= ".$year;
 			$CONN->Execute($query) or trigger_error("SQL 語法錯誤<BR>$query", E_USER_ERROR);
 			$res->MoveNext();
 		}

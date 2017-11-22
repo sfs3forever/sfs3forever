@@ -93,12 +93,12 @@ $year_seme_menu="<select name='$col_name' OnChange='this.form.submit();'>$show_y
 
 $query="select count(stud_id) from stud_absent where year='$sel_year' and semester='$sel_seme'";
 $res=$CONN->Execute($query);
-$abs_nums=$res->fields[0];
+$abs_nums=$res->rs[0];
 
 //if ($IS_JHORES==6) {
 	$query="select count(stud_id) from reward where reward_year_seme='".$sel_year.$sel_seme."'";
 	$res=$CONN->Execute($query);
-	$rew_nums=$res->fields[0];
+	$rew_nums=$res->rs[0];
 	$rew_msg="獎懲記錄共有 <font color='#ff0000'>$rew_nums</font> 筆<br>";
 //}
 

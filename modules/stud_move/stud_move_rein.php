@@ -102,7 +102,7 @@ switch ($_REQUEST[do_key]) {
         $temp_class = intval($temp_arr[2]) . $temp_arr[3];
         $query = "select max(seme_num) from stud_seme where seme_year_seme='$seme_year_seme' and seme_class='$temp_class'";
         $res = $CONN->Execute($query) or die($query);
-        $new_site_num = $res->fields[0] + 1;
+        $new_site_num = $res->rs[0] + 1;
         $temp_class_num = intval($temp_arr[2]) . $temp_arr[3] . sprintf("%02d", $new_site_num);
         $query = "update stud_base set curr_class_num='$temp_class_num',stud_study_cond='0' where student_sn='$_POST[student_sn]'";
         $CONN->Execute($query) or die($query);

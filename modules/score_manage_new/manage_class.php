@@ -215,10 +215,10 @@ $sql="SELECT distinct class_id FROM score_ss WHERE year={$sel_year} AND semester
 $rs=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
 $class_menu="<select name='class_id' onchange='this.form.submit();'><option>選擇班級</option>";
 while(!$rs->EOF) {
-	$sleected=($rs->fields[0] == $class_id )?'selected':'';
-	$cn=$CONN->Execute("SELECT c_year,c_name FROM school_class WHERE class_id='{$rs->fields[0]}'") or user_error("讀取失敗！<br>$sql",256);
-	$class_name="{$class_year[$cn->fields[0]]}{$cn->fields[1]}班";
-	$class_menu.="<option value='{$rs->fields[0]}' $sleected>$class_name</option>";
+	$sleected=($rs->rs[0] == $class_id )?'selected':'';
+	$cn=$CONN->Execute("SELECT c_year,c_name FROM school_class WHERE class_id='{$rs->rs[0]}'") or user_error("讀取失敗！<br>$sql",256);
+	$class_name="{$class_year[$cn->rs[0]]}{$cn->rs[1]}班";
+	$class_menu.="<option value='{$rs->rs[0]}' $sleected>$class_name</option>";
 	$rs->MoveNext();
 }
 $class_menu.="</select>";
@@ -321,7 +321,7 @@ echo "</pre>";
 				$rs=$CONN->Execute($sql);
 				if ($rs->recordcount() > 0) {
 					while (!$rs->EOF) {
-						$inputs[$me][$rs->fields["ss_id"]][$rs->fields["test_kind"]][$rs->fields["sendmit"]]=$rs->fields[0];
+						$inputs[$me][$rs->fields["ss_id"]][$rs->fields["test_kind"]][$rs->fields["sendmit"]]=$rs->rs[0];
 						$rs->MoveNext();
 					}
 				}
@@ -329,7 +329,7 @@ echo "</pre>";
 				$rs=$CONN->Execute($sql);
 				if ($rs->recordcount() > 0) {
 					while (!$rs->EOF) {
-						$chks[$me][$rs->fields["ss_id"]][$rs->fields["test_kind"]]=$rs->fields[0];
+						$chks[$me][$rs->fields["ss_id"]][$rs->fields["test_kind"]]=$rs->rs[0];
 						$rs->MoveNext();
 					}
 				}

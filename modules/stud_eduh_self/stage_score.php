@@ -71,7 +71,7 @@ if($stage_teacher){
 	$query="select teacher_sn,name from teacher_base";
 	$res=$CONN->Execute($query) or die('SQL錯誤<br>'.$query);
 	while(!$res->EOF){
-		$teacher_arr[$res->fields[0]]=$res->fields[1];
+		$teacher_arr[$res->rs[0]]=$res->rs[1];
 		$res->MoveNext();
 	}
 }

@@ -47,7 +47,7 @@ PRIMARY KEY ( `bs_id` )
 $query = "select count(*) from book_say ";
 $res = $CONN->Execute($query) or trigger_error("查詢錯誤 $query",E_USER_ERROR);
 //加入預設值
-if($res->fields[0]==0){
+if($res->rs[0]==0){
 	$con=addslashes(read_file("b_begin.htm"));
 	$CONN->Execute("insert into book_say(bs_title,bs_con)values('緣起','$con')");
 	$con= addslashes(read_file("b_order.htm"));

@@ -156,7 +156,7 @@ function add_2_stud_seme($seme_year_seme,$stud_id,$seme_class,$seme_num,$c_name)
 	//取得 student_sn
 	$query = "select student_sn from stud_base where stud_id='$stud_id'";
 	$resss = $CONN->Execute($query);
-	$student_sn= $resss->fields[0];
+	$student_sn= $resss->rs[0];
 
 	$sql_insert = "replace into stud_seme
 	(seme_year_seme,stud_id,seme_class,seme_class_name,seme_num,student_sn)

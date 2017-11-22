@@ -15,7 +15,7 @@ function check_dob($ss_id,$group_name,$teacher_sn){
 	global $CONN;
 	$sql="select count(*) from elective_tea where ss_id='$ss_id' and group_name='$group_name' and teacher_sn='$teacher_sn' ";
 	$rs=$CONN->Execute($sql) or trigger_error($sql,256);
-	$c=$rs->fields[0];
+	$c=$rs->rs[0];
 	return $c;
 }
 
@@ -24,7 +24,7 @@ function check_dob_upd($e_group_id,$ss_id,$group_name,$teacher_sn){
 	global $CONN;
 	$sql="select group_id from elective_tea where ss_id='$ss_id' and group_name='$group_name' and teacher_sn='$teacher_sn' ";
 	$rs=$CONN->Execute($sql) or trigger_error($sql,256);
-	$group_id=$rs->fields[0];
+	$group_id=$rs->rs[0];
 	$c=$rs->RecordCount();
 	if($group_id==$e_group_id) $c--;
 	return $c;
@@ -35,7 +35,7 @@ function now_mem($group_id){
 	global $CONN;
 	$sql="select count(*) from elective_stu where group_id='$group_id' ";
 	$rs=$CONN->Execute($sql) or trigger_error($sql,256);
-	$c=$rs->fields[0];
+	$c=$rs->rs[0];
 	return $c;
 }
 

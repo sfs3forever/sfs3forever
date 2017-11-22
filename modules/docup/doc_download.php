@@ -41,7 +41,7 @@ $post_office = "";
 if($_SESSION[session_tea_sn] !=""){
 	$query = "select post_office from teacher_post where teach_id='$teach_id' ";
 	$result = $CONN->Execute($query);
-	$post_office = $result->fields[0];
+	$post_office = $result->rs[0];
 }
 
 

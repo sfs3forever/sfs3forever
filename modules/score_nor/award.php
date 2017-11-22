@@ -41,7 +41,7 @@ if ($_POST[year_name]) {
 	}
 	$query="select stud_study_year from stud_base where student_sn='".$sn[0]."'";
 	$res=$CONN->Execute($query);
-	$stud_study_year=$res->fields[0];
+	$stud_study_year=$res->rs[0];
 	$maxy=($IS_JHORES==0)?5:2;
 	for ($i=0;$i<=$maxy;$i++) {
 		for ($j=1;$j<=2;$j++) {

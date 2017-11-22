@@ -35,7 +35,7 @@ if($_POST['act']=='統計本年度所有開列學生品德服務的級分'){
 		//先抓取stud_id
 		$sql="SELECT stud_id FROM stud_base WHERE student_sn=$student_sn";
 		$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
-		$stud_id=$res->fields[0];
+		$stud_id=$res->rs[0];
 		//$my_abs_score=(array_key_exists($stud_id,$absence_array))?$absence_array[$stud_id]:$absence_score_array[0];
 		$my_abs_score=$absence_score_max;
 		$absence_sid=count_student_seme_abs($stud_id);		//抓取學生歷年學期出缺席次數

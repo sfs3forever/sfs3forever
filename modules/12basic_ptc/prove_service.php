@@ -63,9 +63,9 @@ while(!$res->EOF)
 		//抓取學生學期就讀班級
 		$stud_seme_arr=get_student_seme($student_sn);
 		
-		$seme_year_seme=$res->fields[0];
+		$seme_year_seme=$res->rs[0];
 		$seme_key=array_search($seme_year_seme,$stud_seme_arr);
-		$leader[$student_sn][$seme_key].=$res->fields[1].'社長<br>';
+		$leader[$student_sn][$seme_key].=$res->rs[1].'社長<br>';
 		$res->MoveNext();
 }
 
@@ -75,8 +75,8 @@ $sql="SELECT move_year_seme,student_sn FROM stud_move WHERE move_kind=2 AND stud
 $res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
 while(!$res->EOF)
 {
-		$move_year_seme=sprintf('%04d',$res->fields[0]);
-		$student_sn=$res->fields[1];	
+		$move_year_seme=sprintf('%04d',$res->rs[0]);
+		$student_sn=$res->rs[1];	
 
 		$move[$student_sn].=$move_year_seme.'轉入<br>';
 		$res->MoveNext();

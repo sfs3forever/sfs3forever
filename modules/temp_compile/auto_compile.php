@@ -172,19 +172,19 @@ if($_POST['Submit4']){
 		$query="select max(class_site),class_sort from new_stud where stud_study_year='$new_sel_year' and class_year='$class_year_b' and sure_study='1' and class_sort in ($class_str) group by class_sort order by class_sort";
 		$res=$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
-			$site_now[$res->fields[class_sort]]=$res->fields[0];
+			$site_now[$res->fields[class_sort]]=$res->rs[0];
 			$res->MoveNext();
 		}
 		$query="select count(newstud_sn) from new_stud where stud_study_year='$new_sel_year' and class_year='$class_year_b' and sure_study='1' and class_sort is null $oth_sel";
 		$res=$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
-		$oth_total=$res->fields[0];
+		$oth_total=$res->rs[0];
 		if ($oth_total==0) $sex_sel="";
 		//找出各班已編人數及已編班總人數
 		$num_pre_total=0;
 		$query="select count(newstud_sn),class_sort from new_stud where stud_study_year='$new_sel_year' and class_year='$class_year_b' and sure_study='1' and class_sort in ($class_str) $sex_sel group by class_sort";
 		$res=$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
-			$num_pre[$res->fields[class_sort]]=$res->fields[0];
+			$num_pre[$res->fields[class_sort]]=$res->rs[0];
 			$num_pre_total+=$num_pre[$res->fields[class_sort]];
 			$res->MoveNext();
 		}
@@ -586,7 +586,7 @@ switch($work){
 			$query="select stud_sex,count(stud_name) from new_stud where stud_study_year='$new_sel_year' and class_year='".intval($c[2])."' and class_sort='".intval($c[3])."' group by stud_sex";
 			$res_sex=$CONN->Execute($query);
 			while (!$res_sex->EOF) {
-				$sex[$cid][$res_sex->fields[stud_sex]]=intval($res_sex->fields[1]);
+				$sex[$cid][$res_sex->fields[stud_sex]]=intval($res_sex->rs[1]);
 				$res_sex->MoveNext();
 			}
 			echo "	<tr bgcolor='#FFF7CD'>
@@ -676,8 +676,8 @@ switch($work){
 		}
 		$query="select min(class_id),max(class_id) from school_class where year='$new_sel_year' and semester='1' and c_year='$class_year_b'";
 		$res=$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
-		$min_class=intval(substr($res->fields[0],-2,2));
-		$max_class=intval(substr($res->fields[1],-2,2));
+		$min_class=intval(substr($res->rs[0],-2,2));
+		$max_class=intval(substr($res->rs[1],-2,2));
 		$start_class=$_POST[start_class];
 		if (empty($start_class)) $start_class=$min_class;
 		$end_class=$_POST[end_class];

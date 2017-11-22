@@ -320,10 +320,10 @@ class ADODB_odbtp extends ADOConnection{
 		$retarr = array();
 		while (!$rs->EOF) {
 			//print_r($rs->fields);
-			if (strtoupper($rs->fields[2]) == $table) {
+			if (strtoupper($rs->rs[2]) == $table) {
 				$fld = new ADOFieldObject();
-				$fld->name = $rs->fields[3];
-				$fld->type = $rs->fields[5];
+				$fld->name = $rs->rs[3];
+				$fld->type = $rs->rs[5];
 				$fld->max_length = $rs->fields[6];
     			$fld->not_null = !empty($rs->fields[9]);
  				$fld->scale = $rs->fields[7];

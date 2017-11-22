@@ -392,9 +392,9 @@ See http://msdn.microsoft.com/library/default.asp?url=/library/en-us/odbc/htm/od
 			$rs->_fetch();
 			
 			while (!$rs->EOF) {
-				if ($table == strtoupper($rs->fields[2])) {
-					$q = $rs->fields[0];
-					$o = $rs->fields[1];
+				if ($table == strtoupper($rs->rs[2])) {
+					$q = $rs->rs[0];
+					$o = $rs->rs[1];
 					break;
 				}
 				$rs->MoveNext();
@@ -449,17 +449,17 @@ See http://msdn.microsoft.com/library/default.asp?url=/library/en-us/odbc/htm/od
 		*/
 		while (!$rs->EOF) {
 		//	adodb_pr($rs->fields);
-			if (strtoupper(trim($rs->fields[2])) == $table && (!$schema || strtoupper($rs->fields[1]) == $schema)) {
+			if (strtoupper(trim($rs->rs[2])) == $table && (!$schema || strtoupper($rs->rs[1]) == $schema)) {
 				$fld = new ADOFieldObject();
-				$fld->name = $rs->fields[3];
-				$fld->type = $this->ODBCTypes($rs->fields[4]);
+				$fld->name = $rs->rs[3];
+				$fld->type = $this->ODBCTypes($rs->rs[4]);
 				
 				// ref: http://msdn.microsoft.com/library/default.asp?url=/archive/en-us/dnaraccgen/html/msdn_odk.asp
 				// access uses precision to store length for char/varchar
 				if ($fld->type == 'C' or $fld->type == 'X') {
 					if ($this->databaseType == 'access') 
 						$fld->max_length = $rs->fields[6];
-					else if ($rs->fields[4] <= -95) // UNICODE
+					else if ($rs->rs[4] <= -95) // UNICODE
 						$fld->max_length = $rs->fields[7]/2;
 					else
 						$fld->max_length = $rs->fields[7];

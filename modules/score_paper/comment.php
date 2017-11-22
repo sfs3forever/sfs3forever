@@ -85,8 +85,8 @@ function get_kind($teacher_id=0){
 	
 	$comm_len=$CONN->Execute($sel);
 	while(!$comm_len->EOF){
-		$tmp_value=$comm_len->fields[0];
-		$tmp_name=$comm_len->fields[2];
+		$tmp_value=$comm_len->rs[0];
+		$tmp_name=$comm_len->rs[2];
 		$selected=($_REQUEST[comm_length]==$tmp_value)?"selected":"";
 		$len.="<option value='$tmp_value' $selected>$tmp_name</option>\n";
 		if($selected=='selected') $tmp_kind=$tmp_name;
@@ -110,8 +110,8 @@ function get_level($teacher_id=0){
 	
 	$comm_lev=$CONN->Execute($sel);
 	while(!$comm_lev->EOF){
-		$tmp_value=$comm_lev->fields[0];
-		$tmp_name=$comm_lev->fields[2];
+		$tmp_value=$comm_lev->rs[0];
+		$tmp_name=$comm_lev->rs[2];
 		$selected=($_REQUEST[level]==$tmp_value)?"selected":"";
 		$select.="<option value='$tmp_value' $selected>$tmp_name</option>\n";
 		if($selected=='selected') $tmp_level=$tmp_name;
@@ -135,9 +135,9 @@ function get_comm($teacher_id=0){
 	$sel="select serial,comm from comment where kind='$_REQUEST[comm_length]' and level='$_REQUEST[level]' and (teacher_id='0' or teacher_id='$teacher_id')";
 	$comm_text=$CONN->Execute($sel);
 	while(!$comm_text->EOF){
-		$c=(strlen($comm_text->fields[1])<=8)?$comm_text->fields[1]:substr($comm_text->fields[1],0,8)."...";
-		$ser=$comm_text->fields[0];
-		$selected=($_REQUEST[comment]==$comm_text->fields[0])?"selected":"";
+		$c=(strlen($comm_text->rs[1])<=8)?$comm_text->rs[1]:substr($comm_text->rs[1],0,8)."...";
+		$ser=$comm_text->rs[0];
+		$selected=($_REQUEST[comment]==$comm_text->rs[0])?"selected":"";
 		$comment_line.="<option value='$ser' $selected>$c</option>\n";
 		$comm_text->MoveNext();
 	}

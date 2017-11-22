@@ -10,7 +10,7 @@ sfs_check();
 $sql_select="SELECT DISTINCT LEFT(class_id,5) AS semester FROM cita_data ORDER BY semester DESC";
 $res=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
 while(!$res->EOF) {
-	$value=$res->fields[0];
+	$value=$res->rs[0];
 	$this_semester=str_replace("_", "學年度第",$value)."學期";
 	$semester_select.="<input type='checkbox' name='semester[]' value='$value'>$this_semester<br>";
 	$res->MoveNext();

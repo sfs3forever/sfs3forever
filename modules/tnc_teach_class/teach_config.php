@@ -46,11 +46,11 @@
 		for ($i=0;$i<strlen($DEFAULT_TEA_ID_NUMS);$i++)
 			$num *= 10;
 		
-		if ($result->fields[0] == '' ) {//第一筆			
+		if ($result->rs[0] == '' ) {//第一筆			
 			$temp = $num+ intval($DEFAULT_TEA_ID_NUMS);
 		}
 		else {
-			$temp = substr($result->fields[0],strlen($DEFAULT_TEA_ID_TITLE));
+			$temp = substr($result->rs[0],strlen($DEFAULT_TEA_ID_TITLE));
 			$temp = $num + intval($temp)+1;		
 		}
 		$temp =  $DEFAULT_TEA_ID_TITLE.substr($temp,1);	

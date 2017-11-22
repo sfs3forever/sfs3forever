@@ -221,7 +221,7 @@ if ($print=="1") {
 		//計算目前應在第幾階段 (sendmit = 0 表示已送至教務處成績)
 		$query ="select max(test_sort) as mm from $score_semester where student_sn in ($all_sn) and ss_id='$ss_id' and sendmit='0' and test_sort<254";
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
-		$mm = $res->fields[0]+1;
+		$mm = $res->rs[0]+1;
 		if ($curr_sort =='')	$curr_sort = $mm;
 		if ($curr_sort>$performance_test_times)	$curr_sort = $performance_test_times;
 			
@@ -296,7 +296,7 @@ if($yorn=='n' && $curr_sort != 255 ){
 	$query = "select count(*) from $score_semester where student_sn in ($all_sn) and ss_id='$ss_id' and test_sort='$curr_sort' and sendmit='0'";
 }
 $res= $CONN->Execute($query);
-$is_send = $res->fields[0];
+$is_send = $res->rs[0];
 
 //取得班級及科目名稱
 $full_class_name = $course_arr[$teacher_course];

@@ -635,7 +635,7 @@ function downlod_ar($student_sn="",$class_id="",$interface_sn="",$stu_num="",$se
 			$res=$CONN->Execute($query);
 			$i=0;
 			while(!$res->EOF) {
-				$sn_arr[$i]=$res->fields[0];
+				$sn_arr[$i]=$res->rs[0];
 				$i++;
 				$res->MoveNext();
 			}

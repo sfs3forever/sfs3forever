@@ -41,7 +41,7 @@ function get_ss_score_memo($class_id="",$stud_id="",$student_sn="",$ss_id=""){
 	$seme_year_seme = sprintf("%03d%d",$year,$seme);
 	$query = "select ss_score_memo from stud_seme_score where seme_year_seme='$seme_year_seme' and student_sn = $student_sn and ss_id =$ss_id ";
 	$res = $CONN->Execute($query) or trigger_error($query);
-	return $res->fields[0];
+	return $res->rs[0];
 }
 
 //規則口語化
@@ -78,7 +78,7 @@ function get_abs_v($class_id="",$stud_id="",$ss_id=""){
 
 	$sql_select = "select count(sasn) from stud_absent where stud_id='$stud_id' and class_id='$class_id' and (date>'$abs_sdate' and date<'$abs_edate') and absent_kind='事假' and (section != 'uf' and section != 'df')";
 	$recordSet = $CONN->Execute($sql_select);
-	$abs_times=$recordSet->fields[0];
+	$abs_times=$recordSet->rs[0];
 
 	return $abs_times;
 }
@@ -99,7 +99,7 @@ function get_abs_s($class_id="",$stud_id="",$ss_id=""){
 
 	$sql_select = "select count(sasn) from stud_absent where stud_id='$stud_id' and class_id='$class_id' and (date>'$abs_sdate' and date<'$abs_edate') and absent_kind='病假' and (section != 'uf' and section != 'df')";
 	$recordSet = $CONN->Execute($sql_select);
-	$abs_times=$recordSet->fields[0];
+	$abs_times=$recordSet->rs[0];
 
 	return $abs_times;
 }
@@ -120,7 +120,7 @@ function get_abs_c($class_id="",$stud_id="",$ss_id=""){
 
 	$sql_select = "select count(sasn) from stud_absent where stud_id='$stud_id' and class_id='$class_id' and (date>'$abs_sdate' and date<'$abs_edate') and absent_kind='曠課' and (section != 'uf' and section != 'df')";
 	$recordSet = $CONN->Execute($sql_select);
-	$abs_times=$recordSet->fields[0];
+	$abs_times=$recordSet->rs[0];
 
 	return $abs_times;
 }
@@ -141,7 +141,7 @@ function get_abs_f($class_id="",$stud_id="",$ss_id=""){
 
 	$sql_select = "select count(sasn) from stud_absent where stud_id='$stud_id' and class_id='$class_id' and (date>'$abs_sdate' and date<'$abs_edate') and (section = 'uf' or section = 'df')";
 	$recordSet = $CONN->Execute($sql_select);
-	$abs_times=$recordSet->fields[0];
+	$abs_times=$recordSet->rs[0];
 
 	return $abs_times;
 }
@@ -162,7 +162,7 @@ function get_abs_b($class_id="",$stud_id="",$ss_id=""){
 
 	$sql_select = "select count(sasn) from stud_absent where stud_id='$stud_id' and class_id='$class_id' and (date>'$abs_sdate' and date<'$abs_edate') and absent_kind='公假' and (section != 'uf' and section != 'df')";
 	$recordSet = $CONN->Execute($sql_select);
-	$abs_times=$recordSet->fields[0];
+	$abs_times=$recordSet->rs[0];
 
 	return $abs_times;
 }
@@ -183,7 +183,7 @@ function get_abs_o($class_id="",$stud_id="",$ss_id=""){
 
 	$sql_select = "select count(sasn) from stud_absent where stud_id='$stud_id' and class_id='$class_id' and (date>'$abs_sdate' and date<'$abs_edate')";
 	$recordSet = $CONN->Execute($sql_select);
-	$abs_times=$recordSet->fields[0];
+	$abs_times=$recordSet->rs[0];
 	$abs_v=get_abs_v($class_id,$stud_id,$ss_id);
 	$abs_s=get_abs_s($class_id,$stud_id,$ss_id);
 	$abs_c=get_abs_c($class_id,$stud_id,$ss_id);

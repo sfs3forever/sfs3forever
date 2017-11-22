@@ -379,7 +379,7 @@ if (!is_file($up_file_name)){
 	require dirname(__FILE__)."/upgrade_files/up".$dsstr.".php";
 	$query="select count(student_sn) from stud_seme_rew where student_sn=0";
 	$res=$CONN->Execute($query);
-	if ($res->fields[0]==0) {
+	if ($res->rs[0]==0) {
 		$fp = fopen ($up_file_name, "w");
 		fwrite($fp,$temp_str);
 		fclose ($fp);

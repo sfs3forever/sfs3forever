@@ -92,8 +92,8 @@ if ($chknext)
 		$res = $CONN->Execute($temp_sql) or die($temp_sql);
 	}
 
-		$stud_id = $res->fields[0];
-		$stud_name = $res->fields[1];
+		$stud_id = $res->rs[0];
+		$stud_name = $res->rs[1];
 
 
 ?> 

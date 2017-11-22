@@ -128,11 +128,11 @@ if ($_POST[chknext])
 	if ($stud_id =="" || $res->RecordCount()==0) {	
 		$temp_sql = "select a.stud_id,a.stud_name,a.student_sn from stud_base a,stud_seme b where a.student_sn=b.student_sn and a.stud_study_cond=0 and b.seme_year_seme='$c_curr_seme' and b.seme_class='$class_num' order by b.seme_num";
 		$res2 = $CONN->Execute($temp_sql) or die($temp_sql);
-		$stud_id = $res2->fields[0];
+		$stud_id = $res2->rs[0];
 	}
 
-$stud_name = $res->fields[1];
-$student_sn = $res->fields[2]; //by smallduh 2012/10/05
+$stud_name = $res->rs[1];
+$student_sn = $res->rs[2]; //by smallduh 2012/10/05
 	
 
 $sql_select = "select seme_year_seme,stud_id,sse_relation,sse_family_kind,sse_family_air,sse_farther,sse_mother,sse_live_state,sse_rich_state,sse_s1,sse_s2,sse_s3,sse_s4,sse_s5,sse_s6,sse_s7,sse_s8,sse_s9,sse_s10,sse_s11 from stud_seme_eduh where stud_id='$stud_id' and seme_year_seme='$sel_seme_year_seme'";

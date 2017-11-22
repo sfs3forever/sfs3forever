@@ -62,16 +62,16 @@ $stmt->close();
   	//$result = $CONN->Execute($query) or die($query);
   	
   	//新增學生作業檔
-  	//if ($result->fields[0] == 0) {
+  	//if ($result->rs[0] == 0) {
 		$curr_class_id=intval($curr_class_id);
   		$query = "select stud_id ,curr_class_num from stud_base where curr_class_num like '$curr_class_id%' ";
   		$result = $CONN->Execute($query) or die($query);
   		while (!$result->EOF) {
-			$stud_id = $result->fields[0];
+			$stud_id = $result->rs[0];
 			$query = "select stud_id from exam_stud_data where stud_id='$stud_id'";
 			$res = $CONN->Execute($query);
 			if ($res->EOF){
-	  			$stud_num = substr($result->fields[1],-2);
+	  			$stud_num = substr($result->rs[1],-2);
   				/*
 				$query = "insert into exam_stud_data (stud_id,stud_pass,stud_num) values ('$stud_id','$default_pass','$stud_num')";
   				$CONN->Execute($query) or die($query);
@@ -131,7 +131,7 @@ include "header.php";
 	$sql="select c_sort,c_name from school_class where year=$curr_year and semester=$curr_seme and c_year=$curr_class_id";
 	$result = $CONN->Execute($sql) or die($sql);
 	while(!$result->EOF){
-		$class_name_arr[$result->fields[0]] = $result->fields[1];
+		$class_name_arr[$result->rs[0]] = $result->rs[1];
 		$result->MoveNext();
 	}
 	$class_temp ="";

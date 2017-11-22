@@ -33,7 +33,7 @@ if($_POST['go']=='儲存紀錄'){
 			//檢查是否已有舊紀錄
 			$query="select sn from career_mystory where student_sn=$student_sn";
 			$res=$CONN->Execute($query) or die("SQL錯誤:$query");
-			$sn=$res->fields[0];
+			$sn=$res->rs[0];
 			if($sn) $query="update career_mystory set personality='$personality',interest='$interest',specialty='$specialty' where sn=$sn";
 				else $query="insert into career_mystory set student_sn=$student_sn,personality='$personality',interest='$interest',specialty='$specialty'";
 			$res=$CONN->Execute($query) or die("SQL錯誤:$query");	
@@ -48,7 +48,7 @@ if($_POST['go']=='儲存紀錄'){
 			//檢查是否已有舊紀錄
 			$query="select sn from career_mystory where student_sn=$student_sn";
 			$res=$CONN->Execute($query) or die("SQL錯誤:$query");
-			$sn=$res->fields[0];
+			$sn=$res->rs[0];
 			if($sn) $query="update career_mystory set occupation_suggestion='$occupation_suggestion',occupation_myown='$occupation_myown',occupation_others='$occupation_others',occupation_weight='$occupation_weight' where sn=$sn";
 				else $query="insert into career_mystory set student_sn=$student_sn,occupation_suggestion='$occupation_suggestion',occupation_myown='$occupation_myown',occupation_others='$occupation_others',occupation_weight='$occupation_weight'";
 			$res=$CONN->Execute($query) or die("SQL錯誤:$query");	

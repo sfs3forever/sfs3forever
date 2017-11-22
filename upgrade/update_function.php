@@ -251,20 +251,20 @@ function check_err_set($delkey=0) {
 		if (count($ap_array)>0){
 			reset($ap_array);
 			while (list ($key, $val) = each ($ap_array)){
-				if(substr($val,1) == $result->fields[0]){
+				if(substr($val,1) == $result->rs[0]){
 					$flag = 1;
 					break;
 				}
 			}
 		}
 		if (!$flag){ // 實體目錄和資料庫不符合
-			$query= "delete from pro_kind where pro_kind_id='".$result->fields[2]."'";
+			$query= "delete from pro_kind where pro_kind_id='".$result->rs[2]."'";
 			$CONN->Execute($query);
-			$query= "delete from  pro_check where pro_kind_id=".$result->fields[2]."'";
+			$query= "delete from  pro_check where pro_kind_id=".$result->rs[2]."'";
 			$CONN->Execute($query);
-			$query= "delete from pro_check_stu where pro_kind_id=".$result->fields[2]."'";
+			$query= "delete from pro_check_stu where pro_kind_id=".$result->rs[2]."'";
 			$CONN->Execute($query);
-			$err_path[]= $result->fields[0]."--".$result->fields[1];
+			$err_path[]= $result->rs[0]."--".$result->rs[1];
 			$i++;
 		}
 		$result->MoveNext();
@@ -278,8 +278,8 @@ function reset_pro($begin_p) {
 	$query = "select pro_kind_id,store_path from pro_kind where pro_parent ='$begin_p' ";
 	$res = $CONN->Execute($query) or die($query);
 	while (!$res->EOF) {
-		$temp_b = $res->fields[0];
-		$temp_store = $res->fields[1];
+		$temp_b = $res->rs[0];
+		$temp_store = $res->rs[1];
 		$query2 = "update pro_kind set pro_parent='$temp_b' where store_path like '$temp_store/%'";
 		$CONN->Execute($query2) or die ($query2);
 		//echo $query2."<BR>";
@@ -415,7 +415,7 @@ function up_teacher_sn($table_name,$teach_id='teach_id',$sn_name="teacher_sn") {
 	$query = "select teacher_sn,teach_id from teacher_base ";
 	$res = $CONN->Execute($query);
 	while(!$res->EOF){
-		$query = "update $table_name set $sn_name=".$res->fields[0]." where $teach_id='".$res->fields[1]."'";
+		$query = "update $table_name set $sn_name=".$res->rs[0]." where $teach_id='".$res->rs[1]."'";
 		$CONN->Execute($query) or trigger_error("SQL 語法錯誤<BR>$query", E_USER_ERROR);
 		$res->MoveNext();
 	}
@@ -430,7 +430,7 @@ function up_student_sn($table_name,$stud_id='stud_id',$sn_name="student_sn") {
 	$query = "select student_sn,stud_id from stud_base ";
 	$res = $CONN->Execute($query);
 	while(!$res->EOF){
-		$query = "update $table_name set $sn_name=".$res->fields[0]." where $stud_id='".$res->fields[1]."'";
+		$query = "update $table_name set $sn_name=".$res->rs[0]." where $stud_id='".$res->rs[1]."'";
 		$CONN->Execute($query) or trigger_error("SQL 語法錯誤<BR>$query", E_USER_ERROR);
 		$res->MoveNext();
 	}

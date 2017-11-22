@@ -169,7 +169,7 @@ function &list_sn($sel_year,$sel_seme,$class_id="",$mode="",$id=0,$act=""){
 		$res = $CONN->Execute($query);
 		while (!$res->EOF) {
 			$ss_id=$res->fields['ss_id'];
-			if ($sections[$ss_id]==0) $sections[$ss_id]=$res->fields[1];
+			if ($sections[$ss_id]==0) $sections[$ss_id]=$res->rs[1];
 			$res->MoveNext();
 		}
 	}

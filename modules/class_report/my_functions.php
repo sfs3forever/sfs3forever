@@ -59,7 +59,7 @@ function get_report($mode,$the_seme,$seme_class="",$page="") {
 		//已包含的成績筆數
 		$sql="select count(*) from class_report_test where report_sn='{$rec[$k]['sn']}'";
 		$res=$CONN->Execute($sql);
-		$test_num=$res->fields[0];
+		$test_num=$res->rs[0];
 		$rec[$k]['test_num']=$test_num; //成績數
 	 }
 	 

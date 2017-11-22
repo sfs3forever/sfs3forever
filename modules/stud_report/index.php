@@ -895,7 +895,7 @@ exit;
 		$query = "select left(seme_class,1) as aa,right(seme_class,2) as bb,seme_class_name,seme_num from stud_seme where stud_id='$stud_id' and seme_year_seme like '%1' and  seme_year_seme>='$min_year_seme' and seme_year_seme<='$max_year_seme' order by seme_year_seme   ";
 		$res = $CONN->Execute($query) or die($query);
 		while(!$res->EOF) {
-		  $temp_arr["stud_seme_".$res->fields[0]] = Num2CNum($res->fields[0]).$res->fields[2].$res->fields[3]."號";
+		  $temp_arr["stud_seme_".$res->rs[0]] = Num2CNum($res->rs[0]).$res->rs[2].$res->rs[3]."號";
 		  $res->MoveNext();
 	}
 		//學籍異動
@@ -1132,7 +1132,7 @@ if($class_id<>'') {
 				if($stud_study_cond==5) {
 					$query = "select grad_kind from grad_stud where student_sn=$student_sn";
 					$rt = $CONN->Execute($query) or die ($query);
-					if($rt->fields[0]==2) $move_kind= "<font color='#cccccc'>修業</font>";				
+					if($rt->rs[0]==2) $move_kind= "<font color='#cccccc'>修業</font>";				
 				}
 				
 			if ($ii %2 ==0)

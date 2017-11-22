@@ -72,7 +72,7 @@ echo $INFO;
  	$sql="select name from teacher_base where teach_id='".$user['teach_id']."' and teach_condition=0";
  	$res=$CONN->Execute($sql);
  	if ($res->RecordCount()==0) continue;
- 	$name=$res->fields[0];
+ 	$name=$res->rs[0];
  ?>
  <tr bgcolor="<?php echo $bgcolor;?>" style="font-size:10pt">
  	<td align="center"><?php echo $user['teach_id'];?></td>

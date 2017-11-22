@@ -30,8 +30,8 @@ if ($_POST[do_key]=='上傳圖檔') {
 $query = "select teach_title_id ,title_name  from teacher_title where teach_title_id='$_GET[teach_title_id]'";
 
 $res = $CONN->Execute($query) or trigger_error("SQL錯誤",E_USER_ERROR);
-$teach_title_id = $res->fields[0];
-$title_name = $res->fields[1];
+$teach_title_id = $res->rs[0];
+$title_name = $res->rs[1];
 
 ?>
 <html>

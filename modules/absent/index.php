@@ -375,11 +375,11 @@ function &signForm($sel_year,$sel_seme,$class_id,$thisOne=array(),$One=""){
                 $DAY=get_school_days($seme_year_seme,substr($seme_class,0,1)); //取得本學期上學日
                 $sql="select max(b.seme_num) from stud_base a,stud_seme b where b.seme_year_seme='$seme_year_seme' and b.seme_class='$seme_class' and a.student_sn=b.student_sn and b.seme_num < '$seme_num' and a.stud_study_cond='0'";
                 $rs=$CONN->Execute($sql);
-                $pre_num=$rs->fields[0];
+                $pre_num=$rs->rs[0];
                 $pre_str=(empty($pre_num))?"<font color='#aaaaaa'>▲</font><br>":"<a href='$_SERVER['SCRIPT_NAME']?year_name=$year_name&class_name=$class_name&class_num=$pre_num&this_date=$year-$month-$day'>▲</a><br>";
                 $sql="select min(b.seme_num) from stud_base a,stud_seme b where b.seme_year_seme='$seme_year_seme' and b.seme_class='$seme_class' and a.student_sn=b.student_sn and b.seme_num > '$seme_num' and a.stud_study_cond='0'";
                 $rs=$CONN->Execute($sql);
-                $next_num=$rs->fields[0];
+                $next_num=$rs->rs[0];
                 $next_str=(empty($next_num))?"<br><font color='#aaaaaa'>▼</font>":"<br><a href='$_SERVER['SCRIPT_NAME']?year_name=$year_name&class_name=$class_name&class_num=$next_num&this_date=$year-$month-$day'>▼</a>";
                 $fday=mktime(0,0,0,$month,$day,$year);
                 $dd=getdate($fday);

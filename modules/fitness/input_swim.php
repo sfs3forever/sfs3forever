@@ -32,8 +32,8 @@ if($_POST['go']=='匯入'){
 				$query="select student_sn,seme_class from stud_seme where stud_id='$stud_id' and seme_year_seme='$seme_year_seme'";
 				$res=$CONN->Execute($query) or die("SQL錯誤:$query");
 				if($res->recordcount()){
-					$target_sn=$res->fields[0];
-					$target_class=$res->fields[1];
+					$target_sn=$res->rs[0];
+					$target_class=$res->rs[1];
 					if($target_class==$seme_class){
 						//刪除舊紀錄
 						$query="delete from fitness_data where student_sn='$target_sn' and c_curr_seme='$seme_year_seme'";
@@ -200,7 +200,7 @@ if ($class_num) {
 		$stud_arr[]=$v[student_sn];
 		$query="select count(student_sn) from fitness_data_swim where student_sn='".$v[student_sn]."' and c_curr_seme='$seme_year_seme'";
 		$res=$CONN->Execute($query);
-		if ($res->fields[0]==0) {
+		if ($res->rs[0]==0) {
 			$CONN->Execute("insert into fitness_data_swim (c_curr_seme,student_sn,teach_swim) values ('$seme_year_seme','".$v[student_sn]."','2')");
 		}
 	}

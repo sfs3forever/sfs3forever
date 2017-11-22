@@ -2342,14 +2342,14 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 			$retarr = array();
 			while (!$rs->EOF) { //print_r($rs->fields);
 				$fld = new ADOFieldObject();
-				$fld->name = $rs->fields[0];
-				$fld->type = $rs->fields[1];
-				if (isset($rs->fields[3]) && $rs->fields[3]) {
-					if ($rs->fields[3]>0) $fld->max_length = $rs->fields[3];
-					$fld->scale = $rs->fields[4];
+				$fld->name = $rs->rs[0];
+				$fld->type = $rs->rs[1];
+				if (isset($rs->rs[3]) && $rs->rs[3]) {
+					if ($rs->rs[3]>0) $fld->max_length = $rs->rs[3];
+					$fld->scale = $rs->rs[4];
 					if ($fld->scale>0) $fld->max_length += 1;
 				} else
-					$fld->max_length = $rs->fields[2];
+					$fld->max_length = $rs->rs[2];
 					
 				if ($ADODB_FETCH_MODE == ADODB_FETCH_NUM) $retarr[] = $fld;	
 				else $retarr[strtoupper($fld->name)] = $fld;
@@ -2992,14 +2992,14 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 			$false = false;
 			return $false;
 		}
-		$numIndex = isset($this->fields[0]);
+		$numIndex = isset($this->rs[0]);
 		$results = array();
 		
 		if (!$first2cols && ($cols > 2 || $force_array)) {
 			if ($ADODB_EXTENSION) {
 				if ($numIndex) {
 					while (!$this->EOF) {
-						$results[trim($this->fields[0])] = array_slice($this->fields, 1);
+						$results[trim($this->rs[0])] = array_slice($this->fields, 1);
 						adodb_movenext($this);
 					}
 				} else {
@@ -3019,7 +3019,7 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 			} else {
 				if ($numIndex) {
 					while (!$this->EOF) {
-						$results[trim($this->fields[0])] = array_slice($this->fields, 1);
+						$results[trim($this->rs[0])] = array_slice($this->fields, 1);
 						$this->MoveNext();
 					}
 				} else {
@@ -3043,7 +3043,7 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 				if ($numIndex) {
 					while (!$this->EOF) {
 					// some bug in mssql PHP 4.02 -- doesn't handle references properly so we FORCE creating a new string
-						$results[trim(($this->fields[0]))] = $this->fields[1];
+						$results[trim(($this->rs[0]))] = $this->rs[1];
 						adodb_movenext($this);
 					}
 				} else {
@@ -3059,7 +3059,7 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 				if ($numIndex) {
 					while (!$this->EOF) {
 					// some bug in mssql PHP 4.02 -- doesn't handle references properly so we FORCE creating a new string
-						$results[trim(($this->fields[0]))] = $this->fields[1];
+						$results[trim(($this->rs[0]))] = $this->rs[1];
 						$this->MoveNext();
 					}
 				} else {

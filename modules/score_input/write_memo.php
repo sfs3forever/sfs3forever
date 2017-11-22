@@ -192,14 +192,14 @@ $all_sn=substr($all_sn,0,-1);
 $stud_numbers=$i;
 $query = "select count(sss_id) as cc from stud_seme_score where student_sn in ($all_sn) and ss_id='$ss_id' and seme_year_seme='$seme_year_seme'";
 $res = $CONN->Execute($query);
-if ($res->fields[0]<$stud_numbers) {
+if ($res->rs[0]<$stud_numbers) {
 	if(strstr ($teacher_course, 'g'))
 		$query = "select student_sn from elective_stu where group_id='{$group_arr[0]}' ";
 	else
 		$query = "select student_sn from stud_base where curr_class_num like '$class_id%' and stud_study_cond=0";
 	$res = $CONN->Execute($query);
 	while (!$res->EOF){
-		$sst = $res->fields[0];
+		$sst = $res->rs[0];
 		$sql="select student_sn from stud_seme_score where student_sn='$sst' and ss_id='$ss_id' and seme_year_seme='$seme_year_seme'";
 		$rs=$CONN->Execute($sql);
 		if (empty($rs->fields[student_sn])) {

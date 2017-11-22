@@ -10,8 +10,8 @@ $year_seme_select="<select name='year_seme' onchange=\"this.form.target='$_PHP[S
 $query = "select year,semester from school_class where enable=1 group by year,semester order by year desc,semester ";
 $result = $CONN->Execute($query) or trigger_error("SQL語法錯誤： $query", E_USER_ERROR);
 while(!$result->EOF){ 
-	$key=sprintf("%03d%d",$result->fields[0],$result->fields[1]);
-	$value=$result->fields[0]."學年第".$result->fields[1]."學期";
+	$key=sprintf("%03d%d",$result->rs[0],$result->rs[1]);
+	$value=$result->rs[0]."學年第".$result->rs[1]."學期";
 	$selected=($year_seme==$key)?' selected':'';
 	$year_seme_select.="<option value='$key'$selected>$value</option>";	
 	$result->MoveNext();

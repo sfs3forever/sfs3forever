@@ -59,7 +59,7 @@ switch($do_key) {
 		$temp = curr_year() - $tempyear ;
 		$query1 = "select max(curr_class_num) as mm from stud_base where curr_class_num like '$demote_class%' ";
 		$result1 = $CONN->Execute($query1) or die($query1) ;
-		$max_site_num=$result1->fields[0];
+		$max_site_num=$result1->rs[0];
 		$new_site_num=sprintf("%02d",substr($max_site_num,-2)+1);
 		$num = $demote_class.$new_site_num;
 		//echo $demote_class;
@@ -95,7 +95,7 @@ switch($do_key) {
 		
 		$query1 = "select max(curr_class_num) as mm from stud_base where curr_class_num like '$stud_class%' ";
 		$result1 = $CONN->Execute($query1) or die($query1) ;
-		$max_site_num=$result1->fields[0];
+		$max_site_num=$result1->rs[0];
 		$new_site_num=sprintf("%02d",substr($max_site_num,-2)+1);
 		$num = $stud_class.$new_site_num;
 		//$sql_update = "update stud_base set stud_study_year ='$tempyear',curr_class_num = '$num' where stud_id='$stud_id'";

@@ -29,7 +29,7 @@ if ($_POST[year_name]) {
 	}
 	$query="select stud_study_year from stud_base where student_sn='".$sn[0]."'";
 	$res=$CONN->Execute($query);
-	$stud_study_year=$res->fields[0];
+	$stud_study_year=$res->rs[0];
 	for ($i=0;$i<=2;$i++) {
 		for ($j=1;$j<=2;$j++) {
 			$last_seme=sprintf("%03d",$stud_study_year+$i).$j;

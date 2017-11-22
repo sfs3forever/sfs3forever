@@ -813,7 +813,7 @@ exit;
 		$query = "select left(seme_class,1) as aa,right(seme_class,2) as bb,seme_class_name,seme_num from stud_seme where stud_id='$stud_id'and seme_year_seme like '%1' order by seme_year_seme   ";
 		$res = $CONN->Execute($query) or die($query);
 		while(!$res->EOF) {
-		  $temp_arr["stud_seme_".$res->fields[0]] = Num2CNum($res->fields[0]).$res->fields[2].$res->fields[3]."號";
+		  $temp_arr["stud_seme_".$res->rs[0]] = Num2CNum($res->rs[0]).$res->rs[2].$res->rs[3]."號";
 		  $res->MoveNext();
 	}
 		//學籍異動

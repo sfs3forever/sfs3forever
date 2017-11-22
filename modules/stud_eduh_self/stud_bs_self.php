@@ -68,12 +68,12 @@ switch ($_POST['do_key']){
 		$query = "select bs_id from stud_brother_sister where student_sn='$student_sn' order by bs_id";
 		$result = $CONN->Execute($query);
 		while(!$result->EOF) {		
-			$bs_id = "bs_id_".$result->fields[0];			
-			$bs_name = "bs_name_".$result->fields[0];
-			$bs_calling = "bs_calling_".$result->fields[0];
-			$bs_gradu = "bs_gradu_".$result->fields[0];
-			$bs_birthyear = "bs_birthyear_".$result->fields[0];
-			$sql_update = "update stud_brother_sister set bs_name='".$_POST[$bs_name]."',bs_calling='".$_POST[$bs_calling]."',bs_gradu='".$_POST[$bs_gradu]."',bs_birthyear='".$_POST[$bs_birthyear]."' where bs_id=".$result->fields[0];
+			$bs_id = "bs_id_".$result->rs[0];			
+			$bs_name = "bs_name_".$result->rs[0];
+			$bs_calling = "bs_calling_".$result->rs[0];
+			$bs_gradu = "bs_gradu_".$result->rs[0];
+			$bs_birthyear = "bs_birthyear_".$result->rs[0];
+			$sql_update = "update stud_brother_sister set bs_name='".$_POST[$bs_name]."',bs_calling='".$_POST[$bs_calling]."',bs_gradu='".$_POST[$bs_gradu]."',bs_birthyear='".$_POST[$bs_birthyear]."' where bs_id=".$result->rs[0];
 			$CONN->Execute ($sql_update) or die ($sql_update);
 			$result->MoveNext();
 		}

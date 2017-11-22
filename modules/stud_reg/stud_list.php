@@ -56,7 +56,7 @@ switch ($do_key){
 			//如果有改的話，看看是否新學號有沒有人用了
 			$sql_a="select count(*) from stud_base where stud_id='$new_stud_id' ";
 			$rs_a=$CONN->Execute($sql_a) or trigger_error($sql_a,256);
-			$cou=$rs_a->fields[0];
+			$cou=$rs_a->rs[0];
 			if($cou>0){
 				//該學號已被使用了，因此不進行學號的修改，並於頁面上告知
 				$msg="<font color='red'>$new_stud_id 已經有人使用，因此不進行學號的修改！！</font><br>";
@@ -231,7 +231,7 @@ if ($chknext)
 	if ($student_sn =="" || $res->RecordCount()==0) {	
 		$temp_sql = "select a.student_sn from stud_base a,stud_seme b where a.student_sn=b.student_sn and (a.stud_study_cond=0 or a.stud_study_cond=5) and  b.seme_year_seme='$c_curr_seme' and b.seme_class='$seme_class' order by b.seme_num ";
 		$res2 = $CONN->Execute($temp_sql) or die($temp_sql);
-		$student_sn = $res2->fields[0];
+		$student_sn = $res2->rs[0];
 	}
 
 //欄位資訊

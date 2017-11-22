@@ -482,7 +482,7 @@ function seme_score_input($sel_year,$sel_seme,$class_id,$ss_id) {
 		$query = "select student_sn from stud_seme_score where ss_id='$ss_id' and seme_year_seme='$seme_year_seme' and student_sn in($temp_sn)";
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
-			$temp_sn_seme_arr.="'".$res->fields[0]."',";
+			$temp_sn_seme_arr.="'".$res->rs[0]."',";
 			$res->MoveNext();
 		}
 		if ($temp_sn_seme_arr) $temp_sn_seme_arr=substr($temp_sn_seme_arr,0,-1);

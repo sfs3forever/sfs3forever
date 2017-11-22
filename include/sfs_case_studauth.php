@@ -139,7 +139,7 @@ if ($result->RecordCount()>0 ) {
 		$use_last_date = $result->fields["p_end_date"];
 		$query = "select name from teacher_base where teacher_sn='$teach_id'";
 		$result3 = $CONN->Execute($query);
-		$teacher_name= $result3->fields[0];
+		$teacher_name= $result3->rs[0];
 		($i++ % 2 ==0)?	$bgcolor = "#CCFFFF":$bgcolor = "#CCCCFF";
 		echo"<TR bgcolor=$bgcolor >
 			<TD>$stud_id</TD>

@@ -40,7 +40,7 @@ if ($_GET[do_key] == "delete"){
 		$query = "delete from $_GET[table] where score_id<>$min_v and class_id='$class_id' and student_sn='$student_sn' and ss_id='$ss_id' and test_kind='$test_kind' and test_sort='$test_sort' ";
 	//	echo $query;exit;
 		if($CONN->Execute($query))
-			$del_str .= ",".$res->fields[0];
+			$del_str .= ",".$res->rs[0];
 		$res->MoveNext();
 
 	}
@@ -97,7 +97,7 @@ $res->MoveFirst();
 $table_all_arr = array();
 while(!$res->EOF){
 
-	$table=$res->fields[0];
+	$table=$res->rs[0];
 	if ($table=='score_semester_move') continue;
 	$table_all_arr[] = $table;
 	$query = "select count(*) as cc,class_id,student_sn,ss_id,test_kind,test_sort from $table group by class_id,student_sn,ss_id,test_kind,test_sort having cc >1";

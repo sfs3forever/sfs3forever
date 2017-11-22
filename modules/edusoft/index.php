@@ -9,7 +9,7 @@ include "header.php";
 if(!isset($_REQUEST[tapem_id])){ //預設值
 	$query = "select min(tapem_id) from $mastertable  ";
 	$result = $CONN->Execute($query);
-	$_REQUEST[tapem_id] = $result->fields[0];
+	$_REQUEST[tapem_id] = $result->rs[0];
 }
 
 ///mysqli	

@@ -261,7 +261,7 @@ if($item_id)
 			//抓取監護人姓名
 			$sql="select guardian_name from stud_domicile where student_sn=$student_sn";
 			$rs=$CONN->Execute($sql)  or user_error("讀取失敗！<br>$sql",256);
-			$$guardian_name=$rs->fields[0];			
+			$$guardian_name=$rs->rs[0];			
 			
 			if($recordSet->currentrow() % $col==1) $studentdata.="<tr>";
 			if($dollars) {

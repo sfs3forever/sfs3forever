@@ -202,7 +202,7 @@ else{
 	$query = "select count(*) from $score_edu_adm where class_id='$class_id' and ss_id='$ss_id' and test_sort='$curr_sort'  and enable=1";
 	$res= $CONN->Execute($query);
 //	echo $query;
-	$is_send = $res->fields[0];	
+	$is_send = $res->rs[0];	
 /*********************************************************************************/
 $test_sort_name=array("","第一階段","第二階段","第三階段","第四階段","第五階段","第六階段","第七階段","第八階段","第九階段","第十階段",255 => "全學期");
 if(($teacher_course)&&($curr_sort)&&($curr_sort!=255)&&($curr_sort!=254)){

@@ -36,13 +36,13 @@ if($_POST['go']=='匯入'){
 		if($stud_id){
 			$query="select student_sn from stud_seme where stud_id='$stud_id' and seme_year_seme='$seme_year_seme'";		
 			$res=$CONN->Execute($query) or die("SQL錯誤:$query");
-			$target_sn=$res->fields[0];
+			$target_sn=$res->rs[0];
 			if($target_sn){
 				$content=serialize($realdata);
 				//檢查是否已有舊紀錄
 				$query="select sn from career_test where student_sn='$target_sn' and id='$menu'";
 				$res=$CONN->Execute($query) or die("SQL錯誤:$query");
-				$sn=$res->fields[0];
+				$sn=$res->rs[0];
 				if($sn) $query="update career_test set id='$menu',content='$content' where sn=$sn";
 				else $query="insert into career_test set student_sn='$target_sn',id='$menu',content='$content'";
 				$res=$CONN->Execute($query) or die("SQL錯誤:$query");

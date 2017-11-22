@@ -487,7 +487,7 @@ function &list_ss($sel_year,$sel_seme,$Cyear="",$class_id="",$mode="",$id=0,$add
 	if ($_REQUEST[sel_year]<>''){
 		$query = "select count(*) from score_semester_$_REQUEST[sel_year]_$_REQUEST[sel_seme] where class_id='$_REQUEST[class_id]'";
 		$res_con = $CONN->Execute($query);// or trigger_error("系統錯誤! $query",E_USER_ERROR);
-		if ($res_con->fields[0]>0){
+		if ($res_con->rs[0]>0){
 			$limit_memo = "<font color='red'>該班先前已設定為年級課程,並已有成績紀錄,不允許重設為班級課程</font>";
 			$button='';	
 		}

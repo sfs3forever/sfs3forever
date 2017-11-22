@@ -87,7 +87,7 @@ if($_POST['act']=='儲存並重新設定報名身分'){
 // 				$field_name=$kind_field_mirror[$native_language_sort];
 // 				$sql="SELECT $field_name FROM stud_subkind WHERE student_sn=$student_sn and type_id='$native_id'";
 // 				$rs=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
-// 				if($native_language_text==$rs->fields[0]) $kind_id='2'; else $kind_id='1';										
+// 				if($native_language_text==$rs->rs[0]) $kind_id='2'; else $kind_id='1';										
 // 			}
 
 			//寫入資料表

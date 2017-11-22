@@ -28,7 +28,7 @@ function SFS_TEXT($t_kind) {
 		$result = $CONN->Execute("select d_id,t_name from sfs_text where t_kind='$t_kind' and p_id > 0 order by t_order_id") or trigger_error("sfs_text 資訊表已更動! <a href=\"$SFS_PATH_HTML"."upgrade/change_sfs_text.php\">按此執行更新資料表</a>",E_USER_ERROR);
 	}
 	while (!$result->EOF){
-		$res[$result->fields[0]] = $result->fields[1];
+		$res[$result->rs[0]] = $result->rs[1];
 		$result->MoveNext();
 	}
 	 return $res;

@@ -135,10 +135,10 @@ $res = $CONN->Execute($query) or die($res->ErrorMsg());
 if ($stud_id =="" || $res->RecordCount()==0) {
 	$temp_sql = "select a.stud_id,a.stud_name from stud_base a,stud_seme b where a.stud_id=b.stud_id  and  (a.stud_study_cond=0 or a.stud_study_cond=5) and  b.seme_year_seme='$c_curr_seme' and b.seme_class='$seme_class' order by b.seme_num ";
 		$res = $CONN->Execute($temp_sql) or die($temp_sql);
-		$stud_id = $res->fields[0];
+		$stud_id = $res->rs[0];
 }
                                                                                                                     
-$stud_name = $res->fields[1];
+$stud_name = $res->rs[1];
 
 
 

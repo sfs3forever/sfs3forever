@@ -41,7 +41,7 @@ if ($_GET[do_key] == "delete"){
 		$query = "delete from stud_seme_score where sss_id<>$min_v and seme_year_seme='$seme_year_seme' and student_sn='$student_sn' and ss_id='$ss_id'  ";
 //		echo $query;exit;
 		if($CONN->Execute($query))
-			$del_str .= ",".$res->fields[0];
+			$del_str .= ",".$res->rs[0];
 		$res->MoveNext();
 
 	}

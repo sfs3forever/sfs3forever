@@ -64,7 +64,7 @@ if ($_POST[output_xml]) {
 		case '99':
 			$sql="select count(*) from stud_base where stud_study_cond=0 or stud_study_cond=15";
 			$res=$CONN->Execute($sql) or die($sql);
-			$total=$res->fields[0];
+			$total=$res->rs[0];
 			//計算要處理的人數
 			//$total = count($selected_student);
 			$sql="select class_id from school_class where year='{$year}' and semester='$seme' order by class_id";

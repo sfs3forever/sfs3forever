@@ -437,8 +437,8 @@ class ADODB_mysql extends ADOConnection {
 		$retarr = array();
 		while (!$rs->EOF){
 			$fld = new ADOFieldObject();
-			$fld->name = $rs->fields[0];
-			$type = $rs->fields[1];
+			$fld->name = $rs->rs[0];
+			$type = $rs->rs[1];
 			
 			// split type into type(length):
 			$fld->scale = null;
@@ -459,15 +459,15 @@ class ADODB_mysql extends ADOConnection {
 				$fld->type = $type;
 				$fld->max_length = -1;
 			}
-			$fld->not_null = ($rs->fields[2] != 'YES');
-			$fld->primary_key = ($rs->fields[3] == 'PRI');
-			$fld->auto_increment = (strpos($rs->fields[5], 'auto_increment') !== false);
+			$fld->not_null = ($rs->rs[2] != 'YES');
+			$fld->primary_key = ($rs->rs[3] == 'PRI');
+			$fld->auto_increment = (strpos($rs->rs[5], 'auto_increment') !== false);
 			$fld->binary = (strpos($type,'blob') !== false || strpos($type,'binary') !== false);
 			$fld->unsigned = (strpos($type,'unsigned') !== false);	
 			$fld->zerofill = (strpos($type,'zerofill') !== false);
 			
 			if (!$fld->binary) {
-				$d = $rs->fields[4];
+				$d = $rs->rs[4];
 				if ($d != '' && $d != 'NULL') {
 					$fld->has_default = true;
 					$fld->default_value = $d;

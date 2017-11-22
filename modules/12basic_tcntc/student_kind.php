@@ -66,9 +66,9 @@ if($stud_class)
 	//抓取既有身份對照表
 	$sql="SELECT kind_data,disability_data,free_data FROM 12basic_kind WHERE year_seme='$work_year_seme'";
 	$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
-	$kind_data=unserialize($res->fields[0]);
-	$disability_data=unserialize($res->fields[1]);
-	$free_data=unserialize($res->fields[2]);
+	$kind_data=unserialize($res->rs[0]);
+	$disability_data=unserialize($res->rs[1]);
+	$free_data=unserialize($res->rs[2]);
 
 	//取得指定學年已經開列的學生清單
 	$student_list_array=get_student_list($work_year);

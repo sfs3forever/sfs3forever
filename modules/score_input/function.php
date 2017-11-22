@@ -384,7 +384,7 @@ function select_class_sn($global_var){
 		." and score_kind='$kind_type' and score_sort='$kind_sort'";
 	$rs_select_class_sn=$CONN->Execute($tmp_str);
 	if($rs_select_class_sn){
-		$id=$rs_select_class_sn->fields[0];
+		$id=$rs_select_class_sn->rs[0];
 		return $id;
 	}
 	else{

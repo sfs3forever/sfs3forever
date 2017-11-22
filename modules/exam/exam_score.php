@@ -48,8 +48,8 @@ $sql_select .= " order by exam.exam_id  ";
 
 $result = $CONN->Execute ($sql_select) or die ($sql_select);
 while (!$result->EOF) {
-	$exam_array[0][]= $result->fields[0];
-	$exam_array[1][]= $result->fields[1];
+	$exam_array[0][]= $result->rs[0];
+	$exam_array[1][]= $result->rs[1];
 	$result->MoveNext();
 }
 
@@ -122,7 +122,7 @@ $result = $CONN->Execute($sql_select); //學生
 //echo $sql_select ;
 
 while (!$result->EOF) {	
-	$score_stud[$result->fields[0]] = $result->fields[1];	
+	$score_stud[$result->rs[0]] = $result->rs[1];	
 	$result->MoveNext();
 }
 

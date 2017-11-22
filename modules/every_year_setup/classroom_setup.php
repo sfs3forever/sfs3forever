@@ -186,7 +186,7 @@ function &list_room_table($sel_year,$sel_seme,$room_id="",$mode=""){
 	//取得考試設定中的最高節次
 	$query="select max(sections) from score_setup where year='$sel_year' and semester='$sel_seme'";
 	$res=$CONN->Execute($query);
-	$sections=$res->fields[0];
+	$sections=$res->rs[0];
 	if($sections==0) trigger_error("請先設定 $sel_year 學年 $sel_seme 學期 [成績設定]項目,再操作課表設定<br><a href=\"$SFS_PATH_HTML/modules/every_year_setup/score_setup.php\">進入設定</a>",E_USER_ERROR);
 
 	if(!empty($room_id)){
@@ -580,7 +580,7 @@ function my_teacher_array(){
 	$res=$CONN->Execute($query);
 	$temp_arr = array();
 	while(!$res->EOF){
-		$temp_arr[$res->fields[0]] = $res->fields[1];
+		$temp_arr[$res->rs[0]] = $res->rs[1];
 		$res->MoveNext();
 	}
 	return $temp_arr;

@@ -74,7 +74,7 @@ $stmt->close();
 		/*
 		$query = "select f_name from exam_stud where stud_id='$stud_id' and exam_id='$exam_id'";
 		$res = $CONN->Execute($query);
-		$f_name= $upload_path."e_".$exam_id."/".$stud_id."_".$res->fields[0];
+		$f_name= $upload_path."e_".$exam_id."/".$stud_id."_".$res->rs[0];
 		//echo $f_name;exit;
 		*/
          $exam_id=intval($exam_id);
@@ -283,9 +283,9 @@ if ($_SESSION[session_log_id] == $teach_id){
 	$query = "select stud_id,stud_name,curr_class_num from stud_base where curr_class_num like '$class_id_temp%' and stud_study_cond=0  order by curr_class_num ";
 	$result = $CONN->Execute($query) or die ($query);
 	while (!$result->EOF) {
-		$class_num = intval(substr($result->fields[2],-2));
-		if (!in_array ($result->fields[0], $stud_id_arr))
-		echo "<tr><td align=center>".$class_num." 號 -- ".$result->fields[1]."</td><td colspan=4>尚未完成</td></tr>";
+		$class_num = intval(substr($result->rs[2],-2));
+		if (!in_array ($result->rs[0], $stud_id_arr))
+		echo "<tr><td align=center>".$class_num." 號 -- ".$result->rs[1]."</td><td colspan=4>尚未完成</td></tr>";
 		$result->MoveNext();
 	}
 
