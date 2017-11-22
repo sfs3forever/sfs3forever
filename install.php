@@ -37,7 +37,18 @@ if(!chk_permit($cfg_file)){
 	<p>當然也可以用FTP軟體直接修改權限屬性成666，也很方便！</p>
 	</td></tr></table>
 	";
-}elseif(isset($_POST['installsfs']) && $_POST['installsfs']=='yes_do_it_now') {
+}elseif(isset($_POST['installsfs']) && $_POST['installsfs']=='yes_do_it_now') {	
+	$upload_path = $_POST['UPLOAD_PATH'];
+	if (!file_exists($upload_path)) {
+		echo"<script>alert('上傳路徑不存在，請建立!');history.go(-1);</script>";  
+		exit;
+	}
+
+	if(!is_writable($upload_path)){
+		echo"<script>alert('上傳路徑無寫入權限，請改權限666');history.go(-1);</script>";  
+		exit;
+	}
+
 	//開設資料庫
 	install_sfs_db($_POST['mysql_host'], $_POST['mysql_adm_user'], $_POST['mysql_adm_pass'],$_POST['mysql_db'],$_POST['mysql_user'],$_POST['mysql_pass']);
 	// 將設定寫入 /include/config.php 中
@@ -50,7 +61,7 @@ if(!chk_permit($cfg_file)){
 	$main=sfs_result($_GET['ud'],$_GET['uu'],$_GET['sfsurl']);
 }else{
 	require "./include/sfs_case_installform.php";
-	return;
+	exit;
 }
 
 ?>

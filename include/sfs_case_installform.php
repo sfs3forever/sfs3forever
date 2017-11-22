@@ -72,6 +72,10 @@ function CHECK() {
   var chkf=document.inst.mysql_db.value;
   if (chkf.length==0) { document.inst.mysql_db.focus(); alert("資料庫名稱不能空白"); return false; }
 
+  //check if upload directory exists
+  var chkf = document.inst.UPLOAD_PATH.value;
+  if (chkf.length==0) { document.inst.UPLOAD_PATH.focus(); alert("上傳目錄的絕對路徑不能空白"); return false; }
+
 }
 -->
 
