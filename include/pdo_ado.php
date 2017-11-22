@@ -313,7 +313,7 @@ class ADODOB_PDOStatement implements Iterator
 
   function FetchRow() {
     if($this->EOF) return false;
-    $rs = $this->fields;
+    $rs = array_values($this->fields);
     $this->MoveNext();
     return $rs;
   }
