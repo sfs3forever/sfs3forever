@@ -131,7 +131,7 @@ if ($_POST[key]=="更改密碼") {
 			 krsort($pass_array);			
 			 $mem_array=serialize($pass_array);			
 			 $query = "update teacher_base set mem_array='$mem_array',last_chpass_time='$last_chpass_time',login_pass ='".pass_operate($_POST[login_pass])."' , ldap_password='$ldap_password' where teacher_sn ='{$_SESSION['session_tea_sn']}' ";
-			 mysql_query($query,$conID);
+			 mysqli_query($conID, $query);
 			 echo "<tr><td class=title_mbody >密碼更改成功</td></tr>";
 			}
 			 $_SESSION['session_login_chk']=pass_check(trim($_POST[login_pass]),$_SESSION['session_log_id']);;
