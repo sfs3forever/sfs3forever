@@ -17,5 +17,5 @@ $query="CREATE TABLE if not exists class_comment_admin (
 	update_teacher_sn smallint(6) unsigned NOT NULL default '0',
 	sendmit enum('0','1') NOT NULL default '1',
 	PRIMARY KEY (ccm_id))";
-mysqli_query($CONN, $query);
+mysqli_query($conID, $query);
 ?>

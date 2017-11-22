@@ -146,7 +146,7 @@ mysqli_select_db($conID, $mysql_db);
 
 //ADODB 物件
 //require_once("$SFS_PATH/pnadodb/adodb.inc.php"); # load code common to ADODB
-//require_once("$SFS_PATH/include/sfs_case_ado.php"); # 函式庫
+require_once("$SFS_PATH/include/sfs_case_ado.php"); # 函式庫
 
 //$DB_TYPE = 'mysql';
 //$CONN = &ADONewConnection($DB_TYPE);  # create a connection

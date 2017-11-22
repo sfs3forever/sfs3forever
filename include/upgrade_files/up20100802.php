@@ -7,5 +7,5 @@ if(!$CONN){
         exit;
 }
 $query ="update sfs_text  set  t_name='歌唱' where  t_name='唱歌' and  t_kind='特殊才能'";
-$res = mysqli_query($CONN, $query);
+$res = mysqli_query($conID, $query);
 ?>

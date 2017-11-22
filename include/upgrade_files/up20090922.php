@@ -8,5 +8,5 @@ if(!$CONN){
 }
 
 $query="alter table `login_log_new` add `ip` varchar(15) NOT NULL default ''";
-mysqli_query($CONN, $query);
+mysqli_query($conID, $query);
 ?>

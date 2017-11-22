@@ -80,7 +80,7 @@ function get_sfs_path($curr_msn=""){
 		$SCRIPT_NAME=$_SERVER['SCRIPT_NAME'];
 		$SN=explode("/",$SCRIPT_NAME);
 		$m=getDBdata("",$SN[count($SN)-2]);
-		$curr_msn=$m['msn'];
+		if($m['msn'])	$curr_msn=$m['msn'];
 	}
 	$path="<a href='$SFS_PATH_HTML' accesskey='H'><img src='".$SFS_PATH_HTML."images/gohome.png' alt='' width='16' height='16' hspace='3' border='0' align='absmiddle'>學務管理系統首頁</a> / $MPath[$curr_msn]";
 	
@@ -130,7 +130,7 @@ function getDBdata($msn="",$dirname=""){
 	// init $theData
 	$sql_select="select * from sfs_module where $where";
 	$rs=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
-	if($rs->fields) return $rs->fields;
+	if($rs->rs) return $rs->rs;
 	
 	return array();
 }

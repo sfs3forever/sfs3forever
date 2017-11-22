@@ -34,7 +34,7 @@ switch ($do_key){
 	  	if ($teach_id != $old_teach_id) {
 			$sql_check_id="select teach_id from teacher_base where teach_id='$teach_id'";
 			$check_id=$CONN->Execute($sql_check_id);
-			$tt=$check_id->fields[teach_id];
+			$tt=$check_id->fields['teach_id'];
 			if($tt) trigger_error("該教師代號已經有人使用了！", E_USER_ERROR);
 			$head_teach_id=substr($teach_id,0,1);			
 			if(ereg ("([0-9]{1})", $head_teach_id, $regs)) trigger_error("該教師代號 $teach_id 不好！第一個字不允許數字", E_USER_ERROR);

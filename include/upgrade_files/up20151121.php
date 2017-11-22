@@ -10,7 +10,7 @@ if(!$CONN){
 //$tablename鞈?銵其?摮?撱箇?
 $tablename="sign_data";
 
-if(mysqli_num_rows(mysqli_query($CONN, "SHOW TABLES LIKE '$tablename'")) == 0) 
+if(mysqli_num_rows(mysqli_query($conID, "SHOW TABLES LIKE '$tablename'")) == 0) 
 { 
   $SQL="CREATE TABLE $tablename(
   id bigint(20) NOT NULL auto_increment,
