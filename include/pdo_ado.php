@@ -262,7 +262,8 @@ class ADODOB_PDOStatement implements Iterator
 	 * @var PDOStatement
 	 */
 	private $handle;
-	public $fields;
+  public $fields; //associative array
+  public $rs; //record set without column name
   private $row=0;	
   public $EOF=true;
 	
@@ -270,7 +271,10 @@ class ADODOB_PDOStatement implements Iterator
 	public function __construct($handle) { 		
 		$this->handle =& $handle;		
     $this->fields = $this->handle->fetch(PDO::FETCH_ASSOC);
-    if($this->fields) $this->EOF=false;
+    if($this->fields) {
+      $this->EOF=false;
+      $this->rs = array_values($this->fields);
+    }
 	}
 	
 	/* get record count */
@@ -280,7 +284,8 @@ class ADODOB_PDOStatement implements Iterator
 	  
 	function MoveNext() {
 		if (@$this->fields =& $this->handle->fetch(PDO::FETCH_ASSOC)) {
-			$this->row += 1;
+      $this->row += 1;
+      $this->rs = array_values($this->fields);
 			return $this->fields;
     } 
     $this->EOF=true;
