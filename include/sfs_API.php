@@ -99,10 +99,12 @@
 	$SPREADSHEET_PATH=$SFS_PATH."/Spreadsheet/";
 
 	//設定smarty物件
+	define('SMARTY_DIR', $INCLUDE_PATH.'libs/');
 	require_once ("libs/Smarty.class.php");
-	$smarty = new Smarty;
+	$smarty = new Smarty();
 	$smarty->compile_check = true;
 	$smarty->debugging = false;
+	$smarty->caching = false; 
 	set_upload_path("templates_c");
 	$smarty->compile_dir=$UPLOAD_PATH."templates_c";
 

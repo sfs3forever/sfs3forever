@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.is_trusted.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * determines if a resource is trusted or not
  *

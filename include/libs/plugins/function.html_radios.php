@@ -4,7 +4,8 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: function.html_radios.php 6117 2010-09-10 15:13:53Z brucelyc $
+
+
 /**
  * Smarty {html_radios} function plugin
  *

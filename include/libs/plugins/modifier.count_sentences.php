@@ -4,7 +4,8 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: modifier.count_sentences.php 6117 2010-09-10 15:13:53Z brucelyc $
+
+
 /**
  * Smarty count_sentences modifier plugin
  *

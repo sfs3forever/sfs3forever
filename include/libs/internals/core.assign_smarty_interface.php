@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.assign_smarty_interface.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * Smarty assign_smarty_interface core plugin
  *

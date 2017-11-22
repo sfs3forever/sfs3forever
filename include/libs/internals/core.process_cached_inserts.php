@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.process_cached_inserts.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * Replace cached inserts with the actual results
  *

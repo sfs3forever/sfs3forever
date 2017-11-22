@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.process_compiled_include.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * Replace nocache-tags by results of the corresponding non-cacheable
  * functions and return it

@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.write_cache_file.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * Prepend the cache information to the cache file
  * and write it

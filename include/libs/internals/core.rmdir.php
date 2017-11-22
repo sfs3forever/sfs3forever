@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.rmdir.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * delete a dir recursively (level=0 -> keep root)
  * WARNING: no tests, it will try to remove what you tell it!

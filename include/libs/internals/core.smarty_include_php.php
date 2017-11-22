@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.smarty_include_php.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * called for included php files within templates
  *

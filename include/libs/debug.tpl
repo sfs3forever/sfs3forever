@@ -1,5 +1,4 @@
 {* Smarty *}
-{* $Id: debug.tpl 5310 2009-01-10 07:57:56Z hami $ *}
 {* debug.tpl, last updated version 2.1.0 *}
 {assign_debug_info}
 {capture assign=debug_output}

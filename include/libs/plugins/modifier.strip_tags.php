@@ -4,7 +4,8 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: modifier.strip_tags.php 6117 2010-09-10 15:13:53Z brucelyc $
+
+
 /**
  * Smarty strip_tags modifier plugin
  *

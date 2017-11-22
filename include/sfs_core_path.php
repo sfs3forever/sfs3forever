@@ -80,7 +80,7 @@ function get_sfs_path($curr_msn=""){
 		$SCRIPT_NAME=$_SERVER['SCRIPT_NAME'];
 		$SN=explode("/",$SCRIPT_NAME);
 		$m=getDBdata("",$SN[count($SN)-2]);
-		if($m['msn'])	$curr_msn=$m['msn'];
+		if(isset($m['msn'])) $curr_msn=$m['msn'];
 	}
 	$path="<a href='$SFS_PATH_HTML' accesskey='H'><img src='".$SFS_PATH_HTML."images/gohome.png' alt='' width='16' height='16' hspace='3' border='0' align='absmiddle'>學務管理系統首頁</a> / $MPath[$curr_msn]";
 	

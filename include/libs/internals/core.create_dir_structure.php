@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.create_dir_structure.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * create full directory structure
  *

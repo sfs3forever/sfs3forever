@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: compiler.assign.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * Smarty {assign} compiler function plugin
  *

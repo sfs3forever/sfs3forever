@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: function.cycle.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * Smarty {cycle} function plugin
  *
@@ -63,7 +63,11 @@ function smarty_function_cycle($params, &$smarty)
         $cycle_vars[$name]['values'] = $params['values'];
     }
 
-    $cycle_vars[$name]['delimiter'] = (isset($params['delimiter'])) ? $params['delimiter'] : ',';
+    if (isset($params['delimiter'])) {
+        $cycle_vars[$name]['delimiter'] = $params['delimiter'];
+    } elseif (!isset($cycle_vars[$name]['delimiter'])) {
+        $cycle_vars[$name]['delimiter'] = ',';       
+    }
     
     if(is_array($cycle_vars[$name]['values'])) {
         $cycle_array = $cycle_vars[$name]['values'];

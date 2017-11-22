@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.read_cache_file.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * read a cache file, determine if it needs to be
  * regenerated or not

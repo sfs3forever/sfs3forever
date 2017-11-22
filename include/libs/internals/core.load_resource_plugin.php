@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.load_resource_plugin.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * load a resource plugin
  *

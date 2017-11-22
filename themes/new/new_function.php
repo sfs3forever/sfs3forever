@@ -140,7 +140,7 @@ function &get_big_module($col_num=4,$mode="") {
 			$real_pic=(empty($pro_dir_name))?$SFS_PATH."/images/$icon":$SFS_PATH."/modules/$pro_dir_name/images/$icon";
 
 			$show_pic=(is_file($real_pic) and file_exists($real_pic))?$pic:$THEME_URL."/images/no_icon.png";
-			$folder_pic=($pro_kind_id==$_GET[_Msn])?$FOLDER_OPEN:$FOLDER;
+			$folder_pic=($pro_kind_id==$_GET['_Msn'])?$FOLDER_OPEN:$FOLDER;
 			$show_pic=($kind=="分類")?$THEME_URL."/images/$folder_pic":$show_pic;
 
 			if(!is_null($_SESSION[$session_prob][$pro_kind_id]) || $pro_isopen) {

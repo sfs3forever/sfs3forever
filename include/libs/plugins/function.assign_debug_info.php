@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: function.assign_debug_info.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * Smarty {assign_debug_info} function plugin
  *

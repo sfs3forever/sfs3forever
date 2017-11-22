@@ -4,7 +4,8 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: function.fetch.php 6117 2010-09-10 15:13:53Z brucelyc $
+
+
 /**
  * Smarty {fetch} plugin
  *
@@ -180,12 +181,12 @@ function smarty_function_fetch($params, &$smarty)
                         $content .= fgets($fp,4096);
                     }
                     fclose($fp);
-                    $csplit = split("\r\n\r\n",$content,2);
+                    $csplit = preg_split("!\r\n\r\n!",$content,2);
 
                     $content = $csplit[1];
 
                     if(!empty($params['assign_headers'])) {
-                        $smarty->assign($params['assign_headers'],split("\r\n",$csplit[0]));
+                        $smarty->assign($params['assign_headers'],preg_split("!\r\n!",$csplit[0]));
                     }
                 }
             } else {

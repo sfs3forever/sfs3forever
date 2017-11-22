@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.get_include_path.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * Get path to file from include_path
  *

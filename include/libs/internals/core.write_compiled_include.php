@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.write_compiled_include.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * Extract non-cacheable parts out of compiled template and write it
  *

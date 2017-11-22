@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: core.rm_auto.php 6117 2010-09-10 15:13:53Z brucelyc $
+
 /**
  * delete an automagically created file by name and id
  *

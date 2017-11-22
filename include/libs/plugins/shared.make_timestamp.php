@@ -4,7 +4,8 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: shared.make_timestamp.php 6117 2010-09-10 15:13:53Z brucelyc $
+
+
 /**
  * Function: smarty_make_timestamp<br>
  * Purpose:  used by other smarty functions to make a timestamp

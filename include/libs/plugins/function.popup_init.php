@@ -4,7 +4,8 @@
  * @package Smarty
  * @subpackage plugins
  */
-//$Id: function.popup_init.php 6117 2010-09-10 15:13:53Z brucelyc $
+
+
 /**
  * Smarty {popup_init} function plugin
  *

@@ -405,10 +405,6 @@ $cfg3=<<<HERE3
 
 
 //------------底下設定勿改
-require "\$SFS_PATH/include/sfs_API.php"; //系統核心函式庫
-//重新認證檔案url
-\$rlogin = \$SFS_PATH."/rlogin.php";
-
 \$conID = mysqli_connect ("\$mysql_host","\$mysql_user","\$mysql_pass") or trigger_error("資料庫無法連上，或許網路斷線，也或許您的資料庫設定有誤，請檢查資料庫設定並重新啟動資料庫。", E_USER_ERROR);
 mysqli_select_db(\$conID,\$mysql_db); 
 
@@ -423,6 +419,10 @@ require_once("\$SFS_PATH/include/sfs_case_ado.php"); # 函式庫
 
 require_once "pdo_ado.php";
 \$CONN = new sdb("mysql:host=\$mysql_host;dbname=\$mysql_db;charset=utf8mb4", \$mysql_user, \$mysql_pass);
+
+require "\$SFS_PATH/include/sfs_API.php"; //系統核心函式庫
+//重新認證檔案url
+\$rlogin = \$SFS_PATH."/rlogin.php";
 
 //取得 Mysql 環境變數
 //if (\$DB_TYPE == 'mysql')
