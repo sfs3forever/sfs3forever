@@ -214,8 +214,12 @@ print_menu($menu_p);
 <tr class=title_mbody><td align=right>年級</td><td align=center>編班狀況</td><td>編班動作</td></tr>
 <?php
 // 判斷 mysql 版本
-if(substr($DATA_VAR['version'],0,3)>=5)
-	$mysql_is_version5 = true;
+//if(substr($DATA_VAR['version'],0,3)>=5)
+//	$mysql_is_version5 = true;
+
+//Only support MySQL version 5+, $mysql_is_version5 只是用來判斷要不要下 subquery
+$mysql_is_version5 = true;
+
 $not_count="";
 $in_study="'0','15'";
 //判斷 stud_move 是否有資料

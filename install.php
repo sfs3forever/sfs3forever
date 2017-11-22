@@ -414,8 +414,8 @@ require_once "pdo_ado.php";
 \$CONN = new sdb("mysql:host=\$mysql_host;dbname=\$mysql_db;charset=utf8mb4", \$mysql_user, \$mysql_pass);
 
 //取得 Mysql 環境變數
-if (\$DB_TYPE == 'mysql')
-	\$DATA_VAR = get_mysql_var();
+//if (\$DB_TYPE == 'mysql')
+//	\$DATA_VAR = get_mysql_var();
 
 //看看路徑表存不存在
 if(!file_exists(\$UPLOAD_PATH."Module_Path.txt")){

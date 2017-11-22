@@ -8,7 +8,7 @@
 // $text_name -- 選項名稱
 // $temp_arr -- 選項內容 
 function join_sfs_text($gid,$text_name,$temp_arr) {
-	global $CONN,$DATA_VAR;
+	global $CONN;  //,$DATA_VAR;
 	if (!$CONN) user_error("資料庫連線不存在！請檢查相關設定！",256);
 
 	if ($text_name=='')
