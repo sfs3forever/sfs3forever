@@ -122,7 +122,8 @@ function checkid($chk,$chk_admin=0){
 	}
 	//print_r($result->FetchRow());
 	//print_r($_SESSION);
-	list($pro_kind_id,$isopen)= $stmt->fetch();
+	$rs = $stmt->fetch();
+	list($pro_kind_id,$isopen)= $rs;
 	//list($pro_kind_id,$isopen)= $result->rows;	
 	if($chk_admin==0 and !is_null($_SESSION[$session_prob][$pro_kind_id])){
 		return true;

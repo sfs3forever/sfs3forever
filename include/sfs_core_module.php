@@ -26,7 +26,7 @@ function get_module($msn="") {
 		//取得授權給該使用者可使用的分類或模組權限
 		$sql_select = "select pro_kind_id from pro_check_new where $who_where";
 		$recordSet=$CONN->Execute($sql_select)  or trigger_error("資料連結錯誤：".$sql_select, E_USER_ERROR);
-		while(list($m)=$recordSet->FetchRow()){
+		while(list($m) = array_values($recordSet->FetchRow())) { 
 			$where.="msn=$m or ";
 		}
 
@@ -199,8 +199,8 @@ function who_chk($sn="",$who=""){
 	if($who=="教師"){
 		//先取得該教師屬於哪個處室、哪個職稱
 		$sql_select = "select teach_title_id,post_office from teacher_post where teacher_sn='$sn'";
-		$recordSet=$CONN->Execute($sql_select)  or trigger_error("資料連結錯誤：".$sql_select, E_USER_ERROR);
-		list($teach_title_id,$post_office) = $recordSet->FetchRow();
+		$recordSet=$CONN->Execute($sql_select)  or trigger_error("資料連結錯誤：".$sql_select, E_USER_ERROR);	
+		list($teach_title_id,$post_office) = array_values($recordSet->FetchRow());
 
 		$where="((id_kind='教師' and id_sn='$sn') or (id_kind='職稱' and id_sn='$teach_title_id') or (id_kind='處室' and id_sn='$post_office') or (id_kind='處室' and id_sn='99'))";
 	}elseif($who=="家長"){
