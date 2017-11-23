@@ -65,7 +65,7 @@ function &main_query_form($sel_year,$sel_seme,$room,$teacher_sn,$page){
 	$room_sel=&get_room($sel_year,$sel_seme,"room",$room,jumpMenu);
 	$sel1=new drop_select();
 	$sel1->s_name="seme_class";
-	$sel1->id=$_POST[seme_class];
+	$sel1->id=$_POST['seme_class'];
 	$sel1->arr=class_base();
 	$sel1->has_empty=false;
 	$sel1->is_submit=true;
@@ -126,7 +126,7 @@ function &main_query_form($sel_year,$sel_seme,$room,$teacher_sn,$page){
 	  
 
       foreach($roomR as $r){
-         $class_num=$r[seme_class];
+         $class_num=$r['seme_class'];
 		 if($class_num>0)$class_num=$class_arr[$class_num];
 		
 		switch ($r[sector]) {

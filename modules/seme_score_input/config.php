@@ -29,7 +29,7 @@ function  stud_seme_class($seme_year_seme=""){
         while(!$rs->EOF){
                 $class_id = $rs->fields[class_id];
                 $class_arr = explode("_",$class_id);
-                $AAA[seme_class][]= sprintf("%d%s",$class_arr[2],$class_arr[3]);
+                $AAA['seme_class'][]= sprintf("%d%s",$class_arr[2],$class_arr[3]);
                 $AAA[seme_class_name][]=$rs->rs[1];
         $rs->MoveNext();
     }

@@ -76,7 +76,7 @@ function &main_form($sel_year,$sel_seme,$room,$teacher_sn){
 	$room_sel=&get_room($sel_year,$sel_seme,"room",$room,jumpMenu);
 	$sel1=new drop_select();
 	$sel1->s_name="seme_class";
-	$sel1->id=$_POST[seme_class];
+	$sel1->id=$_POST['seme_class'];
 	$sel1->arr=class_base();
 	$sel1->has_empty=false;
 	$sel1->is_submit=true;
@@ -193,13 +193,13 @@ function &main_form($sel_year,$sel_seme,$room,$teacher_sn){
 					//已預約
 					$del_tool=($set_data[$k3][teacher_sn]==$teacher_sn)?"<br><a href='{$_SERVER['PHP_SELF']}?act=del&date=$mktime&day=$sday&sector=$j&teacher_sn=$teacher_sn&room=$room'><font color='#FF0000'>[取消]</font></a>":"";
 					
-					if ($set_data[$k3][seme_class]>0)
+					if ($set_data[$k3]['seme_class']>0)
 					{
-					$show="<font color='#0000FF'>".$class_arr[$set_data[$k3][seme_class]]."</font><br>".get_teacher_name($set_data[$k3][teacher_sn]).$del_tool;
+					$show="<font color='#0000FF'>".$class_arr[$set_data[$k3]['seme_class']]."</font><br>".get_teacher_name($set_data[$k3][teacher_sn]).$del_tool;
 					}
 					else
 					{
-					$show="<font color='#0000FF'>".$set_data[$k3][seme_class]."</font><br>".get_teacher_name($set_data[$k3][teacher_sn]).$del_tool;						
+					$show="<font color='#0000FF'>".$set_data[$k3]['seme_class']."</font><br>".get_teacher_name($set_data[$k3][teacher_sn]).$del_tool;						
 					}
 					
 					if ($set_data[$k3][teacher_sn]==$teacher_sn) $bgcolor="#FFF188";
@@ -337,7 +337,7 @@ function add_set_room($time,$room,$teacher_sn){
 			$seme_class=intval($c[2].$c[3]);
 			if ($seme_class=="0") $seme_class="";
 		} else {			
-			$seme_class=$_POST[seme_class];
+			$seme_class=$_POST['seme_class'];
 			if($_POST[class_kind]==2)$seme_class=$sel_room;
 		}
 		
@@ -363,7 +363,7 @@ function &get_set_room($the_day,$room){
 	while(list($date,$day,$sector,$teacher_sn,$seme_class)=$recordSet->FetchRow()){
 		$k=$date."_".$day."_".$sector;
 		$main[$k][teacher_sn]=$teacher_sn;
-		$main[$k][seme_class]=$seme_class;
+		$main[$k]['seme_class']=$seme_class;
 	}
 	return $main;
 }

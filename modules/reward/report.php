@@ -123,7 +123,7 @@ function reward_data($sel_year,$sel_seme) {
 	while (!$res->EOF) {
 		$stud_id=$res->fields[stud_id];
 		$student_sn=$res->fields[student_sn];
-		$seme_class[$stud_id]=$res->fields[seme_class];
+		$seme_class[$stud_id]=$res->fields['seme_class'];
 		$seme_num[$stud_id]=$res->fields[seme_num];
 		$all_sn.="'".$student_sn."',";
 		$res->MoveNext();

@@ -120,6 +120,7 @@ function &get_big_module($col_num=4,$mode="") {
 	$query = "select msn,showname,isopen,kind,icon_image from sfs_module where islive='1' and kind='分類' and of_group='0' order by sort";
 	$result = $CONN->Execute($query);
 	$i =0 ;
+	$a = 0;
 	$home_index="index.php";
 	while (list($pro_kind_id,$pro_kind_name,$pro_isopen,$kind,$icon) = $result->FetchRow()){
 		//小選單

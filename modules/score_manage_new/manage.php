@@ -32,9 +32,9 @@ if($_POST['print_score']){
 		$class_base= class_base($work_year_seme);
 		
 		//取得階段成績
-		$year_seme_array=explode('_',$_POST[year_seme]);
-		//$sql="select * from score_semester_".$_POST[year_seme]." where test_sort=$_POST[stage] and class_id like '".sprintf("%03d_%d_%02d_",$year_seme_array[0],$year_seme_array[1],$_POST[year_name])."%'";
-		$sql="select * from score_semester_".$_POST[year_seme]." where test_sort=$_POST[stage] and class_id in $class_id_list";
+		$year_seme_array=explode('_',$_POST['year_seme']);
+		//$sql="select * from score_semester_".$_POST['year_seme']." where test_sort=$_POST[stage] and class_id like '".sprintf("%03d_%d_%02d_",$year_seme_array[0],$year_seme_array[1],$_POST[year_name])."%'";
+		$sql="select * from score_semester_".$_POST['year_seme']." where test_sort=$_POST[stage] and class_id in $class_id_list";
 
 		$rs=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
 		while(!$rs->EOF) {
@@ -75,7 +75,7 @@ if($_POST['print_score']){
 		
 		$rs=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
 		while(!$rs->EOF) {
-			$class_id=$rs->fields[seme_class];
+			$class_id=$rs->fields['seme_class'];
 			$student_sn=$rs->fields[student_sn];
 			$student_array[$class_id][$student_sn][class_num]=$rs->fields[seme_num];
 			$student_array[$class_id][$student_sn][stud_id]=$rs->fields[stud_id];

@@ -62,7 +62,7 @@ class health_chart {
 			$query="select * from stud_seme where seme_year_seme='$ys' and student_sn in (".$this->sn_str.")";
 			$res=$CONN->Execute($query);
 			while(!$res->EOF) {
-				$this->stud_base[$res->fields[student_sn]][seme_class]=$res->fields['seme_class'];
+				$this->stud_base[$res->fields[student_sn]]['seme_class']=$res->fields['seme_class'];
 				$this->stud_base[$res->fields[student_sn]][seme_num]=$res->fields['seme_num'];
 				$res->MoveNext();
 			}
@@ -93,7 +93,7 @@ class health_chart {
 			$sn_arr[]=$res->fields['student_sn'];
 			$this->stud_base[$res->fields[student_sn]]=array();
 			if ($mode) {
-				$this->stud_base[$res->fields[student_sn]][seme_class]=$res->fields['seme_class'];
+				$this->stud_base[$res->fields[student_sn]]['seme_class']=$res->fields['seme_class'];
 				$this->stud_base[$res->fields[student_sn]][seme_num]=$res->fields['seme_num'];
 			} else {
 				$this->stud_data[$res->fields['seme_class']][$res->fields['seme_num']][student_sn]=$res->fields['student_sn'];

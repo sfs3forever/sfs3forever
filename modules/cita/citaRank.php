@@ -50,7 +50,7 @@ if($_POST[go]=='按此統計列示'){
 					$sql="SELECT a.seme_class,a.seme_num,a.student_sn,b.stud_name FROM stud_seme a inner join stud_base b on a.student_sn=b.student_sn WHERE a.seme_year_seme='$seme_year_seme' and a.stud_id='$stud_id'";
 					$res2=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
 					$student_data[$stud_id][student_sn]=$res2->fields[student_sn];
-					$student_data[$stud_id][seme_class]=$res2->fields[seme_class];
+					$student_data[$stud_id]['seme_class']=$res2->fields['seme_class'];
 					$student_data[$stud_id][seme_num]=$res2->fields[seme_num];
 					$student_data[$stud_id][stud_name]=$res2->fields[stud_name];
 				}
@@ -66,7 +66,7 @@ if($_POST[go]=='按此統計列示'){
 						}
 						break;
 					case 2:
-						$grade=substr($student_data[$stud_id][seme_class],0,-2);
+						$grade=substr($student_data[$stud_id]['seme_class'],0,-2);
 						if($grade) {
 							if($bonus_mode) $student_bonus[$grade][$stud_id]+=$res->fields[bonus]; else {
 							$kind_set_arr=explode(',',$res->fields[kind_set]);
@@ -77,7 +77,7 @@ if($_POST[go]=='按此統計列示'){
 						}
 						break;
 					case 3:
-						$seme_class=$student_data[$stud_id][seme_class];
+						$seme_class=$student_data[$stud_id]['seme_class'];
 						if($seme_class) {
 							if($bonus_mode) $student_bonus[$seme_class][$stud_id]+=$res->fields[bonus]; else {
 							$kind_set_arr=explode(',',$res->fields[kind_set]);
@@ -113,7 +113,7 @@ if($_POST[go]=='按此統計列示'){
 					if($value){
 						if($bonus==$value) $rank_dup++; else { $rank+=$rank_dup+1; $bonus=$value; $rank_dup=0;}
 						if($rank<=$_POST[rank_list]){
-							$main.="<tr align='center'><td>$rank</td><td>{$calss_name[$student_data[$key][seme_class]]}</td><td>{$student_data[$key][seme_num]}</td><td>$key</td><td>{$student_data[$key][stud_name]}</td><td>$value</td><td></td></tr>";
+							$main.="<tr align='center'><td>$rank</td><td>{$calss_name[$student_data[$key]['seme_class']]}</td><td>{$student_data[$key][seme_num]}</td><td>$key</td><td>{$student_data[$key][stud_name]}</td><td>$value</td><td></td></tr>";
 							$rank_count[$rank]++;
 						}
 					}
@@ -135,7 +135,7 @@ if($_POST[go]=='按此統計列示'){
 						if($value){
 							if($bonus==$value) $rank_dup++; else { $rank+=$rank_dup+1; $bonus=$value; $rank_dup=0;}
 							if($rank<=$_POST[rank_list]){
-								$main.="<tr align='center'><td>$rank</td><td>{$calss_name[$student_data[$key][seme_class]]}</td><td>{$student_data[$key][seme_num]}</td><td>$key</td><td>{$student_data[$key][stud_name]}</td><td>$value</td><td></td></tr>";
+								$main.="<tr align='center'><td>$rank</td><td>{$calss_name[$student_data[$key]['seme_class']]}</td><td>{$student_data[$key][seme_num]}</td><td>$key</td><td>{$student_data[$key][stud_name]}</td><td>$value</td><td></td></tr>";
 								$rank_count[$rank]++;
 							}
 						}

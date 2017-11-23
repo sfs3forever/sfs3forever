@@ -37,7 +37,7 @@ switch ($_POST[sub_menu_id]) {
 					while(list($sn,$d)=each($health_data->stud_base)) {
 						if ($d[disease]) {
 							while(list($kk,$vv)=each($d[disease])) {
-								$a_arr[]=array(substr($d[seme_class],0,-2),substr($d[seme_class],-2,2),$d[seme_num],$d[stud_name],$d_arr[$vv],br2nl($d[status_record][disease][$vv]),br2nl($d[diag_record][disease][$vv]));
+								$a_arr[]=array(substr($d['seme_class'],0,-2),substr($d['seme_class'],-2,2),$d[seme_num],$d[stud_name],$d_arr[$vv],br2nl($d[status_record][disease][$vv]),br2nl($d[diag_record][disease][$vv]));
 							}
 						}
 					}
@@ -61,7 +61,7 @@ switch ($_POST[sub_menu_id]) {
 				while(list($sn,$d)=each($health_data->stud_base)) {
 					if ($d[disease]) {
 						while(list($kk,$vv)=each($d[disease])) {
-							$a_arr[]=array(substr($d[seme_class],0,-2),substr($d[seme_class],-2,2),$d[seme_num],$d[stud_name],$d_arr[$vv],br2nl($d[status_record][disease][$vv]),br2nl($d[diag_record][disease][$vv]));
+							$a_arr[]=array(substr($d['seme_class'],0,-2),substr($d['seme_class'],-2,2),$d[seme_num],$d[stud_name],$d_arr[$vv],br2nl($d[status_record][disease][$vv]),br2nl($d[diag_record][disease][$vv]));
 						}
 					}
 				}
@@ -82,7 +82,7 @@ switch ($_POST[sub_menu_id]) {
 				while(list($sn,$d)=each($health_data->stud_base)) {
 					if ($d[disease]) {
 						while(list($kk,$vv)=each($d[disease])) {
-							$a_arr[]=array(substr($d[seme_class],0,-2),substr($d[seme_class],-2,2),$d[seme_num],$d[stud_name],$d_arr[$vv],br2nl($d[status_record][disease][$vv]),br2nl($d[diag_record][disease][$vv]));
+							$a_arr[]=array(substr($d['seme_class'],0,-2),substr($d['seme_class'],-2,2),$d[seme_num],$d[stud_name],$d_arr[$vv],br2nl($d[status_record][disease][$vv]),br2nl($d[diag_record][disease][$vv]));
 						}
 					}
 				}

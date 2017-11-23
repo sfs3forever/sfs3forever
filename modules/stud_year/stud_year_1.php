@@ -101,7 +101,7 @@ if ($_GET[sel]=='refine'){
 	//echo $query."<br>";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF){
-		$curr_class_num = sprintf("%d%02d",$res->fields[seme_class],$res->fields[seme_num]);
+		$curr_class_num = sprintf("%d%02d",$res->fields['seme_class'],$res->fields[seme_num]);
 		$student_sn =  $res->fields[student_sn];
 		$query = "update stud_base set curr_class_num='$curr_class_num' where student_sn='$student_sn'";
 		//echo $query."<BR>";
@@ -155,7 +155,7 @@ elseif($_GET[key]== "priorseme"){ //參照上學期編班
 		while (!$res->EOF) {
 			$stud_id = $res->fields[stud_id];
 			$seme_year_seme = sprintf("%03d1",$curr_year);
-			$seme_class = $s_year.substr($res->fields[seme_class],-2);
+			$seme_class = $s_year.substr($res->fields['seme_class'],-2);
 			$seme_class_name = $res->fields[seme_class_name];
 			$seme_num = $res->fields[seme_num];
 			$seme_class_year_s = $res->fields[seme_class_year_s];
@@ -177,7 +177,7 @@ elseif($_GET[key]== "priorseme"){ //參照上學期編班
 			$stud_id = $res->fields[stud_id];
 			$seme_year_seme = sprintf("%03d2",$curr_year);
 			$student_sn = $res->fields[student_sn];
-			$seme_class = $s_year.substr($res->fields[seme_class],-2);
+			$seme_class = $s_year.substr($res->fields['seme_class'],-2);
 			$seme_class_name = $res->fields[seme_class_name];
 			$seme_num = $res->fields[seme_num];
 			$seme_class_year_s = $res->fields[seme_class_year_s];

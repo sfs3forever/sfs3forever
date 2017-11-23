@@ -7,11 +7,11 @@ include "my_fun.php";
 //認證檢查
 sfs_check();
 
-if (empty($_POST[year_seme])) {
+if (empty($_POST['year_seme'])) {
 	$sel_year = curr_year(); //目前學年
 	$sel_seme = curr_seme(); //目前學期
 	$year_seme=sprintf("%03d",$sel_year).$sel_seme;
-	$_POST[year_seme]=$year_seme;
+	$_POST['year_seme']=$year_seme;
 } else {
 	$year_seme=$_POST['year_seme'];
 	$sel_year=intval(substr($year_seme,0,-1));

@@ -3,7 +3,7 @@
 include "config.php";
 sfs_check();
 
-$year_seme=$_POST[year_seme]?$_POST[year_seme]:sprintf("%03d%d",curr_year(),curr_seme());
+$year_seme=$_POST['year_seme']?$_POST['year_seme']:sprintf("%03d%d",curr_year(),curr_seme());
 
 //學期選單
 $year_seme_select="<select name='year_seme' onchange=\"this.form.target='$_PHP[SCRIPT_NAME]'; this.form.submit()\">";
@@ -36,7 +36,7 @@ while(!$res->EOF){
 	$stud_id=$res->fields[stud_id];
 	$student_sn=$res->fields[student_sn];
 	$stud_name=$res->fields[stud_name];
-	$grade=substr($res->fields[seme_class],0,-2);
+	$grade=substr($res->fields['seme_class'],0,-2);
 	$class_name=$class_year[$grade].$res->fields[seme_class_name].'班';
 	$curr_class_num=$res->fields[curr_class_num];
 	$curr_class=substr($curr_class_num,0,-2);

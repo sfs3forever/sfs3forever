@@ -49,7 +49,7 @@ if ($past_class_id==$class_id) {
 		} else {
 			$query="select a.* from stud_seme a,stud_base b where a.seme_year_seme='$seme_year_seme' and a.student_sn=b.student_sn and b.stud_study_cond in ($in_study) and a.stud_id='$stud_id'";
 			$res=$CONN->Execute($query);
-			$seme_class=$res->fields[seme_class];
+			$seme_class=$res->fields['seme_class'];
 			$year_name=intval(substr($seme_class,0,-2))-$IS_JHORES;
 			$class_name=intval(substr($seme_class,-2,2));
 			$class_num=intval($res->fields[seme_num]);

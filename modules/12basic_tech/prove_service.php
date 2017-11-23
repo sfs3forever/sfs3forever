@@ -20,7 +20,7 @@ $stud_select="SELECT a.student_sn,a.seme_class,a.seme_num,b.stud_name,b.stud_sex
 $rs=$CONN->Execute($stud_select) or user_error("讀取失敗！<br>$stud_select",256);
 while(!$rs->EOF){
 	$student_sn=$rs->fields[student_sn];
-	$seme_class=$rs->fields[seme_class];
+	$seme_class=$rs->fields['seme_class'];
 	
 	$all[$seme_class][$student_sn]['seme_num']=$rs->fields['seme_num'];
 	$all[$seme_class][$student_sn]['stud_name']=$rs->fields['stud_name'];

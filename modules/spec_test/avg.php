@@ -72,7 +72,7 @@ if ($id) {
 		$all_sn="";
 		while (!$res->EOF) {
 			$sn=$res->fields[student_sn];
-			$row_arr[$sn][site_num]=$res->fields[seme_class]."_".$res->fields[seme_num];
+			$row_arr[$sn][site_num]=$res->fields['seme_class']."_".$res->fields[seme_num];
 			$row_arr[$sn][name]=addslashes($res->fields[stud_name]);
 			$row_arr[$sn][id]=$res->fields[stud_id];
 			$all_sn.="'".$sn."',";

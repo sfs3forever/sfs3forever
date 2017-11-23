@@ -6,7 +6,7 @@ require_once "../../include/sfs_case_excel.php";
 
 sfs_check();
 
-$year_seme=$_POST[year_seme]?$_POST[year_seme]:sprintf("%03d%d",curr_year(),curr_seme());
+$year_seme=$_POST['year_seme']?$_POST['year_seme']:sprintf("%03d%d",curr_year(),curr_seme());
 $class_year=$_POST[class_year]?$_POST[class_year]:'';
 $subject_arr=$_POST[subject];
 

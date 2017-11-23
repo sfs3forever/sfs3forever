@@ -14,8 +14,8 @@ if ($_POST[act]=='ADD_ONE'){
 	if ($rs->RecordCount()==0) backe("Ｘ俺查不到該生資料！");
 	$obj_stu=$rs->GetArray();
 	$obj_stu=$obj_stu[0];
-	$class_year=substr($obj_stu[seme_class],0,1);
-	$class_sort=substr($obj_stu[seme_class],1,2)+0;
+	$class_year=substr($obj_stu['seme_class'],0,1);
+	$class_sort=substr($obj_stu['seme_class'],1,2)+0;
 	//103.05.15 fix 加入SN
 	$SQL="insert into grad_stud (stud_grad_year,class_year,class_sort,stud_id,grad_date,grad_word,grad_num,new_school,student_sn) values 	('$_POST[Syear]','$class_year','$class_sort','$_POST[one_stud_id]','$_POST[one_date]','$_POST[one_word]','$_POST[one_num]','$_POST[one_school]','{$obj_stu['student_sn']}')";
 	$rs=$CONN->Execute($SQL) or die("無法查詢，語法:".$SQL); 

@@ -6,13 +6,13 @@ require_once("chi_fun.php");
 sfs_check();
 
 if ($_POST[act]=='OK'){
-	if ($_POST[year_seme]=='' || $_POST[grade]=='' ||  $_POST[url_class_id]=='') backe("無法執行");
+	if ($_POST['year_seme']=='' || $_POST['grade']=='' ||  $_POST[url_class_id]=='') backe("無法執行");
 	$SQL = "update score_ss set scope_id='$_POST[scope]',
 	subject_id='$_POST[subject]',class_id='$_POST[class_id]',
 	class_year='$_POST[class_year]',enable='$_POST[enable]',need_exam='$_POST[need_exam]',rate='$_POST[rate]',
 	sort='$_POST[sort]',sub_sort='$_POST[sub_sort]',print='".$_POST["print"]."',link_ss='$_POST[link_ss]'  where ss_id='$_POST[ss_id]'";
 	$rs=$CONN->Execute($SQL) or die("無法執行，語法:".$SQL);
-	$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST[year_seme]."&grade=".$_POST[grade]."&class_id=".$_POST[url_class_id];
+	$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST['year_seme']."&grade=".$_POST['grade']."&class_id=".$_POST[url_class_id];
 	header("Location:$URL");
 }
 

@@ -21,7 +21,7 @@ if (!ini_get('register_globals')) {
 	extract( $_SERVER );
 }
 
-$year_seme=($_POST[year_seme])?$_POST[year_seme]:$_GET[year_seme];
+$year_seme=($_POST['year_seme'])?$_POST['year_seme']:$_GET[year_seme];
 $class_id=($_POST[class_id])?$_POST[class_id]: $_GET[class_id];
 $student_sn=($_POST[student_sn])?$_POST[student_sn]:$_GET[student_sn];
 $act=($_POST[act])?$_POST[act]:$_GET[act];

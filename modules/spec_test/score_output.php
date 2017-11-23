@@ -16,8 +16,8 @@ if (!$output) {
 }
 
 //主要內容
-if ($_POST[year_seme]) {
-	$ys=explode("_",$_POST[year_seme]);
+if ($_POST['year_seme']) {
+	$ys=explode("_",$_POST['year_seme']);
 	$sel_year=$ys[0];
 	$sel_seme=$ys[1];
 } else {

@@ -56,7 +56,7 @@ if($_POST[go]){
 	exit;
 }
 
-$year_seme=$_POST[year_seme]?$_POST[year_seme]:sprintf("%03d%d",curr_year(),curr_seme());
+$year_seme=$_POST['year_seme']?$_POST['year_seme']:sprintf("%03d%d",curr_year(),curr_seme());
 
 head("學籍基本資料完整性檢查");
 print_menu($menu_p);

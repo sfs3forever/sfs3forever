@@ -112,7 +112,7 @@ if ($One) {
 	if (!$student_sn) 
 		$One="";
 	else {
-		$seme_class=$rs->fields[seme_class];
+		$seme_class=$rs->fields['seme_class'];
 		$year_name=intval(substr($seme_class,0,-2));
 		$class_name=intval(substr($seme_class,-2,2));
 		$class_num=intval($rs->fields[seme_num]);
@@ -309,7 +309,7 @@ function &mainForm($sel_year,$sel_seme,$class_id="",$One="",$reward_id=""){
 	if (!empty($One)) {
 		$sql="select seme_class from stud_seme where seme_year_seme='$seme_year_seme' and stud_id='$One'";
 		$rs=$CONN->Execute($sql);
-		$seme_class=$rs->fields[seme_class];
+		$seme_class=$rs->fields['seme_class'];
 		$year_name=intval(substr($seme_class,0,-2));
 		$class_name=intval(substr($seme_class,-2,2));
 		$class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,$year_name,$class_name);
@@ -447,7 +447,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$One="",$id=""){
 	while (!$res->EOF) {
 		$stud_id=$res->fields[stud_id];
 		$student_sn=$res->fields[student_sn];
-		$seme_class[$stud_id]=$res->fields[seme_class];
+		$seme_class[$stud_id]=$res->fields['seme_class'];
 		$seme_num[$stud_id]=$res->fields[seme_num];
 		$all_sn.="'".$student_sn."',";
 		$res->MoveNext();

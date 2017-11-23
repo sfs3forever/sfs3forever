@@ -9,13 +9,13 @@ include "../../include/sfs_case_score.php";
 //認證
 sfs_check();
 
-if (empty($_POST[year_seme])) {
+if (empty($_POST['year_seme'])) {
 	$sel_year = curr_year(); //目前學年
 	$sel_seme = curr_seme(); //目前學期
 	$year_seme=$sel_year."_".$sel_seme;
-	$_POST[year_seme]=$year_seme;
+	$_POST['year_seme']=$year_seme;
 } else {
-	$ys=explode("_",$_POST[year_seme]);
+	$ys=explode("_",$_POST['year_seme']);
 	$sel_year=$ys[0];
 	$sel_seme=$ys[1];
 }
@@ -209,7 +209,7 @@ if ($_POST['stud_str']) {
 	$show_sn=array();
 	$stud_data=array();
 	while(!$res->EOF) {
-		$seme_class=$res->fields[seme_class];
+		$seme_class=$res->fields['seme_class'];
 		//只有選取的學生才處理
 		if (in_array(substr($seme_class,-2,2).sprintf("%02d",$res->fields[seme_num]),$stud_arr)) {
 			$s=$res->fields[student_sn];

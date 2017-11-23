@@ -80,11 +80,11 @@ for($i=0; $i<count($arr1); $i++) {
 
 echo "<tr bgcolor=white>
 	<td>".$arr1[$i][stud_id]."</td>
-	<td>".$arr1[$i][student_sn]."</td>
-	<td>".$arr1[$i][stud_name]."</td>
+	<td>".$arr1[$i]['student_sn']."</td>
+	<td>".$arr1[$i]['stud_name']."</td>
 	<td>".$arr1[$i][stud_sex]."</td>
 	<td>".$arr1[$i][stud_study_year]."</td>
-	<td>".$arr1[$i][curr_class_num]."</td>
+	<td>".$arr1[$i]['curr_class_num']."</td>
 	<td>".$arr1[$i][stud_study_cond]."</td>
 </tr>";
 }
@@ -113,13 +113,13 @@ seme_year_seme學期,seme_class班級,seme_class_name班名,seme_num座號
 <?
 for($i=0; $i<count($arr2); $i++) {
 echo "<tr bgcolor=white>
-	<td>".$arr2[$i][student_sn]."</td>
-	<td>".$arr2[$i][stud_name]."</td>
-	<td>".$arr2[$i][curr_class_num]."</td>
-	<td>".$arr2[$i][seme_year_seme]."</td>
-	<td>".$arr2[$i][seme_class]."</td>
-	<td>".$arr2[$i][seme_class_name]."</td>
-	<td>".$arr2[$i][seme_num]."</td>
+	<td>".$arr2[$i]['student_sn']."</td>
+	<td>".$arr2[$i]['stud_name']."</td>
+	<td>".$arr2[$i]['curr_class_num']."</td>
+	<td>".$arr2[$i]['seme_year_seme']."</td>
+	<td>".$arr2[$i]['seme_class']."</td>
+	<td>".$arr2[$i]['seme_class_name']."</td>
+	<td>".$arr2[$i]['seme_num']."</td>
 </tr>";
 }
 ?>

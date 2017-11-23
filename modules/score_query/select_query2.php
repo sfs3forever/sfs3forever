@@ -37,12 +37,12 @@ for($i=0;$i<count($seme_year_seme_A);$i++){
 	$menu.="<a href='{$_SERVER['PHP_SELF']}?Hseme_year_seme=$seme_year_seme_A[$i]&ck=$ck'>".$C_seme_year_seme_A[$i]."</a><br>";		
 	if($Hseme_year_seme==$seme_year_seme_A[$i] && $mod==0){				
 		$stud_seme_class_A=stud_seme_class($Hseme_year_seme);			
-		for($j=0;$j<count($stud_seme_class_A[seme_class]);$j++){			
-			if($Hstud_seme_class==$stud_seme_class_A[seme_class][$j]) {$CSS[$j]="style='background-color: rgb(255, 255, 0);"; $point=$j;}			
+		for($j=0;$j<count($stud_seme_class_A['seme_class']);$j++){			
+			if($Hstud_seme_class==$stud_seme_class_A['seme_class'][$j]) {$CSS[$j]="style='background-color: rgb(255, 255, 0);"; $point=$j;}			
 			//班級的中文
-			$C_stud_seme_class_A[seme_class][$j]=$school_kind_name[substr($stud_seme_class_A[seme_class][$j],0,-2)].$stud_seme_class_A[seme_class_name][$j]."班";
-			$menu.="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span $CSS[$j]><a href='{$_SERVER['PHP_SELF']}?point=$point&ck=0&Hseme_year_seme=$Hseme_year_seme&Hstud_seme_class={$stud_seme_class_A[seme_class][$j]}'>{$C_stud_seme_class_A[seme_class][$j]}</a></span><br>\n";			
-			if(!in_array((substr($stud_seme_class_A[seme_class][$j],0,-2)*100),$class_array)) $class_array[]=substr($stud_seme_class_A[seme_class][$j],0,-2)*100;				
+			$C_stud_seme_class_A['seme_class'][$j]=$school_kind_name[substr($stud_seme_class_A['seme_class'][$j],0,-2)].$stud_seme_class_A[seme_class_name][$j]."班";
+			$menu.="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span $CSS[$j]><a href='{$_SERVER['PHP_SELF']}?point=$point&ck=0&Hseme_year_seme=$Hseme_year_seme&Hstud_seme_class={$stud_seme_class_A['seme_class'][$j]}'>{$C_stud_seme_class_A['seme_class'][$j]}</a></span><br>\n";			
+			if(!in_array((substr($stud_seme_class_A['seme_class'][$j],0,-2)*100),$class_array)) $class_array[]=substr($stud_seme_class_A['seme_class'][$j],0,-2)*100;				
 		}
 		for($k=0;$k<count($class_array);$k++){				
 			if($Hstud_seme_class==$class_array[$k]) {$CSS2[$k]="style='background-color: rgb(255, 255, 0);"; $point=$k;}

@@ -14,13 +14,13 @@ if ($IS_JHORES==0)
 else
 	$f_year=2;
 
-if (empty($_POST[year_seme])) {
+if (empty($_POST['year_seme'])) {
 	$sel_year = curr_year(); //目前學年
 	$sel_seme = curr_seme(); //目前學期
 	$year_seme=$sel_year."_".$sel_seme;
-	$_POST[year_seme]=$year_seme;
+	$_POST['year_seme']=$year_seme;
 } else {
-	$ys=explode("_",$_POST[year_seme]);
+	$ys=explode("_",$_POST['year_seme']);
 	$sel_year=$ys[0];
 	$sel_seme=$ys[1];
 }
@@ -63,7 +63,7 @@ if ($_POST[year_name]) {
 		$query="select a.* from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme='$seme_year_seme' and a.seme_class='".$_POST['class_no']."' and b.stud_study_cond in ('0','15') order by a.seme_class,a.seme_num";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$seme_class=$res->fields[seme_class];
+			$seme_class=$res->fields['seme_class'];
 			$sn[]=$res->fields[student_sn];
 			$res->MoveNext();
 		}
@@ -136,7 +136,7 @@ if (($_POST['show'] || $_POST['htm'] || $_POST['out'] || $_POST['LOCK']) && $_PO
 	$query="select a.*,b.stud_name,b.stud_person_id,b.stud_sex,b.stud_birthday,b.addr_zip,b.stud_addr_1,b.stud_tel_1 from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme='$seme_year_seme' and a.seme_class like '$seme_class' and b.stud_study_cond in ('0','15') order by a.seme_class,a.seme_num";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$seme_class=$res->fields[seme_class];
+		$seme_class=$res->fields['seme_class'];
 		$sn[]=$res->fields[student_sn];
 		$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields[student_sn];
 		$stud_data[$res->fields[student_sn]][stud_name]=$res->fields[stud_name];

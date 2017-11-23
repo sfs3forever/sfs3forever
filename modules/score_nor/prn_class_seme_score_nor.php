@@ -5,8 +5,8 @@ require_once("chc_class2.php");
 
 //print_r($SCHOOL_BASE);
 $sel_class=$_POST[sel_class];
-$year_seme = $_POST[year_seme];
-$grade = $_POST[grade];
+$year_seme = $_POST['year_seme'];
+$grade = $_POST['grade'];
 if (empty($year_seme)) $year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 if (empty($grade)) $grade = $IS_JHORES+1;
 if (!empty($year_seme)) {

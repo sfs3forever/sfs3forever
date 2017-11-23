@@ -23,11 +23,11 @@ $smarty->assign("school_name",$sch_data[sch_cname]);
 $smarty->assign("SEX",$SEX);
 
 //取學校班級名稱陣列使用sfs_case_dataarray.php內的class_base函式
-$class_ary=class_base(sprintf("%03d",$_POST[year_seme])."2");
+$class_ary=class_base(sprintf("%03d",$_POST['year_seme'])."2");
 //print_r($class_ary);
 $smarty->assign("class_base",$class_ary);
 //學年度year_seme僅有年例如93,本處將學年度送入smarty
-$smarty->assign("year_seme",Num2CNum($_POST[year_seme]));
+$smarty->assign("year_seme",Num2CNum($_POST['year_seme']));
 //換頁符號
 $break_page="<P STYLE='page-break-before: always;'>";
 //顯示標頭檔
@@ -42,7 +42,7 @@ $all_class=count($_POST[class_id])-1;
 ////------處理國中名冊輸出段落-----------///////
 if ($_POST[class_id]=='all' && $_POST[smenu]=='school2'){
 	//直接指定該學期第2學期,組合後格式為0932,主要於stud_seme查詢
-	$seme_year_seme=sprintf("%03d",$_POST[year_seme])."2";
+	$seme_year_seme=sprintf("%03d",$_POST['year_seme'])."2";
 	//$_POST[sel_school]學校名稱,
 	$SQL="select a.stud_id,a.student_sn,a.stud_name,a.stud_sex,a.stud_birthday,
 	    	a.stud_person_id,a.stud_addr_1,a.stud_tel_1, b.seme_class,c.grad_word,
@@ -50,7 +50,7 @@ if ($_POST[class_id]=='all' && $_POST[smenu]=='school2'){
 	    	grad_stud c,stud_domicile as d where   
 	    	b.seme_year_seme='$seme_year_seme' and  b.student_sn=a.student_sn 
 	    	and b.stud_id=d.stud_id and b.stud_id=c.stud_id 
-	    	and  c.stud_grad_year='$_POST[year_seme]' and c.new_school='$_POST[sel_school]' 
+	    	and  c.stud_grad_year='$_POST['year_seme']' and c.new_school='$_POST[sel_school]' 
 	    	order by b.seme_class,b.seme_num ";
 //	    	echo $SQL;
    $rs =$CONN->Execute($SQL) or user_error("讀取失敗！<br>$SQL",256) ; 

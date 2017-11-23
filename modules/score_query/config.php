@@ -38,8 +38,8 @@ function  stud_seme_class($seme_year_seme=""){
         $seme_class[$i]= $rs->fields['seme_class'];
 		$seme_class_name[$i]= $rs->fields['seme_class_name'];
 		//加入陣列之中
-		if (!in_array($seme_class[$i], $AAA[seme_class]) && $seme_class[$i]!="") {
-			$AAA[seme_class][]=$seme_class[$i];
+		if (!in_array($seme_class[$i], $AAA['seme_class']) && $seme_class[$i]!="") {
+			$AAA['seme_class'][]=$seme_class[$i];
 			$AAA[seme_class_name][]=$seme_class_name[$i];
 		}	
 		$i++;

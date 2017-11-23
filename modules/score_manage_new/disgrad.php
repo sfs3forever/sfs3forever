@@ -49,7 +49,7 @@ if ($_POST[year_name]) {
 	while(!$res->EOF) {
 		$ssn=$res->fields[student_sn];
 		$show_sn[$ssn]=$ssn;
-		$sclass[$ssn]=$class_base[$res->fields[seme_class]];
+		$sclass[$ssn]=$class_base[$res->fields['seme_class']];
 		$snum[$ssn]=$res->fields[seme_num];
 		$stud_name[$ssn]=$res->fields[stud_name];
 		$stud_id[$ssn]=$res->fields[stud_id];

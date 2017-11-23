@@ -39,7 +39,7 @@ $past_class_id=$_POST[past_class_id];
 if ($One) {
 	$query="select * from stud_seme where seme_year_seme='$seme_year_seme' and stud_id='$One'";
 	$res=$CONN->Execute($query);
-	$seme_class=$res->fields[seme_class];
+	$seme_class=$res->fields['seme_class'];
 	$class_num=intval($res->fields[seme_num]);
 	$year_name=intval(substr($seme_class,-3,1))-$IS_JHORES;
 	$class_name=intval(substr($seme_class,-2,2));
@@ -268,7 +268,7 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 	while (!$res->EOF) {
 		$student_sn=$res->fields[student_sn];
 		$stud_id=$res->fields[stud_id];
-		$seme_class[$stud_id]=$res->fields[seme_class];
+		$seme_class[$stud_id]=$res->fields['seme_class'];
 		$seme_num[$stud_id]=$res->fields[seme_num];
 		$all_sn.="'".$student_sn."',";
 		$res->MoveNext();
@@ -362,7 +362,7 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 					$stud_id=$res_more->fields[stud_id];
 					$reward_id=$res_more->fields[reward_id];
 					$student_sn=$res_more->fields[student_sn];
-					$seme_class=$res_more->fields[seme_class];
+					$seme_class=$res_more->fields['seme_class'];
 					$seme_num=$res_more->fields[seme_num];
 					$query_stud="select stud_name from stud_base where student_sn='$student_sn'";
 					$res_stud=$CONN->Execute($query_stud);

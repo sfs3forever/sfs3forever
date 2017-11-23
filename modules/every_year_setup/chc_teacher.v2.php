@@ -3,14 +3,14 @@
 include "config.php";
 sfs_check();
 $ary = array();
-if ($_POST[act]=='add' && $_POST[year_seme]!=''&& $_POST[grade]!='' ){
+if ($_POST[act]=='add' && $_POST['year_seme']!=''&& $_POST['grade']!='' ){
 	foreach ($_POST[class_id] as $new_class=>$tea_sn) {
 	if ($new_class=='' || $new_class=='0' || !$tea_sn) continue;
 
 	$ary[$tea_sn][sn]=$tea_sn;
 	$new_class1= split("_",$new_class);//切開字串
 	$seme_class=($new_class1[2]+0).$new_class1[3];
-	$ary[$tea_sn][seme_class]=$seme_class;
+	$ary[$tea_sn]['seme_class']=$seme_class;
 	$ary[$tea_sn][year]=$new_class1[0]+0;
 	$ary[$tea_sn][semester]=$new_class1[1]+0;
 	$ary[$tea_sn][c_year]=sprintf("%d",$new_class1[2]);
@@ -20,11 +20,11 @@ if ($_POST[act]=='add' && $_POST[year_seme]!=''&& $_POST[grade]!='' ){
 	}
 	//是否本學期
 	$now=curr_year()."_".curr_seme();
-	($_POST[year_seme]==$now) ? $chk_now='Y':$chk_now='N';
+	($_POST['year_seme']==$now) ? $chk_now='Y':$chk_now='N';
 	//是的話才更新teacher_post表
 	if ($chk_now=='Y'){
 		foreach ($ary as $new_class) {
-			$ary2[]=$new_class[seme_class];
+			$ary2[]=$new_class['seme_class'];
 			}
 		$in_ary=join(",",$ary2);
 		$SQL="update teacher_post set class_num='' where  class_num in ($in_ary) ";
@@ -34,14 +34,14 @@ if ($_POST[act]=='add' && $_POST[year_seme]!=''&& $_POST[grade]!='' ){
 	foreach ($ary as $sn => $dat) {
 		//如果,是本學期才修改 teacher_post
 		if ($chk_now=='Y' and $sn){
-			$SQL="update teacher_post set class_num='$dat[seme_class]' where teacher_sn='$sn'";
+			$SQL="update teacher_post set class_num={$dat['seme_class']} where teacher_sn='$sn'";
 			$rs=$CONN->Execute($SQL) or die($SQL);
 
 			}
 		$sql_update = "update school_class set teacher_1='$dat[tea_name]' where year='$dat[year]' and semester='$dat[semester]' and c_year='$dat[c_year]' and c_sort='$dat[c_sort]' and enable=1";
 		$rs=$CONN->Execute($sql_update) or die($sql_update); 
 		}
-		$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST[year_seme]."&grade=".$_POST[grade];
+		$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST['year_seme']."&grade=".$_POST['grade'];
 	header("location:".$URL);
 }
 

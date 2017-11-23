@@ -13,7 +13,7 @@ $save_csv=$_POST['save_csv'];
 //debug_msg("第".__LINE__."行 year_seme ", $year_seme);
 //die();
 
-$year_seme=$_POST[year_seme];
+$year_seme=$_POST['year_seme'];
 if (empty($year_seme)) {
 	$sel_year = curr_year(); //目前學年
 	$sel_seme = curr_seme(); //目前學期
@@ -32,8 +32,8 @@ if($IS_JHORES==0){
 }
 $_POST[fail_num]=10;  //列出的領域
 
-if($_POST[grade]>=1){
-	$_POST[year_name]=$_POST[grade];
+if($_POST['grade']>=1){
+	$_POST[year_name]=$_POST['grade'];
 }
 
 
@@ -87,7 +87,7 @@ if ($_POST[year_name] and count($_POST[class_id])>0) {
 	while(!$res->EOF) {
 		$ssn=$res->fields[student_sn];
 		$show_sn[$ssn]=$ssn;
-		$sclass[$ssn]=$class_base[$res->fields[seme_class]];
+		$sclass[$ssn]=$class_base[$res->fields['seme_class']];
 		$snum[$ssn]=$res->fields[seme_num];
 		$stud_name[$ssn]=$res->fields[stud_name];
 		$stud_id[$ssn]=$res->fields[stud_id];

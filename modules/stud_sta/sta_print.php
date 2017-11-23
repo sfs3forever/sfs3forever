@@ -104,7 +104,7 @@ class stud_sta {
             else
                 $stu2[photo] = "";
         }
-        $stu2["seme_class2"] = substr($stu2[seme_class], 0, 1); //取學期
+        $stu2["seme_class2"] = substr($stu2['seme_class'], 0, 1); //取學期
         if ($stu2["seme_class2"] > 6)
             $stu2["seme_class2"] = $stu2["seme_class2"] - 6; //國中
         $stu = array_merge($stu1, $stu2);

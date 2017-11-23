@@ -44,7 +44,7 @@ $img_title=get_title_pic();//讀取職稱圖章
 
 if($_POST){
 	
-	$year_seme=split("_",$_POST[year_seme]);//093_1	
+	$year_seme=split("_",$_POST['year_seme']);//093_1	
 	$sel_year=$year_seme[0]; $sel_seme=$year_seme[1];  //取得學年及學期
   $seme_year_seme=sprintf('%03d%1d',$year_seme[0],$year_seme[1]); //1011 ,1001 ,0991 .....格式
 
@@ -60,7 +60,7 @@ if($_POST){
 	$smarty->assign("sign_3_title",$sign_3_title);
 
 
-	$class_ary=get_class_info($_POST[grade],$_POST[year_seme]);
+	$class_ary=get_class_info($_POST['grade'],$_POST['year_seme']);
 	
 
   //傳送各種勾選列印的項目

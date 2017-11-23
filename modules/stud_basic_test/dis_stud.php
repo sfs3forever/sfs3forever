@@ -5,13 +5,13 @@
 // --系統設定檔
 include "select_data_config.php";
 
-if (empty($_POST[year_seme])) {
+if (empty($_POST['year_seme'])) {
 	$sel_year = curr_year(); //目前學年
 	$sel_seme = curr_seme(); //目前學期
 	$year_seme=$sel_year."_".$sel_seme;
-	$_POST[year_seme]=$year_seme;
+	$_POST['year_seme']=$year_seme;
 } else {
-	$ys=explode("_",$_POST[year_seme]);
+	$ys=explode("_",$_POST['year_seme']);
 	$sel_year=$ys[0];
 	$sel_seme=$ys[1];
 }

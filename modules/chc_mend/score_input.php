@@ -180,7 +180,7 @@ class basic_chc{
 		$stu=$rs->GetArray();	
 		$data = "班級,座號,學號,姓名,語文,數學,自然,社會,健體,藝文,綜合\r\n";
 		foreach($stu as $a=>$b){   
-		      $class_id =sprintf("%03d","101")."_"."1"."_".sprintf("%02d",substr($b[seme_class],0,1))."_".substr($b[seme_class],1,2);
+		      $class_id =sprintf("%03d","101")."_"."1"."_".sprintf("%02d",substr($b['seme_class'],0,1))."_".substr($b['seme_class'],1,2);
 		      $stud_score[$b[student_sn]][0]=class_id_to_full_class_name($class_id);
 		      $stud_score[$b[student_sn]][1]=$b[seme_num];
 		      $stud_score[$b[student_sn]][2]=$b[stud_id];

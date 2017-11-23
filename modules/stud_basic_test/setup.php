@@ -204,7 +204,7 @@ else {
 		$res=$CONN->Execute($query);
 		$show_sn=array();
 		while(!$res->EOF) {
-			$seme_class=$res->fields[seme_class];
+			$seme_class=$res->fields['seme_class'];
 			$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields[student_sn];
 			$res->MoveNext();
 		}

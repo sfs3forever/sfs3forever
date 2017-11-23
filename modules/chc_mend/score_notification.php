@@ -110,7 +110,7 @@ class basic_chc{
 			"stud_id"=>$res->fields[stud_id],
 			"stud_name"=>$res->fields[stud_name],
 			"stud_sex"=>$res->fields[stud_sex],
-			"seme_class"=>$class_base{$res->fields[seme_class]},
+			"seme_class"=>$class_base{$res->fields['seme_class']},
 			"seme_num"=>$res->fields[seme_num],
 			"student_sn"=>$res->fields[student_sn]
 			);

@@ -98,12 +98,12 @@ class stud_sta{
 	}
 	//新增
 	function add_DB(){
-		if ($_POST[year_seme]=='') return;
+		if ($_POST['year_seme']=='') return;
 		if ($_POST[purpose]=='') return;
 		if ($_POST[prove_date]=='') return;
 		$a=join(",",$_SESSION[sel_stu]);
 		if ($a=='')  {unset($_SESSION[sel_stu]);return;}
-		$SEME=split("_",$_POST[year_seme]);
+		$SEME=split("_",$_POST['year_seme']);
 		$seme=$SEME[0].$SEME[1];
 		$IP=$_SERVER['REMOTE_ADDR'];
 		$USER=$_SESSION['session_log_id'];

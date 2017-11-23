@@ -103,9 +103,9 @@ class chc_stud{ //建立類別
   		$rs=$this->CONN->Execute($SQL) or die("語法錯誤".$SQL);
   		$arr=&$rs->GetArray();
 		foreach($arr as $ary){
-			$year=substr($ary[seme_class],0,1);
-			//$cla_name=$ary[seme_class];//原數字班名
-			$cla_name=$this->cla_nmae[$ary[seme_class]];//轉為中文班名
+			$year=substr($ary['seme_class'],0,1);
+			//$cla_name=$ary['seme_class'];//原數字班名
+			$cla_name=$this->cla_nmae[$ary['seme_class']];//轉為中文班名
 			$ar2[$year][]=array($this->sch[sch_id],$this->sch[sch_cname_s],$cla_name,
 			$ary[stud_name],$ary[guardian_name],$this->GR[$ary[guardian_relation]],$ary[stud_addr_1]);
 		}   		

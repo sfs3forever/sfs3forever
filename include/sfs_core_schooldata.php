@@ -247,8 +247,8 @@ semester=$sel_seme group by c_year ";
 	$arr=array();
 
 	while(!$res->EOF) {
-		$arr[$res->fields[c_year]] =
-$school_kind_name[$res->fields[c_year]].$str;
+		$arr[$res->fields['c_year']] =
+$school_kind_name[$res->fields['c_year']].$str;
 		$res->MoveNext();
 	}
 	return $arr;	

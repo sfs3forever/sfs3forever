@@ -9,7 +9,7 @@ sfs_check();
 
 if (($IS_JHORES=='0')&&($use_both=='0')) header("location: chart_e.php");
 
-$year_seme=($_POST[year_seme])?$_POST[year_seme]:$_GET[year_seme];
+$year_seme=($_POST['year_seme'])?$_POST['year_seme']:$_GET[year_seme];
 $class_id=($_POST[class_id])?$_POST[class_id]: $_GET[class_id];
 $stud_id=($_POST[stud_id])?$_POST[stud_id]:$_GET[stud_id];
 $student_sn=($_POST[student_sn])?$_POST[student_sn]:$_GET[student_sn];

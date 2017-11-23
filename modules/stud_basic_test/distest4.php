@@ -8,13 +8,13 @@ include "select_data_config.php";
 //認證
 sfs_check();
 
-if (empty($_POST[year_seme])) {
+if (empty($_POST['year_seme'])) {
 	$sel_year = curr_year(); //目前學年
 	$sel_seme = curr_seme(); //目前學期
 	$year_seme=$sel_year."_".$sel_seme;
-	$_POST[year_seme]=$year_seme;
+	$_POST['year_seme']=$year_seme;
 } else {
-	$ys=explode("_",$_POST[year_seme]);
+	$ys=explode("_",$_POST['year_seme']);
 	$sel_year=$ys[0];
 	$sel_seme=$ys[1];
 }
@@ -228,7 +228,7 @@ if ($_POST['year_name']) {
 				$sn_arr=array();
 				while(!$res->EOF) {
 					$sn_arr[]=$res->fields['student_sn'];
-					$rowdata[$res->fields['student_sn']][seme_class]=$res->fields['seme_class'];
+					$rowdata[$res->fields['student_sn']]['seme_class']=$res->fields['seme_class'];
 					$rowdata[$res->fields['student_sn']][seme_num]=$res->fields['seme_num'];
 					$res->MoveNext();
 				}
@@ -416,7 +416,7 @@ if ($_POST['year_name']) {
 			$show_sn=array();
 			$stud_data=array();
 			while(!$res->EOF) {
-				$seme_class=$res->fields[seme_class];
+				$seme_class=$res->fields['seme_class'];
 				$sn[]=$res->fields[student_sn];
 				$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields[student_sn];
 				$stud_data[$res->fields[student_sn]][stud_name]=$res->fields[stud_name];

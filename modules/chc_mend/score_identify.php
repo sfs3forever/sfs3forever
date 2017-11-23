@@ -106,7 +106,7 @@ class basic_chc{
 		$sel_Y_G = substr($this->Y,0,3)-$this->G;//取指定學期指定年級學生的班級資料
 		
 		while(!$res->EOF) {
-			$query2="select seme_year_seme,seme_class from stud_seme where student_sn ='{$res->fields[student_sn]}'";
+			$query2="select seme_year_seme,seme_class from stud_seme where student_sn ='{$res->fields['student_sn']}'";
 			$rec2=$this->CONN->Execute($query2);
 			list($seme_year_seme2,$seme_class2)=$rec2->FetchRow();
 			//取指定年級，從某一學年和該年級的關係看出
@@ -116,11 +116,11 @@ class basic_chc{
 				"stud_id"=>$res->fields[stud_id],
 				"stud_name"=>trim(str_replace("　","",$res->fields[stud_name])),
 				"stud_sex"=>$res->fields[stud_sex],
-				"seme_class"=>$class_base{$res->fields[seme_class]},
+				"seme_class"=>$class_base{$res->fields['seme_class']},
 				"seme_num"=>$res->fields[seme_num],
-				"student_sn"=>$res->fields[student_sn]
+				"student_sn"=>$res->fields['student_sn']
 				);
-				$this->students_sn .= "&students_sn[]=".$res->fields[student_sn];
+				$this->students_sn .= "&students_sn[]=".$res->fields['student_sn'];
 			}
 			
 			

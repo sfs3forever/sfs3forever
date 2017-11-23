@@ -176,7 +176,7 @@ function &mainForm($sel_year,$sel_seme,$class_id="",$thisOne=array(),$One=""){
         if (!empty($One) && empty($class_id)) {
                 $sql="select seme_class from stud_seme where seme_year_seme='$seme_year_seme' and stud_id='$One'";
                 $rs=$CONN->Execute($sql);
-                $seme_class=$rs->fields[seme_class];
+                $seme_class=$rs->fields['seme_class'];
                 $class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,substr($seme_class,0,-2),substr($seme_class,-2,2));
         }
 
@@ -368,7 +368,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$thisOne=array(),$One=""){
                 $sql="select a.stud_name,a.stud_study_cond,b.seme_class,b.seme_num from stud_base a,stud_seme b where a.stud_id='$One' and a.student_sn=b.student_sn and b.seme_year_seme='$seme_year_seme'";
                 $rs=$CONN->Execute($sql);
                 $stud_name=$rs->fields[stud_name]."<br><font color='#008800'>(".$scond[$rs->fields[stud_study_cond]].")</font>";
-                $seme_class=$rs->fields[seme_class];
+                $seme_class=$rs->fields['seme_class'];
                 $seme_num=$rs->fields[seme_num];
                 $year_name=substr($seme_class,0,-2)-$IS_JHORES;
                 $class_name=intval(substr($seme_class,-2,2));

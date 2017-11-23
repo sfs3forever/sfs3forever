@@ -6,12 +6,12 @@ include_once "../../include/sfs_case_dataarray.php";
 //認證
 sfs_check();
 
-if (empty($_POST[year_seme])) {
+if (empty($_POST['year_seme'])) {
 	$sel_year = curr_year(); //目前學年
 	$sel_seme = curr_seme(); //目前學期
 	$year_seme=$sel_year."_".$sel_seme;
 } else {
-	$ys=explode("_",$_POST[year_seme]);
+	$ys=explode("_",$_POST['year_seme']);
 	$sel_year=$ys[0];
 	$sel_seme=$ys[1];
 }

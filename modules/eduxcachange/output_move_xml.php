@@ -13,10 +13,10 @@ $all_reward=$_POST['all_reward'];
 
 
 //若有選擇學年學期，進行分割取得學年及學期
-if(!empty($_POST[year_seme])){
-	$sel_year=intval(substr($_POST[year_seme],0,-1));
-	$sel_seme=substr($_POST[year_seme],-1,1);
-	$year_seme=$_POST[year_seme];
+if(!empty($_POST['year_seme'])){
+	$sel_year=intval(substr($_POST['year_seme'],0,-1));
+	$sel_seme=substr($_POST['year_seme'],-1,1);
+	$year_seme=$_POST['year_seme'];
 } else {
 	$sel_year=curr_year(); //目前學年
 	$sel_seme=curr_seme(); //目前學期

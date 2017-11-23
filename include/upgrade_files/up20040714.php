@@ -42,7 +42,7 @@ if ($CONN->Execute($query)) {
 	$query="select student_sn,seme_class from stud_seme where seme_year_seme='$seme_year_seme' order by seme_class,seme_num";
 	$res=$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 	while(!$res->EOF) {
-		$seme_class=$res->fields[seme_class];
+		$seme_class=$res->fields['seme_class'];
 		$class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,substr($seme_class,0,-2),substr($seme_class,-2,2));
 		$stud_arr[$class_id].="'".$res->fields[student_sn]."',";
 		$res->MoveNext();

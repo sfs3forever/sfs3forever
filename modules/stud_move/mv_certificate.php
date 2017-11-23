@@ -117,7 +117,7 @@ class certificate{
 		$arr=$rs->GetArray();
 		$this->seme_info=$arr[0];
 		unset($arr);
-		$this->class_id=substr($this->seme_info[seme_year_seme],0,3)."_".substr($this->seme_info[seme_year_seme],3,1)."_".sprintf("%02d",substr($this->seme_info[seme_class],0,1))."_".substr($this->seme_info[seme_class],1,2);
+		$this->class_id=substr($this->seme_info[seme_year_seme],0,3)."_".substr($this->seme_info[seme_year_seme],3,1)."_".sprintf("%02d",substr($this->seme_info['seme_class'],0,1))."_".substr($this->seme_info['seme_class'],1,2);
 		
 
 

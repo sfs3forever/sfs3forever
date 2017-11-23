@@ -20,7 +20,7 @@ $seme_year_seme=sprintf("%03d",$sel_year).$sel_seme;
 
 if ($_POST[save]) {
 	$sd=$_POST[stud_id];
-	$nsc=$_POST[seme_class];
+	$nsc=$_POST['seme_class'];
 	$gd=$_POST[P_date];
 	$gw=$_POST[P_word];
 	$gn=$_POST[P_num];
@@ -55,7 +55,7 @@ if ($_POST[year_name]) {
 		$student_sn[$res->fields[stud_id]]=$sn;
 		$stud_id[$sn]=$res->fields[stud_id];
 		$stud_name[$sn]=$res->fields[stud_name];
-		$seme_class[$sn]=$res->fields[seme_class];
+		$seme_class[$sn]=$res->fields['seme_class'];
 		$seme_num[$sn]=$res->fields[seme_num];
 		$res->MoveNext();
 	}

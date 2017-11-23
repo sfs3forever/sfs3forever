@@ -130,14 +130,14 @@ echo "<td><font size='2'>狀況</font></td>";
 echo "</tr>";
 //列出資料
 while ($array_stud = $record->FetchRow()) {
-      $array_stud[seme_class]=(substr($array_stud[seme_class],0,1)>6)?$array_stud[seme_class]=$array_stud[seme_class]-600:$array_stud[seme_class];
+      $array_stud['seme_class']=(substr($array_stud['seme_class'],0,1)>6)?$array_stud['seme_class']=$array_stud['seme_class']-600:$array_stud['seme_class'];
       $array_stud[stud_sex]=($array_stud[stud_sex]=='1')?"男":"女";
       $parents=find_parents($array_stud[student_sn]);//找出父母
       $temp_bgcolor=($temp_bgcolor=="#EFE0ED")?"#ffffff":"#EFE0ED";//間隔變換背景顏色
       echo "<tr bgcolor='$temp_bgcolor'>";
       if ($array_stud[stud_study_cond]==0) $temp_color="";
          else $temp_color="color='red'";
-      echo "<td><font size='2' ".$temp_color.">$array_stud[seme_class]</font></td>";
+      echo "<td><font size='2' ".$temp_color.">$array_stud['seme_class']</font></td>";
       echo "<td><font size='2' ".$temp_color.">$array_stud[seme_num]</font></td>";
       echo "<td><font size='2' ".$temp_color.">$array_stud[stud_name]</font></td>";
       echo "<td><font size='2' ".$temp_color.">$array_stud[stud_sex]</font></td>";
@@ -213,14 +213,14 @@ function save_csv($find_year_seme,$find_spe,$show_word){
         echo "</tr>";
         //列出資料
         while ($array_stud = $record->FetchRow()) {
-              $array_stud[seme_class]=(substr($array_stud[seme_class],0,1)>6)?$array_stud[seme_class]=$array_stud[seme_class]-600:$array_stud[seme_class];
+              $array_stud['seme_class']=(substr($array_stud['seme_class'],0,1)>6)?$array_stud['seme_class']=$array_stud['seme_class']-600:$array_stud['seme_class'];
               $array_stud[stud_sex]=($array_stud[stud_sex]=='1')?"男":"女";
               $parents=find_parents($array_stud[student_sn]);//找出父母
               $temp_bgcolor=($temp_bgcolor=="#EFE0ED")?"#ffffff":"#EFE0ED";//間隔變換背景顏色
               echo "<tr bgcolor='$temp_bgcolor'>";
               if ($array_stud[stud_study_cond]==0) $temp_color="";
                  else $temp_color="color='red'";
-              echo "<td><font size='2' ".$temp_color.">$array_stud[seme_class]</font></td>";
+              echo "<td><font size='2' ".$temp_color.">$array_stud['seme_class']</font></td>";
               echo "<td><font size='2' ".$temp_color.">$array_stud[seme_num]</font></td>";
               echo "<td><font size='2' ".$temp_color.">$array_stud[stud_name]</font></td>";
               echo "<td><font size='2' ".$temp_color.">$array_stud[stud_sex]</font></td>";

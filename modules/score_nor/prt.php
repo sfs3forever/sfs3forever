@@ -27,8 +27,8 @@ if ($IS_JHORES < 6) $grade_ary=array("1"=>"一年級","2"=>"二年級","3"=>"三
 $sort_ary=array('1'=>'第一次','2'=>'第二次','3'=>'第三次');
 
 
-$year_seme = $_POST[year_seme];
-$grade = $_POST[grade];
+$year_seme = $_POST['year_seme'];
+$grade = $_POST['grade'];
 $class_id = $_POST[class_id];
 $test_sort=$_POST[test_sort];
 if (empty($test_sort)) $test_sort=1;

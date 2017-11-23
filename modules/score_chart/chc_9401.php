@@ -22,18 +22,18 @@ $defult_txt="說明與注意事項：<BR>
 
 sfs_check();
 ##################  文字檔修改  ##########################
-if($_POST[year_seme] && $_POST[grade] && $_POST[input_txt] && $_POST[act]=='write_txt'){
-	$fname_1=$_POST[grade].'.txt';
+if($_POST['year_seme'] && $_POST['grade'] && $_POST[input_txt] && $_POST[act]=='write_txt'){
+	$fname_1=$_POST['grade'].'.txt';
 	upload_write($fname_1,stripslashes($_POST[input_txt]));
 
-	$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST[year_seme]."&grade=".$_POST[grade];
+	$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST['year_seme']."&grade=".$_POST['grade'];
 	header("location:$URL");
 }
 ##################  文字檔預設值  ##########################
-if($_POST[year_seme] && $_POST[grade] &&  $_POST[act]=='write_def'){
-	$fname_1=$_POST[grade].'.txt';
+if($_POST['year_seme'] && $_POST['grade'] &&  $_POST[act]=='write_def'){
+	$fname_1=$_POST['grade'].'.txt';
 	upload_write($fname_1,$defult_txt);
-	$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST[year_seme]."&grade=".$_POST[grade];
+	$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST['year_seme']."&grade=".$_POST['grade'];
 	header("location:$URL");
 }
 

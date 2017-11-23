@@ -6,7 +6,7 @@ include "../../include/sfs_case_score.php";
 //認證
 sfs_check();
 
-$year_seme=$_POST[year_seme];
+$year_seme=$_POST['year_seme'];
 if (empty($year_seme)) {
 	$sel_year = curr_year(); //目前學年
 	$sel_seme = curr_seme(); //目前學期
@@ -21,7 +21,7 @@ $seme_year_seme=sprintf("%03d",$sel_year).$sel_seme;
 
 if ($_POST[save]) {
 	$sd=$_POST[stud_id];
-	$nsc=$_POST[seme_class];
+	$nsc=$_POST['seme_class'];
 	$gd=$_POST[P_date];
 	$gw=$_POST[P_word];
 	$gn=$_POST[P_num];
@@ -57,7 +57,7 @@ if ($_POST[year_name]) {
 		$student_sn[$res->fields[stud_id]]=$sn;
 		$stud_id[$sn]=$res->fields[stud_id];
 		$stud_name[$sn]=$res->fields[stud_name];
-		$seme_class[$sn]=$res->fields[seme_class];
+		$seme_class[$sn]=$res->fields['seme_class'];
 		$seme_num[$sn]=$res->fields[seme_num];
 		$res->MoveNext();
 	}

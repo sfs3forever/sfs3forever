@@ -10,13 +10,13 @@ require_once ("../score_chart/chc_class2.php");
 
 sfs_check();
 ##################  文字檔修改  ##########################
-if($_POST[year_seme] && $_POST[grade] && $_POST[input_txt] && $_POST[act]=='write_txt'){
-	$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST[year_seme]."&grade=".$_POST[grade];
+if($_POST['year_seme'] && $_POST['grade'] && $_POST[input_txt] && $_POST[act]=='write_txt'){
+	$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST['year_seme']."&grade=".$_POST['grade'];
 	header("location:$URL");
 }
 ##################  文字檔預設值  ##########################
-if($_POST[year_seme] && $_POST[grade] &&  $_POST[act]=='write_def'){
-	$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST[year_seme]."&grade=".$_POST[grade];
+if($_POST['year_seme'] && $_POST['grade'] &&  $_POST[act]=='write_def'){
+	$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST['year_seme']."&grade=".$_POST['grade'];
 	header("location:$URL");
 }
 

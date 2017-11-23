@@ -70,7 +70,7 @@ if($_POST[go]){
 	exit;
 }
 
-$year_seme=$_POST[year_seme]?$_POST[year_seme]:sprintf("%03d%d",curr_year(),curr_seme());
+$year_seme=$_POST['year_seme']?$_POST['year_seme']:sprintf("%03d%d",curr_year(),curr_seme());
 
 
 //設定要檢查的欄位

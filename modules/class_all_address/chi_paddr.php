@@ -80,7 +80,7 @@ $Sclass=substr($Sclass,0,1);
 	$filename =$Year."_ALL_".$Sclass."_".date("Ymd").".csv";
 	$Str="代號,姓名,性別,班級,座號,生日,身分證字號,戶籍電話,連絡電話,行動電話,戶籍地址,連絡地址\n";
 for ($i=0;$i<count($arr);$i++) {
-	$Str.=$arr[$i][stud_id].",".$arr[$i][stud_name].",".$Sex[$arr[$i][stud_sex]].",".$arr[$i][seme_class].",".
+	$Str.=$arr[$i][stud_id].",".$arr[$i][stud_name].",".$Sex[$arr[$i][stud_sex]].",".$arr[$i]['seme_class'].",".
 	$arr[$i][seme_num].",".$arr[$i][bir].",".$arr[$i][stud_person_id].",".
 	$arr[$i][stud_tel_1].",".$arr[$i][stud_tel_2].",".$arr[$i][stud_tel_3].",".
 	$arr[$i][stud_addr_1].",".$arr[$i][stud_addr_2]."\n";
@@ -110,7 +110,7 @@ $Sclass=substr($Sclass,0,1);
 	
 for ($i=0;$i<count($arr);$i++) {
 	$Str.="<TR bgcolor=white><TD>".$arr[$i][stud_id]."</TD><TD>".$arr[$i][stud_name]."</TD><TD>".
-	$Sex[$arr[$i][stud_sex]]."</TD><TD>".$arr[$i][seme_class]."</TD><TD>".
+	$Sex[$arr[$i][stud_sex]]."</TD><TD>".$arr[$i]['seme_class']."</TD><TD>".
 	$arr[$i][seme_num]."</TD><TD>$dd".$arr[$i][bir]."</TD><TD>".$arr[$i][stud_person_id]."</TD><TD>$dd ".
 	$arr[$i][stud_tel_1]."</TD><TD>$dd ".$arr[$i][stud_tel_2]."</TD><TD>$dd ".$arr[$i][stud_tel_3]."</TD><TD>".
 	$arr[$i][stud_addr_1]."</TD><TD>".$arr[$i][stud_addr_2]."</TD></TR>";

@@ -103,7 +103,7 @@ echo "<tr bgcolor=white>
 	<td>".$arr2[$i][stud_name]."</td>
 	<td>".$arr2[$i][curr_class_num]."</td>
 	<td>".$arr2[$i][seme_year_seme]."</td>
-	<td>".$arr2[$i][seme_class]."</td>
+	<td>".$arr2[$i]['seme_class']."</td>
 	<td>".$arr2[$i][seme_class_name]."</td>
 	<td>".$arr2[$i][seme_num]."</td>
 </tr>";

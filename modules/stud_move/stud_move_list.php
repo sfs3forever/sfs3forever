@@ -32,7 +32,7 @@
                 $move_date[$id]=$dd[0].".".$dd[1];
                 $move_reason[$id]=iconv("Big5","UTF-8//IGNORE",$res->fields[reason]);
                 $student_sn=$res->fields[student_sn];
-                $seme_class[$id]=substr($res->fields[seme_class],-3,1);
+                $seme_class[$id]=substr($res->fields['seme_class'],-3,1);
                 if ($student_sn=="") {
                         $query="select * from stud_base where stud_id='$id' order by stud_study_year desc";
                         $res_stud=$CONN->Execute($query);
@@ -42,7 +42,7 @@
                 if ($seme_class[$id]=="0") {
                         $query="select * from stud_seme where student_sn='$student_sn' order by seme_year_seme desc";
                         $res_stud=$CONN->Execute($query);
-                        $seme_class[$id]=substr($res_stud->fields[seme_class],-3,1);
+                        $seme_class[$id]=substr($res_stud->fields['seme_class'],-3,1);
                 }
                 if ($class_year==0) {
                         $class_year=$seme_class[$id];

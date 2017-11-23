@@ -58,8 +58,8 @@ $smarty->left_delimiter="{{";
 $smarty->right_delimiter="}}";
 
 $chk_item=chk_kind();//讀取檢核表表現狀況文字
-$add_memo_file=chk_file($_POST[grade].'.txt');//讀取備註文字
-//$add_text_memo=upload_read($_POST[grade].'.txt');
+$add_memo_file=chk_file($_POST['grade'].'.txt');//讀取備註文字
+//$add_text_memo=upload_read($_POST['grade'].'.txt');
 $img_title=get_title_pic();//讀取職稱圖章
 	
 if($_POST){
@@ -71,9 +71,9 @@ if($_POST){
 	}
 	$smarty->assign("is_chc",$is_chc);
 
-	$year_seme=split("_",$_POST[year_seme]);//093_1
+	$year_seme=split("_",$_POST['year_seme']);//093_1
 
-	$days=get_seme_dates($_POST[year_seme],$_POST[grade]);//上課日數
+	$days=get_seme_dates($_POST['year_seme'],$_POST['grade']);//上課日數
 	$smarty->assign("unit",($IS_JHORES)?"節":"天");
 
 	$smarty->assign("school_name",$sch_data[sch_cname]);
@@ -98,7 +98,7 @@ if($_POST){
 	$smarty->assign("text_title",($text_title)?$text_title:"學習描述文字說明");
 	$smarty->assign("days",$days);
 
-	$class_ary=get_class_info($_POST[grade],$_POST[year_seme]);
+	$class_ary=get_class_info($_POST['grade'],$_POST['year_seme']);
 	$smarty->display($template_dir.$tpl[head]);
 	$i=0;
 	

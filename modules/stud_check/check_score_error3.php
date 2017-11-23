@@ -58,7 +58,7 @@ if ($act=="開始檢查" || $del) {
 	$res = $CONN->Execute($query);
 	while(!$res->EOF) {
 		$seme_year_seme=$res->fields[seme_year_seme];
-		$seme_class=$res->fields[seme_class];
+		$seme_class=$res->fields['seme_class'];
 		$year=intval(substr($seme_year_seme,0,-1));
 		$semester=substr($seme_year_seme,-1,1);
 		$year_name=intval(substr($seme_class,0,-2));

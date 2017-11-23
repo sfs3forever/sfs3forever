@@ -283,7 +283,7 @@ class ADODOB_PDOStatement implements Iterator
 	}
 	  
 	function MoveNext() {
-		if (@$this->fields =& $this->handle->fetch(PDO::FETCH_ASSOC)) {
+		if (@$this->fields = $this->handle->fetch(PDO::FETCH_ASSOC)) {
       $this->row += 1;
       $this->rs = array_values($this->fields);
 			return $this->fields;

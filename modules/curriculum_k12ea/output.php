@@ -64,7 +64,7 @@ if ($_POST[act]) {
 	}
 
 	//抓取課表資料進行陣列儲存	
-	foreach($_POST[year_seme] as $key=>$year_seme){
+	foreach($_POST['year_seme'] as $key=>$year_seme){
 		
 		$tmp=explode('_',$year_seme);
 		$this_year=$tmp[0];

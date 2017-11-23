@@ -16,7 +16,7 @@ print_menu($school_menu_p);
 
 
 
-$year_seme=$_POST[year_seme];
+$year_seme=$_POST['year_seme'];
 
 $study_grade=$_POST[study_grade];
 

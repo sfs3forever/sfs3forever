@@ -65,7 +65,7 @@ function display(){
 
 function sendmit_open() {
 	//echo "<pre>";print_r($_POST);die();
-	if ($_POST[year_seme]=='') return;
+	if ($_POST['year_seme']=='') return;
 	if ($_POST[class_id]=='') {return;}else {$class_id=$_POST[class_id];}
 	if ($_POST[sendmit]=='') {return;}else {$sendmit=$_POST[sendmit];}
 	
@@ -76,7 +76,7 @@ function sendmit_open() {
 	$tmp=split('_',$class_id);
 	$tmp1=$tmp[0]."_".$tmp[1]."_".$tmp[2];//全年級
 	
-	$TB="score_semester_".$_POST[year_seme];
+	$TB="score_semester_".$_POST['year_seme'];
 	$SQL1="update $TB set sendmit='$sendmit' where  ss_id='{$subj}' ";	
 	$SQL["1s"]=" and test_sort='1' and  test_kind='定期評量' and class_id='$class_id' ";
 	$SQL["2s"]=" and test_sort='2' and  test_kind='定期評量' and class_id='$class_id' ";
@@ -93,7 +93,7 @@ function sendmit_open() {
 	
 	$SQL=$SQL1.$SQL[$key];
 	$rs=$this->CONN->Execute($SQL) or die("無法查詢，語法:".$SQL);
-	$URL=$_SERVER[PHP_SELF]."?".$this->Y_name."=".$_POST[year_seme]."&".$this->S_name."=".$class_id;
+	$URL=$_SERVER[PHP_SELF]."?".$this->Y_name."=".$_POST['year_seme']."&".$this->S_name."=".$class_id;
 		Header("Location:$URL");
 }
 

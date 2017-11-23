@@ -53,7 +53,7 @@ echo "<table border=0 cellspacing=1 cellpadding=2 width=100% bgcolor=#cccccc><tr
 
 //網頁內容請置於此處
 /***********************************************************************************/
-$year_seme = ($_GET[year_seme])?"$_GET[year_seme]":"$_POST[year_seme]";
+$year_seme = ($_GET[year_seme])?"$_GET[year_seme]":"$_POST['year_seme']";
 if($year_seme == '')
 	$year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 $class_seme_arr = get_class_seme();
