@@ -33,7 +33,7 @@ $stmt->execute();
 $stmt->bind_result($Rcount,$stud_id,$stud_name,$curr_class_num,$stud_pass);
 $stmt->fetch();
 $stmt->close();
-	if ($Rcount>0 || $_SESSION[session_log_id] !='') {
+	if ($Rcount>0 || $_SESSION['session_log_id'] !='') {
 		$_SESSION[session_stud_id]=$stud_id;
 		$_SESSION[session_stud_name]= $stud_name;		
 		$_SESSION[session_curr_class_num] = $curr_class_num;
@@ -49,7 +49,7 @@ $stmt->close();
 //	echo $sql_select;exit;
 	$result = $CONN->Execute ($sql_select) or die($sql_select);
 	
-	if ($result->RecordCount()>0 || $_SESSION[session_log_id] !='') {
+	if ($result->RecordCount()>0 || $_SESSION['session_log_id'] !='') {
 		$_SESSION[session_stud_id]=$result->fields["stud_id"];
 		$_SESSION[session_stud_name]= $result->fields["stud_name"];		
 		$_SESSION[session_curr_class_num] = $result->fields["curr_class_num"];

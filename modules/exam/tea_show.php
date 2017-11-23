@@ -16,7 +16,7 @@ include "header.php";
 //mysqli
 $mysqliconn = get_mysqli_conn();
 
-if($_SESSION[session_log_id]<>'') {
+if($_SESSION['session_log_id']<>'') {
 	if($_POST[key] == '按下評量') {
 		$_POST[exam_id]=intval($_POST[exam_id]);
 		$query = "select stud_id from exam_stud where exam_id= '$_POST[exam_id]' ";
@@ -138,7 +138,7 @@ if (isset($_SESSION[session_curr_class_num]))
 echo "<center>";
 
 $temp_class = sprintf("%03d%d%d",curr_year(),curr_seme(),substr($_SESSION[session_curr_class_num],0,3));
-if ($exam_isupload == '1' && (($e_upload_ok == '1' && $class_id == $temp_class)||($teach_id == $_SESSION[session_log_id])) )
+if ($exam_isupload == '1' && (($e_upload_ok == '1' && $class_id == $temp_class)||($teach_id == $_SESSION['session_log_id'])) )
 echo "<a href=\"tea_upload.php?exam_id=$exam_id&exam_name=$exam_name\">上傳作業</a>&nbsp;&nbsp;";
 echo "<a href=\"$_SERVER[PHP_SELF]?e_kind_id=$e_kind_id&exam_id=$exam_id\">重新整理</a>&nbsp;&nbsp;";
 echo "<a href=\"exam_list.php\">回作業列表區</a></center>";
@@ -149,7 +149,7 @@ echo "<tr bgColor=\"#80ffff\"><td colspan=5 align=center ><font size=4><b>$e_kin
 echo "<tr><td colspan=5><font color=red size=3>作業名稱：$exam_name<hr size=1>說明： $exam_memo</font></td></tr>\n";
 echo "<tr><td width=165 align=\"center\" >姓名</td><td width=65 align=\"center\" >成果</td><td width=220 align=\"center\" >評語</td><td width=70 align=\"center\" >得分</td>";
 
-if ($_SESSION[session_log_id] == $teach_id){
+if ($_SESSION['session_log_id'] == $teach_id){
 echo "<td>刪除</td>";
 }
 
@@ -196,9 +196,9 @@ while (!$result->EOF) {
 		$memo=" alt=\"$memo\" ";
 	}
 	
-	if ($tea_grade == 0 && $_SESSION[session_log_id]=="")
+	if ($tea_grade == 0 && $_SESSION['session_log_id']=="")
 		$tea_grade ="&nbsp;";
-	if ($tea_comment == "" && $_SESSION[session_log_id]=="")
+	if ($tea_comment == "" && $_SESSION['session_log_id']=="")
 		$tea_comment ="&nbsp;";
 	if(substr($stud_id,0,4) != "demo" )
 	 	$stud_name_temp = "$stud_num 號 -- <a href=\"show_owner.php?stud_id=$stud_id&e_kind_id=$e_kind_id\">$stud_name</a>";
@@ -211,7 +211,7 @@ while (!$result->EOF) {
 		$cool_img = "";
 		
 	//  管理者 	
-	if ($_SESSION[session_log_id] == $teach_id){
+	if ($_SESSION['session_log_id'] == $teach_id){
 		if ($cool == "1")
 			$set_cool = "<a href=\"$_SERVER[PHP_SELF]?cool=0&exam_id=$exam_id&stud_id=$stud_id\"><font color=red>Uncool</font></a>";
 		else
@@ -229,7 +229,7 @@ while (!$result->EOF) {
 		echo "<a href=\"".$uplaod_url."e_".$exam_id."/".$stud_id."/ \" target=\"_blank\">展示</a>&nbsp;<img src=\"images/memo.gif\" border=0 $memo >";
 	}
 	else { 
-	    if (($pp=="jpg")and ($_SESSION[session_log_id] == $teach_id)) { //出現小圖
+	    if (($pp=="jpg")and ($_SESSION['session_log_id'] == $teach_id)) { //出現小圖
 	       echo "<img src=\"" . $uplaod_url . "e_" . $exam_id . "/" . $stud_id . "_".$f_name."\" width=\"160\" height=\"120\"> \n" ; 
 	    }
 		//附帶線上播放 mm=freemind sb=scratch
@@ -243,7 +243,7 @@ while (!$result->EOF) {
 		}   
 		
 		//name 需加入學生代號
-		if ($_SESSION[session_log_id] == $teach_id){
+		if ($_SESSION['session_log_id'] == $teach_id){
 			echo "<td><input type=text size=30 name=tea_comment_".$stud_id." value=\"$tea_comment\"></td>";
 			echo "<td align=center><input type=text size=8 name=tea_grade_".$stud_id." value=\"$tea_grade\" > $temp_score</td>";
 		}
@@ -266,7 +266,7 @@ while (!$result->EOF) {
 	}
 
 	echo"</td>";
-	if ($_SESSION[session_log_id] == $teach_id){
+	if ($_SESSION['session_log_id'] == $teach_id){
 		echo "<td><a href=\"$_SERVER[PHP_SELF]?key=del&f_name=e_$exam_id/$stud_id"."_$f_name&stud_id=$stud_id&e_kind_id=$e_kind_id&exam_id=$exam_id\">刪除</a></td>";
 	}
 	echo "</tr>";
@@ -276,7 +276,7 @@ while (!$result->EOF) {
 };
 
 
-if ($_SESSION[session_log_id] == $teach_id){
+if ($_SESSION['session_log_id'] == $teach_id){
 	//未交作業列表
 	$class_id_temp = substr($class_id,-3);
 	$study_year_temp = intval(substr($class_id,0,3));

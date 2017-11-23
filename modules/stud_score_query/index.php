@@ -13,7 +13,7 @@ if(empty($sel_year))$sel_year=curr_year(); //目前學年
 if(empty($sel_seme))$sel_seme=curr_seme(); //目前學期
 
 //取得學生資料
-$stud_data=stud_data($_SESSION[session_log_id]);
+$stud_data=stud_data($_SESSION['session_log_id']);
 
 //取得本學期上課總日數
 $c_year=substr($stud_data[curr_class_num],0,-4);
@@ -27,7 +27,7 @@ $TOTAL_DAYS=$res->rs[0];
 $exam_setup=&get_all_setup("",$sel_year,$sel_seme,$c_year);
 $interface_sn=$exam_setup[interface_sn];
 
-$main=&main_form($interface_sn,$sel_year,$sel_seme,$class_id,$_SESSION[session_log_id]);
+$main=&main_form($interface_sn,$sel_year,$sel_seme,$class_id,$_SESSION['session_log_id']);
 
 echo $main;
 

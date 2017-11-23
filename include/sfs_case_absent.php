@@ -5,7 +5,7 @@ function add_absent($mode,$sn,$sel_year,$sel_seme,$month,$abs_kind,$reason,$star
 {
 	global $CONN;
 	if ($mode=="teacher"){
-		$query="insert into teacher_absent (year,semester,month,teacher_sn,reason,abs_kind,start_date,end_date,class_dis,deputy_sn,record_id,record_date) values ('$sel_year','$sel_seme','$month','$sn','$reason','$abs_kind','$start_date','$end_date','$class_dis','$agent_sn','$_SESSION[session_log_id]','".date("Y-m-d H:i:s")."')";
+		$query="insert into teacher_absent (year,semester,month,teacher_sn,reason,abs_kind,start_date,end_date,class_dis,deputy_sn,record_id,record_date) values ('$sel_year','$sel_seme','$month','$sn','$reason','$abs_kind','$start_date','$end_date','$class_dis','$agent_sn',{$_SESSION['session_log_id']},'".date("Y-m-d H:i:s")."')";
 		$CONN->Execute($query);
 	} elseif ($mode=="student"){
 	} else {
@@ -17,7 +17,7 @@ function modify_absent($mode,$id,$sn,$sel_year,$sel_seme,$month,$abs_kind,$reaso
 {
 	global $CONN;
 	if ($mode=="teacher"){
-		$query="update teacher_absent set year='$sel_year',semester='$sel_seme',month='$month',teacher_sn='$sn',reason='$reason',abs_kind='$abs_kind',start_date='$start_date',end_date='$end_date',class_dis='$class_dis',deputy_sn='$agent_sn',status='$status',record_id='$_SESSION[session_log_id]',record_date='".date("Y-m-d H:i:s")."' where id='$id'";
+		$query="update teacher_absent set year='$sel_year',semester='$sel_seme',month='$month',teacher_sn='$sn',reason='$reason',abs_kind='$abs_kind',start_date='$start_date',end_date='$end_date',class_dis='$class_dis',deputy_sn='$agent_sn',status='$status',record_id={$_SESSION['session_log_id']},record_date='".date("Y-m-d H:i:s")."' where id='$id'";
 		$CONN->Execute($query);
 		echo $query;
 	} elseif ($mode=="student"){

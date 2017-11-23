@@ -26,7 +26,7 @@ $month=month_menu($_POST[month],$month_arr);
 
 $edit_sn=$_POST['edit_sn'];
 if($_POST['act']=='確定修改') {
-	$query="update teacher_absent set reason='$_POST[reason]',abs_kind='$_POST[abs_kind_2]',start_date='$_POST[start_date]',end_date='$_POST[end_date]',day='$_POST[days]',hour='$_POST[hours]',deputy_sn='$_POST[agent_sn]',record_id='$_SESSION[session_log_id]',record_date='".date("Y-m-d H:i:s")."',class_dis='$_POST[course_kind]' where id='$edit_sn'";
+	$query="update teacher_absent set reason='$_POST[reason]',abs_kind='$_POST[abs_kind_2]',start_date='$_POST[start_date]',end_date='$_POST[end_date]',day='$_POST[days]',hour='$_POST[hours]',deputy_sn='$_POST[agent_sn]',record_id={$_SESSION['session_log_id']},record_date='".date("Y-m-d H:i:s")."',class_dis='$_POST[course_kind]' where id='$edit_sn'";
 	$CONN->Execute($query);
 	$edit_sn=0;
 }

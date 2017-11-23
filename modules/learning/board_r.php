@@ -8,7 +8,7 @@ include	"config.php";
 session_start();
 
 
-if($_SESSION[session_log_id]=='' ){
+if($_SESSION['session_log_id']=='' ){
 	
 	$go_back=1; //回到自已的認證畫面  
 		include "header.php";
@@ -33,7 +33,7 @@ if ($key == "確定"){
 	$b_open_date = mysql_date();
 
 	$b_upload_name = $_FILES[b_upload][name];
-	$sql_insert = "insert into unit_c(bk_id,b_open_date,b_days,b_unit,b_title,b_name,b_sub,b_con,b_upload,b_url,b_own_id,b_post_time,b_is_intranet,teacher_sn,update_ip,act)values ('$bk_id','$b_open_date','$b_days','$board_name ','$b_title ','$b_name ','$b_sub','$b_con ','$b_upload_name ','$b_url','$_SESSION[session_log_id]','$b_post_time','$b_is_intranet','$_SESSION[session_tea_sn]','{$_SERVER['REMOTE_ADDR']}','$a_b_id')";
+	$sql_insert = "insert into unit_c(bk_id,b_open_date,b_days,b_unit,b_title,b_name,b_sub,b_con,b_upload,b_url,b_own_id,b_post_time,b_is_intranet,teacher_sn,update_ip,act)values ('$bk_id','$b_open_date','$b_days','$board_name ','$b_title ','$b_name ','$b_sub','$b_con ','$b_upload_name ','$b_url',{$_SESSION['session_log_id']},'$b_post_time','$b_is_intranet','$_SESSION[session_tea_sn]','{$_SERVER['REMOTE_ADDR']}','$a_b_id')";
 
 	mysql_query($sql_insert) or die ($sql_insert); 
 	$query = "select max(b_id) as mm from unit_c ";

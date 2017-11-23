@@ -72,11 +72,11 @@ if ($_POST[key] == "修改"){
 	$result = $CONN->Execute($sql_update)or die($sql_update);
 	if (is_file($_FILES[docup_store][tmp_name])) {
 		if (!check_is_php_file($_FILES[docup_store][name])) {					
-			$alias = $filePath."/".$_SESSION[session_log_id]."_".$_POST[docup_id]."_".$_POST[docup_store2];
+			$alias = $filePath."/".$_SESSION['session_log_id']."_".$_POST[docup_id]."_".$_POST[docup_store2];
 			if (file_exists($alias)) {
 				unlink($alias);
 			}
-			$alias = $_SESSION[session_log_id]."_".$_POST[docup_id]."_".$_FILES[docup_store][name];			
+			$alias = $_SESSION['session_log_id']."_".$_POST[docup_id]."_".$_FILES[docup_store][name];			
 			if (copy($_FILES[docup_store][tmp_name],$filePath."/".$alias) == false) {
 				echo "檔案上傳失敗!請重新送出!<br>";
 				foot();

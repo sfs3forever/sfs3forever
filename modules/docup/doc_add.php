@@ -25,7 +25,7 @@ if ($_POST[key] == "新增"){ //新增文件
 			$temp_fname = explode("/",$_POST[fname]);			
 			$docup_store = $temp_fname[count($temp_fname)-1];
 			$docup_file_size = $_FILES[docup_store][size];
-			$sql_insert = "insert into docup (docup_owerid,docup_p_id,docup_name,docup_date,docup_owner,docup_store,docup_share,teacher_sn,docup_file_size) values ('$_SESSION[session_log_id]','$_POST[docup_p_id]','$_POST[docup_name]','$now','".addslashes($_SESSION[session_tea_name])."','$docup_store','$docup_share','$_SESSION[session_tea_sn]','$docup_file_size')";
+			$sql_insert = "insert into docup (docup_owerid,docup_p_id,docup_name,docup_date,docup_owner,docup_store,docup_share,teacher_sn,docup_file_size) values ({$_SESSION['session_log_id']},'$_POST[docup_p_id]','$_POST[docup_name]','$now','".addslashes($_SESSION[session_tea_name])."','$docup_store','$docup_share','$_SESSION[session_tea_sn]','$docup_file_size')";
 			$CONN->Execute($sql_insert)or trigger_error("SQL 錯誤 $sql_insert ",E_USER_ERROR);
 			$query = "select count(docup_id) as cc ,max(docup_id) as mm from docup where docup_p_id='$_POST[docup_p_id]'";
 			$result = $CONN->Execute($query)or trigger_error("SQL 錯誤 ",E_USER_ERROR);
@@ -34,7 +34,7 @@ if ($_POST[key] == "新增"){ //新增文件
 			$query = "update docup_p set docup_p_count = $cc where docup_p_id='$_POST[docup_p_id]'";
 			$CONN->Execute($query)or trigger_error("SQL 錯誤 ",E_USER_ERROR);
 
-			$alias = $_SESSION[session_log_id]."_".$mm."_".$_FILES[docup_store][name];
+			$alias = $_SESSION['session_log_id']."_".$mm."_".$_FILES[docup_store][name];
 
 
 			if (!copy($_FILES['docup_store']['tmp_name'],$filePath.$alias)){
@@ -51,7 +51,7 @@ if ($_POST[key] == "新增"){ //新增文件
 	}
 	else {
 	        if ($_POST[txturl]) {
-	            $sql_insert = "insert into docup (docup_owerid,docup_p_id,docup_name,docup_date,docup_owner,docup_store,docup_share,teacher_sn,docup_file_size , url ) values ('$_SESSION[session_log_id]','$_POST[docup_p_id]','$_POST[docup_name]','$now','$_SESSION[session_tea_name]','$docup_store','$docup_share','$_SESSION[session_tea_sn]','$docup_file_size' , '$_POST[txturl]' )";
+	            $sql_insert = "insert into docup (docup_owerid,docup_p_id,docup_name,docup_date,docup_owner,docup_store,docup_share,teacher_sn,docup_file_size , url ) values ({$_SESSION['session_log_id']},'$_POST[docup_p_id]','$_POST[docup_name]','$now','$_SESSION[session_tea_name]','$docup_store','$docup_share','$_SESSION[session_tea_sn]','$docup_file_size' , '$_POST[txturl]' )";
 			$CONN->Execute($sql_insert)or trigger_error("SQL 錯誤 $sql_insert ",E_USER_ERROR);      
 	                
 		}else {

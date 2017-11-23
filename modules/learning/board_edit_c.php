@@ -12,7 +12,7 @@ sfs_check();
 if ($key == "確定修改"){
 	$b_post_time = mysql_date();
 
-	$b_edit_id=$_SESSION[session_log_id];
+	$b_edit_id=$_SESSION['session_log_id'];
 	$b_edit_con=$b_edit_con+1;
 	if($o_kind=='' and $b_kind!=''){		
 			$bk_id=$o_bk_id;		

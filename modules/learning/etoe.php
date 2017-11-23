@@ -3,7 +3,7 @@
 // --系統設定檔
 include "config.php"; 
 session_start();
-if($_SESSION[session_log_id]==""){
+if($_SESSION['session_log_id']==""){
 	
 	$go_back=1; //回到自已的認證畫面  
 		include "header.php";
@@ -28,11 +28,11 @@ if ($_GET[logout]== "yes"){
 	session_start();
 	$CONN -> Execute ("update pro_user_state set pu_state=0,pu_time_over=now() where teacher_sn='{$_SESSION['session_tea_sn']}'") or user_error("更新失敗！",256);
 	session_destroy();
-	$_SESSION[session_log_id]="";
+	$_SESSION['session_log_id']="";
 	$_SESSION[session_tea_name]="";
 	Header("Location: $_SERVER[PHP_SELF]?unit=$unit");
 }
-if ($_GET[logout]== "no" and $_SESSION[session_log_id] ==""){
+if ($_GET[logout]== "no" and $_SESSION['session_log_id'] ==""){
 //	$_SESSION[unit]=$unit;
 	include $SFS_PATH."/rlogin.php";  
 	exit();
@@ -71,7 +71,7 @@ if($_SESSION[session_who]=="教師" ){   // 教師可以檢視題庫內容
 
 $s_title= $modules[$m] . $c_tome .$c_unit; 
 
-if ($_SESSION[session_log_id] != ""){
+if ($_SESSION['session_log_id'] != ""){
 	$login= "歡迎 $_SESSION[session_tea_name] 登入! 　<a href=\"$_SERVER[PHP_SELF]?logout=yes&unit=$unit\">登出</a></td>";
 }else{
 	$login= "<a href=\"$_SERVER[PHP_SELF]?logout=no&unit=$unit\">登入</a>";

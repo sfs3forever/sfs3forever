@@ -29,7 +29,7 @@
 			$poke_alt.= "　★終極進化";
 
 		$today=date("Y-m-d");
-		$s_unit_t=stud_ye($_SESSION[session_log_id])-1;
+		$s_unit_t=stud_ye($_SESSION['session_log_id'])-1;
 
 		if($online_date==$today)
 			$poke_alt.= "　◆本日已勝";

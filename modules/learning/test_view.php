@@ -3,7 +3,7 @@
 // --系統設定檔
 include "config.php"; 
 session_start();
-if($_SESSION[session_log_id]==""){	
+if($_SESSION['session_log_id']==""){	
 	$go_back=1; //回到自已的認證畫面  
 		include "header.php";
 	include $SFS_PATH."/rlogin.php";  

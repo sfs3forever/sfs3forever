@@ -50,7 +50,7 @@ if ($_POST[key] == "確定刪除"){
 	$result = $CONN->Execute($query)or die ($query);
 	$query = "update docup_p set docup_p_count = ".$result->rs[0]." where docup_p_id='$_POST[docup_p_id]'";
 	$CONN->Execute($query)or die ($query);
-	$alias = $filePath."/".$_SESSION[session_log_id]."_".$_POST[docup_id]."_".$_POST[docup_store];  
+	$alias = $filePath."/".$_SESSION['session_log_id']."_".$_POST[docup_id]."_".$_POST[docup_store];  
 	if (file_exists($alias))
 		unlink($alias);
 	header ("Location: doc_list.php?docup_p_id=$_POST[docup_p_id]&doc_kind_id=$_POST[doc_kind_id]");

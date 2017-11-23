@@ -191,7 +191,7 @@ if($act=="edit"){
 		$reward_sub=1;
 		$reward_c_date=date("Y-m-j");
 		$reward_ip=getip();
-		$query="insert into reward (reward_div,stud_id,reward_kind,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn,reward_bonus) values ('$reward_div','$One','$reward_kind','$reward_year_seme','$reward_date','$reward_reason','$reward_c_date','$reward_base','0000-00-00','$_SESSION[session_log_id]','$reward_ip','$reward_sub','0','$student_sn','$_POST[reward_bonus]')";
+		$query="insert into reward (reward_div,stud_id,reward_kind,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn,reward_bonus) values ('$reward_div','$One','$reward_kind','$reward_year_seme','$reward_date','$reward_reason','$reward_c_date','$reward_base','0000-00-00',{$_SESSION['session_log_id']},'$reward_ip','$reward_sub','0','$student_sn','$_POST[reward_bonus]')";
 		//echo $query."<br>";
 		
 		$res=$CONN->Execute($query);
@@ -216,7 +216,7 @@ if($act=="edit"){
 		$reward_sub=1;
 		$reward_c_date=date("Y-m-j");
 		$reward_ip=getip();
-		$query="insert into reward (reward_div,stud_id,reward_kind,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn,reward_bonus) values ('$reward_div','$One','$reward_kind','$reward_year_seme','$reward_date','$reward_reason','$reward_c_date','$reward_base','0000-00-00','$_SESSION[session_log_id]','$reward_ip','$reward_sub','0','$student_sn','$_POST[reward_bonus]')";
+		$query="insert into reward (reward_div,stud_id,reward_kind,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn,reward_bonus) values ('$reward_div','$One','$reward_kind','$reward_year_seme','$reward_date','$reward_reason','$reward_c_date','$reward_base','0000-00-00',{$_SESSION['session_log_id']},'$reward_ip','$reward_sub','0','$student_sn','$_POST[reward_bonus]')";
 		$res=$CONN->Execute($query);
 		$dep_id=$CONN->Insert_ID();
 		$query="update reward set dep_id='$dep_id' where reward_id='$dep_id'";

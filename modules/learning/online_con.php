@@ -3,7 +3,7 @@
 // --系統設定檔
 include "config.php"; 
 session_start();
-if($_SESSION[session_log_id]==""){
+if($_SESSION['session_log_id']==""){
 	
 	$go_back=1; //回到自已的認證畫面  
 		include "header.php";
@@ -27,7 +27,7 @@ if($match==1){
 	$s_title= "聯盟大會比賽"; 
 }
 $att_time = mysql_date();
-if ($_SESSION[session_log_id] != ""){
+if ($_SESSION['session_log_id'] != ""){
 	$login= "歡迎 $_SESSION[session_tea_name] 登入! </td>";
 }	
 $c_title= "<font size=6 face=標楷體 color=#800000><b>$s_title</b> </font>";	
@@ -186,11 +186,11 @@ while ($row = $result->FetchRow() ) {
 	$g_stud_id=$row["g_stud_id"] ; 
 
 	if($h_stud_id!='' and $g_stud_id!=''){ 
-		if(($_SESSION[session_log_id]==$h_stud_id  and  $_SESSION['session_who']==$h_who) or ($_SESSION[session_log_id]==$g_stud_id  and  $_SESSION['session_who']==$g_who) ){ // 本人
+		if(($_SESSION['session_log_id']==$h_stud_id  and  $_SESSION['session_who']==$h_who) or ($_SESSION['session_log_id']==$g_stud_id  and  $_SESSION['session_who']==$g_who) ){ // 本人
 			Header ("Location: online_act.php?p_sn=$p_sn");
 		}
 	}
-	if($_SESSION[session_log_id]==$h_stud_id  and  $_SESSION['session_who']==$h_who and $g_stud_id=='' ){
+	if($_SESSION['session_log_id']==$h_stud_id  and  $_SESSION['session_who']==$h_who and $g_stud_id=='' ){
 		$status="館主";
 	}
 }
@@ -285,7 +285,7 @@ while ($row = $result->FetchRow() ) {
 		$poke_alt=$h_sid . "_" . $poke_a[$h_sid]['p_name'];
 		// $ch_sid="<img src=pokemon/$h_sid" . ".gif  alt=$poke_alt >" ;
 		$bgcolor='FFFF66';
-		if($_SESSION[session_log_id]==$h_stud_id  and  $_SESSION['session_who']==$h_who  and $match==0){ // 本人
+		if($_SESSION['session_log_id']==$h_stud_id  and  $_SESSION['session_who']==$h_who  and $match==0){ // 本人
 			$ch_peo="館主";
 			$ch_games="$_SESSION[session_tea_name]";
 			$cg_peo="<a href=$PHP_SELF?key=取消&p_sn=$p_sn>取消</a>";

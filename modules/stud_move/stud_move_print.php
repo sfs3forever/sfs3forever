@@ -98,7 +98,7 @@ switch($_REQUEST[do_key]) {
 		if (count($_POST[choice])>0) {
 			reset ($_POST[choice]);
 			while(list($k,$v)=each($_POST[choice])) {
-				$CONN->Execute("update stud_move set move_c_unit='$_POST[move_c_unit]',move_c_date='$_POST[move_c_date]',move_c_word='$_POST[move_c_word]',move_c_num='$_POST[move_c_num]',update_time='".date("Y-m-d G:i:s")."',update_id='$_SESSION[session_log_id]',update_ip='".getip()."' where move_id='$k'");
+				$CONN->Execute("update stud_move set move_c_unit='$_POST[move_c_unit]',move_c_date='$_POST[move_c_date]',move_c_word='$_POST[move_c_word]',move_c_num='$_POST[move_c_num]',update_time='".date("Y-m-d G:i:s")."',update_id={$_SESSION['session_log_id']},update_ip='".getip()."' where move_id='$k'");
 			}
 		}
 	break;

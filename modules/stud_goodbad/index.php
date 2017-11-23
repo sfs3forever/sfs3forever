@@ -42,7 +42,7 @@ if ($_REQUEST[trans]) {
 				$reward_c_date=date("Y-m-j");
 				$reward_ip=getip();
 				$reward_sub=($gb_cancel_date=="0000-00-00")?"1":"2";
-				$query_trans="insert into reward (reward_div,stud_id,reward_kind,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn) values ('$reward_div','$stud_id','$reward_kind','$reward_year_seme','$gb_add_date','$gb_why','$reward_c_date','$gb_dep','$gb_cancel_date','$_SESSION[session_log_id]','$reward_ip','$reward_sub','0','$student_sn')";
+				$query_trans="insert into reward (reward_div,stud_id,reward_kind,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn) values ('$reward_div','$stud_id','$reward_kind','$reward_year_seme','$gb_add_date','$gb_why','$reward_c_date','$gb_dep','$gb_cancel_date',{$_SESSION['session_log_id']},'$reward_ip','$reward_sub','0','$student_sn')";
 				$CONN->Execute($query_trans) or trigger_error($query_trans,E_USER_ERROR);
 				$dep_id=$CONN->Insert_ID();
 				$query_update="update reward set dep_id='$dep_id' where reward_id='$dep_id'";

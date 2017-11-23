@@ -97,7 +97,7 @@ extract($m_arr, EXTR_OVERWRITE);
   //檢查管理者函式
     function check_is_man2($editors) {
 
-      $session_log_id = $_SESSION[session_log_id] ;
+      $session_log_id = $_SESSION['session_log_id'] ;
 
       $flag = false;
       $perr_man = split("," , $editors) ;

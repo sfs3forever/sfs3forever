@@ -62,8 +62,8 @@ if($my_sco==5){
 	$r_a[2]='●';
 	$r_a[3]=' □' ;	
 	if($_SESSION[session_who]=='學生'){
-		$yearc = substr ($_SESSION[session_log_id], 0, 2);
-		$img ="photo/student/". $yearc . "/". $_SESSION[session_log_id];
+		$yearc = substr ($_SESSION['session_log_id'], 0, 2);
+		$img ="photo/student/". $yearc . "/". $_SESSION['session_log_id'];
 	}elseif($_SESSION[session_who]=='教師'){
 		$img ="photo/teacher/". $_SESSION[session_tea_sn];
 	}

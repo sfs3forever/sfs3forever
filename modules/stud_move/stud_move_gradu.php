@@ -38,7 +38,7 @@ switch($_REQUEST[do_key]) {
 		$query="select a.stud_id,a.student_sn from stud_base a left join stud_seme b on a.student_sn=b.student_sn where b.seme_year_seme='".sprintf("%04d",$curr_seme)."' and b.seme_class like '".$class_year_id."%' and a.stud_study_cond='5'"; 
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$sql_insert="insert into stud_move (stud_id,move_kind,move_year_seme,move_date,move_c_unit,move_c_date,move_c_word,move_c_num,update_id,update_ip,update_time,student_sn) values ('".$res->fields[stud_id]."','5','$curr_seme','$_POST[move_date]','$_POST[move_c_unit]','$_POST[move_c_date]','$_POST[move_c_word]','$_POST[move_c_num]','$_SESSION[session_log_id]','$update_ip','".date("Y-m-d G:i:s")."','".$res->fields[student_sn]."')";
+			$sql_insert="insert into stud_move (stud_id,move_kind,move_year_seme,move_date,move_c_unit,move_c_date,move_c_word,move_c_num,update_id,update_ip,update_time,student_sn) values ('".$res->fields[stud_id]."','5','$curr_seme','$_POST[move_date]','$_POST[move_c_unit]','$_POST[move_c_date]','$_POST[move_c_word]','$_POST[move_c_num]',{$_SESSION['session_log_id']},'$update_ip','".date("Y-m-d G:i:s")."','".$res->fields[student_sn]."')";
 			$CONN->Execute($sql_insert) or die($sql_insert);
 			$res->MoveNext();
 		}

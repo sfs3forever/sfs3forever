@@ -69,7 +69,7 @@ function redir_str( $surl ,$str="",$sec) {
 function board_checkid($chk){
 	global $conID,$session_log_id ,$app_name,$session_tea_sn;
 if($_SESSION['session_who'] =="學生"){	
-	$dbquery = "select pro_kind_id from board_check where pro_kind_id ='$chk' and teach_id='$_SESSION[session_log_id]'";
+	$dbquery = "select pro_kind_id from board_check where pro_kind_id ='$chk' and teach_id={$_SESSION['session_log_id']}";
 		$result= mysql_query($dbquery,$conID)or die("<br>資料庫連結錯誤<br>\n $dbquery");
 		if (mysql_num_rows ($result)>0)	{
 			return true;

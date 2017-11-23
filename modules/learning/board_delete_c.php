@@ -11,7 +11,7 @@ session_start();
 if ($key=="確定刪除"){
 	$b_post_time = mysql_date();
 
-	$b_edit_id=$_SESSION[session_log_id];
+	$b_edit_id=$_SESSION['session_log_id'];
 
 	$b_store = $b_id."_".$b_upload;
 	if(file_exists ($USR_DESTINATION.$b_store))

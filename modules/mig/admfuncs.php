@@ -614,7 +614,7 @@ function check_is_del ($newFname) {
 	else	
 		$key_arr=array("0");
 		
-	if ($chktemp[$newFname]== $_SESSION[session_log_id] || !in_array ($newFname, $key_arr)|| $man_flag)
+	if ($chktemp[$newFname]== $_SESSION['session_log_id'] || !in_array ($newFname, $key_arr)|| $man_flag)
 		$flag = true;	
 	return $flag;
 }

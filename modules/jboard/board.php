@@ -7,7 +7,7 @@ include	"board_config.php";
 // session 認證
 session_start();
 
-$teach_id=$_SESSION[session_log_id];
+$teach_id=$_SESSION['session_log_id'];
 
 $bk_id = $_REQUEST['bk_id'];
 

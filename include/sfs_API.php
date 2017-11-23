@@ -47,7 +47,7 @@
 				$temp_arr=explode("/",$_SERVER['REQUEST_URI']);
 				if ($temp_arr[count($temp_arr)-1]=="login.php") $SFS_PATH_HTML=$HTTPS;
 				//如果有登入
-				if ($_SESSION[session_log_id]<>"") {
+				if ($_SESSION['session_log_id']<>"") {
 					if ($temp_arr[count($temp_arr)-1]<>"login.php?logout=yes") $SFS_PATH_HTML=$HTTPS; //除登出頁面外一律強制使用https
 					if ($_SERVER['SERVER_PORT']==80 && $SFS_PATH_HTML==$HTTPS) header("Location: ".$HTTPS); //如果已登入卻自行切換到http, 強制回https
 				}

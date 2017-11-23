@@ -268,7 +268,7 @@ function checkid2($who=""){
 		break;
 
 		case "學生":
-			$query="select stud_id as id from stud_base where stud_id='$_SESSION[session_log_id]' and email_pass='{$_SESSION['session_log_pass']}'";
+			$query="select stud_id as id from stud_base where stud_id={$_SESSION['session_log_id']} and email_pass='{$_SESSION['session_log_pass']}'";
 		break;
 
 		default:

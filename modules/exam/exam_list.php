@@ -90,7 +90,7 @@ if ($_SESSION[session_stud_id] !="") {
 	echo "&nbsp;｜&nbsp;<a href=\"checkid.php?logout=1&exename=$_SERVER[PHP_SELF]&e_kind_id=$e_kind_id\">登出系統</a>";
 }
 //教師管理部份
-else if ($_SESSION[session_log_id] != "" ) { 
+else if ($_SESSION['session_log_id'] != "" ) { 
 	echo "歡迎 $_SESSION[session_tea_name] 登入 ";
 	echo "&nbsp;｜&nbsp; $class_select \n";	
 	echo "&nbsp;｜&nbsp; <a href=\"exam.php\">作業管理</a>";
@@ -152,7 +152,7 @@ else {
 	
 		//判斷是否開始上傳作業 exam_isupload == 1
 		//判斷是否為該班學生或指導教師，再給予上傳權限
-		if ($exam_isupload == '1' &&(($e_upload_ok == '1' && $class_id == $temp_class)||($teach_id == $_SESSION[session_log_id])))
+		if ($exam_isupload == '1' &&(($e_upload_ok == '1' && $class_id == $temp_class)||($teach_id == $_SESSION['session_log_id'])))
 
 			echo " <a href=\"tea_upload.php?exam_id=$exam_id&exam_name=$exam_name\">上傳作業</a></td></tr>\n";
 		else

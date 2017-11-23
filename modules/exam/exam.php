@@ -74,7 +74,7 @@ $class_name = class_base();
   
 //目前有作業的班級
 $sql_select = "select exam_kind.class_id,exam_kind.e_kind_id  from exam,exam_kind ";
-$sql_select .=" where exam.e_kind_id=exam_kind.e_kind_id and exam.teach_id ='$_SESSION[session_log_id]' and exam_kind.class_id like '$curr_year_seme%' group by exam_kind.class_id order by exam_kind.class_id  ";
+$sql_select .=" where exam.e_kind_id=exam_kind.e_kind_id and exam.teach_id ={$_SESSION['session_log_id']} and exam_kind.class_id like '$curr_year_seme%' group by exam_kind.class_id order by exam_kind.class_id  ";
 
 $result = $CONN->Execute($sql_select) or trigger_error("SQL 錯誤",E_USER_ERROR);
 
@@ -121,7 +121,7 @@ $sel1->do_select();
 <?php
 
 $sql_select = "select exam.*,exam_kind.class_id  from exam,exam_kind ";
-$sql_select .=" where exam.e_kind_id=exam_kind.e_kind_id and exam.teach_id ='$_SESSION[session_log_id]' and exam_kind.class_id like '$curr_year_seme%' ";
+$sql_select .=" where exam.e_kind_id=exam_kind.e_kind_id and exam.teach_id ={$_SESSION['session_log_id']} and exam_kind.class_id like '$curr_year_seme%' ";
 if ($e_kind_id !="-1")
 {
 $e_kind_id=intval($e_kind_id);

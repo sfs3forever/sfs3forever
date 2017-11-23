@@ -84,7 +84,7 @@ if ($One=="all") {
 		while (!$res->EOF) {
 			$id=$res->fields['stud_id'];
 			$sn=$res->fields['student_sn'];
-			$query_insert="insert into reward (reward_div,reward_kind,stud_id,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn) values ('$rd','$rk','$id','$rys','$rdt','$rr','$rcd','$rb','$rccd','$_SESSION[session_log_id]','$rip','$rs','$sel_dep','$sn')";
+			$query_insert="insert into reward (reward_div,reward_kind,stud_id,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn) values ('$rd','$rk','$id','$rys','$rdt','$rr','$rcd','$rb','$rccd',{$_SESSION['session_log_id']},'$rip','$rs','$sel_dep','$sn')";
 			$res_insert=$CONN->Execute($query_insert) or trigger_error($query_insert);
 			cal_rew(substr($rys,0,strlen($rys)-1),substr($rys,-1),$id); //即時統計總表 by smallduh 2013.3.5
 			$res->MoveNext();			
@@ -111,7 +111,7 @@ if ($_POST[add] && $One) {
 	$query="select * from stud_seme where seme_year_seme='$seme_year_seme' and stud_id='$id'";
 	$res=$CONN->Execute($query) or trigger_error($query);
 	$sn=$res->fields['student_sn'];
-	$query_insert="insert into reward (reward_div,reward_kind,stud_id,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn) values ('$rd','$rk','$id','$rys','$rdt','$rr','$rcd','$rb','$rccd','$_SESSION[session_log_id]','$rip','$rs','$sel_dep','$sn')";
+	$query_insert="insert into reward (reward_div,reward_kind,stud_id,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn) values ('$rd','$rk','$id','$rys','$rdt','$rr','$rcd','$rb','$rccd',{$_SESSION['session_log_id']},'$rip','$rs','$sel_dep','$sn')";
 	$res_insert=$CONN->Execute($query_insert) or trigger_error($query_insert);
 	cal_rew(substr($rys,0,strlen($rys)-1),substr($rys,-1),$id); //即時統計總表 by smallduh 2013.1.8
 }
@@ -142,7 +142,7 @@ if($act=="edit"){
 		$reward_sub=1;
 		$reward_c_date=date("Y-m-j");
 		$reward_ip=getip();
-		$query="insert into reward (reward_div,stud_id,reward_kind,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn) values ('$reward_div','','$reward_kind','$reward_year_seme','$reward_date','$reward_reason','$reward_c_date','$reward_base','0000-00-00','$_SESSION[session_log_id]','$reward_ip','$reward_sub','0','')"; 
+		$query="insert into reward (reward_div,stud_id,reward_kind,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn) values ('$reward_div','','$reward_kind','$reward_year_seme','$reward_date','$reward_reason','$reward_c_date','$reward_base','0000-00-00',{$_SESSION['session_log_id']},'$reward_ip','$reward_sub','0','')"; 
 		$res=$CONN->Execute($query);
 	}
 	$main=&mainForm($sel_year,$sel_seme,$CONN->Insert_ID());

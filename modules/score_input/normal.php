@@ -208,7 +208,7 @@ if ($err==0) {
 		reset($stud_list);
 		//while(list($student_sn,$v)=each($stud_list)) {
 		foreach( $stud_list as $student_sn=>$v) {
-			$CONN->Execute("insert into $nor_score (teach_id,stud_sn,class_subj,stage,test_name,test_score,weighted,enable,freq) values ('$_SESSION[session_log_id]','$student_sn','$class_subj','$curr_sort','$test_name','-100','1','1','$next_freq')");
+			$CONN->Execute("insert into $nor_score (teach_id,stud_sn,class_subj,stage,test_name,test_score,weighted,enable,freq) values ({$_SESSION['session_log_id']},'$student_sn','$class_subj','$curr_sort','$test_name','-100','1','1','$next_freq')");
 		}
 		header("Location: normal.php?teacher_course={$_REQUEST['teacher_course']}&curr_sort=$curr_sort");
 		exit;
@@ -222,11 +222,11 @@ if ($err==0) {
 			if (substr($student_sn,0,1)=='n'){
 				$student_sn = substr($student_sn,1);
 				//轉學生
-				$query = "insert into $nor_score (teach_id,stud_sn,class_subj,stage,test_name,test_score,weighted,enable,freq) values ('$_SESSION[session_log_id]','$student_sn','$class_subj','$curr_sort','$_POST[test_name]','$score','$_POST[weighted]','1','$_POST[freq]')";
+				$query = "insert into $nor_score (teach_id,stud_sn,class_subj,stage,test_name,test_score,weighted,enable,freq) values ({$_SESSION['session_log_id']},'$student_sn','$class_subj','$curr_sort','$_POST[test_name]','$score','$_POST[weighted]','1','$_POST[freq]')";
 				//echo $query;
 			}
 			else {
-				$query="update $nor_score set test_name='$_POST[test_name]',test_score='$score',weighted='$_POST[weighted]' where teach_id='$_SESSION[session_log_id]' and stud_sn='$student_sn' and stage='$curr_sort' and class_subj='$class_subj' and freq='$_POST[freq]'";
+				$query="update $nor_score set test_name='$_POST[test_name]',test_score='$score',weighted='$_POST[weighted]' where teach_id={$_SESSION['session_log_id']} and stud_sn='$student_sn' and stage='$curr_sort' and class_subj='$class_subj' and freq='$_POST[freq]'";
 			}
 			$res=$CONN->Execute($query);
 		}
@@ -274,7 +274,7 @@ if ($err==0) {
 				$weighted=$item_array[1]?$item_array[1]:1;
 				$next_freq=$nor_item_key+1;
 				foreach($stud_list as $stud_sn=>$v){
-					$CONN->Execute("insert into $nor_score(teach_id,stud_sn,class_subj,stage,test_name,test_score,weighted,enable,freq) values ('$_SESSION[session_log_id]','$stud_sn','$class_subj','$curr_sort','$test_name','-100','$weighted','1','$next_freq')");
+					$CONN->Execute("insert into $nor_score(teach_id,stud_sn,class_subj,stage,test_name,test_score,weighted,enable,freq) values ({$_SESSION['session_log_id']},'$stud_sn','$class_subj','$curr_sort','$test_name','-100','$weighted','1','$next_freq')");
 				}			
 			}
 			//重新抓取成績

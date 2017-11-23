@@ -39,12 +39,12 @@ if($_POST[key] =='新增'){
 		if ($result->RecordCount() ==0) {
 			/*
 			$sql_insert = "insert into exam_kind (e_kind_id,e_kind_memo,e_kind_open,e_upload_ok,teach_id,teach_name,class_id)
-                 		values ('$_POST[e_kind_id]','$_POST[e_kind_memo]','$_POST[e_kind_open]','$_POST[e_upload_ok]','$_SESSION[session_log_id]','$_SESSION[session_tea_name]','$class_id')";
+                 		values ('$_POST[e_kind_id]','$_POST[e_kind_memo]','$_POST[e_kind_open]','$_POST[e_upload_ok]',{$_SESSION['session_log_id']},'$_SESSION[session_tea_name]','$class_id')";
   			$CONN->Execute($sql_insert) or die($sql_insert); 
              */
 //mysqli
 $sql_insert = "insert into exam_kind (e_kind_id,e_kind_memo,e_kind_open,e_upload_ok,teach_id,teach_name,class_id)
-               values (?,?,?,?,'$_SESSION[session_log_id]','$_SESSION[session_tea_name]',?)";
+               values (?,?,?,?,{$_SESSION['session_log_id']},'$_SESSION[session_tea_name]',?)";
 $stmt = "";
 $stmt = $mysqliconn->prepare($sql_insert);
 $stmt->bind_param('sssss', $_POST[e_kind_id],$_POST[e_kind_memo],$_POST[e_kind_open],$_POST[e_upload_ok],$class_id);

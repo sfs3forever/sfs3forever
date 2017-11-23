@@ -19,12 +19,12 @@ if($_POST[key] =='新增'){
 	$temp_arr = $_POST[e_kind_id];
 	for ($i=0 ;$i<count($temp_arr);$i++) {
 		
-		//$sql_insert = "insert into exam (exam_id,exam_name,exam_memo,exam_isopen,exam_isupload,e_kind_id,teach_id,teach_name)values ('','$_POST[exam_name]','$_POST[exam_memo]','$_POST[exam_isopen]','$_POST[exam_isupload]','$temp_arr[$i]','$_SESSION[session_log_id]','$session_tea_name')";
+		//$sql_insert = "insert into exam (exam_id,exam_name,exam_memo,exam_isopen,exam_isupload,e_kind_id,teach_id,teach_name)values ('','$_POST[exam_name]','$_POST[exam_memo]','$_POST[exam_isopen]','$_POST[exam_isupload]','$temp_arr[$i]',{$_SESSION['session_log_id']},'$session_tea_name')";
  		//$CONN->Execute($sql_insert) or die($sql_insert);
 
 //mysqli
 $mysqliconn = get_mysqli_conn();	
-$sql_insert = "insert into exam (exam_id,exam_name,exam_memo,exam_isopen,exam_isupload,e_kind_id,teach_id,teach_name)values ('',?,?,?,?,'$temp_arr[$i]','$_SESSION[session_log_id]','$session_tea_name')";
+$sql_insert = "insert into exam (exam_id,exam_name,exam_memo,exam_isopen,exam_isupload,e_kind_id,teach_id,teach_name)values ('',?,?,?,?,'$temp_arr[$i]',{$_SESSION['session_log_id']},'$session_tea_name')";
 $stmt = "";
 $stmt = $mysqliconn->prepare($sql_insert);
 $stmt->bind_param('ssss', $_POST[exam_name],$_POST[exam_memo],$_POST[exam_isopen],$_POST[exam_isupload]);

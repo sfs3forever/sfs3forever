@@ -106,7 +106,7 @@ class stud_sta{
 		$SEME=split("_",$_POST[year_seme]);
 		$seme=$SEME[0].$SEME[1];
 		$IP=$_SERVER['REMOTE_ADDR'];
-		$USER=$_SESSION[session_log_id];
+		$USER=$_SESSION['session_log_id'];
 		$SQL="select  stud_id,student_sn from stud_base where student_sn in ($a) ";
 		$rs=&$this->CONN->Execute($SQL) or die($SQL);
 		$aa=&$rs->GetArray();

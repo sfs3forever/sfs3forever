@@ -53,14 +53,14 @@ function is_php_name ($chk) {
 }
 
 session_start();
-if ($_SESSION[session_stud_id] == "" && $_SESSION[session_log_id] == "" ){	
+if ($_SESSION[session_stud_id] == "" && $_SESSION['session_log_id'] == "" ){	
 	$exename = $_SERVER[REQUEST_URI];
 	include "checkid.php";
 	exit;
 }
 //教師部份
-if ($_SESSION[session_log_id] !=""){
-	$s_stud_id = "demo_".$_SESSION[session_log_id];
+if ($_SESSION['session_log_id'] !=""){
+	$s_stud_id = "demo_".$_SESSION['session_log_id'];
 	$s_stud_name = addslashes ($_SESSION[session_tea_name]);
 }
 else {
@@ -191,7 +191,7 @@ $tempc = sprintf("%03s%d%s",curr_year(),curr_seme(),substr($_SESSION[session_cur
 //檢查上傳權限
 //判斷是否開始上傳作業 exam_isupload == 1
 //判斷是否為該班學生或指導教師，再給予上傳權限
-if (($result->fields["class_id"] != $tempc || $result->fields["e_upload_ok"] != "1")&& $result->fields["teach_id"] != $_SESSION[session_log_id] || $result->fields["exam_isupload"] != "1") {
+if (($result->fields["class_id"] != $tempc || $result->fields["e_upload_ok"] != "1")&& $result->fields["teach_id"] != $_SESSION['session_log_id'] || $result->fields["exam_isupload"] != "1") {
 	//echo "dddd:".$row["e_upload_ok"];
 	echo "<h2>本項作業目前未授權上傳</h2> ";
 	echo "<form><input type=\"button\"  value= \"回上頁\" onclick=\"history.back()\"></form>";

@@ -18,7 +18,7 @@ if ($_GET[logout]== "yes"){
 	session_start();
 	$CONN -> Execute ("update pro_user_state set pu_state=0,pu_time_over=now() where teacher_sn='{$_SESSION['session_tea_sn']}'") or user_error("更新失敗！",256);
 	session_destroy();
-	$_SESSION[session_log_id]="";
+	$_SESSION['session_log_id']="";
 	$_SESSION[session_tea_name]="";
 	Header("Location: $_SERVER[PHP_SELF]");
 }
@@ -101,7 +101,7 @@ $b_con=stripslashes($b_con);
 	$temp_con .="<tr bgcolor='$bgcolor' onMouseOver=setBG('$record_bg_color',this) onMouseout=setBGOff('$bgcolor',this) onFocus=setBG('$record_bg_color',this) onBlur=setBGOff('$bgcolor',this) style='text-height:$record_height pt;text-align:center;color:$record_text_color;font-size:$font_size pt;'>";
 
 	//檢查是否為內部文件(建立者、系統管理員仍可看見內部文件)
-//	if (($b_is_intranet== 0 ) || ($b_own_id == $_SESSION[session_log_id] )|| (checkid($_SERVER[SCRIPT_FILENAME],1)) || ($b_is_intranet == '1' && check_home_ip())){
+//	if (($b_is_intranet== 0 ) || ($b_own_id == $_SESSION['session_log_id'] )|| (checkid($_SERVER[SCRIPT_FILENAME],1)) || ($b_is_intranet == '1' && check_home_ip())){
 	//if (($b_is_intranet== 0 ) || ($teacher_sn == $_SESSION[session_tea_sn] )|| (checkid($_SERVER[SCRIPT_FILENAME],1)) || ($b_is_intranet == '1' && $is_home_ip)){
 	if (($b_is_intranet== 0 ) || isset($_SESSION[session_tea_sn] )|| (checkid($_SERVER[SCRIPT_FILENAME],1)) || ($b_is_intranet == '1' && $is_home_ip)){
 		$temp_con .= sprintf("<td nowrap>%s</td><td style='text-align:left;'><a href=\"board_show.php?b_id=%d\">%s</a> $b_i_temp $b_sign_temp</td><td nowrap>%s</td>",$b_open_date,$bb_id,$b_sub,$b_unit);
@@ -162,7 +162,7 @@ while ($row = $result->fetchRow()){
 	$temp_con .="<tr bgcolor='$bgcolor' onMouseOver=setBG('$record_bg_color',this) onMouseout=setBGOff('$bgcolor',this) onFocus=setBG('$record_bg_color',this) onBlur=setBGOff('$bgcolor',this) style='text-height:$record_height pt;text-align:center;color:$record_text_color;font-size:$font_size pt;'>";
 
 	//檢查是否為內部文件(建立者、系統管理員仍可看見內部文件)
-//	if (($b_is_intranet== 0 ) || ($b_own_id == $_SESSION[session_log_id] )|| (checkid($_SERVER[SCRIPT_FILENAME],1)) || ($b_is_intranet == '1' && check_home_ip())){
+//	if (($b_is_intranet== 0 ) || ($b_own_id == $_SESSION['session_log_id'] )|| (checkid($_SERVER[SCRIPT_FILENAME],1)) || ($b_is_intranet == '1' && check_home_ip())){
 	//if (($b_is_intranet== 0 ) || ($teacher_sn == $_SESSION[session_tea_sn] )|| (checkid($_SERVER[SCRIPT_FILENAME],1)) || ($b_is_intranet == '1' && $is_home_ip)){
 	if (($b_is_intranet== 0 ) || isset($_SESSION[session_tea_sn] )|| (checkid($_SERVER[SCRIPT_FILENAME],1)) || ($b_is_intranet == '1' && $is_home_ip)){
 		$temp_con .= sprintf("<td nowrap>%s</td><td style='text-align:left;'><a href=\"board_show.php?b_id=%d\">%s</a> $b_i_temp $b_sign_temp</td><td nowrap>%s</td>",$b_open_date,$bb_id,$b_sub,$b_unit);
@@ -210,7 +210,7 @@ thetable.bgColor=TheColor
 			echo sprintf(" <option value=\"%s\">%s</option>",$row["bk_id"],$row["board_name"]);
 	}
 	echo "</select>";
-	if ($_SESSION[session_log_id] != "")
+	if ($_SESSION['session_log_id'] != "")
 		echo "<a href=\"$_SERVER[PHP_SELF]?logout=yes\">登出系統</a>";
 	if ($bk_id!="")
 		echo "</td><td align=center width=100%><b>".$board_name."佈告欄</b>–<a href=\"board.php?bk_id=$bk_id\">張貼佈告</a></td>";

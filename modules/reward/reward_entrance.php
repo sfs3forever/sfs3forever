@@ -77,7 +77,7 @@ if ($_POST['act']=='add_reward') {
 		$reward_sub=1;
 		$reward_c_date=date("Y-m-j");
 		$reward_ip=getip();
-		$query="insert into reward (reward_div,stud_id,reward_kind,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn) values ('$reward_div','$stud_id','$reward_kind','$reward_year_seme','$reward_date','$reward_reason','$reward_c_date','$reward_base','0000-00-00','$_SESSION[session_log_id]','$reward_ip','$reward_sub','0','$student_sn')";
+		$query="insert into reward (reward_div,stud_id,reward_kind,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn) values ('$reward_div','$stud_id','$reward_kind','$reward_year_seme','$reward_date','$reward_reason','$reward_c_date','$reward_base','0000-00-00',{$_SESSION['session_log_id']},'$reward_ip','$reward_sub','0','$student_sn')";
 		
 		$res=$CONN->Execute($query);
 		$dep_id=$CONN->Insert_ID();
@@ -158,7 +158,7 @@ $reward_year_seme=$sel_year.$sel_seme; //發生時的學期 ,小於100, 前面�
 		$reward_sub=1;
 		$reward_c_date=$reward_date;
 		$reward_ip=getip();
-		$query="insert into reward (reward_div,stud_id,reward_kind,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn) values ('$reward_div','$stud_id','$reward_kind','$reward_year_seme','$reward_date','$reward_reason','$reward_c_date','$reward_base','0000-00-00','$_SESSION[session_log_id]','$reward_ip','$reward_sub','0','$student_sn')";
+		$query="insert into reward (reward_div,stud_id,reward_kind,reward_year_seme,reward_date,reward_reason,reward_c_date,reward_base,reward_cancel_date,update_id,update_ip,reward_sub,dep_id,student_sn) values ('$reward_div','$stud_id','$reward_kind','$reward_year_seme','$reward_date','$reward_reason','$reward_c_date','$reward_base','0000-00-00',{$_SESSION['session_log_id']},'$reward_ip','$reward_sub','0','$student_sn')";
 		
 		$res=$CONN->Execute($query);
 		$dep_id=$CONN->Insert_ID();
