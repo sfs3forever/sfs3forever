@@ -75,7 +75,7 @@ function list_parent_prob($curr_msn=0){
 	//取得某模組底下模組的編號
 	$data="";
 	foreach($all as $m){
-		$mmsn=$m[msn];
+		$mmsn=$m['msn'];
 				
 		$checked=($m[islive]=='1')?"checked":"";
 
@@ -141,7 +141,7 @@ function &del_form($set_msn=""){
 	global $MODULE_DIR,$CONN;
 	//取得模組資料
 	$m=get_main_prob($set_msn);
-	$of_group=get_module_path($m[msn],"首頁",0);
+	$of_group=get_module_path($m['msn'],"首頁",0);
 	$in_use=($m[islive]=='1')?"使用中":"停用中";
 
 	
@@ -149,7 +149,7 @@ function &del_form($set_msn=""){
 	if($m[kind]=="分類"){
 		$stand_txt="<font color='blue'>模組分類</font>";
 		//取得該模組在資料庫中底下的模組陣列
-		$child_prob_num=sizeof(get_parent_prob($m[msn]));
+		$child_prob_num=sizeof(get_parent_prob($m['msn']));
 		$disabled=($child_prob_num > 0)?"disabled":"";
 		$disabled_text=($child_prob_num > 0)?"底下尚有模組不可移除":"移除分類";
 	

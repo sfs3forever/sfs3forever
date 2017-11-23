@@ -43,7 +43,7 @@ function get_module($msn="") {
 
 	$recordSet=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
 	$i=0;
-	while($m=$recordSet->FetchRow()){
+	while($m=$recordSet->FetchRowAssoc()){
 		$ofgroup=$m[of_group];
 		if(in_array($ofgroup,$ok_power)) continue;
 		$arr[$i]= $m;

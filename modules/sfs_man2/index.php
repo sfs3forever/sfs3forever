@@ -83,7 +83,7 @@ function list_parent_prob($curr_msn=0){
 	$data="";
 	$CDCArray = CDC::getAuthKind(1);
 	foreach($all as $m){
-		$mmsn=$m[msn];
+		$mmsn=$m['msn'];
 		$db_dir[]=$m["dirname"];
 		$checked=($m[islive]=='1')?"checked":"";
 		$checked_open=($m[isopen]=='1')?"checked":"";

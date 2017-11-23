@@ -322,5 +322,12 @@ class ADODOB_PDOStatement implements Iterator
     $this->MoveNext();
     return $rs;
   }
+
+  function FetchRowAssoc() {
+    if($this->EOF) return false;
+    $rs = $this->fields;
+    $this->MoveNext();
+    return $rs;
+  }
 }
 ?>

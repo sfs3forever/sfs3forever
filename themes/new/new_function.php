@@ -37,11 +37,11 @@ function print_module($msn="",$index=0,$col_num=4) {
 		$main="<table width='$tw' align='center' border='0' cellpadding='10' cellspacing='0' class='small'>";
 		
 		$a=$col_num;
-
+		
 		//$m為底下每個一模組，是陣列
 		foreach($module as $m){
 			//模組編號
-			$pro_kind_id=$m[msn];
+			$pro_kind_id=$m['msn'];
 			//模組中文名稱
 			$pro_kind_name=$m['showname'];
 			//模組目錄名稱
