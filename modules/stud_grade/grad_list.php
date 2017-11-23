@@ -47,7 +47,7 @@ $seme_year = sprintf("%03d", curr_year());
 $query="select student_sn from stud_seme where seme_year_seme='$seme_year_seme'";
 $res=$CONN->Execute($query);
 while(!$res->EOF) {
-	$sn[]=$res->fields[student_sn];
+	$sn[]=$res->fields['student_sn'];
 	$res->MoveNext();
 }
 $all_sn="'".implode("','",$sn)."'";

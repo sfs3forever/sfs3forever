@@ -58,7 +58,7 @@ if ($_POST[year_name] and count($_POST[class_id])>0) {
 
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$sn[]=$res->fields[student_sn];
+		$sn[]=$res->fields['student_sn'];
 		$res->MoveNext();
 	}
 	$query="select stud_study_year from stud_base where student_sn='".$sn[0]."'";
@@ -85,7 +85,7 @@ if ($_POST[year_name] and count($_POST[class_id])>0) {
 	$query="select a.*, b.stud_name, b.stud_sex from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme='$seme_year_seme' and a.student_sn in ($all_sn) order by a.seme_class,a.seme_num";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$ssn=$res->fields[student_sn];
+		$ssn=$res->fields['student_sn'];
 		$show_sn[$ssn]=$ssn;
 		$sclass[$ssn]=$class_base[$res->fields['seme_class']];
 		$snum[$ssn]=$res->fields[seme_num];

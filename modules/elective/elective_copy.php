@@ -15,7 +15,7 @@ if ($_POST[copy] && $_POST[sel_group]) {
 	$query="select * from elective_stu where group_id='$_POST[sel_group]' order by elective_stu_sn";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$CONN->Execute("insert into elective_stu (group_id,student_sn) values ('$_POST[group_id]','".$res->fields[student_sn]."')");
+		$CONN->Execute("insert into elective_stu (group_id,student_sn) values ('$_POST[group_id]','".$res->fields['student_sn']."')");
 		$res->MoveNext();
 	}
 }

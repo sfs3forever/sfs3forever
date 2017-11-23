@@ -44,7 +44,7 @@ $stud_id=$_REQUEST[stud_id];
 //執行動作判斷
 
 if($act=="save"){
-	save_score_nor($sel_year,$sel_seme,$_REQUEST[student_sn],$_REQUEST[nor_score],$_REQUEST[nor_score_memo]);
+	save_score_nor($sel_year,$sel_seme,$_REQUEST['student_sn'],$_REQUEST[nor_score],$_REQUEST[nor_score_memo]);
 	save_score_oth($sel_year,$sel_seme,$stud_id);
 	header("location: {$_SERVER['PHP_SELF']}?sel_year=$sel_year&sel_seme=$sel_seme&class_id=$_REQUEST[class_id]&stud_id=$stud_id".$ss_temp);
 }elseif($_REQUEST[error]==1){

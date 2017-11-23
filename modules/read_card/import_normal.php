@@ -175,7 +175,7 @@ if (!$trans || ($trans && (!$des_subject || !($stage||$spec_test_arr[$des_subjec
 	$sql="select curr_class_num,student_sn from stud_base where stud_study_cond='0' order by curr_class_num";
 	$rs=$CONN->Execute($sql);
 	while (!$rs->EOF) {
-		$stud[$rs->fields[curr_class_num]]=$rs->fields[student_sn];
+		$stud[$rs->fields[curr_class_num]]=$rs->fields['student_sn'];
 		$rs->MoveNext();
 	}
 	if ($spec_test_arr[$des_subject]=="") {
@@ -268,7 +268,7 @@ if (!$trans || ($trans && (!$des_subject || !($stage||$spec_test_arr[$des_subjec
 						$scs_str="";
 						for ($i=0;$i<=$max_subs-1;$i++) $scs_str.=$scs[$i]."@@";
 						$scs_str=substr($scs_str,0,-2);
-						if ($res->fields[student_sn]=="") {
+						if ($res->fields['student_sn']=="") {
 							$query="insert into $score_spec (student_sn,id,score_str) values ('$student_sn','".$ids[2]."','$scs_str')";
 						} else {
 							$query="update $score_spec set score_str='$scs_str' where id='".$ids[2]."' and student_sn='$student_sn'";

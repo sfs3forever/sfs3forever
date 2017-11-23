@@ -523,7 +523,7 @@ function get_report_test_all($report_sn) {
 
 }
 
-//取得成績單中的所有成績 傳回 $SCORE[student_sn][test_sn]=score ,$REAL_SUM=1 時, 僅統計 real_sum=1的資料, 注意, 和 list function 搭配使用
+//取得成績單中的所有成績 傳回 $SCORE['student_sn'][test_sn]=score ,$REAL_SUM=1 時, 僅統計 real_sum=1的資料, 注意, 和 list function 搭配使用
 function get_report_score_all($report_sn,$REAL_SUM=0) {
   global $CONN;
   //取得所有的考試

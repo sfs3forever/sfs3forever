@@ -60,7 +60,7 @@ $up_file_name =$upgrade_str."2009-02-02.txt";
 if (!is_file($up_file_name)){
 	$query ="ALTER TABLE `stud_domicile` ADD `fath_grad_kind` TINYINT( 4 ) DEFAULT '1' AFTER `fath_education` , ADD `moth_grad_kind` TINYINT( 4 ) DEFAULT '1' AFTER `moth_education` ;";
 	if ($CONN->Execute($query))
-		$str="新增畢修業別欄位成功\";
+		$str="新增畢修業別欄位成功";
 	else
 		$str="新增畢修業別欄位失敗";
 	$temp_query = "於 stud_domicile 資料表新增父母畢修業別欄位以符合XML 3.0".$str." -- by infodaes 2009-02-02 \n$query";

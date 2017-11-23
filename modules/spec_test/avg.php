@@ -71,7 +71,7 @@ if ($id) {
 		$res=$CONN->Execute($query);
 		$all_sn="";
 		while (!$res->EOF) {
-			$sn=$res->fields[student_sn];
+			$sn=$res->fields['student_sn'];
 			$row_arr[$sn][site_num]=$res->fields['seme_class']."_".$res->fields[seme_num];
 			$row_arr[$sn][name]=addslashes($res->fields[stud_name]);
 			$row_arr[$sn][id]=$res->fields[stud_id];
@@ -84,7 +84,7 @@ if ($id) {
 		$res=$CONN->Execute($query);
 		while (!$res->EOF) {
 			$score_str=$res->fields[score_str];
-			$sn=$res->fields[student_sn];
+			$sn=$res->fields['student_sn'];
 			$score=explode("@@",$score_str);
 			while(list($k,$v)=each($score)) {
 				$score_arr[$seme_class][$k][score]+=$v;

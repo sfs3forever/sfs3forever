@@ -15,7 +15,7 @@ while (!$res->EOF) {
         if ($res_find->RecordCount()==0)
                 $query_update="delete from  stud_move  where stud_id='".$res->fields[stud_id]."'";
         else
-                $query_update="update stud_move set student_sn=".$res_find->fields[student_sn]." where move_id='".$res->fields[move_id]."'";
+                $query_update="update stud_move set student_sn=".$res_find->fields['student_sn']." where move_id='".$res->fields[move_id]."'";
         $CONN->Execute($query_update) or die($query_update);
         $res->MoveNext();
 }

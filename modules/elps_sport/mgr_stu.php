@@ -233,8 +233,8 @@ $img_sex=array(1=>"<img src='images/boy.gif' width=15 >",2=>"<img src='images/gi
 <FONT COLOR='red'>註：隊長限一人</FONT><BR>
 <?php
 for($i=0; $i<$rs->RecordCount(); $i++) {
-$stu_num=substr($arr[$i][curr_class_num],3,2);
-echo "<INPUT TYPE='checkbox' NAME='stu[".$arr[$i][student_sn]."_".$arr[$i][curr_class_num]."]' value='".$arr[$i][stud_name]."'><FONT  COLOR='".$color_sex[$arr[$i][stud_sex]]."'>".$img_sex[$arr[$i][stud_sex]].$stu_num.$arr[$i][stud_name]."</FONT>\n";
+$stu_num=substr($arr[$i]['curr_class_num'],3,2);
+echo "<INPUT TYPE='checkbox' NAME='stu[".$arr[$i]['student_sn']."_".$arr[$i]['curr_class_num']."]' value='".$arr[$i]['stud_name']."'><FONT  COLOR='".$color_sex[$arr[$i][stud_sex]]."'>".$img_sex[$arr[$i][stud_sex]].$stu_num.$arr[$i]['stud_name']."</FONT>\n";
 //stu[[學生編號sn_目前年班座號]
 if ($i%8==7 && $i!=0) echo "<BR>";
 }

@@ -79,7 +79,7 @@ switch ($_POST[sub_menu_id]) {
 				$res=$CONN->Execute($query);
 				while(!$res->EOF) {
 					$temp_arr=array();
-					$sn=$res->fields[student_sn];
+					$sn=$res->fields['student_sn'];
 					$id=$res->fields['id'];
 					$temp_arr[id]=$id;
 					$temp_arr[sign_time]=$res->fields['sign_time'];

@@ -350,7 +350,7 @@ if($class_id){
 	$col=$columns; //自模組變數設定每一列顯示幾人
 	$studentdata="$error_subject_list<table border=1 cellpadding=3 cellspacing='0' style='border-collapse: collapse; font-size=$font_size;' bordercolor='#ccccff'>";
 	while(!$recordSet->EOF)	{
-		$student_sn=$recordSet->fields[student_sn];
+		$student_sn=$recordSet->fields['student_sn'];
 		$stud_name=$recordSet->fields[stud_name];
 		$class_no=$recordSet->fields[seme_num];
 		$stud_sex=$recordSet->fields[stud_sex];

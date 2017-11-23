@@ -29,7 +29,7 @@ switch($do_key) {
 
 	//刪除
 	case "delete":
-	$query = "delete  from stud_ext_data where mid='$_GET[mid]' and stud_id='$_GET[stud_id]' and student_sn='$student_sn'";
+	$query = "delete  from stud_ext_data where mid='$_GET[mid]' and stud_id={$_GET['stud_id']} and student_sn='$student_sn'";
 	$CONN->Execute($query);
 	break;
 	
@@ -37,14 +37,14 @@ switch($do_key) {
 	case $newBtn: 
 	$n_day = date("Y-m-d") ;
 	$sql_insert = "insert into stud_ext_data (stud_id , mid ,ext_data ,teach_id ,ed_date,student_sn) 
-	               values ('$_POST[stud_id]' , '$_POST[mid]' , '$_POST[ext_data]' ,'{$_SESSION['session_tea_sn']}' , '$n_day','$student_sn' )" ;
+	               values ({$_POST['stud_id']} , '$_POST[mid]' , '$_POST[ext_data]' ,'{$_SESSION['session_tea_sn']}' , '$n_day','$student_sn' )" ;
 	
 	$CONN->Execute($sql_insert) or die($sql_insert);
 	break;
 
 	//確定修改
 	case $editBtn:
-	$sql_update = "update stud_ext_data set ext_data='$_POST[ext_data]',teach_id='{$_SESSION['session_tea_sn']}' where mid='$_POST[mid]' and stud_id = '$_POST[stud_id]' and student_sn='$student_sn'";
+	$sql_update = "update stud_ext_data set ext_data='$_POST[ext_data]',teach_id='{$_SESSION['session_tea_sn']}' where mid='$_POST[mid]' and stud_id = {$_POST['stud_id']} and student_sn='$student_sn'";
 	$CONN->Execute($sql_update) or die($sql_update);
 	break;
 

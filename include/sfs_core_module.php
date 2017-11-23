@@ -533,10 +533,10 @@ function get_module_title(){
 // $sql 為升級SQL指令
 // $chk_field_arr 為檢查異動欄位陣列,預設值為空陣列,即不檢查
 // $chk_field_arr 為二維陣列,定義如下:
-//     $chk_field_arr[0][table_name] 資料表名
-//     $chk_field_arr[0][field_name] 欄位名
-//     $chk_field_arr[0][field_type] 欄位型態 (空值代表不檢查)
-//     $chk_field_arr[0][check_in_table] 欄位存在資料表中 (0 -> 不存在, 1 -> 存在)
+//     $chk_field_arr[0]['table_name'] 資料表名
+//     $chk_field_arr[0]['field_name'] 欄位名
+//     $chk_field_arr[0]['field_type'] 欄位型態 (空值代表不檢查)
+//     $chk_field_arr[0]['check_in_table'] 欄位存在資料表中 (0 -> 不存在, 1 -> 存在)
 
 function upgrade_table($sql,$chk_field_arr=array()) {
         global $CONN;
@@ -546,20 +546,20 @@ function upgrade_table($sql,$chk_field_arr=array()) {
         else {
                 for($i=0;$i<count($chk_field_arr);$i++){
                         //列出欄位資料
-                        $res = $CONN->MetaColumns($chk_field_arr[$i][table_name]);
+                        $res = $CONN->MetaColumns($chk_field_arr[$i]['table_name']);
 
                         $temp_flag = 0;
                         foreach($res as $v) {
-                                if($v->name ==  $chk_field_arr[$i][field_name]){
+                                if($v->name ==  $chk_field_arr[$i]['field_name']){
                                         $temp_field_type = $v->type;
                                         $temp_flag= 1;
                                         break;
                                 }
                         }
-                        if(!($chk_field_arr[$i][check_in_table] ^ $temp_flag)) {
-                                if ($chk_field_arr[$i][field_type] =='')
+                        if(!($chk_field_arr[$i]['check_in_table'] ^ $temp_flag)) {
+                                if ($chk_field_arr[$i]['field_type'] =='')
                                         $do_query_flag = true;
-                                else if($chk_field_arr[$i][field_type] != $temp_field_type)
+                                else if($chk_field_arr[$i]['field_type'] != $temp_field_type)
                                         $do_query_flag = true;
                                 else
 					$do_query_flag = false;

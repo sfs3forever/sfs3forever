@@ -11,7 +11,7 @@ $s=get_school_base();
 $sch_id=$s[sch_id];
 
 $postBtn = "匯出CSV";
-if ($_POST[do_key]==$postBtn){
+if ($_POST['do_key']==$postBtn){
 	$str="學校代碼,中文姓名,身分證字號,性別\r\n";
 	$query = "select a.grad_num,a.grad_kind,b.stud_id,b.stud_name,b.stud_person_id,b.stud_sex FROM grad_stud a LEFT JOIN stud_base b ON a.student_sn=b.student_sn WHERE stud_grad_year=$sel_year AND a.grad_num<>'' ORDER BY grad_num";
 	$result =$CONN->Execute($query) or user_error("讀取失敗！<br>$query",256);

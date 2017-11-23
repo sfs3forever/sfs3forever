@@ -23,7 +23,7 @@ if (!is_file($up_file_name)){
 	$arr=&$rs->GetArray();//資料二維陣列
 	$str='';
 	foreach ($arr as $ary){
-		$SQL="update `stud_sta` set student_sn='{$ary[student_sn]}' where  stud_id='{$ary[stud_id]}'  ";
+		$SQL="update `stud_sta` set student_sn='{$ary['student_sn']}' where  stud_id='{$ary[stud_id]}'  ";
 		$rs=&$CONN->Execute($SQL) or die($SQL);
 		if ($rs) $str.=$SQL."\n";
 	}

@@ -213,7 +213,7 @@ if($setmethod){
          <td>".($k+1)."</td>
          <td>$class_name</td>
          <td>".$stud_data[$sn_data[$k]][stud_id]."</td>
-         <td>".$stud_data[$sn_data[$k]][stud_name]."</td>
+         <td>".$stud_data[$sn_data[$k]]['stud_name']."</td>
          <td>$clandata</td>
          <td>$areadata</td>
          <td>$memodata</td>

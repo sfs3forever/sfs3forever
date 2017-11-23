@@ -20,7 +20,7 @@ if (empty($year_seme)) {
 $seme_year_seme=sprintf("%03d",$sel_year).$sel_seme;
 
 if ($_POST[save]) {
-	$sd=$_POST[stud_id];
+	$sd=$_POST['stud_id'];
 	$nsc=$_POST['seme_class'];
 	$gd=$_POST[P_date];
 	$gw=$_POST[P_word];
@@ -53,7 +53,7 @@ if ($_POST[year_name]) {
 	$query="select a.student_sn,a.stud_id,b.stud_name,a.seme_class,a.seme_num from stud_seme a,stud_base b left join grad_stud c on b.stud_id=c.stud_id where a.seme_year_seme='$seme_year_seme' and a.student_sn=b.student_sn and b.stud_study_cond in ('0','5','15') $kind_str $seme_class_str order by a.seme_class,a.seme_num";
 	$res=$CONN->Execute($query) or die("SQL執行錯誤： $query");
 	while(!$res->EOF) {
-		$sn=$res->fields[student_sn];
+		$sn=$res->fields['student_sn'];
 		$student_sn[$res->fields[stud_id]]=$sn;
 		$stud_id[$sn]=$res->fields[stud_id];
 		$stud_name[$sn]=$res->fields[stud_name];

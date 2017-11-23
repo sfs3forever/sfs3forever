@@ -29,13 +29,13 @@ $sch_data=get_school_base();
 $stud_coud=study_cond();
 
 //////  自傳入的學生流水號,從data_stud物件產生學生資料---------------------
-$stud_data=new data_stud($_POST[student_sn]);
+$stud_data=new data_stud($_POST['student_sn']);
 
 
 //$smarty->assign("stud_data",$stud_data);
 $smarty->display($template_dir."/".$tpl[head]);
 
-//	echo "<PRE>$_POST[student_sn]";
+//	echo "<PRE>$_POST['student_sn']";
 
 $sem_nums=1;//計算張數用
 $all_page=count($_POST[stu_sn]);
@@ -44,7 +44,7 @@ $pr_all_page=ceil($all_page/2);
 
 foreach($_POST[stu_sn] as $class_id => $null){
 	$Class_DETAIL=split("_",$class_id);
-    $my_seme_score=$stud_data->seme_score($class_id,$_POST[student_sn]);
+    $my_seme_score=$stud_data->seme_score($class_id,$_POST['student_sn']);
     $my_test=seme_score2smarty($my_seme_score,$class_id);
 	$Class_DETAIL[0]=Num2CNum($Class_DETAIL[0]+0);//轉化為國字,學年度
 	$Class_DETAIL[1]=Num2CNum($Class_DETAIL[1]+0);//轉化為國字,學期

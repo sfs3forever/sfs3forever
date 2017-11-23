@@ -33,8 +33,8 @@ if(!empty($_GET[this_date]) or !empty($_POST[this_date])){
 if($_GET[act]) $act=$_GET[act];
 else $act=$_POST[act];
 $ddate=($_GET[ddate])?$_GET[ddate]:$_POST[ddate];
-for($i=0;$i<count($_POST[stud_id]);$i++){
-	$stud_id[$i]=($_GET[stud_id][$i])?$_GET[stud_id][$i]:$_POST[stud_id][$i];
+for($i=0;$i<count($_POST['stud_id']);$i++){
+	$stud_id[$i]=($_GET['stud_id'][$i])?$_GET['stud_id'][$i]:$_POST['stud_id'][$i];
 	$ab1[$i]=($_GET[ab1][$i])?$_GET[ab1][$i]:$_POST[ab1][$i];
 	$ab2[$i]=($_GET[ab2][$i])?$_GET[ab2][$i]:$_POST[ab2][$i];
 	$ab3[$i]=($_GET[ab3][$i])?$_GET[ab3][$i]:$_POST[ab3][$i];

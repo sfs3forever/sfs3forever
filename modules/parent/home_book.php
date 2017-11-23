@@ -20,7 +20,7 @@ $use1=($_GET[use1])?$_GET[use1]:$_POST[use1];
 $date=($_GET['date'])?$_GET['date']:$_POST['date'];
 $today=($_GET['today'])?$_GET['today']:$_POST['today'];
 $re_link=($_GET[re_link])?$_GET[re_link]:$_POST[re_link];
-$stud_id=($_GET[stud_id])?$_GET[stud_id]:$_POST[stud_id];
+$stud_id=($_GET['stud_id'])?$_GET['stud_id']:$_POST['stud_id'];
 $class_id=($_GET[class_id])?$_GET[class_id]:$_POST[class_id];
 foreach($_POST['member'] as $K=> $V) $member[$K]=$V;
 

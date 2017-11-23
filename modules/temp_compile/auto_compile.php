@@ -64,7 +64,7 @@ if($_POST['Submit2']){
 	$res=$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 }
 if($_POST['Submit3']){
-	$stud_id=$_POST[stud_id];
+	$stud_id=$_POST['stud_id'];
 	$c=explode("_",$_POST[input_class]);
 	$class_sort=intval($c[3]);
 	$error_msg="";
@@ -617,7 +617,7 @@ switch($work){
 			<input type='submit' name='Submit5' value='開始查詢'><br><br>";
 		if ($_POST[Submit5]) {
 			if ($_POST[stud_name]) $where="and stud_name='$_POST[stud_name]'";
-			if ($_POST[stud_id]) $where.="and temp_id='$_POST[stud_id]'";
+			if ($_POST['stud_id']) $where.="and temp_id={$_POST['stud_id']}";
 			if ($_POST[temp_class]) $where.="and temp_class='$_POST[temp_class]'";
 			if ($_POST[stud_person_id]) $where.="and stud_person_id='$_POST[stud_person_id]'";
 			if ($_POST[stud_birthday]) $where.="and stud_birthday='$_POST[stud_birthday]'";

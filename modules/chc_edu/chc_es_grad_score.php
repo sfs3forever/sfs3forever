@@ -50,7 +50,7 @@ function get_stud_data($year,$semester,$jschool,$mad_ssid,$math_ssid){
 	$result = $CONN->Execute($sql);
 	while(list($student_sn,$new_school,$stud_name,$stud_sex,$stud_person_id,$curr_class_num) =$result->FetchRow()){
 		$stud_data[$student_sn][new_school]=$new_school;
-		$stud_data[$student_sn][stud_name]=str_replace("　","",str_replace(" ","",$stud_name));
+		$stud_data[$student_sn]['stud_name']=str_replace("　","",str_replace(" ","",$stud_name));
 		if($stud_sex=="1") $stud_data[$student_sn][sex]="男";
 		if($stud_sex=="2") $stud_data[$student_sn][sex]="女";
 		$stud_data[$student_sn][stud_person_id]=$stud_person_id;

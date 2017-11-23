@@ -116,7 +116,7 @@ if($grades)
 	$authenticated=array();
 	while(!$recordSet->EOF)
 	{
-		$student_sn=$recordSet->fields[student_sn];
+		$student_sn=$recordSet->fields['student_sn'];
 		$authenticated[$student_sn]['sn']=$recordSet->fields['sn'];
 		$authenticated[$student_sn]['year_seme']=$recordSet->fields['year_seme'];
 		$authenticated[$student_sn]['date']=$recordSet->fields['date'];

@@ -15,13 +15,13 @@ $seme_class=intval($c[2].$c[3]);
 switch($_REQUEST[do_key]) {
 	case $postHome :
 		//記註為在家自學
-		$sql = "update stud_base set stud_study_cond='15' where student_sn='$_POST[student_sn]'";
+		$sql = "update stud_base set stud_study_cond='15' where student_sn='$_POST['student_sn']'";
 		$CONN->Execute($sql) or die($sql);
 	break;
 
 	case "delete" :
 		//記註為在籍
-		$sql = "update stud_base set stud_study_cond='0' where student_sn='$_GET[student_sn]'";
+		$sql = "update stud_base set stud_study_cond='0' where student_sn='$_GET['student_sn']'";
 		$CONN->Execute($sql) or die($sql);
 	break;
 }
@@ -32,15 +32,15 @@ $smarty->assign("class_sel",get_class_select(curr_year(),curr_seme(),"","stud_cl
 $query="select a.student_sn,a.stud_name,a.stud_sex,b.seme_num from stud_base a right join stud_seme b on a.student_sn=b.student_sn where a.stud_study_cond='0' and b.seme_year_seme='".sprintf("%03d",curr_year()).curr_seme()."' and b.seme_class='$seme_class' order by b.seme_num ";
 $res=$CONN->Execute($query) or die ($query);
 while(!$res->EOF) {
-	$stud_arr[$res->fields[student_sn]]=$res->fields[seme_num]."--".$res->fields[stud_name];
-	$sex_arr[$res->fields[student_sn]]=$res->fields[stud_sex];
+	$stud_arr[$res->fields['student_sn']]=$res->fields[seme_num]."--".$res->fields[stud_name];
+	$sex_arr[$res->fields['student_sn']]=$res->fields[stud_sex];
 	$res->MoveNext();
 }
 
 //學生選單
 $sel1=new drop_select();
 $sel1->s_name="student_sn";
-$sel1->id=$_POST[student_sn];
+$sel1->id=$_POST['student_sn'];
 $sel1->arr=$stud_arr;
 $sel1->has_empty=false;
 $sel1->is_display_color=true;

@@ -151,7 +151,7 @@ if($item_id>0)
 			$listed=array();
 			while(!$recordSet->EOF)
 			{
-				$listed[$recordSet->fields[student_sn]]=$recordSet->fields[percent];
+				$listed[$recordSet->fields['student_sn']]=$recordSet->fields[percent];
 				$recordSet->MoveNext();
 			}
 
@@ -167,7 +167,7 @@ if($item_id>0)
 			while(list($student_sn,$curr_class_num,$class_no,$stud_name,$stud_sex)=$recordSet->FetchRow()) {
 				if($recordSet->currentrow() % $col==1) $studentdata.="<tr>";
 				if (array_key_exists($student_sn,$listed)) {
-						$studentdata.="<td bgcolor=".($listed[$recordSet->fields[student_sn]-1]?"#CCCCCC":"#FFFF8D").">★($class_no)$stud_name ( $".round($dollars*$listed[$student_sn]/100)." )</td>";
+						$studentdata.="<td bgcolor=".($listed[$recordSet->fields['student_sn']-1]?"#CCCCCC":"#FFFF8D").">★($class_no)$stud_name ( $".round($dollars*$listed[$student_sn]/100)." )</td>";
 				} else {
 					$studentdata.="<td bgcolor=".($stud_sex==1?"#CCFFCC":"#FFCCCC")."><input type='checkbox' name='selected_stud[]' value='$student_sn,$curr_class_num' id='stud_selected'>($class_no)$stud_name</td>";
 				}

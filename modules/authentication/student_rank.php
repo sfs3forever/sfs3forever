@@ -45,7 +45,7 @@ if($_POST['act']=='按我列表')
 	$sql="SELECT a.*,b.stud_name,b.curr_class_num FROM authentication_record a INNER JOIN stud_base b WHERE a.student_sn=b.student_sn AND b.stud_study_cond=0 $filter ORDER BY curr_class_num";
 	$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
 	while(!$res->EOF){
-		$student_sn=$res->fields[student_sn];
+		$student_sn=$res->fields['student_sn'];
 		$subitem_sn=$res->fields[sub_item_sn];
 		$class_id=substr($res->fields[curr_class_num],0,-2);
 		$class_no=substr($res->fields[curr_class_num],-2);
@@ -57,7 +57,7 @@ if($_POST['act']=='按我列表')
 		//學生資料陣列
 		$student_data[$student_sn][class_id]=$class_id;
 		$student_data[$student_sn][class_no]=$class_no;		
-		$student_data[$student_sn][stud_name]=$res->fields[stud_name];
+		$student_data[$student_sn]['stud_name']=$res->fields[stud_name];
 		
 		//依照選擇準備列表陣列
 		switch($select_group){
@@ -96,7 +96,7 @@ if($_POST['act']=='按我列表')
 				$curr_bonus=$bonus;
 			}
 			$class_name=$class_base[$student_data[$sn][class_id]];
-			if($rank_limit>=$rank) echo "<tr align='center'><td>$rank</td><td>$class_name</td><td>{$student_data[$sn][class_no]}</td><td>{$student_data[$sn][stud_name]}</td><td>$bonus</td><td></td></tr>";
+			if($rank_limit>=$rank) echo "<tr align='center'><td>$rank</td><td>$class_name</td><td>{$student_data[$sn][class_no]}</td><td>{$student_data[$sn]['stud_name']}</td><td>$bonus</td><td></td></tr>";
 		}
 		echo "<tr></tr>";
 	}

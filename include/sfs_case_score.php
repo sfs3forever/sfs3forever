@@ -1608,9 +1608,9 @@ function cal_fin_score($student_sn=array(),$seme=array(),$succ="",$strs="",$prec
 		//取得各學期領域學科成績.加權數並加總
 		while(!$res->EOF) {
 			//取得領域加權總分
-			$subj_score[$res->fields[student_sn]][$res->fields[link_ss]][$res->fields[seme_year_seme]]+=$res->fields[ss_score]*$res->fields[rate];
+			$subj_score[$res->fields['student_sn']][$res->fields[link_ss]][$res->fields[seme_year_seme]]+=$res->fields[ss_score]*$res->fields[rate];
 			//領域總加權數
-			$rate[$res->fields[student_sn]][$res->fields[link_ss]][$res->fields[seme_year_seme]]+=$res->fields[rate];
+			$rate[$res->fields['student_sn']][$res->fields[link_ss]][$res->fields[seme_year_seme]]+=$res->fields[rate];
 			$res->MoveNext();
 		}
 
@@ -1774,8 +1774,8 @@ function cal_fin_nor_score($student_sn=array(),$seme=array(),$mode="")
 		$query="select * from stud_seme_score_nor where student_sn in ($all_sn) and seme_year_seme in ($all_seme) and ss_id='0'";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$fin_score[$res->fields[student_sn]][$res->fields[seme_year_seme]][score]=number_format($res->fields[ss_score],$precision);
-			if ($mode=="word") $fin_score[$res->fields[student_sn]][$res->fields[seme_year_seme]][word]=$res->fields[ss_score_memo];
+			$fin_score[$res->fields['student_sn']][$res->fields[seme_year_seme]][score]=number_format($res->fields[ss_score],$precision);
+			if ($mode=="word") $fin_score[$res->fields['student_sn']][$res->fields[seme_year_seme]][word]=$res->fields[ss_score_memo];
 			$res->MoveNext();
 		}
 		$s_num=count($seme);
@@ -1914,7 +1914,7 @@ function count_nor($student_sn=array(),$seme=array(),$mode="") {
 				$query="select * from stud_seme_rew where seme_year_seme in ($all_seme) and student_sn in ($all_sn) order by student_sn";
 				$res=$CONN->Execute($query);
 				while(!$res->EOF) {
-					$sn=$res->fields[student_sn];
+					$sn=$res->fields['student_sn'];
 					if ($osn==0) $osn=$sn;
 					if ($osn!=$sn) {
 						if ($d_arr[all][rew][all] <= (-27)) $data_arr[$osn]=$d_arr;

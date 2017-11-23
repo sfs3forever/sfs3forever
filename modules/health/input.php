@@ -293,7 +293,7 @@ switch ($_POST['sub_menu_id']) {
 		if (!$_POST['student_sn']) $grid1->top_option = "請選擇學生";
 		$grid1->sql_str = "select a.student_sn,a.stud_name,a.stud_sex,b.seme_num from stud_base a,stud_seme b where a.student_sn=b.student_sn and a.stud_study_cond in ($study_str) and  b.seme_year_seme='$seme_year_seme' and b.seme_class='".$_POST[class_name]."' order by b.seme_num ";   //SQL 命令
 		$grid1->do_query(); //執行命令
-		$smarty->assign("stud_menu",$grid1->get_grid_str($_POST[student_sn],$upstr,$downstr)); // 顯示畫面
+		$smarty->assign("stud_menu",$grid1->get_grid_str($_POST['student_sn'],$upstr,$downstr)); // 顯示畫面
 
 		if ($_POST['student_sn']) {
 			$health_data=new health_chart();
@@ -436,7 +436,7 @@ switch ($_POST['sub_menu_id']) {
 			exit;
 		}
 
-		if ($_POST[student_sn]) {
+		if ($_POST['student_sn']) {
 			$smarty->assign("disease_kind_arr",hDiseaseKind());
 			$smarty->assign("serious_kind_arr",hSeriousDiseaseKind());
 			$health_data->get_disease();

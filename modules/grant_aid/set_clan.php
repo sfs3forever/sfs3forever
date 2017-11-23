@@ -43,8 +43,8 @@ $listdata.="<table border=1 cellspacing='1' cellpadding='3' bordercolor=$hint_co
              <td>$clan_area_title</td>
              </tr>";
 while ($data=$recordSet->FetchRow()) {
-         $clandata="<select name='clandata[$data[student_sn]]'>";
-         $clanarea="<select name='clanarea[$data[student_sn]]'>";;
+         $clandata="<select name='clandata[$data['student_sn']]'>";
+         $clanarea="<select name='clanarea[$data['student_sn']]'>";;
          for($i=0;$i<=count($clan_list);$i++){
                  if ($data[clan]==$clan_list[$i])
                      $clandata.="<option value='$clan_list[$i]' selected>$clan_list[$i]</option>";
@@ -61,7 +61,7 @@ while ($data=$recordSet->FetchRow()) {
          $class_name=$class_base[$data[class_id]];
 
          $listdata.="<tr>
-         <td>$data[student_sn]</td>
+         <td>$data['student_sn']</td>
          <td>$class_name</td>
          <td>$data[stud_id]</td>
          <td>$data[stud_name]</td>

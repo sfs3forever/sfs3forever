@@ -72,7 +72,7 @@ switch ($_POST[sub_menu_id]) {
 				while(list($seme_num,$vv)=each($v)) {
 					$temp_arr[$seme_class][total]++;
 					$temp_arr[total][total]++;
-					$h=$health_data->health_data[$vv[student_sn]][inject];
+					$h=$health_data->health_data[$vv['student_sn']][inject];
 					if ($h[0][0][times]==1) {
 						$temp_arr[$seme_class][y]++;
 						$temp_arr[total][y]++;

@@ -243,7 +243,7 @@ if($year_name && $stage){
 		$rs=$CONN->Execute($sql) or die($sql);
 		while(!$rs->EOF){
 			$test_sort=$rs->fields['test_sort'];
-			$student_sn = $rs->fields[student_sn];
+			$student_sn = $rs->fields['student_sn'];
 			$score = $rs->fields[score];
 			$ss_id = $rs->fields[ss_id];
 			$test_kind = $rs->fields[test_kind];
@@ -298,7 +298,7 @@ if($year_name && $stage){
 		$sql="select student_sn,ss_id,score,test_kind from $score_semester where test_sort='$stage' and class_id='$class_id' ";
 		$rs=$CONN->Execute($sql) or die($sql);
 		while(!$rs->EOF){
-			$student_sn = $rs->fields[student_sn];
+			$student_sn = $rs->fields['student_sn'];
 			$score = $rs->fields[score];
 			$ss_id = $rs->fields[ss_id];
 			$test_kind = $rs->fields[test_kind];
@@ -378,10 +378,10 @@ if($year_name && $stage){
 	$temp_score_list = array();
 	while(!$res->EOF){
 		$stud_name = $res->fields[stud_name];
-		$student_sn = $res->fields[student_sn];
+		$student_sn = $res->fields['student_sn'];
 		$seme_num =  $res->fields[seme_num];
-		$temp_score_list[$i][stud_name]=$stud_name;
-		$temp_score_list[$i][seme_num]=$seme_num;
+		$temp_score_list[$i]['stud_name']=$stud_name;
+		$temp_score_list[$i]['seme_num']=$seme_num;
 		reset ($scope_arr);
 		$tol_score =0;
 		$rate_num=0;

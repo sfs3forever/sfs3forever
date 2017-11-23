@@ -133,7 +133,7 @@ if($my_class_id){   //判定是否為班級導師
 		$recordSet=$CONN->Execute($stud_select) or user_error("讀取失敗！<br>$stud_select",256);
 		$studentdata="<table border='1' cellpadding='3' cellspacing='0' style='border-collapse: collapse;' bordercolor='#111111'>";
 		while(!$recordSet->EOF) {
-			$student_sn=$recordSet->fields[student_sn];
+			$student_sn=$recordSet->fields['student_sn'];
 			$stud_id=$recordSet->fields[stud_id];
 			$seme_num=$recordSet->fields[seme_num];
 			$stud_name=$recordSet->fields[stud_name];

@@ -229,7 +229,7 @@ if ($_POST['year_name']) {
 				while(!$res->EOF) {
 					$sn_arr[]=$res->fields['student_sn'];
 					$rowdata[$res->fields['student_sn']]['seme_class']=$res->fields['seme_class'];
-					$rowdata[$res->fields['student_sn']][seme_num]=$res->fields['seme_num'];
+					$rowdata[$res->fields['student_sn']]['seme_num']=$res->fields['seme_num'];
 					$res->MoveNext();
 				}
 				if (count($sn_arr)>0) {
@@ -239,7 +239,7 @@ if ($_POST['year_name']) {
 					$sn_arr=array();
 					while(!$res->EOF) {
 						$sn_arr[]=$res->fields['student_sn'];
-						$rowdata[$res->fields['student_sn']][stud_name]=$res->fields['stud_name'];
+						$rowdata[$res->fields['student_sn']]['stud_name']=$res->fields['stud_name'];
 						$rowdata[$res->fields['student_sn']][stud_sex]=$res->fields['stud_sex'];
 						$res->MoveNext();
 					}
@@ -417,15 +417,15 @@ if ($_POST['year_name']) {
 			$stud_data=array();
 			while(!$res->EOF) {
 				$seme_class=$res->fields['seme_class'];
-				$sn[]=$res->fields[student_sn];
-				$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields[student_sn];
-				$stud_data[$res->fields[student_sn]][stud_name]=$res->fields[stud_name];
-				$stud_data[$res->fields[student_sn]][stud_id]=$res->fields[stud_id];
-				$stud_data[$res->fields[student_sn]][stud_person_id]=$res->fields[stud_person_id];
-				$stud_data[$res->fields[student_sn]][stud_sex]=$res->fields[stud_sex];
+				$sn[]=$res->fields['student_sn'];
+				$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields['student_sn'];
+				$stud_data[$res->fields['student_sn']]['stud_name']=$res->fields[stud_name];
+				$stud_data[$res->fields['student_sn']][stud_id]=$res->fields[stud_id];
+				$stud_data[$res->fields['student_sn']][stud_person_id]=$res->fields[stud_person_id];
+				$stud_data[$res->fields['student_sn']][stud_sex]=$res->fields[stud_sex];
 				$d_arr=explode("-",$res->fields[stud_birthday]);
 				$dd=$d_arr[0]-1911;
-				$stud_data[$res->fields[student_sn]][stud_birthday]=$dd." 年 ".sprintf("%02d",$d_arr[1])." 月 ".sprintf("%02d",$d_arr[2])." 日";
+				$stud_data[$res->fields['student_sn']][stud_birthday]=$dd." 年 ".sprintf("%02d",$d_arr[1])." 月 ".sprintf("%02d",$d_arr[2])." 日";
 				$res->MoveNext();
 			}
 			$stud_num=count($sn);
@@ -481,7 +481,7 @@ if ($_POST['year_name']) {
 						$score=$res->fields['score'];
 						if ($_POST['cy']==2) {
 							//判斷是男女生
-							$sex=$stud_data[$res->fields[student_sn]][stud_sex];
+							$sex=$stud_data[$res->fields['student_sn']][stud_sex];
 							$s="stud_num_".$sex;
 							$jj="j".$sex;
 							$p="opr".$sex;
@@ -615,7 +615,7 @@ if ($_POST['year_name']) {
 				foreach($show_sn as $seme_class => $d) {
 					foreach($d as $site => $sn) {
 						$cno=substr($seme_class,-2,2);
-						$row_arr=array($s[sch_id],$cno,$site,$stud_data[$sn][stud_id],$stud_data[$sn][stud_name],$stud_data[$sn][stud_person_id],$stud_data[$sn][stud_sex],$stud_data[$sn][stud_birthday]);
+						$row_arr=array($s[sch_id],$cno,$site,$stud_data[$sn][stud_id],$stud_data[$sn]['stud_name'],$stud_data[$sn][stud_person_id],$stud_data[$sn][stud_sex],$stud_data[$sn][stud_birthday]);
 						for($i=0;$i<45;$i++) $row_arr[]="";
 						foreach($semes as $i => $si) {
 							foreach($s_arr as $j => $sl) {

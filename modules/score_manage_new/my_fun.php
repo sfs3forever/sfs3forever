@@ -519,7 +519,7 @@ function seme_score_input($sel_year,$sel_seme,$class_id,$ss_id) {
 				$test_ratio_2  = $test_ratio[1]/100;
 
 				while(!$res->EOF){
-					$student_sn = $res->fields[student_sn];
+					$student_sn = $res->fields['student_sn'];
 					$test_kind = $res->fields[test_kind];
 					$score = $res->fields[cc];
 					if ($score=='') $score=0;
@@ -542,7 +542,7 @@ function seme_score_input($sel_year,$sel_seme,$class_id,$ss_id) {
 				$score_arr=array();
 				while(!$res->EOF){
 					$test_sort = $res->fields[test_sort];
-					$student_sn = $res->fields[student_sn];
+					$student_sn = $res->fields['student_sn'];
 					$test_kind = $res->fields[test_kind];
 					$score = $res->fields[score];
 					if ($score=="-100") $score=0;

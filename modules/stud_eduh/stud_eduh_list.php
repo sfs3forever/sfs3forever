@@ -11,20 +11,20 @@ sfs_check();
 //目前學年學期
 $this_seme_year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 
-$sel_seme_year_seme = $_POST[sel_seme_year_seme];
+$sel_seme_year_seme = $_POST['sel_seme_year_seme'];
 
 if ($sel_seme_year_seme=='')
 	$sel_seme_year_seme = $this_seme_year_seme;
 
-$stud_id = $_GET[stud_id];
+$stud_id = $_GET['stud_id'];
 if ($stud_id == '')
-	$stud_id = $_POST[stud_id];
+	$stud_id = $_POST['stud_id'];
 $c_curr_class=$_GET[c_curr_class];
 if($c_curr_class=='')
 	$c_curr_class = $_POST[c_curr_class];
 $c_curr_seme = $_REQUEST[c_curr_seme];
 
-switch($_POST[do_key]) {
+switch($_POST['do_key']) {
 	case $editBtn:
 	for ($i=1;$i<=11;$i++) {
 		$sse_temp =",";	
@@ -38,7 +38,7 @@ switch($_POST[do_key]) {
 			$$sse_arr = $sse_temp;
 		}
 	}
-	$sql_insert = "replace into stud_seme_eduh (seme_year_seme,stud_id,sse_relation,sse_family_kind,sse_family_air,sse_farther,sse_mother,sse_live_state,sse_rich_state,sse_s1,sse_s2,sse_s3,sse_s4,sse_s5,sse_s6,sse_s7,sse_s8,sse_s9,sse_s10,sse_s11) values ('$_POST[sel_seme_year_seme]','$stud_id','$_POST[sse_relation]','$_POST[sse_family_kind]','$_POST[sse_family_air]','$_POST[sse_farther]','$_POST[sse_mother]','$_POST[sse_live_state]','$_POST[sse_rich_state]','$sse_s1','$sse_s2','$sse_s3','$sse_s4','$sse_s5','$sse_s6','$sse_s7','$sse_s8','$sse_s9','$sse_s10','$sse_s11')";
+	$sql_insert = "replace into stud_seme_eduh (seme_year_seme,stud_id,sse_relation,sse_family_kind,sse_family_air,sse_farther,sse_mother,sse_live_state,sse_rich_state,sse_s1,sse_s2,sse_s3,sse_s4,sse_s5,sse_s6,sse_s7,sse_s8,sse_s9,sse_s10,sse_s11) values ({$_POST['sel_seme_year_seme']},'$stud_id','$_POST[sse_relation]','$_POST[sse_family_kind]','$_POST[sse_family_air]','$_POST[sse_farther]','$_POST[sse_mother]','$_POST[sse_live_state]','$_POST[sse_rich_state]','$sse_s1','$sse_s2','$sse_s3','$sse_s4','$sse_s5','$sse_s6','$sse_s7','$sse_s8','$sse_s9','$sse_s10','$sse_s11')";
 	$CONN->Execute($sql_insert) or die ($sql_insert);
 	
 	break;
@@ -197,7 +197,7 @@ $s_s = substr($c_curr_seme,-1);
 	$grid1->class_ccs = " class=leftmenu";  // 顏色顯示
 	$grid1->sql_str = "select a.stud_id,a.stud_name,a.stud_sex,b.seme_num as sit_num from stud_base a,stud_seme b where a.student_sn=b.student_sn  and (a.stud_study_cond=0 or a.stud_study_cond=5) and b.seme_year_seme='$curr_seme' and b.seme_class='$seme_class' order by b.seme_num ";   //SQL 命令   
 //	echo $grid1->sql_str;	
-	$downstr = "<input type=\"hidden\" name=\"sel_seme_year_seme\" value=\"$_POST[sel_seme_year_seme]\">";
+	$downstr = "<input type=\"hidden\" name=\"sel_seme_year_seme\" value=\"$_POST['sel_seme_year_seme']\">";
 	$grid1->do_query(); //執行命令   
 	
 	$grid1->print_grid($stud_id,$upstr,$downstr); // 顯示畫面   

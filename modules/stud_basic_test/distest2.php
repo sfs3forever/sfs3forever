@@ -46,21 +46,21 @@ if ($_POST[year_name]) {
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
 		$seme_class=$res->fields['seme_class'];
-		$sn[]=$res->fields[student_sn];
-		$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields[student_sn];
-		$stud_data[$res->fields[student_sn]][stud_name]=$res->fields[stud_name];
-		$stud_data[$res->fields[student_sn]][stud_id]=$res->fields[stud_id];
-		$stud_data[$res->fields[student_sn]][stud_person_id]=$res->fields[stud_person_id];
-		$stud_data[$res->fields[student_sn]][stud_sex]=$res->fields[stud_sex];
+		$sn[]=$res->fields['student_sn'];
+		$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields['student_sn'];
+		$stud_data[$res->fields['student_sn']]['stud_name']=$res->fields[stud_name];
+		$stud_data[$res->fields['student_sn']][stud_id]=$res->fields[stud_id];
+		$stud_data[$res->fields['student_sn']][stud_person_id]=$res->fields[stud_person_id];
+		$stud_data[$res->fields['student_sn']][stud_sex]=$res->fields[stud_sex];
 		$d_arr=explode("-",$res->fields[stud_birthday]);
 		$dd=$d_arr[0]-1911;
-		$stud_data[$res->fields[student_sn]][stud_birthday]=$dd.sprintf("%02d%02d",$d_arr[1],$d_arr[2]);
-		$stud_data[$res->fields[student_sn]][stud_tel]=substr(str_replace("-","",$res->fields[$phone_col]),0,10);
-		$stud_data[$res->fields[student_sn]][addr_zip]=(strlen($res->fields[addr_zip])>3)?substr($res->fields[addr_zip],0,3):sprintf("%-3s",$res->fields[addr_zip]);
-		$stud_data[$res->fields[student_sn]][stud_addr_1]=$res->fields[$addr_col];
+		$stud_data[$res->fields['student_sn']][stud_birthday]=$dd.sprintf("%02d%02d",$d_arr[1],$d_arr[2]);
+		$stud_data[$res->fields['student_sn']][stud_tel]=substr(str_replace("-","",$res->fields[$phone_col]),0,10);
+		$stud_data[$res->fields['student_sn']][addr_zip]=(strlen($res->fields[addr_zip])>3)?substr($res->fields[addr_zip],0,3):sprintf("%-3s",$res->fields[addr_zip]);
+		$stud_data[$res->fields['student_sn']][stud_addr_1]=$res->fields[$addr_col];
 		$query2 = "select $parent_col from stud_domicile where stud_id ='".$res->fields[stud_id]."'";
 		$res2=$CONN->Execute($query2);
-		$stud_data[$res->fields[student_sn]][parent_name]=$res2->fields[$parent_col];
+		$stud_data[$res->fields['student_sn']][parent_name]=$res2->fields[$parent_col];
 		$res->MoveNext();
 	}
 	$query="select stud_study_year from stud_base where student_sn='".pos($sn)."'";
@@ -124,7 +124,7 @@ if ($_POST['txt']) {
 		foreach($d as $site => $sn) {
 			$cno=substr($seme_class,-2,2);
 			$dd=$stud_data[$sn][stud_birthday];
-			$row_arr=array($s[sch_id],$n,$stud_data[$sn][stud_id],$cno,$site,$stud_data[$sn][stud_name],$stud_data[$sn][stud_person_id],$stud_data[$sn][stud_sex],substr($dd,0,2),substr($dd,2,2),substr($dd,4,2),$stud_data[$sn][parent_name],$stud_data[$sn][stud_tel],$stud_data[$sn][addr_zip],$stud_data[$sn][stud_addr_1]);
+			$row_arr=array($s[sch_id],$n,$stud_data[$sn][stud_id],$cno,$site,$stud_data[$sn]['stud_name'],$stud_data[$sn][stud_person_id],$stud_data[$sn][stud_sex],substr($dd,0,2),substr($dd,2,2),substr($dd,4,2),$stud_data[$sn][parent_name],$stud_data[$sn][stud_tel],$stud_data[$sn][addr_zip],$stud_data[$sn][stud_addr_1]);
 			foreach($ss_link as $sl) {
 				$params=array();
 				$params['score']=$fin_score[$sn][$sl];

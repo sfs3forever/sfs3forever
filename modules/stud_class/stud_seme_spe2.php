@@ -53,17 +53,17 @@ $this_year = sprintf("%03d",curr_year());
 //目前學年學期
 $this_seme_year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 
-$sel_seme_year_seme = $_POST[sel_seme_year_seme];
+$sel_seme_year_seme = $_POST['sel_seme_year_seme'];
 if ($sel_seme_year_seme=='')
 	$sel_seme_year_seme = $this_seme_year_seme;
 
-$stud_id = $_GET[stud_id];
+$stud_id = $_GET['stud_id'];
 if ($stud_id == '')
-	$stud_id = $_POST[stud_id];
+	$stud_id = $_POST['stud_id'];
 	
 $do_key = $_GET[do_key];
 if ($do_key == '')
-	$do_key = $_POST[do_key];
+	$do_key = $_POST['do_key'];
 
 
 //寫入前預先進行 < > ' " &字元替換  避免HTML特殊字元造成顯示或sxw報表錯誤
@@ -77,10 +77,10 @@ foreach($char_replace as $key=>$value){
 	
 switch($do_key) {
 	case $newBtn:
-	$seme_year_seme = $_POST[sel_seme_year_seme];
+	$seme_year_seme = $_POST['sel_seme_year_seme'];
 	if ($seme_year_seme =='')
 		$seme_year_seme = $this_seme_year_seme;
-	$sql_insert = "insert into stud_seme_spe (seme_year_seme,stud_id,sp_date,outside,sp_memo,teach_id) values ('$seme_year_seme','$_POST[stud_id]','$_POST[sp_date]','$_POST[outside]','$_POST[sp_memo]','{$_SESSION['session_tea_sn']}')";
+	$sql_insert = "insert into stud_seme_spe (seme_year_seme,stud_id,sp_date,outside,sp_memo,teach_id) values ('$seme_year_seme',{$_POST['stud_id']},'$_POST[sp_date]','$_POST[outside]','$_POST[sp_memo]','{$_SESSION['session_tea_sn']}')";
 	$CONN->Execute($sql_insert) or die($sql_insert);
 	$sp_date = '';
 	$sp_memo= '';
@@ -123,9 +123,9 @@ switch($do_key) {
 
 
 if ($stud_id=='')
-	$stud_id= $_GET[stud_id];
+	$stud_id= $_GET['stud_id'];
 if ($stud_id=='')
-	$stud_id= $_POST[stud_id];
+	$stud_id= $_POST['stud_id'];
 
 if($_POST[cita]){
 	$year_seme=sprintf("%03d_%d_",curr_year(),curr_seme());

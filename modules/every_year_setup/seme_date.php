@@ -9,7 +9,7 @@ $postBtn = "設定";
 // 認證檢查
 sfs_check();
 
-if ($_POST[do_key]==$postBtn) {
+if ($_POST['do_key']==$postBtn) {
 	//$days=count($_POST['day']);	
 	$i=0;
 	foreach($_POST['day'] as $k=>$v) {
@@ -18,7 +18,7 @@ if ($_POST[do_key]==$postBtn) {
 	$days=$i; 													//學生上學日數	 
 
 	$content=serialize($_POST['day']);
- 	$sql_insert = "replace into seme_course_date (seme_year_seme,class_year,days,school_days) values ('$_POST[seme_year_seme]','$_POST[class_year]','$days','".$content."')";
+ 	$sql_insert = "replace into seme_course_date (seme_year_seme,class_year,days,school_days) values ({$_POST['seme_year_seme']},'$_POST[class_year]','$days','".$content."')";
 	$CONN->Execute($sql_insert) or trigger_error("SQL 錯誤",E_USER_ERROR);
 	$INFO="已於".date("Y-m-d H:i:s")."儲存一筆.";
 	//echo $sql_insert;

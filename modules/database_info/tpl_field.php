@@ -46,7 +46,7 @@ head();
 $sql_get_tables = "SHOW FIELDS FROM $tablename  ";
 $recordSet = $CONN->Execute($sql_get_tables) or die($sql_get_tables);
 //確定
-if ($_POST[do_key]==$btnPost){
+if ($_POST['do_key']==$btnPost){
 	$query = "delete from sys_data_field where d_table_name='$tablename' ";
 	$CONN->Execute($query);
 	while (!$recordSet->EOF){

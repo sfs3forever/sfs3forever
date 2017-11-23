@@ -58,7 +58,7 @@ if ($student_sn) {
 //如果在籍才繼續處理
 if ($student_sn) {
 
-switch($_POST[do_key]) {
+switch($_POST['do_key']) {
 	case $editBtn:
 	for ($i=1;$i<=11;$i++) {
 		$sse_temp =",";	

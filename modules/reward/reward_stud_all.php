@@ -10,7 +10,7 @@ sfs_check();
 if ($_POST['act']=="del") {
 	$query="select student_sn from reward where reward_id='".$_POST['reward_id']."'";
 	$res=$CONN->Execute($query);
-	if ($res->fields[student_sn]==$_POST['student_sn']) {
+	if ($res->fields['student_sn']==$_POST['student_sn']) {
 		$CONN->Execute("delete from reward where reward_id='".$_POST['reward_id']."'");
 		cal_rew($_POST['sel_year'],$_POST['sel_seme'],$_POST['stud_id']);
 	}

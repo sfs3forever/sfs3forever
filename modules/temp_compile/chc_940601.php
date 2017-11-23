@@ -134,7 +134,7 @@ function get_stu_out($class_num,$teach_ary='',$yy=''){
 	if ($All[$i][stud_kind]=='') $All[$i][stud_kind]='0';
 		$Str.=$All[$i][temp_id].',,,'.
 			$All[$i][stud_sex].','.
-			$All[$i][stud_name].','.
+			$All[$i]['stud_name'].','.
 			$All[$i][stud_person_id].','.
 			$All[$i][old_school].','.
 			$All[$i][stud_kind].','.

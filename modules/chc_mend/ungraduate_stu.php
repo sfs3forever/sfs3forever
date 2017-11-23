@@ -309,7 +309,7 @@ class basic_chc{
         	foreach ($all_student_sn_unique as $value_sn){
 //修正 chc_mend 資料庫 9年級學生中,9年級成績均及格,未列入chc_mend名單中,且名單依照班級座號排序
 			   $New['A'][$value_sn]['seme_class']=$New['StudBase'][$value_sn]['seme_class'];
-			   $New['A'][$value_sn][seme_num]=$New['StudBase'][$value_sn][seme_num];
+			   $New['A'][$value_sn]['seme_num']=$New['StudBase'][$value_sn]['seme_num'];
 //修正 chc_mend 資料庫 9年級學生中,9年級成績均及格,未列入chc_mend名單中,且名單依照班級座號排序
 			   foreach ($all_seme_array as $value_seme){
 				  foreach ($cal_fin_score_ss as $index_ss => $value_ss){
@@ -445,9 +445,9 @@ class basic_chc{
 		//取得各學期領域學科成績.加權數並加總
 		while(!$res->EOF) {
 			//取得領域加權總分
-			$subj_score[$res->fields[student_sn]][$res->fields[link_ss]][$res->fields[seme_year_seme]]+=$res->fields[ss_score]*$res->fields[rate];
+			$subj_score[$res->fields['student_sn']][$res->fields[link_ss]][$res->fields[seme_year_seme]]+=$res->fields[ss_score]*$res->fields[rate];
 			//領域總加權數
-			$rate[$res->fields[student_sn]][$res->fields[link_ss]][$res->fields[seme_year_seme]]+=$res->fields[rate];
+			$rate[$res->fields['student_sn']][$res->fields[link_ss]][$res->fields[seme_year_seme]]+=$res->fields[rate];
 			$res->MoveNext();
 		}
 		//處理各學期領域平均

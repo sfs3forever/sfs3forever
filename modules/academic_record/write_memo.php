@@ -60,7 +60,7 @@ if($_POST[act]=="存檔"){
 	while(list($id,$val) = each($ss_id_arr)){
 		if($ss_id_array[$ss_id_arr[$id]])
 		if ($val<>''){
-			$query = "replace into stud_seme_score_oth (seme_year_seme,stud_id,ss_kind,ss_id,ss_val)values('$seme_year_seme','$_POST[stud_id]','努力程度','$val','".$_POST["aa_$val"]."')";
+			$query = "replace into stud_seme_score_oth (seme_year_seme,stud_id,ss_kind,ss_id,ss_val)values('$seme_year_seme',{$_POST['stud_id']},'努力程度','$val','".$_POST["aa_$val"]."')";
 			$CONN->Execute($query) or trigger_error("sql 錯誤 $query",E_USER_ERROR);
 		}
 	}
@@ -74,7 +74,7 @@ $class_id=old_class_2_new_id($class_num,$sel_year,$sel_seme);
 
 
 //假如沒有指定學生，取得第一位學生
-if(empty($_POST[stud_id]))$stud_id=get_no1($class_id);else $stud_id = $_POST[stud_id];
+if(empty($_POST['stud_id']))$stud_id=get_no1($class_id);else $stud_id = $_POST['stud_id'];
 
 //若仍是沒有$stud_id，則秀出錯誤訊息
 if(empty($stud_id))header("location:{$_SERVER['PHP_SELF']}?error=1");

@@ -189,7 +189,7 @@ function get_subj($type='',$class_id) {
 		$rs=&$this->CONN->Execute($SQL) or die("無法查詢，語法:".$SQL."可能是課程或無學生資料");
 		$All_sco=&$rs->GetArray();	
 		foreach ($All_sco as $sco){
-			$sn=$sco[student_sn];
+			$sn=$sco['student_sn'];
 			$ss_id=$sco[ss_id];
 			$test_sort=$sco[test_sort];
 			if ($a==1)

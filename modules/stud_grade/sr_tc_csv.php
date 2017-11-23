@@ -48,7 +48,7 @@ $do_upload_script = "var targeturi = encodeURI('" . $SFS_PATH_HTML . "modules/st
 $isTaichung = substr($SCHOOL_BASE['sch_id'], 0, 2);
 $postBtn = "臺中市就學管控系統轉出csv檔";
 $class_name = class_base();
-if ($_POST[do_key] == $postBtn) {
+if ($_POST['do_key'] == $postBtn) {
     $curr_year = curr_year();
     $new_school_str = ($_POST[curr_grade_school]) ? "and g.new_school= '$_POST[curr_grade_school]'" : "";
     $str = "畢業學年度,年級,班級名稱,國籍,身分證字號,學生姓名,性別,出生年,出生月,出生日,入學年,畢業字號,監護人,聯絡電話,戶籍地址,升入國中,附記說明\r\n";

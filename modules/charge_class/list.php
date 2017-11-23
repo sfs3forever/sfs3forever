@@ -85,7 +85,7 @@ if($item_id)
 		$listed=array();
 		while(!$recordSet->EOF)
 		{
-			$listed[$recordSet->fields[student_sn]]=$recordSet->fields[dollars];
+			$listed[$recordSet->fields['student_sn']]=$recordSet->fields[dollars];
 			$recordSet->MoveNext();
 		}
 
@@ -98,7 +98,7 @@ if($item_id)
 		while(list($student_sn,$curr_class_num,$class_no,$stud_name,$stud_sex)=$recordSet->FetchRow()) {
 			if($recordSet->currentrow() % $col==1) $studentdata.="<tr>";
 			if (array_key_exists($student_sn,$listed)) {
-    				$studentdata.="<td bgcolor=".($listed[$recordSet->fields[student_sn]-1]?"#CCCCCC":"#FFFFDD").">▲($class_no)$stud_name</td>";
+    				$studentdata.="<td bgcolor=".($listed[$recordSet->fields['student_sn']-1]?"#CCCCCC":"#FFFFDD").">▲($class_no)$stud_name</td>";
 			} else {
 				$studentdata.="<td bgcolor=".($stud_sex==1?"#CCFFCC":"#FFCCCC")."><input type='checkbox' name='selected_stud[]' value='$student_sn,$curr_class_num' id='stud_selected'>($class_no)$stud_name</td>";
 			}

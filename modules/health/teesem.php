@@ -73,7 +73,7 @@ switch ($_POST[sub_menu_id]) {
 			$y=substr($seme_class,0,-2);
 			$c=substr($seme_class,-2,2);
 			while(list($seme_num,$vv)=each($v)) {
-				$sn[]=$vv[student_sn];
+				$sn[]=$vv['student_sn'];
 				$data_arr[$y][$c][nums]++;
 				$data_arr[$y]['all'][nums]++;
 				$data_arr['all']['all'][nums]++;

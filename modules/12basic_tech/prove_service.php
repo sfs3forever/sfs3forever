@@ -19,7 +19,7 @@ $stud_select="SELECT a.student_sn,a.seme_class,a.seme_num,b.stud_name,b.stud_sex
 				WHERE a.seme_year_seme='$work_year_seme' AND a.seme_class like '9%' AND b.stud_study_cond IN (0,5,15) ORDER BY a.seme_class,a.seme_num";
 $rs=$CONN->Execute($stud_select) or user_error("讀取失敗！<br>$stud_select",256);
 while(!$rs->EOF){
-	$student_sn=$rs->fields[student_sn];
+	$student_sn=$rs->fields['student_sn'];
 	$seme_class=$rs->fields['seme_class'];
 	
 	$all[$seme_class][$student_sn]['seme_num']=$rs->fields['seme_num'];

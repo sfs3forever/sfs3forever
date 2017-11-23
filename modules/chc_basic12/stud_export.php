@@ -66,7 +66,7 @@ function output_excel($obj,$kind, $output_type) {
 				$score_display=16;
 			}
 			if($output_type=='excel'){
-				$data1[$mem][stud_name]=$val[stud_name];
+				$data1[$mem]['stud_name']=$val[stud_name];
 				$data1[$mem][stud_person_id]=$val[stud_person_id];
 				$data1[$mem][birth_year]=intval($val[birth_year]);
 				$data1[$mem][birth_month]=intval($val[birth_month]);

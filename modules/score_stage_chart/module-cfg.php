@@ -103,7 +103,7 @@ $menu_p = array(
 //---------------------------------------------------
 
 $REWARD_KIND = array(
-"ss_good"=>"嘉獎","s_good"=>"小功\" , "big_good"=>"大功\","ss_bad"=>"警告","s_bad"=>"小過","big_bad"=>"大過"
+"ss_good"=>"嘉獎","s_good"=>"小功" , "big_good"=>"大功","ss_bad"=>"警告","s_bad"=>"小過","big_bad"=>"大過"
 );
 
 

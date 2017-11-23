@@ -158,7 +158,7 @@ function get_subj($type='') {
 		
 				
 		foreach ($All_sco as $sco){
-			$sn=$sco[student_sn];
+			$sn=$sco['student_sn'];
 			$ss_id=$sco[ss_id];
 			$test_sort=$sco[test_sort];
 

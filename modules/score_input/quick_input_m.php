@@ -85,9 +85,9 @@ $rs=$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 echo "<table bgcolor=\"#000000\" border=\"0\" cellpadding=\"2\" cellspacing=\"1\">\n";
 $ii =0;
 while (!$rs->EOF){
-	$sn = $rs->fields[student_sn];
+	$sn = $rs->fields['student_sn'];
 	$sit_num = (strstr($teacher_course,'g'))?intval(substr($rs->fields[curr_class_num],-4,2))."-".intval(substr($rs->fields[curr_class_num],-2)):substr($rs->fields[curr_class_num],-2);
-	$student_sn = $rs->fields[student_sn];
+	$student_sn = $rs->fields['student_sn'];
 	$stud_name = $rs->fields[stud_name];
 	//排除名單加註*
   $stud_name.=($student_out[$student_sn])?"<font color=red>*</font>":"";

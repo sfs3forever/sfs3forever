@@ -62,8 +62,8 @@ class health_chart {
 			$query="select * from stud_seme where seme_year_seme='$ys' and student_sn in (".$this->sn_str.")";
 			$res=$CONN->Execute($query);
 			while(!$res->EOF) {
-				$this->stud_base[$res->fields[student_sn]]['seme_class']=$res->fields['seme_class'];
-				$this->stud_base[$res->fields[student_sn]][seme_num]=$res->fields['seme_num'];
+				$this->stud_base[$res->fields['student_sn']]['seme_class']=$res->fields['seme_class'];
+				$this->stud_base[$res->fields['student_sn']]['seme_num']=$res->fields['seme_num'];
 				$res->MoveNext();
 			}
 		}
@@ -91,12 +91,12 @@ class health_chart {
 		$sn_arr=array();
 		while(!$res->EOF) {
 			$sn_arr[]=$res->fields['student_sn'];
-			$this->stud_base[$res->fields[student_sn]]=array();
+			$this->stud_base[$res->fields['student_sn']]=array();
 			if ($mode) {
-				$this->stud_base[$res->fields[student_sn]]['seme_class']=$res->fields['seme_class'];
-				$this->stud_base[$res->fields[student_sn]][seme_num]=$res->fields['seme_num'];
+				$this->stud_base[$res->fields['student_sn']]['seme_class']=$res->fields['seme_class'];
+				$this->stud_base[$res->fields['student_sn']]['seme_num']=$res->fields['seme_num'];
 			} else {
-				$this->stud_data[$res->fields['seme_class']][$res->fields['seme_num']][student_sn]=$res->fields['student_sn'];
+				$this->stud_data[$res->fields['seme_class']][$res->fields['seme_num']]['student_sn']=$res->fields['student_sn'];
 			}
 			$res->MoveNext();
 		}
@@ -111,20 +111,20 @@ class health_chart {
 		$query="select * from stud_base where student_sn in (".$this->sn_str.")";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$this->stud_base[$res->fields[student_sn]][stud_id]=$res->fields['stud_id'];
-			$this->stud_base[$res->fields[student_sn]][student_sn]=$res->fields['student_sn'];
-			$this->stud_base[$res->fields[student_sn]][stud_name]=$res->fields['stud_name'];
-			$this->stud_base[$res->fields[student_sn]][stud_sex]=$res->fields['stud_sex'];
-			if ($res->fields['stud_sex']==1) $this->snb_arr[]=$res->fields[student_sn];
-			elseif ($res->fields['stud_sex']==2) $this->sng_arr[]=$res->fields[student_sn];
-			$this->stud_base[$res->fields[student_sn]][stud_study_cond]=$res->fields['stud_study_cond'];
-			$this->stud_base[$res->fields[student_sn]][stud_study_year]=$res->fields['stud_study_year'];
-			$this->stud_base[$res->fields[student_sn]][stud_person_id]=$res->fields['stud_person_id'];
-			$this->stud_base[$res->fields[student_sn]][stud_birthday]=$res->fields['stud_birthday'];
-			$this->stud_base[$res->fields[student_sn]][stud_blood_type]=$blood_arr[$res->fields['stud_blood_type']];
-			$this->stud_base[$res->fields[student_sn]][stud_addr_2]=$res->fields['stud_addr_2'];
-			$this->stud_base[$res->fields[student_sn]][stud_tel_2]=$res->fields['stud_tel_2'];
-			$this->stud_base[$res->fields[student_sn]][curr_class_num]=$res->fields['curr_class_num'];
+			$this->stud_base[$res->fields['student_sn']][stud_id]=$res->fields['stud_id'];
+			$this->stud_base[$res->fields['student_sn']]['student_sn']=$res->fields['student_sn'];
+			$this->stud_base[$res->fields['student_sn']]['stud_name']=$res->fields['stud_name'];
+			$this->stud_base[$res->fields['student_sn']][stud_sex]=$res->fields['stud_sex'];
+			if ($res->fields['stud_sex']==1) $this->snb_arr[]=$res->fields['student_sn'];
+			elseif ($res->fields['stud_sex']==2) $this->sng_arr[]=$res->fields['student_sn'];
+			$this->stud_base[$res->fields['student_sn']][stud_study_cond]=$res->fields['stud_study_cond'];
+			$this->stud_base[$res->fields['student_sn']][stud_study_year]=$res->fields['stud_study_year'];
+			$this->stud_base[$res->fields['student_sn']][stud_person_id]=$res->fields['stud_person_id'];
+			$this->stud_base[$res->fields['student_sn']][stud_birthday]=$res->fields['stud_birthday'];
+			$this->stud_base[$res->fields['student_sn']][stud_blood_type]=$blood_arr[$res->fields['stud_blood_type']];
+			$this->stud_base[$res->fields['student_sn']][stud_addr_2]=$res->fields['stud_addr_2'];
+			$this->stud_base[$res->fields['student_sn']][stud_tel_2]=$res->fields['stud_tel_2'];
+			$this->stud_base[$res->fields['student_sn']]['curr_class_num']=$res->fields['curr_class_num'];
 			$res->MoveNext();
 		}
 
@@ -132,9 +132,9 @@ class health_chart {
 		$query="select * from stud_domicile where student_sn in (".$this->sn_str.")";
 		$res=$CONN->Execute($query);
 		foreach ($res as $row) {
-			$this->stud_base[$row[student_sn]][fath_name]=$row['fath_name'];
-			$this->stud_base[$row[student_sn]][moth_name]=$row['moth_name'];
-			$this->stud_base[$row[student_sn]][guardian_name]=$row['guardian_name'];
+			$this->stud_base[$row['student_sn']][fath_name]=$row['fath_name'];
+			$this->stud_base[$row['student_sn']][moth_name]=$row['moth_name'];
+			$this->stud_base[$row['student_sn']][guardian_name]=$row['guardian_name'];
 		}
 	}
 
@@ -191,9 +191,9 @@ class health_chart {
 				$year_seme=sprintf("%03d",$res->fields[year]).$res->fields[semester];
 				$h=$res->fields['height'];
 				$w=$res->fields['weight'];
-				$this->health_data[$res->fields[student_sn]][$year_seme][height]=$h;
-				$this->health_data[$res->fields[student_sn]][$year_seme][weight]=$w;
-				$y=intval(substr($this->stud_base[$res->fields[student_sn]][curr_class_num],0,-4));
+				$this->health_data[$res->fields['student_sn']][$year_seme][height]=$h;
+				$this->health_data[$res->fields['student_sn']][$year_seme][weight]=$w;
+				$y=intval(substr($this->stud_base[$res->fields['student_sn']]['curr_class_num'],0,-4));
 				$this->avg_data[height][$y][value]+=$h;
 				$this->avg_data[height][$y][nums]++;
 				$this->avg_data[weight][$y][value]+=$w;
@@ -203,12 +203,12 @@ class health_chart {
 				if (intval($h)>0 && intval($w)>0) {
                                     //修改BMI小數位數
 					$BMI=round($w/$h/$h*10000,2);
-					$this->health_data[$res->fields[student_sn]][$year_seme][BMI]=$BMI;
+					$this->health_data[$res->fields['student_sn']][$year_seme][BMI]=$BMI;
 				}
 				//計算年齡
 				if ($res->fields['measure_date']!="0000-00-00") {
 					$dm_arr=explode("-",$res->fields['measure_date']);
-					$db_arr=explode("-",$this->stud_base[$res->fields[student_sn]][stud_birthday]);
+					$db_arr=explode("-",$this->stud_base[$res->fields['student_sn']][stud_birthday]);
 					//					$dm_arr[1]+=6; //為了四捨五入, 所以先加六個月
 					//					if ($dm_arr[1]>12) {
 					//						$dm_arr[1]-=12;
@@ -219,19 +219,19 @@ class health_chart {
 					//					elseif ($dm_arr[1]==$db_arr[1] && $dm_arr[2]>$db_arr[2]) $years++;
 					$years=$dm_arr[0]-$db_arr[0];
 					if ($dm_arr[1]<$db_arr[1] || ($dm_arr[1]==$db_arr[1] && $dm_arr[2]<$db_arr[2])) $years--;
-					$this->health_data[$res->fields[student_sn]][$year_seme][years]=$years;
+					$this->health_data[$res->fields['student_sn']][$year_seme][years]=$years;
 					//計算生長評值
 					$Bid=0;
 					if ($BMI) {
-						foreach($this->BMI_ARR[$years][$this->stud_base[$res->fields[student_sn]][stud_sex]] as $id=>$v) {
+						foreach($this->BMI_ARR[$years][$this->stud_base[$res->fields['student_sn']][stud_sex]] as $id=>$v) {
 							if ($BMI>$v) $Bid=$id;
 						}
-						$this->health_data[$res->fields[student_sn]][$year_seme][Bid]=$Bid;
+						$this->health_data[$res->fields['student_sn']][$year_seme][Bid]=$Bid;
 					}
 					//查出GHD值
-					$this->health_data[$res->fields[student_sn]][$year_seme][GHD]=$this->GHD_ARR[$years][$this->stud_base[$res->fields[student_sn]][stud_sex]];
+					$this->health_data[$res->fields['student_sn']][$year_seme][GHD]=$this->GHD_ARR[$years][$this->stud_base[$res->fields['student_sn']][stud_sex]];
 					//判斷生長遲緩
-					if ($h<=$this->health_data[$res->fields[student_sn]][$year_seme][GHD]) $this->health_data[$res->fields[student_sn]][$year_seme][stunting]=1;
+					if ($h<=$this->health_data[$res->fields['student_sn']][$year_seme][GHD]) $this->health_data[$res->fields['student_sn']][$year_seme][stunting]=1;
 				}
 				$res->MoveNext();
 			}
@@ -460,7 +460,7 @@ class health_chart {
 			$query="select * from health_sight_ntu where student_sn in (".$this->sn_str.")";
 			$res=$CONN->Execute($query);
 			while(!$res->EOF) {
-				$this->stud_base[$res->fields[student_sn]][ntu]=$res->fields['ntu'];
+				$this->stud_base[$res->fields['student_sn']][ntu]=$res->fields['ntu'];
 				$res->MoveNext();
 			}
 		}
@@ -489,7 +489,7 @@ class health_chart {
 			$query="select * from health_sight_co where student_sn in (".$this->sn_str.")";
 			$res=$CONN->Execute($query);
 			while(!$res->EOF) {
-				$this->stud_base[$res->fields[student_sn]][co]=$res->fields['co'];
+				$this->stud_base[$res->fields['student_sn']][co]=$res->fields['co'];
 				$res->MoveNext();
 			}
 		}
@@ -762,11 +762,11 @@ class health_chart {
 			while(!$res->EOF) {
 				$year_seme=sprintf("%03d",$res->fields[year]).$res->fields[semester];
 				$name=$res->fields['no'];
-				$this->health_data[$res->fields[student_sn]][$year_seme][$name]=$res->fields['status'];
-				$this->health_data[$res->fields[student_sn]][$year_seme]["C".$res->fields['status']]++;
-				$this->health_data[$res->fields[student_sn]][$year_seme][(($name<"T51")?"N":"n").$res->fields['status']]++;
-				$this->health_data[$res->fields[student_sn]][$year_seme][(($name<"T51")?"N":"n")."Total"]++;
-				$this->health_data[$res->fields[student_sn]][$year_seme][DisTeeth]=1;
+				$this->health_data[$res->fields['student_sn']][$year_seme][$name]=$res->fields['status'];
+				$this->health_data[$res->fields['student_sn']][$year_seme]["C".$res->fields['status']]++;
+				$this->health_data[$res->fields['student_sn']][$year_seme][(($name<"T51")?"N":"n").$res->fields['status']]++;
+				$this->health_data[$res->fields['student_sn']][$year_seme][(($name<"T51")?"N":"n")."Total"]++;
+				$this->health_data[$res->fields['student_sn']][$year_seme][DisTeeth]=1;
 				$res->MoveNext();
 			}
 		}
@@ -815,20 +815,20 @@ class health_chart {
 			$query="select * from $tbl_name where student_sn in (".$this->sn_str.") order by student_sn,di_id";
 			$res=$CONN->Execute($query);
 			while(!$res->EOF) {
-				$this->stud_base[$res->fields[student_sn]][$col_name][]=$res->fields['di_id'];
+				$this->stud_base[$res->fields['student_sn']][$col_name][]=$res->fields['di_id'];
 				$res->MoveNext();
 			}
 		}
 		$query="select * from health_diag_record where student_sn in (".$this->sn_str.") and tbl in ($str)";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$this->stud_base[$res->fields[student_sn]][diag_record][$k_arr[$res->fields['tbl']]][$res->fields['item']]=$res->fields['memo'];
+			$this->stud_base[$res->fields['student_sn']][diag_record][$k_arr[$res->fields['tbl']]][$res->fields['item']]=$res->fields['memo'];
 			$res->MoveNext();
 		}
 		$query="select * from health_status_record where student_sn in (".$this->sn_str.") and tbl in ($str)";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$this->stud_base[$res->fields[student_sn]][status_record][$k_arr[$res->fields['tbl']]][$res->fields['item']]=$res->fields['memo'];
+			$this->stud_base[$res->fields['student_sn']][status_record][$k_arr[$res->fields['tbl']]][$res->fields['item']]=$res->fields['memo'];
 			$res->MoveNext();
 		}
 	}
@@ -895,8 +895,8 @@ class health_chart {
 			$query="select * from health_bodymind where student_sn in (".$this->sn_str.")";
 			$res=$CONN->Execute($query);
 			while(!$res->EOF) {
-				$this->stud_base[$res->fields[student_sn]][bodymind][bm_id]=$res->fields['bm_id'];
-				$this->stud_base[$res->fields[student_sn]][bodymind][bm_level]=$res->fields['bm_level'];
+				$this->stud_base[$res->fields['student_sn']][bodymind][bm_id]=$res->fields['bm_id'];
+				$this->stud_base[$res->fields['student_sn']][bodymind][bm_level]=$res->fields['bm_level'];
 				$res->MoveNext();
 			}
 		}
@@ -936,7 +936,7 @@ class health_chart {
 			$query="select * from health_inherit where student_sn in (".$this->sn_str.") order by student_sn,folk_id";
 			$res=$CONN->Execute($query);
 			while(!$res->EOF) {
-				$this->stud_base[$res->fields[student_sn]][inherit][$res->fields['folk_id']]=$res->fields['di_id'];
+				$this->stud_base[$res->fields['student_sn']][inherit][$res->fields['folk_id']]=$res->fields['di_id'];
 				$res->MoveNext();
 			}
 		}
@@ -1243,7 +1243,7 @@ class health_chart {
 			while(!$res->EOF) {
 				$temp_arr=array();
 				$year_seme=sprintf("%03d",$res->fields[year]).$res->fields[semester];
-				$sn=$res->fields[student_sn];
+				$sn=$res->fields['student_sn'];
 				$id=$res->fields['id'];
 				$temp_arr[id]=$id;
 				$temp_arr[sign_time]=$res->fields['sign_time'];
@@ -1408,15 +1408,15 @@ class health_chart {
 			$res=$CONN->Execute($query);
 			while(!$res->EOF) {
 				$year_seme=sprintf("%03d",$res->fields[year]).$res->fields[semester];
-				$this->health_data[$res->fields[student_sn]][$year_seme][checks][$res->fields[subject]][hospital]=$res->fields[hospital];
-				$this->health_data[$res->fields[student_sn]][$year_seme][checks][$res->fields[subject]][doctor]=$res->fields[doctor];
-				$this->health_data[$res->fields[student_sn]][$year_seme][checks][$res->fields[subject]][date]=$res->fields[measure_date];
+				$this->health_data[$res->fields['student_sn']][$year_seme][checks][$res->fields[subject]][hospital]=$res->fields[hospital];
+				$this->health_data[$res->fields['student_sn']][$year_seme][checks][$res->fields[subject]][doctor]=$res->fields[doctor];
+				$this->health_data[$res->fields['student_sn']][$year_seme][checks][$res->fields[subject]][date]=$res->fields[measure_date];
 				//如果是頭頸科的話, 順便把記錄加入一同檢查的科別
 				if ($res->fields[subject]=="Hea") {
 					foreach($temp_arr as $d) {
-						$this->health_data[$res->fields[student_sn]][$year_seme][checks][$d][hospital]=$res->fields[hospital];
-						$this->health_data[$res->fields[student_sn]][$year_seme][checks][$d][doctor]=$res->fields[doctor];
-						$this->health_data[$res->fields[student_sn]][$year_seme][checks][$d][date]=$res->fields[measure_date];
+						$this->health_data[$res->fields['student_sn']][$year_seme][checks][$d][hospital]=$res->fields[hospital];
+						$this->health_data[$res->fields['student_sn']][$year_seme][checks][$d][doctor]=$res->fields[doctor];
+						$this->health_data[$res->fields['student_sn']][$year_seme][checks][$d][date]=$res->fields[measure_date];
 					}
 				}
 				$res->MoveNext();

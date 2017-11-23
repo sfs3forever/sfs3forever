@@ -222,7 +222,7 @@ if($curr_sort){
 			$tt =1;
 			if ($res->fields[test_kind] =="定期評量")
 				$tt = 0;
-			$score_arr[$tt][$res->fields[student_sn]] = $res->fields[score];
+			$score_arr[$tt][$res->fields['student_sn']] = $res->fields[score];
 			$res->MoveNext();
 		}
 		
@@ -232,7 +232,7 @@ if($curr_sort){
 		while(!$res->EOF){
 			$stud_num = $res->fields[seme_num];
 			$stud_name = $res->fields[stud_name];
-			$student_sn = $res->fields[student_sn];
+			$student_sn = $res->fields['student_sn'];
 			if ($_GET[del]=='ds1')
 				$score_1=-100;
 			else
@@ -293,7 +293,7 @@ if($curr_sort){
 		$query = "select student_sn,score from $score_semester where  ss_id=$ss_id and test_sort=255 and test_kind='全學期' and class_id='$class_id'";
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
-			$score_arr[$res->fields[student_sn]] = $res->fields[score];
+			$score_arr[$res->fields['student_sn']] = $res->fields[score];
 			$res->MoveNext();
 		}
 			
@@ -307,7 +307,7 @@ if($curr_sort){
 			//$stud_num = intval(substr($res->fields[curr_class_num],-2));
 			$stud_num = $res->fields[seme_num];
 			$stud_name  = $res->fields[stud_name];
-			$student_sn = $res->fields[student_sn];
+			$student_sn = $res->fields['student_sn'];
 			if ($_GET[del]=='ds2')
 				$score_2 = -100;
 			else
@@ -341,7 +341,7 @@ if($curr_sort){
 		$query = "select student_sn,score from $score_semester where  ss_id=$ss_id and test_sort=254 and  class_id='$class_id'";
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
-			$score_arr[$res->fields[student_sn]] = $res->fields[score];
+			$score_arr[$res->fields['student_sn']] = $res->fields[score];
 			$res->MoveNext();
 		}
 			
@@ -354,7 +354,7 @@ if($curr_sort){
 		while(!$res->EOF){
 			$stud_num = intval(substr($res->fields[curr_class_num],-2));
 			$stud_name  = $res->fields[stud_name];
-			$student_sn = $res->fields[student_sn];
+			$student_sn = $res->fields['student_sn'];
 			if ($_GET[del]=='ds2')
 				$score_2 = -100;
 			else

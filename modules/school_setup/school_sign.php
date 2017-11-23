@@ -10,7 +10,7 @@ include "school_base_config.php";
 // 認證檢查
 sfs_check();
 
-if ($_POST[do_key]=='上傳圖檔') {
+if ($_POST['do_key']=='上傳圖檔') {
 	if (!check_is_php_file($_FILES['sign_file']['name'])) {
 		$alias = "title_".$_POST[teach_title_id];
 		if (copy($_FILES['sign_file']['tmp_name'],$filePath.$alias)){

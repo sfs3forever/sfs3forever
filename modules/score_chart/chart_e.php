@@ -23,7 +23,7 @@ if (!ini_get('register_globals')) {
 
 $year_seme=($_POST['year_seme'])?$_POST['year_seme']:$_GET[year_seme];
 $class_id=($_POST[class_id])?$_POST[class_id]: $_GET[class_id];
-$student_sn=($_POST[student_sn])?$_POST[student_sn]:$_GET[student_sn];
+$student_sn=($_POST['student_sn'])?$_POST['student_sn']:$_GET['student_sn'];
 $act=($_POST[act])?$_POST[act]:$_GET[act];
 $stu_num=($_POST[stu_num])?$_POST[stu_num]:$_GET[stu_num];
 
@@ -300,37 +300,37 @@ function save_value(){
 	//日常生活表現存檔
 	$seme_year_seme = $_POST['year_seme'];
 	for ($i=1;$i<=4;$i++){
-		$query = "replace into stud_seme_score_oth (seme_year_seme,stud_id,ss_kind,ss_id,ss_val) values('$seme_year_seme','$_POST[stud_id]','生活表現評量','$i','".$_POST["a_$i"]."')";
+		$query = "replace into stud_seme_score_oth (seme_year_seme,stud_id,ss_kind,ss_id,ss_val) values('$seme_year_seme',{$_POST['stud_id']},'生活表現評量','$i','".$_POST["a_$i"]."')";
 		$CONN->Execute($query) or trigger_error("sql 錯誤 $query",E_USER_ERROR);		
 	}
 	//科目努力程度存檔
 	//$temp_ss_id_arr = explode(",",$_POST[hidden_ss_id]);
 //	while(list($id,$val)=each($temp_ss_id_arr)){
 //		if ($val<>''){
-//			$query = "replace into stud_seme_score_oth (seme_year_seme,stud_id,ss_kind,ss_id,ss_val)values('$seme_year_seme','$_POST[stud_id]','努力程度','$val','".$_POST["ss_$val"]."')";
+//			$query = "replace into stud_seme_score_oth (seme_year_seme,stud_id,ss_kind,ss_id,ss_val)values('$seme_year_seme',{$_POST['stud_id']},'努力程度','$val','".$_POST["ss_$val"]."')";
 //			$CONN->Execute($query) or trigger_error("sql 錯誤 $query",E_USER_ERROR);
 //		}
 //	}
 	//導師評語及建議及等第
-	$query = "replace into stud_seme_score_nor (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo) values('$seme_year_seme','$_POST[student_sn]',0,'$_POST[nor_score]','$_POST[nor_score_memo]')";
+	$query = "replace into stud_seme_score_nor (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo) values('$seme_year_seme','$_POST['student_sn']',0,'$_POST[nor_score]','$_POST[nor_score_memo]')";
 	$CONN->Execute($query) or trigger_error("sql 錯誤 $query",E_USER_ERROR);
 	
 	//學生出缺席
 	$abs_kind_arr = stud_abs_kind();
 	while(list($id,$val)=each($abs_kind_arr)) {
-		$query = "replace into stud_seme_abs(seme_year_seme,stud_id,abs_kind,abs_days) values('$seme_year_seme','$_POST[stud_id]','$id','".$_POST["abs_$id"]."')";
+		$query = "replace into stud_seme_abs(seme_year_seme,stud_id,abs_kind,abs_days) values('$seme_year_seme',{$_POST['stud_id']},'$id','".$_POST["abs_$id"]."')";
 		$CONN->Execute($query) or trigger_error("sql 錯誤 $query",E_USER_ERROR);
 
 	}
 	//學生獎懲
 	 $rep_kind_arr = stud_rep_kind();
 	while(list($id,$val)=each($rep_kind_arr)) {
-		$query = "replace into stud_seme_rew(seme_year_seme,stud_id,sr_kind_id,sr_num) values('$seme_year_seme','$_POST[stud_id]','$id','".$_POST["reward_$id"]."')";
+		$query = "replace into stud_seme_rew(seme_year_seme,stud_id,sr_kind_id,sr_num) values('$seme_year_seme',{$_POST['stud_id']},'$id','".$_POST["reward_$id"]."')";
 		$CONN->Execute($query) or trigger_error("sql 錯誤 $query",E_USER_ERROR);
 	}
 	
 	//其他設定
-	$query = "replace into stud_seme_score_oth (seme_year_seme,stud_id,ss_kind,ss_id,ss_val) values('$seme_year_seme','$_POST[stud_id]','其他設定',0,'$_POST[oth_rep]')";
+	$query = "replace into stud_seme_score_oth (seme_year_seme,stud_id,ss_kind,ss_id,ss_val) values('$seme_year_seme',{$_POST['stud_id']},'其他設定',0,'$_POST[oth_rep]')";
 	$CONN->Execute($query) or trigger_error("sql 錯誤 $query",E_USER_ERROR);
 	return true;
 

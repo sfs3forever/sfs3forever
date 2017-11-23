@@ -141,7 +141,7 @@ if($_POST['act']=='身分批次新增'){
 
 				//('$detail_id',$student_sn,'$curr_class_num','$_POST[a_percent]','$_POST[a_cause]')"
 
-				$sn=$recordSet->fields[student_sn];
+				$sn=$recordSet->fields['student_sn'];
 
 				$class_num=$recordSet->fields[curr_class_num];
 
@@ -442,7 +442,7 @@ if($work_year_seme==$curr_year_seme and $item_id and $detail_id)
         if($class_id){
 		while(!$recordSet->EOF)
 		{
-			$studentdata.="<option value='".$recordSet->fields[student_sn]."_".$recordSet->fields[curr_class_num]."'>(".substr($recordSet->fields[curr_class_num],-2).")".$recordSet->fields[stud_name]."</option>";
+			$studentdata.="<option value='".$recordSet->fields['student_sn']."_".$recordSet->fields[curr_class_num]."'>(".substr($recordSet->fields[curr_class_num],-2).")".$recordSet->fields[stud_name]."</option>";
 			$recordSet->MoveNext();
 		}
 	}

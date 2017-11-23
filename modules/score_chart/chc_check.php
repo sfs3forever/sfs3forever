@@ -84,7 +84,7 @@ if ( $_GET[class_id] ){
 		$stu[$sn]=$data;
 		$stud_id=$data[stud_id];
 		foreach ($All_ss as $sco){
-			if ($sco[student_sn]==$sn ){
+			if ($sco['student_sn']==$sn ){
 				//$stu[$sn][$sco[ss_id]][score]=ceil($sco[ss_score]);
 				$stu[$sn][$sco[ss_id]][score]=$sco[ss_score];
 				$stu[$sn][$sco[ss_id]][memo]=$sco[ss_score_memo];
@@ -102,7 +102,7 @@ if ( $_GET[class_id] ){
 			}
 		}
 		foreach ($All_nor as $nor){
-			if ($nor[student_sn]==$sn ) {
+			if ($nor['student_sn']==$sn ) {
 				//$stu[$sn][nor][score]=ceil($nor[ss_score]);
 				$stu[$sn][nor][score]=$nor[ss_score];
 				$stu[$sn][nor][memo]=$nor[ss_score_memo];

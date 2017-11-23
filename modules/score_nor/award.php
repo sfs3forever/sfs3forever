@@ -22,7 +22,7 @@ if ($_POST[year_name]) {
 	$query="select * from stud_move where move_kind='2'";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$move_sn.="'".$res->fields[student_sn]."',";
+		$move_sn.="'".$res->fields['student_sn']."',";
 		$res->MoveNext();
 	}
 	if ($move_sn) 
@@ -35,7 +35,7 @@ if ($_POST[year_name]) {
 	$query="select a.* from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme='$seme_year_seme' and a.seme_class like '$seme_class' and b.stud_study_cond in ('0') $move_str order by a.seme_num";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$sn[]=$res->fields[student_sn];
+		$sn[]=$res->fields['student_sn'];
 		$id[]=$res->fields[stud_id];
 		$res->MoveNext();
 	}
@@ -56,7 +56,7 @@ if ($_POST[year_name]) {
 	$query="select a.*,b.stud_name from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme='$seme_year_seme' and a.stud_id in ($all_id) order by a.seme_class,a.seme_num";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$ssn=$res->fields[student_sn];
+		$ssn=$res->fields['student_sn'];
 		$show_sn[$ssn]=$ssn;
 		$sclass[$ssn]=$class_base[$res->fields['seme_class']];
 		$snum[$ssn]=$res->fields[seme_num];

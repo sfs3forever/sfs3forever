@@ -8,7 +8,7 @@ sfs_check();
 
 $sel_year=curr_year();
 $sel_seme=curr_seme();
-if ($_POST[do_key]) {
+if ($_POST['do_key']) {
 	//檔案上傳
 	$path_str = "temp/";
 	set_upload_path($path_str);
@@ -32,7 +32,7 @@ if ($_POST[do_key]) {
 			}
 
 			$res=$CONN->Execute($query);
-			$student_sn=$res->fields[student_sn];
+			$student_sn=$res->fields['student_sn'];
 			$v=intval($tt[$d[1]]);
 			if ($v>0) $v*=10;
 			$query="replace into health_sight (year,semester,student_sn,side,sight_o) values ('$sel_year','$sel_seme','$student_sn','r','".$v."')";

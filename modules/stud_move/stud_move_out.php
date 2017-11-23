@@ -124,7 +124,7 @@ switch ($key) {
         $update_ip = getip();
         $query = "select student_sn from stud_seme where stud_id='$stud_id' and seme_year_seme='$seme_year_seme'";
         $res = $CONN->Execute($query) or die($query);
-        $student_sn = $res->fields[student_sn];
+        $student_sn = $res->fields['student_sn'];
         //加入異動記錄
         $sql_insert = "insert into stud_move (stud_id,move_kind,move_year_seme,school_move_num,move_date,move_c_unit,move_c_date,move_c_word,move_c_num,download_deadline,download_limit,update_id,update_ip,update_time,school,school_id,student_sn,reason,new_address,city) values ('$stud_id','$move_kind','$curr_seme','$school_move_num','$move_date','$move_c_unit','$move_c_date','$move_c_word','$move_c_num','$download_deadline','$download_limit','" . $_SESSION['session_log_id'] . "','$update_ip','" . date("Y-m-d G:i:s") . "','$school','$school_id','$student_sn','$reason','$new_address','$city')";
         $CONN->Execute($sql_insert) or die($sql_insert);

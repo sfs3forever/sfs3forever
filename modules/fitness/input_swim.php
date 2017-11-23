@@ -197,11 +197,11 @@ if ($class_num) {
 	$smarty->assign("rowdata",$r);
 	reset($r);
 	while(list($k,$v)=each($r)) {
-		$stud_arr[]=$v[student_sn];
-		$query="select count(student_sn) from fitness_data_swim where student_sn='".$v[student_sn]."' and c_curr_seme='$seme_year_seme'";
+		$stud_arr[]=$v['student_sn'];
+		$query="select count(student_sn) from fitness_data_swim where student_sn='".$v['student_sn']."' and c_curr_seme='$seme_year_seme'";
 		$res=$CONN->Execute($query);
 		if ($res->rs[0]==0) {
-			$CONN->Execute("insert into fitness_data_swim (c_curr_seme,student_sn,teach_swim) values ('$seme_year_seme','".$v[student_sn]."','2')");
+			$CONN->Execute("insert into fitness_data_swim (c_curr_seme,student_sn,teach_swim) values ('$seme_year_seme','".$v['student_sn']."','2')");
 		}
 	}
 
@@ -211,7 +211,7 @@ if ($class_num) {
 	while(!$res->EOF) {
 		$f=array();
 		$f=$res->FetchRow();
-		$fd[$f[student_sn]]=$f;
+		$fd[$f['student_sn']]=$f;
 	}
 	$smarty->assign("fd",$fd);
 	$smarty->assign("class_num",$class_num);

@@ -31,8 +31,8 @@ thetable.bgColor=TheColor
 <?php
 	$class_base = class_base();
   // 2012/10/05 by smallduh	
-	//$query = "select stud_name,curr_class_num from stud_base where stud_id='$_GET[stud_id]'";
-	$query = "select stud_id,stud_name,curr_class_num,stud_study_year from stud_base where student_sn='$_GET[student_sn]'";
+	//$query = "select stud_name,curr_class_num from stud_base where stud_id={$_GET['stud_id']}";
+	$query = "select stud_id,stud_name,curr_class_num,stud_study_year from stud_base where student_sn='$_GET['student_sn']'";
 	$res = $CONN->Execute($query);
 	$stud_id=$res->fields[stud_id];
 	$stud_name = $res->fields[stud_name];
@@ -48,7 +48,7 @@ thetable.bgColor=TheColor
  $max_year_seme=sprintf("%03d",$stud_study_year+8)."2"; 
 	
 //2012/10/05 by smallduh	
-//echo "<span align=center>$_GET[stud_id] -- $curr_class_num -- $stud_name 輔導訪談記錄表</span>";
+//echo "<span align=center>$_GET['stud_id'] -- $curr_class_num -- $stud_name 輔導訪談記錄表</span>";
 echo "<span align=center>$stud_id -- $curr_class_num -- $stud_name 輔導訪談記錄表</span>";
 ?>
 <table  cellspacing=1  bgcolor="#cccccc">
@@ -57,7 +57,7 @@ echo "<span align=center>$stud_id -- $curr_class_num -- $stud_name 輔導訪談�
 <?php
 
 //by smallduh 2012/10/05
-//$query = "select * from stud_seme_talk where stud_id='$_GET[stud_id]' order by seme_year_seme";
+//$query = "select * from stud_seme_talk where stud_id={$_GET['stud_id']} order by seme_year_seme";
 $query = "select * from stud_seme_talk where stud_id='$stud_id' and seme_year_seme>='$min_year_seme' and seme_year_seme<='$max_year_seme' order by seme_year_seme";
 $recordSet = $CONN->Execute($query) or die($query);
 

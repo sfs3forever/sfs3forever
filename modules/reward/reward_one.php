@@ -41,8 +41,8 @@ if ($_POST[past_stud_id]!=$_REQUEST[One]) {
 	$One=$_REQUEST[One];
 	$focus_str="<body OnLoad='document.base_form.One.focus()'>";
 	$focus=1;
-} elseif ($_POST[past_stud_id]!=$_POST[stud_id])
-	$One=$_POST[stud_id];
+} elseif ($_POST[past_stud_id]!=$_POST['stud_id'])
+	$One=$_POST['stud_id'];
 elseif (!empty($_REQUEST[reward_id])) {
 	$query="select stud_id from reward where reward_id='$_REQUEST[reward_id]'";
 	$res=$CONN->Execute($query);
@@ -108,7 +108,7 @@ if (empty($One) && empty($class_id)) {
 if ($One) {
 	$sql="select student_sn,seme_class,seme_num from stud_seme where seme_year_seme='$seme_year_seme' and stud_id='$One'";
 	$rs=$CONN->Execute($sql);
-	$student_sn=$rs->fields[student_sn];
+	$student_sn=$rs->fields['student_sn'];
 	if (!$student_sn) 
 		$One="";
 	else {
@@ -211,7 +211,7 @@ if($act=="edit"){
 		$reward_year_seme=$sel_year.$sel_seme;
 		$query="select student_sn from stud_seme where seme_year_seme='$seme_year_seme' and stud_id='$One'";
 		$res=$CONN->Execute($sql);
-		$student_sn=$res->fields[student_sn];
+		$student_sn=$res->fields['student_sn'];
 		$reward_div=($reward_kind>0)?"1":"2";
 		$reward_sub=1;
 		$reward_c_date=date("Y-m-j");
@@ -446,7 +446,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$One="",$id=""){
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
 		$stud_id=$res->fields[stud_id];
-		$student_sn=$res->fields[student_sn];
+		$student_sn=$res->fields['student_sn'];
 		$seme_class[$stud_id]=$res->fields['seme_class'];
 		$seme_num[$stud_id]=$res->fields[seme_num];
 		$all_sn.="'".$student_sn."',";

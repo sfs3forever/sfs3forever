@@ -74,14 +74,14 @@ if ($class_num) {
 	$b_arr=array();
 	$g_arr=array();
 	while(list($k,$v)=each($r)) {
-		$stud_arr[]=$v[student_sn];
+		$stud_arr[]=$v['student_sn'];
 		$d=array();
 		$d=explode("-",$r[$k][stud_birthday]);
 		$r[$k][stud_birthday]=($d[0]-1911)."-".$d[1];
 		$r[$k][stud_birthday2]=($d[0]-1911).$d[1].$d[2];
 		$r[$k][stud_birthday3]="中華民國".($d[0]-1911)."年".$d[1]."月";
-		if ($v[stud_sex]==1) $b_arr[]=$v[student_sn];
-		if ($v[stud_sex]==2) $g_arr[]=$v[student_sn];
+		if ($v[stud_sex]==1) $b_arr[]=$v['student_sn'];
+		if ($v[stud_sex]==2) $g_arr[]=$v['student_sn'];
 	
 	}
 	$smarty->assign("rowdata",$r);
@@ -103,7 +103,7 @@ if ($class_num) {
 		//exit();
 		reset($r);
 		while(list($k,$v)=each($r)) {
-			$sn=$v[student_sn];
+			$sn=$v['student_sn'];
 			
 			//2015.01.09 by smallduh 改成 坐姿前彎,仰臥起坐,立定跳遠,心肺適能 有資料再寫入
 			//2015.05.01 by smallduh 改成以勾選方式,廢除之前有資料再寫入年齡
@@ -137,7 +137,7 @@ if ($class_num) {
 	if ($_POST[cal_per]) {
 		reset($r);
 		while(list($k,$v)=each($r)) {
-			$sn=$v[student_sn];
+			$sn=$v['student_sn'];
 			$sex=$v[stud_sex]; //1男生 , 2女生
 			$age=$fd[$sn][age];
 			$tall=$fd[$sn][tall];
@@ -180,7 +180,7 @@ if ($class_num) {
 
   //判讀BMI結果   by smallduh.
  	foreach ($r as $k=>$v) {
- 	 $sn=$v[student_sn];
+ 	 $sn=$v['student_sn'];
 	 $sex=$v[stud_sex]; //1男生 , 2女生
 	 $age=$fd[$sn][age];
 	 $tall=$fd[$sn][tall];

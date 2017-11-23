@@ -1123,7 +1123,7 @@ if($class_id<>'') {
 		$ii=0;
 		while (!$result->EOF) {
 			$stud_id = $result->fields[stud_id];
-			$student_sn = $result->fields[student_sn];
+			$student_sn = $result->fields['student_sn'];
 			$stud_name = $result->fields[stud_name];
 			$curr_class_num = substr($result->fields[curr_class_num],-2);
 			$stud_study_cond = $result->fields[stud_study_cond];

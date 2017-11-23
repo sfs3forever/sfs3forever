@@ -43,7 +43,7 @@ if($_POST['copy_wh']=="抓取本學期全校學生身高體重資料")
 		$wh_data=array();
 		while(!$res->EOF)
 		{
-			$student_sn=$res->fields[student_sn];
+			$student_sn=$res->fields['student_sn'];
 			$weight=$res->fields['weight'];
 			$height=$res->fields['height'];
 			$wh_data[$student_sn]['weight']=$weight;
@@ -132,11 +132,11 @@ if ($class_num) {
 	$r=$CONN->queryFetchAllAssoc($query);
 	$smarty->assign("rowdata",$r);
 	while(list($k,$v)=each($r)) {
-		$stud_arr[]=$v[student_sn];
-		$query="select count(student_sn) from fitness_data where student_sn='".$v[student_sn]."' and c_curr_seme='$seme_year_seme'";
+		$stud_arr[]=$v['student_sn'];
+		$query="select count(student_sn) from fitness_data where student_sn='".$v['student_sn']."' and c_curr_seme='$seme_year_seme'";
 		$res=$CONN->Execute($query);
 		if ($res->rs[0]==0) {
-			$CONN->Execute("insert into fitness_data (c_curr_seme,student_sn) values ('$seme_year_seme','".$v[student_sn]."')");
+			$CONN->Execute("insert into fitness_data (c_curr_seme,student_sn) values ('$seme_year_seme','".$v['student_sn']."')");
 		}
 	}
 
@@ -147,7 +147,7 @@ if ($class_num) {
 		$wh_data=array();
 		while(!$res->EOF)
 		{
-			$student_sn=$res->fields[student_sn];
+			$student_sn=$res->fields['student_sn'];
 			$weight=$res->fields['weight'];
 			$height=$res->fields['height'];
 			$wh_data[$student_sn]['weight']=$weight;
@@ -159,7 +159,7 @@ if ($class_num) {
 		$res=$CONN->Execute($query);
 		while(!$res->EOF)
 		{
-			$student_sn=$res->fields[student_sn];
+			$student_sn=$res->fields['student_sn'];
 			$tall=$wh_data[$student_sn]['height'];
 			$weight=$wh_data[$student_sn]['weight'];			
 			if($tall and $weight) {
@@ -178,7 +178,7 @@ if ($class_num) {
 	while(!$res->EOF) {
 		$f=array();
 		$f=$res->FetchRow();
-		$fd[$f[student_sn]]=$f;
+		$fd[$f['student_sn']]=$f;
 	}
 	$smarty->assign("fd",$fd);
 	$smarty->assign("class_num",$class_num);

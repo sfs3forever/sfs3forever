@@ -34,7 +34,7 @@ $sql="select a.*,b.stud_name,b.curr_class_num from stud_seme a left join stud_ba
 $res=$CONN->Execute($sql) or trigger_error("SQL語法錯誤：$sql", E_USER_ERROR);
 while(!$res->EOF){
 	$stud_id=$res->fields[stud_id];
-	$student_sn=$res->fields[student_sn];
+	$student_sn=$res->fields['student_sn'];
 	$stud_name=$res->fields[stud_name];
 	$grade=substr($res->fields['seme_class'],0,-2);
 	$class_name=$class_year[$grade].$res->fields[seme_class_name].'班';
@@ -49,7 +49,7 @@ while(!$res->EOF){
 		foreach($check_array as $key=>$value){
 			$value=str_replace(',','',$value);
 			if(! $res2->fields[$key]){
-				$error_array[$curr_class][$curr_class_num][stud_name]=$stud_name;
+				$error_array[$curr_class][$curr_class_num]['stud_name']=$stud_name;
 				$error_array[$curr_class][$curr_class_num][class_name]=$class_name;
 				$error_array[$curr_class][$curr_class_num][sse_family_kind]=$record_home[$sse_family_kind];
 				$error_array[$curr_class][$curr_class_num][error].=$value.',';	

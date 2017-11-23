@@ -137,7 +137,7 @@ $studentdata="";
 while(list($student_sn,$seme_num,$stud_name,$stud_sex)=$recordSet->FetchRow()) {
 	if($recordSet->currentrow() % $col==1) $studentdata.="<tr>";
 	if (array_key_exists($student_sn,$listed)) {
-			$studentdata.="<td bgcolor=".($listed[$recordSet->fields[student_sn]-1]?"#CCCCCC":"#FFFFDD").">▲($seme_num)$stud_name</td>";
+			$studentdata.="<td bgcolor=".($listed[$recordSet->fields['student_sn']-1]?"#CCCCCC":"#FFFFDD").">▲($seme_num)$stud_name</td>";
 	} else {
 		$studentdata.="<td bgcolor=".($stud_sex==1?"#CCFFCC":"#FFCCCC")."><input type='checkbox' name='selected_stud[]' value='$student_sn' id='stud_selected'>($seme_num)$stud_name</td>";
 	}

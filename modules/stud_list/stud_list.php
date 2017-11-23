@@ -48,7 +48,7 @@ if ($_POST[print_out] || $_POST[csv_out]) {
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
 			$seme_num=$res->fields[seme_num];
-			$data_arr[$k][$seme_num][stud_name]=$res->fields[stud_name];
+			$data_arr[$k][$seme_num]['stud_name']=$res->fields[stud_name];
 			$data_arr[$k][$seme_num][stud_id]=$res->fields[stud_id];
 			if ($_POST[sex]) $data_arr[$k][$seme_num][oth]=$sex_arr[$res->fields[stud_sex]];
 			$res->MoveNext();

@@ -9,18 +9,18 @@ include_once "../../include/sfs_case_PLlib.php";
 //使用者認證
 sfs_check();
 ##################更新  學籍資料###########################
-if($_POST[act]=='do_change1' && $_POST[SCO_TAB]!='' && $_POST[student_sn]!='' && $_POST['year_seme']!=''  ){
+if($_POST[act]=='do_change1' && $_POST[SCO_TAB]!='' && $_POST['student_sn']!='' && $_POST['year_seme']!=''  ){
 if ($_POST[score_id] =='') die(backinput("未選擇那一筆資料，按下後重選！"));
 for($i=0;$i<count($_POST[score_id]);$i++) {
 	list($key,$val)=each($_POST[score_id]);
 	$SQL="update $_POST[SCO_TAB] set class_id='$_POST[class_id]' where score_id='$key' ";
 	$rs=$CONN->Execute($SQL) or die(backinput());
 	}
-	$url=$_SERVER[PHP_SELF]."?st_sn=".$_POST[student_sn]."&year_seme=".$_POST['year_seme'];
+	$url=$_SERVER[PHP_SELF]."?st_sn=".$_POST['student_sn']."&year_seme=".$_POST['year_seme'];
 	header("Location:$url");
 }
 ##################更新  學期資料###########################
-if($_POST[act]=='do_change2' && $_POST[SCO_TAB]!='' && $_POST[student_sn]!='' && $_POST['year_seme']!=''  ){
+if($_POST[act]=='do_change2' && $_POST[SCO_TAB]!='' && $_POST['student_sn']!='' && $_POST['year_seme']!=''  ){
 if ($_POST[score_id] =='') die(backinput("未選擇那一筆資料，按下後重選！"));
 if ($_POST[My_class_id] =='') die(backinput("未輸入學期年班資料，按下後重填！"));
 for($i=0;$i<count($_POST[score_id]);$i++) {
@@ -28,22 +28,22 @@ for($i=0;$i<count($_POST[score_id]);$i++) {
 	$SQL="update $_POST[SCO_TAB] set class_id='$_POST[My_class_id]' where score_id='$key' ";
 	$rs=$CONN->Execute($SQL) or die(backinput());
 	}
-	$url=$_SERVER[PHP_SELF]."?st_sn=".$_POST[student_sn]."&year_seme=".$_POST['year_seme'];
+	$url=$_SERVER[PHP_SELF]."?st_sn=".$_POST['student_sn']."&year_seme=".$_POST['year_seme'];
 	header("Location:$url");
 }
 ##################刪除資料###########################
-if($_POST[act]=='del_data' && $_POST[SCO_TAB]!='' && $_POST[student_sn]!='' && $_POST['year_seme']!=''  ){
+if($_POST[act]=='del_data' && $_POST[SCO_TAB]!='' && $_POST['student_sn']!='' && $_POST['year_seme']!=''  ){
 if ($_POST[score_id] =='') die(backinput("未選擇刪除那一筆資料，按下後重選！"));
 for($i=0;$i<count($_POST[score_id]);$i++) {
 	list($key,$val)=each($_POST[score_id]);
-	$SQL="delete from  $_POST[SCO_TAB]  where student_sn='$_POST[student_sn]' and score_id='$key' ";
+	$SQL="delete from  $_POST[SCO_TAB]  where student_sn='$_POST['student_sn']' and score_id='$key' ";
 	$rs=$CONN->Execute($SQL) or die(backinput());
 	}
-	$url=$_SERVER[PHP_SELF]."?st_sn=".$_POST[student_sn]."&year_seme=".$_POST['year_seme'];
+	$url=$_SERVER[PHP_SELF]."?st_sn=".$_POST['student_sn']."&year_seme=".$_POST['year_seme'];
 	header("Location:$url");
 }
 ##################sendmit資料###########################
-if($_POST[act]=='do_sendmit' && $_POST[SCO_TAB]!='' && $_POST[student_sn]!='' && $_POST['year_seme']!=''  ){
+if($_POST[act]=='do_sendmit' && $_POST[SCO_TAB]!='' && $_POST['student_sn']!='' && $_POST['year_seme']!=''  ){
 if ($_POST[score_id] =='') die(backinput("未選擇那一筆資料，按下後重選！"));
 if ($_POST[sendmit] =='') die(backinput("請填寫 sendmit 值，按下後重填！"));
 for($i=0;$i<count($_POST[score_id]);$i++) {
@@ -51,7 +51,7 @@ for($i=0;$i<count($_POST[score_id]);$i++) {
 	$SQL="update $_POST[SCO_TAB] set sendmit='$_POST[sendmit]' where score_id='$key' ";
 	$rs=$CONN->Execute($SQL) or die(backinput());
 	}
-	$url=$_SERVER[PHP_SELF]."?st_sn=".$_POST[student_sn]."&year_seme=".$_POST['year_seme'];
+	$url=$_SERVER[PHP_SELF]."?st_sn=".$_POST['student_sn']."&year_seme=".$_POST['year_seme'];
 	header("Location:$url");
 }
 
@@ -59,8 +59,8 @@ head("成績修正工具");
 print_menu($school_menu_p);
 
 
-if($_POST[stud_id]!='') {
-	$SQL="select * from stud_base where stud_id='$_POST[stud_id]' ";
+if($_POST['stud_id']!='') {
+	$SQL="select * from stud_base where stud_id={$_POST['stud_id']} ";
 	$arr_a=get_order2($SQL);
 	}
 if($_GET[st_sn]!='') {
@@ -87,9 +87,9 @@ if($_GET[st_sn]!='' && $_GET[year_seme]!='') {
 		}
 ///////////////// 找出當學期年班//////////////////////////
 	for($i=0;$i<count($arr_b);$i++){
-	if($arr_b[$i][seme_year_seme]===$_GET[year_seme]) {
+	if($arr_b[$i]['seme_year_seme']===$_GET[year_seme]) {
 	$stu_class_id=substr($_GET[year_seme],0,3)."_".substr($_GET[year_seme],3,1)."_".sprintf("%02d",substr($arr_b[$i]['seme_class'],0,1))."_".sprintf("%02d",substr($arr_b[$i]['seme_class'],1,2));
-	$stu_sn=$arr_b[$i][student_sn];
+	$stu_sn=$arr_b[$i]['student_sn'];
 	}
 	}
 

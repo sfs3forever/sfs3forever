@@ -176,10 +176,10 @@ if ($year_seme && $year_name && count($sel)>0) {
 		$temp_num = array();
 		$student_sn_all = '';
 		while (!$rs->EOF) {
-			$temp_sn = "s_".$rs->fields[student_sn];
+			$temp_sn = "s_".$rs->fields['student_sn'];
 			$temp_num[$temp_sn][stud_num] = $rs->fields[seme_num];
-			$temp_num[$temp_sn][stud_name] = $rs->fields[stud_name];
-			$student_sn_all .= $rs->fields[student_sn].",";
+			$temp_num[$temp_sn]['stud_name'] = $rs->fields[stud_name];
+			$student_sn_all .= $rs->fields['student_sn'].",";
 			$rs->MoveNext();
 		}
 		//計算排名
@@ -189,7 +189,7 @@ if ($year_seme && $year_name && count($sel)>0) {
 			$rs_s=$CONN->Execute($sql_s) or die($sql_s);
 			$j=0;
 			while(!$rs_s->EOF){
-				$student_sn = $rs_s->fields[student_sn];
+				$student_sn = $rs_s->fields['student_sn'];
 				$AA = $rs_s->fields[AA];
 				$BB = $rs_s->fields[BB];
 				//印出學生成績

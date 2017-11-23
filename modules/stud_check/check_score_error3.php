@@ -92,7 +92,7 @@ if ($act=="開始檢查" || $del) {
 			}
 			$all_sn="";
 		}
-		$all_sn.="'".$res->fields[student_sn]."',";
+		$all_sn.="'".$res->fields['student_sn']."',";
 		$oy=$year;
 		$os=$semester;
 		$osys=$seme_year_seme;

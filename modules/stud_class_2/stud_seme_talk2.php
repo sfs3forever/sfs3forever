@@ -21,13 +21,13 @@ $this_year = sprintf("%03d",curr_year());
 //目前學年學期
 $this_seme_year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 
-$sel_seme_year_seme = $_POST[sel_seme_year_seme];
+$sel_seme_year_seme = $_POST['sel_seme_year_seme'];
 if ($sel_seme_year_seme=='')
 	$sel_seme_year_seme = $this_seme_year_seme;
 
-$stud_id = $_GET[stud_id];
+$stud_id = $_GET['stud_id'];
 if ($stud_id == '')
-	$stud_id = $_POST[stud_id];
+	$stud_id = $_POST['stud_id'];
 
 //igogo
 if(strlen($stud_id)==0){
@@ -36,18 +36,18 @@ if(strlen($stud_id)==0){
 
 $do_key = $_GET[do_key];
 if ($do_key == '')
-	$do_key = $_POST[do_key];
+	$do_key = $_POST['do_key'];
 	
-$interview=$_POST[interview]?$_POST[interview]:$_SESSION['session_tea_name'];	
+$interview=$_POST['interview']?$_POST['interview']:$_SESSION['session_tea_name'];	
 
 switch($do_key) {
 	//新增確定
 	case $newBtn:
 
-	$seme_year_seme = $_POST[sel_seme_year_seme];
+	$seme_year_seme = $_POST['sel_seme_year_seme'];
 	if ($seme_year_seme =='')
 		$seme_year_seme = $this_seme_year_seme;
-	$sql_insert = "insert into stud_seme_talk (seme_year_seme,stud_id,sst_date,sst_name,sst_main,sst_memo,teach_id,interview) values ('$sel_seme_year_seme','$_POST[stud_id]','$_POST[sst_date]','$_POST[sst_name]','$_POST[sst_main]','$_POST[sst_memo]','{$_SESSION['session_tea_sn']}','$interview')";
+	$sql_insert = "insert into stud_seme_talk (seme_year_seme,stud_id,sst_date,sst_name,sst_main,sst_memo,teach_id,interview) values ('$sel_seme_year_seme',{$_POST['stud_id']},'$_POST[sst_date]',{$_POST['sst_name']},{$_POST['sst_main']},{$_POST['sst_memo']},'{$_SESSION['session_tea_sn']}','$interview')";
 	$CONN->Execute($sql_insert) or die($sql_insert);
 	$sst_date ='';
 	$sst_name ='';
@@ -91,7 +91,7 @@ switch($do_key) {
 	
 	//確定修改
 	case $editBtn:
-	$sql_update = "update stud_seme_talk set sst_date='$_POST[sst_date]',interview='$interview',sst_name='$_POST[sst_name]',sst_main='$_POST[sst_main]',sst_memo='$_POST[sst_memo]',teach_id='{$_SESSION['session_tea_sn']}' where sst_id='$_POST[sst_id]'";
+	$sql_update = "update stud_seme_talk set sst_date='$_POST[sst_date]',interview='$interview',sst_name={$_POST['sst_name']},sst_main={$_POST['sst_main']},sst_memo={$_POST['sst_memo']},teach_id='{$_SESSION['session_tea_sn']}' where sst_id='$_POST[sst_id]'";
 	$CONN->Execute($sql_update) or die($sql_update);
 	break;
 	
@@ -109,9 +109,9 @@ $field_data = get_field_info("stud_seme_talk");
 $linkstr = "stud_id=$stud_id&c_curr_class=$c_curr_class&c_curr_seme=$c_curr_seme";
 
 if ($stud_id=='')
-	$stud_id= $_GET[stud_id];
+	$stud_id= $_GET['stud_id'];
 if ($stud_id=='')
-	$stud_id= $_POST[stud_id];
+	$stud_id= $_POST['stud_id'];
 	
 //igogo
 if(strlen($stud_id)==0){

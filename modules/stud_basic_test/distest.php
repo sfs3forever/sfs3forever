@@ -38,18 +38,18 @@ if ($_POST[year_name]) {
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
 		$seme_class=$res->fields['seme_class'];
-		$sn[]=$res->fields[student_sn];
-		$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields[student_sn];
-		$stud_data[$res->fields[student_sn]][stud_name]=$res->fields[stud_name];
-		$stud_data[$res->fields[student_sn]][stud_id]=$res->fields[stud_id];
-		$stud_data[$res->fields[student_sn]][stud_person_id]=$res->fields[stud_person_id];
-		$stud_data[$res->fields[student_sn]][stud_sex]=$res->fields[stud_sex];
+		$sn[]=$res->fields['student_sn'];
+		$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields['student_sn'];
+		$stud_data[$res->fields['student_sn']]['stud_name']=$res->fields[stud_name];
+		$stud_data[$res->fields['student_sn']][stud_id]=$res->fields[stud_id];
+		$stud_data[$res->fields['student_sn']][stud_person_id]=$res->fields[stud_person_id];
+		$stud_data[$res->fields['student_sn']][stud_sex]=$res->fields[stud_sex];
 		$d_arr=explode("-",$res->fields[stud_birthday]);
 		$dd=$d_arr[0]-1911;
-		$stud_data[$res->fields[student_sn]][stud_birthday]=$dd.sprintf("%02d%02d",$d_arr[1],$d_arr[2]);
-		$stud_data[$res->fields[student_sn]][stud_tel]=str_replace("-","",$res->fields[$phone_col]);
-		$stud_data[$res->fields[student_sn]][addr_zip]=$res->fields[addr_zip];
-		$stud_data[$res->fields[student_sn]][stud_addr_1]=$res->fields[$addr_col];
+		$stud_data[$res->fields['student_sn']][stud_birthday]=$dd.sprintf("%02d%02d",$d_arr[1],$d_arr[2]);
+		$stud_data[$res->fields['student_sn']][stud_tel]=str_replace("-","",$res->fields[$phone_col]);
+		$stud_data[$res->fields['student_sn']][addr_zip]=$res->fields[addr_zip];
+		$stud_data[$res->fields['student_sn']][stud_addr_1]=$res->fields[$addr_col];
 		$res->MoveNext();
 	}
 	$query="select stud_study_year from stud_base where student_sn='".pos($sn)."'";
@@ -96,7 +96,7 @@ if ($_POST['xls']) {
 	foreach($show_sn as $seme_class => $d) {
 		foreach($d as $site_num => $sn) {
 			$str=array();
-			$str=array("",$sch[sch_id],"",intval(substr($seme_class,-2,2)),$stud_data[$sn][stud_id],$stud_data[$sn][stud_name],$stud_data[$sn][stud_person_id],$stud_data[$sn][stud_sex],$stud_data[$sn][stud_birthday],$stud_data[$sn][stud_tel],$stud_data[$sn][addr_zip],$stud_data[$sn][stud_addr_1]);
+			$str=array("",$sch[sch_id],"",intval(substr($seme_class,-2,2)),$stud_data[$sn][stud_id],$stud_data[$sn]['stud_name'],$stud_data[$sn][stud_person_id],$stud_data[$sn][stud_sex],$stud_data[$sn][stud_birthday],$stud_data[$sn][stud_tel],$stud_data[$sn][addr_zip],$stud_data[$sn][stud_addr_1]);
 			reset($temp2_arr);
 			foreach($temp2_arr as $si) {
 				reset($ss_link);

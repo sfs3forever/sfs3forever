@@ -6,7 +6,7 @@ include "config.php";
 sfs_check();
 $blank_name=$_POST['blank_name'];
 
-if ($_POST[do_key]) {
+if ($_POST['do_key']) {
 	if ($_POST[data_id]==0) {
 		$sss="\"學年度\",\"學校代號\",\"學生姓名\",\"學生性別\",\"出生年月日\",\"學生等級別\",\"學生身分別\",\"年級別\",\"右眼裸視視力\",\"左眼裸視視力\",\"外籍配偶子女\",\"家庭現況\"\r\n";
 		$sss.="\"YEAR\",\"SCODE\",\"NAME\",\"SEX\",\"BIRTH\",\"LEVEL\",\"SORTS\",\"YEARS\",\"RIGHT\",\"LEFT\",\"FOREIGN\",\"FAMILY\"\r\n";
@@ -24,7 +24,7 @@ if ($_POST[do_key]) {
 		$query="select student_sn,clan,type_id from stud_subkind where type_id in ('6','9')";
 		$res=$CONN->Execute($query) or die('缺少學生身份類別與屬性資料表stud_subkind');
 		while(!$res->EOF) {
-			$student_sn=$res->fields[student_sn];
+			$student_sn=$res->fields['student_sn'];
 			$clan[$student_sn]=trim($res->fields[clan]);
 			$type_id[$student_sn]=$res->fields[type_id];
 			if (substr($clan[$student_sn],-2,2)!="族") {
@@ -41,7 +41,7 @@ if ($_POST[do_key]) {
 		
 		$res=$CONN->Execute($query) or die('缺少學生身份類別與屬性資料表stud_subkind');
 		while(!$res->EOF) {
-			$student_sn=$res->fields[student_sn];
+			$student_sn=$res->fields['student_sn'];
 			$foreign_area[$student_sn]=trim($res->fields[area]);
 			$foreign_id[$student_sn]=$foreign_arr[$res->fields[area]];
 			//假使有定義國別   卻未於指定代號表列  則賦以"其他"(14)
@@ -53,7 +53,7 @@ if ($_POST[do_key]) {
 		$query="select * from health_sight where year='$sel_year' and semester='$sel_seme'";
 		$res=$CONN->Execute($query) or die('缺少學生健康資訊模組資料表 health_sight');
 		while(!$res->EOF) {
-			$sight_v[$res->fields[student_sn]][$res->fields[side]]=$res->fields[sight_o];
+			$sight_v[$res->fields['student_sn']][$res->fields[side]]=$res->fields[sight_o];
 			$res->MoveNext();
 		}
 
@@ -66,11 +66,11 @@ if ($_POST[do_key]) {
 			$stud_id=$res->fields[stud_id];
 			//檢查出生年月日是否未填
 			if($student_birthday<>'0000-00-00') {
-				$student_sn=$res->fields[student_sn];
+				$student_sn=$res->fields['student_sn'];
 				$s=($res->fields[stud_sex]==2)?"F":"M";
 				$ss=$clan[$student_sn];
 				$fs=$foreign_id[$student_sn];
-				if ($type_id[$res->fields[student_sn]]==6)
+				if ($type_id[$res->fields['student_sn']]==6)
 					$st="30";
 				elseif ($ss=="")
 					$st="10";
@@ -78,8 +78,8 @@ if ($_POST[do_key]) {
 					$st=$sorts_arr[$ss];
 					if ($st=="") $st="20";
 				}
-				$r=number_format($sight_v[$res->fields[student_sn]][r],1);
-				$l=number_format($sight_v[$res->fields[student_sn]][l],1);
+				$r=number_format($sight_v[$res->fields['student_sn']][r],1);
+				$l=number_format($sight_v[$res->fields['student_sn']][l],1);
 				$bday=explode("-",$res->fields[stud_birthday]);
 				if($blank_name) $student_name=''; else $student_name=$res->fields[stud_name];
 				

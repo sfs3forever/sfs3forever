@@ -25,8 +25,8 @@ if ($_GET[act]=='csv' && $_GET[Year]!='' && $_GET[Sclass]!='' ){
 	$filename = $Year."_".$Sclass."_".date("Ymd").".csv";
 	$Str="代號,姓名,性別,班級,座號,生日,身分證字號, 戶籍電話,連絡電話,行動電話,戶籍地址,連絡地址\n";
 for ($i=0;$i<count($arr);$i++) {
-	$Str.=$arr[$i][stud_id].",".$arr[$i][stud_name].",".$Sex[$arr[$i][stud_sex]].",".$Sclass.",".
-	$arr[$i][seme_num].",".$arr[$i][bir].",".$arr[$i][stud_person_id].",".
+	$Str.=$arr[$i][stud_id].",".$arr[$i]['stud_name'].",".$Sex[$arr[$i][stud_sex]].",".$Sclass.",".
+	$arr[$i]['seme_num'].",".$arr[$i][bir].",".$arr[$i][stud_person_id].",".
 	$arr[$i][stud_tel_1].",".$arr[$i][stud_tel_2].",".$arr[$i][stud_tel_3].",".
 	$arr[$i][stud_addr_1].",".$arr[$i][stud_addr_2]."\n";
 }
@@ -53,9 +53,9 @@ if (($_GET[act]=='word'||$_GET[act]=='excel') && $_GET[Year]!='' && $_GET[Sclass
 	$Str="<TABLE border=1 cellspacing=0 cellpadding=0 width='100%' bgcolor=black style='width:100.0%;background:black;border-collapse:collapse;border:none; mso-border-alt:solid windowtext .5pt;mso-padding-alt:0cm 0cm 0cm 0cm'><TR bgcolor=white><TD>代號</TD><TD>姓名</TD><TD>性別</TD><TD>班級</TD><TD>座號</TD><TD>生日</TD><TD>身分證字號</TD><TD> 戶籍電話</TD><TD>連絡電話</TD><TD>行動電話</TD><TD>戶籍地址</TD><TD>連絡地址</TD></TR>";
 	
 for ($i=0;$i<count($arr);$i++) {
-	$Str.="<TR bgcolor=white><TD>".$arr[$i][stud_id]."</TD><TD>".$arr[$i][stud_name]."</TD><TD>".
+	$Str.="<TR bgcolor=white><TD>".$arr[$i][stud_id]."</TD><TD>".$arr[$i]['stud_name']."</TD><TD>".
 	$Sex[$arr[$i][stud_sex]]."</TD><TD>".$Sclass."</TD><TD>".
-	$arr[$i][seme_num]."</TD><TD>$dd".$arr[$i][bir]."</TD><TD>".$arr[$i][stud_person_id]."</TD><TD>".
+	$arr[$i]['seme_num']."</TD><TD>$dd".$arr[$i][bir]."</TD><TD>".$arr[$i][stud_person_id]."</TD><TD>".
 	$arr[$i][stud_tel_1]."</TD><TD>".$arr[$i][stud_tel_2]."</TD><TD>".$arr[$i][stud_tel_3]."</TD><TD>".
 	$arr[$i][stud_addr_1]."</TD><TD>".$arr[$i][stud_addr_2]."</TD></TR>";
 }
@@ -80,8 +80,8 @@ $Sclass=substr($Sclass,0,1);
 	$filename =$Year."_ALL_".$Sclass."_".date("Ymd").".csv";
 	$Str="代號,姓名,性別,班級,座號,生日,身分證字號,戶籍電話,連絡電話,行動電話,戶籍地址,連絡地址\n";
 for ($i=0;$i<count($arr);$i++) {
-	$Str.=$arr[$i][stud_id].",".$arr[$i][stud_name].",".$Sex[$arr[$i][stud_sex]].",".$arr[$i]['seme_class'].",".
-	$arr[$i][seme_num].",".$arr[$i][bir].",".$arr[$i][stud_person_id].",".
+	$Str.=$arr[$i][stud_id].",".$arr[$i]['stud_name'].",".$Sex[$arr[$i][stud_sex]].",".$arr[$i]['seme_class'].",".
+	$arr[$i]['seme_num'].",".$arr[$i][bir].",".$arr[$i][stud_person_id].",".
 	$arr[$i][stud_tel_1].",".$arr[$i][stud_tel_2].",".$arr[$i][stud_tel_3].",".
 	$arr[$i][stud_addr_1].",".$arr[$i][stud_addr_2]."\n";
 }
@@ -109,9 +109,9 @@ $Sclass=substr($Sclass,0,1);
 <body><TABLE border=1 cellspacing=0 cellpadding=0 width='100%' bgcolor=black style='width:100.0%;background:black;border-collapse:collapse;border:none; mso-border-alt:solid windowtext .5pt;mso-padding-alt:0cm 0cm 0cm 0cm'><TR bgcolor=white><TD>代號</TD><TD>姓名</TD><TD>性別</TD><TD>班級</TD><TD>座號</TD><TD>生日</TD><TD>身分證字號</TD><TD> 戶籍電話</TD><TD>連絡電話</TD><TD>行動電話</TD><TD>戶籍地址</TD><TD>連絡地址</TD></TR>";
 	
 for ($i=0;$i<count($arr);$i++) {
-	$Str.="<TR bgcolor=white><TD>".$arr[$i][stud_id]."</TD><TD>".$arr[$i][stud_name]."</TD><TD>".
+	$Str.="<TR bgcolor=white><TD>".$arr[$i][stud_id]."</TD><TD>".$arr[$i]['stud_name']."</TD><TD>".
 	$Sex[$arr[$i][stud_sex]]."</TD><TD>".$arr[$i]['seme_class']."</TD><TD>".
-	$arr[$i][seme_num]."</TD><TD>$dd".$arr[$i][bir]."</TD><TD>".$arr[$i][stud_person_id]."</TD><TD>$dd ".
+	$arr[$i]['seme_num']."</TD><TD>$dd".$arr[$i][bir]."</TD><TD>".$arr[$i][stud_person_id]."</TD><TD>$dd ".
 	$arr[$i][stud_tel_1]."</TD><TD>$dd ".$arr[$i][stud_tel_2]."</TD><TD>$dd ".$arr[$i][stud_tel_3]."</TD><TD>".
 	$arr[$i][stud_addr_1]."</TD><TD>".$arr[$i][stud_addr_2]."</TD></TR>";
 }

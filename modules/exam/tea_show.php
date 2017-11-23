@@ -8,9 +8,9 @@ $grade_img = array("face_1.gif","face_2.gif","face_3.gif","face_4.gif","face_5.g
 $exam_id = $_GET[exam_id];
 if ($exam_id=='')
 	$exam_id=intval($_POST[exam_id]);
-$stud_id = $_GET[stud_id];
+$stud_id = $_GET['stud_id'];
 if ($stud_id=='')
-	$stud_id = $_POST[stud_id];
+	$stud_id = $_POST['stud_id'];
 //評量處理
 include "header.php";
 //mysqli

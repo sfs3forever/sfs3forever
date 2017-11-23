@@ -10,7 +10,7 @@ require "module-upgrade.php";
 sfs_check();
 
 $m_arr = get_sfs_module_set("stud_class");
-extract($m_arr, EXTR_OVERWRITE);
+extract($m_arr, 'EXTR_OVERWRITE');
 
 //印出頁頭
 head();
@@ -24,9 +24,9 @@ $field_data = get_field_info("stud_seme_talk");
 $linkstr = "stud_id=$stud_id&c_curr_class=$c_curr_class&c_curr_seme=$c_curr_seme";
 
 if ($stud_id=='')
-$stud_id= $_GET[stud_id];
+$stud_id= $_GET['stud_id'];
 if ($stud_id=='')
-$stud_id= $_POST[stud_id];
+$stud_id= $_POST['stud_id'];
 
 
 
@@ -46,29 +46,29 @@ $this_year = sprintf("%03d",curr_year());
 //目前學年學期
 $this_seme_year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 
-$sel_seme_year_seme = $_POST[sel_seme_year_seme];
+$sel_seme_year_seme = $_POST['sel_seme_year_seme'];
 if ($sel_seme_year_seme=='')
 	$sel_seme_year_seme = $this_seme_year_seme;
 
-$stud_id = $_GET[stud_id];
+$stud_id = $_GET['stud_id'];
 if ($stud_id == '')
-	$stud_id = $_POST[stud_id];
+	$stud_id = $_POST['stud_id'];
 
 
 $do_key = $_GET[do_key];
 if ($do_key == '')
-	$do_key = $_POST[do_key];
+	$do_key = $_POST['do_key'];
 	
 	
-$interview=$_POST[interview]?$_POST[interview]:$_SESSION['session_tea_name'];	
+$interview=$_POST['interview']?$_POST['interview']:$_SESSION['session_tea_name'];	
 
 	
 //進行字元替換  避免特殊字元造成報表錯誤
 $char_replace=array("<"=>"＜",">"=>"＞","'"=>"’","\""=>"”");
 foreach($char_replace as $key=>$value){
-	$_POST[sst_name]=str_replace($key,$value,$_POST[sst_name]);
-	$_POST[sst_main]=str_replace($key,$value,$_POST[sst_main]);
-	$_POST[sst_memo]=str_replace($key,$value,$_POST[sst_memo]);
+	$_POST['sst_name']=str_replace($key,$value,$_POST['sst_name']);
+	$_POST['sst_main']=str_replace($key,$value,$_POST['sst_main']);
+	$_POST['sst_memo']=str_replace($key,$value,$_POST['sst_memo']);
 }
 
 
@@ -77,10 +77,10 @@ switch($do_key) {
 	//新增確定
 	case $newBtn:
 
-		$seme_year_seme = $_POST[sel_seme_year_seme];
+		$seme_year_seme = $_POST['sel_seme_year_seme'];
 		if ($seme_year_seme =='')
 			$seme_year_seme = $this_seme_year_seme;
-		$sql_insert = "insert into stud_seme_talk (seme_year_seme,stud_id,sst_date,sst_name,sst_main,sst_memo,teach_id,interview,interview_method) values ('$sel_seme_year_seme','$_POST[stud_id]','$_POST[sst_date]','$_POST[sst_name]','$_POST[sst_main]','$_POST[sst_memo]','{$_SESSION['session_tea_sn']}','$interview','$_POST[interview_method]')";
+		$sql_insert = "insert into stud_seme_talk (seme_year_seme,stud_id,sst_date,sst_name,sst_main,sst_memo,teach_id,interview,interview_method) values ('$sel_seme_year_seme',{$_POST['stud_id']},'$_POST[sst_date]',{$_POST['sst_name']},{$_POST['sst_main']},{$_POST['sst_memo']},'{$_SESSION['session_tea_sn']}','$interview','$_POST[interview_method]')";
 		$CONN->Execute($sql_insert) or die($sql_insert);
 		$sst_date ='';
 		$sst_name ='';
@@ -119,7 +119,7 @@ switch($do_key) {
 	
 	//確定修改
 	case $editBtn:
-		$sql_update = "update stud_seme_talk set sst_date='$_POST[sst_date]',interview='$interview',interview_method='$_POST[interview_method]',sst_name='$_POST[sst_name]',sst_main='$_POST[sst_main]',sst_memo='$_POST[sst_memo]',teach_id='{$_SESSION['session_tea_sn']}' where sst_id='$_POST[sst_id]'";
+		$sql_update = "update stud_seme_talk set sst_date='$_POST[sst_date]',interview='$interview',interview_method='$_POST[interview_method]',sst_name={$_POST['sst_name']},sst_main={$_POST['sst_main']},sst_memo={$_POST['sst_memo']},teach_id='{$_SESSION['session_tea_sn']}' where sst_id='$_POST[sst_id]'";
 		$CONN->Execute($sql_update) or die($sql_update);
 		break;
 	
@@ -142,7 +142,7 @@ switch($do_key) {
 			foreach ($student as $k=>$v) {
 			 $student[$k]=trim($v);  //去掉前後空白
 			}   	 
-						$sql_query="insert into stud_seme_talk (seme_year_seme,stud_id,sst_date,sst_name,sst_main,sst_memo,teach_id,interview,interview_method) values ('$sel_seme_year_seme','$_POST[stud_id]','".$student[0]."','".$student[2]."','".$student[3]."','".$student[4]."','{$_SESSION['session_tea_sn']}','".$student[1]."','".$student[5]."')";
+						$sql_query="insert into stud_seme_talk (seme_year_seme,stud_id,sst_date,sst_name,sst_main,sst_memo,teach_id,interview,interview_method) values ('$sel_seme_year_seme',{$_POST['stud_id']},'".$student[0]."','".$student[2]."','".$student[3]."','".$student[4]."','{$_SESSION['session_tea_sn']}','".$student[1]."','".$student[5]."')";
 						$CONN->Execute($sql_query) or die($sql_query);
 				  //echo $sql_query."<br>";
 		   }

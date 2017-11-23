@@ -212,9 +212,9 @@ if ($t_sn!='') { $add=" and a.guid_tea_sn='$t_sn' " ;}else { $add=" ";}
 	$obj=array();
 	$obj=$rs->GetArray();
 for($i=0;$i<$rs->RecordCount();$i++){
-	($IS_JHORES==6) ? $obj[$i][grade]=substr($obj[$i][curr_class_num],0,1)-6:$obj[$i][grade]=substr($obj[$i][curr_class_num],0,1);
-	$obj[$i][class1]=substr($obj[$i][curr_class_num],1,2)+0;
-	$obj[$i][seme_num]=substr($obj[$i][curr_class_num],3,2)+0;
+	($IS_JHORES==6) ? $obj[$i][grade]=substr($obj[$i]['curr_class_num'],0,1)-6:$obj[$i][grade]=substr($obj[$i]['curr_class_num'],0,1);
+	$obj[$i][class1]=substr($obj[$i]['curr_class_num'],1,2)+0;
+	$obj[$i]['seme_num']=substr($obj[$i]['curr_class_num'],3,2)+0;
 	$obj[$i][cgrade]=num_tw($obj[$i][grade])."年".num_tw($obj[$i][class1])."班";
 	$obj[$i][guid_all_kind]=explode(",",$obj[$i][guid_c_kind]);
 

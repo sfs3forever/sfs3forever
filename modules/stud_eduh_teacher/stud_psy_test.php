@@ -12,7 +12,7 @@ $this_year = sprintf("%03d",curr_year());
 //目前學年學期
 $this_seme_year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 
-$sel_seme_year_seme = $_POST[sel_seme_year_seme];
+$sel_seme_year_seme = $_POST['sel_seme_year_seme'];
 if ($sel_seme_year_seme=='')
 	$sel_seme_year_seme = $this_seme_year_seme;
 	
@@ -22,7 +22,7 @@ $semester=substr($sel_seme_year_seme,-1);
 
 $do_key = $_GET[do_key];
 if ($do_key == '')
-	$do_key = $_POST[do_key];
+	$do_key = $_POST['do_key'];
 
 	
 
@@ -60,7 +60,7 @@ foreach($char_replace as $key=>$value){
 }
 
 if ($do_key ==  $newBtn) {
-	$seme_year_seme = $_POST[sel_seme_year_seme];
+	$seme_year_seme = $_POST['sel_seme_year_seme'];
 	if ($seme_year_seme =='')
 		$seme_year_seme = $this_seme_year_seme;
 	if ($_POST['all_class']) { //複製到全班
@@ -73,7 +73,7 @@ if ($do_key ==  $newBtn) {
 		}
 	}
 	else {		
-		$sql_insert = "insert into stud_psy_test (year,semester,student_sn,item,score,model,standard,pr,explanation,test_date,teacher_sn,update_time) values ('$year','$semester','$_POST[student_sn]','$_POST[item]','$_POST[score]','$_POST[model]','$_POST[standard]','$_POST[pr]','$_POST[explanation]','$_POST[test_date]','$_SESSION[session_tea_sn]',now())";
+		$sql_insert = "insert into stud_psy_test (year,semester,student_sn,item,score,model,standard,pr,explanation,test_date,teacher_sn,update_time) values ('$year','$semester','$_POST['student_sn']','$_POST[item]','$_POST[score]','$_POST[model]','$_POST[standard]','$_POST[pr]','$_POST[explanation]','$_POST[test_date]','$_SESSION[session_tea_sn]',now())";
 		$CONN->Execute($sql_insert) or die($sql_insert);
 	}
 
@@ -111,7 +111,7 @@ elseif ($_POST['act']== "edit" ) {
 
 
 if ($student_sn=='')
-	$student_sn= $_REQUEST[student_sn];
+	$student_sn= $_REQUEST['student_sn'];
 
 // 印出頁頭
 head();

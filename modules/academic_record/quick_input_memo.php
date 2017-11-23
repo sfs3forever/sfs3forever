@@ -77,7 +77,7 @@ if($_POST[save_memo] =="y") {
 				$rs=$CONN->Execute($sql);
 				$all_stud_sn = array();
 				while (!$rs->EOF) {
-					$all_stud_sn[]=$rs->fields[student_sn];
+					$all_stud_sn[]=$rs->fields['student_sn'];
 					$rs->MoveNext();
 				}
 				$j =0;
@@ -242,7 +242,7 @@ $sql="select student_sn from stud_base where curr_class_num like '$class_id%'and
 $rs=$CONN->Execute($sql);
 $i=0;
 while (!$rs->EOF) {
-	$all_sn.=$rs->fields[student_sn].",";
+	$all_sn.=$rs->fields['student_sn'].",";
 	$i++;
 	$rs->MoveNext();
 }
@@ -259,7 +259,7 @@ if ($res->rs[0]<$stud_numbers) {
 		$sst = $res->rs[0];
 		$sql="select student_sn from stud_seme_score_nor where student_sn='$sst'  and seme_year_seme='$seme_year_seme'";
 		$rs=$CONN->Execute($sql);
-		if (empty($rs->fields[student_sn])) {
+		if (empty($rs->fields['student_sn'])) {
 			$query = "INSERT INTO stud_seme_score_nor(seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo)values('$seme_year_seme','$sst','0','','')";
 			$CONN->Execute($query);
 		}
@@ -277,7 +277,7 @@ $res= $CONN->Execute($query) or die($query);
 	$sn_id_hidden =""; 		
 	while (!$res->EOF){
 
-		$sn = $res->fields[student_sn];		
+		$sn = $res->fields['student_sn'];		
 		$sit_num = substr($res->fields[curr_class_num],-2);
 		$stud_name = $res->fields[stud_name];
 
@@ -495,7 +495,7 @@ function make_import_file(){
     	//exit;	
 	while(!$res->EOF){
 		$sit_num = substr($res->fields[curr_class_num],-2);
-		$str.= $res->fields[student_sn].",".$res->fields[stud_id].",".$sit_num.",".$res->fields[stud_name].",\n";
+		$str.= $res->fields['student_sn'].",".$res->fields[stud_id].",".$sit_num.",".$res->fields[stud_name].",\n";
 		$res->MoveNext();
 	}
 	echo $str;

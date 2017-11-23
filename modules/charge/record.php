@@ -32,7 +32,7 @@ if($_POST['act']=='重新開列'){
 		$batch_value="";
 		while(!$recordSet->EOF)
 		{
-			$sn=$recordSet->fields[student_sn];
+			$sn=$recordSet->fields['student_sn'];
 			$record_id=$work_year_seme.$recordSet->fields[curr_class_num];
 
 			$batch_value.="('$record_id',$sn,$item_id),";
@@ -120,7 +120,7 @@ if($item_id)
 			<td align='center'><input type='submit' value='清空未繳紀錄' name='act' onclick='return confirm(\"確定要\"+this.value+\"?\\n\\n按[確定]代表無需管理本班此一繳款項目未繳款的學生\")'></td>
 			</tr>";
 		while(!$recordSet->EOF) {
-			$my_decrease=$decrease_dollars[$recordSet->fields[student_sn]][total];
+			$my_decrease=$decrease_dollars[$recordSet->fields['student_sn']][total];
 			$my_should_paid=$item_total-$my_decrease;
 			$left=$my_should_paid-($recordSet->fields[dollars]);
 			if($my_should_paid-$recordSet->fields[dollars]>0) $my_bgcolor="#FFCCCC"; else $my_bgcolor="#FFFFDD";
@@ -140,7 +140,7 @@ if($item_id)
 				$showdata.="<td align='center'><input type='submit' value='修改' name='act' onclick='return confirm(\"確定要更改[".$recordSet->fields[stud_name]."]?\")'>　<input type='submit' value='刪除' name='act' onclick='return confirm(\"真的要刪除[".$recordSet->fields[stud_name]."]?\")'></td></tr>";
 			} else {
 				//列表
-				$my_decrease=$decrease_dollars[$recordSet->fields[student_sn]][total];
+				$my_decrease=$decrease_dollars[$recordSet->fields['student_sn']][total];
 				
 				$showdata.="<tr bgcolor=$my_bgcolor><td align='center'>".($recordSet->CurrentRow()+1)."</td>";
 				$showdata.="<td align='center'>".$recordSet->fields[record_id]."</td>";

@@ -31,7 +31,7 @@ function get_stsn($class_id){
 	$rs = $CONN->Execute($SQL);
 	$the_sn=$rs->GetArray();
 	for ($i=0;$i<$rs->RecordCount();$i++){
-		array_push($st_sn,$the_sn[$i][student_sn]);
+		array_push($st_sn,$the_sn[$i]['student_sn']);
 		}
 	}
 return $st_sn;
@@ -55,12 +55,12 @@ if (($_POST[act]=='OK' && $_POST[list_stud_id]) || $_GET[list_stud_id]){
 		$SQL="select stud_id,student_sn from stud_base where stud_id between '".$aa[0]."' and '".$aa[1]."' order by stud_id ";
 		$rs=$CONN->Execute($SQL) or die("無法查詢，語法:".$SQL);
 		$All_ss=$rs->GetArray();
-		foreach($All_ss as $ss){$sn_ary[]=$ss[student_sn];	}
+		foreach($All_ss as $ss){$sn_ary[]=$ss['student_sn'];	}
 	}else{
 		$SQL="select stud_id,student_sn from stud_base where stud_id ='$list_stud_id' order by stud_id ";
 		$rs=$CONN->Execute($SQL) or die("無法查詢，語法:".$SQL);
 		$All_ss=$rs->GetArray();
-		foreach($All_ss as $ss){$sn_ary[]=$ss[student_sn];	}
+		foreach($All_ss as $ss){$sn_ary[]=$ss['student_sn'];	}
 		}
 		//echo "<pre>";
 		//print_r($sn_ary);die();

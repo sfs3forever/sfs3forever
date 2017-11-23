@@ -134,7 +134,7 @@ function get_stud_data($class_id=""){
 		$dy=$d[0]-1911;
 		$birthday="中華民國".$dy."年".$d[1]."月".$d[2]."日";
 			
-		$stud[$stud_id][stud_name]=$stud_name;
+		$stud[$stud_id]['stud_name']=$stud_name;
 		$stud[$stud_id][stud_sex]=($stud_sex=='1')?"男":"女";
 		$stud[$stud_id][stud_birthday]=$birthday;
 		$stud[$stud_id][guardian_name]=$guardian_name;

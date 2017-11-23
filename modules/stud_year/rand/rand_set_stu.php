@@ -45,10 +45,10 @@ class rand_set_stu{
 			$tmp=$this->gStu($class_id);
 			foreach ($tmp as $sn=>$ary){
 				$stu[$class_id][$sn][class_name]=$class_name;
-				$stu[$class_id][$sn][sn]=$ary[student_sn];
+				$stu[$class_id][$sn][sn]=$ary['student_sn'];
 				$stu[$class_id][$sn][stud_id]=$ary[stud_id];
-				$stu[$class_id][$sn][seme_num]=$ary[seme_num];
-				$stu[$class_id][$sn][stud_name]=$ary[stud_name];
+				$stu[$class_id][$sn]['seme_num']=$ary[seme_num];
+				$stu[$class_id][$sn]['stud_name']=$ary[stud_name];
 				$stu[$class_id][$sn][stud_sex]=$ary[stud_sex];
 				$stu[$class_id][$sn][type]='1';
 				$stu[$class_id][$sn][ncla]='';

@@ -12,7 +12,7 @@ $query = "select b.student_sn,a.stud_study_cond from stud_base a,stud_move b  wh
 
 $res = $CONN->Execute($query);
 while(!$res->EOF){
-	$student_sn = $res->fields[student_sn];
+	$student_sn = $res->fields['student_sn'];
 	$move_kind= $res->fields[stud_study_cond];
 	$query = "update stud_move set move_kind='$move_kind' where student_sn='$student_sn'";
 	$CONN->Execute($query);

@@ -29,7 +29,7 @@ if ($cid[4]=="g") {
 $res=$CONN->Execute($query);
 $all_sn="";
 while(!$res->EOF){
-	$all_sn.="'".$res->fields[student_sn]."',";
+	$all_sn.="'".$res->fields['student_sn']."',";
 	$res->MoveNext();
 }
 if ($all_sn) $all_sn=substr($all_sn,0,-1);

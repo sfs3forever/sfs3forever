@@ -76,7 +76,7 @@ if($item_id)
 	$error_sn="";
 	$counter=0;
 	while(!$recordSet->EOF) {
-		$student_sn=$recordSet->fields[student_sn];
+		$student_sn=$recordSet->fields['student_sn'];
 		$paid_date=$recordSet->fields[paid_date];
 		$grade=substr($recordSet->fields[record_id],4,1);
 		$class_id=substr($recordSet->fields[record_id],4,3);

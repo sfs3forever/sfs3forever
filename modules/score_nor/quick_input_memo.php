@@ -71,7 +71,7 @@ if($_POST[save_memo] =="y") {
 				$all_stud_sn = array();
 				
 				while (!$rs->EOF) {
-					$all_stud_sn[]=$rs->fields[student_sn];
+					$all_stud_sn[]=$rs->fields['student_sn'];
 					$rs->MoveNext();
 				}
 				
@@ -255,7 +255,7 @@ if ($res->rs[0]<$stud_numbers) {
 		
 		$sql="select student_sn from stud_seme_score_nor where student_sn='$sst'  and seme_year_seme='$seme_year_seme'";
 		$rs=$CONN->Execute($sql);
-		if (empty($rs->fields[student_sn])) {
+		if (empty($rs->fields['student_sn'])) {
 			$query = "INSERT INTO stud_seme_score_nor(seme_year_seme,student_sn,ss_id,ss_score_memo)values('$seme_year_seme','$sst','0','')";
 			$CONN->Execute($query);
 		}
@@ -476,7 +476,7 @@ function make_import_file(){
     	$str = "學生流水號,學生學號,座號,姓名,評語或評語代碼\n";
 	while(!$res->EOF){
 		
-		$str.= $res->fields[student_sn].",".$res->fields[stud_id].",".$res->fields[seme_num].",".$res->fields[stud_name].",\n";
+		$str.= $res->fields['student_sn'].",".$res->fields[stud_id].",".$res->fields[seme_num].",".$res->fields[stud_name].",\n";
 		$res->MoveNext();
 	}
 	echo $str;

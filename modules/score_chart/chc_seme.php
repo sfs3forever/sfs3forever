@@ -165,7 +165,7 @@ function get_subj($type='') {
 		$All_sco=&$rs->GetArray();
 //		print_r($All_sco);
 		foreach ($All_sco as $sco){
-			$sn=$sco[student_sn];
+			$sn=$sco['student_sn'];
 			$ss_id=$sco[ss_id];
 			$test_sort=$sco[test_sort];
 			if ($sco[test_kind]=='定期評量') $kind='mon';
@@ -177,7 +177,7 @@ function get_subj($type='') {
 		$rs=&$this->CONN->Execute($SQL) or die("無法查詢，語法:".$SQL."可能是課程或無學生資料");//echo $SQL;
 		$All_Nor=&$rs->GetArray();
 		foreach ($All_Nor as $sco){
-			$sn=$sco[student_sn];
+			$sn=$sco['student_sn'];
 			$Vsco[$sn][nor]=$sco[ss_score];
 			}
 		return $Vsco;

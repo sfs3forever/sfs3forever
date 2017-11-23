@@ -11,7 +11,7 @@ if($item_sn_array AND $_POST['act']=='統計列印') {
 	$sql_sn="select student_sn,seme_class from stud_seme WHERE seme_year_seme='$curr_year_seme' order by seme_class";
 	$res_sn=$CONN->Execute($sql_sn) or user_error("讀取失敗！<br>$sql_sn",256);
 	while(! $res_sn->EOF) {
-		$student_sn=$res_sn->fields[student_sn];
+		$student_sn=$res_sn->fields['student_sn'];
 		$seme_class=$res_sn->fields['seme_class'];
 		
 		$student_sn_array[$seme_class][student_sn_list].=$student_sn.',';

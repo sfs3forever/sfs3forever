@@ -36,7 +36,7 @@ if ($_GET[do_key] == "delete"){
 	while(!$res->EOF){
 		$min_v = $res->fields[min_v];
 		$seme_year_seme = $res->fields[seme_year_seme];
-		$student_sn = $res->fields[student_sn];
+		$student_sn = $res->fields['student_sn'];
 		$ss_id= $res->fields[ss_id];
 		$query = "delete from stud_seme_score where sss_id<>$min_v and seme_year_seme='$seme_year_seme' and student_sn='$student_sn' and ss_id='$ss_id'  ";
 //		echo $query;exit;
@@ -56,7 +56,7 @@ else if ($_GET[do_key]=='query'){
 	}
 	$query = "select * from stud_seme_score where seme_year_seme='$temp_arr[0]' and ss_id=$temp_arr[1] and student_sn=$temp_arr[2] ";
 	$res2 = $CONN->Execute($query) or die($query);
-	$student_sn = $res2->fields[student_sn];
+	$student_sn = $res2->fields['student_sn'];
 	$ss_id = $res2->fields[ss_id];
 	$seme_year_seme = $res2->fields[seme_year_seme];
 	if ($student_sn)
@@ -100,7 +100,7 @@ if ($res2->RecordCount()>0){
 
 if($_GET[do_print]==1){
 	while(!$res2->EOF){
-		$student_sn = $res2->fields[student_sn];
+		$student_sn = $res2->fields['student_sn'];
 		$ss_id = $res2->fields[ss_id];
 		$seme_year_seme= $res2->fields[seme_year_seme];
 		if ($student_sn)

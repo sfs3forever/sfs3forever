@@ -63,7 +63,7 @@ function &grant_mainForm($sn="",$mode){
 
         <tr bgcolor='#FFFFFF'>
         <td>學籍流水號</td>
-        <td><input type='text' name='data[student_sn]' value='$DBV[student_sn]' size='10' maxlength='10'></td>
+        <td><input type='text' name='data['student_sn']' value='$DBV['student_sn']' size='10' maxlength='10'></td>
         </tr>
 
         <tr bgcolor='#FFFFFF'>
@@ -93,7 +93,7 @@ function &grant_mainForm($sn="",$mode){
 function grant_update($data,$sn){
         global $CONN;
 
-        $sql_update = "update grant_aid set year_seme='$data[year_seme]',student_sn='$data[student_sn]',dollar='$data[dollar]' where sn='$sn'";
+        $sql_update = "update grant_aid set year_seme='$data[year_seme]',student_sn='$data['student_sn']',dollar='$data[dollar]' where sn='$sn'";
         $CONN->Execute($sql_update) or user_error("更新失敗！<br>$sql_update",256);
         return $sn;
 }

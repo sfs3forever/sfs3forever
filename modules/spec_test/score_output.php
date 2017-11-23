@@ -85,7 +85,7 @@ if ($class_id) {
 	$all_sn="";
 	while (!$res->EOF) {
 		$site_num=$res->fields[seme_num];
-		$sn=$res->fields[student_sn];
+		$sn=$res->fields['student_sn'];
 		$row_arr[$site_num][sn]=$sn;
 		$row_arr[$site_num][name]=addslashes($res->fields[stud_name]);
 		$all_sn.="'".$sn."',";
@@ -96,7 +96,7 @@ if ($class_id) {
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
 		$score_str=$res->fields[score_str];
-		$sn=$res->fields[student_sn];
+		$sn=$res->fields['student_sn'];
 		$score=explode("@@",$score_str);
 		while(list($k,$v)=each($score)) {
 			$score_arr[$sn][$k][0]["特定測驗"]=$v;

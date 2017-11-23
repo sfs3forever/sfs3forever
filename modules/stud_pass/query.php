@@ -11,7 +11,7 @@ head("學生密碼管理");
 
 //主要內容
 print_menu($school_menu_p);
-$stud_id=$_POST[stud_id];
+$stud_id=$_POST['stud_id'];
 $mode=$_POST[mode];
 $passwd=$_POST[email_pass];
 $stud_study_cond=study_cond();
@@ -49,7 +49,7 @@ if ($stud_id) {
 	$data_str="";
 	while(!$res->EOF) {
 		$email_pass=$res->fields[email_pass];
-		$student_sn=$res->fields[student_sn];
+		$student_sn=$res->fields['student_sn'];
 		$pass=($mode)?"<input type=text name='email_pass[$student_sn]' value='$email_pass' size='10' maxlength='10'>":$email_pass; 
 		$data_str.="<tr bgcolor=#FFFFFF><td align='center'>".$res->fields[stud_id]."</td><td align='center'>".$res->fields[stud_name]."</td><td align='center'>".$pass."</td><td align='center'><font color=#000088>".$stud_study_cond[$res->fields[stud_study_cond]]."</font></td></tr>\n";
 		$res->MoveNext();

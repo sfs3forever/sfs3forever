@@ -23,7 +23,7 @@ if ($_POST[me]) {
 	$query="select a.*,b.stud_name from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme='$seme_year_seme' and a.seme_class='$seme_class' and b.stud_study_cond in ('0','15') order by a.seme_num";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$sn[$res->fields[seme_num]]=$res->fields[student_sn];
+		$sn[$res->fields[seme_num]]=$res->fields['student_sn'];
 		$stud_name[$res->fields[seme_num]]=$res->fields[stud_name];
 		$stud_id[$res->fields[seme_num]]=$res->fields[stud_id];
 		$res->MoveNext();

@@ -52,7 +52,7 @@ class My_TB{
 	}
 	//擷取資料
 	function all(){
-		if ($_POST[stud_id]=='') return ;
+		if ($_POST['stud_id']=='') return ;
 		$stud_id=(int)$_POST['stud_id'];
 		if ($stud_id==0 || $stud_id=='') return ;
 		$SQL="select * from stud_base where stud_id='$stud_id' ";

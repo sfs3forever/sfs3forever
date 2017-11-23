@@ -52,7 +52,7 @@ if ($year_name && $class_name && $class_num) {
 if ($One) {
         $sql="select student_sn from stud_base where stud_id='$One' and ($sel_year - stud_study_year between 0 and 9)";
         $rs=$CONN->Execute($sql);
-        $student_sn=$rs->fields[student_sn];
+        $student_sn=$rs->fields['student_sn'];
         if (!$student_sn) $One="";
 }
 
@@ -71,7 +71,7 @@ if($act=="儲存登記"){
                 header("location: $_SERVER['SCRIPT_NAME']?this_date=$_POST[date]&class_id=$_POST[class_id]");
         }
 }elseif($act=="clear"){
-        clear_data($sel_year,$sel_seme,$_GET[this_date],$_GET[stud_id]);
+        clear_data($sel_year,$sel_seme,$_GET[this_date],$_GET['stud_id']);
         if ($One)
                 header("location: $_SERVER['SCRIPT_NAME']?this_date=$_GET[this_date]&class_id=$_GET[class_id]&One=$One");
         else

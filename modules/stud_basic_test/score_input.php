@@ -61,7 +61,7 @@ if ($_POST['year_name']) {
 		while(!$res->EOF) {
 			$sn_arr[]=$res->fields['student_sn'];
 			$rowdata[$res->fields['student_sn']]['seme_class']=$res->fields['seme_class'];
-			$rowdata[$res->fields['student_sn']][seme_num]=$res->fields['seme_num'];
+			$rowdata[$res->fields['student_sn']]['seme_num']=$res->fields['seme_num'];
 			$res->MoveNext();
 		}
 		if (count($sn_arr)>0) {
@@ -72,7 +72,7 @@ if ($_POST['year_name']) {
 			while(!$res->EOF) {
 				if ($res->fields['student_sn']) {
 					$sn_arr[]=$res->fields['student_sn'];
-					$rowdata[$res->fields['student_sn']][stud_name]=$res->fields['stud_name'];
+					$rowdata[$res->fields['student_sn']]['stud_name']=$res->fields['stud_name'];
 					$rowdata[$res->fields['student_sn']][stud_sex]=$res->fields['stud_sex'];
 				}
 				$res->MoveNext();

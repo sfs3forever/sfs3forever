@@ -294,9 +294,9 @@ switch ($_POST['sub_menu_id']) {
 					while(list($seme_num,$vv)=each($v)) {
 						$year_name=substr($seme_class,0,strlen($seme_class)-2);
 						$class_name=substr($seme_class,-2,2);
-						$sex=$health_data->stud_base[$vv[student_sn]][stud_sex];
-						$r_sight_o=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']][r][sight_o];
-						$l_sight_o=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']][l][sight_o];
+						$sex=$health_data->stud_base[$vv['student_sn']][stud_sex];
+						$r_sight_o=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']][r][sight_o];
+						$l_sight_o=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']][l][sight_o];
 						if ($r_sight_o<>"" && $l_sight_o<>"") {
 							$ytemp[$class_name][$year_name][0][$sex]++;
 						}
@@ -334,10 +334,10 @@ switch ($_POST['sub_menu_id']) {
 								while(list($seme_num,$vv)=each($v)) {
 									$year_name=substr($seme_class,0,strlen($seme_class)-2);
 									$class_name=substr($seme_class,-2,2);
-									$sn=$vv[student_sn];
+									$sn=$vv['student_sn'];
 									$r_sight_o=$health_data->health_data[$sn][$_POST['year_seme']][r][sight_o];
 									$l_sight_o=$health_data->health_data[$sn][$_POST['year_seme']][l][sight_o];
-									if ($r_sight_o>=0.9 && $l_sight_o>=0.9) $rowdata[]=array($year_name,$class_name,$seme_num,$sn,$health_data->stud_base[$sn][stud_name],$health_data->stud_base[$sn][stud_sex],$r_sight_o,$l_sight_o,$health_data->health_data[$vv[student_sn]][$_POST['year_seme']][r][sight_r],$health_data->health_data[$vv[student_sn]][$_POST['year_seme']][l][sight_r]);
+									if ($r_sight_o>=0.9 && $l_sight_o>=0.9) $rowdata[]=array($year_name,$class_name,$seme_num,$sn,$health_data->stud_base[$sn]['stud_name'],$health_data->stud_base[$sn][stud_sex],$r_sight_o,$l_sight_o,$health_data->health_data[$vv['student_sn']][$_POST['year_seme']][r][sight_r],$health_data->health_data[$vv['student_sn']][$_POST['year_seme']][l][sight_r]);
 								}
 							}
 							break;

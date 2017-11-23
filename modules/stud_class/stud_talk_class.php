@@ -40,7 +40,7 @@ thetable.bgColor=TheColor
 <body>
 <?php
 	$class_base = class_base();
-	$query = "select stud_name,curr_class_num from stud_base where stud_id='$_GET[stud_id]'";
+	$query = "select stud_name,curr_class_num from stud_base where stud_id={$_GET['stud_id']}";
 	$res = $CONN->Execute($query);
 	$stud_name = $res->fields[stud_name];
 	$curr_class_num = $class_base[substr($res->fields[curr_class_num],0,-2)];

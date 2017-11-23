@@ -31,7 +31,7 @@ $sel_dep=$_REQUEST[sel_dep];
 //取得處理模式
 $act=$_REQUEST[act];
 
-$One=($_POST[One])?$_POST[One]:$_POST[stud_id];
+$One=($_POST[One])?$_POST[One]:$_POST['stud_id'];
 $year_name=$_POST[year_name];
 $class_name=$_POST[class_name];
 $class_num=$_POST[class_num];
@@ -266,7 +266,7 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 	$query="select * from stud_seme where seme_year_seme='$seme_year_seme' order by seme_class,seme_num";
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
-		$student_sn=$res->fields[student_sn];
+		$student_sn=$res->fields['student_sn'];
 		$stud_id=$res->fields[stud_id];
 		$seme_class[$stud_id]=$res->fields['seme_class'];
 		$seme_num[$stud_id]=$res->fields[seme_num];
@@ -361,7 +361,7 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 					$table_num=$table_num % 3 + 1;
 					$stud_id=$res_more->fields[stud_id];
 					$reward_id=$res_more->fields[reward_id];
-					$student_sn=$res_more->fields[student_sn];
+					$student_sn=$res_more->fields['student_sn'];
 					$seme_class=$res_more->fields['seme_class'];
 					$seme_num=$res_more->fields[seme_num];
 					$query_stud="select stud_name from stud_base where student_sn='$student_sn'";

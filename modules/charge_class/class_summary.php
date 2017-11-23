@@ -48,7 +48,7 @@ if($item_id>0)
 		$grade=substr($recordSet->fields[record_id],4,1);
 		$res_class_id=substr($recordSet->fields[record_id],4,3);
 		$item_total=array_sum($grade_dollars[$grade]); //年級學生項目金額
-		$my_decrease=$decrease_dollars[$recordSet->fields[student_sn]][total];
+		$my_decrease=$decrease_dollars[$recordSet->fields['student_sn']][total];
 		$my_should_paid=$item_total-$my_decrease;
 		$left=$my_should_paid-($recordSet->fields[dollars]);
 		

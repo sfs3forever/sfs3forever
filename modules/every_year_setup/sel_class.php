@@ -4,7 +4,7 @@
 include "../../include/config.php";
 sfs_check();
 
-if ($_POST[do_key] == "確定選擇"){
+if ($_POST['do_key'] == "確定選擇"){
 
 setcookie("cookie_sel_teacher",$_POST[sel_teacher]);
 

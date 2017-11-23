@@ -22,7 +22,7 @@ $stud_query="select * from stud_base where stud_study_cond in (0,15) and substri
 $stud_res=$CONN->Execute($stud_query) or die($stud_query);
 $stud_arr=array();
 while ($stud_res->FetchRow()) {
- array_push($stud_arr,$stud_res->fields[student_sn]);
+ array_push($stud_arr,$stud_res->fields['student_sn']);
 }
 
 //如果確定輸出XML檔案

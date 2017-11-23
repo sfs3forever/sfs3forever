@@ -181,18 +181,18 @@ class basic_chc{
 		$data = "班級,座號,學號,姓名,語文,數學,自然,社會,健體,藝文,綜合\r\n";
 		foreach($stu as $a=>$b){   
 		      $class_id =sprintf("%03d","101")."_"."1"."_".sprintf("%02d",substr($b['seme_class'],0,1))."_".substr($b['seme_class'],1,2);
-		      $stud_score[$b[student_sn]][0]=class_id_to_full_class_name($class_id);
-		      $stud_score[$b[student_sn]][1]=$b[seme_num];
-		      $stud_score[$b[student_sn]][2]=$b[stud_id];
-		      $stud_score[$b[student_sn]][3]=$b[stud_name];
+		      $stud_score[$b['student_sn']][0]=class_id_to_full_class_name($class_id);
+		      $stud_score[$b['student_sn']][1]=$b[seme_num];
+		      $stud_score[$b['student_sn']][2]=$b[stud_id];
+		      $stud_score[$b['student_sn']][3]=$b[stud_name];
 		      for($i=4;$i<=10;$i++){
 		      	if($b[scope] ==$i-3){
-//			       $stud_score[$b[student_sn]][$i]="補考";//$b[score_src];
-			       if (ceil($b[score_src])<60) {$stud_score[$b[student_sn]][$i]="補考";}		 
-			    }else if($stud_score[$b[student_sn]][$i]!=""){
-			       $stud_score[$b[student_sn]][$i]=$stud_score[$b[student_sn]][$i];
+//			       $stud_score[$b['student_sn']][$i]="補考";//$b[score_src];
+			       if (ceil($b[score_src])<60) {$stud_score[$b['student_sn']][$i]="補考";}		 
+			    }else if($stud_score[$b['student_sn']][$i]!=""){
+			       $stud_score[$b['student_sn']][$i]=$stud_score[$b['student_sn']][$i];
 			    }else{
-			       $stud_score[$b[student_sn]][$i]=""; 
+			       $stud_score[$b['student_sn']][$i]=""; 
 			    }
 	          }
 		}

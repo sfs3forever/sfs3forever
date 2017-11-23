@@ -147,7 +147,7 @@ if($class_id<>'') {
 		echo "<table border=1>";
 		$ii=0;
 		while (!$result->EOF) {
-			$student_sn= $result->fields[student_sn];
+			$student_sn= $result->fields['student_sn'];
 			$stud_id = $result->fields[stud_id];
 			$stud_name = $result->fields[stud_name];
 			$curr_class_num = $result->fields[seme_num];

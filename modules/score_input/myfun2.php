@@ -159,7 +159,7 @@ function seme_score_input($sel_year,$sel_seme) {
 			$test_ratio_2  = $test_ratio[1]/100;
 			
 			while(!$res->EOF){
-				$student_sn = $res->fields[student_sn];
+				$student_sn = $res->fields['student_sn'];
 				$test_kind = $res->fields[test_kind];
 				$score = $res->fields[cc];
 				if ($score=='') $score=0;
@@ -184,7 +184,7 @@ function seme_score_input($sel_year,$sel_seme) {
 			$temp_score= array();
 			while(!$res->EOF){
 				$test_sort = $res->fields[test_sort];
-				$student_sn = $res->fields[student_sn];
+				$student_sn = $res->fields['student_sn'];
 				$test_kind = $res->fields[test_kind];
 				$score = $res->fields[score];
 				if ($score=="-100") $score=0;
@@ -277,7 +277,7 @@ function download_score($sel_year,$sel_seme) {
 	$query = "select student_sn,score from $score_semester where class_id='$class_id' and test_sort='$test_sort' and test_kind='$test_kind' and ss_id='$ss_id' ";
 	$res = $CONN->Execute($query) or trigger_error("SQL 錯誤 $query",E_USER_ERROR);
 	while(!$res->EOF){
-		$stud_temp_arr[$res->fields[student_sn]] = $res->fields[score];
+		$stud_temp_arr[$res->fields['student_sn']] = $res->fields[score];
 		$res->MoveNext();
 	}
 
@@ -287,7 +287,7 @@ function download_score($sel_year,$sel_seme) {
 	$res = $CONN->Execute($query)or trigger_error($query);
 	while(!$res->EOF){
 		$sit_num = intval(substr($res->fields[curr_class_num],-2));
-		echo $res->fields[student_sn].",".$sit_num.",\"".$res->fields[stud_name]."\",".$stud_temp_arr[$res->fields[student_sn]]."\n";
+		echo $res->fields['student_sn'].",".$sit_num.",\"".$res->fields[stud_name]."\",".$stud_temp_arr[$res->fields['student_sn']]."\n";
 		$res->MoveNext();
 	}
 

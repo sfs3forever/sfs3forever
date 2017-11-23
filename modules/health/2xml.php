@@ -9,7 +9,7 @@ while(list($seme_class,$d)=each($health_data->stud_data)) {
 	$gid=substr($seme_class,0,1);
 	$yid=substr($seme_class,-2,2);
 	while(list($seme_num,$dd)=each($d)) {
-		$sn=$dd[student_sn];
+		$sn=$dd['student_sn'];
 $xml.='	<摮貊?鞈?>
 		<?箸鞈?>
 			<摮貊?憪?></摮貊?憪?>

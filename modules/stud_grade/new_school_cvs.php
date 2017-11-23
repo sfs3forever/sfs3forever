@@ -15,7 +15,7 @@ $move_in=$_POST["move_in"]?"checked":"";
 
 $postBtn = "新生入學資料轉出csv檔";
 $class_name = class_base();
-if ($_POST[do_key]==$postBtn){
+if ($_POST['do_key']==$postBtn){
 	$curr_year =curr_year()+1;
 	$new_school_str=($_POST[curr_grade_school])?"and g.new_school= '$_POST[curr_grade_school]'":"";
 	//$str ="入學年,舊校名,身分證字號,姓名".($english_name)?",英文姓名":"".",性別(男生:1，女生:2),電話,生日（西元）,家長姓名,住址,原班級".($move_in)?",戶籍遷入日期":""."\n";

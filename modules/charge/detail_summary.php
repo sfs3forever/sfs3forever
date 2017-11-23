@@ -74,8 +74,8 @@ if($item_id>0)
 	$stud_select="select student_sn,MID(record_id,5,1) as grade from charge_record where item_id=$item_id";
 	$recordSet=$CONN->Execute($stud_select) or user_error("讀取失敗！<br>$stud_select",256);
 	while(!$recordSet->EOF) {
-		if (array_key_exists($recordSet->fields[student_sn],$decrease_dollars)) {
-			foreach($decrease_dollars[$recordSet->fields[student_sn]] as $key=>$value){
+		if (array_key_exists($recordSet->fields['student_sn'],$decrease_dollars)) {
+			foreach($decrease_dollars[$recordSet->fields['student_sn']] as $key=>$value){
 				if($key<>"total") {
 					$data_arr[$recordSet->fields[grade]][$key][decrease_count]+=1;
 					$data_arr[$recordSet->fields[grade]][$key][decrease_dollars]+=$value[dollars];

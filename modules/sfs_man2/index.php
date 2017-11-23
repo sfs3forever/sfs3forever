@@ -8,7 +8,7 @@ require "config.php";
 sfs_check();
 
 //執行動作判斷
-if ($_POST[do_key]=="取回預設值") {
+if ($_POST['do_key']=="取回預設值") {
 	get_sfs_module_set($_POST[pm_name],1);
 	header("location: $_SERVER[PHP_SELF]?msn=$_POST[msn]&set_msn=$_POST[set_msn]&mode=$_POST[mode]");
 }

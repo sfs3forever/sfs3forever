@@ -66,7 +66,7 @@ if ($year_name && $class_name && $class_num) {
 if ($stud_id) {
 	$sql="select student_sn from stud_base where stud_id='$stud_id'";
 	$rs=$CONN->Execute($sql);
-	$student_sn=$rs->fields[student_sn];
+	$student_sn=$rs->fields['student_sn'];
 	if (!$student_sn) $stud_id="";
 }
 //執行動作判斷
@@ -74,10 +74,10 @@ if(count($_POST[chg_date])>0) {
 	if($_POST[kind]) {
 		reset($_POST[chg_date]);
 		while(list($k,$v)=each($_POST[chg_date])) {
-			$query="update stud_absent set absent_kind='$_POST[kind]' where date='$k' and stud_id='$_POST[stud_id]'";
+			$query="update stud_absent set absent_kind='$_POST[kind]' where date='$k' and stud_id={$_POST['stud_id']}";
 			$CONN->Execute($query) or die($query);
 		}
-		sum_abs($sel_year,$sel_seme,$_POST[stud_id]);
+		sum_abs($sel_year,$sel_seme,$_POST['stud_id']);
 	}
 }
 if($act=="儲存登記"){

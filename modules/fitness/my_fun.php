@@ -61,7 +61,7 @@ function read_fitness($seme_year_seme,$stud_str) {
 		if ($g==4) $d[reward]="金";
 		elseif ($s==4) $d[reward]="銀";
 		elseif ($c==4) $d[reward]="銅";
-		$temp[$d[student_sn]]=$d;
+		$temp[$d['student_sn']]=$d;
 	}
 	return $temp;
 }

@@ -376,11 +376,11 @@ switch ($_POST[sub_menu_id]) {
 			while(list($seme_class,$v)=each($health_data->stud_data)) {
 				while(list($seme_num,$vv)=each($v)) {
 					$year_name=substr($seme_class,0,-2);
-					$sex=$health_data->stud_base[$vv[student_sn]][stud_sex];
-					$ro=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['r'][sight_o];
-					$rr=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['r'][sight_r];
-					$lo=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['l'][sight_o];
-					$lr=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['l'][sight_r];
+					$sex=$health_data->stud_base[$vv['student_sn']][stud_sex];
+					$ro=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['r'][sight_o];
+					$rr=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['r'][sight_r];
+					$lo=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['l'][sight_o];
+					$lr=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['l'][sight_r];
 					if ($ro>=0.9 && $lo>=0.9) {
 						//裸視兩眼均>=0.9
 						$data_arr[$year_name][0][$sex][0]++;
@@ -473,9 +473,9 @@ switch ($_POST[sub_menu_id]) {
 			while(list($seme_class,$v)=each($health_data->stud_data)) {
 				while(list($seme_num,$vv)=each($v)) {
 					$year_name=substr($seme_class,0,-2);
-					$sex=$health_data->stud_base[$vv[student_sn]][stud_sex];
-					$r=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['r'];
-					$l=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['l'];
+					$sex=$health_data->stud_base[$vv['student_sn']][stud_sex];
+					$r=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['r'];
+					$l=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['l'];
 					//有任何視力記錄的視為有參與檢查
 					if ($r[sight_o] || $l[sight_o] || $r[sight_r] || $l[sight_r]) {
 						$data_arr[$year_name]['all'][$sex]++;
@@ -493,7 +493,7 @@ switch ($_POST[sub_menu_id]) {
 						$data_arr['all'][$d][$sex]++;
 					}
 					//統計斜視
-					if (($health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['checks']['Oph3'])) {
+					if (($health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['checks']['Oph3'])) {
 						$data_arr[$year_name]['Oph3'][$sex]++;
 						$data_arr['all']['Oph3'][$sex]++;
 					}
@@ -616,11 +616,11 @@ switch ($_POST[sub_menu_id]) {
 				while(list($seme_num,$vv)=each($v)) {
 					$year_name=substr($seme_class,0,strlen($seme_class)-2);
 					if ($_POST['sub_menu_id']==11) {
-						if ($health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['r']['sight_o']<0.9 || $health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['l']['sight_o']<0.9)
-						$cal_arr[$year_name][$health_data->stud_base[$vv[student_sn]][stud_sex]]++;
+						if ($health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['r']['sight_o']<0.9 || $health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['l']['sight_o']<0.9)
+						$cal_arr[$year_name][$health_data->stud_base[$vv['student_sn']][stud_sex]]++;
 					} else {
-						if (($health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['r']['sight_o']<0.9 && $health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['r']['sight_r']<0.5) || ($health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['l']['sight_o']<0.9 && $health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['l']['sight_r']<0.5))
-						$cal_arr[$year_name][$health_data->stud_base[$vv[student_sn]][stud_sex]]++;
+						if (($health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['r']['sight_o']<0.9 && $health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['r']['sight_r']<0.5) || ($health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['l']['sight_o']<0.9 && $health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['l']['sight_r']<0.5))
+						$cal_arr[$year_name][$health_data->stud_base[$vv['student_sn']][stud_sex]]++;
 					}
 				}
 			}

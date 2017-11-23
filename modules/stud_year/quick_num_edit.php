@@ -109,14 +109,14 @@ echo"<TD width=60% valign=top><fieldset><legend><B>列示原班名冊</B></legen
 <INPUT TYPE='hidden' NAME='Sclass'  value='$Sclass'>";
 //列示原班人馬
 for ($i=0;$i<count($arr);$i++) {
-$SO_S="<INPUT TYPE='text' NAME='stu_sn[".$arr[$i][student_sn]."]' value='".($i+1)."' size=5 class=ip3>";
-//echo<INPUT TYPE='text' NAME='' value=''> "<TR><TD>".$SO_S.$Sex[$arr[$i][stud_sex]].$arr[$i][seme_num].$arr[$i][stud_name]."&nbsp;</td></tr>";
+$SO_S="<INPUT TYPE='text' NAME='stu_sn[".$arr[$i]['student_sn']."]' value='".($i+1)."' size=5 class=ip3>";
+//echo<INPUT TYPE='text' NAME='' value=''> "<TR><TD>".$SO_S.$Sex[$arr[$i][stud_sex]].$arr[$i]['seme_num'].$arr[$i]['stud_name']."&nbsp;</td></tr>";
 echo "<TR bgcolor=white>
 <TD width=15%>$SO_S</TD>
 <TD width=15%>".$Sex[$arr[$i][stud_sex]]."</TD>
-<TD width=15%>".$arr[$i][seme_num]."</TD>
+<TD width=15%>".$arr[$i]['seme_num']."</TD>
 <TD width=15%>".$arr[$i][stud_id]."</TD>
-<TD width=20%>".$arr[$i][stud_name]."</TD>
+<TD width=20%>".$arr[$i]['stud_name']."</TD>
 <TD width=20%>".$arr[$i][stud_birthday]."</TD></TR>";
 //if($i%7==6 && $i!=0 ) echo "<BR>";
 }

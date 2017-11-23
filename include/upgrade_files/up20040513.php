@@ -22,11 +22,11 @@ if ($res) {
 		$seme_year_seme=sprintf("%04d",$move_year_seme);
 		$query="select student_sn from stud_seme where seme_year_seme='$seme_year_seme' and stud_id='$stud_id'";
 		$res1=$CONN->Execute($query);
-		$student_sn=$res1->fields[student_sn];
+		$student_sn=$res1->fields['student_sn'];
 		if (empty($student_sn)) {
 			$query="select student_sn from stud_base where stud_id='$stud_id'";
 			$res1=$CONN->Execute($query);
-			$student_sn=$res1->fields[student_sn];
+			$student_sn=$res1->fields['student_sn'];
 		}
 		if ($student_sn) {
 			$query="update stud_move set student_sn='$student_sn' where move_id='$move_id'";

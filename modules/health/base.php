@@ -948,7 +948,7 @@ switch ($_POST['sub_menu_id']) {
 			for($i=0;$i<5;$i++) $temp_arr[]=array();
 			while(list($seme_class,$v)=each($health_data->stud_data)) {
 				while(list($seme_num,$vv)=each($v)) {
-					$sn=$vv[student_sn];
+					$sn=$vv['student_sn'];
 					$d=$health_data->stud_base[$sn];
 					$seme_year=substr($seme_class,0,-2);
 					$seme_name=intval(substr($seme_class,-2,2));
@@ -987,7 +987,7 @@ switch ($_POST['sub_menu_id']) {
 			for($i=0;$i<5;$i++) $temp_arr[]=array();
 			while(list($seme_class,$v)=each($health_data->stud_data)) {
 				while(list($seme_num,$vv)=each($v)) {
-					$sn=$vv[student_sn];
+					$sn=$vv['student_sn'];
 					$d=$health_data->stud_base[$sn];
 					$seme_year=substr($seme_class,0,-2);
 					$seme_name=intval(substr($seme_class,-2,2));
@@ -1043,7 +1043,7 @@ switch ($_POST['sub_menu_id']) {
 			$dnull="1970/01/01";
 			while(list($seme_class,$v)=each($health_data->stud_data)) {
 				while(list($seme_num,$vv)=each($v)) {
-					$sn=$vv[student_sn];
+					$sn=$vv['student_sn'];
 					$d=$health_data->stud_base[$sn];
 					$seme_year=substr($seme_class,0,-2);
 					$seme_name=intval(substr($seme_class,-2,2));
@@ -1228,7 +1228,7 @@ switch ($_POST['sub_menu_id']) {
 			for($i=0;$i<4;$i++) $temp_arr[]=array();
 			while(list($seme_class,$v)=each($health_data->stud_data)) {
 				while(list($seme_num,$vv)=each($v)) {
-					$sn=$vv[student_sn];
+					$sn=$vv['student_sn'];
 					$d=$health_data->stud_base[$sn];
 					if (is_array($d['disease'])) {
 						foreach($d['disease'] as $dd) {
@@ -1401,7 +1401,7 @@ switch ($_POST['sub_menu_id']) {
 					$a=array();
 					$seme_year=substr($seme_class,0,-2);
 					$seme_name=intval(substr($seme_class,-2,2));
-					$sn=$vv[student_sn];
+					$sn=$vv['student_sn'];
 					$d=$health_data->stud_base[$sn];
 					$stud_sex=($d[stud_sex]==1)?"M":"F";
 					$a=array($d['stud_person_id'],$sch_arr['sch_id'],$seme_year,$seme_name,$seme_num,$d['stud_name'],$stud_sex);
@@ -1459,7 +1459,7 @@ switch ($_POST['sub_menu_id']) {
 				$temp_arr[]=array("班級：".intval(substr($k,0,-2))."年".intval(substr($k,-2,2))."班  學生總數：".count($v)."人","","","","","","","","","");
 				$temp_arr[]=array("班號","姓名","身分證字號","性別","出生日期","體溫\r\n(℃)","接種劑次\r\n(1或2)","不接種原因說明","疫苗廠牌批號","備註");
 				while(list($seme_num,$vv)=each($v)) {
-					$sn=$vv[student_sn];
+					$sn=$vv['student_sn'];
 					$d_arr=explode("-",$health_data->stud_base[$sn][stud_birthday]);
 					if (count($d_arr)==3) {
 						$d_arr[0]-=1911;
@@ -1467,7 +1467,7 @@ switch ($_POST['sub_menu_id']) {
 					} else {
 						$birthday="";
 					}
-					$temp_arr[]=array(intval(substr($k,-2,2)),$health_data->stud_base[$sn][stud_name],$health_data->stud_base[$sn][stud_person_id],(($health_data->stud_base[$sn][stud_sex]==1)?"男":"女"),"$birthday","","","","","");
+					$temp_arr[]=array(intval(substr($k,-2,2)),$health_data->stud_base[$sn]['stud_name'],$health_data->stud_base[$sn][stud_person_id],(($health_data->stud_base[$sn][stud_sex]==1)?"男":"女"),"$birthday","","","","","");
 				}
 				$x->items=$temp_arr;
 				$x->writeSheet();

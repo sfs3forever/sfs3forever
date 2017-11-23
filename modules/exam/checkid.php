@@ -28,7 +28,7 @@ if ($_POST[B1] == "登入") {
 $mysqliconn = get_mysqli_conn();
 $stmt = "";
 $stmt = $mysqliconn->prepare($sql_select);
-$stmt->bind_param('ss', $_POST[stud_id],$_POST[stud_pass]);
+$stmt->bind_param('ss', $_POST['stud_id'],$_POST[stud_pass]);
 $stmt->execute();
 $stmt->bind_result($Rcount,$stud_id,$stud_name,$curr_class_num,$stud_pass);
 $stmt->fetch();
@@ -45,7 +45,7 @@ $stmt->close();
 ///mysqli
 	/*
 	$sql_select = "select a.stud_id,a.stud_name ,a.curr_class_num,b.stud_pass from stud_base a ,exam_stud_data b \n";
-	$sql_select .= "where a.stud_study_cond= 0 and a.stud_id = b.stud_id and a.stud_id = '".$_POST[stud_id]."' and b.stud_pass = '".$_POST[stud_pass]."' and a.stud_id <>'' ";
+	$sql_select .= "where a.stud_study_cond= 0 and a.stud_id = b.stud_id and a.stud_id = '".$_POST['stud_id']."' and b.stud_pass = '".$_POST[stud_pass]."' and a.stud_id <>'' ";
 //	echo $sql_select;exit;
 	$result = $CONN->Execute ($sql_select) or die($sql_select);
 	

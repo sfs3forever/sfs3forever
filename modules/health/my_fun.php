@@ -126,7 +126,7 @@ function get_whs($h="",$year_seme="",$kind="whs",$mode=0) {
 				$a=array();
 				$seme_year=substr($seme_class,0,-2);
 				$seme_name=substr($seme_class,-2,2);
-				$sn=$vv[student_sn];
+				$sn=$vv['student_sn'];
 				$hh=$h->health_data[$sn][$year_seme];
 				if ($_POST['table']) {
 					if ($hh[height])
@@ -136,15 +136,15 @@ function get_whs($h="",$year_seme="",$kind="whs",$mode=0) {
 					$kind="wht";
 				}
 				if ($kind=="whs")
-				$a=array($seme_year,$seme_name,$seme_num,$h->stud_base[$sn][stud_name],$hh[height],$hh[weight],$hh[BMI],$Bid_arr[$hh[Bid]],$hh[r][sight_o],$hh[l][sight_o],$hh[r][sight_r],$hh[l][sight_r]);
+				$a=array($seme_year,$seme_name,$seme_num,$h->stud_base[$sn]['stud_name'],$hh[height],$hh[weight],$hh[BMI],$Bid_arr[$hh[Bid]],$hh[r][sight_o],$hh[l][sight_o],$hh[r][sight_r],$hh[l][sight_r]);
 				elseif ($kind=="whb")
-				$a=array($seme_year,$seme_name,$seme_num,$h->stud_base[$sn][stud_name],$hh[height],$hh[weight],$hh[BMI],$Bid_arr[$hh[Bid]]);
+				$a=array($seme_year,$seme_name,$seme_num,$h->stud_base[$sn]['stud_name'],$hh[height],$hh[weight],$hh[BMI],$Bid_arr[$hh[Bid]]);
 				elseif ($kind=="wh")
-				$a=array($seme_year,$seme_name,$seme_num,$h->stud_base[$sn][stud_name],$hh[height],$hh[weight]);
+				$a=array($seme_year,$seme_name,$seme_num,$h->stud_base[$sn]['stud_name'],$hh[height],$hh[weight]);
 				elseif ($kind=="wht")
-				$a=array($seme_year,$seme_name,$seme_num,$h->stud_base[$sn][stud_name],$hh[height],$hh[weight],$hh[BMI],$Bid_arr[$hh[Bid]],$tb);
+				$a=array($seme_year,$seme_name,$seme_num,$h->stud_base[$sn]['stud_name'],$hh[height],$hh[weight],$hh[BMI],$Bid_arr[$hh[Bid]],$tb);
 				else
-				$a=array($seme_year,$seme_name,$seme_num,$h->stud_base[$sn][stud_name],$hh[r][sight_o],$hh[l][sight_o],$hh[r][sight_r],$hh[l][sight_r]);
+				$a=array($seme_year,$seme_name,$seme_num,$h->stud_base[$sn]['stud_name'],$hh[r][sight_o],$hh[l][sight_o],$hh[r][sight_r],$hh[l][sight_r]);
 				if ($mode)
 				$temp_arr[$seme_class][]=$a;
 				else
@@ -164,9 +164,9 @@ function get_utee($h,$year_seme="",$mode=0) {
 				$a=array();
 				$seme_year=substr($seme_class,0,-2);
 				$seme_name=substr($seme_class,-2,2);
-				$sn=$vv[student_sn];
+				$sn=$vv['student_sn'];
 				if ($h->health_data[$sn][$year_seme]['chkOra']!=1) {
-					$a=array($seme_year,$seme_name,$seme_num,$h->stud_base[$sn][stud_name]);
+					$a=array($seme_year,$seme_name,$seme_num,$h->stud_base[$sn]['stud_name']);
 					if ($mode)
 					$temp_arr[$seme_class][]=$a;
 					else
@@ -187,7 +187,7 @@ function get_stud_list($h="",$year_seme="",$mode=0) {
 				$a=array();
 				$seme_year=substr($seme_class,0,-2);
 				$seme_name=substr($seme_class,-2,2);
-				$sn=$vv[student_sn];
+				$sn=$vv['student_sn'];
 				$hh=$h->health_data[$sn][$year_seme];
 				$d=$h->stud_base[$sn];
 				$stud_sex=($d[stud_sex]==1)?"男":"女";

@@ -9,9 +9,9 @@ $grade_img = array("face_1.gif","face_2.gif","face_3.gif","face_4.gif","face_5.g
 
 include "header.php";
 
-$stud_id = $_GET[stud_id];
+$stud_id = $_GET['stud_id'];
 if ($stud_id=='')
-	$stud_id = $_POST[stud_id];
+	$stud_id = $_POST['stud_id'];
 $e_kind_id = $_GET[e_kind_id];
 if($e_kind_id == '')
 	$e_kind_id = $_POST[e_kind_id];

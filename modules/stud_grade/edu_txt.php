@@ -17,7 +17,7 @@ $sch_id=$s[sch_id];
 $edu_id_arr=($IS_JHORES==0)?array("1"=>"01","2"=>"02"):array("1"=>"81","2"=>"81");
 
 $postBtn = "教育程度資料檔匯出";
-if ($_POST[do_key]==$postBtn){
+if ($_POST['do_key']==$postBtn){
 	$query = "select a.*,b.grad_kind from stud_base a left join grad_stud b on a.student_sn=b.student_sn and b.stud_grad_year='$sel_year' where stud_study_year='$stud_study_year' and (stud_study_cond='0' or stud_study_cond='5') order by stud_id";
 	$result =$CONN->Execute($query) or user_error("讀取失敗！<br>$query",256);
 	while ($row = $result->FetchRow()) {

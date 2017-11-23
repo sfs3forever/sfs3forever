@@ -98,7 +98,7 @@ class sfsxmlfile
 			$addr=$res->fields[stud_addr_2];
 			$oth_arr[stud_addr_2]=change_addr_str($addr);
 			//$oth_arr[stud_addr_2][12]=implode("",array_slice($oth_arr[stud_addr_2],4,8));
-			$this->out_arr[$res->fields[student_sn]]=array_merge($res->FetchRow(),$oth_arr);
+			$this->out_arr[$res->fields['student_sn']]=array_merge($res->FetchRow(),$oth_arr);
 			
 			
 	
@@ -108,33 +108,33 @@ class sfsxmlfile
 		$query="select * from stud_domicile where student_sn in ($this->sn_str) order by student_sn";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			 $this->out_arr[$res->fields[student_sn]]=array_merge($this->out_arr[$res->fields[student_sn]],$res->FetchRow());
+			 $this->out_arr[$res->fields['student_sn']]=array_merge($this->out_arr[$res->fields['student_sn']],$res->FetchRow());
 		}
 		//取出 stud_brother_sister 資料
 		$query="select bs_id,bs_name,bs_calling,bs_gradu,bs_birthyear,student_sn from stud_brother_sister where student_sn in ($this->sn_str) order by student_sn";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			 $this->out_arr[$res->fields[student_sn]][bro_sis][$res->fields[bs_id]]=$res->FetchRow();
+			 $this->out_arr[$res->fields['student_sn']][bro_sis][$res->fields[bs_id]]=$res->FetchRow();
 		}
 		//取出 stud_kinfolk 資料
 		$query="select kin_id,kin_name,kin_calling,kin_phone,kin_hand_phone,kin_email,student_sn from stud_kinfolk where student_sn in ($this->sn_str) order by student_sn";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			 $this->out_arr[$res->fields[student_sn]][kinfolk][$res->fields[kin_id]]=$res->FetchRow();
+			 $this->out_arr[$res->fields['student_sn']][kinfolk][$res->fields[kin_id]]=$res->FetchRow();
 		}
 		
 		//取出原住民資料(stud_subkind)
 		$query="select student_sn,clan,area from stud_subkind where type_id=9 AND student_sn in ($this->sn_str) order by student_sn";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			 $this->out_arr[$res->fields[student_sn]][yuanzhumin]=$res->FetchRow();
+			 $this->out_arr[$res->fields['student_sn']][yuanzhumin]=$res->FetchRow();
 		}
 		
 		//抓取日常生活表現紀錄資料
 		$query="select * from stud_seme_score_nor where student_sn in ($this->sn_str) order by student_sn,seme_year_seme,ss_id";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			$current_student_sn=$res->fields[student_sn];
+			$current_student_sn=$res->fields['student_sn'];
 			$current_seme_year_seme=$res->fields[seme_year_seme];
 			$ss_id=$res->fields[ss_id];
 
@@ -146,7 +146,7 @@ class sfsxmlfile
 		$query="select a.*,b.student_sn from stud_seme_abs a,stud_base b where b.student_sn in ($this->sn_str) AND a.stud_id=b.stud_id order by b.student_sn,a.abs_kind";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			$current_student_sn=$res->fields[student_sn];
+			$current_student_sn=$res->fields['student_sn'];
 			$current_seme_year_seme=$res->fields[seme_year_seme];
 			$absence_kind=$res->fields['abs_kind'];
 			$absence_days=$res->fields['abs_days'];
@@ -161,7 +161,7 @@ class sfsxmlfile
 		$query="select a.*,b.student_sn from stud_seme_spe a,stud_base b where b.student_sn in ($this->sn_str) AND a.stud_id=b.stud_id order by b.student_sn,a.seme_year_seme";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			$current_student_sn=$res->fields[student_sn];
+			$current_student_sn=$res->fields['student_sn'];
 			$current_seme_year_seme=$res->fields[seme_year_seme];
 			$ss_id=$res->fields[ss_id];
 			$this->out_arr[$current_student_sn][semester_spe][$current_seme_year_seme][$ss_id][sp_date]=$res->fields[sp_date];
@@ -173,7 +173,7 @@ class sfsxmlfile
 		$query="select * from stud_psy_test where student_sn in ($this->sn_str) order by student_sn,year,semester";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			$current_student_sn=$res->fields[student_sn];
+			$current_student_sn=$res->fields['student_sn'];
 			$current_seme_year_seme=sprintf("%03d%d",$res->fields[year],$res->fields[semester]);
 			$sn=$res->fields[sn];
 			$this->out_arr[$current_student_sn][psy_test][$current_seme_year_seme][$sn][test_date]=$res->fields[test_date];
@@ -190,7 +190,7 @@ class sfsxmlfile
 		$query="select a.*,b.student_sn from stud_seme_eduh a,stud_base b where b.student_sn in ($this->sn_str) AND a.stud_id=b.stud_id order by b.student_sn,a.seme_year_seme";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			$current_student_sn=$res->fields[student_sn];
+			$current_student_sn=$res->fields['student_sn'];
 			$current_seme_year_seme=$res->fields[seme_year_seme];
 			$row_data=$res->FetchRow();
 			//$this->out_arr[$current_student_sn][semester_eduh][$current_seme_year_seme]=$row_data;
@@ -223,7 +223,7 @@ class sfsxmlfile
 		$query="select a.*,b.student_sn from stud_seme_talk a,stud_base b where b.student_sn in ($this->sn_str) and a.stud_id=b.stud_id order by b.student_sn,a.seme_year_seme,a.sst_date";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			$current_student_sn=$res->fields[student_sn];
+			$current_student_sn=$res->fields['student_sn'];
 			$current_seme_year_seme=$res->fields[seme_year_seme];			
 			$sst_id=$res->fields[sst_id];
 			$row_data=$res->FetchRow();
@@ -234,7 +234,7 @@ class sfsxmlfile
 		$query="(select * from stud_move_import where student_sn in ($this->sn_str)) UNION DISTINCT (select * from stud_move where student_sn in ($this->sn_str)) order by student_sn,move_date";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			$current_student_sn=$res->fields[student_sn];
+			$current_student_sn=$res->fields['student_sn'];
 			$move_id=$res->fields[move_id];
 			$move_kind=$res->fields[move_kind];
 			$row_data=$res->FetchRow();
@@ -271,7 +271,7 @@ ORDER  BY b.year, b.semester, b.class_year, b.sort";
 		$query="select seme_year_seme,left(seme_year_seme,3) as year,right(seme_year_seme,1) as semester,left(seme_class,1) as study_year,right(seme_class,2) as study_class,seme_class_name,seme_num,student_sn from stud_seme where student_sn in ($this->sn_str) order by student_sn,seme_year_seme";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			$current_student_sn=$res->fields[student_sn];
+			$current_student_sn=$res->fields['student_sn'];
 			$current_seme_year_seme=$res->fields[seme_year_seme];
 			$row_data=$res->FetchRow();
 			$this->out_arr[$current_student_sn][semester][$current_seme_year_seme]=$row_data;
@@ -294,7 +294,7 @@ ORDER  BY b.year, b.semester, b.class_year, b.sort";
 		$query="select seme_year_seme,left(seme_year_seme,3) as year,right(seme_year_seme,1) as semester,seme_class_grade as study_year,seme_class_name,seme_num,student_sn,teacher_name from stud_seme_import where student_sn in ($this->sn_str) order by student_sn,seme_year_seme";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			$current_student_sn=$res->fields[student_sn];
+			$current_student_sn=$res->fields['student_sn'];
 			$current_seme_year_seme=$res->fields[seme_year_seme];
 			$row_data=$res->FetchRow();
 			$this->out_arr[$current_student_sn][semester][$current_seme_year_seme]=$row_data;
@@ -322,7 +322,7 @@ ORDER  BY b.year, b.semester, b.class_year, b.sort";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		$abs_kind_arry=stud_abs_kind();
 		while(!$res->EOF) {
-			$current_student_sn=$res->fields[student_sn];
+			$current_student_sn=$res->fields['student_sn'];
 			$current_sasn=$res->fields[sasn];
 			$current_abs_kind=array_search($res->fields[absent_kind],$abs_kind_arry);
 			$current_year_month=sprintf("%03d%d",$res->fields[abs_year],$res->fields[abs_month]);
@@ -362,7 +362,7 @@ ORDER  BY b.year, b.semester, b.class_year, b.sort";
 		$query="select * from reward where student_sn in ($this->sn_str) $semester_limit and reward_cancel_date='0000-00-00' order by student_sn,reward_date";
 		$res=$CONN->Execute($query) or die("SQL錯誤： $query");
 		while(!$res->EOF) {
-			$current_student_sn=$res->fields[student_sn];
+			$current_student_sn=$res->fields['student_sn'];
 			$reward_id=$res->fields[reward_id];
 			$row_data=$res->FetchRow();
 			$reward_kind=$row_data['reward_kind'];

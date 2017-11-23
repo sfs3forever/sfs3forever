@@ -89,7 +89,7 @@ function get_charge_decrease($item_id) {
 
 		$detail=($m_arr['is_sort']=="Y"?$res->fields[detail_sort]."-":"").$res->fields[detail];
 
-		$sn=$res->fields[student_sn];
+		$sn=$res->fields['student_sn'];
 
 		$my_grade=substr($res->fields[curr_class_num],0,1);
 
@@ -175,7 +175,7 @@ function get_item_stud_list($item_id,$selected_stud) {
 
 		$data_list[$student_sn][record_id]=$student[1];
 
-		$data_list[$student_sn][stud_name]=$student[2];
+		$data_list[$student_sn]['stud_name']=$student[2];
 
 		$data_list[$student_sn][guardian]=$student[3];
 

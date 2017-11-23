@@ -378,7 +378,7 @@ if(($teacher_course)&&($curr_sort)){
 			$tt =1;
 			if ($res->fields[test_kind] =="定期評量")
 				$tt = 0;
-			$score_arr[$tt][$res->fields[student_sn]] = $res->fields[score];
+			$score_arr[$tt][$res->fields['student_sn']] = $res->fields[score];
 			if ($res->fields[score]>-100)$em++;
 			$res->MoveNext();
 		}
@@ -396,7 +396,7 @@ if(($teacher_course)&&($curr_sort)){
 				$tt =1;
 				if ($res_pre->fields[test_kind] =="定期評量")
 				$tt = 0;
-				$student_sn=$res_pre->fields[student_sn];
+				$student_sn=$res_pre->fields['student_sn'];
 				$score_arr_pre[$PRE_SORT][$tt][$student_sn] = $res_pre->fields[score];
 				//echo $res_pre->fields[test_kind]."$student_sn ($PRE_SORT , $tt) =>".$score_arr_pre[$PRE_SORT][$tt][$student_sn]."<br>";
 				$res_pre->MoveNext();
@@ -420,7 +420,7 @@ if(($teacher_course)&&($curr_sort)){
 		while(!$res->EOF){
 			if(strstr ($teacher_course, 'g')) $stud_num = intval(substr($res->fields[curr_class_num],-4,-2))."-".intval(substr($res->fields[curr_class_num],-2));
 			else $stud_num = intval(substr($res->fields[curr_class_num],-2));
-			$student_sn = $res->fields[student_sn];
+			$student_sn = $res->fields['student_sn'];
 			$stud_name  = addslashes($res->fields[stud_name]);
 			//排除名單加註*
       $stud_name.=($student_out[$student_sn])?"<font color=red>*</font>":"";
@@ -533,7 +533,7 @@ if(($teacher_course)&&($curr_sort)){
 		else $query = "select student_sn,score from $score_semester where ss_id='$ss_id' and test_sort='255' and test_kind='全學期' and student_sn in ($all_sn)";
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
-			$score_arr[$res->fields[student_sn]] = $res->fields[score];	
+			$score_arr[$res->fields['student_sn']] = $res->fields[score];	
                         if($res->fields[score]>-100)$em++;
 			$res->MoveNext();
 		}
@@ -558,7 +558,7 @@ if(($teacher_course)&&($curr_sort)){
 			if(strstr ($teacher_course, 'g')) $stud_num = intval(substr($res->fields[curr_class_num],-4,-2))."-".intval(substr($res->fields[curr_class_num],-2));
 			else $stud_num = intval(substr($res->fields[curr_class_num],-2));
 			$stud_name  = addslashes($res->fields[stud_name]);
-			$student_sn = $res->fields[student_sn];
+			$student_sn = $res->fields['student_sn'];
 			$stud_id  = $res->fields[stud_id];
 			$stud_study_year= $res->fields[stud_study_year];
 			
@@ -610,7 +610,7 @@ if(($teacher_course)&&($curr_sort)){
 		$query = "select student_sn,score from $score_semester where  ss_id='$ss_id' and test_sort='1' and student_sn in ($all_sn) and test_kind='平時成績'";
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
-			$score_arr[$res->fields[student_sn]] = $res->fields[score];
+			$score_arr[$res->fields['student_sn']] = $res->fields[score];
 			$res->MoveNext();
 		}
 			
@@ -624,7 +624,7 @@ if(($teacher_course)&&($curr_sort)){
 		while(!$res->EOF){
 			$stud_num = intval(substr($res->fields[curr_class_num],-2));
 			$stud_name  = addslashes($res->fields[stud_name]);
-			$student_sn = $res->fields[student_sn];
+			$student_sn = $res->fields['student_sn'];
 			$stud_id = $res->fields[stud_id];
 			$stud_study_year= $res->fields[stud_study_year];
 			

@@ -88,7 +88,7 @@ class stud_sta {
         $y_seme = $stu1[prove_year_seme]; //951
         $y_seme2 = sprintf("%04d", $stu1[prove_year_seme]); //0951
         $stu1[seme] = substr($y_seme, -1); //取學期
-        $SQL = "select a.stud_name,a.stud_name_eng,a.stud_id,a.stud_birthday,b.seme_class,a.stud_study_year from stud_base a ,stud_seme b  where a.student_sn='{$stu1[student_sn]}' and a.student_sn=b.student_sn and b.seme_year_seme='$y_seme2' ";
+        $SQL = "select a.stud_name,a.stud_name_eng,a.stud_id,a.stud_birthday,b.seme_class,a.stud_study_year from stud_base a ,stud_seme b  where a.student_sn='{$stu1['student_sn']}' and a.student_sn=b.student_sn and b.seme_year_seme='$y_seme2' ";
         $rs = &$this->CONN->Execute($SQL) or die($SQL);
 
         if ($rs and $ro = $rs->FetchNextObject(false)) {

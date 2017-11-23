@@ -105,13 +105,13 @@ if($Hseme_year_seme && $Hstud_seme_class && ($Submit2=="下載成績表格"|| $S
 	$temp_student_arr = array();
 	while(!$rs->EOF) {
 		if ($Submit5 == '下載努力程度表格'){
-			$temp_score_arr[$rs->fields[student_sn]][$rs->fields[ss_id]] = $oth_arr_score[$rs->fields[ss_val]];
+			$temp_score_arr[$rs->fields['student_sn']][$rs->fields[ss_id]] = $oth_arr_score[$rs->fields[ss_val]];
 		}
 		else{
-			$temp_score_arr[$rs->fields[student_sn]][$rs->fields[ss_id]] = $rs->fields[ss_score];
-			$temp_score_memo_arr[$rs->fields[student_sn]][$rs->fields[ss_id]] = str_replace("\r\n","",$rs->fields[ss_score_memo]);
+			$temp_score_arr[$rs->fields['student_sn']][$rs->fields[ss_id]] = $rs->fields[ss_score];
+			$temp_score_memo_arr[$rs->fields['student_sn']][$rs->fields[ss_id]] = str_replace("\r\n","",$rs->fields[ss_score_memo]);
 		}
-		$temp_student_arr[$rs->fields[student_sn]][$rs->fields[ss_id]] = 1;
+		$temp_student_arr[$rs->fields['student_sn']][$rs->fields[ss_id]] = 1;
 		$rs->MoveNext();
 	}
 	

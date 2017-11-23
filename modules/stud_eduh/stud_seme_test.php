@@ -15,13 +15,13 @@ $this_year = sprintf("%03d",curr_year());
 //目前學年學期
 $this_seme_year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 
-$sel_seme_year_seme = $_POST[sel_seme_year_seme];
+$sel_seme_year_seme = $_POST['sel_seme_year_seme'];
 if ($sel_seme_year_seme=='')
 	$sel_seme_year_seme = $this_seme_year_seme;
 
 $do_key = $_GET[do_key];
 if ($do_key == '')
-	$do_key = $_POST[do_key];
+	$do_key = $_POST['do_key'];
 
 
 $c_curr_class = $_POST[c_curr_class];
@@ -52,7 +52,7 @@ $seme_class = intval($c_curr_class_arr[2]).$c_curr_class_arr[3];
 	
 	
 if ($do_key == $newBtn) {
-	$seme_year_seme = $_POST[sel_seme_year_seme];
+	$seme_year_seme = $_POST['sel_seme_year_seme'];
 	if ($seme_year_seme =='')
 		$seme_year_seme = $this_seme_year_seme;
 	if ($_POST['all_class']) { //複製到全班
@@ -65,7 +65,7 @@ if ($do_key == $newBtn) {
 		}
 	}
 	else {
-		$sql_insert = "insert into stud_seme_test (seme_year_seme,stud_id,st_numb,st_name,st_score_numb,st_data_from,st_chang_numb,st_name_long,teacher_sn) values ('$seme_year_seme','$_POST[stud_id]','$_POST[st_numb]','$_POST[st_name]','$_POST[st_score_numb]','$_POST[st_data_from]','$_POST[st_chang_numb]','$_POST[st_name_long]','$_SESSION[session_tea_sn]')";
+		$sql_insert = "insert into stud_seme_test (seme_year_seme,stud_id,st_numb,st_name,st_score_numb,st_data_from,st_chang_numb,st_name_long,teacher_sn) values ('$seme_year_seme',{$_POST['stud_id']},'$_POST[st_numb]','$_POST[st_name]','$_POST[st_score_numb]','$_POST[st_data_from]','$_POST[st_chang_numb]','$_POST[st_name_long]','$_SESSION[session_tea_sn]')";
 		$CONN->Execute($sql_insert) or die($sql_insert);
 	}
 	$st_numb = ""; 
@@ -110,9 +110,9 @@ if ($do_key == $newBtn) {
 
 
 if ($stud_id=='')
-	$stud_id= $_GET[stud_id];
+	$stud_id= $_GET['stud_id'];
 if ($stud_id=='')
-	$stud_id= $_POST[stud_id];
+	$stud_id= $_POST['stud_id'];
 
 
 

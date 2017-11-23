@@ -19,7 +19,7 @@ while (!$res->EOF) {
 $query="select student_sn,stud_addr_2,stud_addr_a,stud_addr_b from stud_base";
 $res=$CONN->Execute($query);
 while (!$res->EOF) {
-	$student_sn=$res->fields[student_sn];
+	$student_sn=$res->fields['student_sn'];
 	$stud_addr_2=$res->fields[stud_addr_2];
 	$stud_addr_a=substr($stud_addr_2,0,6);
 	$stud_addr_b=substr($stud_addr_2,6,6);

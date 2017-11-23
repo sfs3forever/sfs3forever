@@ -30,7 +30,7 @@ if ($_POST[print_out] || $_POST[csv_out]) {
 		$i=1;
 		while(!$res->EOF) {
 			$curr_class_num=$res->fields[curr_class_num];
-			$data_arr[$k][$i][stud_name]=$res->fields[stud_name];
+			$data_arr[$k][$i]['stud_name']=$res->fields[stud_name];
 			$data_arr[$k][$i][stud_id]=$res->fields[stud_id];
 			$data_arr[$k][$i][oth]=substr($curr_class_num,-4,2)."-".substr($curr_class_num,-2,2);
 			$i++;

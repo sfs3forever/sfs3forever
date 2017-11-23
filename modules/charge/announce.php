@@ -147,7 +147,7 @@ if($selected_stud AND $_POST['act']=='列印'){
 		$temp_arr["year_seme"]=$work_year_seme;
 		$temp_arr["class"]=$class_base[$class_id];
 		$temp_arr["record_id"]=$data_arr[$key][record_id];
-		$temp_arr["stud_name"]=$data_arr[$key][stud_name];
+		$temp_arr["stud_name"]=$data_arr[$key]['stud_name'];
 		$temp_arr["num"]=substr($temp_arr[record_id],-2);
 		$temp_arr["total"]=$data_arr[$key][total];
 		$temp_arr["barcode"]="*".$item_id."-".$temp_arr[record_id]."-".$temp_arr[total]."*";

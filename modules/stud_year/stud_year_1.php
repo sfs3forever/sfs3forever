@@ -30,7 +30,7 @@ $not_up="'1','5','6','7','8','11','12'";
 if ($_REQUEST[sel]=='change'){
 	$edit=$_REQUEST[edit];
 	if ($edit=='1') {
-		$student_sn=$_GET[student_sn];
+		$student_sn=$_GET['student_sn'];
 		$sql="select stud_id,curr_class_num ,stud_study_cond from stud_base where student_sn='$student_sn'";
 		$rs=$CONN->Execute($sql);
 		$stud_id=$rs->fields['stud_id'];
@@ -47,7 +47,7 @@ if ($_REQUEST[sel]=='change'){
 		$sql="replace into stud_seme (seme_year_seme,stud_id,seme_class,seme_class_name,seme_num,seme_class_year_s,seme_class_s,seme_num_s,student_sn) values ('$seme_year_seme','$stud_id','$seme_class','$c_name','$seme_num','NULL','NULL','NULL','$student_sn')";
 		$rs=$CONN->Execute($sql);
 	} elseif ($edit=='2') {
-		$sql="update stud_base set curr_class_num=(curr_class_num-10000) where student_sn='$_GET[student_sn]'";
+		$sql="update stud_base set curr_class_num=(curr_class_num-10000) where student_sn='$_GET['student_sn']'";
 		$rs=$CONN->Execute($sql);
 	} elseif ($edit=='3') {
 		$student_sn=$_GET['student_sn'];
@@ -102,7 +102,7 @@ if ($_GET[sel]=='refine'){
 	$res=$CONN->Execute($query);
 	while(!$res->EOF){
 		$curr_class_num = sprintf("%d%02d",$res->fields['seme_class'],$res->fields[seme_num]);
-		$student_sn =  $res->fields[student_sn];
+		$student_sn =  $res->fields['student_sn'];
 		$query = "update stud_base set curr_class_num='$curr_class_num' where student_sn='$student_sn'";
 		//echo $query."<BR>";
 		$CONN->Execute($query)or die($query);
@@ -129,7 +129,7 @@ if ($_GET[sel]=='refine'){
 	$query="select b.student_sn from stud_move a left join stud_seme b on a.move_year_seme=trim(leading '0' from b.seme_year_seme) and a.stud_id=b.stud_id where a.move_year_seme<'$move_year_seme' and a.move_kind in ($not_up)";
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
-		if ($res->fields[student_sn]) $temp_sn.="'".$res->fields[student_sn]."',";
+		if ($res->fields['student_sn']) $temp_sn.="'".$res->fields['student_sn']."',";
 		$res->MoveNext();
 	}
 	if ($temp_sn!="") {
@@ -161,7 +161,7 @@ elseif($_GET[key]== "priorseme"){ //參照上學期編班
 			$seme_class_year_s = $res->fields[seme_class_year_s];
 			$seme_class_s = $res->fields[seme_class_s];
 			$seme_num_s = $res->fields[seme_num_s];
-			$student_sn = $res->fields[student_sn];
+			$student_sn = $res->fields['student_sn'];
 			$sql_insert = "replace into stud_seme (stud_id,seme_year_seme,seme_class,seme_class_name,seme_num, seme_class_year_s,seme_class_s, seme_num_s,student_sn) values ('$stud_id','$seme_year_seme','$seme_class','$seme_class_name','$seme_num','$seme_class_year_s','$seme_class_s','$seme_num_s','$student_sn')";
 			//echo $sql_insert."<br>";
 			$CONN->Execute($sql_insert) or die ($sql_insert);
@@ -176,7 +176,7 @@ elseif($_GET[key]== "priorseme"){ //參照上學期編班
 		while (!$res->EOF) {
 			$stud_id = $res->fields[stud_id];
 			$seme_year_seme = sprintf("%03d2",$curr_year);
-			$student_sn = $res->fields[student_sn];
+			$student_sn = $res->fields['student_sn'];
 			$seme_class = $s_year.substr($res->fields['seme_class'],-2);
 			$seme_class_name = $res->fields[seme_class_name];
 			$seme_num = $res->fields[seme_num];
@@ -235,7 +235,7 @@ $mysql5_temp_query = $query;
 
 $res=$CONN->Execute($query);
 while (!$res->EOF) {
-	$not_count.="'".$res->fields[student_sn]."',";
+	$not_count.="'".$res->fields['student_sn']."',";
 	$res->MoveNext();
 }
 if (!empty($not_count)) $not_count=substr($not_count,0,-1);
@@ -250,7 +250,7 @@ while (list($tid,$tname)= each($class_year)) {
 	$result = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 	$chk_seme="";
 	while (!$result->EOF) {
-		$chk_seme.="'".$result->fields[student_sn]."',";
+		$chk_seme.="'".$result->fields['student_sn']."',";
 		$result->MoveNext();
 	}
 	if ($chk_seme) $chk_seme=substr($chk_seme,0,-1);
@@ -284,7 +284,7 @@ while (list($tid,$tname)= each($class_year)) {
 		$res1 = $CONN->Execute($query) or die($query);
 		$chk_base="";
 		while (!$res1->EOF) {
-			$chk_base.="'".$res1->fields[student_sn]."',";
+			$chk_base.="'".$res1->fields['student_sn']."',";
 			$res1->MoveNext();
 		}
 		if ($chk_base) $chk_base=substr($chk_base,0,-1);

@@ -15,9 +15,9 @@ require "module-upgrade.php";
 head();
 
 if ($stud_id=='')
-$stud_id= $_GET[stud_id];
+$stud_id= $_GET['stud_id'];
 if ($stud_id=='')
-$stud_id= $_POST[stud_id];
+$stud_id= $_POST['stud_id'];
 
 ///選單連結字串
 $linkstr = "stud_id=$stud_id&c_curr_class=$c_curr_class&c_curr_seme=$c_curr_seme";
@@ -39,18 +39,18 @@ $this_year = sprintf("%03d",curr_year());
 //目前學年學期
 $this_seme_year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 
-$sel_seme_year_seme = $_POST[sel_seme_year_seme];
+$sel_seme_year_seme = $_POST['sel_seme_year_seme'];
 if ($sel_seme_year_seme=='')
 	$sel_seme_year_seme = $this_seme_year_seme;
 
-$stud_id = $_GET[stud_id];
+$stud_id = $_GET['stud_id'];
 if ($stud_id == '')
-	$stud_id = $_POST[stud_id];
+	$stud_id = $_POST['stud_id'];
 
 
 $do_key = $_GET[do_key];
 if ($do_key == '')
-	$do_key = $_POST[do_key];
+	$do_key = $_POST['do_key'];
 
 //傳的 post或get 值有 stud_id 及 [c_curr_class] => 102_2_09_01 [c_curr_seme] => 1022
 //比對後可取得 student_sn
@@ -62,7 +62,7 @@ switch($do_key) {
 
 	//刪除
 	case "delete":
-	$query = "delete  from stud_ext_data where mid='$_GET[mid]' and stud_id='$_GET[stud_id]' and student_sn='$student_sn'";
+	$query = "delete  from stud_ext_data where mid='$_GET[mid]' and stud_id={$_GET['stud_id']} and student_sn='$student_sn'";
 	$CONN->Execute($query);
 	break;
 	
@@ -70,14 +70,14 @@ switch($do_key) {
 	case $newBtn: 
 	$n_day = date("Y-m-d") ;
 	$sql_insert = "insert into stud_ext_data (stud_id , mid ,ext_data ,teach_id ,ed_date,student_sn) 
-	               values ('$_POST[stud_id]' , '$_POST[mid]' , '$_POST[ext_data]' ,'{$_SESSION['session_tea_sn']}' , '$n_day','$student_sn' )" ;
+	               values ({$_POST['stud_id']} , '$_POST[mid]' , '$_POST[ext_data]' ,'{$_SESSION['session_tea_sn']}' , '$n_day','$student_sn' )" ;
 	
 	$CONN->Execute($sql_insert) or die($sql_insert);
 	break;
 
 	//確定修改
 	case $editBtn:
-	$sql_update = "update stud_ext_data set ext_data='$_POST[ext_data]',teach_id='{$_SESSION['session_tea_sn']}' where mid='$_POST[mid]' and stud_id = '$_POST[stud_id]' and student_sn='$student_sn'";
+	$sql_update = "update stud_ext_data set ext_data='$_POST[ext_data]',teach_id='{$_SESSION['session_tea_sn']}' where mid='$_POST[mid]' and stud_id = {$_POST['stud_id']} and student_sn='$student_sn'";
 	$CONN->Execute($sql_update) or die($sql_update);
 	break;
 

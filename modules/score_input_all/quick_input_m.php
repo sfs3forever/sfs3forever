@@ -144,7 +144,7 @@ echo "<b>$temp_str</b>";
 		if ($input_state=="")
 			$sn = $rs->fields[score_id];
 		else 
-			$sn = $rs->fields[student_sn];
+			$sn = $rs->fields['student_sn'];
 		
 		$sit_num = substr($rs->fields[curr_class_num],-2);
 		$stud_name = $rs->fields[stud_name];

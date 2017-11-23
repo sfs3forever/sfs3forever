@@ -195,7 +195,7 @@ if ($year_name && $stage && count($sel)!=0) {
 		$res=$CONN->Execute($query);
 		$all_stud_sn="";
 		while(!$res->EOF) {
-			$all_stud_sn.="'".$res->fields[student_sn]."',";
+			$all_stud_sn.="'".$res->fields['student_sn']."',";
 			$res->MoveNext();
 		}
 		if ($all_stud_sn) $all_stud_sn=substr($all_stud_sn,0,-1);

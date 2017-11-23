@@ -64,7 +64,7 @@ for ($i=0;$i<count($arr);$i++) {
 
 echo "<TR bgcolor=white>
 <TD>".$arr[$i][stud_id]."</TD>
-<TD>".$arr[$i][seme_num]."</TD><TD nowrap>".$arr[$i][stud_name]."</TD>
+<TD>".$arr[$i]['seme_num']."</TD><TD nowrap>".$arr[$i]['stud_name']."</TD>
 <TD>".$Sex[$arr[$i][stud_sex]]."</TD><TD>".$arr[$i][bir]."</TD>
 <TD>".$arr[$i][stud_person_id]."</TD><TD>".$arr[$i][stud_tel_1]."</TD>
 <TD>".$arr[$i][stud_tel_2]."</TD><TD>".$arr[$i][stud_tel_3]."</TD>

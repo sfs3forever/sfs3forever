@@ -36,7 +36,7 @@ function get_stsn($class_id){
 	$rs = $CONN->Execute($SQL);
 	$the_sn=$rs->GetArray();
 	for ($i=0;$i<$rs->RecordCount();$i++){
-		array_push($st_sn,$the_sn[$i][student_sn]);
+		array_push($st_sn,$the_sn[$i]['student_sn']);
 		}
 	//---}
 return $st_sn;
@@ -92,10 +92,10 @@ if ($_POST[act]=='OK' && is_array($_POST[class_id]) ){
 			//print " student_sn= $student_sn ";
 			$base_ary = get_base_data($student_sn);
 			$class_data[$class_id][$student_sn][base][stud_id]=$base_ary[stud_id];
-			$class_data[$class_id][$student_sn][base][stud_name]=$base_ary[stud_name];
+			$class_data[$class_id][$student_sn][base]['stud_name']=$base_ary[stud_name];
 			$class_data[$class_id][$student_sn][base][class_id]=$base_ary[class_id];
 			$class_data[$class_id][$student_sn][base][cla_no]=$base_ary[cla_no];
-			$class_data[$class_id][$student_sn][base][seme_num]=$base_ary[seme_num];
+			$class_data[$class_id][$student_sn][base]['seme_num']=$base_ary[seme_num];
 			$stud_id=$base_ary[stud_id];
 			//print " stud_id= $stud_id";
 			foreach($stud[seme_ary] as $seme_key=>$seme_data) {

@@ -106,7 +106,7 @@ if ($year_name && $stage) {
 				$query="select * from elective_stu where group_id='".$group_data[$i][$id][id]."'";
 				$res=$CONN->Execute($query);
 				while(!$res->EOF) {
-					$group_data[$i][$id][all_sn].="'".$res->fields[student_sn]."',";
+					$group_data[$i][$id][all_sn].="'".$res->fields['student_sn']."',";
 					$group_data[$i][$id][num]++;
 					$res->MoveNext();
 				}

@@ -307,7 +307,7 @@ if ($err==0) {
 		}
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$data_arr[value][$res->fields[test_sort]][$res->fields[student_sn]]="1";
+			$data_arr[value][$res->fields[test_sort]][$res->fields['student_sn']]="1";
 			$res->MoveNext();
 		}
 

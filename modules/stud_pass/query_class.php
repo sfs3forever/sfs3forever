@@ -72,7 +72,7 @@ if ($_POST['opt']=='search') {
  <?php
 	while(!$res->EOF) {
 		$email_pass=$res->fields[email_pass];
-		$student_sn=$res->fields[student_sn];
+		$student_sn=$res->fields['student_sn'];
 		$stud_id=$res->fields[stud_id];
 		$curr_class_num=$res->fields[curr_class_num];
 		$stud_name=$res->fields[stud_name];

@@ -129,7 +129,7 @@ function get_stu($class_id,$type="0") {
 	$All_stu=$rs->$rs->GetArray();
 	$obj_stu=array();
 	for($i=0;$i<count($All_stu);$i++){
-		$key=$All_stu[$i][student_sn];
+		$key=$All_stu[$i]['student_sn'];
 		$obj_stu[$key]=$All_stu[$i];
 	}
 	print "<pre>";

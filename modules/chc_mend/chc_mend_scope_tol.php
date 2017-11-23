@@ -134,9 +134,9 @@ class basic_chc{
 		//取得各學期領域學科成績.加權數並加總
 		while(!$res->EOF) {
 			//取得領域加權總分
-			$subj_score[$res->fields[student_sn]][$res->fields[link_ss]][$res->fields[seme_year_seme]]+=$res->fields[ss_score]*$res->fields[rate];
+			$subj_score[$res->fields['student_sn']][$res->fields[link_ss]][$res->fields[seme_year_seme]]+=$res->fields[ss_score]*$res->fields[rate];
 			//領域總加權數
-			$rate[$res->fields[student_sn]][$res->fields[link_ss]][$res->fields[seme_year_seme]]+=$res->fields[rate];
+			$rate[$res->fields['student_sn']][$res->fields[link_ss]][$res->fields[seme_year_seme]]+=$res->fields[rate];
 			$res->MoveNext();
 		}
 		//處理各學期領域平均

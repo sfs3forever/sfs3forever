@@ -64,7 +64,7 @@ if ($_POST[year_name]) {
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
 			$seme_class=$res->fields['seme_class'];
-			$sn[]=$res->fields[student_sn];
+			$sn[]=$res->fields['student_sn'];
 			$res->MoveNext();
 		}
 		$query="select stud_study_year from stud_base where student_sn='".pos($sn)."'";
@@ -137,23 +137,23 @@ if (($_POST['show'] || $_POST['htm'] || $_POST['out'] || $_POST['LOCK']) && $_PO
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
 		$seme_class=$res->fields['seme_class'];
-		$sn[]=$res->fields[student_sn];
-		$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields[student_sn];
-		$stud_data[$res->fields[student_sn]][stud_name]=$res->fields[stud_name];
-		$stud_data[$res->fields[student_sn]][stud_id]=$res->fields[stud_id];
-		$stud_data[$res->fields[student_sn]][stud_person_id]=$res->fields[stud_person_id];
-		$stud_data[$res->fields[student_sn]][stud_sex]=$res->fields[stud_sex];
-		$stud_data[$res->fields[student_sn]][stud_addr_1]=$res->fields[stud_addr_1];
-		$stud_data[$res->fields[student_sn]][stud_tel_1]=$res->fields[stud_tel_1];
-		$stud_data[$res->fields[student_sn]][addr_zip]=$res->fields[addr_zip];
+		$sn[]=$res->fields['student_sn'];
+		$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields['student_sn'];
+		$stud_data[$res->fields['student_sn']]['stud_name']=$res->fields[stud_name];
+		$stud_data[$res->fields['student_sn']][stud_id]=$res->fields[stud_id];
+		$stud_data[$res->fields['student_sn']][stud_person_id]=$res->fields[stud_person_id];
+		$stud_data[$res->fields['student_sn']][stud_sex]=$res->fields[stud_sex];
+		$stud_data[$res->fields['student_sn']][stud_addr_1]=$res->fields[stud_addr_1];
+		$stud_data[$res->fields['student_sn']][stud_tel_1]=$res->fields[stud_tel_1];
+		$stud_data[$res->fields['student_sn']][addr_zip]=$res->fields[addr_zip];
 		$d_arr=explode("-",$res->fields[stud_birthday]);
 		$dd=$d_arr[0]-1911;
 		if ($_POST['out'] && $_POST['cy']==4) {
-			$stud_data[$res->fields[student_sn]][stud_birthday1]=$dd;
-			$stud_data[$res->fields[student_sn]][stud_birthday2]=$d_arr[1];
-			$stud_data[$res->fields[student_sn]][stud_birthday3]=$d_arr[2];
+			$stud_data[$res->fields['student_sn']][stud_birthday1]=$dd;
+			$stud_data[$res->fields['student_sn']][stud_birthday2]=$d_arr[1];
+			$stud_data[$res->fields['student_sn']][stud_birthday3]=$d_arr[2];
 		} else {
-			$stud_data[$res->fields[student_sn]][stud_birthday]=$dd." 年 ".sprintf("%02d",$d_arr[1])." 月 ".sprintf("%02d",$d_arr[2])." 日";
+			$stud_data[$res->fields['student_sn']][stud_birthday]=$dd." 年 ".sprintf("%02d",$d_arr[1])." 月 ".sprintf("%02d",$d_arr[2])." 日";
 		}
 		$res->MoveNext();
 	}
@@ -266,9 +266,9 @@ if ($_POST['out']) {
 		foreach($d as $site => $sn) {
 			$cno=substr($seme_class,-2,2);
 			if ($_POST['cy']==4)
-				$row_arr=array($stud_data[$sn][stud_name],$stud_data[$sn][stud_sex],$stud_data[$sn][stud_person_id],$stud_data[$sn][stud_birthday1],$stud_data[$sn][stud_birthday2],$stud_data[$sn][stud_birthday3],"","","",3,$cno,$site,$s[sch_id],$s[sch_cname],($stud_study_year+3),"","",$stud_data[$sn][stud_tel_1],$stud_data[$sn][stud_tel_1],$stud_data[$sn][addr_zip],$stud_data[$sn][stud_addr_1]);
+				$row_arr=array($stud_data[$sn]['stud_name'],$stud_data[$sn][stud_sex],$stud_data[$sn][stud_person_id],$stud_data[$sn][stud_birthday1],$stud_data[$sn][stud_birthday2],$stud_data[$sn][stud_birthday3],"","","",3,$cno,$site,$s[sch_id],$s[sch_cname],($stud_study_year+3),"","",$stud_data[$sn][stud_tel_1],$stud_data[$sn][stud_tel_1],$stud_data[$sn][addr_zip],$stud_data[$sn][stud_addr_1]);
 			else
-				$row_arr=array($s[sch_id],$cno,$site,$stud_data[$sn][stud_id],$stud_data[$sn][stud_name],$stud_data[$sn][stud_person_id],$stud_data[$sn][stud_sex],$stud_data[$sn][stud_birthday]);
+				$row_arr=array($s[sch_id],$cno,$site,$stud_data[$sn][stud_id],$stud_data[$sn]['stud_name'],$stud_data[$sn][stud_person_id],$stud_data[$sn][stud_sex],$stud_data[$sn][stud_birthday]);
 			if ($_POST['cy']==4) {
 				foreach($s_arr as $j => $sl) {
 					$row_arr[]=$rowdata[$sn][5][$j][score];

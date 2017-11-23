@@ -143,7 +143,7 @@ function get_subj($type='') {
 		$All_sco=&$rs->GetArray();
 
 		foreach ($All_sco as $sco){
-			$sn=$sco[student_sn];
+			$sn=$sco['student_sn'];
 			$ss_id=$sco[ss_id];
 			$test_sort=$sco[test_sort];
 			if ($sco[test_kind]=='定期評量'){

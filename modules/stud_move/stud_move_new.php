@@ -30,7 +30,7 @@ $query="select * from stud_move where move_kind='2'";
 $res=$CONN->Execute($query);		
 $all_sn="";
 while(!$res->EOF) {
-	$all_sn.="'".$res->fields[student_sn]."',";
+	$all_sn.="'".$res->fields['student_sn']."',";
 	$res->MoveNext();
 }
 if (!empty($all_sn)) $all_sn="and a.student_sn not in (".substr($all_sn,0,-1).")";
@@ -44,7 +44,7 @@ switch($_REQUEST[do_key]) {
 		$query="select a.stud_id,a.student_sn from stud_base a right join stud_seme b on a.student_sn=b.student_sn where a.stud_study_year='$stud_study_year' and b.seme_year_seme='".$year_id."1' $all_sn"; 
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$sql_insert="insert into stud_move (stud_id,move_kind,move_year_seme,move_date,move_c_unit,move_c_date,move_c_word,move_c_num,update_id,update_ip,update_time,student_sn) values ('".$res->fields[stud_id]."','13','$curr_seme','$_POST[move_date]','$_POST[move_c_unit]','$_POST[move_c_date]','$_POST[move_c_word]','$_POST[move_c_num]',{$_SESSION['session_log_id']},'$update_ip','".date("Y-m-d G:i:s")."','".$res->fields[student_sn]."')";
+			$sql_insert="insert into stud_move (stud_id,move_kind,move_year_seme,move_date,move_c_unit,move_c_date,move_c_word,move_c_num,update_id,update_ip,update_time,student_sn) values ('".$res->fields[stud_id]."','13','$curr_seme','$_POST[move_date]','$_POST[move_c_unit]','$_POST[move_c_date]','$_POST[move_c_word]','$_POST[move_c_num]',{$_SESSION['session_log_id']},'$update_ip','".date("Y-m-d G:i:s")."','".$res->fields['student_sn']."')";
 			$CONN->Execute($sql_insert) or die($sql_insert);
 			$res->MoveNext();
 		}

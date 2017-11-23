@@ -105,7 +105,7 @@ class certificate{
 
 		$this->S_id=$this->base[stud_id];//學號
 
-		$this->SN=$this->base[student_sn];//學生流水號
+		$this->SN=$this->base['student_sn'];//學生流水號
 		$for_seme=sprintf("%04d",$this->mv_info[move_year_seme]);
 		$this->seme=$for_seme;
 		

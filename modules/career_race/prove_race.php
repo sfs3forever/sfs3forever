@@ -22,7 +22,7 @@ $stud_select="SELECT student_sn,curr_class_num,stud_name,stud_sex,stud_id FROM s
 				WHERE student_sn IN (SELECT student_sn FROM 12basic_ptc WHERE academic_year='$work_year') ORDER BY curr_class_num";
 $rs=$CONN->Execute($stud_select) or user_error("讀取失敗！<br>$stud_select",256);
 while(!$rs->EOF){
-	$student_sn=$rs->fields[student_sn];
+	$student_sn=$rs->fields['student_sn'];
 	$seme_class=substr($rs->fields['curr_class_num'],0,-2);	
 	$seme_num=substr($rs->fields['curr_class_num'],-2);
 	$stud_name=$rs->fields['stud_name'];

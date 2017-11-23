@@ -146,7 +146,7 @@ HERE;
 //echo $query."<BR>";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$sn[]=$res->fields[student_sn];
+			$sn[]=$res->fields['student_sn'];
 			$curr_class_num[]=$_POST[all_classes]?$res->fields[curr_class_num]:$res->fields[seme_num];
 			$stud_name[]=$res->fields[stud_name];
 			$stud_id[]=$res->fields[stud_id];

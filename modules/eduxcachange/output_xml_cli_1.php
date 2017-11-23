@@ -28,7 +28,7 @@ $stud_query = "select * from stud_base where stud_study_cond in (0,15) and subst
 $stud_res = $CONN->Execute($stud_query) or die($stud_query);
 $stud_arr = array();
 while (!$stud_res->EOF) {
-      array_push($stud_arr, $stud_res->fields[student_sn]);
+      array_push($stud_arr, $stud_res->fields['student_sn']);
       $stud_res->MoveNext();
 }
 

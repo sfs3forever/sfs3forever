@@ -113,7 +113,7 @@ function get_charge_decrease($item_id) {
 
 		$detail=($m_arr['is_sort']=="Y"?$res->fields[detail_sort]."-":"").$res->fields[detail];
 
-		$sn=$res->fields[student_sn];
+		$sn=$res->fields['student_sn'];
 
 		$my_grade=substr($res->fields[curr_class_num],0,1);
 
@@ -199,7 +199,7 @@ function get_item_stud_list($item_id,$selected_stud) {
 
 		$data_list[$student_sn][record_id]=$student[1];
 
-		$data_list[$student_sn][stud_name]=$student[2];
+		$data_list[$student_sn]['stud_name']=$student[2];
 
 		$data_list[$student_sn][guardian]=$student[3];
 
@@ -281,7 +281,7 @@ function get_item_all_stud_list($item_id) {
 
 	while(!$res->EOF){
 	
-		$student_sn=$res->fields[student_sn];
+		$student_sn=$res->fields['student_sn'];
 
 		$data_list[$student_sn][record_id]=$res->fields[record_id];
 		$data_list[$student_sn][stud_id]=$res->fields[stud_id];
@@ -294,7 +294,7 @@ function get_item_all_stud_list($item_id) {
 		
 		$data_list[$student_sn][stud_person_id]=$res->fields[stud_person_id];
 		
-		$data_list[$student_sn][stud_name]=$res->fields[stud_name];
+		$data_list[$student_sn]['stud_name']=$res->fields[stud_name];
 
 		//$data_list[$student_sn][guardian]=$student[3];
 
@@ -347,8 +347,8 @@ function get_item_all_stud_list_multi($item_id_list) {
 
 		while(!$res->EOF){
 		
-			$student_sn=$res->fields[student_sn];
-			$key_sn=$res->fields[curr_class_num].'_'.$res->fields[student_sn];
+			$student_sn=$res->fields['student_sn'];
+			$key_sn=$res->fields[curr_class_num].'_'.$res->fields['student_sn'];
 
 			$data_list[$key_sn][record_id]=$res->fields[record_id];
 			$data_list[$key_sn][stud_id]=$res->fields[stud_id];
@@ -361,7 +361,7 @@ function get_item_all_stud_list_multi($item_id_list) {
 			
 			$data_list[$key_sn][stud_person_id]=$res->fields[stud_person_id];
 			
-			$data_list[$key_sn][stud_name]=$res->fields[stud_name];
+			$data_list[$key_sn]['stud_name']=$res->fields[stud_name];
 
 			//$data_list[$student_sn][guardian]=$student[3];
 

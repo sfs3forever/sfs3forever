@@ -107,7 +107,7 @@ if($_POST['Submit2']){
 	}
 }
 if($_POST['Submit3']){
-	$stud_id=$_POST[stud_id];
+	$stud_id=$_POST['stud_id'];
 	while(list($k,$v)=each($stud_id)) {
 		$query="select * from new_stud where temp_id='A".$v."' and stud_study_year='$new_sel_year'";
 		$res=$CONN->Execute($query);
@@ -416,7 +416,7 @@ switch($work){
 			<input type='submit' name='Submit5' value='開始查詢'><br><br>";
 		if ($_POST[Submit5]) {
 			if ($_POST[stud_name]) $where="and stud_name='$_POST[stud_name]'";
-			if ($_POST[stud_id]) $where.="and temp_id='$_POST[stud_id]'";
+			if ($_POST['stud_id']) $where.="and temp_id={$_POST['stud_id']}";
 			if ($_POST[$class_sort]) $where.="and $class_sort='$_POST[$class_sort]'";
 			if ($_POST[stud_person_id]) $where.="and stud_person_id='$_POST[stud_person_id]'";
 			if ($_POST[stud_birthday]) $where.="and stud_birthday='$_POST[stud_birthday]'";

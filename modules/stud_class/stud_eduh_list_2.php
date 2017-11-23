@@ -68,11 +68,11 @@ if(!$counter) {
 } else $class_list="<select name='class_num' onchange=\"this.form.submit()\"><option>請選班級</option>$class_list</select>";
 
 
-$stud_id = $_GET[stud_id];
+$stud_id = $_GET['stud_id'];
 if ($stud_id == '')
-	$stud_id = $_POST[stud_id];
+	$stud_id = $_POST['stud_id'];
 
-switch($_POST[do_key]) {
+switch($_POST['do_key']) {
 	case $editBtn:
         	for ($i=1;$i<=11;$i++) {
 				$data_arr=array();
@@ -89,7 +89,7 @@ switch($_POST[do_key]) {
 				//if (substr($_POST[$sse],0,1) !=',') $_POST[$sse]=','.$_POST[$sse];
 				//if (substr($_POST[$sse],-1) !=',') $_POST[$sse].=',';
         	}
-			$sql_insert = "replace into stud_seme_eduh (seme_year_seme,stud_id,sse_relation,sse_family_kind,sse_family_air,sse_farther,sse_mother,sse_live_state,sse_rich_state,sse_s1,sse_s2,sse_s3,sse_s4,sse_s5,sse_s6,sse_s7,sse_s8,sse_s9,sse_s10,sse_s11) values ('$_POST[sel_seme_year_seme]','$stud_id','$_POST[sse_relation]','$_POST[sse_family_kind]','$_POST[sse_family_air]','$_POST[sse_farther]','$_POST[sse_mother]','$_POST[sse_live_state]','$_POST[sse_rich_state]','$_POST[sse_s1]','$_POST[sse_s2]','$_POST[sse_s3]','$_POST[sse_s4]','$_POST[sse_s5]','$_POST[sse_s6]','$_POST[sse_s7]','$_POST[sse_s8]','$_POST[sse_s9]','$_POST[sse_s10]','$_POST[sse_s11]')";
+			$sql_insert = "replace into stud_seme_eduh (seme_year_seme,stud_id,sse_relation,sse_family_kind,sse_family_air,sse_farther,sse_mother,sse_live_state,sse_rich_state,sse_s1,sse_s2,sse_s3,sse_s4,sse_s5,sse_s6,sse_s7,sse_s8,sse_s9,sse_s10,sse_s11) values ({$_POST['sel_seme_year_seme']},'$stud_id','$_POST[sse_relation]','$_POST[sse_family_kind]','$_POST[sse_family_air]','$_POST[sse_farther]','$_POST[sse_mother]','$_POST[sse_live_state]','$_POST[sse_rich_state]','$_POST[sse_s1]','$_POST[sse_s2]','$_POST[sse_s3]','$_POST[sse_s4]','$_POST[sse_s5]','$_POST[sse_s6]','$_POST[sse_s7]','$_POST[sse_s8]','$_POST[sse_s9]','$_POST[sse_s10]','$_POST[sse_s11]')";
         	$CONN->Execute($sql_insert) or die ($sql_insert);
         	break;
 
@@ -114,7 +114,7 @@ switch($_POST[do_key]) {
 
 //目前學年學期
 $this_seme_year_seme = sprintf("%03d%d",curr_year(),curr_seme());
-$sel_seme_year_seme = $_POST[sel_seme_year_seme];
+$sel_seme_year_seme = $_POST['sel_seme_year_seme'];
 if ($sel_seme_year_seme=='')
 	$sel_seme_year_seme = $this_seme_year_seme;
 
@@ -261,7 +261,7 @@ function check_data(completeness) {
 	$grid1->class_ccs = " class=leftmenu";  // 顏色顯示
 
 	$grid1->sql_str = "select a.stud_id,a.stud_name,a.stud_sex,b.seme_num as sit_num from stud_base a,stud_seme b where a.student_sn=b.student_sn and a.stud_study_cond=0 and b.seme_year_seme='$c_curr_seme' and b.seme_class='$class_num' order by b.seme_num";   //SQL 命令   
-	$grid1->down_str = "<input type=\"hidden\" name=\"sel_seme_year_seme\" value=\"$_POST[sel_seme_year_seme]\">";
+	$grid1->down_str = "<input type=\"hidden\" name=\"sel_seme_year_seme\" value=\"$_POST['sel_seme_year_seme']\">";
 	$grid1->do_query(); //執行命令   
 	$downstr = "<br><font size=2><a href=\"stud_eduh_class.php\" target=\"showclass\">顯示本學期記錄</a></font>";
 	$grid1->print_grid($stud_id,$upstr,$downstr); // 顯示畫面   

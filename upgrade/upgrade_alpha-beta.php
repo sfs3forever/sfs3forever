@@ -9,7 +9,7 @@ $postBtn = "開始升級";
 $alpha_arr = array("0325"=>"sfs-3.0.a4-20030325","0408"=>"sfs-3.0.a4-20030408","0415"=>"sfs-3.0.a4-20030415","0424"=>"sfs-3.0.a4-20030424","0428"=>"sfs-3.0.a4-20030428");
 
 
-if ($_POST[do_key] == $postBtn) {
+if ($_POST['do_key'] == $postBtn) {
 	if($_POST[sfs_var]!='') {
 		$sql_str = "./alpha/".$_POST[sfs_var].".sql";
 		$do_this = false;

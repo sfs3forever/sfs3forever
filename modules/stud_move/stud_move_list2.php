@@ -55,8 +55,8 @@ if($_POST['move_kind'])
 		$move_id = $result->fields["move_id"];
 		$move_kind=$result->fields["move_kind"];
 		$arr[$move_id][move_kind] = $study_cond_array[$move_kind];
-		//$arr[$move_id][stud_name] = "<a href='../stud_search/stu_list.php?student_sn=$student_sn' target='_$student_sn'>{$result->fields[stud_name]}</a>";
-		$arr[$move_id][stud_name] = $result->fields[stud_name];
+		//$arr[$move_id]['stud_name'] = "<a href='../stud_search/stu_list.php?student_sn=$student_sn' target='_$student_sn'>{$result->fields[stud_name]}</a>";
+		$arr[$move_id]['stud_name'] = $result->fields[stud_name];
 		$arr[$move_id][stud_birthday] = $result->fields[stud_birthday];
 		$arr[$move_id][move_date] = $result->fields["move_date"];
 		$arr[$move_id][stud_id] = $result->fields["stud_id"];
@@ -67,11 +67,11 @@ if($_POST['move_kind'])
 		$arr[$move_id][move_year] = substr($result->fields["move_year_seme"],0,-1);
 		$arr[$move_id][move_semester] = substr($result->fields["move_year_seme"],-1);
 		//調校時的班級
-		//$arr[$move_id][curr_class_num] = $result->fields["curr_class_num"];
+		//$arr[$move_id]['curr_class_num'] = $result->fields["curr_class_num"];
 		$student_sn=$result->fields['student_sn'];
 		$sql = "select seme_class,seme_num from stud_seme where student_sn='$student_sn' and seme_year_seme='{$result->fields["move_year_seme"]}'";
 		$rs = $CONN->Execute($sql);
-		$arr[$move_id][curr_class_num]=sprintf("%3d%02d",$rs->fields['seme_class'],$rs->fields['seme_num']);
+		$arr[$move_id]['curr_class_num']=sprintf("%3d%02d",$rs->fields['seme_class'],$rs->fields['seme_num']);
 		$result->MoveNext();
 	}
 	

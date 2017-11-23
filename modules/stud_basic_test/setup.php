@@ -205,14 +205,14 @@ else {
 		$show_sn=array();
 		while(!$res->EOF) {
 			$seme_class=$res->fields['seme_class'];
-			$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields[student_sn];
+			$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields['student_sn'];
 			$res->MoveNext();
 		}
 		$query="select * from stud_base where student_sn in ($allprint)";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
 			$sn=$res->fields['student_sn'];
-			$stud_data[$sn][stud_name]=$res->fields['stud_name'];
+			$stud_data[$sn]['stud_name']=$res->fields['stud_name'];
 			$stud_data[$sn][stud_id]=$res->fields['stud_id'];
 			$stud_data[$sn][stud_person_id]=$res->fields['stud_person_id'];
 			$stud_data[$sn][stud_sex]=$res->fields['stud_sex'];

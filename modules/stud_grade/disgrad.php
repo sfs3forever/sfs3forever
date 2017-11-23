@@ -26,7 +26,7 @@ if ($_POST[disgrade]) {
 	
 	
 	while(!$res->EOF) {
-		$stid[$res->fields[student_sn]]=$res->fields[stud_id];
+		$stid[$res->fields['student_sn']]=$res->fields[stud_id];
 		$res->MoveNext();
 	}
 	while(list($k,$v)=each($_POST[sel])) {
@@ -51,7 +51,7 @@ if ($_POST[year_name]) {
 	$query="select a.student_sn from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme='$seme_year_seme' and a.seme_class like '$seme_class' and b.stud_study_cond in ('0','5','15')";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$sn[]=$res->fields[student_sn];
+		$sn[]=$res->fields['student_sn'];
 		$res->MoveNext();
 	}
 	$query="select count(a.student_sn),b.stud_study_year from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme='$seme_year_seme' and a.seme_class like '$seme_class"."%' and b.stud_study_cond in ('0','5','15') group by b.stud_study_year order by b.stud_study_year desc";
@@ -74,7 +74,7 @@ if ($_POST[year_name]) {
 	$query="select a.*,b.stud_name from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme='$seme_year_seme' and a.student_sn in ($all_sn) order by a.seme_class,a.seme_num";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$ssn=$res->fields[student_sn];
+		$ssn=$res->fields['student_sn'];
 		$show_sn[$ssn]=$ssn;
 		$sclass[$ssn]=$class_base[$res->fields['seme_class']];
 		$snum[$ssn]=$res->fields[seme_num];

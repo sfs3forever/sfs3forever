@@ -81,7 +81,7 @@ if($_POST['act']=='身分批次新增'){
 			while(!$recordSet->EOF)
 			{
 				//('$detail_id',$student_sn,'$curr_class_num','$_POST[a_percent]','$_POST[a_cause]')"
-				$sn=$recordSet->fields[student_sn];
+				$sn=$recordSet->fields['student_sn'];
 				$class_num=$recordSet->fields[curr_class_num];
 				$batch_value.="('$detail_id',$sn,'$class_num','$_POST[b_percent]','$_POST[b_cause]'),";
 				$recordSet->MoveNext();
@@ -158,7 +158,7 @@ $listed=array();
 $main.="　<img border=0 src='images/modify.gif' alt='編修選定減免學生'><select name='decrease_id' onchange='this.form.submit()'><option></option>";
 while(!$res->EOF) {
 	$main.="<option ".($decrease_id==$res->fields[decrease_id]?"selected":"")." value=".$res->fields[decrease_id].">[".$res->fields[curr_class_num]."]".$res->fields[stud_name]."->".$res->fields[cause]."</option>";
-	$student_sn=$res->fields[student_sn];
+	$student_sn=$res->fields['student_sn'];
 	$listed[$student_sn][percent]=$res->fields[percent];
 	$listed[$student_sn][cause]=$res->fields[cause];
 	$res->MoveNext();
@@ -230,7 +230,7 @@ if($item_id and $detail_id)
 	$col=9; //設定每一列顯示幾人
 	$studentdata="<table border=1 cellpadding=3 cellspacing='0' style='border-collapse: collapse; font-size=12px;' bordercolor='#111111' width='100%'><tr><td colspan=$col bgcolor='#AAAAFF' align='center'>◎新增減免學生◎</td></tr>";
 	while(!$recordSet->EOF)	{
-		$student_sn=$recordSet->fields[student_sn];
+		$student_sn=$recordSet->fields['student_sn'];
 		$curr_class_num=$recordSet->fields[curr_class_num];
 		$stud_name=$recordSet->fields[stud_name];
 		$class_no=substr($curr_class_num,-2);
@@ -239,7 +239,7 @@ if($item_id and $detail_id)
 		$pointer=($recordSet->currentrow() % $col)+1;
 		if($pointer==1) $studentdata.="<tr>";
 		if (array_key_exists($student_sn,$listed)) {
-			$studentdata.="<td bgcolor=".($listed[$recordSet->fields[student_sn]-1]?"#CCCCCC":"#FFFFDD")." align='center'>($class_no)$stud_name<br>{$listed[$student_sn][cause]} {$listed[$student_sn][percent]}%</td>";
+			$studentdata.="<td bgcolor=".($listed[$recordSet->fields['student_sn']-1]?"#CCCCCC":"#FFFFDD")." align='center'>($class_no)$stud_name<br>{$listed[$student_sn][cause]} {$listed[$student_sn][percent]}%</td>";
 		} else {
 			$studentdata.="<td bgcolor=".($stud_sex==1?"#CCFFCC":"#FFCCCC")." align='center'><input type='checkbox' name='selected_stud[]' value='$student_sn,$curr_class_num'>($class_no)$stud_name</td>";
 		}
@@ -258,7 +258,7 @@ if($item_id and $detail_id)
     if($class_id){
 		while(!$recordSet->EOF)
 		{
-			$studentdata.="<option value='".$recordSet->fields[student_sn]."_".$recordSet->fields[curr_class_num]."'>(".substr($recordSet->fields[curr_class_num],-2).")".$recordSet->fields[stud_name]."</option>";
+			$studentdata.="<option value='".$recordSet->fields['student_sn']."_".$recordSet->fields[curr_class_num]."'>(".substr($recordSet->fields[curr_class_num],-2).")".$recordSet->fields[stud_name]."</option>";
 			$recordSet->MoveNext();
 		}
 	}

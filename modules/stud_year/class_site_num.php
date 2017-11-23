@@ -147,7 +147,7 @@ if (($submit=="儲存")&&($year_seme)&&($year_name)&&($me)) {
 		while (list($k,$v)=each($move_out)) {
 			$query="select student_sn from stud_seme where seme_year_seme='$seme_year_seme' and stud_id='$k'";
 			$res=$CONN->Execute($query);
-			$student_sn=$res->fields[student_sn];
+			$student_sn=$res->fields['student_sn'];
 			$query="delete from stud_seme where seme_year_seme='$seme_year_seme' and student_sn='$student_sn'";
 			$CONN->Execute($query);
 			if ($sel_year==curr_year() && $sel_seme=curr_seme()) {

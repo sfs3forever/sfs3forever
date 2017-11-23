@@ -170,7 +170,7 @@ class all_year{
 		$arr=$rs->GetArray();
 		$i=0;
 		foreach ($arr as $ary){
-			$st[]=$ary[student_sn];
+			$st[]=$ary['student_sn'];
 			$i++;
 		}
 		$str=join(",",$st);

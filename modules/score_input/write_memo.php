@@ -184,7 +184,7 @@ if(strstr ($teacher_course, 'g')){
 $rs=$CONN->Execute($sql);
 $i=0;
 while (!$rs->EOF) {
-	$all_sn.=$rs->fields[student_sn].",";
+	$all_sn.=$rs->fields['student_sn'].",";
 	$i++;
 	$rs->MoveNext();
 }
@@ -202,7 +202,7 @@ if ($res->rs[0]<$stud_numbers) {
 		$sst = $res->rs[0];
 		$sql="select student_sn from stud_seme_score where student_sn='$sst' and ss_id='$ss_id' and seme_year_seme='$seme_year_seme'";
 		$rs=$CONN->Execute($sql);
-		if (empty($rs->fields[student_sn])) {
+		if (empty($rs->fields['student_sn'])) {
 			$query = "INSERT INTO stud_seme_score(seme_year_seme,student_sn,ss_id,teacher_sn)values('$seme_year_seme','$sst','$ss_id','$_SESSION[session_tea_sn]')";
 			$CONN->Execute($query);
 		}

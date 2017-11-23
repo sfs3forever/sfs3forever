@@ -112,9 +112,9 @@ class basic_chc{
 			"stud_sex"=>$res->fields[stud_sex],
 			"seme_class"=>$class_base{$res->fields['seme_class']},
 			"seme_num"=>$res->fields[seme_num],
-			"student_sn"=>$res->fields[student_sn]
+			"student_sn"=>$res->fields['student_sn']
 			);
-			$this->students_sn .= "&students_sn[]=".$res->fields[student_sn];
+			$this->students_sn .= "&students_sn[]=".$res->fields['student_sn'];
 			$res->MoveNext();
 		}
 	}

@@ -20,7 +20,7 @@ if($_POST[go]){
 	$res=$CONN->Execute($sql) or trigger_error("SQL語法錯誤：$sql", E_USER_ERROR);
 	while(!$res->EOF){
 		$stud_id=$res->fields[stud_id];
-		$student_sn=$res->fields[student_sn];
+		$student_sn=$res->fields['student_sn'];
 		$stud_name=$res->fields[stud_name];
 		$grade=substr($res->fields[curr_class_num],0,-4);
 		$curr_class_num=$res->fields[curr_class_num];
@@ -30,7 +30,7 @@ if($_POST[go]){
 		foreach($default_check_item as $key=>$value){
 			if($_POST[$key])
 			if(! $res->fields[$key]){
-				$error_array[$class_id][$curr_class_num][stud_name]=$stud_name;
+				$error_array[$class_id][$curr_class_num]['stud_name']=$stud_name;
 				$error_array[$class_id][$curr_class_num][class_name]=$class_name;			
 				$error_array[$class_id][$curr_class_num][error].=$check_array[$key].',';	
 			}

@@ -50,7 +50,7 @@ if ($_POST[class_id]=='all' && $_POST[smenu]=='school2'){
 	    	grad_stud c,stud_domicile as d where   
 	    	b.seme_year_seme='$seme_year_seme' and  b.student_sn=a.student_sn 
 	    	and b.stud_id=d.stud_id and b.stud_id=c.stud_id 
-	    	and  c.stud_grad_year='$_POST['year_seme']' and c.new_school='$_POST[sel_school]' 
+	    	and  c.stud_grad_year={$_POST['year_seme']} and c.new_school='$_POST[sel_school]' 
 	    	order by b.seme_class,b.seme_num ";
 //	    	echo $SQL;
    $rs =$CONN->Execute($SQL) or user_error("讀取失敗！<br>$SQL",256) ; 

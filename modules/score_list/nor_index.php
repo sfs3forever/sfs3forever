@@ -55,9 +55,9 @@ for($i=0; $i<$rs->RecordCount(); $i++) {
 
 echo "
 <tr bgcolor='$v_color' style='font-size:10pt;'>
-<TD>".$arr[$i][seme_num]."</TD>
+<TD>".$arr[$i]['seme_num']."</TD>
 <TD>".$arr[$i][stud_id]."</TD>
-<TD>".$arr[$i][stud_name]."</TD>
+<TD>".$arr[$i]['stud_name']."</TD>
 <TD>".$arr[$i][ss_score]."</TD>
 <TD>".$arr[$i][ss_score_memo]."</TD>
 </TR>";

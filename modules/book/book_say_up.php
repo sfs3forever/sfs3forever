@@ -13,7 +13,7 @@ $postBtn = "確定";
 //mysqli
 $mysqliconn = get_mysqli_conn();
 
-if ($_POST[do_key]==$postBtn){
+if ($_POST['do_key']==$postBtn){
 	//修改
 	$bs_title = AddSlashes($_POST[bs_title]);
 	$bs_con = AddSlashes($_POST[bs_con]);

@@ -26,7 +26,7 @@ if ($_POST[act]=='OK') {
 		  }
 			$rs=$CONN->Execute($SQL) or die("無法查詢，語法:".$SQL);
 			$All_ss=$rs->GetArray();
-			foreach($All_ss as $ss){$sn_ary[]=$ss[student_sn];}
+			foreach($All_ss as $ss){$sn_ary[]=$ss['student_sn'];}
 		}else{
 			//--- 2013-09-25 修正 增加是否為在學生的判斷
 			$SQL="select stud_id,student_sn from stud_base where (stud_study_cond>=0  and stud_study_cond<=2) and stud_id ='$list_stud_id' order by stud_id";
@@ -37,7 +37,7 @@ if ($_POST[act]=='OK') {
 
 			$rs=$CONN->Execute($SQL) or die("無法查詢，語法:".$SQL);
 			$All_ss=$rs->GetArray();
-			foreach($All_ss as $ss){$sn_ary[]=$ss[student_sn];}
+			foreach($All_ss as $ss){$sn_ary[]=$ss['student_sn'];}
 		}
 	}
 
@@ -220,7 +220,7 @@ function get_stsn($class_id){
 		$rs = $CONN->Execute($SQL);
 		$the_sn=$rs->GetArray();
 		for ($i=0;$i<$rs->RecordCount();$i++){
-			array_push($st_sn,$the_sn[$i][student_sn]);
+			array_push($st_sn,$the_sn[$i]['student_sn']);
 		}
 	}
 	return $st_sn;

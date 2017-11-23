@@ -128,7 +128,7 @@ for ($i=0;$i<count($arr);$i++) {
 if($arr[$i][addr_move_in]=='0000-00-00') $arr[$i][addr_move_in]='';
 echo "<TR bgcolor=white>
 <TD>".$arr[$i][stud_id]."</TD>
-<TD align='center'>".$arr[$i][seme_num]."</TD><TD nowrap>".$arr[$i][stud_name]."</TD>
+<TD align='center'>".$arr[$i]['seme_num']."</TD><TD nowrap>".$arr[$i]['stud_name']."</TD>
 <TD align='center'>".$Sex[$arr[$i][stud_sex]]."</TD><TD>".$arr[$i][stud_name_eng]."</TD><TD align='center'>".$arr[$i][bir]."</TD>
 <TD>".$arr[$i][stud_person_id]."</TD><TD>".$arr[$i][stud_tel_1]."</TD>
 <TD>".$arr[$i][stud_tel_2]."</TD><TD>".$arr[$i][stud_tel_3]."</TD>
@@ -157,10 +157,10 @@ echo "<TABLE border=0 width=100% style='font-size:12pt;'  cellspacing=1 cellpadd
 </TR>";
 	$size=$T_long[$_GET[IT]];
 	for ($i=0;$i<count($arr);$i++) {
-	$ED_Item="<INPUT TYPE='text' size=$size  NAME='stud_sn[".$arr[$i][student_sn]."]' value='".$arr[$i][$_GET[IT]]."'  onfocus=\"this.select();return false ;\" onkeydown=\"moveit2(this,event);\"  class=bub>";
-	echo "<TR bgcolor=white><TD>".$arr[$i][student_sn]."</TD>
-	<TD>".$arr[$i][stud_id]."</TD><TD>".$arr[$i][seme_num]."</TD>
-	<TD nowrap>".$arr[$i][stud_name]."</TD><TD>".$ED_Item."&nbsp;</TD></TR>";
+	$ED_Item="<INPUT TYPE='text' size=$size  NAME='stud_sn[".$arr[$i]['student_sn']."]' value='".$arr[$i][$_GET[IT]]."'  onfocus=\"this.select();return false ;\" onkeydown=\"moveit2(this,event);\"  class=bub>";
+	echo "<TR bgcolor=white><TD>".$arr[$i]['student_sn']."</TD>
+	<TD>".$arr[$i][stud_id]."</TD><TD>".$arr[$i]['seme_num']."</TD>
+	<TD nowrap>".$arr[$i]['stud_name']."</TD><TD>".$ED_Item."&nbsp;</TD></TR>";
 	}
 	echo "<TR bgcolor=white><TD colspan=4 align=center></TD><TD><INPUT TYPE='reset' value='重設表單'>
 	<INPUT TYPE=button  value='填好送出' onclick=\" bb('確定？OK？要寫到資料庫了喔！','edit');\" >
@@ -190,11 +190,11 @@ echo "<INPUT TYPE='radio' NAME='kkind' value='Addb@@@stud_addr_1'>將 <FONT COLO
 
 
 for ($i=0;$i<count($arr);$i++) {
-	echo "<INPUT TYPE='hidden' name='Ta[".$arr[$i][student_sn]."]' value='".$arr[$i][stud_tel_1]."'>\n";
-	echo "<INPUT TYPE='hidden' name='Tb[".$arr[$i][student_sn]."]' value='".$arr[$i][stud_tel_2]."'>\n";
-	echo "<INPUT TYPE='hidden' name='Tc[".$arr[$i][student_sn]."]' value='".$arr[$i][stud_tel_3]."'>\n";
-	echo "<INPUT TYPE='hidden' name='Adda[".$arr[$i][student_sn]."]' value='".$arr[$i][stud_addr_1]."'>\n";
-	echo "<INPUT TYPE='hidden' name='Addb[".$arr[$i][student_sn]."]' value='".$arr[$i][stud_addr_2]."'>\n";
+	echo "<INPUT TYPE='hidden' name='Ta[".$arr[$i]['student_sn']."]' value='".$arr[$i][stud_tel_1]."'>\n";
+	echo "<INPUT TYPE='hidden' name='Tb[".$arr[$i]['student_sn']."]' value='".$arr[$i][stud_tel_2]."'>\n";
+	echo "<INPUT TYPE='hidden' name='Tc[".$arr[$i]['student_sn']."]' value='".$arr[$i][stud_tel_3]."'>\n";
+	echo "<INPUT TYPE='hidden' name='Adda[".$arr[$i]['student_sn']."]' value='".$arr[$i][stud_addr_1]."'>\n";
+	echo "<INPUT TYPE='hidden' name='Addb[".$arr[$i]['student_sn']."]' value='".$arr[$i][stud_addr_2]."'>\n";
 	}
 
 	echo "<INPUT TYPE='reset' value='重設表單'>

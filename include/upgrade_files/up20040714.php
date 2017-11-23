@@ -21,7 +21,7 @@ if ($CONN->Execute($query)) {
 	if ($res) {
 		while(!$res->EOF) {
 			if (intval($res->fields[c])<2) break; 
-			$student_sn=$res->fields[student_sn];
+			$student_sn=$res->fields['student_sn'];
 			$ss_id=$res->fields[ss_id];
 			$test_kind=$res->fields[test_kind];
 			$test_sort=$res->fields[test_sort];
@@ -44,7 +44,7 @@ if ($CONN->Execute($query)) {
 	while(!$res->EOF) {
 		$seme_class=$res->fields['seme_class'];
 		$class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,substr($seme_class,0,-2),substr($seme_class,-2,2));
-		$stud_arr[$class_id].="'".$res->fields[student_sn]."',";
+		$stud_arr[$class_id].="'".$res->fields['student_sn']."',";
 		$res->MoveNext();
 	}
 	while(list($class_id,$all_sn)=each($stud_arr)){

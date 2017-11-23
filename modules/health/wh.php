@@ -184,17 +184,17 @@ switch ($_POST['sub_menu_id']) {
 		while(list($seme_class,$v)=each($health_data->stud_data)) {
 			while(list($seme_num,$vv)=each($v)) {
 				$year_name=substr($seme_class,0,strlen($seme_class)-2);
-				$sex=$health_data->stud_base[$vv[student_sn]][stud_sex];
-				if ($health_data->health_data[$vv[student_sn]][$_POST['year_seme']][height]) {
-					$ytemp[$year_name][$sex][height]+=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']][height];
+				$sex=$health_data->stud_base[$vv['student_sn']][stud_sex];
+				if ($health_data->health_data[$vv['student_sn']][$_POST['year_seme']][height]) {
+					$ytemp[$year_name][$sex][height]+=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']][height];
 					$ytemp[$year_name][$sex][hnums]++;
 				}
-				if ($health_data->health_data[$vv[student_sn]][$_POST['year_seme']][weight]) {
-					$ytemp[$year_name][$sex][weight]+=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']][weight];
+				if ($health_data->health_data[$vv['student_sn']][$_POST['year_seme']][weight]) {
+					$ytemp[$year_name][$sex][weight]+=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']][weight];
 					$ytemp[$year_name][$sex][wnums]++;
 				}
-				if ($health_data->health_data[$vv[student_sn]][$_POST['year_seme']][BMI]) {
-					$ytemp[$year_name][$sex][BMI]+=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']][BMI];
+				if ($health_data->health_data[$vv['student_sn']][$_POST['year_seme']][BMI]) {
+					$ytemp[$year_name][$sex][BMI]+=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']][BMI];
 					$ytemp[$year_name][$sex][bnums]++;
 				}
 			}
@@ -225,7 +225,7 @@ switch ($_POST['sub_menu_id']) {
 				$year_name=substr($seme_class,0,-2);
 				$sex=$health_data->stud_base[$vv['student_sn']]['stud_sex'];
 				if ($health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['BMI']) {
-					$b=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']]['Bid'];
+					$b=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']]['Bid'];
 					$data_arr[$year_name][$sex][$b]++;
 					$data_arr[$year_name][$sex]['all']++;
 					$data_arr[$year_name]['all'][$b]++;
@@ -281,8 +281,8 @@ switch ($_POST['sub_menu_id']) {
 			while(list($seme_class,$v)=each($health_data->stud_data)) {
 				while(list($seme_num,$vv)=each($v)) {
 					$year_name=substr($seme_class,0,strlen($seme_class)-2);
-					$ytemp[$year_name][$health_data->stud_base[$vv[student_sn]][stud_sex]][value]+=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']][$hvalue];
-					$ytemp[$year_name][$health_data->stud_base[$vv[student_sn]][stud_sex]][nums]++;
+					$ytemp[$year_name][$health_data->stud_base[$vv['student_sn']][stud_sex]][value]+=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']][$hvalue];
+					$ytemp[$year_name][$health_data->stud_base[$vv['student_sn']][stud_sex]][nums]++;
 				}
 			}
 			$dy=($IS_JHORES==0)?1:7;
@@ -403,9 +403,9 @@ switch ($_POST['sub_menu_id']) {
 						$a=array();
 						$seme_year=substr($seme_class,0,-2);
 						$seme_name=substr($seme_class,-2,2);
-						$sn=$vv[student_sn];
+						$sn=$vv['student_sn'];
 						$hh=$health_data->health_data[$sn][$_POST['year_seme']];
-						$temp_arr["chart"][]=array($seme_year,$seme_name,$seme_num,$health_data->stud_base[$sn][stud_name],$hh[height],$hh[weight],$Bid_arr[$hh[Bid]],$hh[GHD],$hh[BMI],$hh['years']);
+						$temp_arr["chart"][]=array($seme_year,$seme_name,$seme_num,$health_data->stud_base[$sn]['stud_name'],$hh[height],$hh[weight],$Bid_arr[$hh[Bid]],$hh[GHD],$hh[BMI],$hh['years']);
 					}
 				}
 				$x->items=$temp_arr;
@@ -418,13 +418,13 @@ switch ($_POST['sub_menu_id']) {
 			while(list($seme_class,$v)=each($health_data->stud_data)) {
 				while(list($seme_num,$vv)=each($v)) {
 					$year_name=substr($seme_class,0,strlen($seme_class)-2);
-					$sex=$health_data->stud_base[$vv[student_sn]][stud_sex];
-					if ($health_data->health_data[$vv[student_sn]][$_POST['year_seme']][height]) {
-						$ytemp[$year_name][$sex][height]+=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']][height];
+					$sex=$health_data->stud_base[$vv['student_sn']][stud_sex];
+					if ($health_data->health_data[$vv['student_sn']][$_POST['year_seme']][height]) {
+						$ytemp[$year_name][$sex][height]+=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']][height];
 						$ytemp[$year_name][$sex][hnums]++;
 					}
-					if ($health_data->health_data[$vv[student_sn]][$_POST['year_seme']][weight]) {
-						$ytemp[$year_name][$sex][weight]+=$health_data->health_data[$vv[student_sn]][$_POST['year_seme']][weight];
+					if ($health_data->health_data[$vv['student_sn']][$_POST['year_seme']][weight]) {
+						$ytemp[$year_name][$sex][weight]+=$health_data->health_data[$vv['student_sn']][$_POST['year_seme']][weight];
 						$ytemp[$year_name][$sex][wnums]++;
 					}
 				}
@@ -451,7 +451,7 @@ switch ($_POST['sub_menu_id']) {
 			while(list($seme_num,$vv)=each($v)) {
 				$y=substr($seme_class,0,-2);
 				$c=substr($seme_class,-2,2);
-				$h=ceil(($health_data->health_data[$vv[student_sn]][$_POST['year_seme']][height]-1)/5)*5;
+				$h=ceil(($health_data->health_data[$vv['student_sn']][$_POST['year_seme']][height]-1)/5)*5;
 				if ($h>0) {
 					$data_arr[$y][$c][$h]++;
 					$data_arr[$y][$c][all]++;

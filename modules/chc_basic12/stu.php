@@ -118,7 +118,7 @@ class chc_seme{
 		if ($rs->RecordCount()==0) backe("01.系統暫無您的資料！");
 		$All=$rs->GetArray();
 		$this->stu=$All[0];
-		$this->stu[student_sn]=$this->Sn;//--106.04.28 新增此行,讓一二年級可網路查詢自己的檢核表		
+		$this->stu['student_sn']=$this->Sn;//--106.04.28 新增此行,讓一二年級可網路查詢自己的檢核表		
 		$SQL="select a.student_sn,a.stud_id,a.stud_study_cond,
 		b.seme_year_seme,b.seme_class,b.seme_num 
 		from stud_base a, stud_seme b, chc_basic12 c  where 

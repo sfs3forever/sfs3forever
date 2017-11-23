@@ -4,7 +4,7 @@ include "../include/sfs_case_PLlib.php";
 include "update_function.php";
 set_time_limit(600) ;
 $oth_arr = array("book"=>"圖書管理系統","compclass"=>"空堂預約系統","docup"=>"文件資料庫","board"=>"校務佈告欄");
-if ($_POST[do_key]=='執行升級') {
+if ($_POST['do_key']=='執行升級') {
 	switch ($_POST[sel_key]){
 		case "book":
 

@@ -19,7 +19,7 @@ if ($_POST[test]) {
 			$fp=fopen($temp_file,"w");
 			$k=fputs($fp,$dir_name);
 			fclose($fp);
-			$err_msg=($k)?"寫入成功\":"寫入失敗";
+			$err_msg=($k)?"寫入成功":"寫入失敗";
 		} else {
 			$err_msg="目錄無法寫入";
 		}

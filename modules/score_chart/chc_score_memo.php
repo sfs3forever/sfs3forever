@@ -120,7 +120,7 @@ function get_stu(){
 		$All_sco=&$rs->GetArray();
 //		print_r($All_sco);
 		foreach ($All_sco as $ary){
-			$sn=$ary[student_sn];
+			$sn=$ary['student_sn'];
 			$sco[$sn]=$ary;
 			}
 

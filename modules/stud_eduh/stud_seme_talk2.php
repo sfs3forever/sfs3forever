@@ -15,13 +15,13 @@ $this_year = sprintf("%03d",curr_year());
 //目前學年學期
 $this_seme_year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 
-$sel_seme_year_seme = $_POST[sel_seme_year_seme];
+$sel_seme_year_seme = $_POST['sel_seme_year_seme'];
 if ($sel_seme_year_seme=='')
 	$sel_seme_year_seme = $this_seme_year_seme;
 
-$stud_id = $_GET[stud_id];
+$stud_id = $_GET['stud_id'];
 if ($stud_id == '')
-	$stud_id = $_POST[stud_id];
+	$stud_id = $_POST['stud_id'];
 $c_curr_class=$_GET[c_curr_class];
 if($c_curr_class=='')
 	$c_curr_class = $_POST[c_curr_class];
@@ -32,25 +32,25 @@ if($c_curr_seme=='')
 
 $do_key = $_GET[do_key];
 if ($do_key == '')
-	$do_key = $_POST[do_key];
+	$do_key = $_POST['do_key'];
 
-$interview=$_POST[interview]?$_POST[interview]:$_SESSION['session_tea_name'];	
+$interview=$_POST['interview']?$_POST['interview']:$_SESSION['session_tea_name'];	
 
 $char_replace=array("<"=>"＜",">"=>"＞","'"=>"’","\""=>"”");
 foreach($char_replace as $key=>$value){
-	$_POST[sst_name]=str_replace($key,$value,$_POST[sst_name]);
-	$_POST[sst_main]=str_replace($key,$value,$_POST[sst_main]);
-	$_POST[sst_memo]=str_replace($key,$value,$_POST[sst_memo]);
+	$_POST['sst_name']=str_replace($key,$value,$_POST['sst_name']);
+	$_POST['sst_main']=str_replace($key,$value,$_POST['sst_main']);
+	$_POST['sst_memo']=str_replace($key,$value,$_POST['sst_memo']);
 }
 
 switch($do_key) {
 	//新增確定
 	case $newBtn:
 
-	$seme_year_seme = $_POST[sel_seme_year_seme];
+	$seme_year_seme = $_POST['sel_seme_year_seme'];
 	if ($seme_year_seme =='')
 		$seme_year_seme = $this_seme_year_seme;
-	$sql_insert = "insert into stud_seme_talk (seme_year_seme,stud_id,sst_date,sst_name,sst_main,sst_memo,teach_id,interview,interview_method) values ('$sel_seme_year_seme','$_POST[stud_id]','$_POST[sst_date]','$_POST[sst_name]','$_POST[sst_main]','$_POST[sst_memo]','{$_SESSION['session_tea_sn']}','$interview','$_POST[interview_method]')";
+	$sql_insert = "insert into stud_seme_talk (seme_year_seme,stud_id,sst_date,sst_name,sst_main,sst_memo,teach_id,interview,interview_method) values ('$sel_seme_year_seme',{$_POST['stud_id']},'$_POST[sst_date]',{$_POST['sst_name']},{$_POST['sst_main']},{$_POST['sst_memo']},'{$_SESSION['session_tea_sn']}','$interview','$_POST[interview_method]')";
 	$CONN->Execute($sql_insert) or die($sql_insert);
 	$sst_date ='';
 	$sst_name ='';
@@ -90,7 +90,7 @@ switch($do_key) {
 	
 	//確定修改
 	case $editBtn:
-	$sql_update = "update stud_seme_talk set seme_year_seme='$_POST[seme_year_seme]',sst_date='$_POST[sst_date]',sst_name='$_POST[sst_name]',sst_main='$_POST[sst_main]',sst_memo='$_POST[sst_memo]',interview='$interview',interview_method='$_POST[interview_method]' where sst_id='$_POST[sst_id]'";
+	$sql_update = "update stud_seme_talk set seme_year_seme={$_POST['seme_year_seme']},sst_date='$_POST[sst_date]',sst_name={$_POST['sst_name']},sst_main={$_POST['sst_main']},sst_memo={$_POST['sst_memo']},interview='$interview',interview_method='$_POST[interview_method]' where sst_id='$_POST[sst_id]'";
 	$CONN->Execute($sql_update) or die($sql_update);
 	break;
 	
@@ -108,9 +108,9 @@ $field_data = get_field_info("stud_seme_talk");
 $linkstr = "stud_id=$stud_id&c_curr_class=$c_curr_class&c_curr_seme=$c_curr_seme";
 
 //if ($stud_id=='')
-//	$stud_id= $_GET[stud_id];
+//	$stud_id= $_GET['stud_id'];
 //if ($stud_id=='')
-//	$stud_id= $_POST[stud_id];
+//	$stud_id= $_POST['stud_id'];
 
 
 
@@ -205,7 +205,7 @@ function setfocus(element) {
 	$grid1->class_ccs = " class=leftmenu";  // 顏色顯示
 	$grid1->sql_str = "select a.stud_id,a.stud_name,a.stud_sex,b.seme_num as sit_num from stud_base a,stud_seme b where a.student_sn=b.student_sn  and (a.stud_study_cond=0 or a.stud_study_cond=5) and  b.seme_year_seme='$c_curr_seme' and b.seme_class='$seme_class' order by b.seme_num ";   //SQL 命令   
 
-	$downstr = "<input type=\"hidden\" name=\"sel_seme_year_seme\" value=\"$_POST[sel_seme_year_seme]\"><input type=\"hidden\" name=\"sel_this_year\" value=\"$_REQUEST[sel_this_year]\">";
+	$downstr = "<input type=\"hidden\" name=\"sel_seme_year_seme\" value=\"$_POST['sel_seme_year_seme']\"><input type=\"hidden\" name=\"sel_this_year\" value=\"$_REQUEST[sel_this_year]\">";
 	$grid1->do_query(); //執行命令   
 	
 	$grid1->print_grid($stud_id,$upstr,$downstr); // 顯示畫面   

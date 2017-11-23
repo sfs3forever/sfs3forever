@@ -22,7 +22,7 @@ foreach($table_list as $key=>$table_name)
 		while(!$res->EOF) {
 			//echo "　　==>處理第".$res->CurrentRow()."筆!<br>";
 			$year_seme=$res->fields[seme_year_seme];
-			$student_sn=$res->fields[student_sn];
+			$student_sn=$res->fields['student_sn'];
 			$ss_id=$res->fields[ss_id];
 			$counter=$res->fields[counter];
 			echo "<tr><td align='center'>$student_sn</td><td align='center'>$ss_id</td><td align='center'>$counter</td><td>";

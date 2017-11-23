@@ -114,7 +114,7 @@ while (list($m,$v)=each($stud_sn)) {
 	$stud_name=$rs->fields['stud_name'];
 	$stud_id[$m]=$rs->fields['stud_id'];
 	$site_num=student_sn_to_site_num($stud_sn[$m]);
-	$data[$site_num-1][stud_name]=$stud_name;
+	$data[$site_num-1]['stud_name']=$stud_name;
 	$data[$site_num-1][stud_id]=$stud_id[$m];
 
 	$table_score="";
@@ -210,7 +210,7 @@ while (list($m,$v)=each($stud_sn)) {
 		}
 		$CONN->Execute($sql_update) or die($sql_update);
 	}
-//	echo $m."---".$stud_id[$m]."--".$stud_score[$stud_id[$m]][stud_name]."<br>";
+//	echo $m."---".$stud_id[$m]."--".$stud_score[$stud_id[$m]]['stud_name']."<br>";
 }
 if ($edit_score or $edit_one) $act="<input type='hidden' name='pact' value='s'>";
 elseif ($edit_comment) $act="<input type='hidden' name='pact' value='c'>";

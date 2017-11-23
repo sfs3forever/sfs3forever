@@ -115,7 +115,7 @@ $up_file_name =$upgrade_str."2014-09-02.txt";
 if (!is_file($up_file_name)){
 	$query ="ALTER TABLE `stud_seme_talk` ADD `interview_method` varchar(10) AFTER `interview`;";
 	if ($CONN->Execute($query))
-		$str="新增訪談方式欄位成功\";
+		$str="新增訪談方式欄位成功";
 	else
 		$str="新增訪談方式欄位失敗";
 	$temp_query = "於stud_seme_talk 資料表新增訪談方式 -- by infodaes 2014-09-02 \n$query";
@@ -128,7 +128,7 @@ $up_file_name =$upgrade_str."2015-08-18.txt";
 if (!is_file($up_file_name)){
 	$query ="ALTER TABLE `stud_base` CHANGE `stud_sex` `stud_sex` TINYINT( 3 ) NULL DEFAULT NULL;";
 	if ($CONN->Execute($query))
-		$str="修正性別欄位設定成功\";
+		$str="修正性別欄位設定成功";
 	else
 		$str="修正性別欄位設定失敗";
 	$temp_query = "取消 `stud_base` 資料表 stud_sex 欄位的 unsign 設定 -- by smallduh 2015-08-18 \n$query";

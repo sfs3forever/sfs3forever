@@ -72,14 +72,14 @@ if($item_id)
 
 			//echo "=== $grade ==> $class_id <BR>";
 			
-			$my_decrease=$decrease_dollars[$recordSet->fields[student_sn]][total];
+			$my_decrease=$decrease_dollars[$recordSet->fields['student_sn']][total];
 			$my_should_paid=$item_total-$my_decrease;
 			$left=$my_should_paid-($recordSet->fields[dollars]);
 			if($left<>0){
 				$counter+=1;
 				if($left>0) $my_bgcolor="#FFFFFF"; else $my_bgcolor="#FFDDDD";
 				//列表
-				$my_decrease=$decrease_dollars[$recordSet->fields[student_sn]][total];
+				$my_decrease=$decrease_dollars[$recordSet->fields['student_sn']][total];
 				
 				$showdata.="<tr bgcolor=$my_bgcolor><td align='center'>$counter</td>";
 				$showdata.="<td align='center'>".$recordSet->fields[record_id]."</td>";

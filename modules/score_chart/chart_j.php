@@ -15,7 +15,7 @@ $oth_arr_score_2 = array(5=>"表現優異",4=>"表現良好",3=>"表現尚可",2
 
 $year_seme=($_POST['year_seme'])?$_POST['year_seme']:$_GET[year_seme];
 $class_id=($_POST[class_id])?$_POST[class_id]: $_GET[class_id];
-$student_sn=($_POST[student_sn])?$_POST[student_sn]:$_GET[student_sn];
+$student_sn=($_POST['student_sn'])?$_POST['student_sn']:$_GET['student_sn'];
 $act=($_POST[act])?$_POST[act]:$_GET[act];
 $stu_num=($_POST[stu_num])?$_POST[stu_num]:$_GET[stu_num];
 
