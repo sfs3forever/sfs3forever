@@ -87,7 +87,7 @@ if ($_POST[act]=='OK' && is_array($_POST[class_id]) ){
 			$base_ary = get_base_data($student_sn);
 			$class_data[$class_id][$student_sn][base][stud_id]=$base_ary[stud_id];
 			$class_data[$class_id][$student_sn][base]['stud_name']=$base_ary[stud_name];
-			$class_data[$class_id][$student_sn][base][class_id]=$base_ary[class_id];
+			$class_data[$class_id][$student_sn][base]['class_id']=$base_ary[class_id];
 			$class_data[$class_id][$student_sn][base][cla_no]=$base_ary[cla_no];
 			$class_data[$class_id][$student_sn][base]['seme_num']=$base_ary[seme_num];
 			$class_data[$class_id][$student_sn][base][stud_sex]=$base_ary[stud_sex];

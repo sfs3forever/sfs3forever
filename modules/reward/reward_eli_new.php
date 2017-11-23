@@ -44,7 +44,7 @@ if ($past_class_id==$class_id) {
 			$seme_num=intval($class_num);
 			$query="select * from stud_seme where seme_year_seme='$seme_year_seme' and seme_class='$seme_class' and seme_num='$seme_num'";
 			$res=$CONN->Execute($query);
-			$stud_id=$res->fields[stud_id];
+			$stud_id=$res->fields['stud_id'];
 			$class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,$year_name+$IS_JHORES,$class_name);
 		} else {
 			$query="select a.* from stud_seme a,stud_base b where a.seme_year_seme='$seme_year_seme' and a.student_sn=b.student_sn and b.stud_study_cond in ($in_study) and a.stud_id='$stud_id'";
@@ -52,7 +52,7 @@ if ($past_class_id==$class_id) {
 			$seme_class=$res->fields['seme_class'];
 			$year_name=intval(substr($seme_class,0,-2))-$IS_JHORES;
 			$class_name=intval(substr($seme_class,-2,2));
-			$class_num=intval($res->fields[seme_num]);
+			$class_num=intval($res->fields['seme_num']);
 			$class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,$year_name+$IS_JHORES,$class_name);
 		}
 	}
@@ -66,7 +66,7 @@ if ($past_class_id==$class_id) {
 	$seme_class=$res->fields['seme_class'];
 	$class_num=intval($res->fields['seme_num']);
 	$class_name=intval(substr($seme_class,-2,2));
-	$class_num=intval($res->fields[seme_num]);
+	$class_num=intval($res->fields['seme_num']);
 	$year_name-=$IS_JHORES;
 }
 
@@ -101,7 +101,7 @@ if (empty($class_id)) $class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,
 if (empty($stud_id)) {
 	$query="select a.* from stud_seme a,stud_base b where a.seme_year_seme='$seme_year_seme' and a.student_sn=b.student_sn and b.stud_study_cond in ($in_study) order by a.seme_class,a.seme_num";
 	$res=$CONN->Execute($query);
-	$stud_id=$res->fields[stud_id];
+	$stud_id=$res->fields['stud_id'];
 }
 $class_select=&classSelect($sel_year,$sel_seme,"","class_id",$class_id,true);
 $stud_select=get_stud_select($class_id,$stud_id,"stud_id","this.form.submit",1);

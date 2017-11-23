@@ -52,7 +52,7 @@ $i=0;
  	
  	$query="select a.student_sn,b.stud_name from stud_seme a,stud_base b where a.student_sn=b.student_sn and a.seme_year_seme=lpad('$seme_year_seme',4,0) and a.stud_id='$stud_id'";
   $res=mysql_query($query);
-  list($student_sn,$stud_name)=mysql_fetch_row($res);
+  list($student_sn,$stud_name)=mysqli_fetch_row($res);
   echo "(記錄 $i )".$seme_year_seme."學期 , 學生:".$stud_name."($stud_id) 的 student_sn=".$old_student_sn." ==>應修正為".$student_sn;
   
   if ($_POST['confirm_save']==1) {

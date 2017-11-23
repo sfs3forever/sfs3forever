@@ -136,7 +136,7 @@ function get_race_record($c_curr_seme='',$teacher_sn='',$student_sn='') {
  $sql="select day from school_day where year='$year' and seme='$seme' and day_kind='start'";
  /* 原始 php 的 MySQL 函式 
  $res=mysql_query($sql);
- list($st_date)=mysql_fetch_row($res);
+ list($st_date)=mysqli_fetch_row($res);
  */
  /* ADODB 寫法 */
  $res=$CONN->Execute($sql) or die("SQL錯誤:$sql");
@@ -146,7 +146,7 @@ function get_race_record($c_curr_seme='',$teacher_sn='',$student_sn='') {
  $sql="select day from school_day where year='$year' and seme='$seme' and day_kind='end'";
  /* 原始 php 的 MySQL 函式 
  $res=mysql_query($sql);
- list($end_date)=mysql_fetch_row($res);
+ list($end_date)=mysqli_fetch_row($res);
  */
   /* ADODB 寫法 */
  $res=$CONN->Execute($sql) or die("SQL錯誤:$sql");

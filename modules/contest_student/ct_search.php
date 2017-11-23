@@ -39,7 +39,7 @@ if ($_POST['act']=='myans') {
   //檢驗已答題數
   $query="select count(*) as num from contest_record1 where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."'";
   $result=mysql_query($query);
-  list($N)=mysql_fetch_row($result);  
+  list($N)=mysqli_fetch_row($result);  
 
  //避免連線逾時問題，1秒緩衝時間內仍儲存 , 
  if ($NOWsec<$EndTest+1 and $N<$TEST['search_ibgroup']) {
@@ -131,7 +131,7 @@ if ($_POST['act']=='Start') {
  //該生已作答題數
   $LeaveTime=$EndTest-$NOWsec; //剩餘秒數
   $query="select count(*) as num from contest_record1 where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."'";
-  list($N)=mysql_fetch_row(mysql_query($query));
+  list($N)=mysqli_fetch_row(mysql_query($query));
   //還沒作答完畢
   if ($N<$TEST['search_ibgroup']) {
   $N+=1; //列出下一題

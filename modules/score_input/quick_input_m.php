@@ -88,11 +88,11 @@ while (!$rs->EOF){
 	$sn = $rs->fields['student_sn'];
 	$sit_num = (strstr($teacher_course,'g'))?intval(substr($rs->fields[curr_class_num],-4,2))."-".intval(substr($rs->fields[curr_class_num],-2)):substr($rs->fields[curr_class_num],-2);
 	$student_sn = $rs->fields['student_sn'];
-	$stud_name = $rs->fields[stud_name];
+	$stud_name = $rs->fields['stud_name'];
 	//排除名單加註*
   $stud_name.=($student_out[$student_sn])?"<font color=red>*</font>":"";
 
-	$stud_id=$rs->fields[stud_id];
+	$stud_id=$rs->fields['stud_id'];
 	$stud_study_year=$rs->fields[stud_study_year];
 	
 	$query="select * from $score_semester where student_sn='$sn' and ss_id='$ss_id' and test_sort='$curr_sort' and test_kind='$test_kind'";

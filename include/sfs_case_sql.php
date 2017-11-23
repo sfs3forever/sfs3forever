@@ -256,7 +256,7 @@ function table_data($table="",$mark=";#@_@",$add_drop=1,$need_insert=1){
 		//找出內容
 		$sql="select * from $table";
 		$result = mysqli_query($sql);
-		while ($row = mysql_fetch_row($result)) {
+		while ($row = mysqli_fetch_row($result)) {
 			$row_data="";
 			for($i=0;$i<sizeof($row);$i++){
 				$row_data[]="'".addslashes($row[$i])."'";

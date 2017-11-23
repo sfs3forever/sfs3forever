@@ -40,7 +40,7 @@ if ($_POST['do_key']==$postBtn){
 		$str.="\"".$curr_year."\",";
 		$str.="\"".$SCHOOL_BASE[sch_cname_ss]."\",";
 		$str.="\"".$result->fields[stud_person_id]."\",";
-		$str.="\"".$result->fields[stud_name]."\",";
+		$str.="\"".$result->fields['stud_name']."\",";
 		$str.=($english_name)?"\"".($result->fields[stud_name_eng])."\",":"";
 		$str.="\"".$result->fields[stud_sex]."\",";
 		$str.="\"".$result->fields[stud_tel_1]."\",";

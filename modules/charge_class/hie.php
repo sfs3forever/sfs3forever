@@ -84,7 +84,7 @@ if($item_id)
 				$showdata.="<tr bgcolor=$my_bgcolor><td align='center'>$counter</td>";
 				$showdata.="<td align='center'>".$recordSet->fields[record_id]."</td>";
 				$showdata.="<td align='center'>".$class_base[$class_id]."</td>";
-				$showdata.="<td align='center'>".$recordSet->fields[stud_name]."</td>";
+				$showdata.="<td align='center'>".$recordSet->fields['stud_name']."</td>";
 				$showdata.="<td align='center'>$item_total</td>";
 				$showdata.="<td align='center'>$my_decrease</td>";
 				$showdata.="<td align='center'>$my_should_paid</td>";			

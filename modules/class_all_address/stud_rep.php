@@ -49,7 +49,7 @@ if ($_POST[Submit1]=='下載學生名冊'){
 	$seme_class_arr = array();
 	while(!$res->EOF){
 		$seme_class = $res->fields['seme_class'];
-		$stud_id = $res->fields[stud_id];
+		$stud_id = $res->fields['stud_id'];
 		$seme_class_arr[$seme_class][$stud_id] = $res->fields;
 		$res->MoveNext();
 	}

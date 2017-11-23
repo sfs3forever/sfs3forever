@@ -32,7 +32,7 @@ switch ($key) {
 	case $editBtn:
 		$query = "select sub_id from school_subject where seme_year_seme='$seme_year_seme' and sub_year='$sub_year'";
 		$result =mysql_query($query) or die($query);
-		while ($row= mysql_fetch_row($result)) {
+		while ($row= mysqli_fetch_row($result)) {
 			$sub_id = $row[0];
 			$sub_name = "sub_name_$row[0]";
 			$sub_num = "sub_num_$row[0]";

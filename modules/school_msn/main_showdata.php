@@ -12,7 +12,7 @@ $ann_num=-1;
    $query="select idnumber,data,data_kind from sc_msn_data where to_id='' and to_days(curdate())<=(to_days(post_date)+last_date) and (data_kind=0 or data_kind=2) order by post_date desc";
    $result=mysql_query($query);
    $board_num=mysql_num_rows($result);
-   while($row=mysql_fetch_row($result)) {
+   while($row=mysqli_fetch_row($result)) {
    	 $ann_num++;
     list($idnumber,$data,$data_kind)=$row;
     $ann_data[$ann_num]=nl2br($data);
@@ -56,7 +56,7 @@ if ($res->RecordCount()>0) {
 
    $query="select data from sc_msn_data where to_id='' and to_days(curdate())<=(to_days(post_date)+last_date) and data_kind=3 order by post_date desc";
    $result=mysql_query($query);
-   while($row=mysql_fetch_row($result)) {
+   while($row=mysqli_fetch_row($result)) {
     list($data)=$row;
     $ann_data[$ann_num]=$data;
     $ann_num++;

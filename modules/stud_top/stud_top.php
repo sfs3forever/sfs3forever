@@ -177,8 +177,8 @@ if ($year_seme && $year_name && count($sel)>0) {
 		$student_sn_all = '';
 		while (!$rs->EOF) {
 			$temp_sn = "s_".$rs->fields['student_sn'];
-			$temp_num[$temp_sn][stud_num] = $rs->fields[seme_num];
-			$temp_num[$temp_sn]['stud_name'] = $rs->fields[stud_name];
+			$temp_num[$temp_sn][stud_num] = $rs->fields['seme_num'];
+			$temp_num[$temp_sn]['stud_name'] = $rs->fields['stud_name'];
 			$student_sn_all .= $rs->fields['student_sn'].",";
 			$rs->MoveNext();
 		}

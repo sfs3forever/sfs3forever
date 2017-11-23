@@ -170,7 +170,7 @@ function &del_form($set_msn=""){
 					if($recordSet){
 						list($datan)=$recordSet->FetchRow();
 						$view=(empty($datan))?"":"<a href='$_SERVER[PHP_SELF]?set_msn=$_GET[set_msn]&msn=$_GET[msn]&mode=$_GET[mode]&vDBname=$dbname'>觀看資料</a>";
-						$view=(!empty($_GET[vDBname]) and $dbname==$_GET[vDBname])?"<a href='$_SERVER[PHP_SELF]?set_msn=$_GET[set_msn]&msn=$_GET[msn]&mode=$_GET[mode]'>關閉</a>":$view;
+						$view=(!empty($_GET['vDBname']) and $dbname==$_GET['vDBname'])?"<a href='$_SERVER[PHP_SELF]?set_msn=$_GET[set_msn]&msn=$_GET[msn]&mode=$_GET[mode]'>關閉</a>":$view;
 						$DBlist.="<tr bgcolor='white'><td bgcolor='#EAEAEA'>
 					<input type='checkbox' name='delDB[]' id='d$i' value='$dbname'>移除 $dbname
 					</td><td>$datan $view</td></tr>";
@@ -185,8 +185,8 @@ function &del_form($set_msn=""){
 			$DBlist.="<tr bgcolor='white'><td colspan=2>".$stand_txt."，無法偵測！</td></tr>";
 		}
 
-		if(!empty($_GET[vDBname])){
-			$sql_select="select * from $_GET[vDBname]";
+		if(!empty($_GET['vDBname'])){
+			$sql_select="select * from {$_GET['vDBname']}";
 			$recordSet=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
 			while($datan=$recordSet->FetchRow()){
 			$DBdata="";

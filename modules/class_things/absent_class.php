@@ -40,7 +40,7 @@ if ($year_name && $class_name && $class_num) {
 	$class_num=($year_name+$IS_JHORES).sprintf("%02d%02d",$class_name,$class_num);
 	$sql="select stud_id from stud_base where curr_class_num='$class_num' and stud_study_cond='0'";
 	$rs=$CONN->Execute($sql);
-	$stud_id=$rs->fields[stud_id];
+	$stud_id=$rs->fields['stud_id'];
 	if (!empty($stud_id)) $One=$stud_id;
 }
 
@@ -333,8 +333,8 @@ function &signForm($sel_year,$sel_seme,$class_id,$thisOne=array(),$One=""){
 		$seme_year_seme=sprintf("%03d",$sel_year).$sel_seme;
 		$sql="select a.stud_name,b.seme_num from stud_base a,stud_seme b where a.stud_id='$One' and a.student_sn=b.student_sn and b.seme_year_seme='$seme_year_seme'";
 		$rs=$CONN->Execute($sql);
-		$stud_name=$rs->fields[stud_name];
-		$seme_num=$rs->fields[seme_num];
+		$stud_name=$rs->fields['stud_name'];
+		$seme_num=$rs->fields['seme_num'];
 		$fday=mktime(0,0,0,$month,$day,$year);
 		$dd=getdate($fday);
 		$fday-=($dd[wday]-1)*86400;

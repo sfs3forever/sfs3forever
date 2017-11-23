@@ -50,7 +50,7 @@ $ibsn="i".date("y").date("m").date("d").date("H").date("i").date("s");
 	 $ibsn_test=$ibsn.$a;
 	 $query="select count(*) as num from contest_itembank where ibsn='".$ibsn_test."'";
 	 $res=mysql_query($query);
-	 list($exist)=mysql_fetch_row($res);
+	 list($exist)=mysqli_fetch_row($res);
 	} while ($exist>0);
 
 	$ibsn=$ibsn_test;
@@ -59,7 +59,7 @@ $ibsn="i".date("y").date("m").date("d").date("H").date("i").date("s");
 	$query="insert into contest_itembank (ibsn,question,ans,ans_url) values ('$ibsn','$question','$ans','$ans_url')";
   if (mysql_query($query)) {
   	//計算要跳要的頁碼
-  	list($ALL)=mysql_fetch_row(mysql_query("select count(*) as num from itembank"));
+  	list($ALL)=mysqli_fetch_row(mysql_query("select count(*) as num from itembank"));
    	$_POST['option2']=ceil($ALL/$PHP_PAGE); //無條件進位
    	$_POST['act']='';
   }else{
@@ -87,7 +87,7 @@ if ($_POST['act']=='pasting') {
 	 		$ibsn_test=$ibsn.$a;
 	 		$query="select count(*) as num from contest_itembank where ibsn='".$ibsn_test."'";
 	 		$res=mysql_query($query);
-	 		list($exist)=mysql_fetch_row($res);
+	 		list($exist)=mysqli_fetch_row($res);
 		} while ($exist>0);
 
 		$ibsn=$ibsn_test;
@@ -99,7 +99,7 @@ if ($_POST['act']=='pasting') {
   } // end foreach
 
   	//計算要跳要的頁碼
-  	list($ALL)=mysql_fetch_row(mysql_query("select count(*) as num from itembank"));
+  	list($ALL)=mysqli_fetch_row(mysql_query("select count(*) as num from itembank"));
    	$_POST['option2']=ceil($ALL/$PHP_PAGE); //無條件進位
    	$_POST['act']='';
   

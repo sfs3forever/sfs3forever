@@ -1283,9 +1283,9 @@ if($class_id<>'') {
 		echo "<table border=1>";
 		$ii=0;
 		while (!$result->EOF) {
-			$stud_id = $result->fields[stud_id];
-			$stud_name = $result->fields[stud_name];
-			$curr_class_num = $result->fields[seme_num];
+			$stud_id = $result->fields['stud_id'];
+			$stud_name = $result->fields['stud_name'];
+			$curr_class_num = $result->fields['seme_num'];
 			$stud_study_cond = $result->fields[stud_study_cond];
 			$move_kind ='';
 			if ($stud_study_cond >0)

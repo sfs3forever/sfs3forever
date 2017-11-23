@@ -342,7 +342,7 @@ function &list_class_table($sel_year,$sel_seme,$class_id="",$mode=""){
 				
 				//教師在他班已有排課
 				else if (!empty($course_tea_arr[$set_teacher_sn][$k2][ss_id])) {
-					$temp_class_id = get_class_all($course_tea_arr[$set_teacher_sn][$k2][class_id]);
+					$temp_class_id = get_class_all($course_tea_arr[$set_teacher_sn][$k2]['class_id']);
 					$subject_sel = $select_ss_arr[$course_tea_arr[$set_teacher_sn][$k2][ss_id]]."<BR />";
 					$subject_sel .= "<font size=2>$temp_class_id[name]<BR /></font>";
 					$color=$checked?'#ccffaa': "#fff0a6";
@@ -779,7 +779,7 @@ function get_course_tea_arr($sel_year,$sel_seme) {
 	while (!$res->EOF) {
 		$temp_ds = $res->fields[day]."_".$res->fields[sector];
 		$temp_arr[$res->fields[teacher_sn]][$temp_ds][ss_id] = $res->fields[ss_id];
-		$temp_arr[$res->fields[teacher_sn]][$temp_ds][class_id] = $res->fields[class_id];
+		$temp_arr[$res->fields[teacher_sn]][$temp_ds]['class_id'] = $res->fields[class_id];
 		$res->MoveNext();
 	}
 	return $temp_arr;

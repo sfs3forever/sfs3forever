@@ -157,7 +157,7 @@ $res=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",
 $listed=array();
 $main.="　<img border=0 src='images/modify.gif' alt='編修選定減免學生'><select name='decrease_id' onchange='this.form.submit()'><option></option>";
 while(!$res->EOF) {
-	$main.="<option ".($decrease_id==$res->fields[decrease_id]?"selected":"")." value=".$res->fields[decrease_id].">[".$res->fields[curr_class_num]."]".$res->fields[stud_name]."->".$res->fields[cause]."</option>";
+	$main.="<option ".($decrease_id==$res->fields[decrease_id]?"selected":"")." value=".$res->fields[decrease_id].">[".$res->fields[curr_class_num]."]".$res->fields['stud_name']."->".$res->fields[cause]."</option>";
 	$student_sn=$res->fields['student_sn'];
 	$listed[$student_sn][percent]=$res->fields[percent];
 	$listed[$student_sn][cause]=$res->fields[cause];
@@ -189,19 +189,19 @@ while(!$res->EOF) {
 		$showdata.="<tr bgcolor=#AAFFCC><td align='center'>".($res->CurrentRow()+1)."</td>";
 		$showdata.="<td align='center'>".$class_base[$res->fields[class_id]]."</td>";
 		$showdata.="<td align='center'>".$res->fields[class_no]."</td>";
-		$showdata.="<td align='center'>".$res->fields[stud_name]."</td>";
+		$showdata.="<td align='center'>".$res->fields['stud_name']."</td>";
 		$showdata.="<td align='center'>".$grade_dollar[$curr_grade]."</td>";
 		$showdata.="<td align='center'><input type='text' name='percent' value='".$res->fields[percent]."' size=3>%</td>";
 		$showdata.="<td align='center'>".$my_decrease."</td>";
 		$showdata.="<td align='center'>".$my_dollar."</td>";
 		$showdata.="<td align='center'><input type='text' name='cause' value='".$res->fields[cause]."' size=20></td>";
 		//$showdata.="<td align='center'>".$res->fields[decrease_id]."</td>";
-		$showdata.="<td align='center'><input type='submit' value='修改' name='act' onclick='return confirm(\"確定要更改[".$res->fields[stud_name]."]?\")'>　<input type='submit' value='刪除' name='act' onclick='return confirm(\"真的要刪除[".$res->fields[stud_name]."]?\")'></td></tr>";
+		$showdata.="<td align='center'><input type='submit' value='修改' name='act' onclick='return confirm(\"確定要更改[".$res->fields['stud_name']."]?\")'>　<input type='submit' value='刪除' name='act' onclick='return confirm(\"真的要刪除[".$res->fields['stud_name']."]?\")'></td></tr>";
 	} else {	
 		$showdata.="<tr bgcolor=#FFFFDD><td align='center'>".($res->CurrentRow()+1)."</td>";
 		$showdata.="<td align='center'>".$class_base[$res->fields[class_id]]."</td>";
 		$showdata.="<td align='center'>".$res->fields[class_no]."</td>";
-		$showdata.="<td align='center'>".$res->fields[stud_name]."</td>";
+		$showdata.="<td align='center'>".$res->fields['stud_name']."</td>";
 		$showdata.="<td align='center'>".$grade_dollar[$curr_grade]."</td>";
 		$showdata.="<td align='center'>".$res->fields[percent]."%</td>";
 		$showdata.="<td align='center'>".$my_decrease."</td>";
@@ -232,7 +232,7 @@ if($item_id and $detail_id)
 	while(!$recordSet->EOF)	{
 		$student_sn=$recordSet->fields['student_sn'];
 		$curr_class_num=$recordSet->fields[curr_class_num];
-		$stud_name=$recordSet->fields[stud_name];
+		$stud_name=$recordSet->fields['stud_name'];
 		$class_no=substr($curr_class_num,-2);
 		$stud_sex=$recordSet->fields[stud_sex];
 
@@ -258,7 +258,7 @@ if($item_id and $detail_id)
     if($class_id){
 		while(!$recordSet->EOF)
 		{
-			$studentdata.="<option value='".$recordSet->fields['student_sn']."_".$recordSet->fields[curr_class_num]."'>(".substr($recordSet->fields[curr_class_num],-2).")".$recordSet->fields[stud_name]."</option>";
+			$studentdata.="<option value='".$recordSet->fields['student_sn']."_".$recordSet->fields[curr_class_num]."'>(".substr($recordSet->fields[curr_class_num],-2).")".$recordSet->fields['stud_name']."</option>";
 			$recordSet->MoveNext();
 		}
 	}

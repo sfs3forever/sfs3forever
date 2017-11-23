@@ -46,17 +46,17 @@ if($year_seme!='' && $_GET[grade]!='' ){
 	$num_max=(ceil($num/10))*10;
 	$prt_ary=array();
 	for($i=0;$i<$num_max;$i++){
-		if($all_class_array[$i][class_id]!='') { 
+		if($all_class_array[$i]['class_id']!='') { 
 			$class_word=($all_class_array[$i][c_name]=="全年級") ? "":"班";
-			$prt_ary[$i][class_id]=$all_class_array[$i][class_id];
-			$bgcolor=($_GET[class_id]==$all_class_array[$i][class_id]) ? "bgcolor=#FFEBD6":"";
+			$prt_ary[$i]['class_id']=$all_class_array[$i]['class_id'];
+			$bgcolor=($_GET[class_id]==$all_class_array[$i]['class_id']) ? "bgcolor=#FFEBD6":"";
 			$prt_ary[$i][c_name]="<TD width=10% $bgcolor><LABEL><INPUT TYPE='checkbox' NAME='class_id[]' ";
-			$prt_ary[$i][c_name].=" value='".$all_class_array[$i][class_id]."' ";
+			$prt_ary[$i][c_name].=" value='".$all_class_array[$i]['class_id']."' ";
 			$prt_ary[$i][c_name].="onclick='jamp(this.value);' >";
 			$prt_ary[$i][c_name].=$all_class_array[$i][c_name].$class_word."</LABEL></TD>\n";
-			//".$all_class_array[$i][class_id]."]'
+			//".$all_class_array[$i]['class_id']."]'
 		}else {
-			$prt_ary[$i][class_id]="";
+			$prt_ary[$i]['class_id']="";
 			$prt_ary[$i][c_name]="<TD width=10%>&nbsp;</TD>";
 			}
 	}

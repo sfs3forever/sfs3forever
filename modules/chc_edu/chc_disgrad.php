@@ -88,9 +88,9 @@ if ($_POST[year_name] and count($_POST[class_id])>0) {
 		$ssn=$res->fields['student_sn'];
 		$show_sn[$ssn]=$ssn;
 		$sclass[$ssn]=$class_base[$res->fields['seme_class']];
-		$snum[$ssn]=$res->fields[seme_num];
-		$stud_name[$ssn]=$res->fields[stud_name];
-		$stud_id[$ssn]=$res->fields[stud_id];
+		$snum[$ssn]=$res->fields['seme_num'];
+		$stud_name[$ssn]=$res->fields['stud_name'];
+		$stud_id[$ssn]=$res->fields['stud_id'];
 		if($res->fields[stud_sex]=='1'){
 			$stud_sex[$ssn]="男";
 		}else{

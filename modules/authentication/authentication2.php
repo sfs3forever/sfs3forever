@@ -38,8 +38,8 @@ function check_select() {
 HERE;
 
 $item_sn=$_POST[item_sn];
-$subitem_sn_arr=$_POST[subitem_sn];
-$curr_class_id=$_POST[curr_class_id];
+$subitem_sn_arr=$_POST['subitem_sn'];
+$curr_class_id=$_POST['curr_class_id'];
 $curr_class_grade=substr($curr_class_id,0,-2);
 $student_sn=$_POST['student_sn'];
 $cancel_sn=$_POST[cancel_sn];

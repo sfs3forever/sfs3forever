@@ -103,7 +103,7 @@ if ($_POST['save']==1) {
     $query="insert into stud_service (year_seme,service_date,department,item,memo,update_sn,input_sn,input_time,confirm,sponsor) values ('$year_seme','$service_date','$department','$item','$memo','$update_sn','$update_sn','".date('Y-m-d H:i:s')."','$CONFIRM','$sponsor')";
      if (mysql_query($query)) {
      		
-     	list($item_sn)=mysql_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
+     	list($item_sn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
 		  $_GET['sn']=$item_sn;
 		 //echo "新增 <font color=blue>$service_date 在 【".getPostRoom($department)."】進行《".$item."》服務...</font><br>\n";
 

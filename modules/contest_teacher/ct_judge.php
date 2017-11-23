@@ -232,7 +232,7 @@ if ($_POST['act']=='score') {
  			$i++;	
     	 //學生已查資料筆數
     	 $query="select count(*) as num from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."'";
-    	 list($N)=mysql_fetch_row(mysql_query($query));
+    	 list($N)=mysqli_fetch_row(mysql_query($query));
     	 $RR="已作答 ".$N." 題";
     	 $Fcolor=($N>0)?"#0000FF":"#C0C0C0";
      	 //學生已評分記錄
@@ -248,7 +248,7 @@ if ($_POST['act']=='score') {
     	  $CC="<font color=#FF0000>答對 ".$chk_right." 題，答錯 ".$chk_wrong." 題</font>";
     	  //取得評分老師
     	  $query="select distinct teacher_sn from contest_record1 where  tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."'";	
-    	  list($teacher_sn)=mysql_fetch_row(mysql_query($query));
+    	  list($teacher_sn)=mysqli_fetch_row(mysql_query($query));
     	 }
  //       	<tr bgcolor="#FFFFFF" onmouseover="setPointer(this, 'over', '#FFFFFF', '#CCFFCC', '#FFCC99')" onmouseout="setPointer(this, 'out', '#FFFFFF', '#CCFFCC', '#FFCC99')" onmousedown="setPointer(this, 'click', '#FFFFFF', '#CCFFCC', '#FFCC99')" >
     	 
@@ -377,7 +377,7 @@ if ($_POST['act']=='score') {
    			for ($i=1;$i<=$SCORE_SET_NUM;$i++) {
    				$thisScore=0;
    				$query="select sco_num from contest_score_user where sco_sn='".$SCORE_FIELD[$i]."' and student_sn='".$Stud['student_sn']."' and teacher_sn='".$_SESSION['session_tea_sn']."'";
-   				if ($row=mysql_fetch_row(mysql_query($query))) list($thisScore)=$row;
+   				if ($row=mysqli_fetch_row(mysql_query($query))) list($thisScore)=$row;
    				?>
    				 <td style="font-size:10pt;color:<?php echo $Fcolor;?>" align="center">
    				<?php
@@ -397,7 +397,7 @@ if ($_POST['act']=='score') {
    	   } // end for 列出細項評分
    	   //總分
    	   $query="select score,prize_memo from contest_score_record2 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."' and teacher_sn='".$_SESSION['session_tea_sn']."'";
-   	    list($score,$prize_memo)=mysql_fetch_row(mysql_query($query));
+   	    list($score,$prize_memo)=mysqli_fetch_row(mysql_query($query));
 				if ($N>0) { 
    		?>
    		<td style="font-size:10pt;color:<?php echo $Fcolor;?>" align="center">
@@ -545,7 +545,7 @@ if ($_POST['act']=='prize') {
     	 $REC=get_stud_record1_info($TEST,$Stud['student_sn']);
     	 /***
     	 $query="select count(*) as num from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."'";
-    	 list($N)=mysql_fetch_row(mysql_query($query));
+    	 list($N)=mysqli_fetch_row(mysql_query($query));
     	 $Fcolor=($N>0)?"#0000FF":"#C0C0C0";
      	 //學生已評分記錄
      	 $chk_right=mysql_num_rows(mysql_query("select * from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."' and chk=1"));

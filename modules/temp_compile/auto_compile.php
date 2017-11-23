@@ -71,9 +71,9 @@ if($_POST['Submit3']){
 	while(list($k,$v)=each($stud_id)) {
 		$query="select * from new_stud where temp_id='A".$v."' and stud_study_year='$new_sel_year'";
 		$res=$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
-		if (empty($res->fields[stud_name])) continue;
+		if (empty($res->fields['stud_name'])) continue;
 		if (!$res->fields[sure_study]) {
-			$error_msg.="<font color='#ff0000'>臨時編號".$res->fields[temp_id]."(".$res->fields[stud_name].")不就讀本校</font><br>";
+			$error_msg.="<font color='#ff0000'>臨時編號".$res->fields[temp_id]."(".$res->fields['stud_name'].")不就讀本校</font><br>";
 			$stud_id[$k]="";
 			continue;
 		}
@@ -347,9 +347,9 @@ if ($_POST[Submit8]||$_POST[Submit9]||$_POST[Submit10]||$_POST[Submit11]||$_POST
 	while(!$res->EOF) {
 		$c_sex=($res->fields[stud_sex]==1)?"男":"女";
 		if ($_POST[Submit8])
-			echo $i.",".$res->fields[sort_sn].",".$res->fields[stud_name].",".$res->fields[cc].",".$res->fields[class_sort].",".$res->fields[temp_id].", \n";
+			echo $i.",".$res->fields[sort_sn].",".$res->fields['stud_name'].",".$res->fields[cc].",".$res->fields[class_sort].",".$res->fields[temp_id].", \n";
 		elseif ($_POST[Submit9]||$_POST[Submit12]||$_POST[Submit14])
-			echo $i.",".$res->fields[temp_class].",".$res->fields[temp_id].",".$res->fields[stud_name].",".$c_sex.",".$res->fields[temp_score1].",".$res->fields[temp_score2].",".$res->fields[temp_score3].",".$res->fields[cc].", \n";
+			echo $i.",".$res->fields[temp_class].",".$res->fields[temp_id].",".$res->fields['stud_name'].",".$c_sex.",".$res->fields[temp_score1].",".$res->fields[temp_score2].",".$res->fields[temp_score3].",".$res->fields[cc].", \n";
 		elseif ($_POST[Submit10]) {
 			if ($i%40==1)
 				echo "<p align=\"center\"><font face=\"標楷體\" size=\"4\">$school_name $new_sel_year 學年度</font><br><font face=\"標楷體\" size=\"5\">$title_str</font></p>\n
@@ -367,7 +367,7 @@ if ($_POST[Submit8]||$_POST[Submit9]||$_POST[Submit10]||$_POST[Submit11]||$_POST
 				echo "<tr>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"60\">".$i."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"80\">".$res->fields[sort_sn]."</td>\n
-				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"100\">".$res->fields[stud_name]."</td>\n
+				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"100\">".$res->fields['stud_name']."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"80\">".$res->fields[cc]."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"80\">".$res->fields[class_sort]."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"100\">".$res->fields[temp_id]."</td>\n
@@ -377,7 +377,7 @@ if ($_POST[Submit8]||$_POST[Submit9]||$_POST[Submit10]||$_POST[Submit11]||$_POST
 				echo "<tr>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"60\">".$i."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"80\">".$res->fields[sort_sn]."</td>\n
-				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"100\">".$res->fields[stud_name]."</td>\n
+				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"100\">".$res->fields['stud_name']."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"80\">".$res->fields[cc]."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"80\">".$res->fields[class_sort]."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"100\">".$res->fields[temp_id]."</td>\n
@@ -409,7 +409,7 @@ if ($_POST[Submit8]||$_POST[Submit9]||$_POST[Submit10]||$_POST[Submit11]||$_POST
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"40\">".$i."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"80\">".$res->fields[temp_class]."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"80\">".$res->fields[temp_id]."</td>\n
-				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"100\">".$res->fields[stud_name]."</td>\n
+				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"100\">".$res->fields['stud_name']."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"40\">".$c_sex."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"60\">".$res->fields[temp_score1]."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"60\">".$res->fields[temp_score2]."</td>\n
@@ -422,7 +422,7 @@ if ($_POST[Submit8]||$_POST[Submit9]||$_POST[Submit10]||$_POST[Submit11]||$_POST
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"40\">".$i."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"80\">".$res->fields[temp_class]."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"80\">".$res->fields[temp_id]."</td>\n
-				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"100\">".$res->fields[stud_name]."</td>\n
+				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"100\">".$res->fields['stud_name']."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"40\">".$c_sex."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"60\">".$res->fields[temp_score1]."</td>\n
 				<td style=\"border-style: solid; border-color: windowtext; border-width: 0.75pt 0.75pt 1.5pt; padding: 0cm 1.4pt;\" align=\"center\" width=\"60\">".$res->fields[temp_score2]."</td>\n
@@ -473,7 +473,7 @@ switch($work){
 		$sum=$res->RecordCount();
 		while (!$res->EOF) {
 			$id=$res->fields[class_site];
-			$stud_name[$id]=$res->fields[stud_name];
+			$stud_name[$id]=$res->fields['stud_name'];
 			$temp_class[$id]=$res->fields[temp_class];
 			$temp_site[$id]=$res->fields[temp_site];
 			$sex=$res->fields[stud_sex];
@@ -630,7 +630,7 @@ switch($work){
 			if ($res) {
 				echo "<center><hr size='2' width='95%'><table border='0' cellspacing='2'><tr bgcolor='#FFEC6E'><td>臨時編號</td><td>臨時班級</td><td>學生姓名</td><td>身分證字號</td><td>生日</td><td>電話</td><td>家長姓名</td><td>住址</td><td>原就讀學校</td><td>正式班級</td><td>正式座號</td></tr>";
 				while (!$res->EOF) {
-					echo "<tr bgcolor='#E6F7E2'><td>".$res->fields[temp_id]."</td><td>".$res->fields[temp_class]."</td><td>".$res->fields[stud_name]."</td><td>".$res->fields[stud_person_id]."</td><td>".$res->fields[stud_birthday]."</td><td>".$res->fields[stud_tel_1]."</td><td>".$res->fields[guardian_name]."</td><td>".$res->fields[stud_address]."</td><td>".$res->fields[old_school]."</td><td>".$res->fields[class_sort]."</td><td>".$res->fields[class_site]."</td></tr>";
+					echo "<tr bgcolor='#E6F7E2'><td>".$res->fields[temp_id]."</td><td>".$res->fields[temp_class]."</td><td>".$res->fields['stud_name']."</td><td>".$res->fields[stud_person_id]."</td><td>".$res->fields[stud_birthday]."</td><td>".$res->fields[stud_tel_1]."</td><td>".$res->fields[guardian_name]."</td><td>".$res->fields[stud_address]."</td><td>".$res->fields[old_school]."</td><td>".$res->fields[class_sort]."</td><td>".$res->fields[class_site]."</td></tr>";
 					$res->MoveNext();
 				}
 				if ($res->RecordCount()==0) echo "<tr bgcolor='#E6F7E2'><td colspan='9' align='center'>查無符合資料</td></tr>";
@@ -657,7 +657,7 @@ switch($work){
 				$stud_sex="女";
 				$fontcolor="'#FF6633'";
 			}
-			echo "<tr bgcolor='#FFF7CD'><td>".$res->fields[temp_id]."</td><td><font color=$fontcolor>".$res->fields[stud_name]."</font></td><td align='center'><font color=$fontcolor>$stud_sex</font></td></tr>";
+			echo "<tr bgcolor='#FFF7CD'><td>".$res->fields[temp_id]."</td><td><font color=$fontcolor>".$res->fields['stud_name']."</font></td><td align='center'><font color=$fontcolor>$stud_sex</font></td></tr>";
 			$res->MoveNext();
 		}
 		if ($res->RecordCount()==0) echo "<tr bgcolor='#FFF7CD'><td colspan='3' align='center'>查無資料</td></tr>";
@@ -699,7 +699,7 @@ switch($work){
 				$class_site=$res->fields[class_site];
 				$class_id=sprintf("%03d_%d_%02d_%02d",$new_sel_year,1,$class_year_b,$class_sort);
 				$id_arr[$class_id][$class_site]=$res->fields[temp_id];
-				$name_arr[$class_id][$class_site]=$res->fields[stud_name];
+				$name_arr[$class_id][$class_site]=$res->fields['stud_name'];
 				$sex_arr[$class_id][$class_site]=$csex[$res->fields[stud_sex]];
 				$temp_arr[$class_id][$class_site]="<small>".substr($temp_class_arr[$res->fields[temp_class]],0,-2)."班".sprintf("%02d",$res->fields[temp_site])."號</small>"."&nbsp;";
 				$meno_arr[$class_id][$class_site]=$res->fields[meno];
@@ -945,7 +945,7 @@ switch($work){
 				$id++;
 				$class_site[$i][$id]=$res->fields[class_site];
 				if ($class_site[$i][$id]==0) $class_site[$i][$id]=$id;
-				$stud_name[$i][$id]=$res->fields[stud_name];
+				$stud_name[$i][$id]=$res->fields['stud_name'];
 				$temp_score1[$i][$id]=$res->fields[temp_score1];
 				$temp_score2[$i][$id]=$res->fields[temp_score2];
 				$temp_score3[$i][$id]=$res->fields[temp_score3];

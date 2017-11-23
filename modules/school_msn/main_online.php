@@ -43,7 +43,7 @@ td {font-size:10pt}
     <?php
     $search="select teach_id,name,onlinetime,state from sc_msn_online where ifonline>0 order by teach_id";
     $result=mysql_query($search);
-    while ($row=mysql_fetch_row($result))
+    while ($row=mysqli_fetch_row($result))
     {
     list($teach_id,$name,$onlinetime,$state)=$row;
 	  ?>

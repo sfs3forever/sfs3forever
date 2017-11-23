@@ -59,7 +59,7 @@ if ($year_name && $class_name && $class_num) {
 	$class_num=($year_name+$IS_JHORES).sprintf("%02d%02d",$class_name,$class_num);
 	$sql="select stud_id from stud_base where curr_class_num='$class_num' and stud_study_cond='0'";
 	$rs=$CONN->Execute($sql);
-	$sid=$rs->fields[stud_id];
+	$sid=$rs->fields['stud_id'];
 	$class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,$year_name+$IS_JHORES,$class_name);
 	if (!empty($sid)) $stud_id=$sid;
 }
@@ -378,8 +378,8 @@ function &stud_statForm($sel_year,$sel_seme,$this_date,$class_id,$stud_id){
 		$seme_year_seme=sprintf("%03d",$sel_year).$sel_seme;
 		$query="select a.stud_name,b.seme_num from stud_base a,stud_seme b where b.seme_year_seme='$seme_year_seme' and a.student_sn=b.student_sn and a.stud_id='$stud_id'";
 		$res=$CONN->Execute($query);
-		$stud_name=$res->fields[stud_name];
-		$seme_num=$res->fields[seme_num];
+		$stud_name=$res->fields['stud_name'];
+		$seme_num=$res->fields['seme_num'];
 		$query="select * from school_class where class_id='$class_id'";
 		$res=$CONN->Execute($query);
 		$c_name=$res->fields[c_name];

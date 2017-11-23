@@ -41,7 +41,7 @@ if($_POST[go]=='按此統計列示'){
 			$sql_select="SELECT a.stud_id,a.kind,a.data_get,a.bonus,b.kind_set,b.bonus_set FROM cita_data a inner join cita_kind b on a.kind=b.id WHERE order_pos>-1 and a.class_id like '$value%' ORDER BY class_id";
 			$res=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
 			while(!$res->EOF) {
-				$stud_id=$res->fields[stud_id];
+				$stud_id=$res->fields['stud_id'];
 				$kind_id=$res->fields[kind];
 				$data_get=$res->fields[data_get];
 				//抓取此生目前就讀的年級(已經有了就不再查詢)
@@ -51,8 +51,8 @@ if($_POST[go]=='按此統計列示'){
 					$res2=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
 					$student_data[$stud_id]['student_sn']=$res2->fields['student_sn'];
 					$student_data[$stud_id]['seme_class']=$res2->fields['seme_class'];
-					$student_data[$stud_id]['seme_num']=$res2->fields[seme_num];
-					$student_data[$stud_id]['stud_name']=$res2->fields[stud_name];
+					$student_data[$stud_id]['seme_num']=$res2->fields['seme_num'];
+					$student_data[$stud_id]['stud_name']=$res2->fields['stud_name'];
 				}
 				if($student_data[$stud_id]['stud_name'])
 				//因為要便利排序  所以得進行模式判斷

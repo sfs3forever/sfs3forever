@@ -304,7 +304,7 @@ if ($_POST['act']=='edit_paper_submit') {
     			
     			$sql="insert into resit_images (filetype,xx,yy,content) values ('$imgtype','$xx','$yy','$sFile')";
 					$res=$CONN->Execute($sql);					
-		     	list(${$target_fig_name})=mysql_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
+		     	list(${$target_fig_name})=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
       } 
      } //end if	
 	} // end foreach
@@ -317,7 +317,7 @@ if ($_POST['act']=='edit_paper_submit') {
 	 $sql="insert into resit_exam_items (paper_sn,question,cha,chb,chc,chd,fig_q,fig_a,fig_b,fig_c,fig_d,answer,subject) values ('".$paper_setup['sn']."','$question','$cha','$chb','$chc','$chd','$fig_q','$fig_a','$fig_b','$fig_c','$fig_d','$answer','$subject')";
 	 $res=$CONN->Execute($sql) or die ("Error! SQL=".$sql);
 	 //取得最後的 sn , 以顯示最後編輯的試題	
-	 list($Last_item_sn)=mysql_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
+	 list($Last_item_sn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
   } else {
    $item_org=get_item($item_sn);
    //若有附圖,刪除原圖
@@ -364,7 +364,7 @@ if ($_POST['act']=='edit_paper_submit_new') {
 		$sql="insert into resit_exam_items (paper_sn,question,cha,chb,chc,chd,fig_q,fig_a,fig_b,fig_c,fig_d,answer,subject) values ('".$paper_setup['sn']."','$question','$cha','$chb','$chc','$chd','$fig_q','$fig_a','$fig_b','$fig_c','$fig_d','$answer','$subject')";
 		$res=$CONN->Execute($sql) or die ("Error! SQL=".$sql);
 		//取得最後的 sn , 以顯示最後編輯的試題
-		list($Last_item_sn)=mysql_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
+		list($Last_item_sn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
 	} else {
 		$item_org=get_item($item_sn);
 		//若有附圖,刪除原圖
@@ -575,7 +575,7 @@ if ($_POST['act']=='upload_paper_submit') {
 		    	$content=${$fig_content};
     			$sql="insert into resit_images (filetype,xx,yy,content) values ('$filetype','$xx','$yy','$content')";
 					$res=$CONN->Execute($sql) or die("失入圖片失敗! SQL=".$sql);					
-		     	list(${$target_fig_name})=mysql_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
+		     	list(${$target_fig_name})=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
 		     	//echo $target_fig_name.'='.${$target_fig_name};
 		     	//exit();
 		    } else {

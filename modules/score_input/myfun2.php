@@ -287,7 +287,7 @@ function download_score($sel_year,$sel_seme) {
 	$res = $CONN->Execute($query)or trigger_error($query);
 	while(!$res->EOF){
 		$sit_num = intval(substr($res->fields[curr_class_num],-2));
-		echo $res->fields['student_sn'].",".$sit_num.",\"".$res->fields[stud_name]."\",".$stud_temp_arr[$res->fields['student_sn']]."\n";
+		echo $res->fields['student_sn'].",".$sit_num.",\"".$res->fields['stud_name']."\",".$stud_temp_arr[$res->fields['student_sn']]."\n";
 		$res->MoveNext();
 	}
 

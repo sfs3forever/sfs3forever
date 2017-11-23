@@ -78,7 +78,7 @@ if($item_id)
 		} else {
 			$sql_select="select curr_class_num,stud_name from stud_base where student_sn=$student_sn";
 			$rs=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
-			$error_sn.="<li>".$recordSet->fields[paid_date]."--".$rs->fields[curr_class_num].$rs->fields[stud_name]."( 應收：$item_total  收款登錄： ".$recordSet->fields[dollars]." )</li>";
+			$error_sn.="<li>".$recordSet->fields[paid_date]."--".$rs->fields[curr_class_num].$rs->fields['stud_name']."( 應收：$item_total  收款登錄： ".$recordSet->fields[dollars]." )</li>";
 		
 		}
 		$recordSet->MoveNext();

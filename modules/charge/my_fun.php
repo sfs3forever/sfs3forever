@@ -284,7 +284,7 @@ function get_item_all_stud_list($item_id) {
 		$student_sn=$res->fields['student_sn'];
 
 		$data_list[$student_sn][record_id]=$res->fields[record_id];
-		$data_list[$student_sn][stud_id]=$res->fields[stud_id];
+		$data_list[$student_sn][stud_id]=$res->fields['stud_id'];
 		$data_list[$student_sn][stud_birthday]=$res->fields[stud_birthday];
 		
 		$data_list[$student_sn][birth_year]=$res->fields[birth_year]-1911;
@@ -294,7 +294,7 @@ function get_item_all_stud_list($item_id) {
 		
 		$data_list[$student_sn][stud_person_id]=$res->fields[stud_person_id];
 		
-		$data_list[$student_sn]['stud_name']=$res->fields[stud_name];
+		$data_list[$student_sn]['stud_name']=$res->fields['stud_name'];
 
 		//$data_list[$student_sn][guardian]=$student[3];
 
@@ -351,7 +351,7 @@ function get_item_all_stud_list_multi($item_id_list) {
 			$key_sn=$res->fields[curr_class_num].'_'.$res->fields['student_sn'];
 
 			$data_list[$key_sn][record_id]=$res->fields[record_id];
-			$data_list[$key_sn][stud_id]=$res->fields[stud_id];
+			$data_list[$key_sn][stud_id]=$res->fields['stud_id'];
 			$data_list[$key_sn][stud_birthday]=$res->fields[stud_birthday];
 			
 			$data_list[$key_sn][birth_year]=$res->fields[birth_year]-1911;
@@ -361,7 +361,7 @@ function get_item_all_stud_list_multi($item_id_list) {
 			
 			$data_list[$key_sn][stud_person_id]=$res->fields[stud_person_id];
 			
-			$data_list[$key_sn]['stud_name']=$res->fields[stud_name];
+			$data_list[$key_sn]['stud_name']=$res->fields['stud_name'];
 
 			//$data_list[$student_sn][guardian]=$student[3];
 

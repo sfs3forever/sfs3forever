@@ -61,7 +61,7 @@ $stmt->close();
 ///mysqli
 
 //$result = mysql_query($query)or die($query);
-//$row = mysql_fetch_row($result);
+//$row = mysqli_fetch_row($result);
 
 //總筆數
 //$num_record = $row[0];

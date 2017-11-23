@@ -9,7 +9,7 @@ $man_flag = false;
 //判別是否為系統管理者
 $man_flag = checkid($_SERVER[SCRIPT_FILENAME],1) ;
 
-$curr_class_id = $_POST[curr_class_id];
+$curr_class_id = $_POST['curr_class_id'];
 
 if($curr_class_id =='')
 	$curr_class_id = 1;
@@ -34,7 +34,7 @@ $mysqliconn = get_mysqli_conn();
 if($_POST[key] =='新增'){
 	$curr_class_name = $_POST[curr_class_name];
 	for ($i=0 ;$i <count($_POST[curr_class_name]);$i++) {
-		$class_id = sprintf("%04d%d%02d",$_POST[curr_year],$_POST[curr_class_id],$curr_class_name[$i]);
+		$class_id = sprintf("%04d%d%02d",$_POST[curr_year],$_POST['curr_class_id'],$curr_class_name[$i]);
 		$result = $CONN->Execute("select class_id from exam_kind where class_id ='$class_id'");
 		if ($result->RecordCount() ==0) {
 			/*

@@ -421,10 +421,10 @@ if(($teacher_course)&&($curr_sort)){
 			if(strstr ($teacher_course, 'g')) $stud_num = intval(substr($res->fields[curr_class_num],-4,-2))."-".intval(substr($res->fields[curr_class_num],-2));
 			else $stud_num = intval(substr($res->fields[curr_class_num],-2));
 			$student_sn = $res->fields['student_sn'];
-			$stud_name  = addslashes($res->fields[stud_name]);
+			$stud_name  = addslashes($res->fields['stud_name']);
 			//排除名單加註*
       $stud_name.=($student_out[$student_sn])?"<font color=red>*</font>":"";
-			$stud_id  = addslashes($res->fields[stud_id]);
+			$stud_id  = addslashes($res->fields['stud_id']);
 			$stud_study_year=$res->fields[stud_study_year];
 			
 			if($pic_checked) {
@@ -557,9 +557,9 @@ if(($teacher_course)&&($curr_sort)){
 		while(!$res->EOF){
 			if(strstr ($teacher_course, 'g')) $stud_num = intval(substr($res->fields[curr_class_num],-4,-2))."-".intval(substr($res->fields[curr_class_num],-2));
 			else $stud_num = intval(substr($res->fields[curr_class_num],-2));
-			$stud_name  = addslashes($res->fields[stud_name]);
+			$stud_name  = addslashes($res->fields['stud_name']);
 			$student_sn = $res->fields['student_sn'];
-			$stud_id  = $res->fields[stud_id];
+			$stud_id  = $res->fields['stud_id'];
 			$stud_study_year= $res->fields[stud_study_year];
 			
 			if($pic_checked) {
@@ -623,9 +623,9 @@ if(($teacher_course)&&($curr_sort)){
 		$i=1;
 		while(!$res->EOF){
 			$stud_num = intval(substr($res->fields[curr_class_num],-2));
-			$stud_name  = addslashes($res->fields[stud_name]);
+			$stud_name  = addslashes($res->fields['stud_name']);
 			$student_sn = $res->fields['student_sn'];
-			$stud_id = $res->fields[stud_id];
+			$stud_id = $res->fields['stud_id'];
 			$stud_study_year= $res->fields[stud_study_year];
 			
 			if($pic_checked) {

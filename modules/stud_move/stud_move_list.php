@@ -26,7 +26,7 @@
 	$res=$CONN->Execute($query);
 	$class_year=0;
 	while (!$res->EOF) {
-                $id=$res->fields[stud_id];
+                $id=$res->fields['stud_id'];
                 $move_date[$id]=DtoCh($res->fields[move_date]);
                 $dd=explode("-",$move_date[$id]);
                 $move_date[$id]=$dd[0].".".$dd[1];
@@ -64,7 +64,7 @@
                 }
 		$query_stud="select * from stud_base where student_sn='$student_sn'";
 		$res_stud=$CONN->Execute($query_stud);
-		$stud_name[$id]= $ttt->change_str($res_stud->fields[stud_name]);
+		$stud_name[$id]= $ttt->change_str($res_stud->fields['stud_name']);
 		$stud_sex[$id]= $ttt->change_str($sex_arr[$res_stud->fields[stud_sex]]);
 		$stud_person_id[$id]=$res_stud->fields[stud_person_id];
 		$stud_birthday[$id]=DtoCh($res_stud->fields[stud_birthday]);

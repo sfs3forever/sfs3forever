@@ -55,7 +55,7 @@ if($_POST){
 	$smarty->assign("img_3",$img_3);
 	
   $query="select title_name from teacher_title where teach_title_id=3";
-  list($sign_3_title)=mysql_fetch_row(mysql_query($query));
+  list($sign_3_title)=mysqli_fetch_row(mysql_query($query));
 	
 	$smarty->assign("sign_3_title",$sign_3_title);
 
@@ -184,7 +184,7 @@ if($_POST){
 	   	//校內社團, 要檢查分數, 外校社團則一律通過
 	   		$query="select pass_score from stud_club_base where club_sn='".$row['club_sn']."'";
 	   		$res_pass=mysql_query($query);
-	   		list($pass_score)=mysql_fetch_row($res_pass);
+	   		list($pass_score)=mysqli_fetch_row($res_pass);
 	     
 	   	if ((($row['score']>=$pass_score and $row['club_sn']>0) or ($row['club_sn']==0) and $row['stud_post']!="")) {
  			 $association_name=$row['association_name'];
@@ -374,7 +374,7 @@ if($_POST){
 	   	//校內社團, 要檢查分數, 外校社團則一律通過
 	   		$query="select pass_score from stud_club_base where club_sn='".$row['club_sn']."'";
 	   		$res_pass=mysql_query($query);
-	   		list($pass_score)=mysql_fetch_row($res_pass);
+	   		list($pass_score)=mysqli_fetch_row($res_pass);
 	     
 	   	if (($row['score']>=$pass_score and $row['club_sn']>0) or ($row['club_sn']==0) ) {
 	   	  $j++;
@@ -538,8 +538,8 @@ function &stud_absent_statForm($sel_year,$sel_seme,$class_id,$stud_id,$start_dat
 		$seme_year_seme=sprintf("%03d",$sel_year).$sel_seme;
 		$query="select a.stud_name,b.seme_num from stud_base a,stud_seme b where b.seme_year_seme='$seme_year_seme' and a.student_sn=b.student_sn and a.stud_id='$stud_id'";
 		$res=$CONN->Execute($query);
-		$stud_name=$res->fields[stud_name];
-		$seme_num=$res->fields[seme_num];
+		$stud_name=$res->fields['stud_name'];
+		$seme_num=$res->fields['seme_num'];
 		$query="select * from school_class where class_id='$class_id'";
 		$res=$CONN->Execute($query);
 		$c_name=$res->fields[c_name];

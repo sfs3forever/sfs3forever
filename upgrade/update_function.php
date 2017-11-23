@@ -178,7 +178,7 @@ function check_table($mysql_db,$conID,$table_name) {
 	$is_add = false;
 	$query = "show tables from $mysql_db ";
 	$result = mysql_query($query,$conID) or die ($query);	
-	while ($row = mysql_fetch_row($result)) {
+	while ($row = mysqli_fetch_row($result)) {
 		if($row[0]==$table_name) {
 			$is_add =true;
 			break;

@@ -30,7 +30,7 @@ $sqlstr = "select stud_id,stud_study_cond,stud_study_year from stud_base where s
 $result =$CONN->Execute($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256) ; 
 if ($result->fields[stud_study_cond]==5) {
 	$stud_grad_year=$result->fields[stud_study_year]+intval(($IS_JHORES==0)?5:2);
-	$sqlstr = "select * from grad_stud where stud_id='".$result->fields[stud_id]."' and stud_grad_year='$stud_grad_year'";
+	$sqlstr = "select * from grad_stud where stud_id='".$result->fields['stud_id']."' and stud_grad_year='$stud_grad_year'";
 	$result =$CONN->Execute($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256) ; 
 	$smarty->assign("grad_kind",$result->fields[grad_kind]);
 	$smarty->assign("grad_arr",array("1"=>"畢業","2"=>"修業"));

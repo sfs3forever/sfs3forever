@@ -56,7 +56,7 @@ $stmt->close();
 /*
 $result = mysql_query($query)or die($query);
 $result = mysql_query($query);
-$row = mysql_fetch_row($result);
+$row = mysqli_fetch_row($result);
 $num_record = $row[0];
 */
 

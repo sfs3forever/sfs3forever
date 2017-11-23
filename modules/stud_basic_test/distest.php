@@ -39,9 +39,9 @@ if ($_POST[year_name]) {
 	while(!$res->EOF) {
 		$seme_class=$res->fields['seme_class'];
 		$sn[]=$res->fields['student_sn'];
-		$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields['student_sn'];
-		$stud_data[$res->fields['student_sn']]['stud_name']=$res->fields[stud_name];
-		$stud_data[$res->fields['student_sn']][stud_id]=$res->fields[stud_id];
+		$show_sn[$seme_class][$res->fields['seme_num']]=$res->fields['student_sn'];
+		$stud_data[$res->fields['student_sn']]['stud_name']=$res->fields['stud_name'];
+		$stud_data[$res->fields['student_sn']][stud_id]=$res->fields['stud_id'];
 		$stud_data[$res->fields['student_sn']][stud_person_id]=$res->fields[stud_person_id];
 		$stud_data[$res->fields['student_sn']][stud_sex]=$res->fields[stud_sex];
 		$d_arr=explode("-",$res->fields[stud_birthday]);

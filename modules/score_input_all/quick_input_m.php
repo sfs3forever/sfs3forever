@@ -147,7 +147,7 @@ echo "<b>$temp_str</b>";
 			$sn = $rs->fields['student_sn'];
 		
 		$sit_num = substr($rs->fields[curr_class_num],-2);
-		$stud_name = $rs->fields[stud_name];
+		$stud_name = $rs->fields['stud_name'];
 		$test_score = $rs->fields[score];
 		if($test_score == -100 or $test_score =='0')	
 			$test_score='';

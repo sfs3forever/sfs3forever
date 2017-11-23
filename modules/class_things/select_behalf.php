@@ -15,7 +15,7 @@ $class_name=teacher_sn_to_class_name($teacher_sn);
  //取得班級家長及學生姓名
 	$rs_name=$CONN->Execute("select sb.stud_id, sd.guardian_name from stud_base as sb, stud_domicile as sd where sb.student_sn=sd.student_sn and sb.curr_class_num like '$class_name[0]%' and sb.stud_study_cond =0");
 	while(!$rs_name->EOF){
-		$rs_name_arr[$rs_name->fields[stud_id]] = $rs_name->fields[guardian_name];
+		$rs_name_arr[$rs_name->fields['stud_id']] = $rs_name->fields[guardian_name];
 		$rs_name->MoveNext();	
 	}
 

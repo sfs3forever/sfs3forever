@@ -187,7 +187,7 @@
 		//更新學期班級記錄	
 		$query = "select seme_year_seme,substring(seme_class,1,1)as cc from stud_seme  group by seme_year_seme,seme_class order by seme_year_seme";
 		$result = mysql_db_query($new_mysql_db,$query,$conID2) or die ($query);
-			while ($row = mysql_fetch_row($result)) {
+			while ($row = mysqli_fetch_row($result)) {
 				$year = $row[0];			
 				$class = $row[1];
 				$arr[$year][$class] += 1;
@@ -272,7 +272,7 @@
 			// 加入地址資料
 			$sql = "select addr_id from stud_base where stud_id='$stud_id'";			
 			$result_addr = mysql_db_query($new_mysql_db,$sql,$conID2) or die ($sql);
-			$row_addr = mysql_fetch_row($result_addr);
+			$row_addr = mysqli_fetch_row($result_addr);
 			$sql = "update stud_domicile set addr_id = '$row_addr[0]' where  stud_id='$stud_id'";
 			$result_addr = mysql_db_query($new_mysql_db,$sql,$conID2) or die ($sql);
 			$iii++;

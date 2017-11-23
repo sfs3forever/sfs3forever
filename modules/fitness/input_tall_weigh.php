@@ -47,13 +47,13 @@ if ($module_manager!=1) {
  	 	
  	 		$query="select distinct seme_class from stud_seme where seme_year_seme='$c_curr_seme' order by seme_class";
  	 		$res=mysql_query($query);
- 	 		while ($row=mysql_fetch_row($res)) {
+ 	 		while ($row=mysqli_fetch_row($res)) {
  	 		 list($SEME_CLASS)=$row;
  	 		 $class_id=sprintf("%03d_%d_%02d_%02d",curr_year(),curr_seme(),substr($SEME_CLASS,0,1),substr($SEME_CLASS,1,2));
  	 		 $query="select c_year,c_name,c_kind from school_class where class_id='$class_id'";
  	 		 $res_class=mysql_query($query);
  	 		 if (mysql_num_rows($res_class)) {
- 	 		 list($c_year,$c_name,$c_kind)=mysql_fetch_row($res_class);
+ 	 		 list($c_year,$c_name,$c_kind)=mysqli_fetch_row($res_class);
  	 		 ?>
  	 		  <option value="<?php echo $SEME_CLASS;?>"<?php if ($SEME_CLASS==$seme_class) echo " selected";?>><?php echo $school_kind_name[$c_year]."".$c_name."班";?></option>
  	 		 <?php
@@ -140,7 +140,7 @@ if ($stud_data) {
 
 		$query="select a.student_sn,a.stud_name,a.stud_sex,b.seme_num from stud_base a,stud_seme b where a.student_sn=b.student_sn and b.seme_year_seme='$c_curr_seme' and b.seme_class='$seme_class' and a.stud_study_cond in ($in_study) order by seme_num";
     $result=mysql_query($query);
-    while ($row=mysql_fetch_row($result)) {
+    while ($row=mysqli_fetch_row($result)) {
     	list($student_sn,$stud_name,$stud_sex,$seme_num)=$row;
     	?>
 		<tr>
@@ -154,7 +154,7 @@ if ($stud_data) {
      //檢查 fitness_data table 裡有沒有本學期資料
    			$query="select count(student_sn),tall,weigh from fitness_data where student_sn='".$student_sn."' and c_curr_seme='$c_curr_seme'";
    			$result_chk=mysql_query($query);
-   			list($ok,$tall,$weigh)=mysql_fetch_row($result_chk);
+   			list($ok,$tall,$weigh)=mysqli_fetch_row($result_chk);
    			//如果沒有資料, 自動insert 新的
    			if ($ok==0) {
    				if (mysql_query("insert into fitness_data (c_curr_seme,student_sn) values ('$c_curr_seme','".$student_sn."')")) {

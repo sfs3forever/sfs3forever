@@ -43,7 +43,7 @@ if ($year_name && $class_name && $class_num) {
         $seme_num=sprintf("%02d",$class_num);
         $sql="select a.stud_id,b.stud_study_cond from stud_seme a,stud_base b where a.seme_year_seme='$seme_year_seme' and a.seme_class='$seme_class' and a.seme_num='$seme_num' and b.student_sn=a.student_sn and b.stud_study_cond='0'";
         $rs=$CONN->Execute($sql);
-        $stud_id=$rs->fields[stud_id];
+        $stud_id=$rs->fields['stud_id'];
         if (!empty($stud_id)) $One=$stud_id;
         $ON_LOAD="javascript:document.site_form.class_num.focus();";
 }
@@ -367,9 +367,9 @@ function &signForm($sel_year,$sel_seme,$class_id,$thisOne=array(),$One=""){
                 $seme_year_seme=sprintf("%03d",$sel_year).$sel_seme;
                 $sql="select a.stud_name,a.stud_study_cond,b.seme_class,b.seme_num from stud_base a,stud_seme b where a.stud_id='$One' and a.student_sn=b.student_sn and b.seme_year_seme='$seme_year_seme'";
                 $rs=$CONN->Execute($sql);
-                $stud_name=$rs->fields[stud_name]."<br><font color='#008800'>(".$scond[$rs->fields[stud_study_cond]].")</font>";
+                $stud_name=$rs->fields['stud_name']."<br><font color='#008800'>(".$scond[$rs->fields[stud_study_cond]].")</font>";
                 $seme_class=$rs->fields['seme_class'];
-                $seme_num=$rs->fields[seme_num];
+                $seme_num=$rs->fields['seme_num'];
                 $year_name=substr($seme_class,0,-2)-$IS_JHORES;
                 $class_name=intval(substr($seme_class,-2,2));
                 $DAY=get_school_days($seme_year_seme,substr($seme_class,0,1)); //取得本學期上學日

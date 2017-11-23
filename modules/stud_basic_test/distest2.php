@@ -47,9 +47,9 @@ if ($_POST[year_name]) {
 	while(!$res->EOF) {
 		$seme_class=$res->fields['seme_class'];
 		$sn[]=$res->fields['student_sn'];
-		$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields['student_sn'];
-		$stud_data[$res->fields['student_sn']]['stud_name']=$res->fields[stud_name];
-		$stud_data[$res->fields['student_sn']][stud_id]=$res->fields[stud_id];
+		$show_sn[$seme_class][$res->fields['seme_num']]=$res->fields['student_sn'];
+		$stud_data[$res->fields['student_sn']]['stud_name']=$res->fields['stud_name'];
+		$stud_data[$res->fields['student_sn']][stud_id]=$res->fields['stud_id'];
 		$stud_data[$res->fields['student_sn']][stud_person_id]=$res->fields[stud_person_id];
 		$stud_data[$res->fields['student_sn']][stud_sex]=$res->fields[stud_sex];
 		$d_arr=explode("-",$res->fields[stud_birthday]);
@@ -58,7 +58,7 @@ if ($_POST[year_name]) {
 		$stud_data[$res->fields['student_sn']][stud_tel]=substr(str_replace("-","",$res->fields[$phone_col]),0,10);
 		$stud_data[$res->fields['student_sn']][addr_zip]=(strlen($res->fields[addr_zip])>3)?substr($res->fields[addr_zip],0,3):sprintf("%-3s",$res->fields[addr_zip]);
 		$stud_data[$res->fields['student_sn']][stud_addr_1]=$res->fields[$addr_col];
-		$query2 = "select $parent_col from stud_domicile where stud_id ='".$res->fields[stud_id]."'";
+		$query2 = "select $parent_col from stud_domicile where stud_id ='".$res->fields['stud_id']."'";
 		$res2=$CONN->Execute($query2);
 		$stud_data[$res->fields['student_sn']][parent_name]=$res2->fields[$parent_col];
 		$res->MoveNext();

@@ -97,7 +97,7 @@ if($item_id)
 		while(!$recordSet->EOF)
 		{
 			$is_selected=($record_id==$recordSet->fields[record_id]?" selected":"");
-			$studentdata.="<option value='".$recordSet->fields[record_id]."'$is_selected>(".substr($recordSet->fields[curr_class_num],-2).")".$recordSet->fields[stud_name]."</option>";
+			$studentdata.="<option value='".$recordSet->fields[record_id]."'$is_selected>(".substr($recordSet->fields[curr_class_num],-2).")".$recordSet->fields['stud_name']."</option>";
 			$recordSet->MoveNext();
 		}
 		$studentdata.="</select>";
@@ -129,7 +129,7 @@ if($item_id)
 				//編輯
 				$showdata.="<tr bgcolor=#AAFFCC><td align='center'>".($recordSet->CurrentRow()+1)."</td>";
 				$showdata.="<td align='center'>".$recordSet->fields[record_id]."</td>";
-				$showdata.="<td align='center'>".$recordSet->fields[stud_name]."</td>";
+				$showdata.="<td align='center'>".$recordSet->fields['stud_name']."</td>";
 				$showdata.="<td align='center'>$item_total</td>";
 				$showdata.="<td align='center'>$my_decrease</td>";
 				$showdata.="<td align='center'>".$my_should_paid."</td>";
@@ -137,14 +137,14 @@ if($item_id)
 				$showdata.="<td align='center'><input type='text' name='paid_date' size=10 value='".$recordSet->fields[paid_date]."'></td>";
 				$showdata.="<td align='center'>$left</td>";
 				$showdata.="<td align='center'><input type='text' name='comment' size=10 value='".$recordSet->fields[comment]."'></td>";
-				$showdata.="<td align='center'><input type='submit' value='修改' name='act' onclick='return confirm(\"確定要更改[".$recordSet->fields[stud_name]."]?\")'>　<input type='submit' value='刪除' name='act' onclick='return confirm(\"真的要刪除[".$recordSet->fields[stud_name]."]?\")'></td></tr>";
+				$showdata.="<td align='center'><input type='submit' value='修改' name='act' onclick='return confirm(\"確定要更改[".$recordSet->fields['stud_name']."]?\")'>　<input type='submit' value='刪除' name='act' onclick='return confirm(\"真的要刪除[".$recordSet->fields['stud_name']."]?\")'></td></tr>";
 			} else {
 				//列表
 				$my_decrease=$decrease_dollars[$recordSet->fields['student_sn']][total];
 				
 				$showdata.="<tr bgcolor=$my_bgcolor><td align='center'>".($recordSet->CurrentRow()+1)."</td>";
 				$showdata.="<td align='center'>".$recordSet->fields[record_id]."</td>";
-				$showdata.="<td align='center'>".$recordSet->fields[stud_name]."</td>";
+				$showdata.="<td align='center'>".$recordSet->fields['stud_name']."</td>";
 				$showdata.="<td align='center'>".$item_total."</td>";
 				$showdata.="<td align='center'>$my_decrease</td>";
 				$showdata.="<td align='center'>".$my_should_paid."</td>";

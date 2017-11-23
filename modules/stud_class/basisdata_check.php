@@ -33,9 +33,9 @@ if($_POST[go]){
 	$sql="select a.*,b.* from stud_base a left join stud_domicile b on a.student_sn=b.student_sn where stud_study_cond in (0,15) and a.curr_class_num like '$class_num%' order by curr_class_num";
 	$res=$CONN->Execute($sql) or trigger_error("SQL語法錯誤：$sql", E_USER_ERROR);
 	while(!$res->EOF){
-		$stud_id=$res->fields[stud_id];
+		$stud_id=$res->fields['stud_id'];
 		$student_sn=$res->fields['student_sn'];
-		$stud_name=$res->fields[stud_name];
+		$stud_name=$res->fields['stud_name'];
 		$grade=substr($res->fields[curr_class_num],0,-4);
 		$curr_class_num=$res->fields[curr_class_num];
 		$class_id=substr($curr_class_num,0,-2);

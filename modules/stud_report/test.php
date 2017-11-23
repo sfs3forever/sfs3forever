@@ -223,8 +223,8 @@ if($class_id<>'') {
 		echo "<table border=1>";
 		$ii=0;
 		while (!$result->EOF) {
-			$stud_id = $result->fields[stud_id];
-			$stud_name = $result->fields[stud_name];
+			$stud_id = $result->fields['stud_id'];
+			$stud_name = $result->fields['stud_name'];
 			$curr_class_num = substr($result->fields[curr_class_num],-2);
 			if ($ii %2 ==0)
 				$tr_class = "class=title_sbody1";

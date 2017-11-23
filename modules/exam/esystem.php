@@ -55,12 +55,12 @@ switch ($_POST[key]) {
 		
 		while(!$result2->EOF) {
 			$stud_num = intval(substr($result2->fields[curr_class_num],-2));
-			$result3 = $CONN->Execute("select stud_id,stud_num from exam_stud_data where stud_id ='".$result2->fields[stud_id]."'");
+			$result3 = $CONN->Execute("select stud_id,stud_num from exam_stud_data where stud_id ='".$result2->fields['stud_id']."'");
 			if ($result3->RecordCount()>0) {
 				if($stud_num != $result3->fields[stud_num]) {
-					$query3  = "update  exam_stud_data set stud_num='$stud_num' where stud_id = '".$result2->fields[stud_id]."'";
+					$query3  = "update  exam_stud_data set stud_num='$stud_num' where stud_id = '".$result2->fields['stud_id']."'";
 					$CONN->Execute($query3) or die($query3);					
-					$query3  = "update  exam_stud set stud_num='$stud_num' where stud_id = '".$result2->fields[stud_id]."'";
+					$query3  = "update  exam_stud set stud_num='$stud_num' where stud_id = '".$result2->fields['stud_id']."'";
 					$CONN->Execute($query3) or die($query3);
 					$chgnum++;					
 				
@@ -69,7 +69,7 @@ switch ($_POST[key]) {
 			else {
 //mysqli
 $mysqliconn = get_mysqli_conn();	
-$query3  = "insert into exam_stud_data (stud_id,stud_num,stud_pass) values('".$result2->fields[stud_id]."','$stud_num',?)";
+$query3  = "insert into exam_stud_data (stud_id,stud_num,stud_pass) values('".$result2->fields['stud_id']."','$stud_num',?)";
 $stmt = "";
 $stmt = $mysqliconn->prepare($query3);
 $stmt->bind_param('s', $default_pass);
@@ -78,7 +78,7 @@ $stmt->close();
 ///mysqli	
 				
 				/*
-				$query3  = "insert into exam_stud_data (stud_id,stud_num,stud_pass) values('".$result2->fields[stud_id]."','$stud_num','$default_pass')";
+				$query3  = "insert into exam_stud_data (stud_id,stud_num,stud_pass) values('".$result2->fields['stud_id']."','$stud_num','$default_pass')";
 				$CONN->Execute($query3) or die($query3);
 				*/
 				

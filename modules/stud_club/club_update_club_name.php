@@ -41,7 +41,7 @@ if ($_POST['mode']=="start") {
       while ($row=mysql_fetch_array($res)) {
       	$query="select club_name from stud_club_base where club_sn='".$row['club_sn']."'";
 				$result=mysql_query($query);
-				list($club_name)=mysql_fetch_row($result);
+				list($club_name)=mysqli_fetch_row($result);
 				$query="update association set association_name='".SafeAddSlashes($club_name)."' where sn='".$row['sn']."'";
 				if (mysql_query($query)) {
 					$N++;

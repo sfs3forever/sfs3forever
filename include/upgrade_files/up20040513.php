@@ -18,7 +18,7 @@ if ($res) {
 	while (!$res->EOF) {
 		$move_id=$res->fields[move_id];
 		$move_year_seme=$res->fields[move_year_seme];
-		$stud_id=$res->fields[stud_id];
+		$stud_id=$res->fields['stud_id'];
 		$seme_year_seme=sprintf("%04d",$move_year_seme);
 		$query="select student_sn from stud_seme where seme_year_seme='$seme_year_seme' and stud_id='$stud_id'";
 		$res1=$CONN->Execute($query);

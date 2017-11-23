@@ -54,18 +54,18 @@ if ($_POST[year_name]) {
 	$res=$CONN->Execute($query) or die("SQL執行錯誤： $query");
 	while(!$res->EOF) {
 		$sn=$res->fields['student_sn'];
-		$student_sn[$res->fields[stud_id]]=$sn;
-		$stud_id[$sn]=$res->fields[stud_id];
-		$stud_name[$sn]=$res->fields[stud_name];
+		$student_sn[$res->fields['stud_id']]=$sn;
+		$stud_id[$sn]=$res->fields['stud_id'];
+		$stud_name[$sn]=$res->fields['stud_name'];
 		$seme_class[$sn]=$res->fields['seme_class'];
-		$seme_num[$sn]=$res->fields[seme_num];
+		$seme_num[$sn]=$res->fields['seme_num'];
 		$res->MoveNext();
 	}
 	$all_id="('".implode("','",$stud_id)."')";
 	$query="select * from grad_stud where stud_grad_year='$sel_year' and stud_id in $all_id";
 	$res=$CONN->Execute($query) or die("SQL執行錯誤： $query");
 	while(!$res->EOF) {
-		$sn=$student_sn[$res->fields[stud_id]];
+		$sn=$student_sn[$res->fields['stud_id']];
 		$grad_kind[$sn]=$res->fields[grad_kind];
 		$P_date[$sn]=$res->fields[grad_date];
 		$P_word[$sn]=$res->fields[grad_word];

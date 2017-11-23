@@ -120,17 +120,17 @@ if ($err==0) {
 	if ($res)
 		while (!$res->EOF) {
 			$student_sn=$res->fields['student_sn'];
-			$stud_list[$student_sn][site_num]=(strstr($teacher_course,'g'))? substr($res->fields[curr_class_num],-4,2)."_".substr($res->fields[curr_class_num],-2,2):$res->fields[seme_num];
-			$stud_list[$student_sn][name]=$res->fields[stud_name];
+			$stud_list[$student_sn][site_num]=(strstr($teacher_course,'g'))? substr($res->fields[curr_class_num],-4,2)."_".substr($res->fields[curr_class_num],-2,2):$res->fields['seme_num'];
+			$stud_list[$student_sn][name]=$res->fields['stud_name'];
 			
 				//排除名單加註*
   	  $stud_list[$student_sn][name].=($student_out[$student_sn])?"<font color=red>*</font>":"";
 			
-			$stud_list[$student_sn][stud_id]=$res->fields[stud_id];
-			$stud_list[$student_sn][class_id]=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,substr($res->fields[curr_class_num],0,-4),substr($res->fields[curr_class_num],-4,2));
+			$stud_list[$student_sn][stud_id]=$res->fields['stud_id'];
+			$stud_list[$student_sn]['class_id']=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,substr($res->fields[curr_class_num],0,-4),substr($res->fields[curr_class_num],-4,2));
 			$stud_study_year=$res->fields[stud_study_year];
 			$stud_list[$student_sn][stud_study_year]=$stud_study_year;
-			$img=$UPLOAD_PATH."photo/student/".$stud_study_year."/".$res->fields[stud_id];
+			$img=$UPLOAD_PATH."photo/student/".$stud_study_year."/".$res->fields['stud_id'];
 			if (file_exists($img)) $stud_list[$student_sn][pic]="1";			
 			$all_sn.="'".$student_sn."',";
 			$res->MoveNext();
@@ -314,7 +314,7 @@ if ($err==0) {
 		if ($yorn=="y" || $curr_sort=="255") {
 			//while(list($student_sn,$score)=each($data_arr[score][$curr_sort][avg])) {
 			foreach($data_arr[score][$curr_sort][avg] as $student_sn=>$score) {
-				$cid=$stud_list[$student_sn][class_id];
+				$cid=$stud_list[$student_sn]['class_id'];
 				if ($data_arr[value][$curr_sort][$student_sn]==1) {
 					$query="update $score_semester set score='$score',update_time='$update_time',teacher_sn='$teacher_sn',test_kind='$test_kind' where student_sn='$student_sn' and ss_id='$ss_id' and test_sort='$curr_sort' and  test_kind='$test_kind' ";
 					$CONN->Execute($query);
@@ -329,7 +329,7 @@ if ($err==0) {
 				reset($data_arr[score][$curr_sort][avg]);
 				//while(list($student_sn,$score)=each($data_arr[score][$curr_sort][avg])) {
 				foreach( $data_arr[score][$curr_sort][avg] as  $student_sn=>$score) {
-					$cid=$stud_list[$student_sn][class_id];
+					$cid=$stud_list[$student_sn]['class_id'];
 					if ($data_arr[value][$i][$student_sn]==1) {
 						$query="update $score_semester set score='$score',update_time='$update_time',teacher_sn='$teacher_sn',test_kind='$test_kind' where student_sn='$student_sn' and ss_id='$ss_id' and test_sort='$i'";
 						$CONN->Execute($query);

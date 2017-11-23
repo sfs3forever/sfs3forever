@@ -19,7 +19,7 @@ if ($_REQUEST[trans]) {
 		$gb_id=$res->fields[gb_id];
 		$gb_year=$res->fields[gb_year];
 		$gb_seme=$res->fields[gb_seme];
-		$stud_id=$res->fields[stud_id];
+		$stud_id=$res->fields['stud_id'];
 		$gb_add_date=$res->fields[gb_add_date];
 		$gb_cancel_date=$res->fields[gb_cancel_date];
 		$gb_why=$res->fields[gb_why];
@@ -31,7 +31,7 @@ if ($_REQUEST[trans]) {
 		$query_trans="select a.student_sn,b.stud_name from stud_seme a,stud_base b where a.seme_year_seme='$seme_year_seme' and a.stud_id='$stud_id' and a.student_sn=b.student_sn";
 		$res_trans=$CONN->Execute($query_trans) or trigger_error($query_trans,E_USER_ERROR);
 		$student_sn=$res_trans->fields['student_sn'];
-		$stud_name=$res_trans->fields[stud_name];
+		$stud_name=$res_trans->fields['stud_name'];
 		if ($reward_kind==99) {
 			$trans_msg.="<tr bgcolor='#ffffff'><td>$stud_id</td><td>$stud_name</td><td>$gb_add_date</td><td>$gb_kind_arr[$gb_kind]</td><td>$gb_why</td><td>無法轉移</td></tr>";
 		} else {

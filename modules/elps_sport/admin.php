@@ -18,14 +18,14 @@ if (substr($_POST[act],0,6)=='update'){
 		if ($_POST[na]=='' ) backe("未填妥，按下後重填！");
 		$sql="insert into  sport_var(gp,kkey,na)values('$_POST[gp]','$_POST[kkey]','$_POST[na]') ";
 		$rs = $CONN->Execute($sql) or die($sql);
-		header("Location:$_SERVER[PHP_SELF]");
+		header("Location:{$_SERVER['PHP_SELF']}");
 		}
 	foreach( $_POST[$Col_name] as $id=>$val) {
 		$sql="update sport_var set ".$Col_name."='$val' where id ='$id' ";
 //		echo$sql."<BR>";
 		$rs = $CONN->Execute($sql) or die($sql);
 		}
-		header("Location:$_SERVER[PHP_SELF]");
+		header("Location:{$_SERVER['PHP_SELF']}");
 //	gonow($_SERVER[PHP_SELF]."?mid=$mid");exit;
 	}
 

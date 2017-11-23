@@ -230,8 +230,8 @@ if($curr_sort){
 		$query = "select a.student_sn,a.stud_name,b.seme_num from stud_base a,stud_seme b where a.student_sn=b.student_sn and b.seme_year_seme='$seme_year_seme' and b.seme_class='$curr_class_temp' and a.stud_study_cond in ($study_str) order by b.seme_num";
 		$res = $CONN->Execute($query) or triger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
-			$stud_num = $res->fields[seme_num];
-			$stud_name = $res->fields[stud_name];
+			$stud_num = $res->fields['seme_num'];
+			$stud_name = $res->fields['stud_name'];
 			$student_sn = $res->fields['student_sn'];
 			if ($_GET[del]=='ds1')
 				$score_1=-100;
@@ -305,8 +305,8 @@ if($curr_sort){
 		$res = $CONN->Execute($query) or triger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
 			//$stud_num = intval(substr($res->fields[curr_class_num],-2));
-			$stud_num = $res->fields[seme_num];
-			$stud_name  = $res->fields[stud_name];
+			$stud_num = $res->fields['seme_num'];
+			$stud_name  = $res->fields['stud_name'];
 			$student_sn = $res->fields['student_sn'];
 			if ($_GET[del]=='ds2')
 				$score_2 = -100;
@@ -353,7 +353,7 @@ if($curr_sort){
 		$res = $CONN->Execute($query) or triger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
 			$stud_num = intval(substr($res->fields[curr_class_num],-2));
-			$stud_name  = $res->fields[stud_name];
+			$stud_name  = $res->fields['stud_name'];
 			$student_sn = $res->fields['student_sn'];
 			if ($_GET[del]=='ds2')
 				$score_2 = -100;

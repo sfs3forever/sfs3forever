@@ -253,7 +253,7 @@ if(($teacher_course)&&($curr_sort)&&($curr_sort!=255)&&($curr_sort!=254)){
             if($del=="ds2") $score2="-100";
             if($score2=="-100") {$score2=""; $Cch++;}
             $rs3=&$CONN->Execute("select stud_name from stud_base where student_sn='$stud_sn[$m]'");
-            $stud_name=$rs3->fields[stud_name];
+            $stud_name=$rs3->fields['stud_name'];
             $site_num=student_sn_to_site_num($stud_sn[$m]);
             $aver_score1=$score1*$test_ratio[0];
             $aver_score2=$score2*$test_ratio[1];
@@ -453,7 +453,7 @@ elseif(($teacher_course)&&($curr_sort)&&($curr_sort==255)){
             if($del=="ds2") $score2="-100";
             if($score2=="-100") {$score2=""; $Cch++;}
             $rs3=&$CONN->Execute("select stud_name from stud_base where student_sn='$stud_sn[$m]'");
-            $stud_name=$rs3->fields[stud_name];
+            $stud_name=$rs3->fields['stud_name'];
             $site_num=student_sn_to_site_num($stud_sn[$m]);
             //$aver_score1=$score1*$test_ratio[0];
             //$aver_score2=$score2*$test_ratio[1];
@@ -589,8 +589,8 @@ elseif(($teacher_course)&&($curr_sort)&&($curr_sort==254)){
             if($del=="ds2") $score2="-100";
             if($score2=="-100") {$score2=""; $Cch++;}
             $rs3=&$CONN->Execute("select stud_name,curr_class_num from stud_base where student_sn='$stud_sn[$m]'");
-            $stud_name=$rs3->fields[stud_name];
-            $site_num= intval(substr($rs3->fields[stud_name],-2));
+            $stud_name=$rs3->fields['stud_name'];
+            $site_num= intval(substr($rs3->fields['stud_name'],-2));
             $ratio=100;
             $average_score[$m]=$score2;
             if($average_score[$m]!="") $average_score[$m]=number_format($average_score[$m],2);

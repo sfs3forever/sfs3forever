@@ -10,7 +10,7 @@ sfs_check();
 //執行動作判斷
 if($_POST[act]=="安裝"){
 	add_prob();
-	header("location: $_SERVER[PHP_SELF]");
+	header("location: {$_SERVER['PHP_SELF']}");
 }else{
 	$main=&main_form();
 }

@@ -26,7 +26,7 @@ if ($_POST[disgrade]) {
 	
 	
 	while(!$res->EOF) {
-		$stid[$res->fields['student_sn']]=$res->fields[stud_id];
+		$stid[$res->fields['student_sn']]=$res->fields['stud_id'];
 		$res->MoveNext();
 	}
 	while(list($k,$v)=each($_POST[sel])) {
@@ -77,9 +77,9 @@ if ($_POST[year_name]) {
 		$ssn=$res->fields['student_sn'];
 		$show_sn[$ssn]=$ssn;
 		$sclass[$ssn]=$class_base[$res->fields['seme_class']];
-		$snum[$ssn]=$res->fields[seme_num];
-		$stud_name[$ssn]=$res->fields[stud_name];
-		$stud_id[$ssn]=$res->fields[stud_id];
+		$snum[$ssn]=$res->fields['seme_num'];
+		$stud_name[$ssn]=$res->fields['stud_name'];
+		$stud_id[$ssn]=$res->fields['stud_id'];
 		$res->MoveNext();
 	}
 	if ($_POST[chk_last]) {

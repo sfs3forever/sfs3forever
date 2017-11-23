@@ -44,7 +44,7 @@ if($act=="getYearView"){
 	header("location: $_SERVER[PHP_SELF]?this_date=$_POST[this_date]");
 }elseif($act=="貼上行事曆"){
 	PasteSchoolThing($_POST[data]);
-	header("location: $_SERVER[PHP_SELF]");
+	header("location: {$_SERVER['PHP_SELF']}");
 }elseif($act=="modifyThing"){
 	$main=&viewAll($year,$month,$day,"modify",$_GET[cal_sn]);
 }elseif($act=="儲存更新"){

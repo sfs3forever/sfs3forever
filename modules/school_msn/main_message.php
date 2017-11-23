@@ -14,7 +14,7 @@ if (!isset($_SESSION['MSN_LOGIN_ID'])) {
 mysql_query("set names 'latin1';");
 $query="select a.teacher_sn,a.name,b.email,b.email2,b.email3 from teacher_base a,teacher_connect b where a.teacher_sn=b.teacher_sn and a.teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
 $result=mysql_query($query);
-list($teacher_sn,$MYNAME,$email,$email2,$email3)=mysql_fetch_row($result);
+list($teacher_sn,$MYNAME,$email,$email2,$email3)=mysqli_fetch_row($result);
 $MYEMAIL=($email=="")?$email2:$email;
 if ($MYEMAIL=="") $MYEMAIL=$email3;
 
@@ -456,7 +456,7 @@ if ($_GET['act']=='read') {
   }
  $result=mysql_query($query);
  //蝣箏祕??閮
- if ($row=mysql_fetch_row($result)) {
+ if ($row=mysqli_fetch_row($result)) {
 	list($id,$idnumber,$teach_id,$post_date,$data_kind,$data,$relay)=$row;
   mysql_query("update sc_msn_data set ifread=1 where id=$id");	
   $name=get_name_state($teach_id);
@@ -464,7 +464,7 @@ if ($_GET['act']=='read') {
   if ($relay) {
   	$query_relay="select post_date,data from sc_msn_data where idnumber='".$relay."' and teach_id='".$_SESSION['MSN_LOGIN_ID']."' and to_id='".$teach_id."'";
   	$result_relay=mysql_query($query_relay);
-  	list($r_post_date,$r_data)=mysql_fetch_row($result_relay);
+  	list($r_post_date,$r_data)=mysqli_fetch_row($result_relay);
   }
   //?臬??瑼?
   $query_file="select filename,filename_r from sc_msn_file where idnumber='".$idnumber."'";
@@ -518,7 +518,7 @@ if ($_GET['act']=='read') {
       <td width="41" bgcolor="#FFFFCC">??</td>
       <td bgcolor="#CCFFCC" style="font-size:10pt">?祉?閮???php mysql_num_rows($result_file);?>??瑼?<br>
       	<?php 
-      	 while ($row_file=mysql_fetch_row($result_file)) {
+      	 while ($row_file=mysqli_fetch_row($result_file)) {
       	  list($filename,$filename_r)=$row_file;
       	  echo $filename_r;?>&nbsp;<a href="main_download.php?set=<?php echo $filename;?>">銝?</a><br>
       	  <?php
@@ -590,7 +590,7 @@ if ($_GET['act']=='read') {
  </Script>
  
  <?php
- } // end if ($row=mysql_fetch_row($result))
+ } // end if ($row=mysqli_fetch_row($result))
 } // end if $_GET['act']=='read'
 
 
@@ -654,7 +654,7 @@ $mail->Password   = $SMPTpassword;        	// SMTP account password
 		 	
 		 	$query="select a.name,b.email,b.email2,b.email3 from teacher_base a,teacher_connect b where a.teacher_sn=b.teacher_sn and a.teach_id='".$g."'";
 			$result=mysql_query($query);
-			list($TONAME,$email,$email2,$email3)=mysql_fetch_row($result);
+			list($TONAME,$email,$email2,$email3)=mysqli_fetch_row($result);
 			$TOEMAIL=($email=="")?$email2:$email;
 			if ($TOEMAIL=="") $TOEMAIL=$email3;
      

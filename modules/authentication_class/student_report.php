@@ -62,8 +62,8 @@ if($_POST['act']=='統計輸出'){
 			//取得學生基本資料
 			$sql="select stud_id,stud_name,curr_class_num from stud_base WHERE student_sn=$student_sn";
 			$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
-			$stud_id=$res->fields[stud_id];
-			$stud_name=$res->fields[stud_name];
+			$stud_id=$res->fields['stud_id'];
+			$stud_name=$res->fields['stud_name'];
 			$curr_class_num=$res->fields[curr_class_num];
 			
 			$class_id=substr($curr_class_num,0,-2);
@@ -134,9 +134,9 @@ if($my_class_id){   //判定是否為班級導師
 		$studentdata="<table border='1' cellpadding='3' cellspacing='0' style='border-collapse: collapse;' bordercolor='#111111'>";
 		while(!$recordSet->EOF) {
 			$student_sn=$recordSet->fields['student_sn'];
-			$stud_id=$recordSet->fields[stud_id];
-			$seme_num=$recordSet->fields[seme_num];
-			$stud_name=$recordSet->fields[stud_name];
+			$stud_id=$recordSet->fields['stud_id'];
+			$seme_num=$recordSet->fields['seme_num'];
+			$stud_name=$recordSet->fields['stud_name'];
 			$stud_sex=$recordSet->fields[stud_sex];
 			$bgcolor=($stud_sex==1)?"#DDFFDD":"#FFDDDD";	
 			if($recordSet->currentrow() % $col==0) $studentdata.="<tr>";

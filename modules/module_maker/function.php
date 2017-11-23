@@ -34,7 +34,7 @@ function get_zip($FormData){
 	$data = $ttt->read_file(dirname(__FILE__)."/template/module-cfg.php");
 	$temp_arr=array();
 	$temp_arr["showname"] = $FormData[showname];
-	$temp_arr["table_name"] = $FormData[table_name];
+	$temp_arr["table_name"] = $FormData['table_name'];
 	$temp_arr["index_page"] = $FormData[index_page];
 	$temp_arr["lable"] = $FormData[lable];
 	$temp_arr["creat_date"] = $FormData[creat_date];
@@ -43,12 +43,12 @@ function get_zip($FormData){
 	$ttt->add_file($data,"/".$FormData[dirname]."/module-cfg.php");
 	
 	//module.sql
-	if(!empty($FormData[table_name])){
+	if(!empty($FormData['table_name'])){
 		$data = $ttt->read_file(dirname(__FILE__)."/template/module.sql");
 		$temp_arr=array();
 		$temp_arr["ID"] = "\$Id\$";
-		$temp_arr["table_name"] = $FormData[table_name];
-		$temp_arr["sql"] =table_data($FormData[table_name],$mark,0);
+		$temp_arr["table_name"] = $FormData['table_name'];
+		$temp_arr["sql"] =table_data($FormData['table_name'],$mark,0);
 		$data = $ttt->change_temp2($temp_arr,$data);
 		$ttt->add_file($data,"/".$FormData[dirname]."/module.sql");
 	}
@@ -82,7 +82,7 @@ function get_zip($FormData){
 
 	//如果是從資料庫過來的，讀取不同的 index.php
 	if($FormData[index_mode]=="sql"){
-		$data = $ttt->read_file($UPLOAD_PATH.$FormData[table_name]."_".$FormData[index_page]);	
+		$data = $ttt->read_file($UPLOAD_PATH.$FormData['table_name']."_".$FormData[index_page]);	
 	}else{
 		$data = $ttt->read_file(dirname(__FILE__)."/template/index.php");
 	}
@@ -95,7 +95,7 @@ function get_zip($FormData){
 	
 	//把暫存首頁檔移除
 	if($FormData[index_mode]=="sql"){
-		unlink($UPLOAD_PATH.$FormData[table_name]."_".$FormData[index_page]);
+		unlink($UPLOAD_PATH.$FormData['table_name']."_".$FormData[index_page]);
 	}
 	
 	//產生 zip 檔

@@ -16,8 +16,8 @@ $class_name=teacher_sn_to_class_name($teacher_sn);
  //取得班級家長及學生姓名
 	$rs_name=$CONN->Execute("select sb.stud_id, sb.stud_name, sd.guardian_name from stud_base as sb, stud_domicile as sd where sb.student_sn=sd.student_sn and sb.curr_class_num like '$class_name[0]%' and sb.stud_study_cond =0");
 	while(!$rs_name->EOF){
-		$name_data[name][$rs_name->fields[stud_id]] =  $rs_name->fields[stud_name];
-		$name_data[fname][$rs_name->fields[stud_id]] =  $rs_name->fields[guardian_name];
+		$name_data[name][$rs_name->fields['stud_id']] =  $rs_name->fields['stud_name'];
+		$name_data[fname][$rs_name->fields['stud_id']] =  $rs_name->fields[guardian_name];
 		$rs_name->MoveNext();	
 	}
   
@@ -25,8 +25,8 @@ $class_name=teacher_sn_to_class_name($teacher_sn);
   $sql="select a.stud_id, a.seme_num,b.stud_name from stud_seme a, stud_base b where a.student_sn=b.student_sn and a.seme_class='$class_name[0]' and a.seme_year_seme='$seme_year_seme'  and b.stud_study_cond =0 order by a.seme_num";
   $rs=$CONN->Execute($sql);
 	while(!$rs->EOF){
-		$sit_num = $rs->fields[seme_num] ;
-		$stud_id = $rs->fields[stud_id] ;
+		$sit_num = $rs->fields['seme_num'] ;
+		$stud_id = $rs->fields['stud_id'] ;
 		$data_order[]= $stud_id ;
 		$data_fname[]= $name_data[fname][$stud_id] ;
 		$data_name[]= $name_data[name][$stud_id] ;

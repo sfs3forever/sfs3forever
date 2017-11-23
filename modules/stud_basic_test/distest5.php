@@ -255,9 +255,9 @@ if (($_POST['show'] || $_POST['htm'] || $_POST['out5'] || $_POST['out5s'] || $_P
 		$seme_class=$res->fields['seme_class'];
 		$s=$res->fields['student_sn'];
 		$sn[]=$s;
-		$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields['student_sn'];
-		$stud_data[$s]['stud_name']=$res->fields[stud_name];
-		$stud_data[$s]['stud_id']=$res->fields[stud_id];
+		$show_sn[$seme_class][$res->fields['seme_num']]=$res->fields['student_sn'];
+		$stud_data[$s]['stud_name']=$res->fields['stud_name'];
+		$stud_data[$s]['stud_id']=$res->fields['stud_id'];
 		$stud_data[$s]['stud_person_id']=$res->fields[stud_person_id];
 		$stud_data[$s]['stud_sex']=$res->fields[stud_sex];
 		$stud_data[$s]['stud_addr']=$res->fields["addr"];

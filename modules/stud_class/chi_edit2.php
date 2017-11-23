@@ -39,7 +39,7 @@ if ($_POST && in_array($_POST[update_item],$ThisScriptV2) && $_POST[act]=='edit'
 //				echo $SQL."<BR>";
 				$rs=$CONN->Execute($SQL) or die($SQL);
 			}
-			header("Location:$_SERVER[PHP_SELF]");
+			header("Location:{$_SERVER['PHP_SELF']}");
 			}
 	if ( $_POST[update_item]=='bir'){
 			foreach($_POST[stud_sn] as $Sn=>$tmp_Var) {
@@ -51,7 +51,7 @@ if ($_POST && in_array($_POST[update_item],$ThisScriptV2) && $_POST[act]=='edit'
 			$rs=$CONN->Execute($SQL) or die($SQL);
 			}
 //			$url=$_SERVER[PHP_SELF]."?c_curr_class=".$_POST[PClass]."&c_curr_seme=".$_POST[PSeme];
-			header("Location:$_SERVER[PHP_SELF]");
+			header("Location:{$_SERVER['PHP_SELF']}");
 			}
 }
 
@@ -64,7 +64,7 @@ if ($_POST[act]=='A_To_B' && $_POST[kkind]!='' && $stud_list_enable=='1'){
 //			echo $SQL."<BR>";
 			$rs=$CONN->Execute($SQL) or die($SQL);
 		}
-			header("Location:$_SERVER[PHP_SELF]");
+			header("Location:{$_SERVER['PHP_SELF']}");
 	}
 ############### 程式開始  ##########################
 

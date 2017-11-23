@@ -279,7 +279,7 @@ $res= $CONN->Execute($query) or die($query);
 
 		$sn = $res->fields['student_sn'];		
 		$sit_num = substr($res->fields[curr_class_num],-2);
-		$stud_name = $res->fields[stud_name];
+		$stud_name = $res->fields['stud_name'];
 
 		if($ii % $col_num == 0)
 			$html .= "<tr bgcolor='white'>";
@@ -495,7 +495,7 @@ function make_import_file(){
     	//exit;	
 	while(!$res->EOF){
 		$sit_num = substr($res->fields[curr_class_num],-2);
-		$str.= $res->fields['student_sn'].",".$res->fields[stud_id].",".$sit_num.",".$res->fields[stud_name].",\n";
+		$str.= $res->fields['student_sn'].",".$res->fields['stud_id'].",".$sit_num.",".$res->fields['stud_name'].",\n";
 		$res->MoveNext();
 	}
 	echo $str;

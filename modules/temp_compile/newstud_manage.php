@@ -148,7 +148,7 @@ if($_POST['Submit4']=='列印'){
 			if (($i+1) % 5 ==0 || ($i+1+$k*40)==$j)
 				echo '	<tr>
 					<td style="border-style:solid; border-width:0.75pt 0.75pt 1.5pt 1.5pt;" align="center" width="80"><font face="Dotum">'.$res->fields[temp_id].'</font></td>
-					<td style="border-style:solid; border-width:0.75pt 0.75pt 1.5pt 0.75pt;" align="center" width="80">'.$res->fields[stud_name].'</td>
+					<td style="border-style:solid; border-width:0.75pt 0.75pt 1.5pt 0.75pt;" align="center" width="80">'.$res->fields['stud_name'].'</td>
 					<td style="border-style:solid; border-width:0.75pt 0.75pt 1.5pt 0.75pt;" align="center" width="80">'.$res->fields[old_school].'</td>
 					<td style="border-style:solid; border-width:0.75pt 0.75pt 1.5pt 0.75pt;" align="center" width="90"><font face="Dotum">'.$res->fields[stud_person_id].'</font></td>
 					<td style="border-style:solid; border-width:0.75pt 0.75pt 1.5pt 0.75pt;" align="center" width="80"><font face="Dotum">'.$res->fields[stud_tel_1].'</font></td>
@@ -157,7 +157,7 @@ if($_POST['Submit4']=='列印'){
 			else
 				echo '	<tr>
 					<td style="border-style:solid; border-width:0.75pt 0.75pt 0.75pt 1.5pt;" align="center" width="80"><font face="Dotum">'.$res->fields[temp_id].'</font></td>
-					<td style="border-style:solid; border-width:0.75pt 0.75pt 0.75pt;" align="center" width="80">'.$res->fields[stud_name].'</td>
+					<td style="border-style:solid; border-width:0.75pt 0.75pt 0.75pt;" align="center" width="80">'.$res->fields['stud_name'].'</td>
 					<td style="border-style:solid; border-width:0.75pt 0.75pt 0.75pt;" align="center" width="80">'.$res->fields[old_school].'</td>
 					<td style="border-style:solid; border-width:0.75pt 0.75pt 0.75pt;" align="center" width="90"><font face="Dotum">'.$res->fields[stud_person_id].'</font></td>
 					<td style="border-style:solid; border-width:0.75pt 0.75pt 0.75pt;" align="center" width="80"><font face="Dotum">'.$res->fields[stud_tel_1].'</font></td>
@@ -527,7 +527,7 @@ switch($work){
 		$query="select * from new_stud where stud_study_year='$new_sel_year' and class_year='$class_year_b' and sure_study='$order' order by $order_name";
 		$res=$CONN->Execute($query) or die($query);
 		while (!$res->EOF) {
-			echo "<tr bgcolor='#ffffff'><td>".$res->fields[temp_id]."<td>".$res->fields[old_school]."<td>".$res->fields[stud_name]."<td>".$res->fields[stud_person_id]."<td>".$res->fields[meno]."<td>".$res->fields[stud_tel_1]."<td>".$res->fields[guardian_name]."</td></tr>";
+			echo "<tr bgcolor='#ffffff'><td>".$res->fields[temp_id]."<td>".$res->fields[old_school]."<td>".$res->fields['stud_name']."<td>".$res->fields[stud_person_id]."<td>".$res->fields[meno]."<td>".$res->fields[stud_tel_1]."<td>".$res->fields[guardian_name]."</td></tr>";
 			$i++;
 			$res->MoveNext();
 		}

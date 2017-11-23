@@ -52,7 +52,7 @@ function GetRows($rs) {
 
 function GetString($rs, $col, $row) {
 	$return_str = "";
-	while($thisRow = mysql_fetch_row($rs)) {
+	while($thisRow = mysqli_fetch_row($rs)) {
 	$return_str .= join($col, $thisRow).$row;
 	}
 	return $return_str;

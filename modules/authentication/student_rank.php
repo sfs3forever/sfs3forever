@@ -55,9 +55,9 @@ if($_POST['act']=='按我列表')
 //echo "subitem_sn bonus= ".$subitem_array[$subitem_sn]." -->	$bonus <br>";	
 		
 		//學生資料陣列
-		$student_data[$student_sn][class_id]=$class_id;
-		$student_data[$student_sn][class_no]=$class_no;		
-		$student_data[$student_sn]['stud_name']=$res->fields[stud_name];
+		$student_data[$student_sn]['class_id']=$class_id;
+		$student_data[$student_sn]['class_no']=$class_no;		
+		$student_data[$student_sn]['stud_name']=$res->fields['stud_name'];
 		
 		//依照選擇準備列表陣列
 		switch($select_group){
@@ -95,8 +95,8 @@ if($_POST['act']=='按我列表')
 				$student_count=0;
 				$curr_bonus=$bonus;
 			}
-			$class_name=$class_base[$student_data[$sn][class_id]];
-			if($rank_limit>=$rank) echo "<tr align='center'><td>$rank</td><td>$class_name</td><td>{$student_data[$sn][class_no]}</td><td>{$student_data[$sn]['stud_name']}</td><td>$bonus</td><td></td></tr>";
+			$class_name=$class_base[$student_data[$sn]['class_id']];
+			if($rank_limit>=$rank) echo "<tr align='center'><td>$rank</td><td>$class_name</td><td>{$student_data[$sn]['class_no']}</td><td>{$student_data[$sn]['stud_name']}</td><td>$bonus</td><td></td></tr>";
 		}
 		echo "<tr></tr>";
 	}

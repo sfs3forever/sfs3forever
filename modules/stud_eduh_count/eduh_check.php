@@ -33,9 +33,9 @@ $error_array=array();
 $sql="select a.*,b.stud_name,b.curr_class_num from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme ='$year_seme' and b.stud_study_cond in (0,15) order by curr_class_num";
 $res=$CONN->Execute($sql) or trigger_error("SQL語法錯誤：$sql", E_USER_ERROR);
 while(!$res->EOF){
-	$stud_id=$res->fields[stud_id];
+	$stud_id=$res->fields['stud_id'];
 	$student_sn=$res->fields['student_sn'];
-	$stud_name=$res->fields[stud_name];
+	$stud_name=$res->fields['stud_name'];
 	$grade=substr($res->fields['seme_class'],0,-2);
 	$class_name=$class_year[$grade].$res->fields[seme_class_name].'班';
 	$curr_class_num=$res->fields[curr_class_num];

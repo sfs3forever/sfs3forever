@@ -28,7 +28,7 @@ if (!ini_get('register_globals')) {
 	
 if ($act == "修改確定") {
 	update_all_title($title_name,$title_kind,$title_short_name,$room_id,$title_memo,$rank);
-	header("Location: $_SERVER[PHP_SELF]");
+	header("Location: {$_SERVER['PHP_SELF']}");
 }elseif ($act=="新增確定") {
 	add_title($teach_title_id,$title_name,$title_kind,$title_short_name,$room_id,$title_memo,$rank);
 	header("Location: {$_SERVER['PHP_SELF']}");

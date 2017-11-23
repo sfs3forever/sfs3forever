@@ -69,7 +69,7 @@ if ($_POST['do_key']) {
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
 			$student_birthday=$res->fields[stud_birthday];
-			$stud_id=$res->fields[stud_id];
+			$stud_id=$res->fields['stud_id'];
 			//檢查出生年月日是否未填
 			if($student_birthday<>'0000-00-00') {
 				$student_sn=$res->fields['student_sn'];
@@ -91,7 +91,7 @@ if ($_POST['do_key']) {
 				$r=number_format($sight_v[$res->fields['student_sn']][r],1);
 				$l=number_format($sight_v[$res->fields['student_sn']][l],1);
 				$bday=explode("-",$res->fields[stud_birthday]);
-				if($blank_name) $student_name=''; else $student_name=$res->fields[stud_name];
+				if($blank_name) $student_name=''; else $student_name=$res->fields['stud_name'];
 				
 				//國中年級-6
 				$grade=substr($res->fields[curr_class_num],0,1);
@@ -108,7 +108,7 @@ if ($_POST['do_key']) {
 				if($quoted) $sss.="$sel_year,\"".sprintf("%06d",$sch_id)."\",\"$s\",".sprintf("%03d%02d",intval($bday[0])-1911,$bday[1],$bday[2]).",\"$lv\",\"$st\",$years,$r,$l,$fs,$family_kind\r\n";
 				else  $sss.="$sel_year,".sprintf("%06d",$sch_id).",$s,".sprintf("%03d%02d%02d",intval($bday[0])-1911,$bday[1],$bday[2]).",$lv,$st,$years,$r,$l,$fs,$family_kind\r\n";
 			} else {
-				$student_error.='◎學號：'.$res->fields[stud_id].'  班級座號：'.$res->fields[curr_class_num].'  姓名：'.$res->fields[stud_name].'<br>';
+				$student_error.='◎學號：'.$res->fields['stud_id'].'  班級座號：'.$res->fields[curr_class_num].'  姓名：'.$res->fields['stud_name'].'<br>';
 			}
 			$res->MoveNext();
 		}

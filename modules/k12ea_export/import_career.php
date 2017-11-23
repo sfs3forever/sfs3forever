@@ -74,7 +74,7 @@ foreach($associations_datas as $seme_association)  {
 			$SQL=str_replace("'null'","''",$SQL);
 			//if($ShowSQL) echo '<BR>'.$SQL;
 			if (mysql_query($SQL)) {
-				list($item_sn) = mysql_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
+				list($item_sn) = mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
 				$studmemo = iconv("UTF-8","Big5//IGNORE","憭閮?");
 
 				$SQL = "insert into stud_service_detail (student_sn,item_sn,minutes,studmemo) values ('$student_sn','$item_sn','$srv_min','$studmemo')";

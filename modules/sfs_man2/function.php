@@ -198,7 +198,7 @@ function get_up_path($curr_msn=0){
 	// 確定連線成立
 	if (!$CONN) user_error("資料庫連線不存在！請檢查相關設定！",256);
 
-	if(empty($curr_msn))return "$_SERVER[PHP_SELF]";
+	if(empty($curr_msn))return "{$_SERVER['PHP_SELF']}";
 	$curr_msn=intval($curr_msn);
 	$sql_select="select of_group,showname from sfs_module where  msn='$curr_msn' order by sort";
 	$recordSet=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);

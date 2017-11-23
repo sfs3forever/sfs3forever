@@ -33,10 +33,10 @@ include "../../include/sfs_oo_zip2.php";
 	$query="select * from stud_seme where seme_year_seme='$seme_year_seme' order by seme_class,seme_num";
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
-		$stud_id=$res->fields[stud_id];
+		$stud_id=$res->fields['stud_id'];
 		$student_sn=$res->fields['student_sn'];
 		$seme_class[$stud_id]=$res->fields['seme_class'];
-		$seme_num[$stud_id]=$res->fields[seme_num];
+		$seme_num[$stud_id]=$res->fields['seme_num'];
 		$all_sn.="'".$student_sn."',";
 		$res->MoveNext();
 	}
@@ -44,8 +44,8 @@ include "../../include/sfs_oo_zip2.php";
 	$query="select stud_id,stud_name from stud_base where student_sn in ($all_sn)";
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
-		$stud_id=$res->fields[stud_id];
-		$stud_name[$stud_id]=addslashes($res->fields[stud_name]);
+		$stud_id=$res->fields['stud_id'];
+		$stud_name[$stud_id]=addslashes($res->fields['stud_name']);
 		$res->MoveNext();
 	}
 
@@ -71,7 +71,7 @@ include "../../include/sfs_oo_zip2.php";
 	$i=1;
 	$all=$res->RecordCount();
 	while(!$res->EOF) {
-		$stud_id=$res->fields[stud_id];
+		$stud_id=$res->fields['stud_id'];
 		$reward_kind=$res->fields[reward_kind];
 		$c=explode("年",$class_name[$seme_class[$stud_id]]);
 		if ($i % 12 ==0 || $i==$all) 

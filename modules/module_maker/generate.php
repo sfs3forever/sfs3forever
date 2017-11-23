@@ -214,7 +214,7 @@ $need_function
 //exit;
 
 //開個檔案寫入資料
-@unlink($UPLOAD_PATH.$FormData[table_name]."_".$FormData[index_page]);
+@unlink($UPLOAD_PATH.$FormData['table_name']."_".$FormData[index_page]);
 $fp = fopen ($UPLOAD_PATH.$table."_".$module_file_name, "aw") or user_error("檔案開啟錯誤，請檢查！",256);
 fputs($fp, $content); 
 fclose($fp); 

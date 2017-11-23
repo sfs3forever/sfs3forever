@@ -19,8 +19,8 @@ while (!$res->EOF) {
 	$class_year=intval(substr($curr_class_num,0,-4))-$IS_JHORES;
 	$seme_class=substr($curr_class_num,-4,2);
 	$seme_num=substr($curr_class_num,-2,2);
-	$stud_id=$res->fields[stud_id];
-	$stud_name=$res->fields[stud_name];
+	$stud_id=$res->fields['stud_id'];
+	$stud_name=$res->fields['stud_name'];
 	$stud_sex=$res->fields[stud_sex];
 	$stud_addr_1=$res->fields[stud_addr_1];
 	$stud_person_id=$res->fields[stud_person_id];

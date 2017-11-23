@@ -38,11 +38,11 @@ if($year_seme!='' && $_GET[grade]!='' ){
 	$num_max=(ceil($num/10))*10;
 	$prt_ary=array();
 	for($i=0;$i<$num_max;$i++){
-		if($all_class_array[$i][class_id]!='') { 
-			$prt_ary[$i][class_id]=$all_class_array[$i][class_id];
-			$prt_ary[$i][c_name]="<TD width=10%><LABEL><INPUT TYPE='checkbox' NAME='class_id[".$all_class_array[$i][class_id]."]'  onclick=\"location.href='$_SERVER[PHP_SELF]?class_id=".$all_class_array[$i][class_id]."&year_seme=$year_seme&grade=$_GET[grade]'\">".$all_class_array[$i][c_name]."班</LABEL></TD>\n";//year_seme=93_2&grade=4
+		if($all_class_array[$i]['class_id']!='') { 
+			$prt_ary[$i]['class_id']=$all_class_array[$i]['class_id'];
+			$prt_ary[$i][c_name]="<TD width=10%><LABEL><INPUT TYPE='checkbox' NAME='class_id[".$all_class_array[$i]['class_id']."]'  onclick=\"location.href='$_SERVER[PHP_SELF]?class_id=".$all_class_array[$i]['class_id']."&year_seme=$year_seme&grade=$_GET[grade]'\">".$all_class_array[$i][c_name]."班</LABEL></TD>\n";//year_seme=93_2&grade=4
 		}else {
-			$prt_ary[$i][class_id]="";
+			$prt_ary[$i]['class_id']="";
 			$prt_ary[$i][c_name]="<TD width=10%>&nbsp;</TD>";
 			}
 	}

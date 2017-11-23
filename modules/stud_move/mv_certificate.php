@@ -139,7 +139,7 @@ class certificate{
 
 		}
 function get_abs_rew() {
-	$rew=array("1"=>"大功\","2"=>"小功\","3"=>"嘉獎","4"=>"大過","5"=>"小過","6"=>"警告");
+	$rew=array("1"=>"大功","2"=>"小功","3"=>"嘉獎","4"=>"大過","5"=>"小過","6"=>"警告");
 	$abs=array("1"=>"事假","2"=>"病假","3"=>"曠課","4"=>"集會","5"=>"公假","6"=>"其他");
 	$SQL="select   seme_year_seme ,stud_id , abs_kind, abs_days from stud_seme_abs  where stud_id='".$this->S_id."' and seme_year_seme='{$this->seme}'  order by abs_kind";
 	$rs=$this->CONN->Execute($SQL) or die($SQL);

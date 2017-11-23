@@ -129,7 +129,7 @@ if ($stud_data) {
    //以身分證及班級為主要索引, 取得學生的 student_sn
 		$query="select a.student_sn from stud_base a,stud_seme b where a.student_sn=b.student_sn and a.stud_person_id='".$student[$STUD_PERSON_ID]."' and b.seme_year_seme='$c_curr_seme' and b.seme_class='$seme_class'";
     $result=mysql_query($query);
-   	$row=mysql_fetch_row($result);
+   	$row=mysqli_fetch_row($result);
    	list($student_sn)=$row;
     $ERROR=1;
     if ($student_sn and $student[$TALL]>0 and $student[$WEIGH]>0) {

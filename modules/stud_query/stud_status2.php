@@ -85,7 +85,7 @@ function list_class_stu($year,$semester){
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
 			$curr_class_num=$res->fields[curr_class_num];
-			$tol_cond.="<br>".$school_kind_name[substr($curr_class_num,0,-4)].$cclass[intval(substr($curr_class_num,-4,2))]."班".substr($curr_class_num,-2,2)."號 (".$sex_arr[$res->fields[stud_sex]].") ".$res->fields[stud_name];
+			$tol_cond.="<br>".$school_kind_name[substr($curr_class_num,0,-4)].$cclass[intval(substr($curr_class_num,-4,2))]."班".substr($curr_class_num,-2,2)."號 (".$sex_arr[$res->fields[stud_sex]].") ".$res->fields['stud_name'];
 			$res->MoveNext();
 		}
 		$tol_cond.="</font>";

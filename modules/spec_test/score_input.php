@@ -88,8 +88,8 @@ if ($class_id) {
 	$all_sn="";
 	while (!$res->EOF) {
 		$sn=$res->fields['student_sn'];
-		$stud_name[$sn]=$res->fields[stud_name];
-		$student_sn[$res->fields[seme_num]]=$sn;
+		$stud_name[$sn]=$res->fields['stud_name'];
+		$student_sn[$res->fields['seme_num']]=$sn;
 		$all_sn.="'".$sn."',";
 		$res->MoveNext();
 	}

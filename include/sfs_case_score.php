@@ -490,7 +490,7 @@ function &get_class_oth_value($class_id,$sel_year,$sel_seme,$ss_id_sel,$ss_kind_
 	$temp_arr = array();
 	while(!$res->EOF){
 		//類別
-		$stud_id = $res->fields[stud_id];
+		$stud_id = $res->fields['stud_id'];
 		$ss_kind = $res->fields[ss_kind];
 		//科目
 		$ss_id= $res->fields[ss_id];
@@ -1885,7 +1885,7 @@ function count_nor($student_sn=array(),$seme=array(),$mode="") {
 				$sday2=intval($_POST['semeday2']);
 				$d_arr=array();
 				while(!$res->EOF) {
-					$sn=$id2sn[$res->fields[stud_id]];
+					$sn=$id2sn[$res->fields['stud_id']];
 					if ($osn==0) $osn=$sn;
 					if ($osn!=$sn) {
 						if ($dis==1) $data_arr[$osn]=$d_arr;

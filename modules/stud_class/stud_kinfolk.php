@@ -42,7 +42,7 @@ switch ($do_key){
 	case $postBtn: //新增
 		$query="select stud_id from stud_base where student_sn='$student_sn'";
 		$res=$CONN->Execute($query);
-		$stud_id=$res->fields[stud_id];
+		$stud_id=$res->fields['stud_id'];
 		$sql_insert = "insert into stud_kinfolk (stud_id,kin_name,kin_calling,kin_phone,kin_hand_phone,kin_email,student_sn) values ('$stud_id','$kin_name','$kin_calling','$kin_phone','$kin_hand_phone','$kin_email','$student_sn')";
 		$CONN->Execute($sql_insert) or die ($sql_insert);
 		//記錄 log

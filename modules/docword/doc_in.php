@@ -56,7 +56,7 @@ if ($doc1_word == "")
 	$doc1_word = $year.$default_word;
 $query = "select max(doc1_id)+1 mm from sch_doc1 where doc1_id like '$year%'";
 $result = mysql_query ($query) or die ($query);
-$row = mysql_fetch_row($result);
+$row = mysqli_fetch_row($result);
 $mm = $row[0];
 
 //年度第一件公文

@@ -14,7 +14,7 @@ if ($_SESSION['MSN_LOGIN_ID']!="") {
    $query="select ifonline from sc_msn_online where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
    $result=mysql_query($query);
    if (mysql_num_rows($result)) {
-   	list($ifonline)=mysql_fetch_row($result);
+   	list($ifonline)=mysqli_fetch_row($result);
    	 //?臬撌脰◤隤文?粹蝺?
    	 if ($ifonline==0) {
    	  $query="update sc_msn_online set lasttime='".date("Y-m-d H:i:s")."',ifonline=1 where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";

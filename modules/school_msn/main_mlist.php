@@ -195,7 +195,7 @@ if ($set=='my_pic') {
 			  <br>
       	<font style="color:#0000FF">?祈??臬??嚗???
       		<?php 
-      		while ($row_file=mysql_fetch_row($result_file)) {
+      		while ($row_file=mysqli_fetch_row($result_file)) {
       		 list($filename,$filename_r)=$row_file;
       		 echo "<br>".$filename_r;
       		 ?>

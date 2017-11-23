@@ -42,7 +42,7 @@ if($s_str) {
 	$sql_select .= "($tempstr) ";
 
 	$result = mysql_query ($sql_select)or die ($sql_select);
-	$row= mysql_fetch_row($result);
+	$row= mysqli_fetch_row($result);
 	//查詢總數
 	$page_count=10;
 	$tol_num = $row[0];

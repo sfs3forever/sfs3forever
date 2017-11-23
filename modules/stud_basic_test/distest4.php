@@ -120,7 +120,7 @@ if ($_POST['year_name']) {
 								$temp_arr[$res->fields['ss_id']][semester]=$semester;
 								if ($res->fields['subject_id']) $temp_arr[$res->fields['ss_id']][name]=$subj_arr[$res->fields['subject_id']];
 								else $temp_arr[$res->fields['ss_id']][name]=$subj_arr[$res->fields['scope_id']];
-								$temp_arr[$res->fields['ss_id']][class_id]=$res->fields['class_id'];
+								$temp_arr[$res->fields['ss_id']]['class_id']=$res->fields['class_id'];
 								$res->MoveNext();
 							}
 							$query="select ss_id,count(ss_id) as n from score_semester_".$year."_".$semester." where test_kind='定期評量' group by ss_id";
@@ -418,9 +418,9 @@ if ($_POST['year_name']) {
 			while(!$res->EOF) {
 				$seme_class=$res->fields['seme_class'];
 				$sn[]=$res->fields['student_sn'];
-				$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields['student_sn'];
-				$stud_data[$res->fields['student_sn']]['stud_name']=$res->fields[stud_name];
-				$stud_data[$res->fields['student_sn']][stud_id]=$res->fields[stud_id];
+				$show_sn[$seme_class][$res->fields['seme_num']]=$res->fields['student_sn'];
+				$stud_data[$res->fields['student_sn']]['stud_name']=$res->fields['stud_name'];
+				$stud_data[$res->fields['student_sn']][stud_id]=$res->fields['stud_id'];
 				$stud_data[$res->fields['student_sn']][stud_person_id]=$res->fields[stud_person_id];
 				$stud_data[$res->fields['student_sn']][stud_sex]=$res->fields[stud_sex];
 				$d_arr=explode("-",$res->fields[stud_birthday]);

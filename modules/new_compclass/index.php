@@ -178,7 +178,7 @@ function &main_form($sel_year,$sel_seme,$room,$teacher_sn){
 				$k3=$mktime."_".$k2;
 				$sid=$room_class[$k2][ss_id];
 				$tsn=$room_class[$k2][teacher_sn];
-				$cid=$room_class[$k2][class_id];
+				$cid=$room_class[$k2]['class_id'];
 
 				if(!empty($cid))	$tc=class_id_2_old($cid);
 				//有上課
@@ -316,7 +316,7 @@ function get_room_class($sel_year,$sel_seme,$room){
 	$recordSet=$CONN->Execute($sql_select) or die($sql_select);
 	while(list($class_id,$teacher_sn,$day,$sector,$ss_id) = $recordSet->FetchRow()){
 		$k=$day."_".$sector;
-		$main[$k][class_id]=$class_id;
+		$main[$k]['class_id']=$class_id;
 		$main[$k][teacher_sn]=$teacher_sn;
 		$main[$k][ss_id]=$ss_id;
 	}

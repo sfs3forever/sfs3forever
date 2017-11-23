@@ -59,7 +59,7 @@ if ($folder!='' and $folder!='private') {
 $query="select id,idnumber,teach_id,post_date,data from sc_msn_data where to_id='' and data_kind=2 and folder='$folder' order by post_date desc";
 $result=mysql_query($query);
 
-while ($row=mysql_fetch_row($result)) {
+while ($row=mysqli_fetch_row($result)) {
  list($id,$idnumber,$teach_id,$post_date,$data)=$row;
  
     $query_file="select filename,filename_r,file_download from sc_msn_file where idnumber='".$idnumber."'";
@@ -75,7 +75,7 @@ while ($row=mysql_fetch_row($result)) {
       <td style="font-size:10pt" align="left">
    <?php
     $j=0;
-    while ($row_file=mysql_fetch_row($result_file)) {
+    while ($row_file=mysqli_fetch_row($result_file)) {
     	list($filename,$filename_r,$file_download)=$row_file;
     	$j++;
   ?>

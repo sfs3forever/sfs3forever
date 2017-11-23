@@ -40,7 +40,7 @@ class rand_set_stu{
 		$f2=$this->mPath.$file.'_stu';//基本資料檔
 		$f3=$this->mPath.$file.'_stu_OK';//完成結果檔
 
-		foreach ($this->Info[Rand][class_id] as $class_id =>$class_name ){
+		foreach ($this->Info[Rand]['class_id'] as $class_id =>$class_name ){
 		//echo $class_id.':'.$class_name.'<br>';
 			$tmp=$this->gStu($class_id);
 			foreach ($tmp as $sn=>$ary){

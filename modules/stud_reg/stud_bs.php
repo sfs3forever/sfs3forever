@@ -21,7 +21,7 @@ switch ($do_key){
 	case $postBtn: //新增
 		$query="select stud_id from stud_base where student_sn='$student_sn'";
 		$res=$CONN->Execute($query);
-		$stud_id=$res->fields[stud_id];
+		$stud_id=$res->fields['stud_id'];
 		$sql_insert = "insert into stud_brother_sister (stud_id,bs_name,bs_calling,bs_gradu,bs_birthyear,student_sn) values ('$stud_id','$bs_name',$bs_calling,'$bs_gradu','$bs_birthyear','$student_sn')";
 		$CONN->Execute($sql_insert) or die ($sql_insert);
 		//記錄 log

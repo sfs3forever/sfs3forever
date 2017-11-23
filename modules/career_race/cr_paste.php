@@ -20,12 +20,12 @@ $c_curr_seme=($_POST['c_curr_seme']!="")?$_POST['c_curr_seme']:sprintf('%03d%1d'
  //起始日
  $sql="select day from school_day where year='$year' and seme='$seme' and day_kind='start'";
  $res=mysql_query($sql);
- list($st_date)=mysql_fetch_row($res);
+ list($st_date)=mysqli_fetch_row($res);
  
  //結束日
  $sql="select day from school_day where year='$year' and seme='$seme' and day_kind='end'";
  $res=mysql_query($sql);
- list($end_date)=mysql_fetch_row($res);
+ list($end_date)=mysqli_fetch_row($res);
 
 
 
@@ -53,7 +53,7 @@ if ($_POST['act']=='save') {
    	$stud_name=$data_arr[3];
    	$sql="select a.student_sn from stud_seme a,stud_base b where a.seme_year_seme='$year_seme' and a.student_sn=b.student_sn and a.seme_class='$seme_class' and a.seme_num=$seme_num and  b.stud_name='$stud_name'";
    	$res=mysql_query($sql);
-   	list($student_sn)=mysql_fetch_row($res);
+   	list($student_sn)=mysqli_fetch_row($res);
    	if ($student_sn) {
    	//證書日期 , 檢查各式並進行修正, 若格式不對, 填上今天日期
    	$c_date=explode("-",$data_arr[10]);
@@ -94,7 +94,7 @@ if ($_POST['act']=='save') {
    	$stud_name=$data_arr[1];
    	$sql="select student_sn from stud_base where stud_study_cond='0' and stud_id='$stud_id' and stud_name='$stud_name'";
    	$res=mysql_query($sql);
-   	list($student_sn)=mysql_fetch_row($res);
+   	list($student_sn)=mysqli_fetch_row($res);
    	if ($student_sn) {
    	//證書日期 , 檢查各式並進行修正, 若格式不對, 填上今天日期
    	$c_date=explode("-",$data_arr[8]);

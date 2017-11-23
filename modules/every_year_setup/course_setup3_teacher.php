@@ -944,7 +944,7 @@ function get_course_teacher_arr($sel_year,$sel_seme,$teacher_sn) {
 	$res = $CONN->Execute($query) or trigger_error("SQL 錯誤",E_USER_ERROR);
 	while (!$res->EOF) {
 		$temp_ds = $res->fields[day]."_".$res->fields[sector];
-		$temp_arr[$temp_ds][class_id]=$res->fields[class_id];
+		$temp_arr[$temp_ds]['class_id']=$res->fields[class_id];
 		$temp_arr[$temp_ds][room]=$res->fields[room];
 		//$temp_arr[$temp_ds][name]=$res->fields[name];
 		$temp_arr[$temp_ds][ss_id]=$res->fields[ss_id];

@@ -52,7 +52,7 @@ switch ($key){
 	case $editBtn: //修改		
 		$query = " select sick_id from stud_sick_f where stud_id='$stud_id' order by sick_id";
 		$result = mysql_query($query);
-		while($row = mysql_fetch_row($result)) {
+		while($row = mysqli_fetch_row($result)) {
 			$chk_str = "fam_$row[0]"; // 辨別值
 			reset($fam_sick_kind_p);
 			$temp_value ="";
@@ -85,7 +85,7 @@ $tea1->query("select stud_sick_f.* ,stud_base.stud_id,stud_base.stud_name,stud_b
 //未設定或改變在職狀況或刪除記錄後 到第一筆
 if ($stud_id =="" || $stud_id != $tea1->Record[stud_id]) {
 	$result= mysql_query("select stud_base.stud_id from stud_base where  stud_base.curr_class_num like '$class_num%' order by curr_class_num limit 0,1");
-	$row = mysql_fetch_row($result);	
+	$row = mysqli_fetch_row($result);	
 	$tea1->query("select stud_sick_f.* ,stud_base.stud_id,stud_base.stud_name,stud_base.curr_class_num from stud_base left join stud_sick_f on stud_sick_f.stud_id=stud_base.stud_id where stud_base.stud_id='$row[0]' and  stud_base.curr_class_num like '$class_num%'  order by stud_sick_f.sick_id "); 	
 }
 

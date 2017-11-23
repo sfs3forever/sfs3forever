@@ -153,7 +153,7 @@ if ($teacher_course) {
 	   $stud_name=$p_data[1]; 	//姓名
 	   $score_memo=$p_data[2];
 	   $sql="select a.sss_id from stud_seme_score a ,stud_base b where a.student_sn=b.student_sn and a.ss_id ='$ss_id' and a.seme_year_seme='$seme_year_seme' and b.curr_class_num='$curr_class_num' and b.stud_study_cond=0";
-	   list($stud_sss_id)=mysql_fetch_row(mysql_query($sql));
+	   list($stud_sss_id)=mysqli_fetch_row(mysql_query($sql));
 	   
 	   if ($stud_sss_id) {
 			$query = "update stud_seme_score set ss_score_memo = '$score_memo',teacher_sn='$_SEESION[session_tea_sn]' where sss_id='$stud_sss_id'";
@@ -256,11 +256,11 @@ $sel1->use_val_as_key = true;
 
 while(!$res->EOF) {
 	$sss_id = $res->fields[sss_id];
-	$stud_id = $res->fields[stud_id];
+	$stud_id = $res->fields['stud_id'];
 	$ss_score_memo = $res->fields[ss_score_memo];
 	$ss_score= round($res->fields[ss_score],1);
 	$student_sn = $res->fields['student_sn'];
-	$stud_name= $res->fields[stud_name];
+	$stud_name= $res->fields['stud_name'];
 	//排除名單加註*
   $stud_name.=($student_out[$student_sn])?"<font color=red>*</font>":"";
 

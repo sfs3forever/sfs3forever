@@ -15,10 +15,10 @@ if (!isset($_SESSION['LOGIN_ID'])) {
 //???葦蝑?
 $query="select teacher_sn from teacher_base where teach_id='".$_SESSION['LOGIN_ID']."'";
 $result=mysql_query($query);
-list($teacher_sn)=mysql_fetch_row($result);
+list($teacher_sn)=mysqli_fetch_row($result);
 $query="select post_kind from teacher_post where teacher_sn='".$teacher_sn."'";
 $result=mysql_query($query);
-list($POST_KIND)=mysql_fetch_row($result);
+list($POST_KIND)=mysqli_fetch_row($result);
 
 ?>
 <html>

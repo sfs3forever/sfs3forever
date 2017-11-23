@@ -82,7 +82,7 @@ if (@$_POST['act']=="inserting") {
   if (mysql_query($query)) {
  
    //取回最後的 auto_increat 的ID值
-  list($tsn)=mysql_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
+  list($tsn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
  
   	//是否啟用評分預設細項
   	if ($_POST['init_score_setup']==1) {
@@ -226,7 +226,7 @@ if (@$_POST['act']=='updating' or @$_POST['act']=='add_score_setup' or @$_POST['
 	      $sco_sn_test=$sco_sn.$a;
 	      $query="select count(*) as num from contest_score_setup where sco_sn='".$sco_sn_test."'";
 	      $res=mysql_query($query);
-	      list($exist)=mysql_fetch_row($res);
+	      list($exist)=mysqli_fetch_row($res);
      	} while ($exist>0);
 	     $sco_sn=$sco_sn_test;
        //資料內容
@@ -298,7 +298,7 @@ if (@$_POST['act']=='updating' or @$_POST['act']=='add_score_setup' or @$_POST['
  		$query="select ibsn from contest_ibgroup where tsn='".$_POST['option1']."'";
  		$result=mysql_query($query);
  		$tsort=0;
- 		while ($row=mysql_fetch_row($result)) {
+ 		while ($row=mysqli_fetch_row($result)) {
   		list($ibsn)=$row;
   		$tsort++;
   		mysql_query("update contest_ibgroup set tsort='$tsort' where tsn='".$_POST['option1']."' and ibsn='$ibsn'");
@@ -863,7 +863,7 @@ if ($_POST['act']=='edituser_class') {
  			$c_year=$row_class['c_year'];
  			$c_name=$row_class['c_name'];
  			$seme_class=sprintf("%d%02d",substr($row_class['class_id'],6,2),substr($row_class['class_id'],9,2));
- 			list($class_stud_num)=mysql_fetch_row(mysql_query("select count(*) from stud_seme a,stud_base b where a.student_sn=b.student_sn and b.stud_study_cond in (0,15) and a.seme_year_seme='$c_curr_seme' and a.seme_class='$seme_class'"));
+ 			list($class_stud_num)=mysqli_fetch_row(mysql_query("select count(*) from stud_seme a,stud_base b where a.student_sn=b.student_sn and b.stud_study_cond in (0,15) and a.seme_year_seme='$c_curr_seme' and a.seme_class='$seme_class'"));
  	   ?>
  	  <tr>
  	    <td style="font-size:10pt;color:" align="center"><input type="checkbox" name="class_id[]" value="<?php echo $row_class['class_id'];?>"></td>

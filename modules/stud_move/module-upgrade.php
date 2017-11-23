@@ -39,7 +39,7 @@ if (!is_file($up_file_name)){
 		$query_seme="select a.stud_id,a.student_sn from stud_base a left join stud_seme b on a.student_sn=b.student_sn where b.seme_year_seme='$seme_year_seme' and b.seme_class like '".$m_seme[1]."%' and a.stud_study_cond='5'"; 
 		$res_seme=$CONN->Execute($query_seme);
 		while(!$res_seme->EOF) {
-			$CONN->Execute("insert into stud_move (stud_id,move_kind,move_year_seme,move_date,move_c_unit,move_c_date,move_c_word,move_c_num,update_id,update_ip,student_sn) values ('".$res_seme->fields[stud_id]."','5','$move_year_seme','".$res->fields[move_date]."','".$res->fields[move_c_unit]."','".$res->fields[move_c_date]."','".$res->fields[move_c_word]."','".$res->fields[move_c_num]."','$_SESSION[session_tea_sn]','$update_ip','".$res_seme->fields['student_sn']."')");
+			$CONN->Execute("insert into stud_move (stud_id,move_kind,move_year_seme,move_date,move_c_unit,move_c_date,move_c_word,move_c_num,update_id,update_ip,student_sn) values ('".$res_seme->fields['stud_id']."','5','$move_year_seme','".$res->fields[move_date]."','".$res->fields[move_c_unit]."','".$res->fields[move_c_date]."','".$res->fields[move_c_word]."','".$res->fields[move_c_num]."','$_SESSION[session_tea_sn]','$update_ip','".$res_seme->fields['student_sn']."')");
 			$res_seme->MoveNext();
 		}
 		$res->MoveNext();

@@ -22,7 +22,7 @@ switch ($key) {
 if (!$bk_id) {
 	$query = "select bk_id from board_kind order by bk_id limit 0,1 ";
 	$result = mysql_query($query);
-	$row = mysql_fetch_row($result);
+	$row = mysqli_fetch_row($result);
 	$bk_id = $row[0];
 }
 

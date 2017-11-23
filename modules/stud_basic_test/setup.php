@@ -205,7 +205,7 @@ else {
 		$show_sn=array();
 		while(!$res->EOF) {
 			$seme_class=$res->fields['seme_class'];
-			$show_sn[$seme_class][$res->fields[seme_num]]=$res->fields['student_sn'];
+			$show_sn[$seme_class][$res->fields['seme_num']]=$res->fields['student_sn'];
 			$res->MoveNext();
 		}
 		$query="select * from stud_base where student_sn in ($allprint)";

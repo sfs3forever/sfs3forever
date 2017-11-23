@@ -18,7 +18,7 @@ $query="select filename_r,file_download from sc_msn_file where filename='".$file
 $result=mysql_query($query);
 
 if (mysql_num_rows($result)) {
-list($filename_r,$file_download)=mysql_fetch_row($result);
+list($filename_r,$file_download)=mysqli_fetch_row($result);
 //$filename_r=addslashes($filename_r);
 $file_download+=1;
 $query="update sc_msn_file set file_download='".$file_download."' where filename='".$file_name."'";

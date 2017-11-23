@@ -36,7 +36,7 @@ if ($_POST[year_name]) {
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
 		$sn[]=$res->fields['student_sn'];
-		$id[]=$res->fields[stud_id];
+		$id[]=$res->fields['stud_id'];
 		$res->MoveNext();
 	}
 	$query="select stud_study_year from stud_base where student_sn='".$sn[0]."'";
@@ -59,9 +59,9 @@ if ($_POST[year_name]) {
 		$ssn=$res->fields['student_sn'];
 		$show_sn[$ssn]=$ssn;
 		$sclass[$ssn]=$class_base[$res->fields['seme_class']];
-		$snum[$ssn]=$res->fields[seme_num];
-		$stud_name[$ssn]=$res->fields[stud_name];
-		$stud_id[$ssn]=$res->fields[stud_id];
+		$snum[$ssn]=$res->fields['seme_num'];
+		$stud_name[$ssn]=$res->fields['stud_name'];
+		$stud_id[$ssn]=$res->fields['stud_id'];
 		$res->MoveNext();
 	}
 }

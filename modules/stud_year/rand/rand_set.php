@@ -115,12 +115,12 @@ class rand_set{
 		return $ary;
 	}
 	function setSave() {
-		if (count($_POST[Rand][class_id])==0) backe('未選參加班級！');
+		if (count($_POST[Rand]['class_id'])==0) backe('未選參加班級！');
 		$AA[Rand]=$_POST[Rand];
 		$AA[Rand][Seme]=$this->Seme;
 		$AA[Rand][Grade]=$this->Grade;
 		$AA[Rand][gName]=$this->sGrade($this->Grade);
-		$AA[Rand][oldTol]=count($_POST[Rand][class_id]);
+		$AA[Rand][oldTol]=count($_POST[Rand]['class_id']);
 		$AA[Rand][rWord]=$this->rWord;
 		
 		

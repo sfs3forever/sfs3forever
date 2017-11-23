@@ -9,7 +9,7 @@ if(!$CONN){
 $query = "select * from score_input_value ";
 $res = $CONN->Execute($query);
 while(!$res->EOF) {
-	$stud_id = $res->fields[stud_id];
+	$stud_id = $res->fields['stud_id'];
 	//求得學生ID	
 	$student_sn=stud_id2student_sn($stud_id);
 	$seme_year_seme = sprintf("%03d%d",$res->fields[sel_year],$res->fields[sel_seme]);	

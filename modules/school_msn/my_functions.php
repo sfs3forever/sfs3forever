@@ -23,7 +23,7 @@ function get_teacher_name_by_id($teach_id){
 	$sql_select = "select name from teacher_base where teach_id = '".$teach_id."'";
   $result=mysql_query($sql_select);
 	if (mysql_num_rows($result)) {
-	list($name) = mysql_fetch_row($result);
+	list($name) = mysqli_fetch_row($result);
 	return $name;
   } else {
   return $teach_id;	
@@ -34,7 +34,7 @@ function get_teacher_email_by_id($teach_id){
 	$MYEMAIL="";
 	$query="select b.email,b.email2,b.email3 from teacher_base a,teacher_connect b where a.teacher_sn=b.teacher_sn and a.teach_id='$teach_id'";
 	$result=mysql_query($query);
-	list($email,$email2,$email3)=mysql_fetch_row($result);
+	list($email,$email2,$email3)=mysqli_fetch_row($result);
 	$MYEMAIL=($email=="")?$email2:$email;
 	if ($MYEMAIL=="") $MYEMAIL=$email3;
   
@@ -62,7 +62,7 @@ function get_name_state($teach_id)
  mysql_query("SET NAMES 'utf8'");
  $query="select name,state from sc_msn_online where teach_id='".$teach_id."'";
  $result=mysql_query($query);
- list($N[0],$N[1]) = mysql_fetch_row($result);
+ list($N[0],$N[1]) = mysqli_fetch_row($result);
  return $N;
 }
 
@@ -78,7 +78,7 @@ function delete_file($idnumber,$to_id) {
      //瑼Ｘ?臬??瑼? ???航???? ?典
      $query_file="select filename from sc_msn_file where idnumber='".$idnumber."'";
      $result_file=mysql_query($query_file);
-     while ($row_file=mysql_fetch_row($result_file)) {
+     while ($row_file=mysqli_fetch_row($result_file)) {
       list($filename)=$row_file;  	  
       unlink($download_path.$filename);
      } // end unlink file

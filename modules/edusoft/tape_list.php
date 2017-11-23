@@ -11,7 +11,7 @@ include "header.php";
 if(!isset($_REQUEST[tapem_id])){ //預設值
 	$query = "select min(tapem_id) from $mastertable ";
 	$result = mysql_query($query);
-	$row= mysql_fetch_row($result);
+	$row= mysqli_fetch_row($result);
 	$tapem_id = $row[0];
 }
 else

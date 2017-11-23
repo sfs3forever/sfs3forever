@@ -305,7 +305,7 @@ function get_ss_yc($sel_year,$sel_seme){
 	$i=0;
 	while(list($class_id,$class_year)= $recordSet->FetchRow()){
 		$id[$i][Cyear]=$class_year;
-		$id[$i][class_id]=$class_id;
+		$id[$i]['class_id']=$class_id;
 		$i++;
 	}
 		

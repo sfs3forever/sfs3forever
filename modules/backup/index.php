@@ -41,14 +41,16 @@ function pre_form(){
 	$tool_bar=&make_menu($school_menu_p);
 
 	//取得所有表單名稱
-	$result = mysql_list_tables($mysql_db);
+	//$result = mysql_list_tables($mysql_db);
+	$result = array_column(mysqli_fetch_all($conID->query('SHOW TABLES')),0);
 
 	if (!$result) {
 		user_error("無法取得資料表資料。",256);
 	}
 	$n=3;
 	$i=$n+1;
-	while ($row=mysql_fetch_row($result)) {
+	//while ($row=mysqli_fetch_row($result)) {
+	foreach($result as $i) {
 		$tr1=(($i%$n)==1)?"<tr bgcolor='#F8F8F8'>":"";
 		$tr2=(($i%$n)==0)?"</tr>":"";
 		$option.="$tr1<td><input type='checkbox' name='tbl_name[]' value='$row[0]' checked>
@@ -56,7 +58,7 @@ function pre_form(){
 		$i++;
 	}
 
-	mysql_free_result($result);
+	//mysqli_free_result($result);
 
 	$main="
 	$tool_bar

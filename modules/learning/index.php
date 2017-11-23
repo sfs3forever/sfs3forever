@@ -11,7 +11,7 @@ if ($_GET[logout]== "yes"){
 	session_destroy();
 	$_SESSION['session_log_id']="";
 	$_SESSION['session_tea_name']="";
-	Header("Location: $_SERVER[PHP_SELF]");
+	Header("Location: {$_SERVER['PHP_SELF']}");
 }
 if ($_GET[logout]== "no" and $_SESSION['session_log_id'] ==""){
 	include $SFS_PATH."/rlogin.php";  

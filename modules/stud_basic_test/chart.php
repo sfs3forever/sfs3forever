@@ -211,13 +211,13 @@ if ($_POST['stud_str']) {
 	while(!$res->EOF) {
 		$seme_class=$res->fields['seme_class'];
 		//只有選取的學生才處理
-		if (in_array(substr($seme_class,-2,2).sprintf("%02d",$res->fields[seme_num]),$stud_arr)) {
+		if (in_array(substr($seme_class,-2,2).sprintf("%02d",$res->fields['seme_num']),$stud_arr)) {
 			$s=$res->fields['student_sn'];
 			$sn[]=$s;
 			$sp_kind=$res->fields['sp_kind'];
-			$show_sn[$seme_class][$res->fields[seme_num]]=$s;
-			$stud_data[$s]['stud_name']=$res->fields[stud_name];
-			$stud_data[$s][stud_id]=$res->fields[stud_id];
+			$show_sn[$seme_class][$res->fields['seme_num']]=$s;
+			$stud_data[$s]['stud_name']=$res->fields['stud_name'];
+			$stud_data[$s][stud_id]=$res->fields['stud_id'];
 			$stud_data[$s][stud_person_id]=$res->fields[stud_person_id];
 			$stud_data[$s][stud_sex]=$res->fields[stud_sex];
 			$stud_data[$s][enable0]=$res->fields[enable0];
@@ -352,9 +352,9 @@ if ($_POST['stud_str']) {
 		$seme_class=substr($res->fields['curr_class_num'],0,3);
 		$s=$res->fields['student_sn'];
 		$sn[]=$s;
-		$show_sn[$seme_class][$res->fields[seme_num]]=$s;
-		$stud_data[$s]['stud_name']=$res->fields[stud_name];
-		$stud_data[$s][stud_id]=$res->fields[stud_id];
+		$show_sn[$seme_class][$res->fields['seme_num']]=$s;
+		$stud_data[$s]['stud_name']=$res->fields['stud_name'];
+		$stud_data[$s][stud_id]=$res->fields['stud_id'];
 		$stud_data[$s][stud_person_id]=$res->fields[stud_person_id];
 		$stud_data[$s][stud_sex]=$res->fields[stud_sex];
 		$d_arr=explode("-",$res->fields[stud_birthday]);

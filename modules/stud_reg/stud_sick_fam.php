@@ -68,7 +68,7 @@ switch ($key){
 	case $editBtn: //修改		
 		$query = " select sick_id from stud_sick_f where stud_id='$stud_id' order by sick_id";
 		$result = mysql_query($query);
-		while($row = mysql_fetch_row($result)) {
+		while($row = mysqli_fetch_row($result)) {
 			$chk_str = "fam_$row[0]"; // 辨別值
 			reset($fam_sick_kind_p);
 			$temp_value ="";
@@ -101,7 +101,7 @@ $tea1->query("select stud_sick_f.* ,stud_base.stud_id,stud_base.stud_name from s
 //未設定或改變在職狀況或刪除記錄後 到第一筆
 if ($stud_id =="" || $stud_id != $tea1->Record[stud_id]) {
 	$result= mysql_query("select stud_base.stud_id from stud_base where  stud_base.stud_study_year=$stud_study_year and  stud_base.$curr_seme_field like '$sel%' and stud_base.stud_study_cond=$stud_study_cond order by $curr_seme_field limit 0,1");
-	$row = mysql_fetch_row($result);	
+	$row = mysqli_fetch_row($result);	
 	$tea1->query("select stud_sick_f.* ,stud_base.stud_id,stud_base.stud_name from stud_base left join stud_sick_f on stud_sick_f.stud_id=stud_base.stud_id where stud_base.stud_id='$row[0]' and stud_base.stud_study_cond=$stud_study_cond and  stud_base.stud_study_year=$stud_study_year and  stud_base.$curr_seme_field like '$sel%'  order by stud_sick_f.sick_id "); 	
 }
 

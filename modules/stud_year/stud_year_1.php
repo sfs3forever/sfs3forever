@@ -91,7 +91,7 @@ if ($_GET[sel]=='refine'){
 		$query = "select stud_id,curr_class_num from stud_base where curr_class_num like '7%'";
 		$res = $CONN->Execute($query);
 		while(!$res->EOF){
-			$tttt = $res->fields[stud_id];
+			$tttt = $res->fields['stud_id'];
 			$tttt2 = '6'.substr($res->fields[curr_class_num],1);
 			$CONN->Execute("update stud_base set curr_class_num='$tttt2' where stud_id='$tttt'");
 			$res->MoveNext();
@@ -101,7 +101,7 @@ if ($_GET[sel]=='refine'){
 	//echo $query."<br>";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF){
-		$curr_class_num = sprintf("%d%02d",$res->fields['seme_class'],$res->fields[seme_num]);
+		$curr_class_num = sprintf("%d%02d",$res->fields['seme_class'],$res->fields['seme_num']);
 		$student_sn =  $res->fields['student_sn'];
 		$query = "update stud_base set curr_class_num='$curr_class_num' where student_sn='$student_sn'";
 		//echo $query."<BR>";
@@ -153,11 +153,11 @@ elseif($_GET[key]== "priorseme"){ //參照上學期編班
 		
 		$res = $CONN->Execute($query) or die($query);
 		while (!$res->EOF) {
-			$stud_id = $res->fields[stud_id];
+			$stud_id = $res->fields['stud_id'];
 			$seme_year_seme = sprintf("%03d1",$curr_year);
 			$seme_class = $s_year.substr($res->fields['seme_class'],-2);
 			$seme_class_name = $res->fields[seme_class_name];
-			$seme_num = $res->fields[seme_num];
+			$seme_num = $res->fields['seme_num'];
 			$seme_class_year_s = $res->fields[seme_class_year_s];
 			$seme_class_s = $res->fields[seme_class_s];
 			$seme_num_s = $res->fields[seme_num_s];
@@ -174,12 +174,12 @@ elseif($_GET[key]== "priorseme"){ //參照上學期編班
 		$query = "select a.*,b.stud_study_cond from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme ='$seme_year_seme' and a.seme_class like '$seme_year%' and b.stud_study_cond not in ($not_up)";
 		$res = $CONN->Execute($query) or die($query);
 		while (!$res->EOF) {
-			$stud_id = $res->fields[stud_id];
+			$stud_id = $res->fields['stud_id'];
 			$seme_year_seme = sprintf("%03d2",$curr_year);
 			$student_sn = $res->fields['student_sn'];
 			$seme_class = $s_year.substr($res->fields['seme_class'],-2);
 			$seme_class_name = $res->fields[seme_class_name];
-			$seme_num = $res->fields[seme_num];
+			$seme_num = $res->fields['seme_num'];
 			$seme_class_year_s = $res->fields[seme_class_year_s];
 			$seme_class_s = $res->fields[seme_class_s];
 			$seme_num_s = $res->fields[seme_num_s];

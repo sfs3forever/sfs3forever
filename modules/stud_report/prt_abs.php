@@ -131,7 +131,7 @@ function seme_class_id($student_sn='') {
 			$arys[$grade_seme][grade]=$grade;
 			$arys[$grade_seme][cla_no]=$cla_no;
 			$arys[$grade_seme]['seme_num']=$ro->seme_num;
-			$arys[$grade_seme][class_id]=$class_id;
+			$arys[$grade_seme]['class_id']=$class_id;
 			$arys[$grade_seme][seme_title]=$seme_title;
 			$arys[$grade_seme][class_title]=$class_title;
 		}
@@ -159,7 +159,7 @@ function seme_class_id($student_sn='') {
 			$seme=2;
 		}
 		$grade_seme_next="{$grade}_{$seme}";
-		$class_id = $arys[$grade_seme_next][class_id];
+		$class_id = $arys[$grade_seme_next]['class_id'];
 		if (!empty($class_id)) {
 			list($year,$seme,$grade,$clano)=explode('_',$class_id);
 			if ($seme==2) $seme=1;
@@ -171,7 +171,7 @@ function seme_class_id($student_sn='') {
 			$class_id = sprintf("%03d_%d_%02d_%02d",$year,$seme,$grade,$cla_no);
 			$seme_title = sprintf("%d學年度第%d學期",$year,$seme);
 			$class_title = num_tw($grade-$IS_JHORES)."年級";
-			$arys[$grade_seme][class_id]=$class_id;
+			$arys[$grade_seme]['class_id']=$class_id;
 			$arys[$grade_seme][seme_title]=$seme_title;
 			$arys[$grade_seme][class_title]=$class_title;
 		}

@@ -23,7 +23,7 @@ if (count($passwd)>0 && $_POST['opt']=='update') {
 		$sql="select stud_id,curr_class_num,stud_name from stud_base where student_sn='$student_sn'";
 		$res=$CONN->Execute($sql);
 		
-		$rec="<tr><td>".$res->fields[stud_id]."</td><td>".$res->fields[stud_name]."</td><td>".$res->fields[curr_class_num]."</td></tr>";
+		$rec="<tr><td>".$res->fields['stud_id']."</td><td>".$res->fields['stud_name']."</td><td>".$res->fields[curr_class_num]."</td></tr>";
 				
 	}
 	$INFO="<br><font color=red>已修改以下學生的密碼</font><br>
@@ -73,9 +73,9 @@ if ($_POST['opt']=='search') {
 	while(!$res->EOF) {
 		$email_pass=$res->fields[email_pass];
 		$student_sn=$res->fields['student_sn'];
-		$stud_id=$res->fields[stud_id];
+		$stud_id=$res->fields['stud_id'];
 		$curr_class_num=$res->fields[curr_class_num];
-		$stud_name=$res->fields[stud_name];
+		$stud_name=$res->fields['stud_name'];
 		?>
 		<tr bgcolor=#ffffff>
 			<td align='center'><?php echo $stud_id;?></td>

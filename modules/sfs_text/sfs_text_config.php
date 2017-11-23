@@ -21,7 +21,7 @@ function get_text_parent_name ($t_parent) {
 		if($val){
 			$query = "select t_id,t_name from sfs_text where t_id='$val' ";
 			$result = mysql_query($query);		
-			$row = mysql_fetch_row($result);				
+			$row = mysqli_fetch_row($result);				
 			$res .="<a href={$_SERVER['PHP_SELF']}?this_item=$row[0]&p=$p>$row[1]</a> > ";
 		}
 	}
@@ -31,7 +31,7 @@ function get_text_parent_name ($t_parent) {
 function delete_item($t_id) {
 	$query = "select t_id from sfs_text where p_id='$t_id' ";
 	$result = mysql_query($query);
-	while($row = mysql_fetch_row($result))
+	while($row = mysqli_fetch_row($result))
 		delete_item ($row[0]);
 	mysql_query("delete from sfs_text where t_id='$t_id'");
 }

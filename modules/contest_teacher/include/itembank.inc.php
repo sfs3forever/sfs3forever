@@ -35,7 +35,7 @@ function listitembank($PAGE) {
   	</tr>
 
    	<?php
-   	 $row=mysql_fetch_row(mysql_query("select count(*) as num from contest_itembank"));
+   	 $row=mysqli_fetch_row(mysql_query("select count(*) as num from contest_itembank"));
    	 list($ALL)=$row; 
    	 $PAGEALL=ceil($ALL/$PHP_PAGE); //無條件進位
    	 $st=($PAGE-1)*$PHP_PAGE;

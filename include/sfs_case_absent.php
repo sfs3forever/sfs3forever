@@ -63,7 +63,7 @@ function check_absent($stud_id=array(),$seme=array())
 		$query="select * from stud_seme_abs where stud_id in ($all_id) and seme_year_seme in ($all_seme) and abs_kind in ('1','2','3','4')";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			if ($res->fields[abs_days]>"0") $fin_score[$res->fields[stud_id]]++;
+			if ($res->fields[abs_days]>"0") $fin_score[$res->fields['stud_id']]++;
 			$res->MoveNext();
 		}
 		reset($stud_id);

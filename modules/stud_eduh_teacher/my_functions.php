@@ -8,11 +8,11 @@ function get_course_class_select2($year_seme,$curr_class_id=""){
   $res_class=mysql_query($query);
   //取出設定的課程
     $res_class=mysql_query($query);
-    while ($row_class=mysql_fetch_row($res_class)) {
+    while ($row_class=mysqli_fetch_row($res_class)) {
      list($class_id)=$row_class;
       $query="select c_year,c_name from school_class where class_id='$class_id'";
       $res_class_name=mysql_query($query);
-      list($c_year,$c_name)=mysql_fetch_row($res_class_name);
+      list($c_year,$c_name)=mysqli_fetch_row($res_class_name);
       $selected=($curr_class_id==$class_id)?"selected":"";
      $class_name_option.="<option value='$class_id' $selected style='background-color: $school_kind_color[$c_year];'>".$school_kind_name[$c_year]."".$c_name."班</option>\n";
     } // end while
@@ -38,14 +38,14 @@ function get_course_class_select($sel_year="",$sel_seme="",$col_name="class_id",
     $query="select distinct class_id from score_course where year='".substr($this_seme_year_seme,0,3)."' and semester='".substr($this_seme_year_seme,-1)."' and ss_id='".$row_course['ss_id']."' and teacher_sn='".$_SESSION['session_tea_sn']."'";
     //echo $query."<br>";
     $res_class=mysql_query($query);
-    while ($row_class=mysql_fetch_row($res_class)) {
+    while ($row_class=mysqli_fetch_row($res_class)) {
      list($class_id)=$row_class;
      //檢查特別指定table中, 此師有無指定此班, 若有, 不要再列出
      // if .... continue
       if (check_class_id($this_seme_year_seme,$_SESSION['session_tea_sn'],$class_id)) continue; //在指定教師資料表裡已指定此班級, 不要重覆列出
       $query="select c_year,c_name from school_class where class_id='$class_id'";
       $res_class_name=mysql_query($query);
-      list($c_year,$c_name)=mysql_fetch_row($res_class_name);
+      list($c_year,$c_name)=mysqli_fetch_row($res_class_name);
       $selected=($curr_class_id==$class_id)?"selected":"";
      $class_name_option.="<option value='$class_id' $selected style='background-color: $school_kind_color[$c_year];'>".$school_kind_name[$c_year]."".$c_name."班</option>\n";
     } // end while

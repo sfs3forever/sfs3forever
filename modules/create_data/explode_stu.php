@@ -41,12 +41,12 @@ if ($do_key =="Excel 輸出") {
 	$zip_arr = get_addr_zip_arr() ;
 	
 	while (!$result->EOF) {
-		$stud_id = $result->fields[stud_id];
+		$stud_id = $result->fields['stud_id'];
 		//$s_addres = $result->fields[stud_addr_1];
 		$s_home_phone = $result->fields[stud_tel_1];
 		$s_offical_phone = $result->fields[stud_tel_2];
 		$stud_sex = $result->fields[stud_sex];
-		$stud_name = $result->fields[stud_name];
+		$stud_name = $result->fields['stud_name'];
 		$curr_class_num = $result->fields[curr_class_num];
 		$stud_birthday = $result->fields[stud_birthday];
 		$stud_person_id = $result->fields[stud_person_id];

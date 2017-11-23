@@ -8,12 +8,12 @@ require "config.php";
 sfs_check();
 
 //執行動作判斷
-if ($_POST[act]=="還原") {
-	garbage2normall($_POST[tbl_name],$_POST[have_dbname]);
-	header("location: $_SERVER[PHP_SELF]");
+if ($_POST['act']=="還原") {
+	garbage2normall($_POST['tbl_name'],$_POST['have_dbname']);
+	header("location: {$_SERVER['PHP_SELF']}");
 }elseif($_POST[act]=="清空"){
-	clear_garbage($_POST[tbl_name]);
-	header("location: $_SERVER[PHP_SELF]");
+	clear_garbage($_POST['tbl_name']);
+	header("location: {$_SERVER['PHP_SELF']}");
 }else{
 	$main=&main_form();
 }
@@ -26,21 +26,25 @@ foot();
 
 //找出目前的垃圾資料
 function &main_form(){
-	global $school_menu_p,$mysql_db,$CONN;
+	global $school_menu_p,$mysql_db,$CONN, $conID;
 	//相關功能表
 	$tool_bar=&make_menu($school_menu_p);
 
 	//取得所有表單名稱
-	$result = mysql_list_tables($mysql_db);
+	//$result = mysql_list_tables($mysql_db);
+	$result = array_column(mysqli_fetch_all($conID->query('SHOW TABLES')),0);
 
 	if (!$result) {
 		user_error("無法取得資料表資料。",256);
 	}
 	
 	//取得資料庫中所有表格
-	while ($row=mysql_fetch_row($result)) {
+	/*
+	$all_db_tbl= array();
+	while ($row=mysqli_fetch_row($result)) {
 		$all_db_tbl[]=$row[0];
 	}
+	*/
 
 	$i=0;
 	foreach($all_db_tbl as $db_table_name){
@@ -58,7 +62,7 @@ function &main_form(){
 			
 			$del_time=date("Y-m-d H:i:s（星期 w）",$tbl[1]);
 			
-			$color=($_GET[vDBname]==$db_table_name)?"#FFFF10":"white";
+			$color=($_GET['vDBname']==$db_table_name)?"#FFFF10":"white";
 			
 			$recordSet=$CONN->Execute("SELECT count(*) FROM $db_table_name");
 			list($num_rows) =$recordSet->FetchRow();
@@ -72,10 +76,10 @@ function &main_form(){
 
 	}
 
-	mysql_free_result($result);
+	//mysqli_free_result($result);
 	
-	if(!empty($_GET[vDBname])){
-		$sql_select="select * from $_GET[vDBname]";
+	if(!empty($_GET['vDBname'])){
+		$sql_select="select * from {$_GET['vDBname']}";
 		$recordSet=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
 		while($datan=$recordSet->FetchRow()){
 		$DBdata="";

@@ -15,15 +15,15 @@ function get_test_setup($tsn) {
  //取得已報名人數
  $query="select count(*) as num from contest_user where tsn='$tsn'";
  $result=mysql_query($query);
- list($N)=mysql_fetch_row($result);
+ list($N)=mysqli_fetch_row($result);
  $TEST['testuser_num']=$N;
  //取徥查資料比賽題本題數
  $query="select count(*) from contest_ibgroup where tsn='".$TEST['tsn']."'";
- list($N)=mysql_fetch_row(mysql_query($query));
+ list($N)=mysqli_fetch_row(mysql_query($query));
  $TEST['search_ibgroup']=$N;
  //取資查資料比賽題庫總數
  $query="select count(*) from contest_itembank";
- list($N)=mysql_fetch_row(mysql_query($query));
+ list($N)=mysqli_fetch_row(mysql_query($query));
  $TEST['search_itembank']=$N;
  return $TEST;
 }
@@ -46,7 +46,7 @@ function test_list($query) {
  <?php
     while ($row=mysql_fetch_array($TEST,1)) {
     	$query="select count(*) as num from contest_user where tsn='".$row['tsn']."'";
-			list($N)=mysql_fetch_row(mysql_query($query));
+			list($N)=mysqli_fetch_row(mysql_query($query));
   	?>
    	<tr>
    		<td style="font-size:10pt" align="center"><img src="images/edit.png" border="0" style="cursor:hand" onclick="document.myform.option1.value='<?php echo $row['tsn'];?>';document.myform.act.value='listone';document.myform.submit();"></td>
@@ -779,7 +779,7 @@ function get100($tsn,$ToNum) {
 	if ($start) {
 	
 	
-	list($IB)=mysql_fetch_row(mysql_query('select count(*) as num from contest_itembank'));
+	list($IB)=mysqli_fetch_row(mysql_query('select count(*) as num from contest_itembank'));
 	$IB-=1;
 
  //亂數取每一題的ibsn	
@@ -788,10 +788,10 @@ function get100($tsn,$ToNum) {
   do {
    $D=0;
    $IN=rand(0,$IB);
-   list($ibsn)=mysql_fetch_row(mysql_query("select ibsn from contest_itembank limit ".$IN.",1"));
+   list($ibsn)=mysqli_fetch_row(mysql_query("select ibsn from contest_itembank limit ".$IN.",1"));
    $query="select count(*) as num from contest_ibgroup where tsn='$tsn' and ibsn='$ibsn'";
 	 $result=mysql_query($query);
-	 $row=mysql_fetch_row($result);
+	 $row=mysqli_fetch_row($result);
 	 list($D)=$row;
   } while ($D>0);
   //寫入題目代碼
@@ -805,7 +805,7 @@ function get100($tsn,$ToNum) {
  $query="select ibsn from contest_ibgroup where tsn='$tsn'";
  $result=mysql_query($query);
  $tsort=0;
- while ($row=mysql_fetch_row($result)) {
+ while ($row=mysqli_fetch_row($result)) {
   list($ibsn)=$row;
   $tsort++;
   mysql_query("update contest_ibgroup set tsort='$tsort' where tsn='$tsn' and ibsn='$ibsn'");
@@ -855,7 +855,7 @@ function list_itembank_for_choice($tsn) {
 	 //檢驗本題是否已存在題本中
 	 $query="select count(*) as num from contest_ibgroup where tsn='$tsn' and ibsn='".$row['ibsn']."'";
 	 $result=mysql_query($query);
-	 $row_double=mysql_fetch_row($result);
+	 $row_double=mysqli_fetch_row($result);
 	 list($D)=$row_double;
 	 if ($D>0) { $DIS="disabled"; $BG="bgcolor='#CCCCCC'"; } else { $DIS=""; $BG=""; }
    	?>
@@ -920,13 +920,13 @@ function chk_ifgroup($TEST,$student_sn) {
     	if ($TEST['active']==1) {
     	 //查資料
     	 $query="select count(*) as num from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."'";
-    	 list($N)=mysql_fetch_row(mysql_query($query));
+    	 list($N)=mysqli_fetch_row(mysql_query($query));
     	 if ($N==0) { $DEL=1; }
     	}else{
     	 //上傳作品
     	 //查資料
     	 $query="select filename from contest_record2 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."'";
-    	 list($FILE)=mysql_fetch_row(mysql_query($query));
+    	 list($FILE)=mysqli_fetch_row(mysql_query($query));
     	 if ($FILE=="") {
      	   $DEL=1;
     	  } 

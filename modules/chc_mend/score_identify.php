@@ -113,11 +113,11 @@ class basic_chc{
 			if(substr($seme_year_seme2,0,3)-substr($seme_class2,0,1)==$sel_Y_G){
 				
 				$this->stu_data[]=array(
-				"stud_id"=>$res->fields[stud_id],
-				"stud_name"=>trim(str_replace("　","",$res->fields[stud_name])),
+				"stud_id"=>$res->fields['stud_id'],
+				"stud_name"=>trim(str_replace("　","",$res->fields['stud_name'])),
 				"stud_sex"=>$res->fields[stud_sex],
 				"seme_class"=>$class_base{$res->fields['seme_class']},
-				"seme_num"=>$res->fields[seme_num],
+				"seme_num"=>$res->fields['seme_num'],
 				"student_sn"=>$res->fields['student_sn']
 				);
 				$this->students_sn .= "&students_sn[]=".$res->fields['student_sn'];

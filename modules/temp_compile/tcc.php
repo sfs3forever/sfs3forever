@@ -40,7 +40,7 @@ if ($_POST[out]) {
 	$query="select *,(temp_score1+temp_score2+temp_score3) as cc from new_stud where stud_study_year='$stud_study_year' and sure_study='$sure_study' $sex_comp $meno_str order by $kind_str $sex_str $score_str temp_id";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$Str.=$res->fields[temp_id].",".substr($res->fields[temp_class],1).",".$res->fields[temp_site].",".$res->fields[stud_name].",".$sex_arr[$res->fields[stud_sex]].",".$res->fields[cc].",,,,".$res->fields[meno]."\n";
+		$Str.=$res->fields[temp_id].",".substr($res->fields[temp_class],1).",".$res->fields[temp_site].",".$res->fields['stud_name'].",".$sex_arr[$res->fields[stud_sex]].",".$res->fields[cc].",,,,".$res->fields[meno]."\n";
 		$res->MoveNext();
 	}
 	$filename="編班資料-".$sure_study.".csv";
@@ -71,7 +71,7 @@ if ($_POST[out]) {
 		if ($tt[0]!="" && $tt[6]!="" && $tt[7]!="") {
 			$query="select * from new_stud where temp_id='".$tt[0]."' and stud_study_year='$stud_study_year' and class_year='$class_year_b'";
 			$res=$CONN->Execute($query);
-			$stud_name=$res->fields[stud_name];
+			$stud_name=$res->fields['stud_name'];
 			if ($res->fields[newstud_sn]!="") {
 				$query="update new_stud set class_year='$class_year_b',class_sort='".$tt[6]."',class_site='".$tt[7]."' where newstud_sn='".$res->fields[newstud_sn]."'";
 				$CONN->Execute($query);

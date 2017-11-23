@@ -13,7 +13,7 @@ if ($CONN->Execute($query)) {
 	$query="select student_sn,stud_id from stud_base";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$CONN->Execute("update stud_brother_sister set student_sn='".$res->fields['student_sn']."' where stud_id='".$res->fields[stud_id]."'");
+		$CONN->Execute("update stud_brother_sister set student_sn='".$res->fields['student_sn']."' where stud_id='".$res->fields['stud_id']."'");
 		$res->MoveNext();
 	}
 }

@@ -46,7 +46,7 @@ if ($_POST[past_stud_id]!=$_REQUEST[One]) {
 elseif (!empty($_REQUEST[reward_id])) {
 	$query="select stud_id from reward where reward_id='$_REQUEST[reward_id]'";
 	$res=$CONN->Execute($query);
-	$One=$res->fields[stud_id];
+	$One=$res->fields['stud_id'];
 } else {
 	//如果班級選單改變
 	if ($_REQUEST[class_id]!=$_REQUEST[past_class_id]) {
@@ -60,10 +60,10 @@ elseif (!empty($_REQUEST[reward_id])) {
                 //修正改變班級選單時不會即時顯示學號問題
                 //$class_num="01";
                 //修正如果1號轉學後改變選單會發生班級跳掉的問題
-                $class_num=$CONN->Execute("select a.seme_num from stud_seme a,stud_base b where a.seme_year_seme='$seme_year_seme' and a.seme_class='$seme_class' and b.student_sn=a.student_sn and b.stud_study_cond='0'")->fields[seme_num];
+                $class_num=$CONN->Execute("select a.seme_num from stud_seme a,stud_base b where a.seme_year_seme='$seme_year_seme' and a.seme_class='$seme_class' and b.student_sn=a.student_sn and b.stud_study_cond='0'")->fields['seme_num'];
                 $sql="select a.stud_id,b.stud_study_cond from stud_seme a,stud_base b where a.seme_year_seme='$seme_year_seme' and a.seme_class='$seme_class' and a.seme_num='$class_num' and b.student_sn=a.student_sn and b.stud_study_cond='0'";
                 $rs=$CONN->Execute($sql);
-                $stud_id=$rs->fields[stud_id];
+                $stud_id=$rs->fields['stud_id'];
                 if (!empty($stud_id)) $One=$stud_id;
                 $focus_str="<body OnLoad='document.base_form.One.focus()'>";
                 $focus=1;
@@ -82,7 +82,7 @@ elseif (!empty($_REQUEST[reward_id])) {
 			$seme_num=sprintf("%02d",$class_num);
 			$sql="select a.stud_id,b.stud_study_cond from stud_seme a,stud_base b where a.seme_year_seme='$seme_year_seme' and a.seme_class='$seme_class' and a.seme_num='$seme_num' and b.student_sn=a.student_sn and b.stud_study_cond='0'";
 			$rs=$CONN->Execute($sql);
-			$stud_id=$rs->fields[stud_id];
+			$stud_id=$rs->fields['stud_id'];
 			if (!empty($stud_id)) $One=$stud_id;
 			$focus_str="<body OnLoad='document.base_form.year_name.focus()'>";
 			$focus=2;
@@ -101,7 +101,7 @@ $sel_week=$weeks_array[0];
 if (empty($One) && empty($class_id)) {
 	$sql="select stud_id from stud_seme where seme_year_seme='$seme_year_seme' order by seme_class,seme_num";
 	$rs=$CONN->Execute($sql);
-	$One=$rs->fields[stud_id];
+	$One=$rs->fields['stud_id'];
 }
 
 //如果有學號
@@ -115,7 +115,7 @@ if ($One) {
 		$seme_class=$rs->fields['seme_class'];
 		$year_name=intval(substr($seme_class,0,-2));
 		$class_name=intval(substr($seme_class,-2,2));
-		$class_num=intval($rs->fields[seme_num]);
+		$class_num=intval($rs->fields['seme_num']);
 	}
 }
 
@@ -282,7 +282,7 @@ function &mainForm($sel_year,$sel_seme,$class_id="",$One="",$reward_id=""){
 	if ($reward_id) {
 		$query="select * from reward where reward_id='$reward_id'";
 		$res=$CONN->Execute($query);
-		$One=$res->fields[stud_id];
+		$One=$res->fields['stud_id'];
 		$reward_kind=$res->fields[reward_kind];
 		$reward_reason=$res->fields[reward_reason];
 		$reward_base=$res->fields[reward_base];
@@ -445,10 +445,10 @@ function &signForm($sel_year,$sel_seme,$class_id,$One="",$id=""){
 	$query="select * from stud_seme where seme_year_seme='$seme_year_seme' order by seme_class,seme_num";
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
-		$stud_id=$res->fields[stud_id];
+		$stud_id=$res->fields['stud_id'];
 		$student_sn=$res->fields['student_sn'];
 		$seme_class[$stud_id]=$res->fields['seme_class'];
-		$seme_num[$stud_id]=$res->fields[seme_num];
+		$seme_num[$stud_id]=$res->fields['seme_num'];
 		$all_sn.="'".$student_sn."',";
 		$res->MoveNext();
 	}
@@ -456,8 +456,8 @@ function &signForm($sel_year,$sel_seme,$class_id,$One="",$id=""){
 	$query="select stud_id,stud_name from stud_base where student_sn in ($all_sn)";
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
-		$stud_id=$res->fields[stud_id];
-		$stud_name[$stud_id]=addslashes($res->fields[stud_name]);
+		$stud_id=$res->fields['stud_id'];
+		$stud_name[$stud_id]=addslashes($res->fields['stud_name']);
 		$res->MoveNext();
 	}
 
@@ -499,7 +499,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$One="",$id=""){
 		$bgcolor=$res->fields[reward_bonus]?$bgcolor:'#dddddd';
 		$reward_bonus=$res->fields[reward_bonus]?"<img src='images/ok.png'>":"";		
 		if ($reward_id==$id) $bgcolor="#FFFF00";
-		$stud_id=$res->fields[stud_id];
+		$stud_id=$res->fields['stud_id'];
 		$cancel_date=$res->fields[reward_cancel_date];
 		if ($reward_kind>0) {
 			$cancel_date="-----";
@@ -570,7 +570,7 @@ function del_one($sel_year,$sel_seme,$reward_id) {
 
 	$query="select stud_id from reward where reward_id='$reward_id'";
 	$res=$CONN->Execute($query);
-	$One=$res->fields[stud_id];
+	$One=$res->fields['stud_id'];
 	$query="delete from reward where reward_id='$reward_id'";
 	$CONN->Execute($query);
 	cal_rew($sel_year,$sel_seme,$One);

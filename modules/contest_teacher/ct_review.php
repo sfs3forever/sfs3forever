@@ -97,8 +97,8 @@ if (@$_POST['tsn']!="") {
     				$GROUPS=mysql_query($query);
     				$Group_num=mysql_num_rows($GROUPS);
     		  	 //學生已評分記錄
-    	       list($chk)=mysql_fetch_row(mysql_query("select count(*) from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."'")); //總題數
-    	       list($NUM)=mysql_fetch_row(mysql_query("select count(*) from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."' and chk=1")); // 答對
+    	       list($chk)=mysqli_fetch_row(mysql_query("select count(*) from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."'")); //總題數
+    	       list($NUM)=mysqli_fetch_row(mysql_query("select count(*) from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."' and chk=1")); // 答對
 
  			    //班級轉中文
     			$class_id=sprintf('%03d_%d_%02d_%02d',substr($TEST['year_seme'],0,3),substr($TEST['year_seme'],3,1),substr($Stud['seme_class'],0,1),substr($Stud['seme_class'],1,2));

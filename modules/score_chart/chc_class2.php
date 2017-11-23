@@ -489,8 +489,8 @@ else {
 	$All_class=$rs->GetArray();
 	$obj_class=array();
 	for($i=0;$i<$rs->RecordCount();$i++){
-		$key=$All_class[$i][class_id];
-		$obj_class[$key][class_id]=$All_class[$i][class_id];
+		$key=$All_class[$i]['class_id'];
+		$obj_class[$key]['class_id']=$All_class[$i]['class_id'];
 		$obj_class[$key][year]=$All_class[$i][year];
 		$obj_class[$key][ch_year]=$All_class[$i][year]."學年度";
 		$obj_class[$key][seme]=$All_class[$i][semester];

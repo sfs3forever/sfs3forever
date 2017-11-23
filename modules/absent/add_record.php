@@ -42,7 +42,7 @@ $query="select a.student_sn,a.seme_num,b.stud_name,b.stud_id,b.stud_study_cond f
 $res=$CONN->Execute($query);
 $i=0;
 while(!$res->EOF) {
-	$all_id[]=$res->fields[stud_id];
+	$all_id[]=$res->fields['stud_id'];
 	$rowdata[$i]=$res->FetchRow();
 	$i++;
 }
@@ -53,7 +53,7 @@ if (count($all_id)>0) {
 	$query="select * from stud_seme_abs where stud_id in ($ids) and seme_year_seme={$_POST['year_seme']}";
 	$res=$CONN->Execute($query);
 	while(!$res->EOF) {
-		$abs_data[$res->fields[stud_id]][$res->fields[abs_kind]]=$res->fields[abs_days];
+		$abs_data[$res->fields['stud_id']][$res->fields[abs_kind]]=$res->fields[abs_days];
 		$res->MoveNext();
 	}
 }

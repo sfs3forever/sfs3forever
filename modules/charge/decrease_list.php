@@ -53,7 +53,7 @@ while(!$res->EOF) {
 		$showdata.="<td align='center'>".$res->fields[detail]."</td>";
 		$showdata.="<td align='center'>".$class_base[$class_id]."</td>";
 		$showdata.="<td align='center'>".substr($res->fields[curr_class_num],-2)."</td>";
-		$showdata.="<td align='center'>".$res->fields[stud_name]."</td>";
+		$showdata.="<td align='center'>".$res->fields['stud_name']."</td>";
 		$showdata.="<td align='center'>".$grade_dollar[$curr_grade]."</td>";
 		$showdata.="<td align='center'>".$res->fields[percent]."%</td>";
 		$showdata.="<td align='center'>".$my_decrease."</td>";

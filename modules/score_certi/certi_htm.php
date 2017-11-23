@@ -48,12 +48,12 @@ if ($_POST[form1]) {
 	$query = "select student_sn,stud_id,stud_name,stud_name_eng,stud_birthday from stud_base where student_sn in ($all_sn)";
 	$res = $CONN->Execute($query) or die ($query);
 	while(!$res->EOF) {
-		$stud_id[$res->fields['student_sn']]=$res->fields[stud_id];
+		$stud_id[$res->fields['student_sn']]=$res->fields['stud_id'];
 		
 		$sb=explode("-",$res->fields[stud_birthday]);
 		if (mb_substr($_POST[form1],0,5,"big5")=='列印成績表') {
 			$stud_birthday[$res->fields['student_sn']]=($sb[0]-1911)."年".$sb[1]."月".$sb[2]."日";
-			$stud_name[$res->fields['student_sn']]=$res->fields[stud_name];
+			$stud_name[$res->fields['student_sn']]=$res->fields['stud_name'];
 			if($_POST[form1]=='列印成績表(七領域)') {
 				$link_ss=array("language"=>"語文","math"=>"數學","nature"=>"自然與生活科技","social"=>"社會","health"=>"健康與體育","art"=>"藝術與人文","complex"=>"綜合活動");
 				$ss_link=array("語文"=>"language","數學"=>"math","自然與生活科技"=>"nature","社會"=>"social","健康與體育"=>"health","藝術與人文"=>"art","綜合活動"=>"complex");
@@ -61,7 +61,7 @@ if ($_POST[form1]) {
 			}
 		} else {
 			$stud_birthday[$res->fields['student_sn']]=$sb[0].".".$sb[1].".".$sb[2];
-			$stud_name[$res->fields['student_sn']]=$res->fields[stud_name_eng]?$res->fields[stud_name_eng]:$res->fields[stud_name];
+			$stud_name[$res->fields['student_sn']]=$res->fields[stud_name_eng]?$res->fields[stud_name_eng]:$res->fields['stud_name'];
 			
 		}
 		$res->MoveNext();
@@ -96,9 +96,9 @@ if ($_POST[form1]) {
 	$res = $CONN->Execute($query) or die ($query);
 	$y_arr=array();
 	while(!$res->EOF) {
-		$stud_id[]=$res->fields[stud_id];
+		$stud_id[]=$res->fields['stud_id'];
 		$student_sn[]=$res->fields['student_sn'];
-		$stud_name[]=$res->fields[stud_name];
+		$stud_name[]=$res->fields['stud_name'];
 		$stud_study_cond[]=$res->fields[stud_study_cond];
 		$stud_site[]=substr($res->fields[curr_class_num],-2,2);
 		$y_arr[$res->fields[stud_study_year]]++;

@@ -63,7 +63,7 @@ if($act=="insert"){
 		global $CONN;
 	        $sql = "UPDATE score_paper_upload SET curr_seme = '$curr_seme', class_num = '$class_num', file_name = '$save_result', log_id = '".$_SESSION['session_log_id']."',time = NOW() WHERE spu_sn = '".$_POST[spu_sn]."'";
         	$CONN->Execute($sql) or user_error("修改失敗！<br>$sql",256);
-		header("location: $_SERVER[PHP_SELF]");
+		header("location: {$_SERVER['PHP_SELF']}");
 	}else{
 		echo "檔案傳送過程發生錯誤，請再試一次，若錯誤仍然發生請洽管理人員";
                 exit;

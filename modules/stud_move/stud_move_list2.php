@@ -55,8 +55,8 @@ if($_POST['move_kind'])
 		$move_id = $result->fields["move_id"];
 		$move_kind=$result->fields["move_kind"];
 		$arr[$move_id][move_kind] = $study_cond_array[$move_kind];
-		//$arr[$move_id]['stud_name'] = "<a href='../stud_search/stu_list.php?student_sn=$student_sn' target='_$student_sn'>{$result->fields[stud_name]}</a>";
-		$arr[$move_id]['stud_name'] = $result->fields[stud_name];
+		//$arr[$move_id]['stud_name'] = "<a href='../stud_search/stu_list.php?student_sn=$student_sn' target='_$student_sn'>{$result->fields['stud_name']}</a>";
+		$arr[$move_id]['stud_name'] = $result->fields['stud_name'];
 		$arr[$move_id][stud_birthday] = $result->fields[stud_birthday];
 		$arr[$move_id][move_date] = $result->fields["move_date"];
 		$arr[$move_id][stud_id] = $result->fields["stud_id"];

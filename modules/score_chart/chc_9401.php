@@ -96,11 +96,11 @@ if($year_seme!='' && $_GET[grade]!='' ){
 	$num_max=(ceil($num/10))*10;
 	$prt_ary=array();
 	for($i=0;$i<$num_max;$i++){
-		if($all_class_array[$i][class_id]!='') { 
-			$prt_ary[$i][class_id]=$all_class_array[$i][class_id];
-			$prt_ary[$i][c_name]="<TD width=10%><LABEL><INPUT TYPE='checkbox' NAME='class_id[".$all_class_array[$i][class_id]."]' >".$all_class_array[$i][c_name]."班</LABEL></TD>\n";
+		if($all_class_array[$i]['class_id']!='') { 
+			$prt_ary[$i]['class_id']=$all_class_array[$i]['class_id'];
+			$prt_ary[$i][c_name]="<TD width=10%><LABEL><INPUT TYPE='checkbox' NAME='class_id[".$all_class_array[$i]['class_id']."]' >".$all_class_array[$i][c_name]."班</LABEL></TD>\n";
 		}else {
-			$prt_ary[$i][class_id]="";
+			$prt_ary[$i]['class_id']="";
 			$prt_ary[$i][c_name]="<TD width=10%>&nbsp;</TD>";
 			}
 	}

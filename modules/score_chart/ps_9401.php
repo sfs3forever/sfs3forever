@@ -186,7 +186,7 @@ foreach ($_POST[class_id] as $class_id_key=>$null) {
 	   while ($row=mysql_fetch_array($res)) {
 	   	$query="select pass_score from stud_club_base where club_sn='".$row['club_sn']."'";
 	   	$res_pass=mysql_query($query);
-	   	list($pass_score)=mysql_fetch_row($res_pass);
+	   	list($pass_score)=mysqli_fetch_row($res_pass);
 	   	if ($row['score']>=$pass_score) {
 	   	  $t++;
 	      $club_detail[$t]['association_name']=$row['association_name'];

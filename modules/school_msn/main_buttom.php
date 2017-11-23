@@ -55,14 +55,14 @@ A:hover {font-size:9pt;color: #ff00ff; text-decoration: underline}
      	text1 = new Array(<?php echo $board_num;?>);
 	   <?php
 	  $i=0; $t=0;
-	  while ($row=mysql_fetch_row($result)) {
+	  while ($row=mysqli_fetch_row($result)) {
 	  	list($idnumber,$teach_id,$b_sub,$data_kind,$name)=$row;
 	  	$b_sub=AddLink2Text($b_sub);
 	  		  $query_file="select filename,filename_r from sc_msn_file where idnumber='".$idnumber."'";
   				$result_file=mysql_query($query_file);
 	  	if (mysql_num_rows($result_file)) {
           $j=0;
-          while($row_file=mysql_fetch_row($result_file)) {
+          while($row_file=mysqli_fetch_row($result_file)) {
           	$j++;
       	   list($filename,$filename_r)=$row_file;
 	  		   $b_sub.=" (<a href=\"main_download.php?set=".$filename."\" style=\"color:#FF00FF\" title=\"".$filename_r."\">銝?".$j."</a>)";

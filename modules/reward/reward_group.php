@@ -40,7 +40,7 @@ if ($One) {
 	$query="select * from stud_seme where seme_year_seme='$seme_year_seme' and stud_id='$One'";
 	$res=$CONN->Execute($query);
 	$seme_class=$res->fields['seme_class'];
-	$class_num=intval($res->fields[seme_num]);
+	$class_num=intval($res->fields['seme_num']);
 	$year_name=intval(substr($seme_class,-3,1))-$IS_JHORES;
 	$class_name=intval(substr($seme_class,-2,2));
 } else {
@@ -267,9 +267,9 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
 		$student_sn=$res->fields['student_sn'];
-		$stud_id=$res->fields[stud_id];
+		$stud_id=$res->fields['stud_id'];
 		$seme_class[$stud_id]=$res->fields['seme_class'];
-		$seme_num[$stud_id]=$res->fields[seme_num];
+		$seme_num[$stud_id]=$res->fields['seme_num'];
 		$all_sn.="'".$student_sn."',";
 		$res->MoveNext();
 	}
@@ -277,8 +277,8 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 	$query="select stud_id,stud_name from stud_base where student_sn in ($all_sn)";
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
-		$stud_id=$res->fields[stud_id];
-		$stud_name[$stud_id]=addslashes($res->fields[stud_name]);
+		$stud_id=$res->fields['stud_id'];
+		$stud_name[$stud_id]=addslashes($res->fields['stud_name']);
 		$res->MoveNext();
 	}
 
@@ -359,14 +359,14 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 				$res_more=$CONN->Execute($query_more);
 				while (!$res_more->EOF) {
 					$table_num=$table_num % 3 + 1;
-					$stud_id=$res_more->fields[stud_id];
+					$stud_id=$res_more->fields['stud_id'];
 					$reward_id=$res_more->fields[reward_id];
 					$student_sn=$res_more->fields['student_sn'];
 					$seme_class=$res_more->fields['seme_class'];
-					$seme_num=$res_more->fields[seme_num];
+					$seme_num=$res_more->fields['seme_num'];
 					$query_stud="select stud_name from stud_base where student_sn='$student_sn'";
 					$res_stud=$CONN->Execute($query_stud);
-					$stud_name=addslashes($res_stud->fields[stud_name]);
+					$stud_name=addslashes($res_stud->fields['stud_name']);
 					if ($table_num==1) $stud_table.="<tr bgcolor='#E8F9C8'>";
 					$stud_table.="<td>$stud_id<td>".$c_name[$seme_class]."<td>$seme_num<td>$stud_name<td><a href='$_SERVER['SCRIPT_NAME']?act=del&sel_year=$sel_year&sel_seme=$sel_seme&sel_week=$sel_week&reward_id=$reward_id&sel_dep=$sel_dep' onClick=\"return confirm('確定刪除".$stud_name."的這一筆記錄?')\"><img src='images/del.png' border='0'></a>";
 					if ($table_num==3) $stud_table.="</tr>\n";
@@ -438,7 +438,7 @@ function del_one($sel_year,$sel_seme,$reward_id) {
 
 	$query="select stud_id from reward where reward_id='$reward_id'";
 	$res=$CONN->Execute($query);
-	$One=$res->fields[stud_id];
+	$One=$res->fields['stud_id'];
 	$query="delete from reward where reward_id='$reward_id'";
 	$CONN->Execute($query);
 	cal_rew($sel_year,$sel_seme,$One);

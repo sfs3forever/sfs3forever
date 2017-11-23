@@ -476,7 +476,7 @@ function make_import_file(){
     	$str = "學生流水號,學生學號,座號,姓名,評語或評語代碼\n";
 	while(!$res->EOF){
 		
-		$str.= $res->fields['student_sn'].",".$res->fields[stud_id].",".$res->fields[seme_num].",".$res->fields[stud_name].",\n";
+		$str.= $res->fields['student_sn'].",".$res->fields['stud_id'].",".$res->fields['seme_num'].",".$res->fields['stud_name'].",\n";
 		$res->MoveNext();
 	}
 	echo $str;

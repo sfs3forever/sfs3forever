@@ -62,7 +62,7 @@ while(!$res_record->EOF){
 	$subitem_sn=$res_record->fields[sub_item_sn];
 	$item_sn=$subitem_array[$subitem_sn][item_sn];
 	//將資料加到項目陣列中
-	$item_array[$item_sn][record][$subitem_sn].="<li>({$res_record->fields[date]}) {$res_record->fields[curr_class_num]}-{$res_record->fields[stud_name]}</li>";
+	$item_array[$item_sn][record][$subitem_sn].="<li>({$res_record->fields[date]}) {$res_record->fields[curr_class_num]}-{$res_record->fields['stud_name']}</li>";
 	$res_record->MoveNext();
 }
 

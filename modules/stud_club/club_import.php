@@ -56,7 +56,7 @@ if ($_POST['act']=="save") {
      $query="select student_sn from stud_seme where stud_id='".$S[1]."' and seme_year_seme='$c_curr_seme'";
      $res=mysql_query($query);
      if (mysql_num_rows($res)==1) {
-     list($student_sn)=mysql_fetch_row($res);
+     list($student_sn)=mysqli_fetch_row($res);
      } else {
       $student_sn="";
      }
@@ -68,7 +68,7 @@ if ($_POST['act']=="save") {
     $query="select student_sn from stud_seme where seme_year_seme='$c_curr_seme' and seme_class='$seme_class' and seme_num='$seme_num'";
     $res=mysql_query($query);
      if (mysql_num_rows($res)==1) {
-      list($student_sn)=mysql_fetch_row($res);
+      list($student_sn)=mysqli_fetch_row($res);
      } else {
       $student_sn="";
      }

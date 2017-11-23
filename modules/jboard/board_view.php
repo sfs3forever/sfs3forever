@@ -23,7 +23,7 @@ if ($_GET[logout]== "yes"){
 	session_destroy();
 	$_SESSION['session_log_id']="";
 	$_SESSION['session_tea_name']="";
-	Header("Location: $_SERVER[PHP_SELF]");
+	Header("Location: {$_SERVER['PHP_SELF']}");
 }
 
 //授權檢驗

@@ -51,7 +51,7 @@ if ($stud_id) {
 		$email_pass=$res->fields[email_pass];
 		$student_sn=$res->fields['student_sn'];
 		$pass=($mode)?"<input type=text name='email_pass[$student_sn]' value='$email_pass' size='10' maxlength='10'>":$email_pass; 
-		$data_str.="<tr bgcolor=#FFFFFF><td align='center'>".$res->fields[stud_id]."</td><td align='center'>".$res->fields[stud_name]."</td><td align='center'>".$pass."</td><td align='center'><font color=#000088>".$stud_study_cond[$res->fields[stud_study_cond]]."</font></td></tr>\n";
+		$data_str.="<tr bgcolor=#FFFFFF><td align='center'>".$res->fields['stud_id']."</td><td align='center'>".$res->fields['stud_name']."</td><td align='center'>".$pass."</td><td align='center'><font color=#000088>".$stud_study_cond[$res->fields[stud_study_cond]]."</font></td></tr>\n";
 		$res->MoveNext();
 	}
 	$main.="<table border=0 cellspacing=1 cellpadding=2 bgcolor=#9ebcdd class=small>\n

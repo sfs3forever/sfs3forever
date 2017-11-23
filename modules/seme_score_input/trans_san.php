@@ -158,8 +158,8 @@ if ($_POST['import']) {
 			$query="select * from temp_san order by stud_id,subj_no";
 			$res=$CONN->Execute($query);
 			while(!$res->EOF) {
-				if ($sno=="") $sno=$res->fields[stud_id];
-				if ($sno!=$res->fields[stud_id]) break;
+				if ($sno=="") $sno=$res->fields['stud_id'];
+				if ($sno!=$res->fields['stud_id']) break;
 				$rowdata[$res->fields[subj_no]]=$res->fields[score];
 				$res->MoveNext();
 			}

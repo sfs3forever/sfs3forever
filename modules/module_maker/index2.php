@@ -130,7 +130,7 @@ function &module_maker_mainForm($mms="",$mode){
 	</tr>
 	
 	</table>
-	<input type='hidden' name='data[table_name]' value='$_GET[table]'>
+	<input type='hidden' name='data['table_name']' value='$_GET[table]'>
 	<input type='hidden' name='data[index_mode]' value='$index_mode'>
 	<input type='hidden' name='mms' value='$mms'>
 	<input type='hidden' name='act' value='$submit'>

@@ -503,10 +503,10 @@ function list_class_table($sel_year,$sel_seme,$class_id="",$mode=""){
 		foreach ( $tea_temp_arr as $k => $v) {
 			//他班課表
 			foreach ($course_tea_arr[$k] as $k2=> $v2) {
-				//if  ($course_tea_arr[$k][$k2][class_id]<> $class_id) {
+				//if  ($course_tea_arr[$k][$k2]['class_id']<> $class_id) {
 					 
            if (!isset($sn_star[$k])) 	$sn_star[$k] = $i ;				
-			     $class_get = get_class_all($course_tea_arr[$k][$k2][class_id]) ;
+			     $class_get = get_class_all($course_tea_arr[$k][$k2]['class_id']) ;
 				   $js_str1 .= "tea_course[$i]= '" . $class_get[name] ."-". addslashes($select_ss_arr[$course_tea_arr[$k][$k2][ss_id]]) ."' ;\n " ;
 				   //$js_str1 .= "tea_course[$i]= '" . $class_get[name] . "' ;\n " ;
 				   $js_str2 .= "tea_course_pos[$i] = '$k2' ;\n " ;
@@ -1283,7 +1283,7 @@ function get_course_tea_arr($sel_year,$sel_seme) {
 	while (!$res->EOF) {
 		$temp_ds = $res->fields[day]."_".$res->fields[sector];
 		$temp_arr[$res->fields[teacher_sn]][$temp_ds][ss_id] = $res->fields[ss_id];
-		$temp_arr[$res->fields[teacher_sn]][$temp_ds][class_id] = $res->fields[class_id];
+		$temp_arr[$res->fields[teacher_sn]][$temp_ds]['class_id'] = $res->fields[class_id];
 		$res->MoveNext();
 	}
 	return $temp_arr;
@@ -1298,7 +1298,7 @@ function get_course_tea_out_arr($sel_year,$sel_seme,$class_id) {
 	while (!$res->EOF) {
 		$temp_ds = $res->fields[day]."_".$res->fields[sector];
 		$temp_arr[$res->fields[teacher_sn]][$temp_ds][ss_id] = $res->fields[ss_id];
-		$temp_arr[$res->fields[teacher_sn]][$temp_ds][class_id] = $res->fields[class_id];
+		$temp_arr[$res->fields[teacher_sn]][$temp_ds]['class_id'] = $res->fields[class_id];
 		$res->MoveNext();
 	}
 	return $temp_arr;

@@ -148,9 +148,9 @@ if($class_id<>'') {
 		$ii=0;
 		while (!$result->EOF) {
 			$student_sn= $result->fields['student_sn'];
-			$stud_id = $result->fields[stud_id];
-			$stud_name = $result->fields[stud_name];
-			$curr_class_num = $result->fields[seme_num];
+			$stud_id = $result->fields['stud_id'];
+			$stud_name = $result->fields['stud_name'];
+			$curr_class_num = $result->fields['seme_num'];
 			$stud_study_cond = $result->fields[stud_study_cond];
 			$move_kind ='';
 			if ($stud_study_cond >0)

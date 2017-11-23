@@ -274,7 +274,7 @@ $res= $CONN->Execute($query) or trigger_error($query);
 
 		$sn = $res->fields['student_sn'];		
 		$sit_num = substr($res->fields[curr_class_num],-2);
-		$stud_name = $res->fields[stud_name];
+		$stud_name = $res->fields['stud_name'];
 		$sss_id = $res->fields[sss_id];
 
 		if($ii % $col_num == 0)
@@ -498,7 +498,7 @@ function make_import_file($mode=0){
 	while(!$res->EOF){
 		$sit_num = substr($res->fields[curr_class_num],-2);
 		$memo=($mode==0)?"":$res->fields[ss_score_memo];
-		$str.= $res->fields['student_sn'].",".$res->fields[stud_id].",".$sit_num.",\"".$res->fields[stud_name]."\",\"".$memo."\"\n";
+		$str.= $res->fields['student_sn'].",".$res->fields['stud_id'].",".$sit_num.",\"".$res->fields['stud_name']."\",\"".$memo."\"\n";
 		$res->MoveNext();
 	}
 	echo $str;

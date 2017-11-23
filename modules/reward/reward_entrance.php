@@ -32,11 +32,11 @@ if ($_POST['act']=='del_reward') {
   //取得 stud_id
   $query="select stud_id from stud_base where student_sn='".$_POST['selected_student']."'";
   $res=mysql_query($query);
-  list($stud_id)=mysql_fetch_row($res);
+  list($stud_id)=mysqli_fetch_row($res);
   //取得獎懲學期
   $query="select reward_year_seme from reward where reward_id='".$_POST['option1']."'";
   $res=mysql_query($query);
-  list($reward_year_seme)=mysql_fetch_row($res);
+  list($reward_year_seme)=mysqli_fetch_row($res);
   
   $query="delete from reward where reward_id='".$_POST['option1']."'";
   mysql_query($query);
@@ -56,7 +56,7 @@ if ($_POST['act']=='add_reward') {
 	
   $query="select stud_id from stud_base where student_sn='".$_POST['selected_student']."'";
   $res=mysql_query($query);
-  list($stud_id)=mysql_fetch_row($res);
+  list($stud_id)=mysqli_fetch_row($res);
 
   if ($stud_id=='') {
     echo "找不到對應的學號!";
@@ -94,7 +94,7 @@ if ($_POST['act']=='add_reward') {
 //加到該生目前已補登獎懲紀錄中
 if ($_POST['act_join']=='join' || $_POST['act_joinp']=='joinp') {
 
-    list($stud_id)=mysql_fetch_row(mysql_query("select stud_id from stud_base where student_sn='".$_POST['selected_student']."'"));
+    list($stud_id)=mysqli_fetch_row(mysql_query("select stud_id from stud_base where student_sn='".$_POST['selected_student']."'"));
 
     if ($stud_id=='') {
         echo "找不到對應的學號!";

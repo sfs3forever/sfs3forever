@@ -531,9 +531,9 @@ if($class_id<>'') {
 		echo "<table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse; font-size:9pt;' bordercolor='#111111' id='AutoNumber1'>";
 		$ii=0;
 		while (!$result->EOF) {
-			$stud_id = $result->fields[stud_id];
-			$stud_name = $result->fields[stud_name];
-			$curr_class_num = sprintf('%02d',$result->fields[seme_num]);
+			$stud_id = $result->fields['stud_id'];
+			$stud_name = $result->fields['stud_name'];
+			$curr_class_num = sprintf('%02d',$result->fields['seme_num']);
 			$stud_study_cond = $result->fields[stud_study_cond];
 			$move_kind ='';
 			if ($stud_study_cond >0)

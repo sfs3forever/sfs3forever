@@ -52,7 +52,7 @@ $year = date("Y")-1911;
 
 $query = "select max(doc1_id)+1 mm from sch_doc1 where doc1_id like '$year%'";
 $result = mysql_query ($query) or die ($query);
-$row = mysql_fetch_row($result);
+$row = mysqli_fetch_row($result);
 $mm = $row[0];
 
 if ($mm =="" )

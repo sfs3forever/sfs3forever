@@ -71,7 +71,7 @@ if ($_POST['act']=='service_add') {
 
   //存入成功則再記錄學生
   if (mysql_query($query)) {
-   	list($item_sn)=mysql_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
+   	list($item_sn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
 		 $minutes=$_POST['minutes'];
 		 $studmemo="外校記錄";
 		 $query="insert into stud_service_detail (student_sn,item_sn,minutes,studmemo) values ('$selected_student','$item_sn','$minutes','$studmemo')";	
@@ -200,7 +200,7 @@ if ($work_year_seme!='') {
     $sql_select = "select room_id,room_name from school_room where enable='1'";
 	  $result = mysql_query($sql_select);
 	
-	while ($row=mysql_fetch_row($result)) {
+	while ($row=mysqli_fetch_row($result)) {
 		list($room_id,$room_name)=$row;
 		?>
 		<option value="<?php echo $room_id;?>" <?php if ($room_id==$department) echo " selected";?>><?php echo $room_name;?></option>

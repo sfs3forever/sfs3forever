@@ -32,7 +32,7 @@ $smarty->assign("class_sel",get_class_select(curr_year(),curr_seme(),"","stud_cl
 $query="select a.student_sn,a.stud_name,a.stud_sex,b.seme_num from stud_base a right join stud_seme b on a.student_sn=b.student_sn where a.stud_study_cond='0' and b.seme_year_seme='".sprintf("%03d",curr_year()).curr_seme()."' and b.seme_class='$seme_class' order by b.seme_num ";
 $res=$CONN->Execute($query) or die ($query);
 while(!$res->EOF) {
-	$stud_arr[$res->fields['student_sn']]=$res->fields[seme_num]."--".$res->fields[stud_name];
+	$stud_arr[$res->fields['student_sn']]=$res->fields['seme_num']."--".$res->fields['stud_name'];
 	$sex_arr[$res->fields['student_sn']]=$res->fields[stud_sex];
 	$res->MoveNext();
 }

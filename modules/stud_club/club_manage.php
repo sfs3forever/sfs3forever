@@ -73,7 +73,7 @@ if ($_POST['mode']=="update_club_name_start") {
       while ($row=mysql_fetch_array($res)) {
       	$query="select club_name from stud_club_base where club_sn='".$row['club_sn']."'";
 				$result=mysql_query($query);
-				list($club_name)=mysql_fetch_row($result);
+				list($club_name)=mysqli_fetch_row($result);
 				//2013.08.29 強制 addslashes 
 				$query="update association set association_name='".AddSlashes($club_name)."' where sn='".$row['sn']."'";
 				//$query="update association set association_name='".SafeAddSlashes($club_name)."' where sn='".$row['sn']."'";
@@ -168,7 +168,7 @@ if ($_POST['mode']=="inserting") {
 	   $query="insert into stud_club_base (year_seme,club_name,club_teacher,club_class,club_open,club_student_num,club_memo,club_location,update_sn,stud_boy_num,stud_girl_num,ignore_sex) values ('$year_seme','$club_name','$club_teacher','$club_class','$club_open','$club_student_num','$club_memo','$club_location','$update_sn','$stud_boy_num','$stud_girl_num','$ignore_sex')";
      if (mysql_query($query)) {
      		
-     	list($club_sn)=mysql_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
+     	list($club_sn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
 		 
 		  $INFO="在".date("Y-m-d H:i:s")."已新增社團【".$club_name."】";
 			//將動作改為顯示此社團
@@ -279,7 +279,7 @@ if ($_POST['mode']=="copying") {
 
     $query="insert into stud_club_base (year_seme,club_name,club_teacher,club_class,club_open,club_student_num,club_memo,club_location,update_sn,stud_boy_num,stud_girl_num) values ('$year_seme','$club_name','$club_teacher','$club_class','$club_open','$club_student_num','$club_memo','$club_location','$update_sn','$stud_boy_num','$stud_girl_num')";
      if (mysql_query($query)) {
-     	list($club_sn)=mysql_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
+     	list($club_sn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
 	   } else {
 	    echo "複製社團失敗! query=$query";
 	    exit();

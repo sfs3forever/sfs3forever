@@ -297,7 +297,7 @@ $main.="　<img border=0 src='images/modify.gif' alt='編修選定減免學生'>
 
 while(!$res->EOF) {
 
-	$main.="<option ".($decrease_id==$res->fields[decrease_id]?"selected":"")." value=".$res->fields[decrease_id].">[".$res->fields[curr_class_num]."]".$res->fields[stud_name]."->".$res->fields[cause]."</option>";
+	$main.="<option ".($decrease_id==$res->fields[decrease_id]?"selected":"")." value=".$res->fields[decrease_id].">[".$res->fields[curr_class_num]."]".$res->fields['stud_name']."->".$res->fields[cause]."</option>";
 
 	$res->MoveNext();
 
@@ -357,7 +357,7 @@ while(!$res->EOF) {
 
 		$showdata.="<td align='center'>".$res->fields[class_no]."</td>";
 
-		$showdata.="<td align='center'>".$res->fields[stud_name]."</td>";
+		$showdata.="<td align='center'>".$res->fields['stud_name']."</td>";
 
 		$showdata.="<td align='center'>".$grade_dollar[$curr_grade]."</td>";
 
@@ -371,7 +371,7 @@ while(!$res->EOF) {
 
 		//$showdata.="<td align='center'>".$res->fields[decrease_id]."</td>";
 
-		$showdata.="<td align='center'><input type='submit' value='修改' name='act' onclick='return confirm(\"確定要更改[".$res->fields[stud_name]."]?\")'>　<input type='submit' value='刪除' name='act' onclick='return confirm(\"真的要刪除[".$res->fields[stud_name]."]?\")'></td></tr>";
+		$showdata.="<td align='center'><input type='submit' value='修改' name='act' onclick='return confirm(\"確定要更改[".$res->fields['stud_name']."]?\")'>　<input type='submit' value='刪除' name='act' onclick='return confirm(\"真的要刪除[".$res->fields['stud_name']."]?\")'></td></tr>";
 
 	} else {	
 
@@ -381,7 +381,7 @@ while(!$res->EOF) {
 
 		$showdata.="<td align='center'>".$res->fields[class_no]."</td>";
 
-		$showdata.="<td align='center'>".$res->fields[stud_name]."</td>";
+		$showdata.="<td align='center'>".$res->fields['stud_name']."</td>";
 
 		$showdata.="<td align='center'>".$grade_dollar[$curr_grade]."</td>";
 
@@ -442,7 +442,7 @@ if($work_year_seme==$curr_year_seme and $item_id and $detail_id)
         if($class_id){
 		while(!$recordSet->EOF)
 		{
-			$studentdata.="<option value='".$recordSet->fields['student_sn']."_".$recordSet->fields[curr_class_num]."'>(".substr($recordSet->fields[curr_class_num],-2).")".$recordSet->fields[stud_name]."</option>";
+			$studentdata.="<option value='".$recordSet->fields['student_sn']."_".$recordSet->fields[curr_class_num]."'>(".substr($recordSet->fields[curr_class_num],-2).")".$recordSet->fields['stud_name']."</option>";
 			$recordSet->MoveNext();
 		}
 	}

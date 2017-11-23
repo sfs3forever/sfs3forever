@@ -55,7 +55,7 @@ if ($_POST['act']=='inserting') {
   }
     
   //取回最後的 auto_increat 的ID值
-  list($nsn)=mysql_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
+  list($nsn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
 
   //處理檔案上傳
   news_files($nsn);

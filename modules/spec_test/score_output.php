@@ -84,10 +84,10 @@ if ($class_id) {
 	$res=$CONN->Execute($query);
 	$all_sn="";
 	while (!$res->EOF) {
-		$site_num=$res->fields[seme_num];
+		$site_num=$res->fields['seme_num'];
 		$sn=$res->fields['student_sn'];
 		$row_arr[$site_num][sn]=$sn;
-		$row_arr[$site_num][name]=addslashes($res->fields[stud_name]);
+		$row_arr[$site_num][name]=addslashes($res->fields['stud_name']);
 		$all_sn.="'".$sn."',";
 		$res->MoveNext();
 	}

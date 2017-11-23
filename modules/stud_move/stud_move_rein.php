@@ -92,7 +92,7 @@ switch ($_REQUEST[do_key]) {
         $temp_arr = explode("_", $_POST[stud_class]);
         $query = "select stud_id from stud_base where student_sn='$_POST['student_sn']'";
         $res = $CONN->Execute($query) or die($query);
-        $stud_id = $res->fields[stud_id];
+        $stud_id = $res->fields['stud_id'];
 
         //加入異動記錄
         $sql_insert = "insert into stud_move (stud_id,move_kind,move_year_seme,move_date,move_c_unit,move_c_date,move_c_word,move_c_num,update_id,update_ip,update_time,student_sn,school,school_id,city) values ('$stud_id','$_POST[move_kind]','$curr_seme','$_POST[move_date]','$_POST[move_c_unit]','$_POST[move_c_date]','$_POST[move_c_word]','$_POST[move_c_num]','$_POST[update_id]','$update_ip','" . date("Y-m-d h:i:s") . "','$_POST['student_sn']','$_POST[school]','$_POST[school_id]','$_POST[city]')";
@@ -162,7 +162,7 @@ switch ($_REQUEST[do_key]) {
         $smarty->assign("default_num", $res->fields[move_c_num]);
         $query = "select * from stud_base where student_sn='$_POST['student_sn']'";
         $res = $CONN->Execute($query) or die($query);
-        $stud_arr[$res->fields['student_sn']] = $res->fields[stud_id] . "--" . $res->fields[stud_name];
+        $stud_arr[$res->fields['student_sn']] = $res->fields['stud_id'] . "--" . $res->fields['stud_name'];
         break;
 }
 
@@ -190,7 +190,7 @@ if (empty($stud_arr)) {
     $query = "select student_sn,stud_id,stud_name,stud_sex from stud_base where stud_study_cond='$_POST[move_out_kind]' and stud_study_year>'$stud_study_year' order by stud_id";
     $res = $CONN->Execute($query) or die($query);
     while (!$res->EOF) {
-        $stud_arr[$res->fields['student_sn']] = $res->fields[stud_id] . "--" . $res->fields[stud_name];
+        $stud_arr[$res->fields['student_sn']] = $res->fields['stud_id'] . "--" . $res->fields['stud_name'];
         $sex_arr[$res->fields['student_sn']] = $res->fields[stud_sex];
         $res->MoveNext();
     }

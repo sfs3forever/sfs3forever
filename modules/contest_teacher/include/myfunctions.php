@@ -122,16 +122,16 @@ function listnews($target) {
 
    	</tr>	
  <?php
-    $row=mysql_fetch_row(mysql_query("select count(*) as num from contest_news"));
+    $row=mysqli_fetch_row(mysql_query("select count(*) as num from contest_news"));
    	 list($ALL)=$row; 
    	 $PAGEALL=ceil($ALL/$PHP_PAGE); //無條件進位
    	 $st=($target-1)*$PHP_PAGE;
    	 $query="select * from news limit ".$st.",".$PHP_PAGE;
    	 $result=mysql_query($query);
- 	  while ($row=mysql_fetch_row($result)) {
+ 	  while ($row=mysqli_fetch_row($result)) {
  	  	list($id,$nsn,$title,$sttime,$endtime,$memo)=$row;
  	  $query="select count(*) as num from files where nsn='".$nsn."'";
- 	  list($F)=mysql_fetch_row(mysql_query($query));
+ 	  list($F)=mysqli_fetch_row(mysql_query($query));
  	?>
    	<tr>
    		<td style="font-size:10pt" align="center"><?php echo $id;?></td>
@@ -416,7 +416,7 @@ function get_student($student_sn) {
 //學生作答記錄 (查資料),傳入 $TEST array , $student_sn , 傳回 array [0]=1有上傳，array[0]=0 無上傳，arrray[1]=顯示的訊息
 function get_stud_record1_info($TEST,$student_sn) {
      	 $query="select count(*) as num from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."'";
-    	 list($N)=mysql_fetch_row(mysql_query($query));
+    	 list($N)=mysqli_fetch_row(mysql_query($query));
     	 $RR[1]="已作答 ".$N." 題";
     	 $RR[0]=($N==0)?0:1;   //1表有作答，0表無作答
     	 
@@ -437,7 +437,7 @@ function get_stud_record1_info($TEST,$student_sn) {
        //取得最後作答時間
        if ($RR['0']==1) {
         $query="select anstime from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."' order by anstime desc limit 0,1";
-        list($t)=mysql_fetch_row(mysql_query($query));
+        list($t)=mysqli_fetch_row(mysql_query($query));
         $RR[4]=$t;
        } else {
          $RR[4]="無作答";
@@ -450,7 +450,7 @@ function get_stud_record1_info($TEST,$student_sn) {
 function get_stud_record2_info($TEST,$student_sn) {
   global $UPLOAD_U;
     	 $query="select filename from contest_record2 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."'";
-    	 list($FILE)=mysql_fetch_row(mysql_query($query));
+    	 list($FILE)=mysqli_fetch_row(mysql_query($query));
     	 if ($FILE!="") {
     	   //$RR[1]="<a href='".$UPLOAD_U[$TEST['active']].$FILE."' target='_blank'>觀看</a>";
 

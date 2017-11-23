@@ -78,7 +78,7 @@ if ($module_manager!=1) {
 	  	//先取出本學期所有學生, 逐筆檢驗
      $query="select student_sn,seme_class,seme_num from stud_seme where seme_year_seme='$c_curr_seme' and seme_class like '".$c_curr_class."%%' order by seme_class,seme_num";
      $result=mysql_query($query);
-			while ($row=mysql_fetch_row($result)) {
+			while ($row=mysqli_fetch_row($result)) {
 			  list($student_sn,$seme_class,$seme_num)=$row;
 			  //檢查有沒有寫自我省思
 			   $query_fb="select stud_feedback from association where seme_year_seme='$c_curr_seme' and student_sn='$student_sn' and club_sn!=''"; 
@@ -87,7 +87,7 @@ if ($module_manager!=1) {
 			    $student_not_arrange[$seme_class][$seme_num]=$student_sn; //未編班名單
 			    $student_not_feedback[$seme_class][$seme_num]=$student_sn; //未寫省思名單
 			   } else {
-			    list($fb)=mysql_fetch_row($res);
+			    list($fb)=mysqli_fetch_row($res);
 			    if ($fb=='') {	
 			     $student_not_feedback[$seme_class][$seme_num]=$student_sn; //未寫省思名單
 			    }

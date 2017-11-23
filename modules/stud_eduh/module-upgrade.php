@@ -21,13 +21,13 @@ if (!is_file($up_file_name)){
 	//SQL 語法
 	$query = "ALTER TABLE `stud_seme_test` ADD `teacher_sn` INT UNSIGNED NOT NULL";
 	// 資料表名稱
-	$arr[0][table_name]='stud_seme_test';
+	$arr[0]['table_name']='stud_seme_test';
 
 	// 檢查欄位
-	$arr[0][field_name]='teacher_sn';
+	$arr[0]['field_name']='teacher_sn';
 
 	// 該欄位不存在資料表中
-	$arr[0][check_in_table] = 0;
+	$arr[0]['check_in_table'] = 0;
 
 	// 更改 stud_seme_test 表的 st_id 屬性
 	if (upgrade_table ($query,$arr))

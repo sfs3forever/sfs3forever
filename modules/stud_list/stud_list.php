@@ -47,9 +47,9 @@ if ($_POST[print_out] || $_POST[csv_out]) {
 		$query="select a.*,b.stud_name,b.stud_sex from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_year_seme='$seme_year_seme' and a.seme_class='$v' and b.stud_study_cond in ('0','15') order by seme_num";
 		$res=$CONN->Execute($query);
 		while(!$res->EOF) {
-			$seme_num=$res->fields[seme_num];
-			$data_arr[$k][$seme_num]['stud_name']=$res->fields[stud_name];
-			$data_arr[$k][$seme_num][stud_id]=$res->fields[stud_id];
+			$seme_num=$res->fields['seme_num'];
+			$data_arr[$k][$seme_num]['stud_name']=$res->fields['stud_name'];
+			$data_arr[$k][$seme_num][stud_id]=$res->fields['stud_id'];
 			if ($_POST[sex]) $data_arr[$k][$seme_num][oth]=$sex_arr[$res->fields[stud_sex]];
 			$res->MoveNext();
 		}

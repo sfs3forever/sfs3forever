@@ -17,7 +17,7 @@ function judge_login($active,$INFO) {
   echo "抱歉, 未邀請您替任何競賽評分!";
   exit();
  }
- list($Teacher)=mysql_fetch_row(mysql_query("select name from teacher_base where teacher_sn='".$_SESSION['session_tea_sn']."'"));
+ list($Teacher)=mysqli_fetch_row(mysql_query("select name from teacher_base where teacher_sn='".$_SESSION['session_tea_sn']."'"));
 ?>
 <br>
 <div align="center">

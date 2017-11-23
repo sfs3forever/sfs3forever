@@ -70,7 +70,7 @@ if($item_id>0)
 		//while(!$recordSet->EOF)
 		//{
 		//	$is_selected=($record_id==$recordSet->fields[record_id]?" selected":"");
-		//	$studentdata.="<option value='".$recordSet->fields[record_id]."'$is_selected>(".substr($recordSet->fields[curr_class_num],-2).")".$recordSet->fields[stud_name]."</option>";
+		//	$studentdata.="<option value='".$recordSet->fields[record_id]."'$is_selected>(".substr($recordSet->fields[curr_class_num],-2).")".$recordSet->fields['stud_name']."</option>";
 		//	$recordSet->MoveNext();
 		//}
 		//$studentdata.="</select>";
@@ -127,7 +127,7 @@ if($item_id>0)
 				$showdata.="<tr bgcolor=$my_bgcolor><td align='center'>$counter</td>";
 				$showdata.="<td align='center'>".$recordSet->fields[record_id]."</td>";
 				$showdata.="<td align='center'>".$class_base[$class_id]."</td>";
-				$showdata.="<td align='center'>".$recordSet->fields[stud_name]."</td>";
+				$showdata.="<td align='center'>".$recordSet->fields['stud_name']."</td>";
 				$showdata.="<td align='center'>$item_total</td>";
 				$showdata.="<td align='center'>$my_decrease</td>";
 				$showdata.="<td align='center'>$my_should_paid</td>";			

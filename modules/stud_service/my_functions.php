@@ -48,7 +48,7 @@ function service_table ($sn="",$year_seme="",$service_date="",$department="",$sp
     $sql_select = "select room_id,room_name from school_room where enable='1'";
 	  $result = mysql_query($sql_select);
 	
-	while ($row=mysql_fetch_row($result)) {
+	while ($row=mysqli_fetch_row($result)) {
 		list($room_id,$room_name)=$row;
 		?>
 		<option value="<?php echo $room_id;?>" <?php if ($room_id==$department) echo " selected";?>><?php echo $room_name;?></option>
@@ -207,7 +207,7 @@ function list_service_stud($sn) {
 	$S=getService_one($sn);
 	$query="select year_seme from stud_service where sn='$sn'";
 	$result=mysql_query($query);
-	list($c_curr_seme)=mysql_fetch_row($result);
+	list($c_curr_seme)=mysqli_fetch_row($result);
 
 	$class_array=class_base($c_curr_seme);
 	//依班級列出名單
@@ -239,7 +239,7 @@ function list_service_stud($sn) {
 		$query="select distinct b.seme_class from stud_service_detail a ,stud_seme b, stud_service c   where a.item_sn='$sn'  and a.student_sn=b.student_sn and a.item_sn=c.sn and b.seme_year_seme=c.year_seme order by b.seme_class";
 	   $result=mysql_query($query);
 	   //開始依班級列出
-	   while ($class_array=mysql_fetch_row($result)) {
+	   while ($class_array=mysqli_fetch_row($result)) {
 	   	  list($classid)=$class_array;
 		   $C=sprintf('%03d_%d_%02d_%02d',substr($c_curr_seme,0,3),substr($c_curr_seme,-1,1),substr($classid,0,1),substr($classid,1,2));
 		   $class_base=class_id_2_old($C);
@@ -292,7 +292,7 @@ function list_service_stud_noedit($sn) {
 	$S=getService_one($sn);
 	$query="select year_seme from stud_service where sn='$sn'";
 	$result=mysql_query($query);
-	list($c_curr_seme)=mysql_fetch_row($result);
+	list($c_curr_seme)=mysqli_fetch_row($result);
 
 	$class_array=class_base($c_curr_seme);
 	//依班級列出名單
@@ -304,7 +304,7 @@ function list_service_stud_noedit($sn) {
 		$query="select distinct b.seme_class from stud_service_detail a ,stud_seme b, stud_service c where a.item_sn='$sn'  and a.student_sn=b.student_sn and a.item_sn=c.sn and b.seme_year_seme=c.year_seme order by b.seme_class";
 	   $result=mysql_query($query);
 	   //開始依班級列出
-	   while ($class_array=mysql_fetch_row($result)) {
+	   while ($class_array=mysqli_fetch_row($result)) {
 	   	  list($classid)=$class_array;
 		   $C=sprintf('%03d_%d_%02d_%02d',substr($c_curr_seme,0,3),substr($c_curr_seme,-1,1),substr($classid,0,1),substr($classid,1,2));
 		   $class_base=class_id_2_old($C);
@@ -433,7 +433,7 @@ function getService_one($sn) {
 function getService_year_seme($sn) {
  $query="select year_seme from stud_service where sn='$sn'";
  $result=mysql_query($query);
- list($year_seme)=mysql_fetch_row($result);
+ list($year_seme)=mysqli_fetch_row($result);
  return $year_seme;
 	
 }
@@ -441,7 +441,7 @@ function getService_year_seme($sn) {
 function getService_num($sn) {
  $query="select count(*) from stud_service_detail where item_sn='$sn'";
  $result=mysql_query($query);
- list($num)=mysql_fetch_row($result);
+ list($num)=mysqli_fetch_row($result);
  return $num;
 }
 
@@ -449,7 +449,7 @@ function getService_num($sn) {
 function getService_min($sn,$student_sn) {
  $query="select minutes from stud_service_detail where item_sn='$sn' and student_sn='$student_sn'";
  $result=mysql_query($query);
- list($min)=mysql_fetch_row($result);
+ list($min)=mysqli_fetch_row($result);
  return $min;
 }
 
@@ -457,7 +457,7 @@ function getService_min($sn,$student_sn) {
 function getService_allmin($student_sn,$year_seme) {
  $query="select sum(minutes) from stud_service_detail a,stud_service b where a.student_sn='$student_sn' and b.year_seme='$year_seme' and a.item_sn=b.sn and b.confirm=1";
  $result=mysql_query($query);
- list($min)=mysql_fetch_row($result);
+ list($min)=mysqli_fetch_row($result);
  return $min;
 }
 
@@ -466,7 +466,7 @@ function getService_allmin($student_sn,$year_seme) {
 function getService_studmemo($sn,$student_sn) {
  $query="select studmemo from stud_service_detail where item_sn='$sn' and student_sn='$student_sn'";
  $result=mysql_query($query);
- list($studmemo)=mysql_fetch_row($result);
+ list($studmemo)=mysqli_fetch_row($result);
  return $studmemo;
 }
 
@@ -742,7 +742,7 @@ function list_class_all($classid,$c_curr_seme,$class_name) {
 function get_school_cname() {
 	$query="select sch_cname from school_base limit 1";
 	$res=mysql_query($query);
-	list($S)=mysql_fetch_row($res);
+	list($S)=mysqli_fetch_row($res);
 	
 	return $S;
 	

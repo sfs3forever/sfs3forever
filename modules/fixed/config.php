@@ -89,7 +89,7 @@ function get_teacher_email_by_id($teach_id){
 	$MYEMAIL="";
 	$query="select b.email,b.email2,b.email3 from teacher_base a,teacher_connect b where a.teacher_sn=b.teacher_sn and a.teach_id='$teach_id'";
 	$result=mysql_query($query);
-	list($email,$email2,$email3)=mysql_fetch_row($result);
+	list($email,$email2,$email3)=mysqli_fetch_row($result);
 	$MYEMAIL=($email=="")?$email2:$email;
 	if ($MYEMAIL=="") $MYEMAIL=$email3;
   

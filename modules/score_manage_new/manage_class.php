@@ -83,9 +83,9 @@ if($_POST['print_score']){
 		while(!$rs->EOF) {
 			$class_id=$rs->fields['seme_class'];
 			$student_sn=$rs->fields['student_sn'];
-			$student_array[$class_id][$student_sn][class_num]=$rs->fields[seme_num];
-			$student_array[$class_id][$student_sn][stud_id]=$rs->fields[stud_id];
-			$student_array[$class_id][$student_sn]['stud_name']=$rs->fields[stud_name];
+			$student_array[$class_id][$student_sn][class_num]=$rs->fields['seme_num'];
+			$student_array[$class_id][$student_sn][stud_id]=$rs->fields['stud_id'];
+			$student_array[$class_id][$student_sn]['stud_name']=$rs->fields['stud_name'];
 		
 			$rs->MoveNext();
 		}

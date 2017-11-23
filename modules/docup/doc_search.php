@@ -61,7 +61,7 @@ if ($is_standalone != "1")
                         $stmt->close();
 
                         //$result = mysql_query($sql_select)or die($sql_select);
-                        //$row = mysql_fetch_row($result);
+                        //$row = mysqli_fetch_row($result);
                         //查詢總數
                         //$page_count=5;
                         $tol_num = $row[0];
@@ -79,7 +79,7 @@ if ($is_standalone != "1")
                         //查詢單位版區
                         $query = "select bk_id,board_name from board_kind order by bk_id";
                         $result = mysql_query($query);
-                        while ($row = mysql_fetch_row($result))
+                        while ($row = mysqli_fetch_row($result))
                             $board_kind_p [$row[0]] = $row[1];
 
                         $start_row = ($page - 1) * $page_count;

@@ -111,7 +111,7 @@ if($_POST['Submit3']){
 	while(list($k,$v)=each($stud_id)) {
 		$query="select * from new_stud where temp_id='A".$v."' and stud_study_year='$new_sel_year'";
 		$res=$CONN->Execute($query);
-		if (empty($res->fields[stud_name])) continue;
+		if (empty($res->fields['stud_name'])) continue;
 		$query="update new_stud set $class_sort='$_POST[input_class]',$class_site='$k' where temp_id='A".$v."' and stud_study_year='$new_sel_year'";
 		$CONN->Execute($query);
 	}
@@ -309,7 +309,7 @@ switch($work){
 		$sum=$res->RecordCount();
 		while (!$res->EOF) {
 			$id=$res->fields[$class_site];
-			$stud_name[$id]=$res->fields[stud_name];
+			$stud_name[$id]=$res->fields['stud_name'];
 			$sex=$res->fields[stud_sex];
 			if ($sex==1) {
 				$stud_sex[$id]="男";
@@ -429,7 +429,7 @@ switch($work){
 			if ($res) {
 				echo "<center><hr size='2' width='95%'><table border='0' cellspacing='2'><tr bgcolor='#FFEC6E'><td>臨時編號</td><td>班級</td><td>學生姓名</td><td>身分證字號</td><td>生日</td><td>電話</td><td>家長姓名</td><td>住址</td><td>原就讀學校</td></tr>";
 				while (!$res->EOF) {
-					echo "<tr bgcolor='#E6F7E2'><td>".$res->fields[temp_id]."</td><td>".$res->fields[$class_sort]."</td><td>".$res->fields[stud_name]."</td><td>".$res->fields[stud_person_id]."</td><td>".$res->fields[stud_birthday]."</td><td>".$res->fields[stud_tel_1]."</td><td>".$res->fields[guardian_name]."</td><td>".$res->fields[stud_address]."</td><td>".$res->fields[old_school]."</td></tr>";
+					echo "<tr bgcolor='#E6F7E2'><td>".$res->fields[temp_id]."</td><td>".$res->fields[$class_sort]."</td><td>".$res->fields['stud_name']."</td><td>".$res->fields[stud_person_id]."</td><td>".$res->fields[stud_birthday]."</td><td>".$res->fields[stud_tel_1]."</td><td>".$res->fields[guardian_name]."</td><td>".$res->fields[stud_address]."</td><td>".$res->fields[old_school]."</td></tr>";
 					$res->MoveNext();
 				}
 				if ($res->RecordCount()==0) echo "<tr bgcolor='#E6F7E2'><td colspan='9' align='center'>查無符合資料</td></tr>";
@@ -456,7 +456,7 @@ switch($work){
 				$stud_sex="女";
 				$fontcolor="'#FF6633'";
 			}
-			echo "<tr bgcolor='#FFF7CD'><td>".$res->fields[temp_id]."</td><td><font color=$fontcolor>".$res->fields[stud_name]."</font></td><td align='center'><font color=$fontcolor>$stud_sex</font></td></tr>";
+			echo "<tr bgcolor='#FFF7CD'><td>".$res->fields[temp_id]."</td><td><font color=$fontcolor>".$res->fields['stud_name']."</font></td><td align='center'><font color=$fontcolor>$stud_sex</font></td></tr>";
 			$res->MoveNext();
 		}
 		if ($res->RecordCount()==0) echo "<tr bgcolor='#FFF7CD'><td colspan='3' align='center'>查無資料</td></tr>";
@@ -493,7 +493,7 @@ switch($work){
 				$temp_site=$res->fields[$class_site];
 				$id_arr[$temp_class][$temp_site]=$res->fields[temp_id];
 				$sure_study_arr[$temp_class][$temp_site]=($res->fields[sure_study])?$res->fields[sure_study]:0;
-				$name_arr[$temp_class][$temp_site]=$res->fields[stud_name];
+				$name_arr[$temp_class][$temp_site]=$res->fields['stud_name'];
 				$sex_arr[$temp_class][$temp_site]=$csex[$res->fields[stud_sex]];
 				$c_year=$res->fields[class_year];
 				$c_sort=$res->fields[class_sort];

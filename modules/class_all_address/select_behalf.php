@@ -29,7 +29,7 @@ if ($sel_year=="") $sel_year ="601" ;
 	ON sb.student_sn=sd.student_sn
 	where  sb.stud_study_cond =0 and sb.curr_class_num like '$sel_year%' ");
 	while(!$rs_name->EOF){
-		$rs_name_arr[$rs_name->fields[stud_id]] = $rs_name->fields[guardian_name];
+		$rs_name_arr[$rs_name->fields['stud_id']] = $rs_name->fields[guardian_name];
 		$rs_name->MoveNext();
 	}
 
@@ -204,7 +204,7 @@ function all_ooo($sel_year  ) {
 	//取得姓名
  	$rs_name=$CONN->Execute("select sb.stud_id, sd.guardian_name from stud_base sb, stud_domicile sd where sb.student_sn=sd.student_sn  and sb.stud_study_cond =0 and sb.curr_class_num like '$sel_year%' ");
 	while(!$rs_name->EOF){
-		$rs_name_arr[$rs_name->fields[stud_id]] = $rs_name->fields[guardian_name];
+		$rs_name_arr[$rs_name->fields['stud_id']] = $rs_name->fields[guardian_name];
 		$rs_name->MoveNext();
 	}
 

@@ -53,7 +53,7 @@ if ($_POST[act]) {
 			$query="select a.stud_id from stud_seme a left join stud_base b on a.student_sn=b.student_sn where a.seme_class like '$cyear%' and a.seme_year_seme='$seme_year_seme' and b.stud_sex='$j'";
 			$res=$CONN->Execute($query) or trigger_error("SQL語法錯誤：$query", E_USER_ERROR);
 			while (!$res->EOF) {
-				$all_id.="'".$res->fields[stud_id]."',";
+				$all_id.="'".$res->fields['stud_id']."',";
 				$res->MoveNext();
 			}
 			$all_id=substr($all_id,0,-1);
@@ -100,7 +100,7 @@ if ($_POST[act]) {
 				while (!$res->EOF) {
 					$rk=intval($res->fields[reward_kind]);
 					$ow=($rk>0)?0:3;
-					$stud_id=$res->fields[stud_id];
+					$stud_id=$res->fields['stud_id'];
 					switch (abs($rk)) {
 						case "1":
 							$reward_per[$cyear][$j][1+$ow]++;

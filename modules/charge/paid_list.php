@@ -90,7 +90,7 @@ if($item_id)
 			<td align='center'>$counter</td>
 			<td align='center'>".$class_base[$class_id]."</td>
 			<td align='center'>".$recordSet->fields[class_num]."</td>
-			<td align='center'>".$recordSet->fields[stud_name]."</td>
+			<td align='center'>".$recordSet->fields['stud_name']."</td>
 			<td align='center'>".$recordSet->fields[record_id]."</td>
 			<td align='center'>".$recordSet->fields[dollars]."</td>
 			<td align='center' bgcolor='#FFFFCC'>".$recordSet->fields[paid_date]."</td>";
@@ -106,7 +106,7 @@ if($item_id)
 		} else {
 			$sql_select="select curr_class_num,stud_name from stud_base where student_sn=$student_sn";
 			$rs=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
-			$error_sn.="<li>".$recordSet->fields[paid_date]."--".$rs->fields[curr_class_num].$rs->fields[stud_name]."( 應收：$my_should_paid  收款登錄： ".$recordSet->fields[dollars]." )</li>";
+			$error_sn.="<li>".$recordSet->fields[paid_date]."--".$rs->fields[curr_class_num].$rs->fields['stud_name']."( 應收：$my_should_paid  收款登錄： ".$recordSet->fields[dollars]." )</li>";
 		
 		}
 		$recordSet->MoveNext();

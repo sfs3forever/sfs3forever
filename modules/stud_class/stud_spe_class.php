@@ -45,7 +45,7 @@ thetable.bgColor=TheColor
 	$class_base = class_base();
 	$query = "select stud_name,curr_class_num from stud_base where stud_id={$_GET['stud_id']}";
 	$res = $CONN->Execute($query);
-	$stud_name = $res->fields[stud_name];
+	$stud_name = $res->fields['stud_name'];
 	$curr_class_num = $class_base[substr($res->fields[curr_class_num],0,-2)];
 	//目前學年學期
 	$class_base = class_base();
@@ -71,7 +71,7 @@ $recordSet = $CONN->Execute($query) or die($query);
 while (!$recordSet->EOF) {
 
 	$ss_id = $recordSet->fields["ss_id"];
-	$stud_name = $recordSet->fields[stud_name];
+	$stud_name = $recordSet->fields['stud_name'];
 	$sit_num = substr($recordSet->fields[curr_class_num],-2);
 	$seme_year_seme = $recordSet->fields["seme_year_seme"];
 	$stud_id = $recordSet->fields["stud_id"];

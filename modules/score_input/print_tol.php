@@ -377,9 +377,9 @@ if($year_name && $stage){
 	$res = $CONN->Execute($query);
 	$temp_score_list = array();
 	while(!$res->EOF){
-		$stud_name = $res->fields[stud_name];
+		$stud_name = $res->fields['stud_name'];
 		$student_sn = $res->fields['student_sn'];
-		$seme_num =  $res->fields[seme_num];
+		$seme_num =  $res->fields['seme_num'];
 		$temp_score_list[$i]['stud_name']=$stud_name;
 		$temp_score_list[$i]['seme_num']=$seme_num;
 		reset ($scope_arr);
