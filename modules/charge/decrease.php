@@ -69,7 +69,7 @@ echo print_menu($MENU_P,$linkstr);
 
 
 
-// $_SESSION[session_tea_name]  取得教師姓名
+// $_SESSION['session_tea_name']  取得教師姓名
 
 
 

@@ -40,7 +40,7 @@ echo print_menu($MENU_P,$linkstr);
 
 if($_POST['act']=='新增'){
 
-	$sql_select="INSERT INTO charge_item(year_seme,item_type,item,start_date,end_date,comment,creater) values ('$work_year_seme','$_POST[a_item_type]','$_POST[a_item]','$_POST[a_start_date]','$_POST[a_end_date]','$_POST[a_comment]','$_SESSION[session_tea_name]')";
+	$sql_select="INSERT INTO charge_item(year_seme,item_type,item,start_date,end_date,comment,creater) values ('$work_year_seme','$_POST[a_item_type]','$_POST[a_item]','$_POST[a_start_date]','$_POST[a_end_date]','$_POST[a_comment]',{$_SESSION['session_tea_name']})";
 
 	$res=$CONN->Execute($sql_select) or user_error("新增失敗！<br>$sql_select",256);
 
@@ -50,7 +50,7 @@ if($_POST['act']=='新增'){
 
 if($_POST['act']=='修改'){
 
-	$sql_select="update charge_item set year_seme='$work_year_seme',item_type='$_POST[item_type]',item='$_POST[item]',start_date='$_POST[start_date]',end_date='$_POST[end_date]',comment='$_POST[comment]',creater='$_SESSION[session_tea_name]',authority='$_POST[authority]',paid_method='$_POST[paid_method]',announce_note='$_POST[announce_note]',announce_note2='$_POST[announce_note2]',cooperate=$_POST[cooperate] where item_id=$item_id;";
+	$sql_select="update charge_item set year_seme='$work_year_seme',item_type='$_POST[item_type]',item='$_POST[item]',start_date='$_POST[start_date]',end_date='$_POST[end_date]',comment='$_POST[comment]',creater={$_SESSION['session_tea_name']},authority='$_POST[authority]',paid_method='$_POST[paid_method]',announce_note='$_POST[announce_note]',announce_note2='$_POST[announce_note2]',cooperate=$_POST[cooperate] where item_id=$item_id;";
 
 	$res=$CONN->Execute($sql_select) or user_error("修改失敗！<br>$sql_select",256);
 
@@ -92,7 +92,7 @@ if($_POST['act']=='複製'){
 
 	//複製項目
 
-	$sql_select="INSERT INTO charge_item(year_seme,item_type,item,comment,creater) values ('$curr_year_seme','$_POST[item_type]','複製-$_POST[item]','$_POST[a_comment]','$_SESSION[session_tea_name]')";
+	$sql_select="INSERT INTO charge_item(year_seme,item_type,item,comment,creater) values ('$curr_year_seme','$_POST[item_type]','複製-$_POST[item]','$_POST[a_comment]',{$_SESSION['session_tea_name']})";
 
 	$res=$CONN->Execute($sql_select) or user_error("複製項目失敗！<br>$sql_select",256);
 
@@ -164,7 +164,7 @@ if($_POST['act']=='依格式新增'){
 
 		$item_data=explode("_",$formatted[0]);
 
-		$sql_select="INSERT INTO charge_item(year_seme,item_type,item,comment,creater) values ('$curr_year_seme','$item_data[0]','$item_data[1]','$_POST[a_comment]','$_SESSION[session_tea_name]')";
+		$sql_select="INSERT INTO charge_item(year_seme,item_type,item,comment,creater) values ('$curr_year_seme','$item_data[0]','$item_data[1]','$_POST[a_comment]',{$_SESSION['session_tea_name']})";
 
 		$res=$CONN->Execute($sql_select) or user_error("開列項目失敗！<br>$sql_select",256);
 

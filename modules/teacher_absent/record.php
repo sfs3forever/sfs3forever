@@ -114,6 +114,6 @@ $smarty->assign("leave_teacher_menu",teacher_menu("teacher_sn",$_POST[teacher_sn
 $smarty->assign("course_menu",course_menu($_POST[class_dis])); 
 $smarty->assign("status_menu",status_menu($_POST[status])); 
 
-$smarty->assign("tea_name",$_SESSION[session_tea_name]); 
+$smarty->assign("tea_name",$_SESSION['session_tea_name']); 
 
 $smarty->display('record.tpl'); 

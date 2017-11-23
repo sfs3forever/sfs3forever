@@ -97,7 +97,7 @@ else
 	include "header.php";
 	echo "<h3>$exam_title</h3>\n";
 	echo "<center><form name=myform action=\"$_SERVER[PHP_SELF]\" method=post >"; //班級選項
-	echo "歡迎 $_SESSION[session_tea_name] 登入 ";
+	echo "歡迎 $_SESSION['session_tea_name'] 登入 ";
 	echo "&nbsp;｜&nbsp; $class_select \n";	
 	if ($e_kind_id !="")
 		echo "&nbsp;｜&nbsp;<input type=submit name=\"print_key\" value=\"轉成Excel檔\">";

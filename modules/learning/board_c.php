@@ -8,7 +8,7 @@ include	"config.php";
 session_start();
 
 
-if($_SESSION[session_who]!="教師"){
+if($_SESSION['session_who']!="教師"){
 	
 	$go_back=1; //回到自已的認證畫面  
 		include "header.php";
@@ -21,8 +21,8 @@ if($_SESSION[session_who]!="教師"){
 
 
 
-$b_name=$_SESSION[session_tea_name]; //張貼人姓名
-$b_title = $_SESSION[session_who]; //職稱
+$b_name=$_SESSION['session_tea_name']; //張貼人姓名
+$b_title = $_SESSION['session_who']; //職稱
 
 $b_name= addslashes($b_name);  //檢查特殊字
 

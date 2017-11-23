@@ -82,13 +82,13 @@ $stmt->close();
 }
 if ($_POST[key] =="修改"){
 	/*
-	$sql_update = "update exam set exam_id='$_POST[exam_id]',exam_name='$_POST[exam_name]',exam_memo='$_POST[exam_memo]',exam_isopen='$_POST[exam_isopen]',e_kind_id='$_POST[e_kind_id]' ,teach_id={$_SESSION['session_log_id']},teach_name='$_SESSION[session_tea_name]' ";
+	$sql_update = "update exam set exam_id='$_POST[exam_id]',exam_name='$_POST[exam_name]',exam_memo='$_POST[exam_memo]',exam_isopen='$_POST[exam_isopen]',e_kind_id='$_POST[e_kind_id]' ,teach_id={$_SESSION['session_log_id']},teach_name={$_SESSION['session_tea_name']} ";
 	$sql_update .= " where exam_id='$_POST[exam_id]' ";	
 	$CONN->Execute($sql_update)  or die ($sql_update);  
 	*/
 	
 ///mysqli	
-$sql_update = "update exam set exam_id=?,exam_name=?,exam_memo=?,exam_isopen=?,e_kind_id=? ,teach_id={$_SESSION['session_log_id']},teach_name='$_SESSION[session_tea_name]' ";
+$sql_update = "update exam set exam_id=?,exam_name=?,exam_memo=?,exam_isopen=?,e_kind_id=? ,teach_id={$_SESSION['session_log_id']},teach_name={$_SESSION['session_tea_name']} ";
 $sql_update .= " where exam_id=? ";	
 $stmt = "";
 $stmt = $mysqliconn->prepare($sql_update);

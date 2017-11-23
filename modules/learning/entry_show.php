@@ -31,7 +31,7 @@ if($b_id==""){
 	 //只有教材內容才可增加細目
 	if($entry=='b' or $entry=='d'){ 
 		if($b_kind == $entry ){
-			if($_SESSION[session_who]=="教師" or $entry=='d')
+			if($_SESSION['session_who']=="教師" or $entry=='d')
 				$add="<input type='submit'  value='新增'>";
 		}else{
 			$add="<a href='etoe.php?unit=$unit&entry=$entry&m_id=$bk_id' >回上頁</a>";

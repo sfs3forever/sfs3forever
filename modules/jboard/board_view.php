@@ -22,7 +22,7 @@ if ($_GET[logout]== "yes"){
 	$CONN -> Execute ("update pro_user_state set pu_state=0,pu_time_over=now() where teacher_sn='{$_SESSION['session_tea_sn']}'") or user_error("更新失敗！",256);
 	session_destroy();
 	$_SESSION['session_log_id']="";
-	$_SESSION[session_tea_name]="";
+	$_SESSION['session_tea_name']="";
 	Header("Location: $_SERVER[PHP_SELF]");
 }
 

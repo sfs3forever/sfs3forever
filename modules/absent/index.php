@@ -546,7 +546,7 @@ function add($sel_year,$sel_seme,$stud_id,$class_id="",$date,$section,$kind){
                 $sel_seme=2;
         }
         $new_class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,$c[2]-($c[0]-$sel_year)+$IS_JHORES,$c[3]);
-        $sql_insert = "insert into stud_absent (year,semester,class_id,stud_id,date,absent_kind,section,sign_man_sn,sign_man_name,sign_time,month) values ('$sel_year','$sel_seme','$new_class_id','$stud_id','$date','$kind','$section','$_SESSION[session_tea_sn]','$_SESSION[session_tea_name]',now(),'$d[1]')";
+        $sql_insert = "insert into stud_absent (year,semester,class_id,stud_id,date,absent_kind,section,sign_man_sn,sign_man_name,sign_time,month) values ('$sel_year','$sel_seme','$new_class_id','$stud_id','$date','$kind','$section','$_SESSION[session_tea_sn]',{$_SESSION['session_tea_name']},now(),'$d[1]')";
         $CONN->Execute($sql_insert) or user_error("新增失敗！<br>$sql_insert",256);
         sum_abs($sel_year,$sel_seme,$stud_id);
         return;

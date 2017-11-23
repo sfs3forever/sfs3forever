@@ -61,7 +61,7 @@ if ($_SESSION[session_stud_id] == "" && $_SESSION['session_log_id'] == "" ){
 //教師部份
 if ($_SESSION['session_log_id'] !=""){
 	$s_stud_id = "demo_".$_SESSION['session_log_id'];
-	$s_stud_name = addslashes ($_SESSION[session_tea_name]);
+	$s_stud_name = addslashes ($_SESSION['session_tea_name']);
 }
 else {
 	$s_stud_id = $_SESSION[session_stud_id];
@@ -209,8 +209,8 @@ include "header.php";
 
 <form  enctype="multipart/form-data" method="post">
 <?php 
-if ($_SESSION[session_tea_name] !="")
-	echo "<h3>指導老師：$_SESSION[session_tea_name] </h3>";
+if ($_SESSION['session_tea_name'] !="")
+	echo "<h3>指導老師：$_SESSION['session_tea_name'] </h3>";
 else
 	echo "<h3>學員：$_SESSION[session_stud_name] </h3>";
 ?>

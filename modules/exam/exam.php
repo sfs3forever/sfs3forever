@@ -105,7 +105,7 @@ $sel1->is_submit = true;
 $sel1->arr = $class_seme_p;
 $sel1->do_select();
 ?>
-作業列表，任課教師：<?php echo $_SESSION[session_tea_name] ?></h3>
+作業列表，任課教師：<?php echo $_SESSION['session_tea_name'] ?></h3>
 <?php echo $class_select ?>&nbsp;｜&nbsp;<a href="exam_new.php">新增作業</a></form>
 <table border=1 >
   <tbody>

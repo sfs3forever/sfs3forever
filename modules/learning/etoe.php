@@ -29,7 +29,7 @@ if ($_GET[logout]== "yes"){
 	$CONN -> Execute ("update pro_user_state set pu_state=0,pu_time_over=now() where teacher_sn='{$_SESSION['session_tea_sn']}'") or user_error("更新失敗！",256);
 	session_destroy();
 	$_SESSION['session_log_id']="";
-	$_SESSION[session_tea_name]="";
+	$_SESSION['session_tea_name']="";
 	Header("Location: $_SERVER[PHP_SELF]?unit=$unit");
 }
 if ($_GET[logout]== "no" and $_SESSION['session_log_id'] ==""){
@@ -63,7 +63,7 @@ $exam = $row["exam"];
 			$exam_c="<a href=javascript:fullwin('test.php?unit=$unit')> 線上測驗 </a>";
 		}
 
-if($_SESSION[session_who]=="教師" ){   // 教師可以檢視題庫內容
+if($_SESSION['session_who']=="教師" ){   // 教師可以檢視題庫內容
 		$l_entry.="<a href=test_edit.php?unit=$unit>檢視題庫</a>｜";
 }
 
@@ -72,7 +72,7 @@ if($_SESSION[session_who]=="教師" ){   // 教師可以檢視題庫內容
 $s_title= $modules[$m] . $c_tome .$c_unit; 
 
 if ($_SESSION['session_log_id'] != ""){
-	$login= "歡迎 $_SESSION[session_tea_name] 登入! 　<a href=\"$_SERVER[PHP_SELF]?logout=yes&unit=$unit\">登出</a></td>";
+	$login= "歡迎 $_SESSION['session_tea_name'] 登入! 　<a href=\"$_SERVER[PHP_SELF]?logout=yes&unit=$unit\">登出</a></td>";
 }else{
 	$login= "<a href=\"$_SERVER[PHP_SELF]?logout=no&unit=$unit\">登入</a>";
 }	
@@ -84,7 +84,7 @@ $c_title= "<font size=5 face=標楷體 color=#800000><b>$s_title</b> </font>";
 	$s_unit="<form  method='post' action=board_c.php>" ;
 	$s_unit.="<table align='center'  border='0' cellpadding='3' cellspacing='3' width='100%'  >";
 	$s_unit.="<tr ><td bgcolor='#cccccc'><font size=5 face=標楷體 color=#800000> $entry_s[$entry] </font>";
-	if($_SESSION[session_who]=="教師"){
+	if($_SESSION['session_who']=="教師"){
 		$s_unit.="<input type='submit'  value='新增'>";
 	}
 

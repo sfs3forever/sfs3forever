@@ -1001,7 +1001,7 @@ function &html2code2($class,$sel_year,$sel_seme,$oth_data,$nor_data,$abs_data,$r
 	$sel1 = new drop_select();
 	$sel1->use_val_as_key = true;
 	for($i=1;$i<=4;$i++) {
-		if ($IS_JHORES==0&&$_SESSION[session_who]=="教師") {
+		if ($IS_JHORES==0&&$_SESSION['session_who']=="教師") {
 			$ss_name = "a_$i";
 			$sel1->s_name=$ss_name;
 			$sel1->arr= ${"arr_$i"};
@@ -1012,7 +1012,7 @@ function &html2code2($class,$sel_year,$sel_seme,$oth_data,$nor_data,$abs_data,$r
 		}
 	}
 	//日常生活表現評量
-	if ($IS_JHORES==0&&$_SESSION[session_who]=="教師") {
+	if ($IS_JHORES==0&&$_SESSION['session_who']=="教師") {
 		$score_str_arr = &score2str_arr($class);
 		$sel1->s_name="nor_score";
 		$sel1->id = $nor_data[ss_score];
@@ -1063,7 +1063,7 @@ function &html2code2($class,$sel_year,$sel_seme,$oth_data,$nor_data,$abs_data,$r
 		</td>
 		<td colspan=\"8\" nowrap>導師評語及建議";
 
-		if ($IS_JHORES==0&&$_SESSION[session_who]=="教師") $temp_str.="<img src='$SFS_PATH_HTML/images/comment1.png' border='0' title='批次匯入評語' onclick=\"return OpenWindow2('批次編修評語')\">";
+		if ($IS_JHORES==0&&$_SESSION['session_who']=="教師") $temp_str.="<img src='$SFS_PATH_HTML/images/comment1.png' border='0' title='批次匯入評語' onclick=\"return OpenWindow2('批次編修評語')\">";
 
 		$temp_str.="
 		</td>
@@ -1074,7 +1074,7 @@ function &html2code2($class,$sel_year,$sel_seme,$oth_data,$nor_data,$abs_data,$r
 
 		<td colspan=\"3\">$sel_str_2
 		</td>";
-		if ($IS_JHORES==0&&$_SESSION[session_who]=="教師") {
+		if ($IS_JHORES==0&&$_SESSION['session_who']=="教師") {
 			$temp_str.="
 				<td rowspan=\"3\" colspan=\"8\"><img src='$SFS_PATH_HTML/images/comment.png' width=16 height=16 border=0 title='詞庫輸入' align='left' name='nor_score_memo' value='nor_score_memo_s' onClick=\"return OpenWindow('nor_score_memo')\"><textarea name='nor_score_memo' id='nor_score_memo' cols=30 rows=5>$nor_data[ss_score_memo]</textarea></td>
 				<td rowspan=\"3\" colspan=\"1\">$nor_score_sel</td>";
@@ -1123,7 +1123,7 @@ if($is_summary_input=='y' || $IS_JHORES!=0) {
 		$ttt =($IS_JHORES==0)?"天數":"節數";
 		if ($id==4) $ttt= "次數";
 //		if ($IS_JHORES==0) {
-//			if ($_SESSION[session_who]=="教師")
+//			if ($_SESSION['session_who']=="教師")
 //				$temp_str .="<td nowrap>$val<br>$ttt</td>\n<td><input type='text' name='abs_$id' id='abs_$id' value='".$abs_data[$id]."' size=5 ></td>\n";
 //			else
 //				$temp_str .="<td nowrap>$val<br>$ttt</td>\n<td>$abs_data[$id]</td>\n";
@@ -1151,7 +1151,7 @@ if($is_summary_input=='y' || $IS_JHORES!=0) {
 		<tr bgcolor=\"white\">
 		<td nowrap>其他</td>";
 
-		if  ($IS_JHORES==0&&$_SESSION[session_who]=="教師")
+		if  ($IS_JHORES==0&&$_SESSION['session_who']=="教師")
 			$temp_str.= "<td colspan=\"12\"><input type='text' name='oth_rep' id='oth_rep' value='".$oth_data['其他設定'][0]."'></td>";
 		else
 			$temp_str.= "<td colspan=\"12\">".$oth_data['其他設定'][0]."</td>";

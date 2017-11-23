@@ -474,7 +474,7 @@ function add_one($sel_year,$sel_seme,$class_id="",$stud_id="",$data=array()){
 //新增單一筆資料
 function add($sel_year,$sel_seme,$stud_id,$class_id="",$date,$section,$kind){
 	global $CONN;
-	$sql_insert = "insert into stud_absent (year,semester,class_id,stud_id,date,absent_kind,section,sign_man_sn,sign_man_name,sign_time) values ('$sel_year','$sel_seme','$class_id','$stud_id','$date','$kind','$section','$_SESSION[session_tea_sn]','$_SESSION[session_tea_name]',now())";
+	$sql_insert = "insert into stud_absent (year,semester,class_id,stud_id,date,absent_kind,section,sign_man_sn,sign_man_name,sign_time) values ('$sel_year','$sel_seme','$class_id','$stud_id','$date','$kind','$section','$_SESSION[session_tea_sn]',{$_SESSION['session_tea_name']},now())";
 	$CONN->Execute($sql_insert) or user_error("新增失敗！<br>$sql_insert",256);
 	return;
 }

@@ -30,7 +30,7 @@ if ($_GET[logout]== "yes"){
 	$CONN -> Execute ("update pro_user_state set pu_state=0,pu_time_over=now() where teacher_sn='{$_SESSION['session_tea_sn']}'") or user_error("更新失敗！",256);
 	session_destroy();
 	$_SESSION['session_log_id']="";
-	$_SESSION[session_tea_name]="";
+	$_SESSION['session_tea_name']="";
 	Header("Location: index.php?m=$m&t=$t");
 }
 
@@ -77,7 +77,7 @@ $sqlstr = "select * from test_score where  u_id='$u_id' and teacher_sn='$_SESSIO
 $result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
 $row= mysql_fetch_array($result);
 if($row['s_id']=="" and $s_unit==""){  //新資料
-	$sql_insert = "insert into test_score (u_id,stud_id,who,stud_name,teacher_sn) values ('$u_id',{$_SESSION['session_log_id']},'$_SESSION[session_who]','$_SESSION[session_tea_name]','$_SESSION[session_tea_sn]')";
+	$sql_insert = "insert into test_score (u_id,stud_id,who,stud_name,teacher_sn) values ('$u_id',{$_SESSION['session_log_id']},{$_SESSION['session_who']},{$_SESSION['session_tea_name']},'$_SESSION[session_tea_sn]')";
 	mysql_query($sql_insert) or die ($sql_insert); 
 	$sqlstr = "select * from test_score where  u_id='$u_id' and stud_id={$_SESSION['session_log_id']} " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
@@ -152,7 +152,7 @@ if($key=="我的徽章" or $key=='依序號'or $key=='依日期'){
 
 <?php
 
-$login= "<font size=5 color='9933ff' face=標楷體>訓練家：$_SESSION[session_tea_name]</font>";
+$login= "<font size=5 color='9933ff' face=標楷體>訓練家：$_SESSION['session_tea_name']</font>";
 $power="戰鬥力：<font size=5 color=red> " . $total . " </font>".$power_msg ;   //即時更新成績　
 if($poke>0 ){
 	$poke_alt=$poke . "_" . $poke_a[$poke]['p_name'];

@@ -409,7 +409,7 @@ function add($sel_year,$sel_seme,$stud_id,$class_id="",$date,$section,$kind){
         $res_chk=$CONN->Execute($chk_sql);
         
         if ($res_chk->RecordCount()==0) {
-         $sql_insert = "insert into stud_absent (year,semester,class_id,stud_id,date,absent_kind,section,sign_man_sn,sign_man_name,sign_time,month) values ('$sel_year','$sel_seme','$new_class_id','$stud_id','$date','$kind','$section','$_SESSION[session_tea_sn]','$_SESSION[session_tea_name]',now(),'$d[1]')";
+         $sql_insert = "insert into stud_absent (year,semester,class_id,stud_id,date,absent_kind,section,sign_man_sn,sign_man_name,sign_time,month) values ('$sel_year','$sel_seme','$new_class_id','$stud_id','$date','$kind','$section','$_SESSION[session_tea_sn]',{$_SESSION['session_tea_name']},now(),'$d[1]')";
          $CONN->Execute($sql_insert) or user_error("新增失敗！<br>$sql_insert",256);
          sum_abs($sel_year,$sel_seme,$stud_id);
           $SAVE_INFO[1]++;

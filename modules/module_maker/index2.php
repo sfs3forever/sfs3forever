@@ -9,7 +9,7 @@ $school_menu_p=(empty($school_menu_p))?array():$school_menu_p;
 
 //預設值設定
 $index_page=(!empty($_GET[index_page]))?$_GET[index_page]:index.php;
-$default=array("author"=>"$_SESSION[session_tea_name]","lable"=>"1.0.0","index_page"=>"$index_page","install"=>"* 安裝方法：
+$default=array("author"=>"$_SESSION['session_tea_name']","lable"=>"1.0.0","index_page"=>"$index_page","install"=>"* 安裝方法：
 請由「模組權限管理」進入
 註：這裡採用 outline 文件模式。
 關於 outline，請參考 ","news"=>"*版本修訂說明：","readme"=>"*讀我檔案：

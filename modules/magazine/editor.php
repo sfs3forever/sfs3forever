@@ -83,7 +83,7 @@ if (!ini_get('register_globals')) {
                  set title='$txt_title ',author='$txt_author ',type_name='$txt_type',
                  teacher ='$txt_teacher ' ,parent ='$txt_parent ', chap_num='$tchap_num' , tmode='$cmode' ,
                  classnum ='$classnum', class_name ='$class_year_p[$classnum]' , pic_name ='$pic_fn' ,doc = '$txt_doc' ,judge='$txt_judge',
-                 isDel='$chkDel' , editId = '$_SESSION[session_tea_name]' , editDate = now()  " ;
+                 isDel='$chkDel' , editId = {$_SESSION['session_tea_name']} , editDate = now()  " ;
      
      $sqlstr .=  " where id = $paper_id  " ; 
      

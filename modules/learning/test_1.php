@@ -72,7 +72,7 @@ if( $key=="提出申訴1" or $key=="提出申訴2" or $key=="提出申訴3" ){
 	if($b_con!=""){
 		
 			$b_post_time = mysql_date();	
-			$note=$note. $_SESSION[session_who] . $_SESSION['session_log_id'] . "於 $b_post_time 說道：" .  $b_con  . "<br>" ;
+			$note=$note. $_SESSION['session_who'] . $_SESSION['session_log_id'] . "於 $b_post_time 說道：" .  $b_con  . "<br>" ;
 			$sql_update = "update test_data set note='$note' , beef='$s_id'   where qid='$qid' " ;
 			mysql_query($sql_update) or die ($sql_update);
 			$msg_c="<font color=#FF00FF face=標楷體 size=6>謝謝你寶貴的意見！</font>";

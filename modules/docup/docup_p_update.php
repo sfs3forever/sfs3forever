@@ -20,7 +20,7 @@ if ($result->RecordCount() == 0 && !  checkid($_SERVER[SCRIPT_FILENAME],1)){
 }
 
 if ($_POST[key] == "修改"){
-	$sql_update = "update docup_p set doc_kind_id='$_POST[doc_kind_id]',docup_p_id='$_POST[docup_p_id]',docup_p_date='$now',docup_p_name='$_POST[docup_p_name]',docup_p_memo='$_POST[docup_p_memo]',docup_p_owner='$_SESSION[session_tea_name]' where docup_p_id = '$_POST[docup_p_id]'";
+	$sql_update = "update docup_p set doc_kind_id='$_POST[doc_kind_id]',docup_p_id='$_POST[docup_p_id]',docup_p_date='$now',docup_p_name='$_POST[docup_p_name]',docup_p_memo='$_POST[docup_p_memo]',docup_p_owner={$_SESSION['session_tea_name']} where docup_p_id = '$_POST[docup_p_id]'";
 	$CONN->Execute($sql_update) or trigger_error("語法錯誤 !",E_USER_ERROR);
 
 	if ($_POST[doc_kind_id] != "")	

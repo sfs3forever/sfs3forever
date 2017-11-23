@@ -54,7 +54,7 @@ $class_base = class_base($work_year_seme);
 $linkstr="work_year_seme=$work_year_seme&item_id=$item_id";
 echo print_menu($MENU_P,$linkstr);
 
-// $_SESSION[session_tea_name]  取得教師姓名
+// $_SESSION['session_tea_name']  取得教師姓名
 
 if($selected_stud AND $_POST['act']=='開列選擇的學生'){
 	if( $item_id<>'' AND $class_id<>'')

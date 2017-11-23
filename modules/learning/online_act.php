@@ -60,12 +60,12 @@ $row= mysql_fetch_array($result);
 	$g_bs=$row["g_bs"] ; 
 	$g_att=$row["g_att"] ;
 	$g_name=$row["g_name"] ; 
-	if($_SESSION[session_who]=='教師'){
+	if($_SESSION['session_who']=='教師'){
 		$h_name=$h_name . "_" .  $h_stud_id; 
 		$g_name=$g_name . "_" .  $g_stud_id; 
 	}
 
-	if($_SESSION['session_log_id']==$h_stud_id and $_SESSION[session_who]==$h_who){
+	if($_SESSION['session_log_id']==$h_stud_id and $_SESSION['session_who']==$h_who){
 		$who='h';
 		$my_sco=$h_win;
 		$he_sco=$g_win;
@@ -98,7 +98,7 @@ $row= mysql_fetch_array($result);
 		$he_who=$g_who;
 
 		
-	}elseif($_SESSION['session_log_id']==$g_stud_id and $_SESSION[session_who]==$g_who){
+	}elseif($_SESSION['session_log_id']==$g_stud_id and $_SESSION['session_who']==$g_who){
 		$who='g';
 		$my_sco=$g_win;
 		$he_sco=$h_win;
@@ -206,7 +206,7 @@ if($my_games>=$n_games ){
 	$sql_update = "update test_online set h_who='', g_who=''  where p_sn='$p_sn' "; 	
 	mysql_query($sql_update) or die ($sql_update);	
 	$sql_insert = "INSERT INTO test_badge (  stud_id , who , badge , type , a_stud_id , a_who , up_date , teacher_sn ) 
-			values ({$_SESSION['session_log_id']},'$_SESSION[session_who]','$badge','1','$he_stud_id','$he_who','$att_time','$_SESSION[session_tea_sn]')";
+			values ({$_SESSION['session_log_id']},{$_SESSION['session_who']},'$badge','1','$he_stud_id','$he_who','$att_time','$_SESSION[session_tea_sn]')";
 	mysql_query($sql_insert) or die ($sql_insert); 
 	Header ("Location: test.php?key=我的徽章");
 }
@@ -252,10 +252,10 @@ $r_a[0]='？';
 $r_a[1]='╳' ;
 $r_a[2]='●';
 $r_a[3]=' □' ;	
-if($_SESSION[session_who]=='學生'){
+if($_SESSION['session_who']=='學生'){
 	$yearc = substr ($_SESSION['session_log_id'], 0, 2);
 	$img ="photo/student/". $yearc . "/". $_SESSION['session_log_id'];
-}elseif($_SESSION[session_who]=='教師'){
+}elseif($_SESSION['session_who']=='教師'){
 	$img ="photo/teacher/". $_SESSION[session_tea_sn];
 }
 $img="<img src=$UPLOAD_URL" .$img ." width=130 height=130 alt=$my_name >";  	
@@ -483,7 +483,7 @@ if($my_att=='2' and  $he_att=='2' ){
 
 <?php
 
-$login= "<font size=5 color='9933ff' face=標楷體>訓練家：$_SESSION[session_tea_name]</font>";
+$login= "<font size=5 color='9933ff' face=標楷體>訓練家：$_SESSION['session_tea_name']</font>";
 $power="戰鬥力：<font size=5 color=red> " . $my_total . " </font>".$power_msg ;   //即時更新成績　
 ?>
 

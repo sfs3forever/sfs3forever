@@ -21,7 +21,7 @@ $detail_id=$_REQUEST[detail_id];
 $linkstr="work_year_seme=$work_year_seme&item_id=$item_id";
 echo print_menu($MENU_P,$linkstr);
 
-// $_SESSION[session_tea_name]  取得教師姓名
+// $_SESSION['session_tea_name']  取得教師姓名
 
 
 if($_POST['act']=='新增'){

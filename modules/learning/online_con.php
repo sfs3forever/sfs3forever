@@ -28,7 +28,7 @@ if($match==1){
 }
 $att_time = mysql_date();
 if ($_SESSION['session_log_id'] != ""){
-	$login= "歡迎 $_SESSION[session_tea_name] 登入! </td>";
+	$login= "歡迎 $_SESSION['session_tea_name'] 登入! </td>";
 }	
 $c_title= "<font size=6 face=標楷體 color=#800000><b>$s_title</b> </font>";	
 
@@ -49,7 +49,7 @@ if($key=='當館主'){
  	$h_who = $row["h_who"] ;  
 	if($h_who==''){
 
-	$h_name="小" . substr($_SESSION[session_tea_name],2,2);
+	$h_name="小" . substr($_SESSION['session_tea_name'],2,2);
 	$h_who=$_SESSION['session_who'] ;
 	$h_stud_id=$_SESSION['session_log_id'];
 	//檢查是否已登錄
@@ -68,7 +68,7 @@ if($key=='當館主'){
 		if($unit_t!='')
 				$cond.=" and  unit_t>'$unit_t' ";
 
-		$sqlstr = "select a.*,b.unit_m,b.unit_t  from test_score a,unit_u b WHERE  a.u_id=b.u_id and  teacher_sn= '$_SESSION[session_tea_sn]'  and who='$_SESSION[session_who]' and poke>0 and a.total>=100 $cond order by total desc" ;
+		$sqlstr = "select a.*,b.unit_m,b.unit_t  from test_score a,unit_u b WHERE  a.u_id=b.u_id and  teacher_sn= '$_SESSION[session_tea_sn]'  and who={$_SESSION['session_who']} and poke>0 and a.total>=100 $cond order by total desc" ;
 		//$sqlstr = "select a.*,b.unit_m,b.unit_t  from test_score a,unit_u b WHERE  a.u_id=b.u_id and stud_id= '$stud_id'  and who='$who' and poke>0 and a.total>=100 $cond  order by total desc" ;
 
 		$result =$CONN->Execute($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256) ;
@@ -105,7 +105,7 @@ if($key=='挑戰去'){
  	$h_who = $row["h_who"] ;  
 	if($h_who!=''){
 
-	$h_name="小" . substr($_SESSION[session_tea_name],2,2);
+	$h_name="小" . substr($_SESSION['session_tea_name'],2,2);
 	$h_who=$_SESSION['session_who'] ;
 	$h_stud_id=$_SESSION['session_log_id'];
 
@@ -125,7 +125,7 @@ if($key=='挑戰去'){
 		if($unit_t!='')
 				$cond.=" and  unit_t>'$unit_t' ";
 
-		$sqlstr = "select a.*,b.unit_m,b.unit_t  from test_score a,unit_u b WHERE  a.u_id=b.u_id and   teacher_sn= '$_SESSION[session_tea_sn]'  and who='$_SESSION[session_who]' and poke>0 and a.total>=100 $cond order by total desc" ;
+		$sqlstr = "select a.*,b.unit_m,b.unit_t  from test_score a,unit_u b WHERE  a.u_id=b.u_id and   teacher_sn= '$_SESSION[session_tea_sn]'  and who={$_SESSION['session_who']} and poke>0 and a.total>=100 $cond order by total desc" ;
 
 		$result =$CONN->Execute($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256) ;
 		$i=0;
@@ -232,7 +232,7 @@ while ($row = $result->FetchRow() ) {
 	$g_attack=$row["g_attack"] ; 
 	$g_name=$row["g_name"] ; 
 	$g_stud_id=$row["g_stud_id"] ; 
-	if($_SESSION[session_who]=='教師'){
+	if($_SESSION['session_who']=='教師'){
 		$h_name=$h_name ."_" . $h_stud_id;
 		$g_name=$g_name ."_" . $g_stud_id;
 	}
@@ -287,7 +287,7 @@ while ($row = $result->FetchRow() ) {
 		$bgcolor='FFFF66';
 		if($_SESSION['session_log_id']==$h_stud_id  and  $_SESSION['session_who']==$h_who  and $match==0){ // 本人
 			$ch_peo="館主";
-			$ch_games="$_SESSION[session_tea_name]";
+			$ch_games="$_SESSION['session_tea_name']";
 			$cg_peo="<a href=$PHP_SELF?key=取消&p_sn=$p_sn>取消</a>";
 			$bgcolor='FF5566';
 		}

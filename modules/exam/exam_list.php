@@ -91,7 +91,7 @@ if ($_SESSION[session_stud_id] !="") {
 }
 //教師管理部份
 else if ($_SESSION['session_log_id'] != "" ) { 
-	echo "歡迎 $_SESSION[session_tea_name] 登入 ";
+	echo "歡迎 $_SESSION['session_tea_name'] 登入 ";
 	echo "&nbsp;｜&nbsp; $class_select \n";	
 	echo "&nbsp;｜&nbsp; <a href=\"exam.php\">作業管理</a>";
 	if ($e_kind_id >0){

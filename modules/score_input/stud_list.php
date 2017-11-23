@@ -16,7 +16,7 @@ if(empty($sel_seme))$sel_seme = curr_seme(); //目前學期
 
 //教師代號
 $teacher_sn = $_SESSION[session_tea_sn];
-$teacher_name = $_SESSION[session_tea_name];
+$teacher_name = $_SESSION['session_tea_name'];
 
 //取得班級名稱陣列
 $class_name_arr = class_base();

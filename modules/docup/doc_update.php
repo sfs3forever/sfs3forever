@@ -64,7 +64,7 @@ if ($_POST[key] == "修改"){
 	$docup_store = $_FILES[docup_store][name];
 	$docup_file_size = $_FILES[docup_store][size];
 	$sql_update = "update docup set docup_name='$_POST[docup_name]',docup_date='$now' \n";
-	$sql_update .= ",docup_owner='$_SESSION[session_tea_name]' \n";
+	$sql_update .= ",docup_owner={$_SESSION['session_tea_name']} \n";
 		
 	if (is_file($_FILES[docup_store][tmp_name]))
 		$sql_update .= ",docup_store='$docup_store' ,docup_file_size='$docup_file_size'\n";
