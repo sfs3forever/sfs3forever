@@ -283,7 +283,7 @@ if ($is_allow=='y')
 	}
 
 // 上方選單
-$top_str = "<form action=\"$_SERVER['SCRIPT_NAME']\" name=\"myform\" method=\"post\">$course_sel &nbsp; $select_stage_bar &nbsp;$check_allow </form>";
+$top_str = "<form action=\"{$_SERVER['SCRIPT_NAME']}\" name=\"myform\" method=\"post\">$course_sel &nbsp; $select_stage_bar &nbsp;$check_allow </form>";
 
 //檢查是否繳至教務處，($yorn模組變數:是否顯示平時成績)
 if($yorn=='n' && $curr_sort != 255 ){
@@ -312,12 +312,15 @@ if(($teacher_course)&&($curr_sort)){
 		$url_str_2 = "a href=\"".$SFS_PATH_HTML.get_store_path()."/quick_input_m.php?edit=s2&class_id=$class_id&teacher_course=$teacher_course&ss_id=$ss_id&curr_sort=$curr_sort&KeepThis=true&TB_iframe=true&height=400&width=700\" class=\"thickbox\" id=\"openWin\"";
 	else
 		$url_str_2 = "a href=\"".$_SERVER['SCRIPT_NAME']."?edit=s2&teacher_course=$teacher_course&curr_sort=$curr_sort&is_openWin=1\"";
-	$main="	<small><a href='$_SERVER['SCRIPT_NAME']?teacher_course=$teacher_course&class_id=$class_id&ss_id=$ss_id&curr_sort=$curr_sort&is_print=1' target='new'>友善列印</a></small>
-		<table bgcolor=#000000 border=0 cellpadding=2 cellspacing=1>
+	$main="<small><a href=\"{$_SERVER['SCRIPT_NAME']}?teacher_course=$teacher_course&class_id=$class_id&ss_id=$ss_id&curr_sort=$curr_sort&is_print=1\" target='new'>友善列印</a></small>";
+	$other = <<<EEE
+	<table bgcolor=#000000 border=0 cellpadding=2 cellspacing=1>
 		<tr bgcolor=#ffffff align=center>
 		<td>學號</td>
 		<td>座號</td>
 		<td>姓名</td>".($pic_checked?'<td>大頭照</td>':'');
+EEE;
+	$main .= $other;
 	//班級代號
 	$curr_class_temp = sprintf("%d%02d",$class_arr[3],$class_arr[4]);
 	//學生ID hidden 值
@@ -533,8 +536,9 @@ if(($teacher_course)&&($curr_sort)){
 		else $query = "select student_sn,score from $score_semester where ss_id='$ss_id' and test_sort='255' and test_kind='全學期' and student_sn in ($all_sn)";
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
-			$score_arr[$res->fields['student_sn']] = $res->fields[score];	
-                        if($res->fields[score]>-100)$em++;
+			$key=$res->fields['student_sn'];
+			$score_arr[$key] = $res->fields['score'];	
+                        if($res->fields['score']>-100)$em++;
 			$res->MoveNext();
 		}
 		
@@ -610,7 +614,8 @@ if(($teacher_course)&&($curr_sort)){
 		$query = "select student_sn,score from $score_semester where  ss_id='$ss_id' and test_sort='1' and student_sn in ($all_sn) and test_kind='平時成績'";
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
-			$score_arr[$res->fields['student_sn']] = $res->fields[score];
+			$key = $res->fields['student_sn'];
+			$score_arr[$key] = $res->fields['score'];
 			$res->MoveNext();
 		}
 			
@@ -679,7 +684,7 @@ if ($is_print!=1) {
 		echo "<link href=\"../../themes/new/thickbox.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\"><script type=\"text/javascript\" src=\"../../javascripts/thickbox.js\"></script><table border=0 cellspacing=1 cellpadding=2 width=100% bgcolor=#cccccc><tr><td bgcolor='#FFFFFF'>";
 		echo $top_str;
 		echo $temp_script;
-		echo "<form name=\"form9\" method=\"post\" action=\"$_SERVER['SCRIPT_NAME']\">";
+		echo "<form name=\"form9\" method=\"post\" action=\"{$_SERVER['SCRIPT_NAME']}\">";
 		echo $main;
 		echo "
 		<input type=\"hidden\" name=\"class_id\" value=\"$class_id\">
@@ -727,7 +732,7 @@ if (count($score_arr) and $score_analyse) {
 		$temp_arr=array();
 	   foreach ($analyse as $v) {	 
 	   	if ($v>=0) {
-	   		$temp_arr[]=$v;
+	   		$temp_arr[$count_number] = $v;
 	   		//echo $v."<br>";
 	   	 $count_number++;
 	   	 $total+=$v;
@@ -963,6 +968,7 @@ function standv($m=array())
  */
 }//end function
 ?> 
+
 <script language="JavaScript1.2">
 <!-- Begin
 <?php

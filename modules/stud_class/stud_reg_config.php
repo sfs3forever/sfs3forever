@@ -17,7 +17,7 @@
 
 	//檢查是否為內部 IP
 	if ($home_ip && !check_home_ip())	{
-		header("Location: ".$SFS_PATH_HTML."err_home_ip.php");
+		header('Location: '.$SFS_PATH_HTML."err_home_ip.php");
 	}
 
 	// 學生照片存放的主要目錄

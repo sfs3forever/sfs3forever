@@ -18,7 +18,7 @@ switch ($_GET['domain']) {
 
 $obj->setFinishFile("../../login.php");
 //$obj->setFinishFile("finish_auth.php");
-if(empty($_GET['openid_identifier'])) { $obj->displayError("隢撓?亙?董??); }
+if(empty($_GET['openid_identifier'])) { $obj->displayError("隢撓?亙?董??"); }
 $openid= "http://" . $_GET['openid_identifier'] .".".$_GET['domain'];
 $obj->beginAuth($openid);
 

@@ -92,7 +92,7 @@ if ($OpenID_enable) {
 //session_register("session_login_chk");
 */
 //如果自然人憑證登入未啟用, 導向到一般登入
-if ($_REQUEST['cdc'] && !$CDCLOGIN) header("Location: ".$SFS_PATH_HTML."login.php");
+if ($_REQUEST['cdc'] && !$CDCLOGIN) header('Location: '.$SFS_PATH_HTML."login.php");
 
 //如果採自然人憑證登入, 則產生明文
 if ($_REQUEST['cdc'] && $_POST['id4']=="") {

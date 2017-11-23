@@ -21,7 +21,7 @@ switch($_REQUEST[do_key]) {
 
 	case "delete" :
 		//記註為在籍
-		$sql = "update stud_base set stud_study_cond='0' where student_sn='$_GET['student_sn']'";
+		$sql = "update stud_base set stud_study_cond='0' where student_sn={$_GET['student_sn']}";
 		$CONN->Execute($sql) or die($sql);
 	break;
 }

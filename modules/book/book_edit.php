@@ -34,7 +34,7 @@ if(!checkid(substr($_SERVER['PHP_SELF'],1))){
 }
 if ($_REQUEST['key'] == "回書目修改區"){
 	$ss = sprintf("%s%s?book_id=%s&bookch1_id=%s&page=%d&qbook_name=%s&showpage=%s",$path_html,"$store_path/book_input.php",$book_id,$bookch1_id,$page,$qbook_name,$showpage);
-	header("Location: ".$ss);   
+	header('Location: '.$ss);   
 	exit;
 }
 if ($_POST['key'] == "確定刪除"){
@@ -65,7 +65,7 @@ $stmt->close();
 ///mysqli	
 	
 	$ss = sprintf("%s%s?book_id=%s&bookch1_id=%s&page=%d&qbook_name=%s&showpage=%s",$path_html,"$store_path/book_input.php",$book_id,$bookch1_id,$page,$qbook_name,$showpage );
-	header("Location: ".$ss);
+	header('Location: '.$ss);
 }
 if ($_POST['key'] == "確定修改"){
 	/*

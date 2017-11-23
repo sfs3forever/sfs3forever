@@ -49,16 +49,16 @@ head("問題工具箱");
 print_menu($school_menu_p);
 
 if( $_GET['student_sn']!=''){
-	$SQL="select * from stud_base where student_sn='$_GET['student_sn']' ";
+	$SQL="select * from stud_base where student_sn={$_GET['student_sn']} ";
 	$arr_a=get_order2($SQL);
-	$SQL="select * from  stud_seme where student_sn='$_GET['student_sn']' order by seme_year_seme ";
+	$SQL="select * from  stud_seme where student_sn={$_GET['student_sn']} order by seme_year_seme ";
 	$arr_b=get_order2($SQL);
 ///////////////// 成績部分顯示//////////////////////////
 	$SQL="select subject_id, subject_name from score_subject order by  subject_id ";
 	$subj=initArray("id,sname",$SQL);//取中文名稱資料
 	$SQL="select ss_id,scope_id ,subject_id from score_ss where  enable='1'  ";
 	$ss_3=initArray3("SS,Sa,Sb",$SQL);//取SS_ID資料
-	$SQL="select * from  stud_seme_score where student_sn='$_GET['student_sn']' and ss_score !='NULL' order by seme_year_seme ";
+	$SQL="select * from  stud_seme_score where student_sn={$_GET['student_sn']} and ss_score !='NULL' order by seme_year_seme ";
 	$arr_seme_score=get_order2($SQL);//取該生所有學期成績資料
 /////////////////加入中文科目名稱/////////////////
 	for($i=0;$i<count($arr_seme_score);$i++){

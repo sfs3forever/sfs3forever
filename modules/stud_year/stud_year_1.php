@@ -47,7 +47,7 @@ if ($_REQUEST[sel]=='change'){
 		$sql="replace into stud_seme (seme_year_seme,stud_id,seme_class,seme_class_name,seme_num,seme_class_year_s,seme_class_s,seme_num_s,student_sn) values ('$seme_year_seme','$stud_id','$seme_class','$c_name','$seme_num','NULL','NULL','NULL','$student_sn')";
 		$rs=$CONN->Execute($sql);
 	} elseif ($edit=='2') {
-		$sql="update stud_base set curr_class_num=(curr_class_num-10000) where student_sn='$_GET['student_sn']'";
+		$sql="update stud_base set curr_class_num=(curr_class_num-10000) where student_sn={$_GET['student_sn']}";
 		$rs=$CONN->Execute($sql);
 	} elseif ($edit=='3') {
 		$student_sn=$_GET['student_sn'];

@@ -186,7 +186,7 @@ print_menu($MENU_P);
 		$rs->MoveNext();
 	}
 	
-	$myself="<input type='checkbox' name='myself' value='ON'".($_POST['myself']?' checked':'')." onclick='this.form.target_sn.value=\"\"; this.form.act.value=\"\"; this.form.action=\"$_SERVER['SCRIPT_NAME']\"; this.form.target=\"_self\"; this.form.submit();'>只列示我設定的樣式";
+	$myself="<input type='checkbox' name='myself' value='ON'".($_POST['myself']?' checked':'')." onclick='this.form.target_sn.value=\"\"; this.form.act.value=\"\"; this.form.action=\"{$_SERVER['SCRIPT_NAME']}\"; this.form.target=\"_self\"; this.form.submit();'>只列示我設定的樣式";
 	$saved_format.='</table>';
 	
 	//抓取指定學年班級

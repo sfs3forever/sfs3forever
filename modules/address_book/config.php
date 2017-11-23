@@ -43,7 +43,7 @@ $nature_radio="<hr>※類別:";
 foreach($nature_array as $key=>$value)
 {
 	$nature_selected=$key==$nature?'checked':'';
-	$nature_radio.="<input type='radio' value='$key' name='nature' $nature_selected  onclick='this.form.target_sn.value=\"\"; this.form.act.value=\"\"; this.form.action=\"$_SERVER['SCRIPT_NAME']\"; this.form.target=\"_self\"; this.form.submit();'>$value";
+	$nature_radio.="<input type='radio' value='$key' name='nature' $nature_selected  onclick='this.form.target_sn.value=\"\"; this.form.act.value=\"\"; this.form.action=\"{$_SERVER['SCRIPT_NAME']}\"; this.form.target=\"_self\"; this.form.submit();'>$value";
 }
 
 //定義可用欄位

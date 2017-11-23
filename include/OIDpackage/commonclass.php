@@ -69,7 +69,8 @@ class TC_OID_BASE{
         $this->displayError("?⊥?撠? SERVER: " . $redirect_url->message);
       } else {
          // Send redirect.
-         header("Location: ".$redirect_url);
+         header('Location: '.$redirect_url);
+         
       }
     } else {
       // Generate form markup and render it.
@@ -80,7 +81,7 @@ class TC_OID_BASE{
       // Display an error if the form markup couldn't be generated;
       // otherwise, render the HTML.
       if (Auth_OpenID::isFailure($form_html)) {
-          $this->displayError("Could not redirect to server: " . $form_html->message);
+          $this->displayError('Could not redirect to server: ' . $form_html->message);
       } else {
         print $form_html;
       }
@@ -306,7 +307,7 @@ class PHC_OID_BASE{
                 $this->displayError("?⊥?撠? SERVER: " . $redirect_url->message);
             } else {
                 // Send redirect.
-                header("Location: ".$redirect_url);
+                header('Location: '.$redirect_url);
             }
         } else {
             // Generate form markup and render it.
@@ -317,7 +318,7 @@ class PHC_OID_BASE{
             // Display an error if the form markup couldn't be generated;
             // otherwise, render the HTML.
             if (Auth_OpenID::isFailure($form_html)) {
-                $this->displayError("Could not redirect to server: " . $form_html->message);
+                $this->displayError('Could not redirect to server: ' . $form_html->message);
             } else {
                 print $form_html;
             }

@@ -8,7 +8,7 @@ sfs_check();
 
 if($_POST[show_rank]) $show_rank='Checked';
 
-if ($_POST[check]) header("Location: ".$SFS_PATH_HTML."modules/stud_query/check_score_error3.php");
+if ($_POST[check]) header('Location: '.$SFS_PATH_HTML."modules/stud_query/check_score_error3.php");
 
 if($IS_JHORES) {
 	$ss_link=array("語文-本國語文"=>"chinese","語文-鄉土語文"=>"local","語文-英語"=>"english","數學"=>"math","自然與生活科技"=>"nature","社會"=>"social","健康與體育"=>"health","藝術與人文"=>"art","綜合活動"=>"complex");

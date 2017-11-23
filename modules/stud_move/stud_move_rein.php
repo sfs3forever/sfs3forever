@@ -123,15 +123,15 @@ switch ($_REQUEST[do_key]) {
         $query = "delete from stud_move where move_id ='$_GET[move_id]'";
         $CONN->Execute($query) or die($query);
         //讀取上一個異動類別
-        $query = "select move_kind,move_year_seme from stud_move where student_sn='$_GET['student_sn']' order by move_date desc";
+        $query = "select move_kind,move_year_seme from stud_move where student_sn={$_GET['student_sn']} order by move_date desc";
         $res = $CONN->Execute($query) or die($query);
         $back_move_kind = $res->fields['move_kind'];
         //寫入原來的異動狀態
-        $query = "update stud_base set stud_study_cond='$back_move_kind' where student_sn='$_GET['student_sn']'";
+        $query = "update stud_base set stud_study_cond='$back_move_kind' where student_sn={$_GET['student_sn']}";
         $CONN->Execute($query) or die($query);
         //若非同一學期則將學籍表資料刪除
         if ($sel_year . $sel_seme != $res->fields[move_year_seme]) {
-            $query = "delete from stud_seme where seme_year_seme='" . sprintf("%03d", $sel_year) . $sel_seme . "' and student_sn='$_GET['student_sn']'";
+            $query = "delete from stud_seme where seme_year_seme='" . sprintf("%03d", $sel_year) . $sel_seme . "' and student_sn={$_GET['student_sn']}";
             $CONN->Execute($query) or die($query);
         }
         break;

@@ -282,7 +282,7 @@ if($_POST['act'])
 						</td></tr>";
 		$rs->MoveNext();
 	}
-	$myself="<input type='checkbox' name='myself' value='ON'".($_POST['myself']?' checked':'')." onclick='this.form.target_sn.value=\"\"; this.form.act.value=\"\"; this.form.action=\"$_SERVER['SCRIPT_NAME']\"; this.form.target=\"_self\"; this.form.submit();'>只列示我設定的樣式";
+	$myself="<input type='checkbox' name='myself' value='ON'".($_POST['myself']?' checked':'')." onclick='this.form.target_sn.value=\"\"; this.form.act.value=\"\"; this.form.action=\"{$_SERVER['SCRIPT_NAME']}\"; this.form.target=\"_self\"; this.form.submit();'>只列示我設定的樣式";
 	//如果是 非模組管理員顯示禁列的項目
 	if (! checkid($_SERVER['SCRIPT_FILENAME'],1)) $myself.=" 　　　<font color='red' size=2>◎您非模組管理員，系統禁止列示的項目: $forbid</font>";
 	
