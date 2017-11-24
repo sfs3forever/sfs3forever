@@ -1,6 +1,7 @@
-# SFS3-Unicode補完計劃 
+# 2017/11/24
 * 官方已有計畫，本 project 先暫停
-*http://www.sfs.project.edu.tw/modules/news/article.php?storyid=183
+* SFS3-Unicode補完計劃
+* http://www.sfs.project.edu.tw/modules/news/article.php?storyid=183
 
 
 # sfs3forever
