@@ -19,7 +19,7 @@ else
 
 $dbquery="select count(*)as tolrow from $subtable where tapem_id='$tapem_id'";
 $result = mysql_query($dbquery) or die("<br>DJ-PIM ERROR: e to add record.<br>\n $dbquery");   
-$row = mysql_fetch_array($result);
+$row = mysqli_fetch_array($result);
 $tolrow = $row["tolrow"];
 if (!isset($_REQUEST[pos])||($_REQUEST[pos]>$tolrow))
 	$pos = 0;
@@ -75,7 +75,7 @@ if (isset($_REQUEST[sort]))
 	$dbquery .= "order by $_REQUEST[sort]  ";
 $dbquery .="LIMIT $pos, 20 ";
 $result = mysql_query($dbquery)or die("<br>DJ-PIM ERROR: e to add record.<br>\n $dbquery");
-while($row = mysql_fetch_array($result)) {
+while($row = mysqli_fetch_array($result)) {
 	echo("<tr><td align=center>$row[tapem_id]$row[tape_id]</td><td>$row[tape_name]</td>");
 	echo("<td ><font color=green size=-1>".nl2br($row[tape_memo])."</font></td>");    
 	echo("<td align=center>$row[tape_grade]</td>");  

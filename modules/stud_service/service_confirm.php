@@ -112,8 +112,8 @@ if ($c_curr_seme!="") {
  
  
  $res=mysqli_query($conID, $query);
- if (mysql_num_rows($res)>0) {
- 	while ($S=mysql_fetch_array($res)) {
+ if (mysqli_num_rows($res)>0) {
+ 	while ($S=mysqli_fetch_array($res)) {
  		$INPUT=($S['input_sn']==0)?$S['update_sn']:$S['input_sn'];
  ?>	
 	<tr style="font-size:10pt">

@@ -104,7 +104,7 @@ class run_test{
 			unset($_SESSION[Serch_SQL]);
 			$rs = mysql_db_query ($this->DB,$SQL1);
 			}
-		$this->tol=mysql_num_rows($rs);
+		$this->tol=mysqli_num_rows($rs);
 		// order by {$this->field[0]} desc 
 		
 		$SQL="select * from `{$this->TB}` {$this->Add_SQL} limit ".($this->page*$this->size).", {$this->size}  ";
@@ -114,7 +114,7 @@ class run_test{
 			unset($_SESSION[Add_SQL]);
 			$rs = mysql_db_query ($this->DB,$SQL1);
 			}
-		while ($row = mysql_fetch_array ($rs)) {$arr[]=$row;}
+		while ($row = mysqli_fetch_array ($rs)) {$arr[]=$row;}
 		$this->all=$arr;//return $arr;
 		//產生連結頁面
 		$URL=$_SERVER[PHP_SELF]."?DB=".$this->DB."&TB=".$this->TB;
@@ -124,7 +124,7 @@ class run_test{
 	function get_info(){
 		$SQL=" SHOW DATABASES  ";
 		$data = mysql_query( $SQL,$this->link ) or die("無法連接資料庫") ; //執行指令取出資料
-		while ($row = mysql_fetch_array ($data)) {
+		while ($row = mysqli_fetch_array ($data)) {
 			if($row[0]=='mysql') continue;
 			$db[]=$row[0];
 		}
@@ -133,13 +133,13 @@ class run_test{
 
 		$SQL="SHOW TABLES FROM  `{$this->DB}` ";
 		$data = mysql_query( $SQL,$this->link ) or die($SQL); //執行指令取出資料
-		while ($row = mysql_fetch_array ($data)) {$tb[]=$row[0];}
+		while ($row = mysqli_fetch_array ($data)) {$tb[]=$row[0];}
 		if(!in_array($this->TB,$tb)) die("無該資料表");
 		
 		$SQL="SHOW FIELDS FROM `{$this->TB}`  ";
 		$data = mysql_db_query ($this->DB,$SQL);
 
-		while ($row = mysql_fetch_array ($data)) {$Field[]=$row[0];}
+		while ($row = mysqli_fetch_array ($data)) {$Field[]=$row[0];}
 		$this->field=$Field;
 		$this->count_field=count($Field);
 	}

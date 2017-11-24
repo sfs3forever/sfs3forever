@@ -161,7 +161,7 @@ foreach ($_POST['class_id'] as $class_id_key=>$null) {
 	   $res=mysqli_query($conID, $query);
 	   $service_detail="";
 	   $MINS=0; $HOURS=0;
-	   while ($row=mysql_fetch_array($res)) {
+	   while ($row=mysqli_fetch_array($res)) {
 	   	 $service_detail[$row['sn']]['service_date']=$row['service_date'];
 	     $service_detail[$row['sn']]['department']=getPostRoom($row['department']);
 	     $service_detail[$row['sn']]['sponsor']=$row['sponsor'];
@@ -183,7 +183,7 @@ foreach ($_POST['class_id'] as $class_id_key=>$null) {
 	   $res=mysqli_query($conID, $query);
 	   $club_detail="";
 	   $t=0;
-	   while ($row=mysql_fetch_array($res)) {
+	   while ($row=mysqli_fetch_array($res)) {
 	   	$query="select pass_score from stud_club_base where club_sn='".$row['club_sn']."'";
 	   	$res_pass=mysqli_query($conID, $query);
 	   	list($pass_score)=mysqli_fetch_row($res_pass);

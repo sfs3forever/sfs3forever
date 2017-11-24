@@ -41,7 +41,7 @@ $result = mysql_query($query, $conID);
 //分類號選項
 $i = 0;
 $tt = "";
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
     if ($i > 0) {
         $tt .= sprintf(" <option value=\"%s\" >%s%s</option>", $row["bookch1_id"] . $row["bookch1_name"], $row["bookch1_id"], $row["bookch1_name"]);
     } else {

@@ -44,7 +44,7 @@ $query="SELECT a.seme_year_seme,a.stud_id,a.student_sn from stud_seme_rew a,stud
 $result=mysqli_query($conID, $query);
 //取出資料 stud_seme_rew資料, 比對 seme_year_seme, stud_id, student_sn
 $i=0;
- while ($row=mysql_fetch_array($result)) {
+ while ($row=mysqli_fetch_array($result)) {
  	$i++;
  	$seme_year_seme=$row['seme_year_seme'];
  	$stud_id=$row['stud_id'];

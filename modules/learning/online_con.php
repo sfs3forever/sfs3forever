@@ -13,7 +13,7 @@ if($_SESSION['session_log_id']==""){
 
 	$sqlstr = "select * from test_setup " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	$match = $row["mat"] ;    //競賽中
  	$open = $row["open"] ;  	//開放的道館
 	$n_games = $row["n_games"] ;  //以多少決定勝負
@@ -45,7 +45,7 @@ if($key=='當館主'){
 	$p_sn=intval($p_sn);
 	$sqlstr = "select * from test_online where p_sn='$p_sn' " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
  	$h_who = $row["h_who"] ;  
 	if($h_who==''){
 
@@ -55,7 +55,7 @@ if($key=='當館主'){
 	//檢查是否已登錄
 	$sqlstr = "select * from test_online where  (h_stud_id='$h_stud_id' and h_who='$h_who')  or  (g_stud_id='$h_stud_id' and g_who='$h_who') " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
  	$pp_sn = $row["p_sn"] ;  
 	// 未登錄
 	if($pp_sn ==''){  
@@ -101,7 +101,7 @@ if($key=='挑戰去'){
 	$p_sn=intval($p_sn);
 	$sqlstr = "select * from test_online where p_sn='$p_sn'" ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
  	$h_who = $row["h_who"] ;  
 	if($h_who!=''){
 
@@ -112,7 +112,7 @@ if($key=='挑戰去'){
 	//檢查是否已登錄
 	$sqlstr = "select * from test_online where  (h_stud_id='$h_stud_id' and h_who='$h_who')  or  (g_stud_id='$h_stud_id' and g_who='$h_who') " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
  	$pp_sn = $row["p_sn"] ;  
 	// 未登錄
 	if($pp_sn ==''){  

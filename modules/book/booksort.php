@@ -12,14 +12,14 @@ $prior_day  = date("Y/n/j",mktime(0,0,0,date("m")  ,date("d"),date("Y")-1));
 $query = "SELECT count(*) as cc, book_id FROM borrow  where  out_date > '$prior_day' group by book_id order by cc desc limit 0,$sort_num ";
 $result = mysql_query($query ,$conID) or die($query);
 $i =1;
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	if ($i % 2 == 0)
 		$bgcolor =" bgcolor=\"#FFFF80\" ";
 	else
 		$bgcolor ="";
 	$query2 ="select book_name from book  where book_id='".$row["book_id"]."'";
 	$result2 = mysql_query($query2,$conID) or die ($query2);
-	$row2= mysql_fetch_array($result2);
+	$row2= mysqli_fetch_array($result2);
 	echo sprintf ("<tr %s ><td align=center >%d</td ><td align=center>%s</td><td>%s</td><td align=center>%d</td></tr>",$bgcolor,$i,$row["book_id"],$row2["book_name"],$row["cc"]);
 	$i++;
 }

@@ -63,10 +63,10 @@ for ($c=1 ; $c<=6 ; $c++) {
 		$sql = $sql_select." and stud_sex=1 ";
     		$sql1 = $sql_select." and stud_sex=2 ";
 		$ret = mysql_query ($sql,$conID)or die ($sql);
-		$num = mysql_num_rows($ret);
+		$num = mysqli_num_rows($ret);
 		$num_m=$num_m+$num;
     		$ret1 = mysql_query ($sql1,$conID)or die ($sql1);
-		$num1 = mysql_num_rows($ret1);
+		$num1 = mysqli_num_rows($ret1);
 		$num_w=$num_w+$num1;
 		$num2 = $num+$num1;
 		$num_both=$num_both+$num2;

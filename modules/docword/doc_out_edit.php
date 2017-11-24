@@ -72,7 +72,7 @@ $stmt->close();
 $sql_select = "select doc1_id,doc1_year_limit,doc1_kind,doc1_date,doc1_date_sign,doc1_unit,doc1_word,doc1_main,doc1_unit_num1,doc1_unit_num2,teach_id from sch_doc1 where doc1_id='$doc1_id'";
 $result = mysql_query ($sql_select,$conID);
 
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
 
 	$doc1_id = $row["doc1_id"];
 	$doc1_year_limit = $row["doc1_year_limit"];

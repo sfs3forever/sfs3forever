@@ -33,9 +33,9 @@ $SETUP=get_club_setup($c_curr_seme);
 
 $query="select * from stud_club_base where year_seme='$c_curr_seme' and club_teacher='".$_SESSION['session_tea_sn']."'";
 $result=mysqli_query($conID, $query);
-if (mysql_num_rows($result)) {
+if (mysqli_num_rows($result)) {
 //主程式開始
-//$club_base=mysql_fetch_array($result);
+//$club_base=mysqli_fetch_array($result);
  
 if ($_POST['mode']=="save" and $_POST['club_sn']!='') {
 	foreach ($_POST['score'] as $student_sn=>$score) {
@@ -56,7 +56,7 @@ echo "社團名稱：";
 <select size="1" name="club_sn" onchange="document.myform.submit()">
 	<?php
 	 $i=0;
-	 while ($row=mysql_fetch_array($result)) {
+	 while ($row=mysqli_fetch_array($result)) {
 	 	$i++;
 	 	if ($i==1 and $_POST['club_sn']=='') $_POST['club_sn']=$row['club_sn'];
 	 ?>
@@ -92,7 +92,7 @@ echo "社團名稱：";
  </tr>
  <?php
  $i=0;
-  while ($row=mysql_fetch_array($res)) {
+  while ($row=mysqli_fetch_array($res)) {
   	$i++;
   	$CLASS_name=$school_kind_name[substr($row['seme_class'],0,1)];
   	if ($row['score']=="0")  $row['score']='';

@@ -15,7 +15,7 @@ if ($_POST[tapem_edit]=='確定修改'){
 else{
 	$dbquery = "select * from $mastertable where tapem_id='$_REQUEST[tapem_id]' ";    
 	$result = mysql_query($dbquery) or die("<br>DJ-PIM ERROR: 選取錯誤.<br>\n $dbquery");    
-	$row = mysql_fetch_array($result);
+	$row = mysqli_fetch_array($result);
 	include ("header.php"); 
 	echo("<p align=\"center\"><img src=\"eye.gif\"><b>修改 $ap_name 類別</b></p>");
 	echo("<div align=\"center\">");

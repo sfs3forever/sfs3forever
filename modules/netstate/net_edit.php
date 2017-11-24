@@ -118,7 +118,7 @@ if ($_POST['act']=='') {
  $query="select * from net_base where net_kind=$k order by net_ip";
  $res=mysqli_query($conID, $query);
  $i=0;
- while ($E=mysql_fetch_array($res)) {
+ while ($E=mysqli_fetch_array($res)) {
 		
  $i++; 
  if ($_POST['check_online']==1) {
@@ -179,7 +179,7 @@ function get_equipment($k) {
 	
   $query="select * from net_base where id='$k'";
   $res=mysqli_query($conID, $query);
-  $row=mysql_fetch_array($res,1);
+  $row=mysqli_fetch_array($res,1);
   
   return $row;
 } // end function

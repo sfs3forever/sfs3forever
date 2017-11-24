@@ -69,8 +69,8 @@ $stmt->close();
 	
 	//$query = "select teach_id,name from teacher_base  where teach_id = '$teach_id' and teach_condition=0 ";
 	//$result = mysqli_query($conID, $query)or die ($query); 
-	//if ( mysql_num_rows($result) >0){
-	//	$row= mysql_fetch_array($result);
+	//if ( mysqli_num_rows($result) >0){
+	//	$row= mysqli_fetch_array($result);
 	//	$name = $row["name"];
 		$reader_flag = 1 ;
 	//}
@@ -90,8 +90,8 @@ $stmt->close();
 	//$query = "select book_id,bookch1_id,book_name,book_author from book where book_id='$book_id' and book_isout=0 and book_isborrow=0";
 	//$result = mysqli_query($conID, $query)or die ($query); 
 	$temp_bb = "<font color=red><b>找不到這本書或已被借出</b></font>";
-	//if ( mysql_num_rows($result) >0){
-		//$row= mysql_fetch_array($result);
+	//if ( mysqli_num_rows($result) >0){
+		//$row= mysqli_fetch_array($result);
 		//$bookch1_id = $row["bookch1_id"];
 		//$book_id = $row["book_id"];
 		//$book_name = $row["book_name"];
@@ -181,7 +181,7 @@ $stmt->bind_result($bookch1_id, $book_id, $book_name, $book_num, $stud_id,$b_num
 
 echo "<center><table border=1>";
 echo "<tr bgcolor=#8080FF><td>總號</td><td>書號</td><td>書名</td><td>借閱日期</td><td>歸還日期</td></tr>";
-//while ($row = mysql_fetch_array($result)){
+//while ($row = mysqli_fetch_array($result)){
   while ($stmt->fetch()) {
 	/*
 	$bookch1_id = $row["bookch1_id"];

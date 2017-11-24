@@ -31,7 +31,7 @@ if($class!='')
 $sql_select .= "group by curr_class_num order by $order  ";
 
 $result = mysql_query ($sql_select,$conID)or die ($sql_select);
-$tol_num= mysql_num_rows($result);
+$tol_num= mysqli_num_rows($result);
 
 if ($tol_num % $page_count > 0 )
 	$tolpage = intval($tol_num / $page_count)+1;
@@ -54,7 +54,7 @@ $result = mysql_query ($sql_select,$conID)or die ($sql_select);
 $s_unit.="　<input type='text' name='class' size=10 ><input type='submit' value='班級名單' name='B1'>";
 $s_unit.="<table border='1' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='95%'  align='center'>";
 $s_unit.="<tr <tr  align='center'><td><a href='$PHP_SELF?key=group&order=curr_class_num&class=$class'>年班座號</a>　</td><td>姓名</td><td><a href='$PHP_SELF?key=group&class=$class'>神奇寶貝數目</a></td></tr>";
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	$stud_id = $row["stud_id"];
 	$stud_name = $row["stud_name"];
 	$curr_class_num=$row["curr_class_num"];
@@ -92,7 +92,7 @@ $sql_select .= "  poke >0 and who='學生' and c.stud_study_cond='0'  ";
 $sql_select .= " and a.u_id=b.u_id and a.teacher_sn = c.student_sn order by $order"; 
 
 $result = mysql_query ($sql_select,$conID)or die ($sql_select);
-$tol_num= mysql_num_rows($result);
+$tol_num= mysqli_num_rows($result);
 
 if ($tol_num % $page_count > 0 )
 	$tolpage = intval($tol_num / $page_count)+1;
@@ -116,7 +116,7 @@ $result = mysql_query ($sql_select,$conID)or die ($sql_select);
 $s_unit.="<table border='1' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='95%'  align='center'>";
 $s_unit.="<tr <tr  align='center'><td><a href='$PHP_SELF?key=stud&order=curr_class_num'>年班座號</a></td><td>姓名</td><td>課程</td><td>神奇寶貝等級(編號)</td><td>經驗值</td><td>戰鬥力</td><td><a href='$PHP_SELF?key=stud'>最新訓練時間</a></td></tr>";
 
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	$stud_id = $row["stud_id"];
 	$stud_name = $row["stud_name"];
 	$curr_class_num=$row["curr_class_num"];
@@ -148,7 +148,7 @@ $sql_select .= "where poke >0 and who='學生' and c.stud_study_cond='0' and a.u
 $sql_select .= "group by a.u_id order by $order  ";
 
 $result = mysql_query ($sql_select,$conID)or die ($sql_select);
-$tol_num= mysql_num_rows($result);
+$tol_num= mysqli_num_rows($result);
 
 if ($tol_num % $page_count > 0 )
 	$tolpage = intval($tol_num / $page_count)+1;
@@ -170,7 +170,7 @@ $sql_select .= " limit ".($page * $page_count).", $page_count";
 $result = mysql_query ($sql_select,$conID)or die ($sql_select);
 $s_unit.="<table border='1' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='95%'  align='center'>";
 $s_unit.="<tr <tr  align='center'><td><a href='$PHP_SELF?key=unit&order=unit_t,unit_m,u_s'>課程編號</a></td><td>名稱</td><td><a href='$PHP_SELF?key=unit'>通過人數</a></td></tr>";
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	$stud_name = $row["stud_name"];
 	$u_id = $row["u_id"];
 	$curr_class_num=$row["curr_class_num"];
@@ -200,7 +200,7 @@ $page_count=20;
 if($stud_clnu!=''){
 	$query = "select stud_id from stud_base where curr_class_num ='$stud_clnu' and  stud_study_cond='0'";
 	$result	= mysqli_query($conID, $query);
-	$row = mysql_fetch_array($result);
+	$row = mysqli_fetch_array($result);
 	$stud_id=$row["stud_id"];
 	
 }
@@ -219,7 +219,7 @@ $sql_select = "select  a.* ,b.unit_m,b.unit_t,b.u_s,b.unit_name ,c.stud_name,c.c
 $sql_select .= "  poke >0 and who='學生' and c.stud_study_cond='0'  and a.stud_id=$stud_id ";   
 $sql_select .= " and a.u_id=b.u_id and a.teacher_sn = c.student_sn order by $order"; 
 $result = mysql_query ($sql_select,$conID)or die ($sql_select);
-$tol_num= mysql_num_rows($result);
+$tol_num= mysqli_num_rows($result);
 
 if ($tol_num % $page_count > 0 )
 	$tolpage = intval($tol_num / $page_count)+1;
@@ -244,7 +244,7 @@ $result = mysql_query ($sql_select,$conID)or die ($sql_select);
 $s_unit.="<table border='1' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='95%'  align='center'>";
 $s_unit.="<tr <tr  align='center'><td>年班座號</td><td>姓名</td><td><a href='$PHP_SELF?key=view&order=unit_t,unit_m,u_s&stud_id=$stud_id'>課程</a></td><td>神奇寶貝等級(編號)</td><td>經驗值</td><td>戰鬥力</td><td><a href='$PHP_SELF?key=view&stud_id=$stud_id'>最新訓練時間</a></td></tr>";
 
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	$stud_name = $row["stud_name"];
 	$u_id = $row["u_id"];
 	$curr_class_num=$row["curr_class_num"];
@@ -276,7 +276,7 @@ $sql_select = "select  a.* ,b.unit_m,b.unit_t,b.u_s,b.unit_name ,c.stud_name,c.c
 $sql_select .= "  poke >0 and who='學生' and c.stud_study_cond='0'  and a.u_id=$u_id ";   
 $sql_select .= " and a.u_id=b.u_id and a.teacher_sn = c.student_sn order by $order"; 
 $result = mysql_query ($sql_select,$conID)or die ($sql_select);
-$tol_num= mysql_num_rows($result);
+$tol_num= mysqli_num_rows($result);
 
 if ($tol_num % $page_count > 0 )
 	$tolpage = intval($tol_num / $page_count)+1;
@@ -300,7 +300,7 @@ $result = mysql_query ($sql_select,$conID)or die ($sql_select);
 $s_unit.="<table border='1' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='95%'  align='center'>";
 $s_unit.="<tr <tr  align='center'><td><a href='$PHP_SELF?key=u_id&order=curr_class_num&u_id=$u_id'>年班座號</a></td><td>姓名</td><td>課程</td><td>神奇寶貝等級(編號)</td><td>經驗值</td><td>戰鬥力</td><td><a href='$PHP_SELF?key=u_id&u_id=$u_id'>最新訓練時間</a></td></tr>";
 
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	$stud_name = $row["stud_name"];
 	$stud_id = $row["stud_id"];
 	$curr_class_num=$row["curr_class_num"];

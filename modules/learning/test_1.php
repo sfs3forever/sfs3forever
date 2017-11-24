@@ -5,7 +5,7 @@ if( $key=="提出申訴1" or $key=="提出申訴2" or $key=="提出申訴3" ){
 	$qid=$q_id[substr($key,8,1)];
 	$sqlstr = "select * from test_data   where  qid =$qid " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	$s_unit.="<table border='1' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='95%'  align='center'>";
 	$ques = $row["ques"] ;  
 	$ch[1] = $row["ch1"] ;  

@@ -38,14 +38,14 @@ $title_p = array();
 $query = "SELECT *  FROM teacher_title ";
 $query .= " where title_kind >= '$titl_kind' and enable=1 order by title_kind,teach_title_id ";
 $result = mysqli_query($conID,$query)or die ($query);          
-while ($row= mysql_fetch_array($result))
+while ($row= mysqli_fetch_array($result))
 	$title_p[$row["teach_title_id"]] = $row["title_name"];
 
 //顯示資料
 $query = "select * from board_kind where bk_id ='$bk_id' ";
 $result = mysql_query ($query,$conID) or die ($query); 
 if ($result) {
-	$row = mysql_fetch_array($result);
+	$row = mysqli_fetch_array($result);
 	$bk_id = $row["bk_id"];
 	$board_name = $row["board_name"];	
 }
@@ -132,7 +132,7 @@ if ($result) {
 $sql_select = "select pc_id,pro_kind_id,post_office,teacher_sn,teach_title_id,is_admin from board_check where pro_kind_id = '$bk_id' ";
 $result = mysql_query ($sql_select,$conID);
 
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
 
 	$pc_id = $row["pc_id"];
 	$pro_kind_id = $row["pro_kind_id"];

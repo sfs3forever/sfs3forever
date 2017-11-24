@@ -22,7 +22,7 @@ $query = "select * from bookch1 order by bookch1_id";
 $result = mysqli_query($conID,$query);
 //分類號選項
 $tt=""; 
-while ($row = mysql_fetch_array ($result)){
+while ($row = mysqli_fetch_array ($result)){
 	if ($bookch1_id == $row["bookch1_id"] and $qbook_name=="" ){
 		$tt .= sprintf(" <option value=\"%s\" selected>%s%s</option>",$row["bookch1_id"],$row["bookch1_id"],$row["bookch1_name"]);
 		$bookch1_name= $row["bookch1_name"];
@@ -44,7 +44,7 @@ else
 	$query .= " where bookch1_id = '$bookch1_id'"; 
 
 $result = mysqli_query($conID,$query);
-$row = mysql_fetch_array($result);
+$row = mysqli_fetch_array($result);
 $cc = $row["cc"];
 */
 
@@ -159,7 +159,7 @@ if ($page > 0)
 if ($tolpage-($page+1)>0)
 	echo sprintf("&nbsp;&nbsp;&nbsp;<A HREF=%s?bookch1_id=%s&page=%d&qbook_name=$qbook_name&showpage=$showpage>下一頁</A>",$PHP_SELF,$bookch1_id,$page+1);
 echo "</caption>";
-//while ($row = mysql_fetch_array($result) ){
+//while ($row = mysqli_fetch_array($result) ){
 while ($stmt->fetch()) {
 	if ($ci % 2 == 1 )
 		$bgcolor =" bgcolor=#FFFF80 ";

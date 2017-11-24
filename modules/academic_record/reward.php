@@ -146,7 +146,7 @@ if ($view=="One") {
     //即時統計, by smallduh 2013.1.21 把學生就學的每個學期的資料全部再統計一次    
      $query_rew="select distinct reward_year_seme from reward where student_sn='".$stud_sn[$m]."'";
      $res_rew=mysql_query($query_rew);
-     while ($row_rew=mysql_fetch_array($res_rew)) {
+     while ($row_rew=mysqli_fetch_array($res_rew)) {
       //cal_rew(substr($row_rew['reward_year_seme'],0,3),substr($row_rew['reward_year_seme'],3,1),$stud_id[$m]); //即時統計總表 by smallduh 2013.1.8
       cal_rew(substr($row_rew['reward_year_seme'],0,strlen($row_rew['reward_year_seme'])-1),substr($row_rew['reward_year_seme'],-1),$stud_id[$m]); //即時統計總表 by smallduh 2013.1.8
      }

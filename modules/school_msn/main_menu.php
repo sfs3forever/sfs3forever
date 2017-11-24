@@ -60,7 +60,7 @@ if ($IS_UTF8==0) mysql_query("SET NAMES 'latin1'");
 $query="select teacher_sn, login_pass from teacher_base where teach_condition=0 and teach_id='$log_id' and login_pass='$log_pass' and teach_id<>''";
 $result=mysqli_query($conID, $query);
 
-if (mysql_num_rows($result)) {
+if (mysqli_num_rows($result)) {
 
 	$_SESSION['MSN_LOGIN_ID']=$log_id;
 	//閮?銝?
@@ -71,8 +71,8 @@ if (mysql_num_rows($result)) {
    $query="select * from sc_msn_online where teach_id='$log_id'";
    $result=mysqli_query($conID, $query);
    //撌脩?仿? MSN 
-   if (mysql_num_rows($result)) {
-   	  $row=mysql_fetch_array($result,1);
+   if (mysqli_num_rows($result)) {
+   	  $row=mysqli_fetch_array($result,1);
    	  $hits=$row['hits'];
    	  $_SESSION['is_email']=$row['is_email'];
    	  $_SESSION['is_showpic']=$row['is_showpic'];
@@ -102,7 +102,7 @@ if (mysql_num_rows($result)) {
   
   $result=mysqli_query($conID, $query);
   
-  while ($row=mysql_fetch_array($result,1)) {
+  while ($row=mysqli_fetch_array($result,1)) {
    //?芷?祉?????
    delete_file($row['idnumber'],$row['to_id']);
    $query="delete from sc_msn_data where id='".$row['id']."'";
@@ -110,7 +110,7 @@ if (mysql_num_rows($result)) {
   }//end while
  } else {
  	$INFO="-撣唾???蝣潮隤歹?";  
- } // end if (mysql_num_rows($result))
+ } // end if (mysqli_num_rows($result))
 
 } // end if ?餃
 ?>

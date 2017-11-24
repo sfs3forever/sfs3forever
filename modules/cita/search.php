@@ -56,7 +56,7 @@ while ($stmt->fetch()) {
 
 }
 /*	
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	$stud_id = $row["stud_id"];
 	$stud_name = $row["stud_name"];
 	$cond = $row["stud_study_cond"];

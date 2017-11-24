@@ -83,7 +83,7 @@
 		
 		showtitle("轉換學生資料中");		
 		$result_o = mysql_db_query($mysql_db,"select * from stud_base",$conID) or die("錯誤:轉換學生資料中");
-		while ($row = mysql_fetch_array($result_o)) {
+		while ($row = mysqli_fetch_array($result_o)) {
 			$stud_id = ltrim($row["stud_id"]);
 			$stud_name = addcslashes($row["stud_name"],"'");
 			$stud_person_id = $row["stud_person_id"];
@@ -227,7 +227,7 @@
 		showtitle("轉換學生戶口資料中");		
 		$sql_select = "select a.* from stud_domicile a,stud_base b where a.stud_id=b.stud_id ";
 		$result = mysql_db_query ($session_mysql_db,$sql_select,$conID)or die("err: 轉換學生戶口資料中");
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 			$stud_id = $row["stud_id"];
 			$fath_name = addcslashes($row["fath_name"],"'");
 			if ($row["fath_birthyear"] !="0000-00-00")
@@ -296,7 +296,7 @@
 		$sql_select = "select bs_id,stud_id,bs_name,bs_calling,bs_gradu,bs_birthyear from stud_brother_sister";
 		$result = mysql_db_query ($session_mysql_db,$sql_select,$conID) or die ("err:轉換學生兄弟姐妹資料");
 
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 
 			$bs_id = $row["bs_id"];
 			$stud_id = $row["stud_id"];
@@ -315,7 +315,7 @@
 		showtitle("轉換教師資料中");
 		$sql_select = "select teach_id,teach_person_id,name,sex,age,birthday,birth_place,marriage,address,home_phone,cell_phone,office_home,teach_condition,teach_memo,login_pass from teacher_base";
 		$result = mysql_db_query ($session_mysql_db,$sql_select,$conID);
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 
 			$teach_id = $row["teach_id"];
 			$teach_person_id = $row["teach_person_id"];
@@ -344,7 +344,7 @@
 		$sql_select = "select teach_id,email,email2,email3,selfweb,selfweb2,classweb,classweb2,icq from teacher_connect";
 		$result = mysql_db_query ($session_mysql_db,$sql_select,$conID);
 
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 
 			$teach_id = $row["teach_id"];
 			$email = $row["email"];
@@ -366,7 +366,7 @@
 
 		$result = mysql_db_query ($session_mysql_db,$sql_select,$conID)or die ("err:轉換教師任職資料");
 
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 
 			$teach_id = $row["teach_id"];
 			$post_kind = $row["post_kind"];
@@ -395,7 +395,7 @@
 
 		$result = mysql_db_query ($session_mysql_db,$sql_select,$conID)or die ("err:轉換教師科目 資料");;
 
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 
 			$subject_id = $row["subject_id"];
 			$subject_name = addcslashes($row["subject_name"],"'");;
@@ -412,7 +412,7 @@
 		$sql_select = "select teach_title_id,title_name,title_kind,title_short_name from teacher_title";
 		$result = mysql_db_query ($session_mysql_db,$sql_select,$conID)or die ("err:轉換教師職稱資料");;
 
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 
 			$teach_title_id = $row["teach_title_id"];
 			$title_name = addcslashes($row["title_name"],"'");
@@ -429,7 +429,7 @@
 		$sql_select = "select pc_id,pro_kind_id,post_office,teach_id,teach_title_id,is_admin from pro_check";
 		$result = mysql_db_query ($session_mysql_db,$sql_select,$conID)or die ("err: pro_check");
 
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 
 			$pc_id = $row["pc_id"];
 			$pro_kind_id = $row["pro_kind_id"];
@@ -449,7 +449,7 @@
 		$sql_select = "select pc_id,pro_kind_id,stud_id,teach_id,use_date,use_last_date,class_num from pro_check_stu";
 		$result = mysql_db_query ($session_mysql_db,$sql_select,$conID)or die ("err: pro_check_stu");;
 
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 
 			$pc_id = $row["pc_id"];
 			$pro_kind_id = $row["pro_kind_id"];
@@ -487,7 +487,7 @@
 
 		$result = mysql_db_query ($session_mysql_db,$sql_select,$conID)or die ("err: pro_kind");
 
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 
 			$pro_kind_id = $row["pro_kind_id"];
 				$pro_kind_name = addcslashes($row["pro_kind_name"],"'");
@@ -513,7 +513,7 @@
 		$sql_select = "select current_school_year,teach_id,teach_title_id,class_num,subject_id1,subject_id2,subject_id3 from seme_class";
 		$result = mysql_db_query ($session_mysql_db,$sql_select,$conID)or die ("err: seme_class");
 
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 
 			$current_school_year = $row["current_school_year"];
 			$teach_id = $row["teach_id"];

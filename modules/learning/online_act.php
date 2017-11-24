@@ -15,7 +15,7 @@ if($p_sn=='')
 
 	$sqlstr = "select * from test_setup " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	$n_games = $row["n_games"] ;  //以多少決定勝負
 	$content = $row["content"] ;  //每隔更新秒數
 
@@ -23,7 +23,7 @@ if($p_sn=='')
 $p_sn=intval($p_sn);
 $sqlstr = "select * from test_online where  p_sn=$p_sn " ;
 $result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-$row= mysql_fetch_array($result);
+$row= mysqli_fetch_array($result);
    	$p_games = $row["p_games"] ;  //目前的局數
      	$pp_name = $row["p_name"] ;  
 	$err=$row["err"] ; 
@@ -161,7 +161,7 @@ $my_pokes="";
 for ($i= 1 ; $i <= ($n_games*2-1) ;$i++){
 	$sqlstr = "select * from test_score where  s_id='$my_sid[$i]'  " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	$s_poke = $row["poke"];
 	$poke_type=ceil($poke/50);
 	$poke_alt=$s_poke . "_" . $poke_a[$s_poke]['p_name'];
@@ -189,7 +189,7 @@ if($n_sco>6)
 for ($i= 1 ; $i <= ($n_games*2-1) ;$i++){
 	$sqlstr = "select * from test_score where  s_id='$he_sid[$i]'  " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	$s_poke = $row["poke"];
 	$he_sid_poke[$i]=$s_poke ;
 	if($i==$p_games){

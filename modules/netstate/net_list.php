@@ -34,7 +34,7 @@ echo $tool_bar;
  $query="select * from net_base where net_kind=$k order by net_ip";
  $res=mysqli_query($conID, $query);
  $i=0;
- while ($E=mysql_fetch_array($res)) {
+ while ($E=mysqli_fetch_array($res)) {
 		
  $i++; 
  switch ($E['net_check']) {

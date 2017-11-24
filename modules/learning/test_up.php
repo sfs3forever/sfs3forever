@@ -25,13 +25,13 @@ if ($unit ==""){
 	//取得各領域冊別
 	$sqlstr = "select * from unit_tome where  unit_m='$m' and unit_t='$t' " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	$c_tome = $row["unit_tome"];
 	$tome_ver = $row["tome_ver"];
 	//取得單元名稱
 	$sqlstr = "select * from unit_u where  unit_m='$m'  and unit_t='$t' and u_s='$u' and tome_ver='$tome_ver' ";
 	$result = mysql_query($sqlstr);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	$c_unit = $row["unit_name"];
 	$u_id = $row["u_id"];
 

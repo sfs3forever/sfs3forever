@@ -100,7 +100,7 @@ function check_db($db_name) {
 	global $Mysql_db,$conID2;
 	$is_add = false;
 	$result = mysql_list_dbs ($conID2);
-	$num = mysql_num_rows($result);
+	$num = mysqli_num_rows($result);
 	//sfs 現有tables
 	for ($i =0 ;$i<$num;$i++)
 		$sfs_db[] = mysql_tablename($result,$i);

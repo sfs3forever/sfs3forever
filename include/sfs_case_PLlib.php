@@ -201,18 +201,19 @@ class sfs_grid_menu {
 
 //執行命令
 function do_query() {
+	global $conID;
 	$res_arr =array();
 	$display_arr =array();
 	//顯示欄位
 	$display_arr = $this->display_item;
 	$num = count($display_arr);
-	$result = mysql_query($this->sql_str) or die("Error: $this->sql_str");
-	$this->count_row = mysql_num_rows ($result);
+	$result = mysqli_query($conID, $this->sql_str) or die("Error: $this->sql_str");
+	$this->count_row = mysqli_num_rows ($result);
 	
 	if( $this->count_row < $this->row )
 		$this->row = $this->count_row;
 	
-	while($row = mysql_fetch_array($result)) {
+	while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 		$temp ="";
 		for ($i=0;$i < $num ;$i++) {
 			$temp .= $row[$display_arr[$i]];

@@ -81,7 +81,7 @@ if ($key != "新增分類區"){
 //  --目前資料
 	$query = "select * from jboard_kind where bk_id ='$bk_id' ";
 	$result = mysql_query ($query,$conID) or die ($query); 
-	$row = mysql_fetch_array($result);
+	$row = mysqli_fetch_array($result);
 	
 	if ($_POST['continue_insert']) $key='新增分類區';
 }

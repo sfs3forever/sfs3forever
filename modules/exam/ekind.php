@@ -148,7 +148,7 @@ while ($stmt->fetch()) {
 $sql_select = "select e_kind_id,e_kind_memo,e_kind_open , e_upload_ok ,class_id  from exam_kind where  class_id like '$curr_year_seme%' order by class_id ";
 $result = mysql_query ($sql_select)or die ($sql_select);
 $i=0;
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
 
 	$e_kind_id = $row["e_kind_id"];	
 	$e_kind_memo = $row["e_kind_memo"];

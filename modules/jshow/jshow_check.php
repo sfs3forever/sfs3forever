@@ -13,7 +13,7 @@ $title_p = array();
 $query = "SELECT *  FROM teacher_title ";
 $query .= " where title_kind >= '$titl_kind' and enable=1 order by title_kind,teach_title_id ";
 $result = mysqli_query($conID,$query) or die ($query);          
-while ($row= mysql_fetch_array($result))
+while ($row= mysqli_fetch_array($result))
 	$title_p[$row["teach_title_id"]] = $row["title_name"];
 
 //送出後的動作

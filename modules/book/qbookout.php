@@ -13,11 +13,11 @@ $query = " select * from bookch1 order by bookch1_id ";
 $result= mysqli_query($conID,$query);
 $i=0;
 $tol=0;
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	//$query2 = "select count(*) as cc  from book where book_isout=1 and  bookch1_id = '".$row["bookch1_id"]."'";
 	$query2 = "select  count(*)as cc from borrow where in_date=0 and curr_class_num<>0 and bookch1_id = '$row[bookch1_id]'";     
 	$result2 = mysql_query($query2);
-	$row2 = mysql_fetch_array($result2);
+	$row2 = mysqli_fetch_array($result2);
 	$cc = $row2["cc"];
 	if ($i % 2 == 1 )
 		echo "<tr bgcolor=#FFFF80>";

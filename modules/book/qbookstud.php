@@ -32,15 +32,15 @@ if ($key == "查詢" || $stud_id != ""){
 	$stud_id=substr($stud_id,0,7);
 	$query = "select stud_name from stud_base  where stud_id ='$stud_id'";
 	$result = mysqli_query($conID,$query)or die ($query); 
-	if ( mysql_num_rows($result) >0){
-		$row= mysql_fetch_array($result);
+	if ( mysqli_num_rows($result) >0){
+		$row= mysqli_fetch_array($result);
 		$stud_name = $row["stud_name"];
 		$query = "select b.* ,a.book_name from borrow b,book a  where a.book_id=b.book_id and b.stud_id ='$stud_id' order by out_date desc";
 		$result = mysqli_query($conID,$query)or die ($query);
-		$num = mysql_num_rows($result);
+		$num = mysqli_num_rows($result);
 		echo "<caption>讀者姓名：$stud_name 累計冊數: $num </caption>";
 		echo "<tr bgcolor=#8080FF><td>書號</td><td>書名</td><td>借閱日期</td><td>歸還日期</td></tr>\n";    
-		while ($row = mysql_fetch_array($result)){
+		while ($row = mysqli_fetch_array($result)){
 			if ($ci++ % 2 == 1 )
 				$bgcolor =" bgcolor=#FFFF80 ";
 			else

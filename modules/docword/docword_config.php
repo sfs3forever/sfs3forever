@@ -36,7 +36,7 @@ function doc_unit(){
 	$temp = array();
 	$query = "select * from sch_doc1_unit order by doc1_unit_num1 ";
 	$result = mysql_query ($query);
-	while ($row = mysql_fetch_array ($result))
+	while ($row = mysqli_fetch_array ($result))
 		$temp["$row[doc1_unit_num1]"] = $row[doc1_unit_name];
 	return $temp;
 }

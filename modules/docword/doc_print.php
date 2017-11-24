@@ -46,7 +46,7 @@ if ($key == "列印" or $key=="文號列印" or $key=="列印歸檔單") {
 	else
 		$p_str="歸檔";
 
-	$num_record= mysql_num_rows($result);
+	$num_record= mysqli_num_rows($result);
 	//計算最後一頁
 	if ($num_record % $page_count > 0 )
 		$last_page = floor($num_record / $page_count)+1;
@@ -57,7 +57,7 @@ if ($key == "列印" or $key=="文號列印" or $key=="列印歸檔單") {
 	$i = 1 ;
 	$page = 1;	//頁數
 	content_header();
-	while($row = mysql_fetch_array( $result ) ) {
+	while($row = mysqli_fetch_array( $result ) ) {
         	$doc1_id = $row["doc1_id"];
         	$doc1_main = $row["doc1_main"];
         	$doc1_word = $row["doc1_word"];
@@ -90,7 +90,7 @@ if ($key == "列印" or $key=="文號列印" or $key=="列印歸檔單") {
 	exit;
 }
 else {
-	while($row = mysql_fetch_array( $result ) ) {
+	while($row = mysqli_fetch_array( $result ) ) {
         	$doc1_id = $row["doc1_id"];
         	$doc1_main = $row["doc1_main"];
         	$doc1_year_limit = $row["doc1_year_limit"];

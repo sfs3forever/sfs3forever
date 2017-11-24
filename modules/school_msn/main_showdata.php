@@ -11,7 +11,7 @@ $ann_num=-1;
    $nowdate=date("Y-m-d 0:0:0");
    $query="select idnumber,data,data_kind from sc_msn_data where to_id='' and to_days(curdate())<=(to_days(post_date)+last_date) and (data_kind=0 or data_kind=2) order by post_date desc";
    $result=mysqli_query($conID, $query);
-   $board_num=mysql_num_rows($result);
+   $board_num=mysqli_num_rows($result);
    while($row=mysqli_fetch_row($result)) {
    	 $ann_num++;
     list($idnumber,$data,$data_kind)=$row;
@@ -19,7 +19,7 @@ $ann_num=-1;
     
      $query_file="select filename,filename_r from sc_msn_file where idnumber='".$idnumber."'";
   	$result_file=mysql_query($query_file);
-	  	if (mysql_num_rows($result_file)) {
+	  	if (mysqli_num_rows($result_file)) {
        $ann_data[$ann_num].="<font size=5 color=#000000>--??SN/瑼?銝???/font>";
 	  	} else {
 	  	 $ann_data[$ann_num].="<font size=5 color=#000000>--??SN/?∪閮??/font>";

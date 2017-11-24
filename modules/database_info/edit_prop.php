@@ -55,7 +55,7 @@ $sql_insert = "insert into database_prop (d_table_name,d_field_name,d_field_cnam
 $sql_update = "update database_prop set d_table_name='$d_table_name',d_field_name='$d_field_name',d_field_cname='$d_field_cname',d_field_type='$d_field_type',d_field_orfer='$d_field_orfer'";
 
 
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
 
 	$d_table_name = $row["d_table_name"];
 	$d_field_name = $row["d_field_name"];

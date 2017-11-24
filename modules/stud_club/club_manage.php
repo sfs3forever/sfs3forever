@@ -70,7 +70,7 @@ if ($_POST['mode']=="update_club_name_start") {
 	    $N=0;
       $query="select * from association where seme_year_seme='$c_curr_seme' and club_sn!=''";
       $res=mysqli_query($conID, $query);
-      while ($row=mysql_fetch_array($res)) {
+      while ($row=mysqli_fetch_array($res)) {
       	$query="select club_name from stud_club_base where club_sn='".$row['club_sn']."'";
 				$result=mysqli_query($conID, $query);
 				list($club_name)=mysqli_fetch_row($result);
@@ -110,7 +110,7 @@ if ($_POST['mode']=="setting") {
   $multi_join=$_POST['multi_join'];
   $update_sn=$_SESSION['session_tea_sn'];
   //檢查資料是否已建立
-  if (mysql_num_rows(mysql_query("select * from stud_club_setup where year_seme='$year_seme'"))==0) {
+  if (mysqli_num_rows(mysql_query("select * from stud_club_setup where year_seme='$year_seme'"))==0) {
     mysql_query("insert into stud_club_setup (year_seme) values ('$year_seme')");
   }
   
@@ -136,7 +136,7 @@ if ($_POST['mode']=="setting_pass_score") {
  $year_seme=$_POST['c_curr_seme'];
  
   //檢查資料是否已建立
-  if (mysql_num_rows(mysql_query("select * from stud_club_setup where year_seme='$year_seme'"))==0) {
+  if (mysqli_num_rows(mysql_query("select * from stud_club_setup where year_seme='$year_seme'"))==0) {
     mysql_query("insert into stud_club_setup (year_seme) values ('$year_seme')");
   }
        
@@ -289,8 +289,8 @@ if ($_POST['mode']=="copying") {
       //取得社團所有學生
        $query="select a.student_sn from association a,stud_base b where a.club_sn='$last_club_sn' and a.student_sn=b.student_sn and (b.stud_study_cond=0 or b.stud_study_cond=2)";
        $res=mysqli_query($conID, $query);
-       if (mysql_num_rows($res)>0) {
-        while ($row=mysql_fetch_array($res)) {
+       if (mysqli_num_rows($res)>0) {
+        while ($row=mysqli_fetch_array($res)) {
            if (chk_if_exist_stud($club_sn,$row['student_sn'])==0) {
            $query="insert into association (student_sn,seme_year_seme,association_name,score,description,club_sn) values ('".$row['student_sn']."','".$year_seme."','".$club_name."','','','".$club_sn."')";
            $CONN->Execute($query) or trigger_error("SQL 錯誤",E_USER_ERROR);
@@ -453,7 +453,7 @@ if ($_POST['club_sn']!="") $c_curr_class=get_club_class($_POST['club_sn']);
 		if ($_POST['mode']=="update_club_name") {
 	    $query="select * from association where seme_year_seme='$c_curr_seme' and club_sn!=''";
      	$res=mysqli_query($conID, $query);
-     	$N=mysql_num_rows($res);
+     	$N=mysqli_num_rows($res);
      	?>
 		 <table border="0" width="100%">
         <tr>
@@ -595,7 +595,7 @@ if ($_POST['club_sn']!="") $c_curr_class=get_club_class($_POST['club_sn']);
 	    	if (($club_class=='9' or $club_class=='6') and $curr_seme==1) continue;
 	    	$query="select * from stud_club_base where year_seme='$last_seme' and club_class='$club_class' order by club_name";
 				$result=mysqli_query($conID, $query);
-			  if (mysql_num_rows($result)) {
+			  if (mysqli_num_rows($result)) {
 			  	
 			  	echo "<br>※".$school_kind_name[$club_class]."級社團";
 			  	
@@ -612,12 +612,12 @@ if ($_POST['club_sn']!="") $c_curr_class=get_club_class($_POST['club_sn']);
 			 	  	<td width="50" style="font-size:10pt;color:#000000" align="center">可選課</td>
 			 	  </tr>		    	
 	    	<?php
-			  	  while ($row=mysql_fetch_array($result)) {
+			  	  while ($row=mysqli_fetch_array($result)) {
 			 	   	$stud_number=get_club_student_num($row['year_seme'],$row['club_sn']);
 			 	   	//檢查是否社團在本學期已重覆
 			 	   	$query="select * from stud_club_base where year_seme='$c_curr_seme' and club_teacher='".$row['club_teacher']."' and club_class='".$row['club_class']."' and club_name='".$row['club_name']."'";
 			 	   	$res_double=mysqli_query($conID, $query);
-			 	   	$DOUBLE=(mysql_num_rows($res_double)>0)?1:0;
+			 	   	$DOUBLE=(mysqli_num_rows($res_double)>0)?1:0;
 			 	    ?>
 			 	  <tr>
 			 	  	<?php
@@ -646,7 +646,7 @@ if ($_POST['club_sn']!="") $c_curr_class=get_club_class($_POST['club_sn']);
 				</table>
 				  <?php
 				  				    
-			  } // if mysql_num_rows($result)	    	
+			  } // if mysqli_num_rows($result)	    	
       } // end foreach	
 		 ?>
 		 <table border="0" width="100%">

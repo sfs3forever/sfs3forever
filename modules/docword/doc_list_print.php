@@ -36,7 +36,7 @@ $doc_unit_p = doc_unit();
 $query ="select *  from sch_doc1 where doc_stat<>'9' and doc1_year_limit < 99 and doc1_k_id=0 and TO_DAYS(DATE_ADD(doc1_date,INTERVAL doc1_year_limit YEAR)) <= TO_DAYS('$DelDate') ";
 
 $result = mysql_query ($query) or die ($query);
-$num_record= mysql_num_rows($result); 
+$num_record= mysqli_num_rows($result); 
 
 if ($key == "列印銷毀清冊") {	
 	include "include/firelist2.php";
@@ -53,7 +53,7 @@ if ($key == "列印銷毀清冊") {
 	content_header();
 	//公文類別(在 docword_config.php 中設定)
 	$doc_kind_p = doc_kind();
-	while($row = mysql_fetch_array( $result ) ) {
+	while($row = mysqli_fetch_array( $result ) ) {
         	$doc1_id = $row["doc1_id"];
         	$doc1_main = $row["doc1_main"];
         	$doc1_word = $row["doc1_word"];        	        	
@@ -87,7 +87,7 @@ if ($key == "列印銷毀清冊") {
 	exit;
 }
 else {
-	while($row = mysql_fetch_array( $result ) ) {
+	while($row = mysqli_fetch_array( $result ) ) {
         	$doc1_id = $row["doc1_id"];
         	$doc1_main = $row["doc1_main"];
         	$doc1_year_limit = $row["doc1_year_limit"];

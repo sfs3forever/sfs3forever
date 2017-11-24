@@ -42,9 +42,9 @@ function listitembank($PAGE) {
    	 $query="select * from contest_itembank limit ".$st.",".$PHP_PAGE;
    	 $result=mysqli_query($conID, $query);
 
-     if (mysql_num_rows($result)) {
+     if (mysqli_num_rows($result)) {
      
-   	 while ($IB=mysql_fetch_array($result)) {   	 	
+   	 while ($IB=mysqli_fetch_array($result)) {   	 	
    	 	$ans_url=($IB['ans_url']=='')?"無":"<a href='".$IB['ans_url']."' target='_blank'>".瀏覽."</a>";
    	 	
    	?>
@@ -62,7 +62,7 @@ function listitembank($PAGE) {
   	</tr>
   	<?php
   	} // end while  	
-   } // end if mysql_num_rows > 0
+   } // end if mysqli_num_rows > 0
   	?>
   	</table>
   	<table border="0" width="100%" style="border-collapse: collapse" bordercolor="#C0C0C0">
@@ -91,7 +91,7 @@ function get_item($ibsn) {
  $query="select * from contest_itembank where ibsn='$ibsn'";
  $res=mysqli_query($conID, $query);
  
- return mysql_fetch_array($res);
+ return mysqli_fetch_array($res);
  
 }
 

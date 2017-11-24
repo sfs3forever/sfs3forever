@@ -45,7 +45,7 @@ $sql .= " limit ".$page_num.", ".$page_unit.";";
 //echo $sql."|<BR>\n";
 $sql_result = mysql_query($sql) or die($sql."<BR>\nsql語法有誤!!");
 
-if (mysql_num_rows($sql_result)==0){
+if (mysqli_num_rows($sql_result)==0){
   $main_function.= "<center>目前沒有任何訊息存在!!<br>\n";
   $main_function.= "[<A HREF=\"insert.php\">新增訊息</A>]&nbsp;&nbsp;\n";
   $main_function.= "[<A HREF=\"m_list.php\">管理傳送訊息</A>]<BR>\n";
@@ -58,7 +58,7 @@ $sql_1 = "select count(*) ";
 $sql_1 .= " from `".$user_t2."`";
 $sql_1 .= " where `sender` = '".$_SESSION['session_tea_sn']."'";
 $sql_result_1 = mysql_query($sql_1);
-$board_num = mysql_fetch_array($sql_result_1);
+$board_num = mysqli_fetch_array($sql_result_1);
 $page_total=ceil($board_num[0]/$page_unit);// 將公告數除以每頁呈現筆數後無條件進位
 for ($j=1;$j<=$page_total;$j++){
   if ($j==$page){
@@ -79,7 +79,7 @@ $main_function.= "<td><center>訊息接收者(藍字為有閱讀訊息者)</td>\
 $main_function.= "<td><center>傳送訊息日期</td>\n";
 $main_function.= "<td><center>處理功能</td>\n";
 $main_function.= "</tr>\n";
-while ($row = mysql_fetch_array($sql_result)){
+while ($row = mysqli_fetch_array($sql_result)){
   if($i%2){
 	$main_function.= "<tr bgcolor='#E1E1E1'>\n";
   }else{

@@ -13,7 +13,7 @@ if($key=="確定ok"){  //核對答案
 	$s_id=intval($s_id);
 	$sqlstr = "select * from test_score where s_id='$s_id' " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	$righ = $row["righ"];
 
 
@@ -193,7 +193,7 @@ if($key=="確定ok"){
 	$msg_g = array("請加油！","不理想！","還可以！","真不錯！","厲害喔！","太棒了！","超級讚！"); 
 	$sqlstr = "select * from test_score where s_id='$s_id' " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	$type = $row["type"];
 	if($type!=1){
 		$sco= 0;  

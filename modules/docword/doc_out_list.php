@@ -184,7 +184,7 @@ $stmt->bind_result($doc1_id,$doc1_year_limit,$doc1_kind,$doc1_date,$doc1_date_si
 
 
 //$result = mysqli_query($conID, $query);
-//while ($row = mysql_fetch_array($result)) {
+//while ($row = mysqli_fetch_array($result)) {
 while ($stmt->fetch()) {
 	/*
 	$doc1_id = $row["doc1_id"];

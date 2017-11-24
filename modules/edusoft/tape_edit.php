@@ -19,7 +19,7 @@ if ($_POST[dopost]=="確定修改"){
 $dbquery = "select * from $subtable ";
 $dbquery .= "where tapem_id='$_GET[tapem_id]' and tape_id=$_GET[tape_id] ";
 $result_tapem = mysql_query($dbquery) or die("選取錯誤");
-$row = mysql_fetch_array($result_tapem);
+$row = mysqli_fetch_array($result_tapem);
 include "header.php"; 
 ?>
 

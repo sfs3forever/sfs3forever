@@ -112,7 +112,7 @@ $stmt->close();
 
 ///mysqli
 		//$result = mysql_query ($sql_select);
-		//while ($row = mysql_fetch_array($result)) {
+		//while ($row = mysqli_fetch_array($result)) {
 
 	?>
 	<tr>
@@ -151,7 +151,7 @@ $stmt->close();
 
 $sql_select = "select doc1_unit_num1,doc1_unit_name from sch_doc1_unit order by doc1_unit_num1";
 $result = mysql_query ($sql_select);
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
 	$doc1_unit_num1 = $row["doc1_unit_num1"];
 	$doc1_unit_name = $row["doc1_unit_name"];
 	echo "<tr><td align=\"center\">$doc1_unit_num1</td><td align=\"center\">$doc1_unit_name</td><td align=\"center\"><a href=\"$PHP_SELF?sel=edit&doc1_unit_num1=$doc1_unit_num1\">修改</a></td></tr>";

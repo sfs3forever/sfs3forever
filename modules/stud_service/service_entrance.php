@@ -260,7 +260,7 @@ if ($work_year_seme!='') {
    	$query="select a.*,b.student_sn,b.item_sn,b.minutes,b.studmemo from stud_service a,stud_service_detail b where a.sn=b.item_sn and b.student_sn='$selected_student' order by service_date";
     
     $res=mysqli_query($conID, $query);
-    while ($row=mysql_fetch_array($res,1)) {
+    while ($row=mysqli_fetch_array($res,1)) {
     ?>
 	 	<tr>
 	 		  <td style="font-size:9pt" align="center"><?php echo sprintf("%d",substr($row['year_seme'],0,3));?>學年度第<?php echo substr($row['year_seme'],-1);?>學期</td>

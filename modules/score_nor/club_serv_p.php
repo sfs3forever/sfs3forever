@@ -345,7 +345,7 @@ if($_POST){
 	   $res=mysqli_query($conID, $query);
 	   $service_detail="";
 	   $MINS=0; $HOURS=0;
-	   while ($row=mysql_fetch_array($res)) {
+	   while ($row=mysqli_fetch_array($res)) {
 	   	 $service_detail[$row['sn']]['service_date']=$row['service_date'];
 	     $service_detail[$row['sn']]['department']=getPostRoom($row['department']);
 	     $service_detail[$row['sn']]['sponsor']=$row['sponsor'];
@@ -370,7 +370,7 @@ if($_POST){
 	   $club_detail="";
 	   $j=0;
 	    
-	   while ($row=mysql_fetch_array($res)) {
+	   while ($row=mysqli_fetch_array($res)) {
 	   	//校內社團, 要檢查分數, 外校社團則一律通過
 	   		$query="select pass_score from stud_club_base where club_sn='".$row['club_sn']."'";
 	   		$res_pass=mysqli_query($conID, $query);

@@ -30,7 +30,7 @@ $c_curr_seme=sprintf('%03d%1d',$curr_year,$curr_seme);
 			  $query="select * from stud_club_base where year_seme='$c_curr_seme' and club_class='$K' order by club_name";
 			  $result=mysqli_query($conID, $query);
 			  //該年級有社團再列出
-			  if (mysql_num_rows($result)) {
+			  if (mysqli_num_rows($result)) {
 			?>
  			<table border="0" style="border-collapse:collapse" bordercolor="#000000" width="100%">
 			<tr>

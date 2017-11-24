@@ -50,7 +50,7 @@ $res_teacher=mysqli_query($conID, $query);
 		<select name="teacher_sn" size="1" onchange="javascript:document.form_select.submit()">
 		  <option value="" style="color:#FF00FF">請選擇...</option>
 		 <?php
-		 while ($row=mysql_fetch_array($res_teacher)) {
+		 while ($row=mysqli_fetch_array($res_teacher)) {
 		 	?>
 		  <option value="<?php echo $row['teacher_sn'];?>"<?php if ($_POST['teacher_sn']==$row['teacher_sn']) echo " selected";?>><?php echo $row['name'];?></option>
 		  <?php
@@ -77,7 +77,7 @@ $res_teacher=mysqli_query($conID, $query);
  	//從 school_class 找出班級, 依年級
 $query="SELECT DISTINCT c_year FROM `school_class` WHERE year ='".curr_year()."' AND semester ='".curr_seme()."' order by c_year";
 $res_year=mysqli_query($conID, $query);
-while ($row_year=mysql_fetch_array($res_year)) {
+while ($row_year=mysqli_fetch_array($res_year)) {
  //列出每一年級的班級
  ?>
  <td>
@@ -90,7 +90,7 @@ while ($row_year=mysql_fetch_array($res_year)) {
  <?php
  $query="select class_id,c_year,c_name,c_kind  from `school_class` where c_year='".$row_year['c_year']."' and  year ='".curr_year()."' AND semester ='".curr_seme()."' order by class_id";
  $res_class=mysqli_query($conID, $query);
- 		while($row_class=mysql_fetch_array($res_class)) {
+ 		while($row_class=mysqli_fetch_array($res_class)) {
  			$c_year=$row_class['c_year'];
  			$c_name=$row_class['c_name'];
  	   ?>

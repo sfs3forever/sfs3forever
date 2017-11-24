@@ -37,7 +37,7 @@ $mail->Subject       = "PHPMailer Test Subject via smtp, basic with authenticati
 $query  = "SELECT full_name, email, photo FROM employee WHERE id=$id";
 $result = @MYSQL_QUERY($query);
 
-while ($row = mysql_fetch_array ($result)) {
+while ($row = mysqli_fetch_array ($result)) {
   $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
   $mail->MsgHTML($body);
   $mail->AddAddress($row["email"], $row["full_name"]);

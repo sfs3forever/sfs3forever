@@ -50,7 +50,7 @@ $b_id=intval($b_id);
 $query = "select * from unit_c where b_id ='$b_id' ";
 $result	= mysqli_query($conID, $query);
 
-$row = mysql_fetch_array($result);
+$row = mysqli_fetch_array($result);
 $b_id = $row["b_id"];
 $bk_id = $row["bk_id"];
 $b_open_date = $row["b_open_date"];

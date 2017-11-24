@@ -7,7 +7,7 @@ include_once('login.inc');
 if ($_POST['act']=='login') {
  $query="select * from contest_user where tsn='".$_POST['tsn']."' and student_sn='".$_SESSION['session_tea_sn']."' and ifgroup=''";
  $result=mysqli_query($conID, $query);
- if ($STUDENT=mysql_fetch_array($result,1)) {
+ if ($STUDENT=mysqli_fetch_array($result,1)) {
  	//登入成功
   $_POST['act']="Start";
   $_POST['option1']=$_POST['tsn'];  //競賽的 tsn
@@ -48,9 +48,9 @@ if (@$_POST['act']=='Upload') {
       //檢查是否重復上傳, 若是, 則不再 insert
   	  $query="select * from contest_record2 where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."'";
   	  $result=mysqli_query($conID, $query);
-  	  $D=mysql_num_rows($result);
+  	  $D=mysqli_num_rows($result);
   	  if ($D>0) {
-  	   $F=mysql_fetch_array($result,1);
+  	   $F=mysqli_fetch_array($result,1);
   	   unlink ($UPLOAD_P[$ACTIVE].$F['filename']);
   	   	if ($TEST['active']==2) {
   	   		$a=explode(".",$F['filename']);
@@ -164,8 +164,8 @@ if ($_POST['act']=='Start') {
   $query="select * from contest_record2 where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."'";
   $result=mysqli_query($conID, $query);
   $N=0;
- 	 if (mysql_num_rows($result)>0) {
- 	 $row=mysql_fetch_array($result,1);
+ 	 if (mysqli_num_rows($result)>0) {
+ 	 $row=mysqli_fetch_array($result,1);
    $N=1;
    //若為靜態,分析縮圖檔案
  	   	if ($TEST['active']==2) {
@@ -282,8 +282,8 @@ test_main($_POST['option1'],1);
   $query="select * from contest_record2 where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."'";
   $result=mysqli_query($conID, $query);
   $N=0;
- 	 if (mysql_num_rows($result)>0) {
- 	 $row=mysql_fetch_array($result,1);
+ 	 if (mysqli_num_rows($result)>0) {
+ 	 $row=mysqli_fetch_array($result,1);
    $N=1;
    }
 

@@ -52,7 +52,7 @@ $res_class_year=mysqli_query($conID, $query);
  <tr valign="top">	
 
 <?php
-while ($row_class_year=mysql_fetch_array($res_class_year)) {
+while ($row_class_year=mysqli_fetch_array($res_class_year)) {
 	$query="select a.subject_name,b.ss_id from score_subject a, score_ss b where b.year='".curr_year()."' and b.semester='".curr_seme()."' and b.scope_id=a.subject_id and b.class_year='".$row_class_year['class_year']."'";
 	$res_subject=mysqli_query($conID, $query);
 	?>
@@ -68,9 +68,9 @@ while ($row_class_year=mysql_fetch_array($res_class_year)) {
    </tr>
    		
 	<?php
-	while ($row_subject=mysql_fetch_array($res_subject)) {
+	while ($row_subject=mysqli_fetch_array($res_subject)) {
 		$query="select ss_id from score_eduh_teacher where year_seme='$seme_year_seme' and ss_id='".$row_subject['ss_id']."'";  
-		$CHECKED=(mysql_num_rows(mysqli_query($conID, $query)))?"checked":"";		
+		$CHECKED=(mysqli_num_rows(mysqli_query($conID, $query)))?"checked":"";		
    ?>
    <tr>
      <td width="30" style="font-size:9pt"><input type="checkbox" name="ss_id[]" value="<?php echo $row_subject['ss_id'];?>" <?php echo $CHECKED;?>></td>

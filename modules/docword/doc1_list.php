@@ -221,7 +221,7 @@ $stmt->execute();
 $stmt->bind_result($doc1_id,$doc1_year_limit,$doc1_kind,$doc1_date,$doc1_date_sign,$doc1_unit,$doc1_word,$doc1_main,$doc1_unit_num1,$doc1_unit_num2,$teach_id,$doc1_k_id,$doc_stat,$doc1_end_date,$doc1_infile_date,$do_teacher );
 
 //$result = mysqli_query($conID, $query);
-//while ($row = mysql_fetch_array($result)) {
+//while ($row = mysqli_fetch_array($result)) {
 	while ($stmt->fetch()) {
 
 	//$doc1_id = $row["doc1_id"];

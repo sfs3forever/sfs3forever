@@ -67,7 +67,7 @@ if ($StartSec<$nowsec and $EndSec>$nowsec) {
 	//取得可選修的社團
 	$query="select * from stud_club_base where year_seme='$c_curr_seme' and club_open='1' and (club_class='$CLASS' or club_class='100')"; 
 	$res_club=mysqli_query($conID, $query);
-	$club_num=mysql_num_rows($res_club);
+	$club_num=mysqli_num_rows($res_club);
 	//社團可供選擇名額
 	$club_for_stud_num=club_for_stud_num($CLASS,$c_curr_seme);
 
@@ -100,11 +100,11 @@ if ($StartSec<$nowsec and $EndSec>$nowsec) {
 		  } else {
 	    $query="select * from stud_club_temp where year_seme='$c_curr_seme' and student_sn='".$STUD['student_sn']."' and choice_rank='$K'";
 	    $result=mysqli_query($conID, $query);
-	    if (mysql_num_rows($result)) {
+	    if (mysqli_num_rows($result)) {
 	   			$query="update stud_club_temp set club_sn='$club_sn' where year_seme='$c_curr_seme' and student_sn='".$STUD['student_sn']."' and choice_rank='$K'";
 	    	}else{
 	   			$query="insert into stud_club_temp (club_sn,year_seme,student_sn,choice_rank) values ('$club_sn','$c_curr_seme','".$STUD['student_sn']."','$K')";
-	    } // end if mysql_num_rows
+	    } // end if mysqli_num_rows
 	    
 	    if (mysqli_query($conID, $query)) {
 	     $INFO="已於".date("Y-m-d H:i:s")."儲存你的志願!";	    
@@ -181,7 +181,7 @@ if ($StartSec<$nowsec and $EndSec>$nowsec) {
 										<select size="1" name="choice[<?php echo $i;?>]">
 											<option value="" style="color:#FF00FF">請選擇...</option>
 											<?php
-											while ($row=mysql_fetch_array($res_club)) {
+											while ($row=mysqli_fetch_array($res_club)) {
 												$club_student_num=get_club_student_num($c_curr_seme,$row['club_sn']);
 												$club_student_number=$club_student_num[0]; //本社團已登錄的人數
 												if (($SETUP['choice_over']==0 and get_club_choice_rank($row['club_sn'],$i)>=$row['club_student_num']) or ($club_student_number>=$row['club_student_num'])) {

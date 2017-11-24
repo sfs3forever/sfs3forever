@@ -33,7 +33,7 @@ function get_course_class_select($sel_year="",$sel_seme="",$col_name="class_id",
   //echo $query."<br>";
   $res_course=mysqli_query($conID, $query);
   //取出設定的課程
-  while ($row_course=mysql_fetch_array($res_course)) {
+  while ($row_course=mysqli_fetch_array($res_course)) {
   	//取出課表中有此課程的班級
     $query="select distinct class_id from score_course where year='".substr($this_seme_year_seme,0,3)."' and semester='".substr($this_seme_year_seme,-1)."' and ss_id='".$row_course['ss_id']."' and teacher_sn='".$_SESSION['session_tea_sn']."'";
     //echo $query."<br>";
@@ -68,7 +68,7 @@ function get_course_class_select($sel_year="",$sel_seme="",$col_name="class_id",
 function check_class_id($year_seme,$teacher_sn,$class_id) {
 	$query="select * from `score_eduh_teacher2` where year_seme='$year_seme' and teacher_sn='$teacher_sn' and class_id='$class_id'";
 	$result=mysqli_query($conID, $query);
-	if (mysql_num_rows($result)>0) {
+	if (mysqli_num_rows($result)>0) {
 		return true;
 	} else {
 	  return false;

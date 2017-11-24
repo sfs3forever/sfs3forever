@@ -67,8 +67,8 @@ function get_dirname($dir)
 			echo "<DL>";
 			$query = "SELECT * FROM pro_kind where store_path='$ffile' ";
 			$result = mysql_query ($query);
-			if (mysql_num_rows($result)>0){
-				$row = mysql_fetch_array($result);
+			if (mysqli_num_rows($result)>0){
+				$row = mysqli_fetch_array($result);
 				$pro_kind_id = $row["pro_kind_id"];
 				$pro_kind_name = $row["pro_kind_name"];
 				$pro_kind_order = $row["pro_kind_order"];

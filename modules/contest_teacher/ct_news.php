@@ -95,7 +95,7 @@ if ($_POST['act']=='del') {
  	
  	$query="select * from contest_files where nsn='".$_POST['option1']."'";
  	$res=mysqli_query($conID, $query);
- 	while ($row=mysql_fetch_array($res,1)) {
+ 	while ($row=mysqli_fetch_array($res,1)) {
  	 unlink ($UPLOAD_P[0].$row['filename']);
  	}
  	
@@ -112,7 +112,7 @@ if ($_POST['act']=='del_file') {
  	
  	$query="select * from contest_files where fsn='".$_POST['option2']."'";
  	$res=mysqli_query($conID, $query);
- 	$row=mysql_fetch_array($res,1);
+ 	$row=mysqli_fetch_array($res,1);
  	unlink ($UPLOAD_P[0].$row['filename']);
  	
  	$query="delete from contest_files where fsn='".$_POST['option2']."'";
@@ -212,7 +212,7 @@ if ($_POST['act']=='update') {
   <?php
   $query="select * from contest_news where nsn='".$_POST['option1']."'";
   $res=mysqli_query($conID, $query);
-  $news=mysql_fetch_array($res);
+  $news=mysqli_fetch_array($res);
   
   form_news($news); //傳入, 列出表單
   
@@ -243,8 +243,8 @@ if ($_POST['act']=='' or $_POST['act']=='all') {
    	<?php
    	 $query=($_POST['act']=='')?"select * from contest_news where sttime<='$Now' and endtime>'$Now' order by updatetime desc":"select * from contest_news order by updatetime desc";
    	 $result=mysqli_query($conID, $query);
-   	 if (mysql_num_rows($result)) {
-   	  while ($NEW=mysql_fetch_array($result)) {
+   	 if (mysqli_num_rows($result)) {
+   	  while ($NEW=mysqli_fetch_array($result)) {
    	   echo "<tr><td>";	
    	 	 shownews($NEW);
    	 	 echo "</td></tr>";

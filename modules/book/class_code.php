@@ -33,7 +33,7 @@ $stmt->bind_result($stud_id,$stud_name);
 	$query = "select stud_id,stud_name from stud_base  where curr_class_num like '$_POST['class_id']%' and stud_study_cond =0 order by curr_class_num";
 	$result = mysql_query ($query,$conID) or die ($query);
 	*/
-	//while ($row= mysql_fetch_array($result)){
+	//while ($row= mysqli_fetch_array($result)){
 	while ($stmt->fetch()) {
 		//$core = $row["stud_id"];
 		$core = $stud_id;

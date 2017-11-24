@@ -124,7 +124,7 @@ if ($work_year_seme!='') {
 		<?php
 			$query="select * from association where student_sn='$selected_student' order by seme_year_seme";
 			$res=mysqli_query($conID, $query);
-			while ($row=mysql_fetch_array($res,1)) {
+			while ($row=mysqli_fetch_array($res,1)) {
 			 ?>
 		    <tr>
 		     <td align='center'><?php echo $row['seme_year_seme'];?></td>

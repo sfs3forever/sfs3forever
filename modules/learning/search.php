@@ -78,7 +78,7 @@ if($s_str) {
 	$link_str = "bk_id=$bk_id&s_str=".urlencode($s_str);
 	echo "<tr><td colspan=2 align=right>分頁：".pagesplit($page,$totalpage,5,$link_str);
 	echo "</td></tr></table>";
-	while($row = mysql_fetch_array($result)) {   
+	while($row = mysqli_fetch_array($result)) {   
 		$unit=$row[unit_m].$row[unit_t].$row[u_s];
 		$unit_name=$row[unit_name];
 		$sub=chang_word_color($sstr,$row[b_sub]);	

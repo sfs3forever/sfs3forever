@@ -38,7 +38,7 @@ $sql .= " order by b.m_date desc";
 //echo $sql."|<BR>\n";
 $sql_result = mysql_query($sql) or die($sql."<BR>\nsql語法有誤!!");
 
-if (mysql_num_rows($sql_result)==0){
+if (mysqli_num_rows($sql_result)==0){
   $main_function.= "<center>目前沒有任何訊息存在!!<br>\n";
   $main_function.= "[<A HREF=\"insert.php\">新增訊息</A>]&nbsp;&nbsp;\n";
   $main_function.= "[<A HREF=\"m_list.php\">管理傳送訊息</A>]<BR>\n";
@@ -53,7 +53,7 @@ $main_function.= "<td>序號</td>\n";
 $main_function.= "<td>訊息標題</td>\n";
 $main_function.= "<td>訊息日期</td>\n";
 $main_function.= "</tr>\n";
-while ($row = mysql_fetch_array($sql_result)){
+while ($row = mysqli_fetch_array($sql_result)){
   if($i%2){
 	$main_function.= "<tr bgcolor='#FFFFCC'>\n";
   }else{

@@ -70,7 +70,7 @@ class chi_make{
 	function list_db(){
 		$Query="SHOW DATABASES ";
 		$data = mysql_query( $Query ); //執行指令取出資料
-		while ($row = mysql_fetch_array ($data)) {
+		while ($row = mysqli_fetch_array ($data)) {
 			if($row[0]=='mysql') continue;
 //			$all_db[][database]=$row[0];
 			$all_db[]=$row[0];
@@ -82,7 +82,7 @@ class chi_make{
 	function list_tb(){
 		$Query=" SHOW TABLES FROM  `{$this->DB}`  ";
 		$data = mysql_query( $Query ) or die($Query); //執行指令取出資料
-		while ($row = mysql_fetch_array ($data)) {
+		while ($row = mysqli_fetch_array ($data)) {
 //			$tb[][tb]=$row[0];
 			$tb[]=$row[0];
 		}
@@ -92,7 +92,7 @@ class chi_make{
 		$Query=" SHOW FIELDS FROM `{$this->TB}`  ";
 //		$Query=" SHOW COLUMNS FROM  `{$this->TB}`  ";
 		$data = mysql_db_query ($this->DB,$Query);
-		while ($row = mysql_fetch_array ($data)) {
+		while ($row = mysqli_fetch_array ($data)) {
 			$field[]=$row[0];
 			$field_info[]=$row;
 		}

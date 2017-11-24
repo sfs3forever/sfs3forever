@@ -8,7 +8,7 @@ include "header.php";
 if ($_POST[tapem_add]=='確定新增'){
 	$dbquery = "select tapem_id from $mastertable where tapem_id='$_POST[tapem_id]' "; 
 	$result = mysql_query($dbquery);
-	if (mysql_num_rows($result)==0){
+	if (mysqli_num_rows($result)==0){
 		$tapem_name = stripslashes($_POST[tapem_name]);
 		$dbquery = "insert into $mastertable (tapem_id,tapem_name) values ('$_POST[tapem_id]','$tapem_name')";
 		$result = mysql_query($dbquery)or die("<br>新增錯誤：查看代號是否重複.<br>\n$dbquery");
@@ -41,7 +41,7 @@ echo("</form><hr width=400>");
 <?php
 $dbquery = "select * from $mastertable order by tapem_id";
 $result = mysql_query($dbquery);
-while($row = mysql_fetch_array($result)) {
+while($row = mysqli_fetch_array($result)) {
 	echo ($i++ %2)?"<tr bgcolor=\"$school_kind_color[3]\">":"<tr bgcolor=\"$school_kind_color[5]\">";
 	echo("<td align=center>$row[tapem_id]</td><td>$row[tapem_name]</td>");
 	echo("<td><a href=\"tapem_edit.php?edit_tapem&tapem_id=$row[tapem_id]\">修改</a></td>");

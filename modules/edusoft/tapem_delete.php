@@ -15,7 +15,7 @@ if ($_POST[do_delete]=='確定刪除'){//執行刪除
 else{ //詢問是否刪除
 	$dbquery = "select * from $mastertable where tapem_id='$_GET[tapem_id]' ";
 	$result = mysql_query($dbquery) or die("<br>TAPE: 刪除錯誤.<br>\n $dbquery");
-	$row = mysql_fetch_array($result);
+	$row = mysqli_fetch_array($result);
 	include "header.php";
 	echo("<center>\n");
 	echo("<b>是否刪除?</b>");

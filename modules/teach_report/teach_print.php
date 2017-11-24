@@ -62,7 +62,7 @@ if (isset($print_key)){
 	echo "</tr>";
 	$result = mysql_query ($sql_select,$conID)or die ($sql_select);
 	$i =0;
-	while ($row = mysql_fetch_array($result)) {
+	while ($row = mysqli_fetch_array($result)) {
                 $job = $row["title_name" ] ;
                 if ($row[class_num]) {//級任 
                   $temp_year = $class_year[substr($row[class_num],0,1)] ;
@@ -134,12 +134,12 @@ $result = mysql_query ($sql_select,$conID)or die ($sql_select);
 
 $i =0;
 
-if (mysql_num_rows ($result) > 0 ){
-	echo "筆數：".mysql_num_rows ($result)."</td></tr></table>
+if (mysqli_num_rows ($result) > 0 ){
+	echo "筆數：".mysqli_num_rows ($result)."</td></tr></table>
 	      <table  align=center  border=\"1\" cellspacing=\"0\" cellpadding=\"2\" bordercolorlight=\"#333354\" bordercolordark=\"#FFFFFF\" ><tr  class='title_sbody1'><td >職稱</td><td >身分証字號</td><td >姓名</td><td >生日</td><td >地址</td><td >電話</td>";
 	echo "</tr>";
 }
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
         $job = $row["title_name" ] ;
         if ($row[class_num]) {//級任 
           $temp_year = $class_year[substr($row[class_num],0,1)] ;

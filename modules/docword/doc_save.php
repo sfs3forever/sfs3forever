@@ -38,7 +38,7 @@ $stmt->bind_result($doc1_id,$doc1_year_limit);
 
 ///mysqli
 	//$result = mysqli_query($conID, $query);
-	//while($row = mysql_fetch_array($result)) {	
+	//while($row = mysqli_fetch_array($result)) {	
       while ($stmt->fetch()) {	
 		$temp = "doc1_year_limit_".$doc1_id;
 		$doc1_year_limit = $$temp;
@@ -172,7 +172,7 @@ echo "</td></tr>";
 $doc_life_p = doc_life();
 //總筆數
 
-//while($row = mysql_fetch_array($result)) {
+//while($row = mysqli_fetch_array($result)) {
   while ($stmt->fetch()) {
 	$unit_temp = $doc_unit_p[$doc1_unit_num1]; //取得處室名稱
 	reset ($doc_life_p);

@@ -269,7 +269,7 @@ function teacher_absent($id){
 
 		$query="select * from teacher_absent where id='".$id."'";
 		$result = mysqli_query($conID, $query) or die ($query);
-		$row = mysql_fetch_array($result);
+		$row = mysqli_fetch_array($result);
 		
 		$view_tsn=$row["teacher_sn"];
 

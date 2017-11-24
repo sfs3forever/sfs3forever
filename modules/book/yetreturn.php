@@ -11,7 +11,7 @@ $query = "SELECT book.book_id, book.book_name, book.book_author, date_format(bor
 //exit;
 
 $result = mysqli_query($conID,$query) or die ($query);
-$tolnum = mysql_num_rows($result);
+$tolnum = mysqli_num_rows($result);
 echo  "<center><BR><H3>逾期歸還書籍計 $tolnum 冊：統計時間：".date("Y-m-d")."</H3></center>";
 echo  "<table border=1 width=95% align=center>";
 echo  "<tr><td bgcolor=\"#8080FF\" width=20% align=center><strong>書號</strong></td>";
@@ -20,10 +20,10 @@ echo  "<td bgcolor=\"#8080FF\" width=15% align=center><strong>借閱人</strong>
 echo  "<td bgcolor=\"#8080FF\" width=20% align=center><strong>借閱<br>日期</strong></td>";
 echo  "<td bgcolor=\"#8080FF\" width=10% align=center nowrap><strong>逾期<br>日數</strong></td>";
 echo  "</tr>";
-while($row = mysql_fetch_array($result)){
+while($row = mysqli_fetch_array($result)){
         $query2 ="select stud_name,curr_class_num,stud_study_cond from stud_base where stud_id ='".$row["stud_id"]."'";
         $result2 = mysql_query($query2,$conID) or die ($query2);
-        $row2 = mysql_fetch_array($result2);
+        $row2 = mysqli_fetch_array($result2);
         $cyear = $row2["curr_class_num"];
         $memo = "";
         if ($row2["stud_study_cond"]==5){

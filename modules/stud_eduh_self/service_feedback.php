@@ -96,7 +96,7 @@ if ($_POST['mode']=='save') {
  if ($c_curr_seme!="") {
   $query="select  a.*,b.sn as detail_sn,b.minutes,b.feedback,c.seme_class from stud_service a, stud_service_detail b,stud_seme c where a.sn=b.item_sn and a.year_seme='$c_curr_seme' and b.student_sn='".$_SESSION['session_tea_sn']."' and c.seme_year_seme='$c_curr_seme' and c.student_sn=b.student_sn";
   $res=mysqli_query($conID, $query);
-  if (mysql_num_rows($res)==0) {
+  if (mysqli_num_rows($res)==0) {
    echo "本學期你沒有任何服務記錄!!";
    exit();
   } else {
@@ -120,7 +120,7 @@ if ($_POST['mode']=='save') {
      </tr>
      <?php
      $M=0;
-     while ($row=mysql_fetch_array($res)) {
+     while ($row=mysqli_fetch_array($res)) {
      	$c=substr($row['seme_class'],0,1);
       ?>
      <tr>

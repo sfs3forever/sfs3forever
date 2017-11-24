@@ -14,7 +14,7 @@ $query = "SELECT a.bookch1_id, a.bookch1_name, COUNT(*) AS cc  FROM bookch1 a, b
 $result= mysqli_query($conID,$query);
 $i=0;
 $tol=0;
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	if ($i % 2 == 1 )
 		echo "<tr bgcolor=#FFFF80>";
 	else

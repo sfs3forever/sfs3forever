@@ -53,11 +53,11 @@ if ($_POST['mode']=='arrange') {
   	//取得本年級的所有學生
   	$query="select student_sn from stud_seme where seme_year_seme='$c_curr_seme' and seme_class like '".$c_curr_class."%%'";
   	$res=mysqli_query($conID, $query);
-  	while ($row=mysql_fetch_array($res,1)) {
+  	while ($row=mysqli_fetch_array($res,1)) {
   		$sql="select student_sn from association where seme_year_seme='$c_curr_seme' and student_sn='".$row['student_sn']."'";
   		$res_stud=mysql_query($sql);
   		//若有資料
-  		if (mysql_num_rows($res_stud)) {
+  		if (mysqli_num_rows($res_stud)) {
   			//逐一比對 association 裡是否已有這個學生, 若有, 將 選課暫存資料註記為已編班 , 但不更動 arranged 資料 , 除非尚未編班
   			$query="update stud_club_temp set arranged='1' where year_seme='$c_curr_seme' and student_sn='".$row['student_sn']."' and arranged='0'";  //
   			mysqli_query($conID, $query);
@@ -73,7 +73,7 @@ if ($_POST['mode']=='arrange') {
   //以陣列記錄社團資料
   $club_all=0; //計數
   $club_for_this_class=0; //可提供給本年級選課的社團數,用於最後落選者編排部分，只能編入該年級的社團，不能編入跨年級社團
-  while ($row=mysql_fetch_array($result)) {
+  while ($row=mysqli_fetch_array($result)) {
   	$club_all++;
   	if ($row['club_class']==$c_curr_class) $club_for_this_class++;
     $club_sn[$club_all]=$row['club_sn'];
@@ -126,13 +126,13 @@ if ($_POST['mode']=='arrange') {
     	  }
     	  /***
     	  $result=mysqli_query($conID, $query);
-    	  $the_choice_stud_num=mysql_num_rows($result); //此志願,選此社團人數
+    	  $the_choice_stud_num=mysqli_num_rows($result); //此志願,選此社團人數
     	  if ($the_choice_stud_num==0) {
     	    continue;
     	  }else{
     	  	//以陣列記下學生 student_sn ,變數 array=> the_choice_stud[]
     	  	$i=0; $arr_assign=0; //本志願編入人數
-    	    while ($row=mysql_fetch_array($result)) {
+    	    while ($row=mysqli_fetch_array($result)) {
     	     $i++;
     	     $the_choice_stud[$i]=$row['student_sn'];   //取得本年級本志願選此社團的學生
     	    } //end while
@@ -471,12 +471,12 @@ function arrange_run($the_club,$query,$NEED,$limit) {
    global $RECORD;
    
      	  $result=mysqli_query($conID, $query);
-    	  $the_choice_stud_num=mysql_num_rows($result); //此志願,選此社團人數
+    	  $the_choice_stud_num=mysqli_num_rows($result); //此志願,選此社團人數
     	  if ($the_choice_stud_num>0) {
     	    
     	  	//以陣列記下學生 student_sn ,變數 array=> the_choice_stud[]
     	  	$i=0; $arr_assign=0; //本志願編入人數
-    	    while ($row=mysql_fetch_array($result)) {
+    	    while ($row=mysqli_fetch_array($result)) {
     	     $i++;
     	     $the_choice_stud[$i]=$row['student_sn'];   //取得本年級本志願選此社團的學生
     	     $the_choice_stud_sex[$i]=$row['stud_sex'];    	     

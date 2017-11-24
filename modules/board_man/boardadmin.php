@@ -40,7 +40,7 @@ if ($key != "新增版區"){
 //  --目前資料
 	$query = "select * from board_kind where bk_id ='$bk_id' ";
 	$result = mysql_query ($query,$conID) or die ($query); 
-	$row = mysql_fetch_array($result);
+	$row = mysqli_fetch_array($result);
 }
 else
 $query = "select bk_id,board_name from board_kind order by bk_id limit 0,1 ";

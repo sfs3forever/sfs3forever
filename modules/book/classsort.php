@@ -21,7 +21,7 @@ echo "<tr bgcolor=#8080FF><td >序號</td><td width=80 align=center>班級</td><
 $i = 1;
 $result = mysql_query($query ,$conID) or die($query);
 $tol_all = 0;
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	if ($i % 2 == 0 )
 		$bgcolor =" bgcolor=#FFFF80 ";
 	else

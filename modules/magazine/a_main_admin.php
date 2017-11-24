@@ -206,7 +206,7 @@ print_menu($m_menu_p);
       
       $result = mysql_query ($sqlstr,$conID) ; 
       if ($result) 
-        while ($row=mysql_fetch_array($result)) {
+        while ($row=mysqli_fetch_array($result)) {
           $book_num = $row["num"] ; //取得期別    
           $id = $row["id"] ;
           $publish_date = $row["publish_date"] ;
@@ -309,7 +309,7 @@ print_menu($m_menu_p);
       
       $result = mysql_query ($sqlstr,$conID) ; 
       if ($result) 
-        while ($row=mysql_fetch_array($result)) {
+        while ($row=mysqli_fetch_array($result)) {
           $book_num = $row["num"] ; //取得期別    
           $id = $row["id"] ;
           $publish_date = $row["publish_date"] ;

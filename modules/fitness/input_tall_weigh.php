@@ -52,7 +52,7 @@ if ($module_manager!=1) {
  	 		 $class_id=sprintf("%03d_%d_%02d_%02d",curr_year(),curr_seme(),substr($SEME_CLASS,0,1),substr($SEME_CLASS,1,2));
  	 		 $query="select c_year,c_name,c_kind from school_class where class_id='$class_id'";
  	 		 $res_class=mysqli_query($conID, $query);
- 	 		 if (mysql_num_rows($res_class)) {
+ 	 		 if (mysqli_num_rows($res_class)) {
  	 		 list($c_year,$c_name,$c_kind)=mysqli_fetch_row($res_class);
  	 		 ?>
  	 		  <option value="<?php echo $SEME_CLASS;?>"<?php if ($SEME_CLASS==$seme_class) echo " selected";?>><?php echo $school_kind_name[$c_year]."".$c_name."班";?></option>

@@ -53,8 +53,8 @@ if ($stud_id !=""){
 	$stud_id=substr($stud_id,0,7);
 	$query = "select stud_name,curr_class_num,stud_study_cond,stud_study_year from stud_base where stud_id = '$stud_id' and stud_study_cond=0";
 	$result = mysqli_query($conID, $query)or die ($query);
-	if ( mysql_num_rows($result) >0){
-		$row= mysql_fetch_array($result);
+	if ( mysqli_num_rows($result) >0){
+		$row= mysqli_fetch_array($result);
 		$stud_name = $row["stud_name"];
 		if($row["stud_study_cond"]<>0) $stud_color="#FF0000"; else $stud_color="#000000";
 		$stud_study_cond = $study_cond[($row["stud_study_cond"])];
@@ -75,7 +75,7 @@ if ($book_id != ""){
 	$amount_limit_s=$amount_limit_s?$amount_limit_s:7;
 	$query = "SELECT count(*) AS counter FROM borrow WHERE stud_id='$stud_id' and ISNULL(in_date)";
 	$result = mysqli_query($conID, $query)or die ($query);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	if($row["counter"]>=$amount_limit_s) echo "<script language=\"Javascript\"> alert (\"本學生未歸還借書數：{$row['counter']}，已經達到模組變數設定的限制數： $amount_limit_s 本了。\\n\\n 請將欲借出的圖書收回！\")</script>";
 	else {
 		
@@ -95,10 +95,10 @@ $stmt->close();
 		
 		//$temp_bb = "<font color=red><b>找不到這本書或已被借出</b></font>";
 		$temp_bb = "<script language=\"Javascript\"> alert (\"找不到這本書或已被借出了！\")</script>";
-		//if ( mysql_num_rows($result) >0){
+		//if ( mysqli_num_rows($result) >0){
 		if(!empty($book_name)){
 			/*
-			$row= mysql_fetch_array($result);
+			$row= mysqli_fetch_array($result);
 			$bookch1_id = $row["bookch1_id"];
 			$book_id = $row["book_id"];	
 			$book_name = $row["book_name"];	
@@ -182,7 +182,7 @@ $query = "SELECT book.bookch1_id, book.book_id, book.book_name, book.book_num, b
 $result = mysqli_query($conID, $query)or die ($query);
 echo "<center><table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse;' bordercolor='#111111' id='AutoNumber1'>";
 echo "<tr bgcolor=#8080FF align='center'><td>NO.</td><td>總號</td><td>書號</td><td>書名</td><td>借閱日期</td><td>歸還日期</td></tr>";
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	$i++;
 	$bookch1_id = $row["bookch1_id"];
 	$book_id = $row["book_id"];

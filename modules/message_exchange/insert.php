@@ -90,7 +90,7 @@ if($check_button == $submit_name1){
 	$sql .= " order by m_date desc";
 	//echo $sql."|<BR>\n";
 	$sql_result = mysql_query($sql) or die($sql."<BR>\nsql語法有誤!!");
-	$row_id = mysql_fetch_array($sql_result);
+	$row_id = mysqli_fetch_array($sql_result);
 	$new_r_id = $row_id[0];
 
 
@@ -172,7 +172,7 @@ if($check_button == $submit_name1){
 	//echo $sql."|<BR>\n";
 	$sql_result = mysql_query($sql) or die($sql."<BR>\nsql語法有誤!!");
     
-	$user_total = mysql_num_rows($sql_result);
+	$user_total = mysqli_num_rows($sql_result);
 
 	if ($user_total==0 and $check_button <> $submit_name4){
 	  echo "<center><FONT SIZE=\"4\" COLOR=\"#FF0000\">目前沒有任何教職員存在，請聯絡管理者!!</FONT><br>\n";
@@ -180,7 +180,7 @@ if($check_button == $submit_name1){
 	}
 
 	//將所有user轉成user陣列
-	while ($row = mysql_fetch_array($sql_result)){
+	while ($row = mysqli_fetch_array($sql_result)){
 	  $all_user[$row[1]] = $row[0];
 	  $all_user_kind[$row[1]] = $row[2];
 	}

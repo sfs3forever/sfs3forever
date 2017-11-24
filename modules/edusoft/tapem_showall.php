@@ -16,7 +16,7 @@ include "header.php";
 <?php
 $dbquery = "select * from $subtable order by tapem_id,tape_id";
 $result = mysql_query($dbquery) or die("<br>DJ-PIM ERROR: e to add record.<br>\n $dbquery");
-while($row = mysql_fetch_array($result)){
+while($row = mysqli_fetch_array($result)){
 	echo("<tr><td align=center>$row[tapem_id]$row[tape_id]</td><td>$row[tape_name]</td>");
 }
 ?>

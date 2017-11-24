@@ -30,7 +30,7 @@ if (!is_file($up_file_name)){
 	//將原有資料的的主辦單位皆寫承辦單位名稱
 	$sql="select sn,department from stud_service";
 	$res=mysql_query($sql);
-	while ($row=mysql_fetch_array($res,1)) {
+	while ($row=mysqli_fetch_array($res,1)) {
 	  $department=$row['department'];
 	  $sql_select = "select room_name from school_room where room_id='$department'";
     $result=$CONN->Execute($sql_select);

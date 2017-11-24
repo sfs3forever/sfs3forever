@@ -91,7 +91,7 @@ if ($_POST['act']=='update') {
 if ($_POST['act']=='edit') {
 	$query="select a.student_sn,a.curr_class_num from stud_base a,career_race b where a.student_sn=b.student_sn and b.sn='".$_POST['option1']."'";
   $res=mysqli_query($conID, $query);
-  $row=mysql_fetch_array($res,1);
+  $row=mysqli_fetch_array($res,1);
   $_POST['to_class']=substr($row['curr_class_num'],0,3);
   $_POST['to_student']=$row['student_sn'];
   //echo $query;
@@ -104,7 +104,7 @@ if (isset($_POST['to_class'])) {
 	$query="select a.student_sn,a.stud_id,a.seme_class,a.seme_num,b.stud_name from stud_seme a,stud_base b where a.student_sn=b.student_sn and a.seme_year_seme='$c_curr_seme' and a.seme_class='".$_POST['to_class']."' order by a.seme_num";
 	$res=mysqli_query($conID, $query);
 	$student_array=array();
-	while ($row=mysql_fetch_array($res,1)) {
+	while ($row=mysqli_fetch_array($res,1)) {
 		$student_array[$row['student_sn']]=$row['seme_num']." ".$row['stud_name'];
 	}
 }

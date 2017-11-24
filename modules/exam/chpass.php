@@ -64,7 +64,7 @@ while ($stmt->fetch()) {
   $sql_select .= " where stud_id='$session_stud_id' ";
   $result = mysql_query ($sql_select);  
  
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
 
 	$stud_id = $row["stud_id"];
 	$stud_name = $row["stud_name"];

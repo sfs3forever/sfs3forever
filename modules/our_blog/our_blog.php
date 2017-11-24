@@ -305,7 +305,7 @@ function fpage($pen,$sql){
     global $nowpage,$search_str;
     //總共有幾頁
     $rs1 = @mysql_query($sql) or trigger_error($sql,256);
-    $kk = mysql_num_rows($rs1) ;
+    $kk = mysqli_num_rows($rs1) ;
     $d=$kk%$pen;
     if($d==0) $pagenum=$kk/$pen;
     else $pagenum=ceil($kk/$pen);

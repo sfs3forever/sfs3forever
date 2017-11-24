@@ -26,7 +26,7 @@ else
 	$seme_year_temp = sprintf("%03d2",$seme_year);
 
 $class_name= class_base($seme_year_temp);
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	if ($i % 2 == 0)
 		$bgcolor =" bgcolor=\"#FFFF80\" ";
 	else
@@ -34,7 +34,7 @@ while ($row = mysql_fetch_array($result)){
 
 	$query2 ="select stud_name,curr_class_num,stud_study_cond from stud_base  where stud_id='".$row["stud_id"]."'";
 	$result2 = mysql_query($query2,$conID) or die ($query2);
-	$row2= mysql_fetch_array($result2);
+	$row2= mysqli_fetch_array($result2);
 	$cyear = $row2["curr_class_num"];
 	$memo = "";
 	if ($row2["stud_study_cond"]== 5){

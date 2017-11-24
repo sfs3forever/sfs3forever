@@ -19,7 +19,7 @@ if ($_POST['act']=='del') {
   foreach($_POST['id'] as $id) {
      	$query="select * from sc_msn_board_pic where id='$id'"; 
  		 	$result=mysqli_query($conID, $query);
-  		$row=mysql_fetch_array($result,1);
+  		$row=mysqli_fetch_array($result,1);
   		  //蝮桀?
   		  $a=explode(".",$row['filename']);
   	   	$filename_s=$a[0]."_s.".$a[1];
@@ -33,7 +33,7 @@ if ($_POST['act']=='del') {
   foreach($_POST['id'] as $id) {
     	$query="select * from sc_msn_data where id='$id'"; //銝??idnumber , 銝撠??臬蝯血?鈭箸?, ??? ?dnumber, ?嗅?銋???銝??獢?
  		 	$result=mysqli_query($conID, $query);
-  		$row=mysql_fetch_array($result,1);
+  		$row=mysqli_fetch_array($result,1);
   		if ($row['data_kind']==1 or $row['data_kind']==2) {
   	 	  //?芷??
    		  delete_file ($row['idnumber'],$row['to_id']);
@@ -129,7 +129,7 @@ if ($set=='my_pic') {
     </tr>
 
 <?php
- while ($row=mysql_fetch_array($result,1)) {
+ while ($row=mysqli_fetch_array($result,1)) {
  	$teach_id_name=get_name_state($row['teach_id']);
  	?>
     <tr>
@@ -172,7 +172,7 @@ if ($set=='my_pic') {
     </tr>
 
 	<?php
- while ($row=mysql_fetch_array($result,1)) {
+ while ($row=mysqli_fetch_array($result,1)) {
  //list($id,$idnumber,$teach_id,$to_id,$post_date,$last_date,$data,$ifread)=$row;
   $teach_id_name=get_name_state($row['teach_id']);
   $to_id_name=get_name_state($row['to_id']);
@@ -190,7 +190,7 @@ if ($set=='my_pic') {
       <td width="100" style="font-size:10pt" align="center"><?php echo $to_id_name[0];?></td>
       <td style="font-size:10pt"><?php echo $data;?>
 			<?php
-			  if (mysql_num_rows($result_file)) {
+			  if (mysqli_num_rows($result_file)) {
 			 ?>
 			  <br>
       	<font style="color:#0000FF">?祈??臬??嚗???

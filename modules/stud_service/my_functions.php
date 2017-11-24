@@ -119,7 +119,7 @@ function student_select($c_curr_class) {
     <table border="1" bordercolor="#800000" style="border-collapse:collapse" width="800">
   <?php
   $i=0;
-  while ($row=mysql_fetch_array($result)) {
+  while ($row=mysqli_fetch_array($result)) {
   		$i++;
   		if ($i%5==1) echo "<tr>";
   		//檢查是否已有此生
@@ -178,7 +178,7 @@ function list_pastservice($year_seme) {
 	 	<div style="OVERFLOW:auto; HEIGHT: 200px; " border="1">
 			<table border="0" widtn="400" cellspacing="0">
 				<?php
-				while ($row=mysql_fetch_array($result)) {
+				while ($row=mysqli_fetch_array($result)) {
 				$stud_num=getService_num($row['sn']);
 				?>
 				<tr bgcolor="#FFFFFF" style="cursor:hand" onclick="window.location='<?php echo $_SERVER['PHP_SELF'];?>?sn=<?php echo $row['sn'];?>'" onmouseover="setPointer(this, 'over', '#FFFFFF', '#CCFFCC', '#FFCC99')" onmouseout="setPointer(this, 'out', '#FFFFFF', '#CCFFCC', '#FFCC99')" onmousedown="setPointer(this, 'click', '#FFFFFF', '#CCFFCC', '#FFCC99')" <?php if ($row['sn']==$_GET['sn']) echo "style='color:#FF0000'";?>>
@@ -252,7 +252,7 @@ function list_service_stud($sn) {
        <table border="0" width="100%" cellspacing="0" cellpadding="0">
        <?php
        $i=0;
-		   while ($row_class=mysql_fetch_array($res_class)) {
+		   while ($row_class=mysqli_fetch_array($res_class)) {
   	   	$i++;
 	 	     if ($i%5==1) echo "<tr>";
 	   	 ?>
@@ -317,7 +317,7 @@ function list_service_stud_noedit($sn) {
        <table border="0" width="100%" cellspacing="0" cellpadding="0">
        <?php
        $i=0;
-		   while ($row_class=mysql_fetch_array($res_class)) {
+		   while ($row_class=mysqli_fetch_array($res_class)) {
   	   	$i++;
 	 	     if ($i%3==1) echo "<tr>";
 	   	 ?>
@@ -424,7 +424,7 @@ function update_service_stud($sn) {
 function getService_one($sn) {
    $query="select * from stud_service where sn='$sn'";
 	$result=mysqli_query($conID, $query);
-	$S=mysql_fetch_array($result);
+	$S=mysqli_fetch_array($result);
  return $S; // return array
 }
 
@@ -474,7 +474,7 @@ function getService_studmemo($sn,$student_sn) {
 function getService_stud_base($sn,$student_sn) {
 	$query="select a.stud_name,b.seme_class,b.seme_num,c.service_date,c.department,c.item,c.memo,c.sponsor,d.* from stud_base a, stud_seme b, stud_service c , stud_service_detail d where c.sn='$sn' and c.year_seme=b.seme_year_seme and c.sn=d.item_sn and d.student_sn=b.student_sn and d.student_sn=a.student_sn and d.student_sn='$student_sn'";
 	$result=mysqli_query($conID, $query);
-	$row=mysql_fetch_array($result);
+	$row=mysqli_fetch_array($result);
 	return $row;
 }
 
@@ -504,8 +504,8 @@ function check_exist_service($sn,$act="") {
 		$item_sn=$sn;
 		 $query="select * from stud_service where sn='$item_sn'";
 		 $result=mysqli_query($conID, $query);
-		 if (mysql_num_rows($result)) {
-		 	$row=mysql_fetch_array($result);
+		 if (mysqli_num_rows($result)) {
+		 	$row=mysqli_fetch_array($result);
 		 	if ($act) {
 			 echo "編輯<font color=blue>".$row['service_date']." 在 【".$row['sponsor']."】進行《".$row['item']."》服務...</font><br>\n";
 			}else{
@@ -525,7 +525,7 @@ function check_exist_service($sn,$act="") {
 function check_exist_service_stud($sn,$student_sn) {
 	$query="select * from stud_service_detail where student_sn='$student_sn' and item_sn='$sn'";
 	$result=mysqli_query($conID, $query);
-	if (mysql_num_rows($result)) {
+	if (mysqli_num_rows($result)) {
 	 return true;
 	} else {
 	 return false;
@@ -545,7 +545,7 @@ function student_service_select($classid,$c_curr_seme) {
   <table border="1" bordercolor="#800000" style="border-collapse:collapse" width="800">
   <?php
   $i=0;
-  while ($row=mysql_fetch_array($result)) {
+  while ($row=mysqli_fetch_array($result)) {
   		$i++;
   		if ($i%5==1) echo "<tr>";
 		$stud_Service_min=getService_allmin($row['student_sn'],$c_curr_seme);
@@ -571,7 +571,7 @@ function student_service_select($classid,$c_curr_seme) {
 function getStudent_seme($student_sn,$c_curr_seme){
 		$query="select a.*,b.seme_class,b.seme_num from stud_base a,stud_seme b where a.student_sn='$student_sn' and a.student_sn=b.student_sn and b.seme_year_seme='$c_curr_seme'";
 		$result=mysqli_query($conID, $query);
-		$student=mysql_fetch_array($result);
+		$student=mysqli_fetch_array($result);
 	return $student;
 }
 
@@ -734,7 +734,7 @@ function list_service_all($student_sn,$class_name) {
 function list_class_all($classid,$c_curr_seme,$class_name) {
 	$query="select a.*, b.seme_class,b.seme_num from stud_base a,stud_seme b where b.seme_class='$classid' and b.seme_year_seme='$c_curr_seme' and a.student_sn=b.student_sn order by b.seme_num";
 	$result=mysqli_query($conID, $query);
-	while ($row_stud=mysql_fetch_array($result)) {
+	while ($row_stud=mysqli_fetch_array($result)) {
 		list_service($row_stud['student_sn'],$c_curr_seme,$class_name);
 	}
 }

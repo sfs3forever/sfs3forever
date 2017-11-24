@@ -32,13 +32,13 @@ $del="　<a href='test_edit.php?key=del&unit=$unit'>刪除解答空白題</a>
 //取得各領域冊別
 $sqlstr = "select * from unit_tome where  unit_m='$m' and unit_t='$t' " ;
 $result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-$row= mysql_fetch_array($result);
+$row= mysqli_fetch_array($result);
 $c_tome = $row["unit_tome"];
 $tome_ver = $row["tome_ver"];
 //取得單元名稱
 $sqlstr = "select * from unit_u where  unit_m='$m'  and unit_t='$t' and u_s='$u' and tome_ver='$tome_ver' ";
 $result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-$row= mysql_fetch_array($result);
+$row= mysqli_fetch_array($result);
 $c_unit = $row["unit_name"];
 $u_id = $row["u_id"];
 $msg_err="";
@@ -65,7 +65,7 @@ $sql_select .= " a.u_id='$u_id'  and  ";
 $sql_select .= " poke >0 and who='學生'  and  c.stud_study_cond='0' and ";   
 $sql_select .= " a.u_id=b.u_id and a.teacher_sn = c.student_sn order by  $order"; 
 $result = mysql_query ($sql_select,$conID)or die ($sql_select);
-$tol_num= mysql_num_rows($result);
+$tol_num= mysqli_num_rows($result);
 
 if ($tol_num % $page_count > 0 )
 	$tolpage = intval($tol_num / $page_count)+1;
@@ -94,7 +94,7 @@ $result = mysql_query ($sql_select,$conID)or die ($sql_select);
 $e_unit.="<table border='1' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='95%'  align='center'>";
 $e_unit.="<tr <tr  align='center'><td><a href='$PHP_SELF?key=stud&unit=$unit'>年班座號</a></td><td>姓名</td><td>神奇寶貝等級</td><td>經驗值</td><td>戰鬥力</td><td><a href='$PHP_SELF?key=stud&unit=$unit&order=up_date desc'>最新訓練時間</a></td></tr>";
 $i=1;
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	$stud_name = $row["stud_name"];
 	$curr_class_num=$row["curr_class_num"];
 	$poke = $row["poke"];
@@ -133,7 +133,7 @@ if ($key == "修改"){
 	$qid=intval($qid);
 	$sqlstr = "select * from test_data   where  qid='$qid' " ;	
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row = mysql_fetch_array($result);
+	$row = mysqli_fetch_array($result);
 	$ques = $row["ques"] ;  
 	$ch[1] = $row["ch1"] ;  
 	$ch[2] = $row["ch2"] ;  

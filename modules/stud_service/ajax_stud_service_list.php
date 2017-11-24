@@ -38,7 +38,7 @@ if (isset($sn)) {
        
        $data.="<table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\">";
        $i=0;
-		   while ($row_class=mysql_fetch_array($res_class)) {
+		   while ($row_class=mysqli_fetch_array($res_class)) {
   	   	$i++;
 	 	     if ($i%3==1) $data.="<tr>";
 	   	 $data.="<td style=\"font-size:10pt\" valign=\"top\" width=\"113\">";

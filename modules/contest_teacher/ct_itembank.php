@@ -187,7 +187,7 @@ if ($_POST['act']=='') {
   <hr>
    <table border="0" width="100%">
   	<tr>
-  		<td style="color:#800000">．題庫試題列表 (總題數：<?php echo mysql_num_rows(mysql_query("select id from contest_itembank"));?>題) <input type="button" value="刪除勾選試題" onclick="document.myform.act.value='delete_tag';document.myform.submit();">
+  		<td style="color:#800000">．題庫試題列表 (總題數：<?php echo mysqli_num_rows(mysql_query("select id from contest_itembank"));?>題) <input type="button" value="刪除勾選試題" onclick="document.myform.act.value='delete_tag';document.myform.submit();">
   			</td>
   	</tr>
   </table>

@@ -131,7 +131,7 @@ $query="select a.*,b.seme_class,b.seme_num,c.stud_name from association a,stud_s
 $res=mysqli_query($conID, $query);
 
  $i=0;
-  while ($row=mysql_fetch_array($res)) {
+  while ($row=mysqli_fetch_array($res)) {
   	$i++;
   	$CLASS_name=$school_kind_name[substr($row['seme_class'],0,1)];
   	if ($row['score']=="0")  $row['score']='';

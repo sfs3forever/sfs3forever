@@ -38,7 +38,7 @@ $page_num=($page-1)*$page_unit;
 
 $sql_1 = "SELECT count(*) FROM ".$user_t1;
 $sql_r1 = mysql_query($sql_1);
-$board_num = mysql_fetch_array($sql_r1);
+$board_num = mysqli_fetch_array($sql_r1);
 $page_total=ceil($board_num[0]/$page_unit);// 將公告數除以每頁呈現筆數後無條件進位
 
 $web_page_list = "";

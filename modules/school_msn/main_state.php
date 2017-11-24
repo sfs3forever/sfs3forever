@@ -8,7 +8,7 @@ mysql_query("SET NAMES 'utf8'");
 if ($_POST['set']=="" and $_SESSION['MSN_LOGIN_ID']!="") {
 $query="select * from sc_msn_online where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
 $result=mysqli_query($conID, $query);
-$row=mysql_fetch_array($result,1);
+$row=mysqli_fetch_array($result,1);
 ?>
 <html>
 <head>

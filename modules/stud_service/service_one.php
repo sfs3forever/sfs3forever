@@ -136,7 +136,7 @@ if ($_POST['save']==1) {
 		  echo "登錄學生時發生錯誤! Query=".$query;
 		  exit();
 		}
-		 } // end if mysql_num_rows 檢驗該生是否已登錄
+		 } // end if mysqli_num_rows 檢驗該生是否已登錄
 	  } // end forecah
 	 } // end if $S['confirm']	 
 	 

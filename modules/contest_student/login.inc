@@ -3,7 +3,7 @@
 if ($_POST['act']=='login') {
  $query="select * from contest_user where tsn='".$_POST['tsn']."' and student_sn='".$_SESSION['session_tea_sn']."' and ifgroup=''";
  $result=mysqli_query($conID, $query);
- if ($STUDENT=mysql_fetch_array($result,1)) {
+ if ($STUDENT=mysqli_fetch_array($result,1)) {
  	$TEST=get_test_setup($_POST['tsn']);
  		if ($_POST['password']==$TEST['password']) {
  			//登入成功

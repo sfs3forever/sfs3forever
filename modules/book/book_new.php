@@ -121,7 +121,7 @@ if ($_POST['key'] == "確定新增") {
             /*
               $sql_select = "select max(book_id)as mm from book where bookch1_id ='$_POST[bookch1_id]' AND length(book_id)>8";
               $result = mysql_query ($sql_select,$conID) or die($sql_select);
-              $row = mysql_fetch_array($result);
+              $row = mysqli_fetch_array($result);
              */
 
 ///mysqli
@@ -150,7 +150,7 @@ if ($_POST['key'] == "確定新增") {
                 /*
                   $sql_select = "select max(book_id)as mm from book where bookch1_id ='{$_POST['bookch1_id']}'";
                   $result = mysql_query ($sql_select,$conID) or die($sql_select);
-                  $row = mysql_fetch_array($result);
+                  $row = mysqli_fetch_array($result);
                  */
             }
             //$book_id = $row["mm"];
@@ -216,14 +216,14 @@ if (!empty($book_class)) {
 
 $sql_select = "select max(book_id)as mm from book where bookch1_id ='$bookch1_id' AND length(book_id)>8";
 $result = mysql_query($sql_select, $conID) or die($sql_select);
-$row = mysql_fetch_array($result);
+$row = mysqli_fetch_array($result);
 
 if ($row[0]) {
     $is_over_10000 = "本分類存書本數超過一萬本，編碼增加為5碼！";
 } else {
     $sql_select = "select max(book_id)as mm from book where bookch1_id ='$bookch1_id'";
     $result = mysql_query($sql_select, $conID) or die($sql_select);
-    $row = mysql_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 }
 
 $book_id = $row["mm"];
@@ -264,7 +264,7 @@ include "header.php";
                         <?php
                         $query = "select * from bookch1 order by bookch1_id ";
                         $result = mysql_query($query, $conID);
-                        while ($row = mysql_fetch_array($result)) {
+                        while ($row = mysqli_fetch_array($result)) {
                             //if (substr($row["bookch1_id"],0,1) == substr($book_class, 0, 1))
                             //echo sprintf("<option value=\"%s\" selected>%s %s",$row["bookch1_id"],$row["bookch1_id"],$row["bookch1_name"]);
                             if ($row["bookch1_id"] == $bookch1_id)

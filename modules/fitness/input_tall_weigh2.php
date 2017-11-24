@@ -136,7 +136,7 @@ if ($stud_data) {
     	  $query="select student_sn from fitness_data where student_sn='".$student_sn."' and c_curr_seme='".$c_curr_seme."'";
    			$result_chk=mysqli_query($conID, $query);
    			//如果有資料
-   			if (mysql_num_rows($result_chk)) {
+   			if (mysqli_num_rows($result_chk)) {
    			  $query="update `fitness_data` set tall='".$student[$TALL]."',weigh='".$student[$WEIGH]."' where student_sn='".$student_sn."' and c_curr_seme='".$c_curr_seme."'";
    			} else {
    				$query="insert into `fitness_data` (c_curr_seme,student_sn,tall,weigh) values ('$c_curr_seme','".$student_sn."','".$student[$TALL]."','".$student[$WEIGH]."')";

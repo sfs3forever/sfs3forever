@@ -49,7 +49,7 @@ if ($_POST['act']=='myans') {
   $anstime=date("Y-m-d H:i:s");
   //避免重覆作答=========================================================
   $query="select * from contest_record1 where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."' and ibsn='".$ibsn."'";
-  if (mysql_num_rows(mysqli_query($conID, $query))==0) {
+  if (mysqli_num_rows(mysqli_query($conID, $query))==0) {
   	$query="insert into contest_record1 (tsn,student_sn,ibsn,myans,lurl,anstime) values ('".$_POST['option1']."','".$_SESSION['session_tea_sn']."','$ibsn','$myans','$lurl','$anstime')";
   		if (mysqli_query($conID, $query)) {
   			$N++;
@@ -63,7 +63,7 @@ if ($_POST['act']=='myans') {
    		echo "請通知監考老師!";
    		exit();
    		}
-  }// end if mysql_num_rows==0  此題尚未作答
+  }// end if mysqli_num_rows==0  此題尚未作答
   $_POST['act']='Start';
  //時間到了======
  } else {
@@ -136,7 +136,7 @@ if ($_POST['act']=='Start') {
   if ($N<$TEST['search_ibgroup']) {
   $N+=1; //列出下一題
   $query="select * from contest_ibgroup where tsn='".$_POST['option1']."' and tsort='".$N."'";
-  $ITEM=mysql_fetch_array(mysqli_query($conID, $query)); //題目
+  $ITEM=mysqli_fetch_array(mysqli_query($conID, $query)); //題目
   ?>
   <input type='hidden' name='ibsn' value='<?php echo $ITEM['ibsn'];?>'>
   <table border="0" width="100%">
@@ -244,7 +244,7 @@ if ($_POST['act']=='End') {
       $I=0;
       $query="SELECT a.* , b.question,b.ans FROM contest_record1 AS a, contest_ibgroup AS b WHERE a.tsn=b.tsn and a.tsn='".$_POST['option1']."' and a.student_sn='".$_SESSION['session_tea_sn']."' and a.ibsn = b.ibsn order by a.anstime";
       $result=mysqli_query($conID, $query);
-      while ($ITEM=mysql_fetch_array($result)) {
+      while ($ITEM=mysqli_fetch_array($result)) {
       	$I++;
       	?>
       <tr>

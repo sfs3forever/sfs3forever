@@ -37,13 +37,13 @@ if ($_GET[logout]== "yes"){
 //取得各領域冊別
 $sqlstr = "select * from unit_tome where  unit_m='$m' and unit_t='$t' " ;
 $result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-$row= mysql_fetch_array($result);
+$row= mysqli_fetch_array($result);
 $c_tome = $row["unit_tome"];
 $tome_ver = $row["tome_ver"];
 //取得單元名稱
 $sqlstr = "select * from unit_u where  unit_m='$m'  and unit_t='$t' and u_s='$u' and tome_ver='$tome_ver' and exam='1'";
 $result = mysql_query($sqlstr);
-$row= mysql_fetch_array($result);
+$row= mysqli_fetch_array($result);
 $c_unit = $row["unit_name"];
 $u_id = $row["u_id"];
 $msg_err="";
@@ -75,13 +75,13 @@ while ($row = $result->FetchRow() ) {
 $u_id=intval($u_id);
 $sqlstr = "select * from test_score where  u_id='$u_id' and teacher_sn={$_SESSION['session_tea_sn']} " ;
 $result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-$row= mysql_fetch_array($result);
+$row= mysqli_fetch_array($result);
 if($row['s_id']=="" and $s_unit==""){  //新資料
 	$sql_insert = "insert into test_score (u_id,stud_id,who,stud_name,teacher_sn) values ('$u_id',{$_SESSION['session_log_id']},{$_SESSION['session_who']},{$_SESSION['session_tea_name']},{$_SESSION['session_tea_sn']})";
 	mysql_query($sql_insert) or die ($sql_insert); 
 	$sqlstr = "select * from test_score where  u_id='$u_id' and stud_id={$_SESSION['session_log_id']} " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 }
 $total = $row["total"];
 $s_id = $row["s_id"];

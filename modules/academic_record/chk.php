@@ -150,7 +150,7 @@ if ($_POST['mode']=="pastALL" and $_POST['stud_data']) {
    	 //取得學生的 student_sn
    	 $query="select a.student_sn from stud_seme a,stud_base b where a.student_sn=b.student_sn and a.seme_class='".$seme_class_num."' and a.seme_num='".$student[0]."' and b.stud_name='".$student[1]."'";
    	 $res_sn=mysqli_query($conID, $query);
-   	 if (mysql_num_rows($res_sn)>0) {   								  	 
+   	 if (mysqli_num_rows($res_sn)>0) {   								  	 
    	 	 list($student_sn)=mysqli_fetch_row($res_sn);
    				for ($j=2;$j<=6;$j++) {
    					$ss_id=$j-1;

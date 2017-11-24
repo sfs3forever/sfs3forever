@@ -24,7 +24,7 @@ mysql_query("SET NAMES 'utf8'");
    $nowdate=date("Y-m-d 0:0:0");
    $query="select a.idnumber,a.teach_id,a.data,a.data_kind,b.name from sc_msn_data a,sc_msn_online b where a.to_id='' and to_days(curdate())<=(to_days(a.post_date)+last_date) and (a.data_kind=0 or a.data_kind=2) and a.teach_id=b.teach_id order by post_date desc";
    $result=mysqli_query($conID, $query);
-   $board_num=mysql_num_rows($result);
+   $board_num=mysqli_num_rows($result);
     
 ?>
 <html>
@@ -60,7 +60,7 @@ A:hover {font-size:9pt;color: #ff00ff; text-decoration: underline}
 	  	$b_sub=AddLink2Text($b_sub);
 	  		  $query_file="select filename,filename_r from sc_msn_file where idnumber='".$idnumber."'";
   				$result_file=mysql_query($query_file);
-	  	if (mysql_num_rows($result_file)) {
+	  	if (mysqli_num_rows($result_file)) {
           $j=0;
           while($row_file=mysqli_fetch_row($result_file)) {
           	$j++;

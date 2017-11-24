@@ -55,7 +55,7 @@ if ($_POST['act']=="save") {
    if (trim($S[1])!='') {
      $query="select student_sn from stud_seme where stud_id='".$S[1]."' and seme_year_seme='$c_curr_seme'";
      $res=mysqli_query($conID, $query);
-     if (mysql_num_rows($res)==1) {
+     if (mysqli_num_rows($res)==1) {
      list($student_sn)=mysqli_fetch_row($res);
      } else {
       $student_sn="";
@@ -67,7 +67,7 @@ if ($_POST['act']=="save") {
     $seme_num=sprintf("%d",trim($S[4]));
     $query="select student_sn from stud_seme where seme_year_seme='$c_curr_seme' and seme_class='$seme_class' and seme_num='$seme_num'";
     $res=mysqli_query($conID, $query);
-     if (mysql_num_rows($res)==1) {
+     if (mysqli_num_rows($res)==1) {
       list($student_sn)=mysqli_fetch_row($res);
      } else {
       $student_sn="";
@@ -90,7 +90,7 @@ if ($_POST['act']=="save") {
   		case '1': 
 	  		$query="select student_sn from association where seme_year_seme='$c_curr_seme' and student_sn='$student_sn'";
   			$res=mysqli_query($conID, $query);
-  			if (mysql_num_rows($res)>0) {
+  			if (mysqli_num_rows($res)>0) {
   				$sql="";  //資料重覆
   			} else {        
   		    $sql="insert into association (student_sn,seme_year_seme,association_name,score,description,update_sn,stud_post,stud_feedback) values ('$student_sn','$c_curr_seme','$association_name','$score','$description','".$_SESSION['session_tea_sn']."','$stud_post','$stud_feedback')"; 	 

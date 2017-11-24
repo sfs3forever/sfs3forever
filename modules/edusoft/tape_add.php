@@ -38,7 +38,7 @@ $dbquery = "select * from $mastertable ";
 $dbquery .= "order by tapem_id ";
 $result_tapem = mysql_query($dbquery) ;
 echo("<select name=\"tapem_id\" onchange=\"document.tapeform.submit()\">");
-while($row2 = mysql_fetch_array($result_tapem)){
+while($row2 = mysqli_fetch_array($result_tapem)){
 	if ($_REQUEST['tapem_id'] == $row2[tapem_id])
 		echo("<option value=\"$row2[tapem_id]\" selected>$row2[tapem_id] - $row2[tapem_name]</option>");
 	else
@@ -48,7 +48,7 @@ echo("</select> ");
 if (!isset($tapem_id)) $tapem_id='A';
 	$dbquery = "select max(tape_id) as maxrow from $subtable where tapem_id='$_REQUEST[tapem_id]'";
 $result_tape = mysql_query($dbquery) ;
-$row2 = mysql_fetch_array($result_tape);
+$row2 = mysqli_fetch_array($result_tape);
 $maxnum=$row2[maxrow]+1;
 echo("編號：<input name=\"tape_id\" size=4 value=\"$maxnum\">");
 
@@ -72,7 +72,7 @@ $result = mysql_query($dbquery) or die("<br>DJ-PIM ERROR: e to add record.<br>\n
 echo("<table border=1>");
 echo("<caption>最近編號參考</caption>");
 echo("<tr><td>類別</td><td>編號</td><td><?php echo $ap_name ?>名稱</td><td colspan=2>編修</td></tr>");
-while($row = mysql_fetch_array($result)){
+while($row = mysqli_fetch_array($result)){
 	echo("<tr><td align=center>$row[tapem_id]</td><td>$row[tape_id]</td><td>$row[tape_name]</td>\n");
 	echo("<td align=center><a href=\"tape_edit.php?tapem_id=$_REQUEST[tapem_id]&tape_id=$row[tape_id]\">修改</td>\n");  
 	echo("<td align=center><a href=\"tape_delete.php?tapem_id=$_REQUEST[tapem_id]&tape_id=$row[tape_id]\">刪除</td></tr>\n");    

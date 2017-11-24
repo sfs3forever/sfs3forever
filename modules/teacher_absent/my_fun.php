@@ -130,7 +130,7 @@ function teacher_post_k($teacher_sn){
 	$teacher_sn=intval($teacher_sn);
 	$query="select * from teacher_post where teacher_sn=$teacher_sn ";
 		$result = mysqli_query($conID, $query) or die ($query);
-		$row = mysql_fetch_array($result);
+		$row = mysqli_fetch_array($result);
 		$post_k=$row["post_kind"];
 	return $post_k;
 }

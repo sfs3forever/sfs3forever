@@ -14,11 +14,11 @@ function teacher_list($sql_select)
 {
 	global $conID,$curr_name,$curr_teach_id,$curr_teach_condition,$teach_next;
 	$result = mysql_query ($sql_select,$conID)or die($sql_select);
-	$tol_num = mysql_num_rows($result);
+	$tol_num = mysqli_num_rows($result);
 	if ($tol_num > 0){
 		$temp_menu ="<table><form name=\"mform\" method=\"post\"><tr><td align=right><font size=2>總人數:$tol_num 人</font></td></tr><tr><td><select name=curr_teach_id  size=18 onchange=\"document.mform.submit()\">";
 		$tempi = 0;
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 			$teach_id = $row["teach_id"];
 			$name = $row["name"];
 			if ($flag==1) {

@@ -28,7 +28,7 @@ if ($key=="確定刪除"){
 $b_id=intval($b_id);
 $query = "select b_sub,b_con,b_upload,teacher_sn from unit_c where b_id='$b_id'";
 $result = mysqli_query($conID, $query);
-$row= mysql_fetch_array($result);
+$row= mysqli_fetch_array($result);
 
 if($row["teacher_sn"] ==$_SESSION[session_tea_sn] || checkid($_SERVER[SCRIPT_FILENAME],1)){   //自己可刪除
 

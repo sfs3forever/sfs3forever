@@ -83,7 +83,7 @@ if ($module_manager!=1) {
 			  //檢查有沒有寫自我省思
 			   $query_fb="select stud_feedback from association where seme_year_seme='$c_curr_seme' and student_sn='$student_sn' and club_sn!=''"; 
 			   $res=mysql_query($query_fb);
-			   if (mysql_num_rows($res)==0) {
+			   if (mysqli_num_rows($res)==0) {
 			    $student_not_arrange[$seme_class][$seme_num]=$student_sn; //未編班名單
 			    $student_not_feedback[$seme_class][$seme_num]=$student_sn; //未寫省思名單
 			   } else {

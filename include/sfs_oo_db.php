@@ -37,14 +37,14 @@ function Execute($SQL) {
 
 function RecordCount($rs) {
 	if (!$rs) {return $this->DBDie($SQL."沒有連結指標!無法計數!<BR> ");exit;}
-	return mysql_num_rows($rs) ;
+	return mysqli_num_rows($rs) ;
 	}
 
 function GetRows($rs) {
 	if (!$rs) {return $this->DBDie("沒有連結指標!無法傳回資料!<BR>");exit;}
 	$arr = array();
 	$counter = 0;
-	while ($row = mysql_fetch_array($rs)) {
+	while ($row = mysqli_fetch_array($rs)) {
 	$arr[$counter] = $row;
 	$counter++;
 	}

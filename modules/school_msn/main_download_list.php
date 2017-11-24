@@ -34,7 +34,7 @@ $folder=$_GET['folder'];
  $query="select * from sc_msn_folder where idnumber!='private' order by idnumber";
  $result=mysqli_query($conID, $query);
  $i=0;
- while ($row=mysql_fetch_array($result)) {
+ while ($row=mysqli_fetch_array($result)) {
  $i++;
  if ($i%5==1) echo "<tr>";
   ?>
@@ -64,7 +64,7 @@ while ($row=mysqli_fetch_row($result)) {
  
     $query_file="select filename,filename_r,file_download from sc_msn_file where idnumber='".$idnumber."'";
     $result_file=mysql_query($query_file);
- if (mysql_num_rows($result_file)) {
+ if (mysqli_num_rows($result_file)) {
   $name=get_name_state($teach_id);
   $data=AddLink2Text($data);
   ?>
@@ -91,7 +91,7 @@ while ($row=mysqli_fetch_row($result)) {
     </tr> 
 <?php
 
- }// end if mysql_num_rows
+ }// end if mysqli_num_rows
 }
 ?>
   </table>

@@ -26,7 +26,7 @@ function receiver_name($u_id){
   $sql_1 = "select name from ".$user_t3;
   $sql_1 .= " where `teacher_sn` = '".$u_id."' ";
   $sql_result_1 = mysql_query($sql_1) or die($sql."sql語法有誤!!");
-  $row_1 = mysql_fetch_array($sql_result_1);
+  $row_1 = mysqli_fetch_array($sql_result_1);
   return $row_1['name'];
 }*/
 
@@ -48,7 +48,7 @@ class user_info{
       $sql1 .= " and a.teacher_sn = '".$u_id."';";
 	  //echo $sql."<BR>\n";
 	  $sql_result_1 = mysql_query($sql1) or die($sql1."sql語法有誤!!");
-	  $row_1 = mysql_fetch_array($sql_result_1);
+	  $row_1 = mysqli_fetch_array($sql_result_1);
 	  $this->uname = $row_1[0];
 	  $this->utitle = $row_1[1];
 
@@ -56,7 +56,7 @@ class user_info{
 	  $sql3 .= " from `".$user_t6."`";
 	  $sql3 .= " where teacher_sn = '".$u_id."';";
 	  $sql_result_3 = mysql_query($sql3) or die($sql3."sql語法有誤!!");
-	  $row_3 = mysql_fetch_array($sql_result_3);
+	  $row_3 = mysqli_fetch_array($sql_result_3);
       //echo $sql3."||".$row_3[0]."||<BR>\n";
 	  if($row_3[0]>0){
 		  $sql2 = "select a.name, b.email ";
@@ -65,7 +65,7 @@ class user_info{
 		  $sql2 .= " and a.teach_condition = 0";
 		  $sql2 .= " and a.teacher_sn = '".$u_id."';";
 		  $sql_result_2 = mysql_query($sql2) or die($sql2."sql語法有誤!!");
-		  $row_2 = mysql_fetch_array($sql_result_2);
+		  $row_2 = mysqli_fetch_array($sql_result_2);
 		  //echo $sql2."|||<BR>\n";
 		  $this->umail = $row_2[1];	  
 	  }else{
@@ -87,7 +87,7 @@ function receiver_list($r_all,$r_id){
     $sql_1 .= " where `rece_id` = '".$a[$i]."' ";
 	$sql_1 .= " and `r_id` = '".$r_id."' ";
     $sql_result_1 = mysql_query($sql_1) or die($sql_1."sql語法有誤!!");
-    $row_1 = mysql_fetch_array($sql_result_1);
+    $row_1 = mysqli_fetch_array($sql_result_1);
 	//echo $row_1['r_check']."|<BR>\n";
 	$a1 -> receiver_name($a[$i]);//找出teacher_sn的對應資料
 	if ($row_1['r_check']>0){

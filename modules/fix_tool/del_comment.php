@@ -9,7 +9,7 @@ if ($_POST['form_act']=='del_comm' && $_POST['ACT']!='no' && $_POST['ACT']!='' )
 	mysql_select_db($mysql_db,$link);
 	$SQL="SHOW TABLES ";
 	$rs=mysql_query($SQL,$link) or die($SQL);
-	while ($row = mysql_fetch_array ($rs)){
+	while ($row = mysqli_fetch_array ($rs)){
 		$SQL="ALTER TABLE `$row[0]` COMMENT ='' ";
 		if ($_POST['ACT']=='list') {$Show_SQL=$Show_SQL.$SQL."<br>";}
     	if ($_POST['ACT']=='run_sql') {mysql_query($SQL,$link) or die($SQL);}
@@ -22,7 +22,7 @@ if ($_GET['act']=='ToMyISAM'){
 	mysql_select_db($mysql_db,$link);
 	$SQL="SHOW TABLE STATUS FROM  $mysql_db ";
 	$rs=mysql_query($SQL,$link) or die($SQL);
-	while ($row = mysql_fetch_array ($rs)){
+	while ($row = mysqli_fetch_array ($rs)){
 	//if ($row['Engine']!='MyISAM' and !in_array($row['Name'],$a)){ 
 	if ($row['Engine']=='InnoDB' and !in_array($row['Name'],$a)){ 
 		//$SQL="use ".$mysql_db.";ALTER TABLE `".$row['Name']."` ENGINE=MYISAM; flush privileges;";
@@ -81,7 +81,7 @@ $SQL="SHOW TABLE STATUS FROM  $mysql_db ";
 $rs=mysql_query($SQL,$link) or die($SQL);
 $ck='N';
 // $Show_SQL='';
-while ($row = mysql_fetch_array ($rs)){
+while ($row = mysqli_fetch_array ($rs)){
 if (!in_array($row['Name'],$a) and $row['Engine']=='InnoDB'){
 	echo $row['Name'].'<br>';$ck='Y';
 	//echo $row['Engine']."<br>";

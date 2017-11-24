@@ -13,7 +13,7 @@ $result = mysqli_query($conID,$query);
 
 //分類號選項
 $tt=""; 
-while ($row = mysql_fetch_array ($result)){
+while ($row = mysqli_fetch_array ($result)){
 	if ($bookch1_id == $row["bookch1_id"] and $qbook_name=="" ){
 		$tt .= sprintf(" <option value=\"%s\" selected>%s%s</option>",$row["bookch1_id"],$row["bookch1_id"],$row["bookch1_name"]);
 		$bookch1_name= $row["bookch1_name"];
@@ -49,7 +49,7 @@ $stmt->bind_result($book_id, $book_name, $book_author,$out_dx ,$yet,$stud_id );
 ///mysqli	
 
 //$result = mysqli_query($conID,$query) or die ($query);
-//$tolnum = mysql_num_rows($result);
+//$tolnum = mysqli_num_rows($result);
 echo "<BR><h3><form action=\"$PHP_SELF\" method=\"post\" name=\"bookform\">";
 echo "<center><select name=\"bookch1_id\" size=1  onchange=\"document.bookform.submit()\">";
 echo $tt;
@@ -61,11 +61,11 @@ echo "<td bgcolor=\"#8080FF\" width=50% align=center><strong>書名</strong></td
 echo "<td bgcolor=\"#8080FF\" width=15% align=center><strong>借閱人</strong></td>";
 echo "<td bgcolor=\"#8080FF\" width=20% align=center><strong>借閱<br>日期</strong></td>";   
 echo "</tr>";
-//while($row = mysql_fetch_array($result)){
+//while($row = mysqli_fetch_array($result)){
   while ($stmt->fetch()) {
 	$query2 ="select stud_name,curr_class_num,stud_study_cond from stud_base where stud_id ='".$stud_id."'";
 	$result2 = mysql_query($query2,$conID) or die ($query2);
-	$row2 = mysql_fetch_array($result2);
+	$row2 = mysqli_fetch_array($result2);
 	$cyear = $row2["curr_class_num"];
 	$memo = "";
 	if ($row2["stud_study_cond"]== 5){

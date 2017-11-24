@@ -15,7 +15,7 @@ if($key == "修改設定"){
 if ($key == "修改"){
 	$sqlstr = "select * from test_data   where  qid='$qid' " ;	
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row = mysql_fetch_array($result);
+	$row = mysqli_fetch_array($result);
 	$ques = $row["ques"] ;  
 	$ch[1] = $row["ch1"] ;  
 	$ch[2] = $row["ch2"] ;  
@@ -109,7 +109,7 @@ if($key == "確定修改"){
 if($key=='加分'){
 	$sqlstr = "select * from test_score   where  s_id='$beef'";
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row = mysql_fetch_array($result);
+	$row = mysqli_fetch_array($result);
 	$exper = $row["exper"]+3 ;  
 	$sql_update = "update test_score set exper='$exper'  where  s_id='$beef' " ;	
 	mysql_query($sql_update) or die ($sql_update);
@@ -214,7 +214,7 @@ if($key=='全部清除'){
 if($key=='對戰設定'){
 	$sqlstr = "select * from test_setup " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	$match = $row["mat"] ;    //競賽中
  	$open = $row["open"] ;  	//開放的道館
 	$n_games = $row["n_games"] ;  //以多少決定勝負
@@ -300,7 +300,7 @@ if($key=='對戰設定'){
 if ($key == "setup"){
 	$sqlstr = "select * from test_setup " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	$match = $row["mat"] ;    //競賽中
  	$open = $row["open"] ;  	//開放的道館
 	$n_games = $row["n_games"] ;  //以多少決定勝負

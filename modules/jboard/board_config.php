@@ -260,8 +260,8 @@ function board_checkid($chk){
 	$dbquery .="where a.teacher_sn = b.teacher_sn and a.teacher_sn={$_SESSION['session_tea_sn']}";
 	$result= mysql_query($dbquery,$conID)or ("<br>資料連結錯誤<br>\n $dbquery");
 
-	if (mysql_num_rows($result) > 0){
-		$row = mysql_fetch_array($result);
+	if (mysqli_num_rows($result) > 0){
+		$row = mysqli_fetch_array($result);
 		$post_office = $row["post_office"];
 		$teach_title_id	= $row["teach_title_id"];
 		$teacher_sn =	$row["teacher_sn"];
@@ -269,7 +269,7 @@ function board_checkid($chk){
 		$dbquery = "select pro_kind_id from jboard_check where pro_kind_id ='$chk' and (post_office='$post_office' or post_office='99' or teach_title_id='$teach_title_id' or teacher_sn='$teacher_sn')";
 
 		$result= mysql_query($dbquery,$conID)or die("<br>資料庫連結錯誤<br>\n $dbquery");
-		if (mysql_num_rows ($result)>0)	{
+		if (mysqli_num_rows ($result)>0)	{
 			return true;
 		}
 		else

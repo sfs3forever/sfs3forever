@@ -38,7 +38,7 @@ if ($_POST['mode']=="start") {
 	    $N=0;
       $query="select * from association where seme_year_seme='$c_curr_seme' and club_sn!=''";
       $res=mysqli_query($conID, $query);
-      while ($row=mysql_fetch_array($res)) {
+      while ($row=mysqli_fetch_array($res)) {
       	$query="select club_name from stud_club_base where club_sn='".$row['club_sn']."'";
 				$result=mysqli_query($conID, $query);
 				list($club_name)=mysqli_fetch_row($result);
@@ -57,7 +57,7 @@ if ($_POST['mode']=="start") {
 
      $query="select * from association where seme_year_seme='$c_curr_seme' and club_sn!=''";
      $res=mysqli_query($conID, $query);
-     $N=mysql_num_rows($res);
+     $N=mysqli_num_rows($res);
 ?>
 <form name="myform" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
   <input type="hidden" name="mode" value="">

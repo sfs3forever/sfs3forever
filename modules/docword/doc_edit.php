@@ -81,7 +81,7 @@ $stmt->close();
 $sql_select = "select * from sch_doc1 where doc1_id='$doc1_id'";
 $result = mysql_query ($sql_select,$conID);
 
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
 
 	$doc1_id = $row["doc1_id"];
 	$doc1_year_limit = $row["doc1_year_limit"];
@@ -232,7 +232,7 @@ $query = "select * from sch_doc1 where doc1_k_id=0 and doc1_date_sign > '$today'
 $result = mysqli_query($conID, $query);
 echo "<center><b>今日來文</b></center>";
 echo "<table width=100% ><tr bgcolor=#C0C0C0><td>文號</td><td>來文單位</td><td>摘要</td><td>承辦處室</td></tr>";
-while($row = mysql_fetch_array($result)) {
+while($row = mysqli_fetch_array($result)) {
 	$unit_temp = $doc_unit_p[$row[doc1_unit_num1]]; //取得處室名稱
 	if ($i++ % 2 == 0)
 		echo "<tr bgcolor=#AAEEAA>";

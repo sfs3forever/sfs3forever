@@ -13,7 +13,7 @@ if ($_SESSION['MSN_LOGIN_ID']!="") {
  	 mysql_query("SET NAMES 'utf8'");
    $query="select * from sc_msn_online where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
    $result=mysqli_query($conID, $query);
-	 $row=mysql_fetch_array($result,1);
+	 $row=mysqli_fetch_array($result,1);
  echo "-[".$row['name']."]-上線";
 }else{
  echo "- 未登入";

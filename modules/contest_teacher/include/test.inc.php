@@ -3,7 +3,7 @@
 function get_contest_user($tsn,$student_sn) {
 $query="select a.*,b.stud_id,b.stud_name,b.email_pass,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c,contest_setup d where a.student_sn=b.student_sn and a.student_sn=c.student_sn and a.tsn=d.tsn and d.year_seme=c.seme_year_seme and a.tsn='".$tsn."' and a.student_sn='".$student_sn."'";
  $result=mysqli_query($conID, $query);
- $STID=mysql_fetch_array($result,1);
+ $STID=mysqli_fetch_array($result,1);
  return $STID;
 }
 
@@ -11,7 +11,7 @@ $query="select a.*,b.stud_id,b.stud_name,b.email_pass,c.seme_class,c.seme_num fr
 function get_test_setup($tsn) {
  $query="select * from contest_setup where tsn='$tsn'";
  $result=mysqli_query($conID, $query);
- $TEST=mysql_fetch_array($result,1);
+ $TEST=mysqli_fetch_array($result,1);
  //取得已報名人數
  $query="select count(*) as num from contest_user where tsn='$tsn'";
  $result=mysqli_query($conID, $query);
@@ -44,7 +44,7 @@ function test_list($query) {
    		<td style="font-size:10pt;color:#800000" width="120" align="center">結束時間</td>
    	</tr>	
  <?php
-    while ($row=mysql_fetch_array($TEST,1)) {
+    while ($row=mysqli_fetch_array($TEST,1)) {
     	$query="select count(*) as num from contest_user where tsn='".$row['tsn']."'";
 			list($N)=mysqli_fetch_row(mysqli_query($conID, $query));
   	?>
@@ -92,7 +92,7 @@ function title_simple($TEST) {
 function test_main($tsn,$admin) {
 	global $PHP_CONTEST,$MANAGER,$CONN;
   $query="select * from contest_setup where tsn='".$tsn."'";
-  $TEST=mysql_fetch_array(mysqli_query($conID, $query),1);
+  $TEST=mysqli_fetch_array(mysqli_query($conID, $query),1);
 
 ?>
    <table border="1" width="100%" style="border-collapse: collapse" bordercolor="#C0C0C0" cellpadding="5">
@@ -169,8 +169,8 @@ function test_main($tsn,$admin) {
   			<?php
        $query="select * from contest_score_setup where tsn='".$TEST['tsn']."'";
        $result=mysqli_query($conID, $query);
-       if (mysql_num_rows($result)) {
-        while ($row=mysql_fetch_array($result,1)) {
+       if (mysqli_num_rows($result)) {
+        while ($row=mysqli_fetch_array($result,1)) {
          echo $row['sco_text']."&nbsp;&nbsp;";
         }
  			 } else {
@@ -390,12 +390,12 @@ function form_contest($TEST) {
     //取出本競賽的評分細項, 會用到 act, sco
       $query="select * from contest_score_setup where tsn='".$TEST['tsn']."'";
       $result=mysqli_query($conID, $query);
-      if (mysql_num_rows($result)) {
+      if (mysqli_num_rows($result)) {
     	?>  	
   			<table border="0" cellspacing="2">
   		   <tr>
   		   	<?php
-  		   	 while ($row=mysql_fetch_array($result,1)) {
+  		   	 while ($row=mysqli_fetch_array($result,1)) {
   		   	  ?>
   		   	  <td>
   		   	  	<table border="1"  bgcolor="#FFFF99" bordercolor="#FF9900" style="border-collapse: collapse">
@@ -454,7 +454,7 @@ function list_user($tsn,$act) {
    	</tr>	
  <?php
     $j=0;
-    while ($row=mysql_fetch_array($result,1)) {
+    while ($row=mysqli_fetch_array($result,1)) {
     	$j++;
     	$j=$j%2;
     	//組員資料
@@ -482,7 +482,7 @@ function list_user($tsn,$act) {
    			<?php
 			//沒有競賽記錄才能刪除
    			if ($REC[0]==0) {
-   				if (mysql_num_rows($GROUPS)==0) {
+   				if (mysqli_num_rows($GROUPS)==0) {
    				?>
    				<a style="cursor:hand" title="刪除" onclick="if (confirm('您確定要\n刪除「<?php echo $row['stud_id'].$row['stud_name'];?>」?')) { document.myform.act.value='deleteuser';document.myform.option2.value='<?php echo $row['student_sn'];?>';document.myform.submit(); }"><img src="./images/del.png"  border="0"></a>
    					<?php
@@ -518,7 +518,7 @@ function list_user($tsn,$act) {
 		</td>
   	</tr>
     	<?php
-    	if (mysql_num_rows($GROUPS)>0) {
+    	if (mysqli_num_rows($GROUPS)>0) {
     		?>
     		 <tr>
    				<td style="font-size:8pt;color:#000000" align="right"  bgcolor="#FFFFFF">
@@ -528,7 +528,7 @@ function list_user($tsn,$act) {
    				<table border="0" style="border-collapse: collapse" bordercolor="#C0C0C0" cellpadding="1">
 
     		<?php
-    	while ($row=mysql_fetch_array($GROUPS,1)) {
+    	while ($row=mysqli_fetch_array($GROUPS,1)) {
     		  //班級轉中文
     			$class_id=sprintf('%03d_%d_%02d_%02d',substr($TEST['year_seme'],0,3),substr($TEST['year_seme'],3,1),substr($row['seme_class'],0,1),substr($row['seme_class'],1,2));
   	  		$class_data=class_id_2_old($class_id);
@@ -582,7 +582,7 @@ function list_user_print($tsn,$act) {
    print_title();	
 
     $j=0;$t=-1;
-    while ($row=mysql_fetch_array($result,1)) {
+    while ($row=mysqli_fetch_array($result,1)) {
     	$j++; $t++;
     	//第1筆不算
       if ($_POST['table_page_break']>0 and $j%$_POST['table_page_break']==1 and $j>1) {
@@ -597,7 +597,7 @@ function list_user_print($tsn,$act) {
     	//$query="select * from contest_user where tsn='".$tsn."' and ifgroup='".$row['stid']."' order by class_num";
     	$query="select a.*,b.stud_id,b.stud_name,b.email_pass,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c,contest_setup d where a.student_sn=b.student_sn and a.student_sn=c.student_sn and a.tsn=d.tsn and d.year_seme=c.seme_year_seme and a.tsn='".$tsn."' and ifgroup='".$row['student_sn']."' order by seme_class,seme_num";
     	$GROUPS=mysqli_query($conID, $query);
-    	$GROUPS_num=mysql_num_rows($GROUPS);
+    	$GROUPS_num=mysqli_num_rows($GROUPS);
 
     	//統計作答記錄
     	if ($TEST['active']==1) {
@@ -641,7 +641,7 @@ function list_user_print($tsn,$act) {
     		?>
  
     		<?php
-    	while ($row=mysql_fetch_array($GROUPS,1)) {
+    	while ($row=mysqli_fetch_array($GROUPS,1)) {
     		$j++;
     		?>
    			<tr class="mytr<?php echo $t%2;?>">
@@ -740,7 +740,7 @@ function print_title() {
 //學生報名
 function contest_add_user($tsn,$STUDENT) {
  	$query="select * from contest_user where tsn='$tsn' and student_sn='".$STUDENT['student_sn']."'";
- 	 if (mysql_num_rows(mysqli_query($conID, $query))>0) {
+ 	 if (mysqli_num_rows(mysqli_query($conID, $query))>0) {
     $INFO=$STUDENT['seme_class'].sprintf('%02d',$STUDENT['seme_num']).$STUDENT['stud_name']."已重覆報名, 不存入!!!";	
  	 } else {
  	  $query="insert into contest_user (tsn,student_sn) values ('".$_POST['option1']."','".$STUDENT['student_sn']."')";
@@ -750,7 +750,7 @@ function contest_add_user($tsn,$STUDENT) {
      echo "Error! query=".$query;
      exit();
     }   
-   } // end if mysql_num_rows
+   } // end if mysqli_num_rows
 
    return $INFO;
    
@@ -764,7 +764,7 @@ function get100($tsn,$ToNum) {
 
   $query="select ibsn from contest_ibgroup where tsn='".$tsn."'";
   $result=mysqli_query($conID, $query);
-  $N=mysql_num_rows($result);
+  $N=mysqli_num_rows($result);
   $start=1;
 	if ($N>$ToNum) {
 	 $INFO="錯誤! 目前題庫總題數小於題本目標題數!!";
@@ -783,7 +783,7 @@ function get100($tsn,$ToNum) {
 	$IB-=1;
 
  //亂數取每一題的ibsn	
- while (mysql_num_rows(mysql_query("select ibsn from contest_ibgroup where tsn='$tsn'"))<$ToNum) {
+ while (mysqli_num_rows(mysql_query("select ibsn from contest_ibgroup where tsn='$tsn'"))<$ToNum) {
  	//檢驗是否重覆
   do {
    $D=0;
@@ -797,7 +797,7 @@ function get100($tsn,$ToNum) {
   //寫入題目代碼
   $query="select * from contest_itembank where ibsn='$ibsn'";
   $res=mysqli_query($conID, $query);
-  $row=mysql_fetch_array($res);
+  $row=mysqli_fetch_array($res);
   $query="insert into contest_ibgroup (tsn,ibsn,question,ans,ans_url) values ('$tsn','$ibsn','".SafeAddSlashes($row['question'])."','".SafeAddSlashes($row['ans'])."','".$row['ans_url']."')";
   mysqli_query($conID, $query);
  } // end while
@@ -892,7 +892,7 @@ function list_test_ibgroup($tsn) {
    	<?php
    	$query="select * from contest_ibgroup where tsn='$tsn' order by tsort";
    	$result=mysqli_query($conID, $query);
-   	while ($row=mysql_fetch_array($result)) {
+   	while ($row=mysqli_fetch_array($result)) {
    		   	 	$ans_url=($row['ans_url']=='')?"無":"<a href='".$row['ans_url']."' target='_blank'>".瀏覽."</a>";
 
    	?>
@@ -934,7 +934,7 @@ function chk_ifgroup($TEST,$student_sn) {
     	//檢驗此生是否為別組組長
     	if ($DEL==1) {
     	$query="select id from contest_user where tsn='".$TEST['tsn']."' and ifgroup='".$student_sn."'";
-    	  if (mysql_num_rows(mysqli_query($conID, $query))>0) {
+    	  if (mysqli_num_rows(mysqli_query($conID, $query))>0) {
     	   $DEL=0;
     	  }
       }

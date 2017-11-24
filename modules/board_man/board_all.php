@@ -12,11 +12,11 @@ function prog_menu ($sql_select,$sel_id,$sel_name){
 	global $conID,$$curr_id,$$curr_name,$curr_next;		
 	
 	$result = mysql_query ($sql_select,$conID)or die($sql_select);
-	$tol_num = mysql_num_rows($result);
+	$tol_num = mysqli_num_rows($result);
 	if ($tol_num > 0){
 		$temp_menu ="<table><form name=\"mform\" method=\"post\">
 		<tr><td align=right><font size=2>總筆數:$tol_num</font></td></tr><tr><td ><select name=$sel_id  size=16 onchange=\"document.mform.submit()\">";
-		while ($row = mysql_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 			$id = $row["$sel_id"];
 			$name = $row["$sel_name"];
 			if ($$curr_id =="") 

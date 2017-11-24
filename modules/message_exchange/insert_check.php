@@ -76,7 +76,7 @@ $sql .= " and `receiver`='".$receiver_all."'";
 $sql .= " order by m_date desc";
 //echo $sql."|<BR>\n";
 $sql_result = mysql_query($sql) or die($sql."<BR>\nsql語法有誤!!");
-$row_id = mysql_fetch_array($sql_result);
+$row_id = mysqli_fetch_array($sql_result);
 $new_r_id = $row_id[0];
 
 

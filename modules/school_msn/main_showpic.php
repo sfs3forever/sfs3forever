@@ -10,7 +10,7 @@ mysql_query("SET NAMES 'utf8'");
 //?芷撌脤???
 $query="select * from sc_msn_board_pic where enddate<'$Now' and show_off=0";
 $res=mysqli_query($conID, $query);
-while ($row=mysql_fetch_array($res,1)) {
+while ($row=mysqli_fetch_array($res,1)) {
     unlink($UPLOAD_PIC.$row['filename']);
      $query="delete from sc_msn_board_pic where filename='".$row['filename']."'";
      mysqli_query($conID, $query);
@@ -18,7 +18,7 @@ while ($row=mysql_fetch_array($res,1)) {
 
 $query="select * from sc_msn_board_pic where stdate<='$Now' and enddate>='$Now' and show_off=0 limit 1";
 $res=mysqli_query($conID, $query);
-if (mysql_num_rows($res)==0) {
+if (mysqli_num_rows($res)==0) {
 	$query="update sc_Msn_board_pic set show_off=0";
 	mysqli_query($conID, $query);
 	?>
@@ -29,7 +29,7 @@ if (mysql_num_rows($res)==0) {
   <?php
   exit();
 } else {
-  $row=mysql_fetch_array($res,1);
+  $row=mysqli_fetch_array($res,1);
   $query="update sc_msn_board_pic set show_off=1 where id='".$row['id']."'";
   mysqli_query($conID, $query);
 }

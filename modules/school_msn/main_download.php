@@ -17,7 +17,7 @@ mysql_query("SET NAMES 'utf8'");
 $query="select filename_r,file_download from sc_msn_file where filename='".$file_name."'";
 $result=mysqli_query($conID, $query);
 
-if (mysql_num_rows($result)) {
+if (mysqli_num_rows($result)) {
 list($filename_r,$file_download)=mysqli_fetch_row($result);
 //$filename_r=addslashes($filename_r);
 $file_download+=1;

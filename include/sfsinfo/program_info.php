@@ -26,8 +26,8 @@ $curr_dir = $root_dir.$dir;
 		$ffile = substr("$dir",1);
 		$query = "SELECT * FROM pro_kind where store_path='$ffile' ";
 		$result = mysql_query ($query);
-		if (mysql_num_rows($result)>0)	{
-			$row = mysql_fetch_array($result);
+		if (mysqli_num_rows($result)>0)	{
+			$row = mysqli_fetch_array($result);
 			$upthis_path = $row["pro_kind_id"];
 			$upname = $row["pro_kind_name"];
 		}

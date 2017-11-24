@@ -19,10 +19,10 @@ if ($_POST['act']=='del') {
  foreach($_POST['tag_del'] as $filename) {
 	$sql="select a.* from sc_msn_data a,sc_msn_file b where b.filename='".$filename."' and a.idnumber=b.idnumber";
   $res=mysql_query($sql);
-  if (mysql_num_rows($res)==0) {
+  if (mysqli_num_rows($res)==0) {
    unlink($download_path.$filename);
   } else {    	 	  //刪除附檔
-   	$row=mysql_fetch_array($res,1); 
+   	$row=mysqli_fetch_array($res,1); 
    	delete_file ($row['idnumber'],$row['to_id']);
    	$query="delete from sc_msn_data where id='".$row['id']."'";
   	mysqli_query($conID, $query);

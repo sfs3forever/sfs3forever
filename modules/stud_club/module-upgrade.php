@@ -70,8 +70,8 @@ if (!is_file($up_file_name)){
 	
 	$query="select club_sn,club_student_num from stud_club_base";
 	$res=mysqli_query($conID, $query);
-	if (mysql_num_rows($res)) {
-	  while ($row=mysql_fetch_array($res)) {
+	if (mysqli_num_rows($res)) {
+	  while ($row=mysqli_fetch_array($res)) {
 	    
 	    $stud_boy_num=round($row['club_student_num']/2);
 	    $stud_girl_num=$row['club_student_num']-$stud_boy_num;

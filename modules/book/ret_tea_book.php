@@ -66,9 +66,9 @@ $stmt->close();
 ///mysqli	
 		//$result = mysqli_query($conID, $query);
 	
-	//if (mysql_num_rows($result) >0 ){
+	//if (mysqli_num_rows($result) >0 ){
 	if ($b_num >0 ){
-		//$row = mysql_fetch_array($result);
+		//$row = mysqli_fetch_array($result);
 		//$teach_id = $row["teach_id"];
 		//$name = $row["name"];
 		//$book_name = $row["book_name"];	
@@ -109,7 +109,7 @@ if ($book_flag){
 
 	echo "<center><table border=1>";
 	echo "<tr bgcolor=#8080FF><td>總號</td><td>書號</td><td>書名</td><td>借閱日期</td><td>歸還日期</td></tr>";
-	while ($row = mysql_fetch_array($result)){
+	while ($row = mysqli_fetch_array($result)){
 		$bookch1_id = $row["bookch1_id"];
 		$book_id = $row["book_id"];
 		$book_name = $row["book_name"];

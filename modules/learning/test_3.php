@@ -6,7 +6,7 @@ if($my_sco==5){
 	$s_id=intval($s_id);
 	$sqlstr = "select * from test_score where s_id='$s_id' " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-	$row= mysql_fetch_array($result);
+	$row= mysqli_fetch_array($result);
 	$type = $row["type"];
 	if($type!=999){
 		$exper= $exper+1;  

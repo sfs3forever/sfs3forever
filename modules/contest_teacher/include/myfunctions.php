@@ -54,7 +54,7 @@ function shownews($NEW) {
 		<?php
 		$query="select * from contest_files where nsn='".$NEW['nsn']."'";
  	  $result=mysqli_query($conID, $query);
- 	  if (mysql_num_rows($result)>0) {
+ 	  if (mysqli_num_rows($result)>0) {
       ?>
     <tr><td>
       <table border="1" width="100%" bordercolor="#008080" style="border-collapse:collapse">
@@ -62,7 +62,7 @@ function shownews($NEW) {
       	<td style="font-size:10pt"><font style="color:#FF6600">。本消息含附件，請在檔名上按滑鼠右鍵選擇【另存目標】：</font>
       
       <?php 	  	
-      while ($row=mysql_fetch_array($result,1)) {
+      while ($row=mysqli_fetch_array($result,1)) {
        ?>
        <li><a href="<?php echo $UPLOAD_NEWS_URL;?><?php echo $row['filename'];?>"><?php echo $row['ftext'];?></a>
        <?php
@@ -97,9 +97,9 @@ function shownews($NEW) {
 function showgroups($tsn,$stid) {
  $query="select stid,name from contest_user where tsn='$tsn' and ifgroup='$stid'";
  $result=mysqli_query($conID, $query);
- if (mysql_num_rows($result)>0) {
+ if (mysqli_num_rows($result)>0) {
  echo "&nbsp;( 組員: &nbsp;";
-  while ($row=mysql_fetch_array($result,1)) {
+  while ($row=mysqli_fetch_array($result,1)) {
    echo $row['stid'].$row['name']."&nbsp;";
   }
   echo ")";
@@ -240,7 +240,7 @@ function form_news($NEWS) {
 				//檢查有沒有附加檔案
 				$query="select * from contest_files where nsn='".$NEWS['nsn']."'";
 				$result=mysqli_query($conID, $query);
-				if (mysql_num_rows($result)>0) {
+				if (mysqli_num_rows($result)>0) {
 				?>
 				<table border="1" width="100%"style=" border-collapse: collapse" bordercolor="#FFCCCC">
 					<tr><td>
@@ -249,7 +249,7 @@ function form_news($NEWS) {
 						<td style="color:#800000;font-size:10pt">※已存在附檔</td>
 					</tr>
 					<?php 
-					  while ($row=mysql_fetch_array($result,1)) {
+					  while ($row=mysqli_fetch_array($result,1)) {
 					 	?>
 					 	<tr>
 					 		<td><?php echo $row['ftext'];?><img src="./images/del.png" border="0" title="刪除"  style="cursor:hand" onclick="if (confirm('您確定要\n刪除「<?php echo $row['ftext'];?>」?')) { document.myform.RETURN.value='<?php echo $_POST['RETURN'];?>';document.myform.option2.value='<?php echo $row['fsn'];?>';document.myform.act.value='del_file';document.myform.submit(); }"></td>
@@ -318,7 +318,7 @@ function stud_login($active,$INFO) {
  global $PHP_CONTEST;
  $query="select * from contest_setup where endtime>'".date('Y-m-d H:i:s')."' and active='".$active."' order by sttime";
  $result=mysqli_query($conID, $query);
- if (mysql_num_rows($result)==0) {
+ if (mysqli_num_rows($result)==0) {
   echo "目前系統中沒有相關競賽(類別:".$PHP_CONTEST[$active].") 正在進行或即將進行!";
   exit();
  }
@@ -366,7 +366,7 @@ function stud_login($active,$INFO) {
         	<td bgcolor="#CCFFCC" style="font-size:10pt">
         		<select size="1" name="tsn">
         			<?php
-        			while ($row=mysql_fetch_array($result)) {
+        			while ($row=mysqli_fetch_array($result)) {
         			?>
         			<option value="<?php echo $row['tsn']?>"><?php echo $row['title'];?>(<?php echo $PHP_CONTEST[$row['active']];?>)</option>
         		 <?php
@@ -401,7 +401,7 @@ function get_student($student_sn) {
   global $c_curr_seme;
   $query="select a.stud_name,b.seme_class,b.seme_num from stud_base a,stud_seme b where a.student_sn=b.student_sn and a.student_sn='$student_sn' and b.seme_year_seme='$c_curr_seme'";
   $res=mysqli_query($conID, $query);
-  $stud=mysql_fetch_array($res,1);
+  $stud=mysqli_fetch_array($res,1);
   //轉換中文班級名稱
   $C=sprintf('%03d_%d_%02d_%02d',substr($c_curr_seme,0,3),substr($c_curr_seme,-1,1),substr($stud['seme_class'],0,1),substr($stud['seme_class'],1,2));
   $class_base=class_id_2_old($C);
@@ -422,9 +422,9 @@ function get_stud_record1_info($TEST,$student_sn) {
     	 
     	 
      	 //學生已評分記錄
- 	 		 $chk_right=mysql_num_rows(mysql_query("select * from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."' and chk=1"));
-     	 $chk_none=mysql_num_rows(mysql_query("select * from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."' and chk=0"));
-     	 $chk_wrong=mysql_num_rows(mysql_query("select * from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."' and chk=-1"));
+ 	 		 $chk_right=mysqli_num_rows(mysql_query("select * from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."' and chk=1"));
+     	 $chk_none=mysqli_num_rows(mysql_query("select * from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."' and chk=0"));
+     	 $chk_wrong=mysqli_num_rows(mysql_query("select * from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."' and chk=-1"));
    	 
     	 if ($chk_none==$N) {
     	 	$RR[2]=0;
@@ -471,7 +471,7 @@ function get_stud_record2_info($TEST,$student_sn) {
     	  
      	 $query="select count(*) as num,AVG(score) as score from contest_score_record2 where score>0 and tsn='".$TEST['tsn']."' and student_sn='".$student_sn."'";
     	 $result=mysqli_query($conID, $query);
-  	 	 $WORKS=mysql_fetch_array($result,1); //會用到 score 欄位
+  	 	 $WORKS=mysqli_fetch_array($result,1); //會用到 score 欄位
     	 $RR[2]=$WORKS['num'];  //幾個成績 ,0表未評分
     	 $RR[3]=round($WORKS['score'],2); 
 

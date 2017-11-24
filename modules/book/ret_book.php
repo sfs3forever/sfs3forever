@@ -53,9 +53,9 @@ $stmt->close();
 	//$query = "SELECT borrow.bookch1_id, borrow.book_id, borrow.out_date, borrow.in_date,borrow.b_num,stud_base.stud_id, stud_base.stud_name,  book.book_name, book.book_author FROM borrow ,stud_base ,book where  borrow.stud_id = stud_base.stud_id and  borrow.book_id = book.book_id and in_date IS NULL and  borrow.book_id= '$book_id'";
 	//$result = mysqli_query($conID, $query);
 	
-	//if (mysql_num_rows($result) >0 ){
+	//if (mysqli_num_rows($result) >0 ){
 	if ($b_num >0 ){
-		//$row = mysql_fetch_array($result);
+		//$row = mysqli_fetch_array($result);
 		//$stud_id = $row["stud_id"];
 		//$stud_name = $row["stud_name"];
 		//$book_name = $row["book_name"];	
@@ -97,7 +97,7 @@ if ($stud_name !="")
 
 	echo "<center><table border=1>";
 	echo "<tr bgcolor=#8080FF><td>總號</td><td>書號</td><td>書名</td><td>借閱日期</td><td>歸還日期</td></tr>";
-	while ($row = mysql_fetch_array($result)){
+	while ($row = mysqli_fetch_array($result)){
 		$bookch1_id = $row["bookch1_id"];
 		$book_id = $row["book_id"];
 		$book_name = $row["book_name"];

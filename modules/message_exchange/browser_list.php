@@ -44,7 +44,7 @@ $sql .= " where `r_id` = '".$r_id."' ";
 $sql_result = mysql_query($sql) or die($sql."sql語法有誤!!");
 
 // 公告細項內容
-$row = mysql_fetch_array($sql_result);
+$row = mysqli_fetch_array($sql_result);
 
 $main_function.= "<table>\n";
 $main_function.= "<tr>\n";

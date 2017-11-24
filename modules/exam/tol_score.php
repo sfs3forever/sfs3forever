@@ -13,7 +13,7 @@ if($key =='按下評量') {
 	$exam_id=intval($exam_id);
 	$query = "select stud_id from exam_stud where exam_id= '$exam_id' ";
 	$result = mysqli_query($conID, $query);
-	while ($row = mysql_fetch_array($result)) {
+	while ($row = mysqli_fetch_array($result)) {
 		$stud_id = $row["stud_id"];	
 		$temp = "tea_comment_".$stud_id;
 		$tea_comment = $$temp;
@@ -53,7 +53,7 @@ $stmt->close();
 $exam_id=intval($exam_id);
 $query = "select exam.exam_name,exam.exam_memo ,exam.teach_id,exam.teach_name,exam.exam_isupload,exam_kind.class_id,exam_kind.e_upload_ok from exam,exam_kind where exam.e_kind_id = exam_kind.e_kind_id and exam.exam_id='$exam_id' ";
 $result = mysql_query ($query) or die($query);
-$row = mysql_fetch_array($result);
+$row = mysqli_fetch_array($result);
 $teach_id = $row["teach_id"]; //教師代號
 $teach_name = $row["teach_name"]; //教師姓名
 $exam_name = $row["exam_name"];
@@ -90,7 +90,7 @@ $sql_select = "select exam_stud.*,exam.exam_id,exam.exam_name,exam.exam_memo,exa
                and exam_stud.exam_id= '$exam_id' order by exam_stud.stud_num";
 $result = mysql_query ($sql_select) or die ($sql_select);
 
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
 	$exam_id = $row["exam_id"];
 	$stud_name = $row["stud_name"];
 	$f_name = $row["f_name"];

@@ -187,7 +187,7 @@ function table_data($table="",$mark=";#@_@",$add_drop=1,$need_insert=1){
 	$sql="SHOW FIELDS FROM $mysql_db.$table";
 	$result = mysqli_query($sql);
 
-	while ($row = mysql_fetch_array($result)) {
+	while ($row = mysqli_fetch_array($result)) {
 		$row_Default=$row['Default'];
 		$row_Field=$row['Field'];
 
@@ -203,7 +203,7 @@ function table_data($table="",$mark=";#@_@",$add_drop=1,$need_insert=1){
 	$sql="SHOW INDEX FROM $table";
 	$result = mysqli_query($sql);
 	$Key_name_array=array();
-	while ($key_row = mysql_fetch_array($result)) {
+	while ($key_row = mysqli_fetch_array($result)) {
 
 		$Key_name=$key_row['Key_name'];
 		$Non_unique=$key_row['Non_unique'];

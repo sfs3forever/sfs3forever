@@ -158,7 +158,7 @@ function b_submit() {
 				mysql_query("set names 'utf8';");
 				$query="select * from sc_msn_folder where idnumber!='private' order by foldername";
 				$result=mysqli_query($conID, $query);
-				while ($row=mysql_fetch_array($result)) {
+				while ($row=mysqli_fetch_array($result)) {
 	       ?>
 	       <option value="<?php echo $row['idnumber'];?>"><?php echo $row['foldername'];?></option>
 	       <?php			 
@@ -512,11 +512,11 @@ if ($_GET['act']=='read') {
       </td>
     </tr>
     <?php
-     if (mysql_num_rows($result_file)) {
+     if (mysqli_num_rows($result_file)) {
      ?>
      <tr>
       <td width="41" bgcolor="#FFFFCC">??</td>
-      <td bgcolor="#CCFFCC" style="font-size:10pt">?祉?閮???php mysql_num_rows($result_file);?>??瑼?<br>
+      <td bgcolor="#CCFFCC" style="font-size:10pt">?祉?閮???php mysqli_num_rows($result_file);?>??瑼?<br>
       	<?php 
       	 while ($row_file=mysqli_fetch_row($result_file)) {
       	  list($filename,$filename_r)=$row_file;
@@ -693,7 +693,7 @@ $mail->Password   = $SMPTpassword;        	// SMTP account password
 	 		$idnumber_test=$idnumber.$a;
 	 		$query="select id from sc_msn_data where idnumber='".$idnumber_test."'";
 	 		$result=mysqli_query($conID, $query);
-	 		$exist=mysql_num_rows($result);
+	 		$exist=mysqli_num_rows($result);
 		} while ($exist>0);
 		
     
@@ -713,7 +713,7 @@ $idnumber=date("y").date("m").date("d").date("H").date("i").date("s");
 	 $idnumber_test=$idnumber.$a;
 	 $query="select id from sc_msn_data where idnumber='".$idnumber_test."'";
 	 $result=mysqli_query($conID, $query);
-	 $exist=mysql_num_rows($result);
+	 $exist=mysqli_num_rows($result);
 	} while ($exist>0);
 
  $idnumber=$idnumber_test;
@@ -735,7 +735,7 @@ switch ($data_kind) {
  			 foreach($a as $g) {
  				 	$query="select teach_id from teacher_base where teach_id='".$g."'";
   				$result=mysqli_query($conID, $query);
-  					if (mysql_num_rows($result)) {
+  					if (mysqli_num_rows($result)) {
  						   $query="insert into sc_msn_data (idnumber,teach_id,to_id,data_kind,post_date,last_date,data,relay,folder) values ('$idnumber','$m_from','$g','$data_kind','$datetime','$lasttime','$msg','$relay','private')";
  						   mysqli_query($conID, $query);
  							 $save=1;

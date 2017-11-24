@@ -22,7 +22,7 @@ function big52utf8($big5str) {
 function get_teacher_name_by_id($teach_id){
 	$sql_select = "select name from teacher_base where teach_id = '".$teach_id."'";
   $result=mysql_query($sql_select);
-	if (mysql_num_rows($result)) {
+	if (mysqli_num_rows($result)) {
 	list($name) = mysqli_fetch_row($result);
 	return $name;
   } else {
@@ -74,7 +74,7 @@ function delete_file($idnumber,$to_id) {
     //?血?瑼Ｘ?臬??瑼?
     $query_other="select idnumber from sc_msn_data where idnumber='".$idnumber."' and to_id<>'".$to_id."' and data_kind<>2";
     $result_other=mysql_query($query_other);
-    if (mysql_num_rows($result_other)==0) {
+    if (mysqli_num_rows($result_other)==0) {
      //瑼Ｘ?臬??瑼? ???航???? ?典
      $query_file="select filename from sc_msn_file where idnumber='".$idnumber."'";
      $result_file=mysql_query($query_file);
@@ -85,7 +85,7 @@ function delete_file($idnumber,$to_id) {
      //?芷??閮?
      $query="delete from sc_msn_file where idnumber='".$idnumber."'";
      mysqli_query($conID, $query);
-    }// end if mysql_num_rows
+    }// end if mysqli_num_rows
 } // end function
 
 //?芷??瑼?

@@ -196,19 +196,19 @@ if ($class_num) {
 	
    //坐姿前彎 1
    $query="select p25 from fitness_mod where age='$age' and sex='$sex' and grade='2'"; 
-   $row_t=mysql_fetch_array(mysqli_query($conID, $query),1);
+   $row_t=mysqli_fetch_array(mysqli_query($conID, $query),1);
    $fd[$sn][test1_lower]=$row_t['p25'];
    //仰臥起坐 2
    $query="select p25 from fitness_mod where age='$age' and sex='$sex' and grade='3'"; 
-   $row_t=mysql_fetch_array(mysqli_query($conID, $query),1);
+   $row_t=mysqli_fetch_array(mysqli_query($conID, $query),1);
    $fd[$sn][test2_lower]=$row_t['p25'];
   //立定跳遠 3 
    $query="select p25 from fitness_mod where age='$age' and sex='$sex' and grade='4'"; 
-   $row_t=mysql_fetch_array(mysqli_query($conID, $query),1);
+   $row_t=mysqli_fetch_array(mysqli_query($conID, $query),1);
    $fd[$sn][test3_lower]=$row_t['p25'];
    //心肺適能 4
    $query="select p25 from fitness_mod where age='$age' and sex='$sex' and grade='5'"; 
-   $row_t=mysql_fetch_array(mysqli_query($conID, $query),1);
+   $row_t=mysqli_fetch_array(mysqli_query($conID, $query),1);
    $fd[$sn][test4_lower]=$row_t['p25'];
    
    $lower=0; //檢測4項, 有幾項未達25%

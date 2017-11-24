@@ -27,7 +27,7 @@ function &mainForm(){
 	
 	$result = mysql_listtables($mysql_db);
 	$i = 0;
-	while ($i < mysql_num_rows ($result)) {
+	while ($i < mysqli_num_rows ($result)) {
 		$tb_names[$i] = mysql_tablename ($result, $i);
 		$tbl.="<option value='$tb_names[$i]'>$tb_names[$i]</option>";
 		$i++;
@@ -65,7 +65,7 @@ function &settbl($table){
 	$sql="SHOW FIELDS FROM $table";
 	$result = mysql_db_query($mysql_db,$sql,$conID);	
 
-	while ($all_row = mysql_fetch_array($result)) {
+	while ($all_row = mysqli_fetch_array($result)) {
 		//解析資料庫型態
 		$t1=explode(" ",$all_row[Type]);
 		$t2=explode("(",$t1[0]);

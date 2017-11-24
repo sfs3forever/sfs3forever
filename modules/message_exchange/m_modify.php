@@ -140,7 +140,7 @@ if($check_button == $submit_name1){
 	  $sql_result5 = mysql_query($sql) or die($sql."sql語法有誤!!");
 	  //echo $sql."|<BR>\n";
 	  // 公告細項內容
-	  $row5 = mysql_fetch_array($sql_result5);
+	  $row5 = mysqli_fetch_array($sql_result5);
 	  $addselect = explode(",",$row5['receiver']);
 	  $title = $row5['title'];
 	  $message = $row5['content'];
@@ -179,7 +179,7 @@ if($check_button == $submit_name1){
 	//echo $sql."|<BR>\n";
 	$sql_result = mysql_query($sql) or die($sql."<BR>\nsql語法有誤!!");
     
-	$user_total = mysql_num_rows($sql_result);
+	$user_total = mysqli_num_rows($sql_result);
 
 	if ($user_total==0){
 	  echo "<center><FONT SIZE=\"4\" COLOR=\"#FF0000\">目前任何教職員存在，請聯絡管理者!!</FONT><br>\n";
@@ -187,7 +187,7 @@ if($check_button == $submit_name1){
 	}
 
 	//將所有user轉成user陣列
-	while ($row = mysql_fetch_array($sql_result)){
+	while ($row = mysqli_fetch_array($sql_result)){
 	  $all_user[$row[1]] = $row[0];
 	  $all_user_kind[$row[1]] = $row[2];
 	}

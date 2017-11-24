@@ -98,7 +98,7 @@ $stmt->close();
 /*
 $sql_select = "select bookch1_id,book_id,book_name,book_author,book_maker,book_myear,book_bind,book_price,book_content,book_isborrow,book_isbn,book_isout,book_buy_date from book where book_id ='$book_id'";
 $result = mysql_query ($sql_select,$conID);
-$row = mysql_fetch_array($result);
+$row = mysqli_fetch_array($result);
 $bookch1_id = $row["bookch1_id"];
 $book_id = $row["book_id"];
 $book_name = $row["book_name"];	
@@ -142,7 +142,7 @@ if ($_POST['key'] =="刪除"){
 <?php
 $query = "select * from bookch1 order by bookch1_id ";
 $result = mysql_query($query ,$conID);
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	if ($row["bookch1_id"]==$bookch1_id)
 		echo sprintf("<option value=\"%s\" selected>%s %s",$row["bookch1_id"],$row["bookch1_id"],$row["bookch1_name"]);
 	else

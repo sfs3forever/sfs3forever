@@ -411,7 +411,7 @@ switch($selected_type)
 			  ";
 			$query="select * from association where student_sn='$selected_student' order by seme_year_seme";
 			$res=mysqli_query($conID, $query);
-			while ($row=mysql_fetch_array($res,1)) {
+			while ($row=mysqli_fetch_array($res,1)) {
 			 $del_mode=($row['club_sn']>0)?"<font size=2 color=red><i>校內社團</i></font>":"<input type='button' value='刪除' onclick=\"if(confirm('您確定要刪除該生的\社團:「".$row['association_name']."」記錄?')) { document.myform.club_option.value='".$row['sn']."';document.myform.club_act.value='club_delete';document.myform.submit(); } \">";
 			 $dd="
 		    <tr>

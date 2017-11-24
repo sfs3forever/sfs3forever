@@ -49,12 +49,12 @@ foreach($entry_s as $key=>$value){
 //取得各領域冊別
 $sqlstr = "select * from unit_tome where  unit_m='$m' and unit_t='$t' " ;
 $result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
-$row= mysql_fetch_array($result);
+$row= mysqli_fetch_array($result);
 $c_tome = $row["unit_tome"];
 //取得單元名稱
 $sqlstr = "select * from unit_u where  unit_m='$m'  and unit_t='$t' and u_s='$u'" ;
 $result = mysql_query($sqlstr);
-$row= mysql_fetch_array($result);
+$row= mysqli_fetch_array($result);
 $c_unit = $row["unit_name"];
 $u_id = $row["u_id"];
 $exam_c="";
@@ -110,7 +110,7 @@ $s_unit.="</td></tr>";
 // 計算資料數
 $sqlstr = "SELECT count(*)  as cou FROM `unit_c` WHERE bk_id='$u_id' and b_days > 0 and b_kind <>'' " ;
 $result = mysql_query($sqlstr);
-$row= mysql_fetch_array($result);
+$row= mysqli_fetch_array($result);
 $total = $row["cou"];
 $sql_update = "update unit_u set total='$total' where u_id='$u_id' ";
 mysql_query($sql_update) or die ($sql_update);

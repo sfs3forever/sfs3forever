@@ -41,8 +41,8 @@ if ($stukey == "產生借書條碼") {
         if ($$s_no != "") {
             $query = "select stud_id,stud_name from stud_base where stud_id = '" . $$s_no . "'";
             $result = mysql_query($query, $conID);
-            if (mysql_num_rows($result) > 0) {
-                $row = mysql_fetch_array($result);
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_array($result);
                 //echo sprintf ("<img src=\"%s?code=%s&text=%s\">",$code_url,$row["stud_id"],$school_sshort_name."--".$row["stud_name"]);
                 $core = $row["stud_id"];
                 $topname = $school_sshort_name . "--" . $row["stud_name"];
@@ -65,8 +65,8 @@ if ($teakey == "產生借書條碼") {
         if ($$s_no != "") {
             $query = "select teach_id,name from teacher_base where teach_id = '" . $$s_no . "'";
             $result = mysql_query($query, $conID);
-            if (mysql_num_rows($result) > 0) {
-                $row = mysql_fetch_array($result);
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_array($result);
 //				echo sprintf ("<img src=\"%s?code=%s&text=%s\">",$code_url,$row["teach_id"],$school_sshort_name."--".$row["name"] );
                 $core = $row["teach_id"];
                 $topname = $school_sshort_name . "--" . $row["name"];
@@ -89,7 +89,7 @@ $result = mysql_query($query, $conID);
 //分類號選項
 $i = 0;
 $tt = "";
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
     if ($i > 0) {
         $tt .= sprintf(" <option value=\"%s\" >%s%s</option>", $row["bookch1_id"] . $row["bookch1_name"], $row["bookch1_id"], $row["bookch1_name"]);
     } else {

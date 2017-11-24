@@ -40,7 +40,7 @@ switch ($key) {
 			group by gg  order by gg  ";
 		$result = mysqli_query($conID, $query) or die($query);		
 		$list_con .= "<tr class=title_sbody1 ><td align=center>序號</td><td align=center>班級</td><td align=right>人數</td><td align=right>男</td><td align=right>女</td></tr>\n";
-		while ($row= mysql_fetch_array($result)) {
+		while ($row= mysqli_fetch_array($result)) {
 			$list_con .= sprintf("<tr><td align=center>%d</td><td align=center>%s</td><td align=right>%d</td><td align=right><font color=blue>%d</font></td><td align=right><font color=red>%d</font> </td></tr>\n",++$i,$curr_class[$row[gg]],$row[aa],$row[boy],$row[girl]);
 			$boy +=$row[boy];
 			$girl +=$row[girl];
@@ -63,7 +63,7 @@ switch ($key) {
 		
 		$result = mysqli_query($conID, $query) or die($query);		
 		$list_con .= "<tr class=title_sbody1 ><td align=center>序號</td><td align=center>村里別</td><td align=right>人數</td><td align=right>男</td><td align=right>女</td></tr>\n";
-		while ($row= mysql_fetch_array($result)) {
+		while ($row= mysqli_fetch_array($result)) {
 			if ($row[stud_addr_h_c]=="") $row[stud_addr_h_c] ="<font color=red>未輸入村里</font>";
 			$list_con .= sprintf("<tr><td align=center>%d</td><td align=center>%s</td><td align=right>%d</td><td align=right><font color=blue>%d</font></td><td align=right><font color=red>%d</font> </td></tr>\n",++$i,$row[stud_addr_h_c],$row[aa],$row[boy],$row[girl]);
 			$boy +=$row[boy];
@@ -84,7 +84,7 @@ switch ($key) {
 			group by stud_addr.stud_addr_h_b  order by aa desc  ";
 		$result = mysqli_query($conID, $query) or die($query);		
 		$list_con .= "<tr class=title_sbody1 ><td align=center>序號</td><td align=center>鄉鎮別</td><td align=right>人數</td><td align=right>男</td><td align=right>女</td></tr>\n";
-		while ($row= mysql_fetch_array($result)) {			
+		while ($row= mysqli_fetch_array($result)) {			
 			$list_con .= sprintf("<tr><td align=center>%d</td><td align=center>%s</td><td align=right>%d</td><td align=right><font color=blue>%d</font></td><td align=right><font color=red>%d</font> </td></tr>\n",++$i,$row[stud_addr_h_b],$row[aa],$row[boy],$row[girl]);
 			$boy +=$row[boy];
 			$girl +=$row[girl];
@@ -99,9 +99,9 @@ $query = "select stud_addr.stud_addr_h_b, stud_addr.stud_addr_h_c, count(stud_ad
 $result = mysqli_query($conID, $query) or die ($query);
 $temp_value="";
 $i = 0;
-$tol_num = mysql_num_rows($result);
+$tol_num = mysqli_num_rows($result);
 $doexe[] = ".選擇村里 ($tol_num)";
-while ($row = mysql_fetch_array($result)){
+while ($row = mysqli_fetch_array($result)){
 	
 	if ($row[stud_addr_h_b] <> $temp_value) {							
 		if ($temp_count)

@@ -152,7 +152,7 @@ if (@$_POST['act']=="delete") {
  	//contest_record2 , filename己上傳的檔案
  	$query="select filename from contest_record2 where tsn='".$_POST['option1']."'";
  	$res=mysqli_query($conID, $query);
- 	while ($F=mysql_fetch_array($res,1)) {
+ 	while ($F=mysqli_fetch_array($res,1)) {
  	   	  unlink ($UPLOAD_P[$TEST['active']].$F['filename']);
   	   	if ($TEST['active']==2) {
   	   		$a=explode(".",$F['filename']);
@@ -166,7 +166,7 @@ if (@$_POST['act']=="delete") {
   //contest_score_user ,先select contest_score_setup裡tsn=$_POST['option1']的sco_sn
 	  $query="select sco_sn from contest_score_setup where tsn='".$_POST['option1']."'";
 	  $res=mysqli_query($conID, $query);
- 	  while ($row=mysql_fetch_array($res,1)) {
+ 	  while ($row=mysqli_fetch_array($res,1)) {
  	   $sql_del="delete from contest_score_user where sco_sn='".$row['sco_sn']."'";
  	   mysql_query($sql_del);
  	  } // end while
@@ -290,7 +290,7 @@ if (@$_POST['act']=='updating' or @$_POST['act']=='add_score_setup' or @$_POST['
   	  //寫入題目代碼
   		$query="select * from contest_itembank where ibsn='$ibsn'";
   		$res=mysqli_query($conID, $query);
-  		$row=mysql_fetch_array($res);
+  		$row=mysqli_fetch_array($res);
   		$query="insert into contest_ibgroup (tsn,ibsn,question,ans,ans_url) values ('".$_POST['option1']."','$ibsn','".SafeAddSlashes($row['question'])."','".SafeAddSlashes($row['ans'])."','".$row['ans_url']."')";
   		mysqli_query($conID, $query);
  		} // end foreach
@@ -311,12 +311,12 @@ if ($_POST['act']=='edituser_add_by_stud_id') {
  //限定本學期該學號,且正常就學中的學生, 取得 studnent_sn
  $query="select stud_name,seme_class,seme_num,a.student_sn from stud_base a,stud_seme b where a.stud_study_cond in (0,15) and b.seme_year_seme='$c_curr_seme' and a.student_sn=b.student_sn and a.stud_id='".$_POST['stud_id']."'";
  $res=mysqli_query($conID, $query);
- if (mysql_num_rows($res)==1) {
- 	$row=mysql_fetch_array($res,1);
+ if (mysqli_num_rows($res)==1) {
+ 	$row=mysqli_fetch_array($res,1);
   //參數 傳入 $tsn 及 報名學生 array
   $INFO=contest_add_user($_POST['option1'],$row);
   
- } elseif (mysql_num_rows($res)>1) {
+ } elseif (mysqli_num_rows($res)>1) {
   $INFO="學生資料庫異常, 學號人數超過1人, 請通知系統管理員!";
  } else {
   $INFO="查無此學生! ";
@@ -329,11 +329,11 @@ if ($_POST['act']=='edituser_add_by_stud_id') {
 if ($_POST['act']=='edituser_add_by_classnum') {
  $query="select stud_name,seme_class,seme_num,a.student_sn from stud_base a,stud_seme b where a.stud_study_cond in (0,15) and b.seme_year_seme='$c_curr_seme' and a.student_sn=b.student_sn and b.seme_class='".substr($_POST['classnum'],0,3)."' and b.seme_num=".substr($_POST['classnum'],3,2);
  $res=mysqli_query($conID, $query);
- if (mysql_num_rows($res)==1) {
- 	$row=mysql_fetch_array($res,1);
+ if (mysqli_num_rows($res)==1) {
+ 	$row=mysqli_fetch_array($res,1);
   //參數 傳入 $tsn 及 報名學生 array
   $INFO=contest_add_user($_POST['option1'],$row);
- } elseif (mysql_num_rows($res)>1) {
+ } elseif (mysqli_num_rows($res)>1) {
   $INFO="學生資料庫異常, 學號人數超過1人, 請通知系統管理員!";
  } else {
   $INFO="查無此學生! ";
@@ -349,7 +349,7 @@ if ($_POST['act']=='edituser_class_add') {
 	$seme_class=sprintf("%d%02d",substr($class_id,6,2),substr($class_id,9,2));
   $query="select a.student_sn,stud_name,seme_class,seme_num from stud_seme a,stud_base b where a.student_sn=b.student_sn and a.seme_year_seme='$c_curr_seme' and a.seme_class='$seme_class' and b.stud_study_cond in (0,15)";
   $res=mysqli_query($conID, $query);
-  while ($STUDENT=mysql_fetch_array($res,1)) {
+  while ($STUDENT=mysqli_fetch_array($res,1)) {
     $INFO=contest_add_user($_POST['option1'],$STUDENT);
     if (substr($INFO,0,4)=='報名') $i++;
   } // end while
@@ -419,7 +419,7 @@ if ($_POST['act']=='cleartyperec') {
      	//contest_score_user ,先select contest_score_setup裡tsn=$_POST['option1']的sco_sn
 	  	$query="select sco_sn from contest_score_setup where tsn='".$_POST['option1']."'";
 	  	$res=mysqli_query($conID, $query);
- 	  	while ($row=mysql_fetch_array($res,1)) {
+ 	  	while ($row=mysqli_fetch_array($res,1)) {
  	   		$sql_del="delete from contest_score_user where sco_sn='".$row['sco_sn']."' and teacher_sn='".$_POST['option2']."'";
  	   		mysql_query($sql_del);
  	  	} // end while      
@@ -846,7 +846,7 @@ if ($_POST['act']=='edituser_class') {
 	//從 school_class 找出班級, 依年級
 	$query="SELECT DISTINCT c_year FROM `school_class` WHERE year ='".curr_year()."' AND semester ='".curr_seme()."' order by c_year";
 	$res_year=mysqli_query($conID, $query);
-	while ($row_year=mysql_fetch_array($res_year)) {
+	while ($row_year=mysqli_fetch_array($res_year)) {
  	?>
  	<td>
  	<table border="1" style="border-collapse:collapse" bordercolor="#800000">
@@ -859,7 +859,7 @@ if ($_POST['act']=='edituser_class') {
  	//列出每一年級的班級
  		$query="select class_id,c_year,c_name,c_kind  from `school_class` where c_year='".$row_year['c_year']."' and  year ='".curr_year()."' AND semester ='".curr_seme()."' order by class_id";
  		$res_class=mysqli_query($conID, $query);
- 		while($row_class=mysql_fetch_array($res_class)) {
+ 		while($row_class=mysqli_fetch_array($res_class)) {
  			$c_year=$row_class['c_year'];
  			$c_name=$row_class['c_name'];
  			$seme_class=sprintf("%d%02d",substr($row_class['class_id'],6,2),substr($row_class['class_id'],9,2));
@@ -937,7 +937,7 @@ if ($_POST['act']=='editgroup') {
  	$query="select a.*,b.stud_id,b.stud_name,b.email_pass,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c,contest_setup d where a.student_sn=b.student_sn and a.student_sn=c.student_sn and a.tsn=d.tsn and d.year_seme=c.seme_year_seme and a.tsn='".$_POST['option1']."' and (a.ifgroup='' or a.ifgroup='".$_POST['option2']."') and a.student_sn!='".$_POST['option2']."' order by c.seme_class,c.seme_num";
   
   $result=mysqli_query($conID, $query);
-    while ($row=mysql_fetch_array($result,1)) {
+    while ($row=mysqli_fetch_array($result,1)) {
      
      if (chk_ifgroup($TEST,$row['student_sn'])) { //無作答記錄 , 且本身沒有組員(非組長)
     ?>
@@ -1002,7 +1002,7 @@ if ($_POST['act']=='judge') {
    
    $result=mysqli_query($conID, $query);
    $i=0;
-   while ($row=mysql_fetch_array($result,1)) {
+   while ($row=mysqli_fetch_array($result,1)) {
    $i++;
    if ($i%10==1) echo "<tr>";
      $p=($post_title=='導師')?$row['class_num'].$row['name']:$row['name'];

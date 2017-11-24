@@ -177,7 +177,7 @@ if ($student_sn!="") {
  
  /* php 的MySQL函式寫法 
  $res=mysqli_query($conID, $query);
- while ($row=mysql_fetch_array($res,1)) {
+ while ($row=mysqli_fetch_array($res,1)) {
 */
  /* ADODB 的寫法 */
  $res=$CONN->Execute($query) or die("SQL錯誤:$query");;
@@ -197,7 +197,7 @@ if ($student_sn!="") {
    $sql="select stud_name,curr_class_num,stud_study_cond from stud_base where student_sn='$student_sn'";
    /* php 的 MySQL 函式寫法  
    $res_stud=mysql_query($sql);
-   $row_stud=mysql_fetch_array($res_stud,1);
+   $row_stud=mysqli_fetch_array($res_stud,1);
    $students[$sn]['stud_name']=$row_stud['stud_name'];
 	 $students[$sn]['seme_class']=substr($row_stud['curr_class_num'],0,3);	   
 	 $students[$sn]['seme_num']=substr($row_stud['curr_class_num'],3,2);	 
