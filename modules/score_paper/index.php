@@ -18,7 +18,7 @@ if($act=="insert"){
         $msg=score_paper_add($_POST[data]);
         header("location: $_SERVER[PHP_SELF]?act=listAll&msg=$msg");
 }elseif($act=="update"){
-        score_paper_update($_POST[data],$_POST[sp_sn]);
+        score_paper_update($_POST[data],$_POST['sp_sn']);
         header("location: $_SERVER[PHP_SELF]?act=listAll");
 }elseif($act=="del"){
         score_paper_del($_GET[sp_sn]);
@@ -27,7 +27,7 @@ if($act=="insert"){
         $main=&score_paper_mainForm($_GET[sp_sn],"modify");
         $main.="<p>".score_paper_listAll($_GET[msg]);
 }else{
-        $main=&score_paper_mainForm($_POST[sp_sn]);
+        $main=&score_paper_mainForm($_POST['sp_sn']);
         $main.="<p>".score_paper_listAll($_GET[msg]);
 }
 

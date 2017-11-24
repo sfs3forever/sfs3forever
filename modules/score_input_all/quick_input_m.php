@@ -43,7 +43,7 @@ if($_POST[score_semester] <>'') {
 			if ($sn) {
 				if($_POST["t_$sn"]=="") $_POST["t_$sn"]="-100";
 				//寫入學期成績資料表
-				$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,sendmit) values('$_POST[class_id]','$sn','$_POST[ss_id]','".$_POST["t_$sn"]."','$_POST[test_kind]','$_POST[test_kind]','$curr_sort',now(),'0')";
+				$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,sendmit) values({$_POST['class_id']},'$sn',{$_POST['ss_id']},'".$_POST["t_$sn"]."',{$_POST['test_kind']},{$_POST['test_kind']},'$curr_sort',now(),'0')";
 				$CONN->Execute($sql3) or die($sql3);
 			}
 		}

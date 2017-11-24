@@ -42,7 +42,7 @@ $seme_year_seme=sprintf("%03d",$sel_year).$sel_seme;
 	
 //年級與班級選單
 $default_class_id=($IS_JHORES+1).'01';
-$class_id=$_POST[class_id]?$_POST[class_id]:$default_class_id;
+$class_id=$_POST['class_id']?$_POST['class_id']:$default_class_id;
 $_POST['stud_id']=$_POST['stud_id_select']?$_POST['stud_id_select']:$_POST['stud_id'];
 $class_select=&classSelect($sel_year,$sel_seme,"","class_id",$class_id,true);
 $stud_select=get_stud_select($class_id,$One,"stud_id_select","",1);

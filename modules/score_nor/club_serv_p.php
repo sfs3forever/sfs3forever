@@ -101,7 +101,7 @@ if($_POST){
 	
 	$page_i=0;  //計數, 已列印了幾頁, 第二頁後一開始都要送分頁
 	
- foreach ($_POST[class_id] as $class_id_key=>$null) {
+ foreach ($_POST['class_id'] as $class_id_key=>$null) {
  	
  	//依班級不同, 傳入班級學年度資料
 	$smarty->assign("class_info",$class_ary[$class_id_key]);//班級學年度資料

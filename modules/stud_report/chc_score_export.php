@@ -14,7 +14,7 @@ $smarty->left_delimiter="{{";
 $smarty->right_delimiter="}}";
 //	將基本的變數及陣列傳入 smarty
 /*
-$_POST[class_id]=array('093_2_08_13','093_1_07_01');
+$_POST['class_id']=array('093_2_08_13','093_1_07_01');
 $_POST[act]=='OK';
 */
 //---改為取得單一班級的學生序號
@@ -47,11 +47,11 @@ $smarty->display($template_dir."prn_head.tpl");
 $smarty->assign('school_name',$school_long_name);
 ///以班級陣列取出學生
 //print_r($_POST);
-if ($_POST[act]=='OK' && is_array($_POST[class_id]) ){
-	//print_r($_POST[class_id]);
+if ($_POST[act]=='OK' && is_array($_POST['class_id']) ){
+	//print_r($_POST['class_id']);
 	//--- 取得所有班級的學生代號
 	$class_data=array();
-	foreach($_POST[class_id] as $class_id=>$data) {
+	foreach($_POST['class_id'] as $class_id=>$data) {
 		$sn_ary=get_stsn($class_id);
 		foreach($sn_ary as $student_sn) {
 			$class_data[$class_id][$student_sn][seme_ary]=seme_num_detail($student_sn);

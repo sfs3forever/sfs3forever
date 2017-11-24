@@ -126,8 +126,8 @@ $file_in=$_POST['file_in'];
                         if($stud_score=="") $stud_score="-100";
                         $rs_ck=$CONN->Execute("select score_id from $score_semester where student_sn='$student_sn' and class_id='$class_id' and ss_id='$ss_id' and test_kind='$test_kind' and test_sort='$test_sort'");
                         $ck=$rs_ck->fields['score_id'];
-                        if($ck) $bobo=$CONN->Execute("update $score_semester SET score='$stud_score',update_time='$update_time',teacher_sn='$_SESSION[session_tea_sn]' where student_sn='$student_sn' and class_id='$class_id' and ss_id='$ss_id' and test_kind='$test_kind' and test_sort='$test_sort'");
-                        else $bobo=$CONN->Execute("INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$student_sn','$ss_id','$stud_score','$test_kind','$test_kind','$test_sort','$update_time','$_SESSION[session_tea_sn]')");
+                        if($ck) $bobo=$CONN->Execute("update $score_semester SET score='$stud_score',update_time='$update_time',teacher_sn={$_SESSION['session_tea_sn']} where student_sn='$student_sn' and class_id='$class_id' and ss_id='$ss_id' and test_kind='$test_kind' and test_sort='$test_sort'");
+                        else $bobo=$CONN->Execute("INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$student_sn','$ss_id','$stud_score','$test_kind','$test_kind','$test_sort','$update_time',{$_SESSION['session_tea_sn']})");
                         //echo "update $score_semester SET score='$stud_score',update_time='$update_time' where student_sn='$student_sn' and class_id='$class_id' and ss_id='$ss_id' and test_kind='$test_kind' and test_sort='$test_sort'";
                         if($bobo) $msg.="--num ".$stud_site_num." --成功<br>";
                         else $msg.="--num ".$stud_site_num." --失敗<br>";
@@ -193,13 +193,13 @@ $file_in=$_POST['file_in'];
 					if(($score1[$i]=="")||($score1[$i]<0)||($score1[$i]>100)) $score1[$i]='-100';
 					if($score_id){
 						//echo $score1[$i]." ";
-						$sql2="UPDATE  $score_semester SET test_name='定期評量',test_sort='$test_sort',score='$score1[$i]',teacher_sn='$_SESSION[session_tea_sn]'  WHERE  score_id='$score_id'";
+						$sql2="UPDATE  $score_semester SET test_name='定期評量',test_sort='$test_sort',score='$score1[$i]',teacher_sn={$_SESSION['session_tea_sn']}  WHERE  score_id='$score_id'";
 						$CONN->Execute($sql2);
 
 					}
 					else{
 						//echo $score1[$i]." ";
-						$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$stud_sn[$i]','$ss_id','$score1[$i]','$test_name','$test_kind','$test_sort','$update_time','$_SESSION[session_tea_sn]')";
+						$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$stud_sn[$i]','$ss_id','$score1[$i]','$test_name','$test_kind','$test_sort','$update_time',{$_SESSION['session_tea_sn']})";
 						$CONN->Execute($sql3) ;
 
 					}
@@ -223,12 +223,12 @@ $file_in=$_POST['file_in'];
 								$score2[$i]=$score2[$stud_sn[$i]];
 								if(($score2[$i]=="")||($score2[$i]<0)||($score2[$i]>100)) $score2[$i]='-100';					
 								if($score_id){
-									$sql2="UPDATE  $score_semester SET test_name='$test_kind',test_sort='$g',score='$score2[$i]',teacher_sn='$_SESSION[session_tea_sn]'  WHERE  score_id='$score_id'";
+									$sql2="UPDATE  $score_semester SET test_name='$test_kind',test_sort='$g',score='$score2[$i]',teacher_sn={$_SESSION['session_tea_sn']}  WHERE  score_id='$score_id'";
 									$CONN->Execute($sql2);
 
 								}
 								else{
-									$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$stud_sn[$i]','$ss_id','$score2[$i]','$test_kind','$test_kind','$g','$update_time','$_SESSION[session_tea_sn]')";
+									$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$stud_sn[$i]','$ss_id','$score2[$i]','$test_kind','$test_kind','$g','$update_time',{$_SESSION['session_tea_sn']})";
 									$CONN->Execute($sql3) ;
 								}
 							}
@@ -240,11 +240,11 @@ $file_in=$_POST['file_in'];
 							$score2[$i]=$score2[$stud_sn[$i]];
 							if(($score2[$i]=="")||($score2[$i]<0)||($score2[$i]>100)) $score2[$i]='-100';					
 							if($score_id){
-								$sql2="UPDATE  $score_semester SET test_name='$test_kind',test_sort='$test_sort',score='$score2[$i]',teacher_sn='$_SESSION[session_tea_sn]'  WHERE  score_id='$score_id'";
+								$sql2="UPDATE  $score_semester SET test_name='$test_kind',test_sort='$test_sort',score='$score2[$i]',teacher_sn={$_SESSION['session_tea_sn']}  WHERE  score_id='$score_id'";
 								$CONN->Execute($sql2);
 							}
 							else{
-								$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$stud_sn[$i]','$ss_id','$score2[$i]','$test_kind','$test_kind','$test_sort','$update_time','$_SESSION[session_tea_sn]')";
+								$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$stud_sn[$i]','$ss_id','$score2[$i]','$test_kind','$test_kind','$test_sort','$update_time',{$_SESSION['session_tea_sn']})";
 								$CONN->Execute($sql3) ;
 							}								
 						}
@@ -265,13 +265,13 @@ $file_in=$_POST['file_in'];
 					if(($score1[$i]=="")||($score1[$i]<0)||($score1[$i]>100)) $score1[$i]='-100';
 					if($score_id){
 						//echo $score1[$i]." ";
-						$sql2="UPDATE  $score_semester SET test_name='定期評量',test_sort='$test_sort',score='$score1[$i]',teacher_sn='$_SESSION[session_tea_sn]'  WHERE  score_id='$score_id'";
+						$sql2="UPDATE  $score_semester SET test_name='定期評量',test_sort='$test_sort',score='$score1[$i]',teacher_sn={$_SESSION['session_tea_sn']}  WHERE  score_id='$score_id'";
 						$CONN->Execute($sql2);
 
 					}
 					else{
 						//echo $score1[$i]." ";
-						$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$stud_sn[$i]','$ss_id','$score1[$i]','$test_name','$test_kind','$test_sort','$update_time','$_SESSION[session_tea_sn]')";
+						$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$stud_sn[$i]','$ss_id','$score1[$i]','$test_name','$test_kind','$test_sort','$update_time',{$_SESSION['session_tea_sn']})";
 						$CONN->Execute($sql3) ;
 
 					}
@@ -295,12 +295,12 @@ $file_in=$_POST['file_in'];
 							$score2[$i]=$score2[$stud_sn[$i]];
 							if(($score2[$i]=="")||($score2[$i]<0)||($score2[$i]>100)) $score2[$i]='-100';					
 							if($score_id){
-								$sql2="UPDATE  $score_semester SET test_name='$test_kind',test_sort='$test_sort',score='$score2[$i]',teacher_sn='$_SESSION[session_tea_sn]'  WHERE  score_id='$score_id'";
+								$sql2="UPDATE  $score_semester SET test_name='$test_kind',test_sort='$test_sort',score='$score2[$i]',teacher_sn={$_SESSION['session_tea_sn']}  WHERE  score_id='$score_id'";
 								$CONN->Execute($sql2);
 
 							}
 							else{
-								$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$stud_sn[$i]','$ss_id','$score2[$i]','$test_kind','$test_kind','$test_sort','$update_time','$_SESSION[session_tea_sn]')";
+								$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$stud_sn[$i]','$ss_id','$score2[$i]','$test_kind','$test_kind','$test_sort','$update_time',{$_SESSION['session_tea_sn']})";
 								$CONN->Execute($sql3) ;
 							}
 						//}
@@ -312,11 +312,11 @@ $file_in=$_POST['file_in'];
 						$score2[$i]=$score2[$stud_sn[$i]];
 						if(($score2[$i]=="")||($score2[$i]<0)||($score2[$i]>100)) $score2[$i]='-100';					
 						if($score_id){
-							$sql2="UPDATE  $score_semester SET test_name='$test_kind',test_sort='$test_sort',score='$score2[$i]',teacher_sn='$_SESSION[session_tea_sn]' WHERE  score_id='$score_id'";
+							$sql2="UPDATE  $score_semester SET test_name='$test_kind',test_sort='$test_sort',score='$score2[$i]',teacher_sn={$_SESSION['session_tea_sn']} WHERE  score_id='$score_id'";
 							$CONN->Execute($sql2);
 						}
 						else{
-							$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$stud_sn[$i]','$ss_id','$score2[$i]','$test_kind','$test_kind','$test_sort','$update_time','$_SESSION[session_tea_sn]')";
+							$sql3="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$stud_sn[$i]','$ss_id','$score2[$i]','$test_kind','$test_kind','$test_sort','$update_time',{$_SESSION['session_tea_sn']})";
 							$CONN->Execute($sql3) ;
 						}								
 					}

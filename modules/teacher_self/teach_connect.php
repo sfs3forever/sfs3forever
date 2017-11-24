@@ -21,7 +21,7 @@ if ($_POST[key] =="確定修改") {
 	  	if ($rs->fields[teacher_sn]) {
 		  	$query = "update teacher_connect set email='$_POST[I_email]', email2='$_POST[I_email2]', email3 ='$_POST[I_email3]', selfweb ='$_POST[I_selfweb]', selfweb2 ='$_POST[I_selfweb2]', classweb ='$_POST[I_classweb]', classweb2='$_POST[I_classweb2]', ICQ='$_POST[I_ICQ]' where teacher_sn='{$_SESSION['session_tea_sn']}'";
 		} else {
-			$query="insert into teacher_connect (teacher_sn,email,email2,email3,selfweb,selfweb2,classweb,classweb2,ICQ)values('$_SESSION[session_tea_sn]','$_POST[I_email]','$_POST[I_email2]','$_POST[I_email3]','$_POST[I_selfweb]','$_POST[I_selfweb2]','$_POST[I_classweb]','$_POST[I_classweb2]','$_POST[I_ICQ]')";
+			$query="insert into teacher_connect (teacher_sn,email,email2,email3,selfweb,selfweb2,classweb,classweb2,ICQ)values({$_SESSION['session_tea_sn']},'$_POST[I_email]','$_POST[I_email2]','$_POST[I_email3]','$_POST[I_selfweb]','$_POST[I_selfweb2]','$_POST[I_classweb]','$_POST[I_classweb2]','$_POST[I_ICQ]')";
 		}
 		$CONN->Execute($query) or die($query);
 	}

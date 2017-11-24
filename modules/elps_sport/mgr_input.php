@@ -34,7 +34,7 @@ if ($_POST[act]=='add_stu'){
 	if($_POST[item]=='') backe("操作錯誤!");
 	if($_POST[sportkind]=='') backe("操作錯誤!");
 	if(count($_POST[stu])==0) backe("未選擇學生!按下後回上頁重選!");
-	$SQL="select * from sport_item where id='$_POST[item]' ";
+	$SQL="select * from sport_item where id={$_POST['item']} ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$arr=$rs->GetArray();
 	$Chk=split("\.",$arr[0][sunit]);
@@ -69,7 +69,7 @@ if ($_POST[act]=='del_all_stu'){
 	if($_POST[mid]=='') backe("操作錯誤!");
 	if($_POST[item]=='') backe("操作錯誤!");
 	if($_POST[sportkind]=='') backe("操作錯誤!");
-	$SQL="UPDATE sport_res SET results = '' WHERE itemid='$_POST[item]' and mid='$_POST[mid]' ";
+	$SQL="UPDATE sport_res SET results = '' WHERE itemid={$_POST['item']} and mid='$_POST[mid]' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$url=$PHP_SELF."?mid=".$_POST[mid]."&item=".$_POST[item];header("Location:$url");
 	}

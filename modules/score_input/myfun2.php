@@ -23,7 +23,7 @@ function save_semester_score($sel_year,$sel_seme) {
 		//檢查有無成績, 106.0607 fix 無法修改問題 by 麒富
 		for ($i=1;$i<=$_POST[performance_test_times];$i++) {
 			
-		$query = "select student_sn,test_sort from $score_semester where ss_id='$_POST[ss_id]' and test_sort='{$i}' and test_kind='$test_kind' and student_sn in($temp_sn)";
+		$query = "select student_sn,test_sort from $score_semester where ss_id={$_POST['ss_id']} and test_sort='{$i}' and test_kind='$test_kind' and student_sn in($temp_sn)";
 		$temp_sn_arr = array();
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
@@ -37,15 +37,15 @@ function save_semester_score($sel_year,$sel_seme) {
 				$score = trim($_POST["s_$val"]);
 				if($score=='') $score= -100;
 				if (in_array($val,$temp_sn_arr[$i]))
-					$query = "UPDATE $score_semester set score='$score',update_time='$now',teacher_sn='$_SESSION[session_tea_sn]' where class_id='$class_id' and ss_id='$_POST[ss_id]' and test_sort='$i' and test_kind='$test_kind' and student_sn='$val'";
+					$query = "UPDATE $score_semester set score='$score',update_time='$now',teacher_sn={$_SESSION['session_tea_sn']} where class_id='$class_id' and ss_id={$_POST['ss_id']} and test_sort='$i' and test_kind='$test_kind' and student_sn='$val'";
 				else
-					$query = "insert INTO $score_semester(class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$val','$_POST[ss_id]','$score','$test_kind','$test_kind','$i','$now','$_SESSION[session_tea_sn]')";
+					$query = "insert INTO $score_semester(class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$val',{$_POST['ss_id']},'$score','$test_kind','$test_kind','$i','$now',{$_SESSION['session_tea_sn']})";
 				$CONN->Execute($query) or die($query);
 			}
 		}
 	}else{
 		//檢查有無成績
-		$query = "select student_sn from $score_semester where ss_id='$_POST[ss_id]' and test_sort='$_POST[test_sort]' and test_kind='$test_kind' and student_sn in($temp_sn)";
+		$query = "select student_sn from $score_semester where ss_id={$_POST['ss_id']} and test_sort={$_POST['test_sort']} and test_kind='$test_kind' and student_sn in($temp_sn)";
 		$temp_sn_arr = array();
 		$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while(!$res->EOF){
@@ -57,9 +57,9 @@ function save_semester_score($sel_year,$sel_seme) {
 			$score = trim($_POST["s_$val"]);
 			if($score=='') $score= -100;
 			if (in_array($val,$temp_sn_arr))
-				$query = "UPDATE $score_semester set score='$score',update_time='$now',teacher_sn='$_SESSION[session_tea_sn]' where class_id='$class_id' and ss_id='$_POST[ss_id]' and test_sort='$_POST[test_sort]' and test_kind='$test_kind' and student_sn='$val'";
+				$query = "UPDATE $score_semester set score='$score',update_time='$now',teacher_sn={$_SESSION['session_tea_sn']} where class_id='$class_id' and ss_id={$_POST['ss_id']} and test_sort={$_POST['test_sort']} and test_kind='$test_kind' and student_sn='$val'";
 			else
-				$query = "insert INTO $score_semester(class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$val','$_POST[ss_id]','$score','$test_kind','$test_kind','$_POST[test_sort]','$now','$_SESSION[session_tea_sn]')";
+				$query = "insert INTO $score_semester(class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$val',{$_POST['ss_id']},'$score','$test_kind','$test_kind',{$_POST['test_sort']},'$now',{$_SESSION['session_tea_sn']})";
 			$CONN->Execute($query) or die($query);
 		}
 	}
@@ -76,11 +76,11 @@ function seme_score_input($sel_year,$sel_seme) {
 	$temp_sn = substr($_POST[student_sn_hidden],0,-1);
 	$temp_arr = explode(",",$temp_sn);
 	// 將 score_semester 的 sendmit 設為 0
-	$test_str=($_POST[test_sort] != 254)?"and test_sort='$_POST[test_sort]'":"and test_kind='平時成績'";
-	$query= "UPDATE $score_semester set sendmit='0' where student_sn in ($temp_sn) and ss_id='$_POST[ss_id]' $test_str";
+	$test_str=($_POST[test_sort] != 254)?"and test_sort={$_POST['test_sort']}":"and test_kind='平時成績'";
+	$query= "UPDATE $score_semester set sendmit='0' where student_sn in ($temp_sn) and ss_id={$_POST['ss_id']} $test_str";
 	$CONN->Execute($query) or die($query);
 	$seme_year_seme = sprintf("%03d%d",$sel_year,$sel_seme);
-	$query = "select student_sn from stud_seme_score where ss_id='$_POST[ss_id]' and seme_year_seme='$seme_year_seme' and student_sn in($temp_sn)";
+	$query = "select student_sn from stud_seme_score where ss_id={$_POST['ss_id']} and seme_year_seme='$seme_year_seme' and student_sn in($temp_sn)";
 	$temp_sn_seme_arr = "";
 	$res = $CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 	while(!$res->EOF){
@@ -91,7 +91,7 @@ function seme_score_input($sel_year,$sel_seme) {
 	if ($temp_sn_seme_arr<>""){
 		$temp_sn_seme_arr=substr($temp_sn_seme_arr,0,-1);
 		//先將文字描述取出
-		$rs=$CONN->Execute("select student_sn,ss_score_memo from stud_seme_score where seme_year_seme='$seme_year_seme' and student_sn in ($temp_sn_seme_arr) and ss_id='$_POST[ss_id]'");
+		$rs=$CONN->Execute("select student_sn,ss_score_memo from stud_seme_score where seme_year_seme='$seme_year_seme' and student_sn in ($temp_sn_seme_arr) and ss_id={$_POST['ss_id']}");
 		while (!$rs->EOF) {
 			$val_arr[$rs->fields['student_sn']]=addslashes($rs->fields['ss_score_memo']);
 			$rs->MoveNext();
@@ -101,8 +101,8 @@ function seme_score_input($sel_year,$sel_seme) {
 	//階段成績 平時成績
 	if ($_POST[test_sort]<255) {
 		//將班級字串轉為陣列
-		if($_POST[class_id]) {
-			$class_arr=class_id_2_old($_POST[class_id]);
+		if($_POST['class_id']) {
+			$class_arr=class_id_2_old($_POST['class_id']);
 			$class_year=$class_arr[3];
 		}
 		else {//取得年級
@@ -177,9 +177,9 @@ function seme_score_input($sel_year,$sel_seme) {
 		//每次評量都不同設定
 		else {
 			if ($yorn=='y')
-				$query = "select student_sn,test_kind,test_sort,score from $score_semester where ss_id='$_POST[ss_id]' and student_sn in ($temp_sn) and test_sort<255 ";
+				$query = "select student_sn,test_kind,test_sort,score from $score_semester where ss_id={$_POST['ss_id']} and student_sn in ($temp_sn) and test_sort<255 ";
 			else
-				$query = "select student_sn,test_kind,test_sort,score from $score_semester where ss_id='$_POST[ss_id]' and student_sn in ($temp_sn) and (test_kind='定期評量' or test_kind='平時成績')";
+				$query = "select student_sn,test_kind,test_sort,score from $score_semester where ss_id={$_POST['ss_id']} and student_sn in ($temp_sn) and (test_kind='定期評量' or test_kind='平時成績')";
 			$res = $CONN->Execute($query) or die($query);
 			$temp_score= array();
 			while(!$res->EOF){
@@ -201,7 +201,7 @@ function seme_score_input($sel_year,$sel_seme) {
 		}
 //將成績填入學期成績檔
                 while(list($id,$val) = each($score_arr)){
-			$query = "replace into stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo,teacher_sn)values('$seme_year_seme','$id','$_POST[ss_id]','$val','".addslashes($val_arr[$id])."','$_SESSION[session_tea_sn]')";
+			$query = "replace into stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo,teacher_sn)values('$seme_year_seme','$id',{$_POST['ss_id']},'$val','".addslashes($val_arr[$id])."',{$_SESSION['session_tea_sn']})";
                         $CONN->Execute($query) or die($query);
                 }
 	}
@@ -211,7 +211,7 @@ function seme_score_input($sel_year,$sel_seme) {
 		reset($temp_arr); 
 		while(list($id,$val) = each($temp_arr)){
 			$score = trim($_POST["avg_hidden_$val"]);
-			$query = "replace into stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo,teacher_sn)values('$seme_year_seme','$val','$_POST[ss_id]','$score','".addslashes($val_arr[$val])."','$_SESSION[session_tea_sn]')";
+			$query = "replace into stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo,teacher_sn)values('$seme_year_seme','$val',{$_POST['ss_id']},'$score','".addslashes($val_arr[$val])."',{$_SESSION['session_tea_sn']})";
 			$CONN->Execute($query) or die($query);
 		}
 		
@@ -227,7 +227,7 @@ function download_score($sel_year,$sel_seme) {
 
 	//學期資料表名稱
 	$score_semester="score_semester_".$sel_year."_".$sel_seme;
-	$class_id = $_POST[class_id];
+	$class_id = $_POST['class_id'];
 	$ss_id = $_POST[ss_id];
 	$test_sort = $_POST[test_sort];
 	if($test_sort==255){
@@ -307,14 +307,14 @@ function import_score($sel_year,$sel_seme) {
             <p>請按『瀏覽』選擇匯入檔案來源：</p>
             <input type=file name='scoredata'>
             <input type=hidden name='score_semester' value='$score_semester'>
-            <input type=hidden name='class_id' value='$_POST[class_id]'>
-            <input type=hidden name='test_sort' value='$_POST[test_sort]'>
-            <input type=hidden name='test_kind' value='$_POST[test_kind]'>
-            <input type=hidden name='ss_id' value='$_POST[ss_id]'>
-            <input type=hidden name='teacher_course' value='$_POST[teacher_course]'>
-	    <input type=hidden name='student_sn_hidden' value='$_POST[student_sn_hidden]'>
-	    <input type=hidden name='performance_test_times' value='$_POST[performance_test_times]'>
-            <input type=hidden name='err_msg' value='檔案格式錯誤<a href=./manage.php?teacher_course=$_POST[teacher_course]&curr_sort=$_POST[test_sort]> <<上一頁>></a>'>
+            <input type=hidden name='class_id' value={$_POST['class_id']}>
+            <input type=hidden name='test_sort' value={$_POST['test_sort']}>
+            <input type=hidden name='test_kind' value={$_POST['test_kind']}>
+            <input type=hidden name='ss_id' value={$_POST['ss_id']}>
+            <input type=hidden name='teacher_course' value={$_POST['teacher_course']}>
+	    <input type=hidden name='student_sn_hidden' value={$_POST['student_sn_hidden']}>
+	    <input type=hidden name='performance_test_times' value={$_POST['performance_test_times']}>
+            <input type=hidden name='err_msg' value='檔案格式錯誤<a href=./manage.php?teacher_course={$_POST['teacher_course']}&curr_sort={$_POST['test_sort']}> <<上一頁>></a>'>
             <p><input type=submit name='file_date' value='成績檔案匯入'></p>
             <b>".$_POST['err_msg']."</b>
             </td>
@@ -354,8 +354,8 @@ function save_import_score($targetFile = 'manage2.php') {
 	$ss_id = $_POST[ss_id];
 	$test_sort = $_POST[test_sort];
 	$teacher_course = $_POST[teacher_course];
-	$class_id = $_POST[class_id];
-	$class_id_array=explode("_",$_POST[class_id]);
+	$class_id = $_POST['class_id'];
+	$class_id_array=explode("_",$_POST['class_id']);
 	$seme_year_seme=$class_id_array[0].$class_id_array[1];
 	$seme_class=intval($class_id_array[2]).$class_id_array[3];
 	$score_semester = "score_semester_".intval($class_id_array[0])."_".intval($class_id_array[1]);
@@ -413,9 +413,9 @@ function save_import_score($targetFile = 'manage2.php') {
 					echo $_POST[performance_test_times];
 					for ($j=1;$j<=$_POST[performance_test_times];$j++) {
 						if (in_array($student_sn,$student_sn_arr[$j]))
-							$bobo= "update $score_semester SET score='$stud_score',update_time='$update_time',teacher_sn='$_SESSION[session_tea_sn]' where student_sn='$student_sn' and class_id='$class_id' and ss_id='$ss_id' and $update_str and test_sort='$j'";
+							$bobo= "update $score_semester SET score='$stud_score',update_time='$update_time',teacher_sn={$_SESSION['session_tea_sn']} where student_sn='$student_sn' and class_id='$class_id' and ss_id='$ss_id' and $update_str and test_sort='$j'";
 						else
-							$bobo="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$student_sn','$ss_id','$stud_score','$test_kind','$test_kind','$j','$update_time','$_SESSION[session_tea_sn]')";
+							$bobo="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$student_sn','$ss_id','$stud_score','$test_kind','$test_kind','$j','$update_time',{$_SESSION['session_tea_sn']})";
 //	     	     				echo $bobo."<BR>";              
 						if($CONN->Execute($bobo))
 							$msg.="--num ".$stud_site_num." --成功<br>";
@@ -459,9 +459,9 @@ function save_import_score($targetFile = 'manage2.php') {
 					if($stud_score=="")
 						$stud_score="-100";
 					if (in_array($student_sn,$student_sn_arr))
-						$bobo= "update $score_semester SET score='$stud_score',update_time='$update_time',teacher_sn='$_SESSION[session_tea_sn]' where student_sn='$student_sn' and class_id='$class_id' and ss_id='$ss_id' and $update_str and test_sort='$test_sort'";
+						$bobo= "update $score_semester SET score='$stud_score',update_time='$update_time',teacher_sn={$_SESSION['session_tea_sn']} where student_sn='$student_sn' and class_id='$class_id' and ss_id='$ss_id' and $update_str and test_sort='$test_sort'";
 					else
-						$bobo="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$student_sn','$ss_id','$stud_score','$test_kind','$test_kind','$test_sort','$update_time','$_SESSION[session_tea_sn]')";
+						$bobo="INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$student_sn','$ss_id','$stud_score','$test_kind','$test_kind','$test_sort','$update_time',{$_SESSION['session_tea_sn']})";
 	//     	     			echo $bobo."<BR>";              
 					if($CONN->Execute($bobo))
 						$msg.="--num ".$stud_site_num." --成功<br>";

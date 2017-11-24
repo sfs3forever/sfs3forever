@@ -444,13 +444,13 @@ function trans_now(){
 				$sql_ss="select * from stud_seme_score where seme_year_seme='$seme_year_seme' and student_sn='$ssn' and ss_id='$ss_id'";
 				$rs_ss=$CONN->Execute($sql_ss);
 				if ($rs_ss->recordcount()==0) {
-					$sql_insert="insert into stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo,teacher_sn) values ('$seme_year_seme','$ssn','$ss_id','$ss_score','','$_SESSION[session_tea_sn]')";
+					$sql_insert="insert into stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo,teacher_sn) values ('$seme_year_seme','$ssn','$ss_id','$ss_score','',{$_SESSION['session_tea_sn']})";
 					$rs_insert=$CONN->Execute($sql_insert);
 					echo "<font color=#000088>".$k[0]."-".$stud_name[$k[0]]."</font>-".$ss_id."-學期成績_".$ss_score."--成績匯入<br>";
 					$all++;
 				} else { 
 					if (doubleval($ss_score=$rs_ss->fields['ss_score'])==0) {
-						$sql_update="update stud_seme_score set ss_score='$ss_score',teacher_sn='$_SESSION[session_tea_sn]' where seme_year_seme='$seme_year_seme' and student_sn='$ssn' and ss_id='$ss_id'";
+						$sql_update="update stud_seme_score set ss_score='$ss_score',teacher_sn={$_SESSION['session_tea_sn']} where seme_year_seme='$seme_year_seme' and student_sn='$ssn' and ss_id='$ss_id'";
 						$rs_update=$CONN->Execute($sql_update);
 						echo "<font color=#000088>".$k[0]."-".$stud_name[$k[0]]."</font>-".$ss_id."-學期成績_".$ss_score."--成績匯入<br>";
 						$all++;

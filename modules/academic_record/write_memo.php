@@ -12,7 +12,7 @@ if(empty($sel_seme))$sel_seme = curr_seme(); //目前學期
 $class_num=get_teach_class();
 $class_all=class_num_2_all($class_num);
 //取得任教科目
-$query = "select ss_id,class_id from score_course where year='$sel_year' and semester='$sel_seme' and teacher_sn='$_SESSION[session_tea_sn]'";
+$query = "select ss_id,class_id from score_course where year='$sel_year' and semester='$sel_seme' and teacher_sn={$_SESSION['session_tea_sn']}";
 $res=$CONN->Execute($query) or trigger_error("讀取本學期任教科目錯誤",E_USER_ERROR);
 $ss_id_array=array();
 while(! $res->EOF) {
@@ -51,7 +51,7 @@ if($_POST[act]=="存檔"){
 			$temp_val ="C_$val";
 			$ss_score_memo_val = $_POST[$temp_val];
 			foreach($char_replace as $key=>$value)	$ss_score_memo_val=str_replace($key,$value,$ss_score_memo_val);
-			$query = "update stud_seme_score set ss_score_memo = '$ss_score_memo_val',teacher_sn='$_SESSION[session_tea_sn]'  where sss_id='$val'";
+			$query = "update stud_seme_score set ss_score_memo = '$ss_score_memo_val',teacher_sn={$_SESSION['session_tea_sn']}  where sss_id='$val'";
 			$CONN->Execute($query) or trigger_error("SQL 錯誤",E_USER_ERROR);
 		}
 	}

@@ -92,7 +92,7 @@ $class_id=$row["class_num"];
 
 if (checkid($_SERVER['SCRIPT_FILENAME'],1)) {
 	$class_id_arr=class_base();
-	$class_id=($_POST[class_id])?$_POST[class_id]:key($class_id_arr);
+	$class_id=($_POST['class_id'])?$_POST['class_id']:key($class_id_arr);
 	$is_admin=1;
 }
 

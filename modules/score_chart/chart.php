@@ -17,10 +17,10 @@ if (!ini_get('register_globals')) {
 */
 
 $year_seme=($_POST['year_seme'])?$_POST['year_seme']:$_GET[year_seme];
-$class_id=($_POST[class_id])?$_POST[class_id]: $_GET[class_id];
+$class_id=($_POST['class_id'])?$_POST['class_id']: $_GET[class_id];
 $stud_id=($_POST['stud_id'])?$_POST['stud_id']:$_GET['stud_id'];
 $act=($_POST[act])?$_POST[act]:$_GET[act];
-$stu_num=($_POST[stu_num])?$_POST[stu_num]:$_GET[stu_num];
+$stu_num=($_POST['stu_num'])?$_POST['stu_num']:$_GET[stu_num];
 
 //若為輸出檔案狀態, 算出正確學期
 if (($class_id)&&($act)) {

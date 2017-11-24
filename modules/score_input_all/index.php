@@ -206,10 +206,10 @@ echo "<table border=0 cellspacing=1 cellpadding=2 width=100% bgcolor=#cccccc><tr
                     if(($score[$student_sn[$i]]=="")||($score[$student_sn[$i]]>"255")) $score[$student_sn[$i]]="-100";
                     $new_score=$score[$student_sn[$i]];
                     if($score_id[$i]){//更新成績
-                        $CONN->Execute("UPDATE $score_semester SET test_name='全學期',score='$new_score',update_time='$update_time',sendmit='0',teacher_sn='$_SESSION[session_tea_sn]'  WHERE  score_id='$score_id[$i]'");
+                        $CONN->Execute("UPDATE $score_semester SET test_name='全學期',score='$new_score',update_time='$update_time',sendmit='0',teacher_sn={$_SESSION['session_tea_sn']}  WHERE  score_id='$score_id[$i]'");
                     }
                     else{//新增成績
-                        $CONN->Execute("INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,sendmit,teacher_sn) values('$class_id','$student_sn[$i]','$ss_id','$new_score','全學期','全學期','255','$update_time','0','$_SESSION[session_tea_sn]')");
+                        $CONN->Execute("INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,sendmit,teacher_sn) values('$class_id','$student_sn[$i]','$ss_id','$new_score','全學期','全學期','255','$update_time','0',{$_SESSION['session_tea_sn']})");
                         //echo "INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time) values('$class_id','$student_sn[$i]','$ss_id','$new_score','全學期','全學期','255','$update_time')";
                     }
                 }
@@ -225,10 +225,10 @@ echo "<table border=0 cellspacing=1 cellpadding=2 width=100% bgcolor=#cccccc><tr
                     $sss_id_rs=$CONN->Execute($sss_id_qry) or trigger_error("學期總成績資料表未建立",E_USER_ERROR);
                     $sss_id=$sss_id_rs->fields['sss_id'];
                     if($sss_id[$i]){//更新成績
-                        $CONN->Execute("UPDATE stud_seme_score SET ss_score='$real_score',teacher_sn='$_SESSION[session_tea_sn]' WHERE  sss_id='$sss_id'");
+                        $CONN->Execute("UPDATE stud_seme_score SET ss_score='$real_score',teacher_sn={$_SESSION['session_tea_sn']} WHERE  sss_id='$sss_id'");
                     }
                     else{//新增成績
-                        $CONN->Execute("INSERT INTO stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,teacher_sn) values('$seme_year_seme','$student_sn[$i]','$ss_id','$real_score','$_SESSION[session_tea_sn]')");
+                        $CONN->Execute("INSERT INTO stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,teacher_sn) values('$seme_year_seme','$student_sn[$i]','$ss_id','$real_score',{$_SESSION['session_tea_sn']})");
                         //echo "INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time) values('$class_id','$student_sn[$i]','$ss_id','$new_score','全學期','全學期','255','$update_time')";
                     }                }
 
@@ -294,7 +294,7 @@ echo "<table border=0 cellspacing=1 cellpadding=2 width=100% bgcolor=#cccccc><tr
                         $CONN->Execute("UPDATE $score_semester SET test_name='定期評量',score='$new_score1',update_time='$update_time',sendmit='0',teacher_sn='$_SESSION[teacher_sn]'  WHERE  score_id='$score_id1[$i]'");
                     }
                     else{//新增成績
-                        $CONN->Execute("INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,sendmit,teacher_sn) values('$class_id','$student_sn[$i]','$ss_id','$new_score1','定期評量','定期評量','$stage_score','$update_time','0','$_SESSION[session_tea_sn]')");
+                        $CONN->Execute("INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,sendmit,teacher_sn) values('$class_id','$student_sn[$i]','$ss_id','$new_score1','定期評量','定期評量','$stage_score','$update_time','0',{$_SESSION['session_tea_sn']})");
                         //echo "INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time) values('$class_id','$student_sn[$i]','$ss_id','$new_score','全學期','全學期','255','$update_time')";
                     }
                     }
@@ -308,10 +308,10 @@ echo "<table border=0 cellspacing=1 cellpadding=2 width=100% bgcolor=#cccccc><tr
                     if(($score2[$student_sn[$i]]=="")||($score2[$student_sn[$i]]>"255")) $score2[$student_sn[$i]]="-100";
                     $new_score2=$score2[$student_sn[$i]];
                     if($score_id2[$i]){//更新成績
-                        $CONN->Execute("UPDATE $score_semester SET test_name='平時成績',score='$new_score2',update_time='$update_time',sendmit='0',teacher_sn='$_SESSION[session_tea_sn]'  WHERE  score_id='$score_id2[$i]'");
+                        $CONN->Execute("UPDATE $score_semester SET test_name='平時成績',score='$new_score2',update_time='$update_time',sendmit='0',teacher_sn={$_SESSION['session_tea_sn']}  WHERE  score_id='$score_id2[$i]'");
                     }
                     else{//新增成績
-                        $CONN->Execute("INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,sendmit,teacher_sn) values('$class_id','$student_sn[$i]','$ss_id','$new_score2','平時成績','平時成績','$stage_score','$update_time','0','$_SESSION[session_tea_sn]')");
+                        $CONN->Execute("INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,sendmit,teacher_sn) values('$class_id','$student_sn[$i]','$ss_id','$new_score2','平時成績','平時成績','$stage_score','$update_time','0',{$_SESSION['session_tea_sn']})");
                         //echo "INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time) values('$class_id','$student_sn[$i]','$ss_id','$new_score','全學期','全學期','255','$update_time')";
                     }
                     }
@@ -352,7 +352,7 @@ echo "<table border=0 cellspacing=1 cellpadding=2 width=100% bgcolor=#cccccc><tr
                         $CONN->Execute("UPDATE stud_seme_score SET ss_score='$real_score[$i]',teacher_sn='$_SEESION[session_tea_sn]' WHERE  sss_id='$sss_id[$i]'");
                     }
                     else{//新增成績
-                        $CONN->Execute("INSERT INTO stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,teacher_sn) values('$seme_year_seme','$student_sn[$i]','$ss_id','$real_score[$i]','$_SESSION[session_tea_sn]')");
+                        $CONN->Execute("INSERT INTO stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,teacher_sn) values('$seme_year_seme','$student_sn[$i]','$ss_id','$real_score[$i]',{$_SESSION['session_tea_sn']})");
                         //echo "INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time) values('$class_id','$student_sn[$i]','$ss_id','$new_score','全學期','全學期','255','$update_time')";
                     }
                 }

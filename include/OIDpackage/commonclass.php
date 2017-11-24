@@ -105,7 +105,7 @@ class TC_OID_BASE{
   public function displayError($message) {
 //    $error = $message;
     //include '../../login.php';
-    header("Location: ../../login.php");
+    header('Location: ../../login.php');
     exit(0);
   }
 

@@ -102,7 +102,7 @@ if($_POST){
 	$smarty->display($template_dir.$tpl[head]);
 	$i=0;
 	
-foreach ($_POST[class_id] as $class_id_key=>$null) {
+foreach ($_POST['class_id'] as $class_id_key=>$null) {
 //095_1_05_01
 	////是否列印等第的處理,最終值帶到smarty
 	$chk_tmp=split("_",$class_id_key);

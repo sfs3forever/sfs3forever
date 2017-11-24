@@ -259,7 +259,7 @@ function save_value(){
 //		}
 //	}
 	//導師評語及建議及等第
-	$query = "replace into stud_seme_score_nor (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo) values('$seme_year_seme','$_POST['student_sn']',0,'$_POST[nor_score]','$_POST[nor_score_memo]')";
+	$query = "replace into stud_seme_score_nor (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo) values('$seme_year_seme',{$_POST['student_sn']},0,'$_POST[nor_score]','$_POST[nor_score_memo]')";
 	$CONN->Execute($query) or trigger_error("sql 錯誤 $query",E_USER_ERROR);
 /*	改至 填寫勤惰記錄 處紀錄
 	//學生出缺席

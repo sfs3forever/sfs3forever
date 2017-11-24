@@ -14,7 +14,7 @@ if (!ini_get('register_globals')) {
 */
 
 $year_seme=($_POST['year_seme'])?$_POST['year_seme']:$_GET[year_seme];
-$class_id=($_POST[class_id])?$_POST[class_id]: $_GET[class_id];
+$class_id=($_POST['class_id'])?$_POST['class_id']: $_GET[class_id];
 $stage = ($_POST[stage])?$_POST[stage]:$_GET[stage]; //階段
 $all = ($_POST[all])?$_POST[all]:$_GET[all];
 $ss_id_b = ($_POST[ss_id_b])?$_POST[ss_id_b]:$_GET[ss_id_b];

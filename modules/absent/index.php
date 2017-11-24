@@ -65,21 +65,21 @@ if($act=="儲存登記"){
 
         if ($One) {
                 add_one($sel_year,$sel_seme,$class_id,$One,$_POST[s]);
-                header("location: $_SERVER['SCRIPT_NAME']?class_id=$_POST[class_id]&One=$_POST[One]&this_date=$_POST[date]");
+                header("location: {$_SERVER['SCRIPT_NAME']}?class_id={$_POST['class_id']}&One=$_POST[One]&this_date=$_POST[date]");
         } else {
                 add_all($sel_year,$sel_seme,$class_id,$_POST[date],$_POST[s]);
-                header("location: $_SERVER['SCRIPT_NAME']?this_date=$_POST[date]&class_id=$_POST[class_id]");
+                header("location: {$_SERVER['SCRIPT_NAME']}?this_date=$_POST[date]&class_id={$_POST['class_id']}");
         }
 }elseif($act=="clear"){
         clear_data($sel_year,$sel_seme,$_GET[this_date],$_GET['stud_id']);
         if ($One)
-                header("location: $_SERVER['SCRIPT_NAME']?this_date=$_GET[this_date]&class_id=$_GET[class_id]&One=$One");
+                header("location: {$_SERVER['SCRIPT_NAME']}?this_date={$_GET['this_date']}&class_id={$_GET['class_id']}&One=$One");
         else
-                header("location: $_SERVER['SCRIPT_NAME']?this_date=$_GET[this_date]&class_id=$_GET[class_id]");
+                header("location: {$_SERVER['SCRIPT_NAME']}?this_date={$_GET['this_date']}&class_id={$_GET['class_id']}");
 }elseif($act=="修改假別"){
         if ($One) {
                 update_data($sel_year,$sel_seme,$class_id,$One,$_POST[s]);
-                header("location: $_SERVER['SCRIPT_NAME']?class_id=$_POST[class_id]&One=$_POST[One]&this_date=$_POST[date]");
+                header("location: {$_SERVER['SCRIPT_NAME']}?class_id={$_POST['class_id']}&One=$_POST[One]&this_date=$_POST[date]");
         }
 }else{
         $main=&mainForm($sel_year,$sel_seme,$class_id,$_POST[thisOne],$One);
@@ -200,7 +200,8 @@ function &mainForm($sel_year,$sel_seme,$class_id="",$thisOne=array(),$One=""){
                 <table cellspacing='1' cellpadding='2' bgcolor='#E2ECFC' class='small'>
                 <tr bgcolor='#FEFBDA'>
                 <td align='center'>
-                <a href='$_SERVER['SCRIPT_NAME']?act=$_REQUEST[act]&this_day=$today&class_id=$class_id' class='box'><img src='".$SFS_PATH_HTML."images/today.png' alt='回到今天' width='16' height='16' hspace='2' border='0' align='absmiddle'>回到今天</a>
+                <a href="{$_SERVER['SCRIPT_NAME']} ?act={$_REQUEST['act']}&this_day=$today&class_id=$class_id class='box'>
+                <img src='".$SFS_PATH_HTML."images/today.png' alt='回到今天' width='16' height='16' hspace='2' border='0' align='absmiddle'>回到今天</a>
                 </td></tr>
                 <tr bgcolor='#FFFFFF'><td>$mc</td></tr>
                 </table>
@@ -546,7 +547,7 @@ function add($sel_year,$sel_seme,$stud_id,$class_id="",$date,$section,$kind){
                 $sel_seme=2;
         }
         $new_class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,$c[2]-($c[0]-$sel_year)+$IS_JHORES,$c[3]);
-        $sql_insert = "insert into stud_absent (year,semester,class_id,stud_id,date,absent_kind,section,sign_man_sn,sign_man_name,sign_time,month) values ('$sel_year','$sel_seme','$new_class_id','$stud_id','$date','$kind','$section','$_SESSION[session_tea_sn]',{$_SESSION['session_tea_name']},now(),'$d[1]')";
+        $sql_insert = "insert into stud_absent (year,semester,class_id,stud_id,date,absent_kind,section,sign_man_sn,sign_man_name,sign_time,month) values ('$sel_year','$sel_seme','$new_class_id','$stud_id','$date','$kind','$section',{$_SESSION['session_tea_sn']},{$_SESSION['session_tea_name']},now(),'$d[1]')";
         $CONN->Execute($sql_insert) or user_error("新增失敗！<br>$sql_insert",256);
         sum_abs($sel_year,$sel_seme,$stud_id);
         return;

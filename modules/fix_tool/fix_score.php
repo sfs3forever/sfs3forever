@@ -13,7 +13,7 @@ if($_POST[act]=='do_change1' && $_POST[SCO_TAB]!='' && $_POST['student_sn']!='' 
 if ($_POST[score_id] =='') die(backinput("未選擇那一筆資料，按下後重選！"));
 for($i=0;$i<count($_POST[score_id]);$i++) {
 	list($key,$val)=each($_POST[score_id]);
-	$SQL="update $_POST[SCO_TAB] set class_id='$_POST[class_id]' where score_id='$key' ";
+	$SQL="update $_POST[SCO_TAB] set class_id={$_POST['class_id']} where score_id='$key' ";
 	$rs=$CONN->Execute($SQL) or die(backinput());
 	}
 	$url=$_SERVER[PHP_SELF]."?st_sn=".$_POST['student_sn']."&year_seme=".$_POST['year_seme'];
@@ -36,7 +36,7 @@ if($_POST[act]=='del_data' && $_POST[SCO_TAB]!='' && $_POST['student_sn']!='' &&
 if ($_POST[score_id] =='') die(backinput("未選擇刪除那一筆資料，按下後重選！"));
 for($i=0;$i<count($_POST[score_id]);$i++) {
 	list($key,$val)=each($_POST[score_id]);
-	$SQL="delete from  $_POST[SCO_TAB]  where student_sn='$_POST['student_sn']' and score_id='$key' ";
+	$SQL="delete from  $_POST[SCO_TAB]  where student_sn={$_POST['student_sn']} and score_id='$key' ";
 	$rs=$CONN->Execute($SQL) or die(backinput());
 	}
 	$url=$_SERVER[PHP_SELF]."?st_sn=".$_POST['student_sn']."&year_seme=".$_POST['year_seme'];

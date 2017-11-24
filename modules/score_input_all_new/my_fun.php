@@ -557,7 +557,7 @@ function cal_seme_score($sel_year,$sel_seme,$class_id,$ss_id) {
 			}
 			//將成績填入學期成績檔
 			while(list($id,$val) = each($score_arr)){
-				$query = "replace into stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo,teacher_sn)values('$seme_year_seme','$id','$ss_id','$val','$val_arr[$id]','$_SESSION[session_tea_sn]')";
+				$query = "replace into stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo,teacher_sn)values('$seme_year_seme','$id','$ss_id','$val','$val_arr[$id]',{$_SESSION['session_tea_sn']})";
 				$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 			}
 		}
@@ -573,7 +573,7 @@ function cal_seme_score($sel_year,$sel_seme,$class_id,$ss_id) {
 			}
 			reset($score_arr); 
 			while(list($sn,$score) = each($score_arr)){
-				$query = "replace into stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo,teacher_sn)values('$seme_year_seme','$sn','$ss_id','$score','$val_arr[$sn]','$_SESSION[session_tea_sn]')";
+				$query = "replace into stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo,teacher_sn)values('$seme_year_seme','$sn','$ss_id','$score','$val_arr[$sn]',{$_SESSION['session_tea_sn']})";
 				$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 			}
 		}

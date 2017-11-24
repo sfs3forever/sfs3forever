@@ -313,15 +313,15 @@ function get_reward_value2($stud_id,$sel_year,$sel_seme) {
 		}elseif($reward_kind=="2"){
 			$reward['嘉獎']+=2;
 		}elseif($reward_kind=="3"){
-			$reward['小功\']++;
+			$reward['小功']++;
 		}elseif($reward_kind=="4"){
-			$reward['小功\']+=2;
+			$reward['小功']+=2;
 		}elseif($reward_kind=="5"){
-			$reward['大功\']++;
+			$reward['大功']++;
 		}elseif($reward_kind=="6"){
-			$reward['大功\']+=2;
+			$reward['大功']+=2;
 		}elseif($reward_kind=="7"){
-			$reward['大功\']+=3;
+			$reward['大功']+=3;
 		}elseif($reward_kind=="-1"){
 			$reward['警告']++;
 		}elseif($reward_kind=="-2"){

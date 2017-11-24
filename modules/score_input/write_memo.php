@@ -23,14 +23,14 @@ if($_POST[act]=="存檔"){
 		if ($val<>''){
 			$temp_val ="C_$val";
 			$ss_score_memo_val = $_POST[$temp_val];
-			$query = "update stud_seme_score set ss_score_memo = '$_POST[$temp_val]',teacher_sn='$_SESSION[session_tea_sn]' where sss_id='$val'";
+			$query = "update stud_seme_score set ss_score_memo = '$_POST[$temp_val]',teacher_sn={$_SESSION['session_tea_sn']} where sss_id='$val'";
 			$CONN->Execute($query) or trigger_error("SQL 錯誤",E_USER_ERROR);
 		}
 	}
 	//努力程度
 	while(list($id,$val) = each($stud_id_arr)){
 		if ($val<>''){
-			$query = "replace into stud_seme_score_oth (seme_year_seme,stud_id,ss_kind,ss_id,ss_val)values('$seme_year_seme','$val','努力程度','$_POST[ss_id]','".$_POST["aa_$val"]."')";
+			$query = "replace into stud_seme_score_oth (seme_year_seme,stud_id,ss_kind,ss_id,ss_val)values('$seme_year_seme','$val','努力程度',{$_POST['ss_id']},'".$_POST["aa_$val"]."')";
 			$CONN->Execute($query) or trigger_error("sql 錯誤 $query",E_USER_ERROR);
 		}
 	}
@@ -203,7 +203,7 @@ if ($res->rs[0]<$stud_numbers) {
 		$sql="select student_sn from stud_seme_score where student_sn='$sst' and ss_id='$ss_id' and seme_year_seme='$seme_year_seme'";
 		$rs=$CONN->Execute($sql);
 		if (empty($rs->fields['student_sn'])) {
-			$query = "INSERT INTO stud_seme_score(seme_year_seme,student_sn,ss_id,teacher_sn)values('$seme_year_seme','$sst','$ss_id','$_SESSION[session_tea_sn]')";
+			$query = "INSERT INTO stud_seme_score(seme_year_seme,student_sn,ss_id,teacher_sn)values('$seme_year_seme','$sst','$ss_id',{$_SESSION['session_tea_sn']})";
 			$CONN->Execute($query);
 		}
 		$res->MoveNext();

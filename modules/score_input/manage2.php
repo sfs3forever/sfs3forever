@@ -47,7 +47,7 @@ if($_POST[need_allow]<>'' && $is_allow=='y'){
 		$need_allow=0;
 	else
 		$need_allow=1;
-	$query = "select teacher_sn,class_id,ss_id from score_course where course_id='$_POST[teacher_course]'";
+	$query = "select teacher_sn,class_id,ss_id from score_course where course_id={$_POST['teacher_course']}";
 	$update_rs=$CONN->Execute($query);
 	$teacher_sn=$update_rs->fields['teacher_sn'];
 	$class_id=$update_rs->fields['class_id'];

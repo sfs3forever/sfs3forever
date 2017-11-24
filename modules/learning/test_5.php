@@ -235,7 +235,7 @@ if($exper >= 5  and $top==0){
 
 if($total>=$pass and $poke==0){  //第一次過關
 	$poke=rand(1,50);
-	$sql_update = "update test_score set poke='$poke',up_date='$up_date' where u_id='$u_id' and teacher_sn='$_SESSION[session_tea_sn]' ";  	
+	$sql_update = "update test_score set poke='$poke',up_date='$up_date' where u_id='$u_id' and teacher_sn={$_SESSION['session_tea_sn']} ";  	
 	mysql_query($sql_update) or die ($sql_update);	
 		$poke_alt=$poke . "_" . $poke_a[$poke]['p_name'];
 		$poke_gif="<img src=poke_b/$poke" . ".gif  alt=$poke_alt >";

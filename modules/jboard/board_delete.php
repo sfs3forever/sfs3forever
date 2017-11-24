@@ -31,7 +31,7 @@ if(!board_checkid($bk_id) && !checkid($_SERVER[SCRIPT_FILENAME],1)){
 //檢查修改權
 //$query = "select b_id from board_p where b_id ='$b_id' and b_own_id='$session_log_id'";
 $b_id=intval($b_id);
-$query = "select b_id from jboard_p where b_id ='$b_id' and teacher_sn ='$_SESSION[session_tea_sn]'";
+$query = "select b_id from jboard_p where b_id ='$b_id' and teacher_sn ={$_SESSION['session_tea_sn']}";
 $result = $CONN->Execute($query) or die($query);
 if ($result->EOF && !checkid($_SERVER[SCRIPT_FILENAME],1)){
 	echo "沒有權限修改本公告";

@@ -5,7 +5,7 @@ sfs_check();
 if($_POST[wek]!='' && $_POST[unit]!='' && $_POST[event]!='' && $_POST[syear]!=''){
 $day=date("Y-m-d H:i:s");
 foreach( $_POST[wek] as $key=>$val) {
-$SQL="INSERT INTO cal_elps(syear,week,unit,event,user,day) VALUES ('$_POST[syear]', '$key', '$_POST[unit]', '$_POST[event]', '$_SESSION[session_tea_sn]','$day')";
+$SQL="INSERT INTO cal_elps(syear,week,unit,event,user,day) VALUES ('$_POST[syear]', '$key', '$_POST[unit]', '$_POST[event]', {$_SESSION['session_tea_sn']},'$day')";
 //echo $SQL."<br>";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	}

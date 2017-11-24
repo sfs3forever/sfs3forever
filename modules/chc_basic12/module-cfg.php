@@ -64,7 +64,7 @@ $MODULE_UPDATE="2013-07-12";
 //目錄內程式
 $school_menu_p["index.php"] ="說明與資訊";
 $school_menu_p["student_list.php"] ="參與免試學生";
-$school_menu_p["teacher.php"] ="導師查閱\";
+$school_menu_p["teacher.php"] ="導師查閱";
 $school_menu_p["view.php"] ="記錄檢視";
 $school_menu_p["stud_listA.php"] ="資料登錄[教務]";
 $school_menu_p["stud_listB.php"] ="資料登錄[學務]";

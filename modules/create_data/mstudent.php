@@ -13,7 +13,7 @@ if(empty($sel_seme))$sel_seme = curr_seme(); //目前學期
 $act=($_GET[act])?$_GET[act]:$_POST[act];
 
 if ($act=="批次建立資料"){
-	$msg=import($_POST[class_id],$sel_year,$sel_seme);
+	$msg=import($_POST['class_id'],$sel_year,$sel_seme);
 	header("location: {$_SERVER['PHP_SELF']}?act=result&main=$msg");
 }elseif($act=="result"){
 	$main="<table cellspacing='1' cellpadding='10' class=main_body>

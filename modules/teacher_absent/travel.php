@@ -75,7 +75,7 @@ echo "<tr><td><table border='1' cellPadding='3' cellSpacing='0' class='main_body
 	</tr>";	
 
 	//讀取資料
-	$sql_select = "select * from teacher_absent a , teacher_absent_course b where a.id=b.a_id and travel='1' and a.teacher_sn='$_SESSION[session_tea_sn]' ";
+	$sql_select = "select * from teacher_absent a , teacher_absent_course b where a.id=b.a_id and travel='1' and a.teacher_sn={$_SESSION['session_tea_sn']} ";
 	$sql_select.=$query1;
 	$sql_select.=" order by b.start_date desc ,b.deputy_sn,b.end_date";
 

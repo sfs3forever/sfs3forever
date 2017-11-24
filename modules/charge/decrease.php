@@ -37,7 +37,7 @@ $detail_id=$_REQUEST[detail_id];
 
 $decrease_id=$_REQUEST[decrease_id];
 
-$class_id=$_POST[class_id];
+$class_id=$_POST['class_id'];
 
 $a_percent=$_POST[a_percent]?$_POST[a_percent]:100;
 

@@ -11,35 +11,35 @@ include_once "../../include/sfs_case_PLlib.php";
 sfs_check();
 ##################更新  學籍資料###########################
 if($_POST[act]=='write_base'){
-	$SQL="update stud_base set stud_id={$_POST['stud_id']}, stud_name='$_POST[stud_name]', stud_sex='$_POST[stud_sex]', stud_study_year='$_POST[stud_study_year]' , curr_class_num='$_POST[curr_class_num]' , stud_study_cond='$_POST[stud_study_cond]'  where student_sn='$_POST['student_sn']' ";
+	$SQL="update stud_base set stud_id={$_POST['stud_id']}, stud_name='$_POST[stud_name]', stud_sex='$_POST[stud_sex]', stud_study_year='$_POST[stud_study_year]' , curr_class_num='$_POST[curr_class_num]' , stud_study_cond='$_POST[stud_study_cond]'  where student_sn={$_POST['student_sn']} ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$url=$_SERVER[PHP_SELF]."?student_sn=".$_POST['student_sn'];
 	header("Location:$url");
 }
 ##################更新  學期資料###########################
 if($_POST[act]=='write_seme'){
-	$SQL="update stud_seme set stud_id={$_POST['stud_id']}, seme_year_seme={$_POST['seme_year_seme']}, seme_class={$_POST['seme_class']}, seme_num='$_POST[seme_num]' where student_sn='$_POST['student_sn']' and seme_year_seme='$_POST[old_seme_year_seme]' and seme_class='$_POST[old_seme_class]' and seme_num='$_POST[old_seme_num]'  and stud_id='$_POST[old_stud_id]'";
+	$SQL="update stud_seme set stud_id={$_POST['stud_id']}, seme_year_seme={$_POST['seme_year_seme']}, seme_class={$_POST['seme_class']}, seme_num='$_POST[seme_num]' where student_sn={$_POST['student_sn']} and seme_year_seme='$_POST[old_seme_year_seme]' and seme_class='$_POST[old_seme_class]' and seme_num='$_POST[old_seme_num]'  and stud_id='$_POST[old_stud_id]'";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$url=$_SERVER[PHP_SELF]."?student_sn=".$_POST['student_sn'];
 	header("Location:$url");
 }
 ##################刪除資料###########################
 if($_POST[act]=='del_base'){
-	$SQL="delete from  stud_base   where student_sn='$_POST['student_sn']' ";
+	$SQL="delete from  stud_base   where student_sn={$_POST['student_sn']} ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$url=$_SERVER[PHP_SELF]."?student_sn=".$_POST['student_sn'];
 	header("Location:$url");
 }
 ##################刪除學期資料###########################
 if($_POST[act]=='del_seme'){
-	$SQL="delete from stud_seme where student_sn='$_POST['student_sn']' and stud_id={$_POST['stud_id']}  and seme_year_seme={$_POST['seme_year_seme']} and seme_class={$_POST['seme_class']} and seme_num='$_POST[seme_num]' ";
+	$SQL="delete from stud_seme where student_sn={$_POST['student_sn']} and stud_id={$_POST['stud_id']}  and seme_year_seme={$_POST['seme_year_seme']} and seme_class={$_POST['seme_class']} and seme_num='$_POST[seme_num]' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$url=$_SERVER[PHP_SELF]."?student_sn=".$_POST['student_sn'];
 	header("Location:$url");
 }
 ##################刪除學期資料###########################
 if($_POST[act]=='del_seme_all'){
-	$SQL="delete from stud_seme where student_sn='$_POST['student_sn']' ";
+	$SQL="delete from stud_seme where student_sn={$_POST['student_sn']} ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$url=$_SERVER[PHP_SELF]."?student_sn=".$_POST['student_sn'];
 	header("Location:$url");

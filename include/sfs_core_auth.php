@@ -388,7 +388,7 @@ function is_exist_teacher_sn(){
 	global $CONN;
 	// 確定連線成立
 	if (!$CONN) user_error("資料庫連線不存在！請檢查相關設定！",256);
-	$query = "select teacher_sn from pro_user_state where teacher_sn='$_SESSION[session_tea_sn]' and pu_state=1";
+	$query = "select teacher_sn from pro_user_state where teacher_sn={$_SESSION['session_tea_sn']} and pu_state=1";
 	$res = $CONN->Execute($query) or user_error("讀取失敗！<br>$sql_select",256);
 	if ($res->RecordCount()>0)
 		return true;

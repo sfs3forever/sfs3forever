@@ -12,8 +12,8 @@ extract($m_arr,EXTR_OVERWRITE);
 $menu_p = array("sms_teacher.php"=>"發送給教職員","sms_guardian.php"=>"發送給班級學生監護人","sms_sp_guardian.php"=>"發送給特殊身分學生監護人","sms_record.php"=>"發送記錄","sms_statistics.php"=>"發送統計");
 
 $statuscodeArray=array(
-'0'=>'成功\',
-'00'=>'上傳成功\',
+'0'=>'成功',
+'00'=>'上傳成功',
 '01'=>'預約中',
 '11'=>'系統正在處理(展開明細中)',
 '12'=>'系統已將簡訊送至簡訊中心',

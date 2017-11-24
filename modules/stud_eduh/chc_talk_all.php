@@ -50,7 +50,7 @@ function process() {
 function init() {
 	($_GET[year_seme]=='') ? $this->year_seme=$_POST['year_seme']:$this->year_seme=$_GET[year_seme];
 	if ($this->year_seme=='') $this->year_seme=curr_year()."_".curr_seme();
-	($_GET[class_id]=='') ? $this->class_id=$_POST[class_id]:$this->class_id=$_GET[class_id];
+	($_GET[class_id]=='') ? $this->class_id=$_POST['class_id']:$this->class_id={$_GET['class_id']};
 	
 	//($_GET[SSID]=='' ) ? $this->SSID=$_POST[SSID]:$this->SSID=$_GET[SSID];
 	$tmp=split("_",$this->year_seme);

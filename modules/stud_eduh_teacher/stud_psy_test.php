@@ -68,12 +68,12 @@ if ($do_key ==  $newBtn) {
 		$res= $CONN->Execute($query);
 		while($row = $res->fetchrow()) {
 				$stud_temp_sn= $row['student_sn'];
-				$sql_insert = "insert into stud_psy_test (year,semester,student_sn,item,score,model,standard,pr,explanation,test_date,teacher_sn,update_time) values ('$year','$semester','$stud_temp_sn','$_POST[item]','$_POST[score]','$_POST[model]','$_POST[standard]','$_POST[pr]','$_POST[explanation]','$_POST[test_date]','$_SESSION[session_tea_sn]',now())";			
+				$sql_insert = "insert into stud_psy_test (year,semester,student_sn,item,score,model,standard,pr,explanation,test_date,teacher_sn,update_time) values ('$year','$semester','$stud_temp_sn',{$_POST['item']},{$_POST['score']},{$_POST['model']},'$_POST[standard]',{$_POST['pr']},{$_POST['explanation']},{$_POST['test_date']},{$_SESSION['session_tea_sn']},now())";			
 				$CONN->Execute($sql_insert) or die($sql_insert);
 		}
 	}
 	else {		
-		$sql_insert = "insert into stud_psy_test (year,semester,student_sn,item,score,model,standard,pr,explanation,test_date,teacher_sn,update_time) values ('$year','$semester','$_POST['student_sn']','$_POST[item]','$_POST[score]','$_POST[model]','$_POST[standard]','$_POST[pr]','$_POST[explanation]','$_POST[test_date]','$_SESSION[session_tea_sn]',now())";
+		$sql_insert = "insert into stud_psy_test (year,semester,student_sn,item,score,model,standard,pr,explanation,test_date,teacher_sn,update_time) values ('$year','$semester',{$_POST['student_sn']},{$_POST['item']},{$_POST['score']},{$_POST['model']},'$_POST[standard]',{$_POST['pr']},{$_POST['explanation']},{$_POST['test_date']},{$_SESSION['session_tea_sn']},now())";
 		$CONN->Execute($sql_insert) or die($sql_insert);
 	}
 
@@ -81,16 +81,16 @@ if ($do_key ==  $newBtn) {
 		$sel_this_year = $this_year;		
 }
 elseif ($do_key ==  $editBtn ) {	
-	$sql_update = "update stud_psy_test set item='$_POST[item]',score='$_POST[score]',model='$_POST[model]',standard='$_POST[standard]',pr='$_POST[pr]',explanation='$_POST[explanation]',test_date='$_POST[test_date]',teacher_sn='$_SESSION[session_tea_sn]',update_time=now() where sn=$_POST[sn]";
+	$sql_update = "update stud_psy_test set item={$_POST['item']},score={$_POST['score']},model={$_POST['model']},standard='$_POST[standard]',pr={$_POST['pr']},explanation={$_POST['explanation']},test_date={$_POST['test_date']},teacher_sn={$_SESSION['session_tea_sn']},update_time=now() where sn={$_POST['sn']}";
 	$CONN->Execute($sql_update) or die($sql_update);
 
 }
 else if ($_POST['act'] ==  "delete" ) {
-		$query = "delete from stud_psy_test where sn='$_POST[sn]' and teacher_sn='$_SESSION[session_tea_sn]'";
+		$query = "delete from stud_psy_test where sn={$_POST['sn']} and teacher_sn={$_SESSION['session_tea_sn']}";
 		$CONN->Execute($query);
 }
 elseif ($_POST['act']== "edit" ) {	
-	$sql_select = "select * from stud_psy_test where sn='$_POST[sn]'";	
+	$sql_select = "select * from stud_psy_test where sn={$_POST['sn']}";	
 	$recordSet = $CONN->Execute($sql_select) or die ($sql_select);
 	while (!$recordSet->EOF) {
 		$sn = $recordSet->fields["sn"];

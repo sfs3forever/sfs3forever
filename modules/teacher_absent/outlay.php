@@ -54,7 +54,7 @@ if ($act == "修改確定") {
  	$main=&room_setup_form();
 }elseif ($_POST[deputy]) {
 	list($c_id,$v)=each($_POST[deputy]);
-		$query="update teacher_absent_course set deputy_sn='$_SESSION[session_tea_sn]',deputy_date='".date("Y-m-d H:i:s")."' where c_id='$c_id'";
+		$query="update teacher_absent_course set deputy_sn={$_SESSION['session_tea_sn']},deputy_date='".date("Y-m-d H:i:s")."' where c_id='$c_id'";
 		$CONN->Execute($query);
 	$main=&room_setup_form();
 

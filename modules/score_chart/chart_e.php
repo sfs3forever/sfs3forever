@@ -22,10 +22,10 @@ if (!ini_get('register_globals')) {
 }
 
 $year_seme=($_POST['year_seme'])?$_POST['year_seme']:$_GET[year_seme];
-$class_id=($_POST[class_id])?$_POST[class_id]: $_GET[class_id];
+$class_id=($_POST['class_id'])?$_POST['class_id']: $_GET[class_id];
 $student_sn=($_POST['student_sn'])?$_POST['student_sn']:$_GET['student_sn'];
 $act=($_POST[act])?$_POST[act]:$_GET[act];
-$stu_num=($_POST[stu_num])?$_POST[stu_num]:$_GET[stu_num];
+$stu_num=($_POST['stu_num'])?$_POST['stu_num']:$_GET[stu_num];
 
 //若為輸出檔案狀態, 算出正確學期
 if (($class_id)&&($act)) {
@@ -312,7 +312,7 @@ function save_value(){
 //		}
 //	}
 	//導師評語及建議及等第
-	$query = "replace into stud_seme_score_nor (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo) values('$seme_year_seme','$_POST['student_sn']',0,'$_POST[nor_score]','$_POST[nor_score_memo]')";
+	$query = "replace into stud_seme_score_nor (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo) values('$seme_year_seme',{$_POST['student_sn']},0,{$_POST['nor_score']},{$_POST['nor_score_memo']})";
 	$CONN->Execute($query) or trigger_error("sql 錯誤 $query",E_USER_ERROR);
 	
 	//學生出缺席

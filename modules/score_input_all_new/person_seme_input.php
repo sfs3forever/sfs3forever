@@ -91,10 +91,10 @@ if ($_POST['year_seme'] && $student_sn) {
 			$query="select student_sn from stud_seme_score where seme_year_seme='$seme_year_seme' and student_sn='$student_sn' and ss_id='$ss_id[$i]'";
 			$res=$CONN->Execute($query);
 			if ($res->fields['student_sn']) {
-				$query="update stud_seme_score set ss_score='$score_ss',ss_score_memo='$ss_memo',teacher_sn='$_SESSION[session_tea_sn]' where seme_year_seme='$seme_year_seme' and student_sn='$student_sn' and ss_id='$ss_id[$i]'";
+				$query="update stud_seme_score set ss_score='$score_ss',ss_score_memo='$ss_memo',teacher_sn={$_SESSION['session_tea_sn']} where seme_year_seme='$seme_year_seme' and student_sn='$student_sn' and ss_id='$ss_id[$i]'";
 				$res=$CONN->Execute($query);
 			} else {
-				$query="insert into stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo,teacher_sn) values ('$seme_year_seme','$student_sn','$ss_id[$i]','$score_ss','$ss_memo','$_SESSION[session_tea_sn]')";
+				$query="insert into stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,ss_score_memo,teacher_sn) values ('$seme_year_seme','$student_sn','$ss_id[$i]','$score_ss','$ss_memo',{$_SESSION['session_tea_sn']})";
 				$res=$CONN->Execute($query);
 			}
 			//處理努力程度

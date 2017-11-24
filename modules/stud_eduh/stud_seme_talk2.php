@@ -63,7 +63,7 @@ switch($do_key) {
 
 	//刪除 
 	case "delete":
-	//$query = "delete from stud_seme_talk where sst_id='$_GET[sst_id]' and teach_id='$_SESSION[session_tea_sn]'" ;
+	//$query = "delete from stud_seme_talk where sst_id='$_GET[sst_id]' and teach_id={$_SESSION['session_tea_sn']}" ;
 	$query = "delete from stud_seme_talk where sst_id='$_GET[sst_id]'" ;
 	$CONN->Execute($query);
 	break;
@@ -205,7 +205,7 @@ function setfocus(element) {
 	$grid1->class_ccs = " class=leftmenu";  // 顏色顯示
 	$grid1->sql_str = "select a.stud_id,a.stud_name,a.stud_sex,b.seme_num as sit_num from stud_base a,stud_seme b where a.student_sn=b.student_sn  and (a.stud_study_cond=0 or a.stud_study_cond=5) and  b.seme_year_seme='$c_curr_seme' and b.seme_class='$seme_class' order by b.seme_num ";   //SQL 命令   
 
-	$downstr = "<input type=\"hidden\" name=\"sel_seme_year_seme\" value=\"$_POST['sel_seme_year_seme']\"><input type=\"hidden\" name=\"sel_this_year\" value=\"$_REQUEST[sel_this_year]\">";
+	$downstr = "<input type=\"hidden\" name=\"sel_seme_year_seme\" value=\"{$_POST['sel_seme_year_seme']}\"><input type=\"hidden\" name=\"sel_this_year\" value=\"$_REQUEST[sel_this_year]\">";
 	$grid1->do_query(); //執行命令   
 	
 	$grid1->print_grid($stud_id,$upstr,$downstr); // 顯示畫面   

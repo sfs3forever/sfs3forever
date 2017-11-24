@@ -65,7 +65,7 @@ if ($act=="批次建立資料"){
 			  $ch6=trim(addslashes($tt[8]));
 		
 		
-			$strSQL = "insert into test_data set  u_id='$u_id',breed='$breed',answer='$answer',ques='$ques',ch1='$ch1',ch2='$ch2',ch3='$ch3',ch4='$ch4',ch5='$ch5',ch6='$ch6',unit_m='$m',unit_t='$t',u_s='$u',up_date='$b_edit_time',teacher_sn='$_SESSION[session_tea_sn]'";
+			$strSQL = "insert into test_data set  u_id='$u_id',breed='$breed',answer='$answer',ques='$ques',ch1='$ch1',ch2='$ch2',ch3='$ch3',ch4='$ch4',ch5='$ch5',ch6='$ch6',unit_m='$m',unit_t='$t',u_s='$u',up_date='$b_edit_time',teacher_sn={$_SESSION['session_tea_sn']}";
 			
 			$result=$CONN->Execute($strSQL) or user_error("讀取失敗！<br>$sqlstr",256);;
 	

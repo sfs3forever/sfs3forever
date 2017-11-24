@@ -144,12 +144,12 @@ function get_stu($class_id,$type='') {
 	function myData(){
 		//主要的欄位及中文名稱對映
 		$Option[txt]=array(
-		'fath_name'=>'父:姓名','fath_birthyear'=>'父:出生年','fath_alive'=>'父:存歿\',
+		'fath_name'=>'父:姓名','fath_birthyear'=>'父:出生年','fath_alive'=>'父:存歿',
 		'fath_relation'=>'父:關係','fath_p_id'=>'父:身分證號','fath_education'=>'父:教育程度',
 		'fath_occupation'=>'父:職業','fath_unit'=>'父:服務單位','fath_work_name'=>'父:職稱',
 		'fath_phone'=>'父:電話(公)','fath_home_phone'=>'父:電話(宅)','fath_hand_phone'=>'父:行動',
 		'fath_email'=>'父:電子郵件',
-		'moth_name'=>'母:姓名','moth_birthyear'=>'母:出生年','moth_alive'=>'母:存歿\',
+		'moth_name'=>'母:姓名','moth_birthyear'=>'母:出生年','moth_alive'=>'母:存歿',
 		'moth_relation'=>'母:關係','moth_p_id'=>'母:身分證號','moth_education'=>'母:教育程度',
 		'moth_occupation'=>'母:職業','moth_unit'=>'母:服務單位','moth_work_name'=>'母:職稱',
 		'moth_phone'=>'母:電話(公)','moth_home_phone'=>'母:電話(宅)','moth_hand_phone'=>'母:行動',
@@ -157,8 +157,8 @@ function get_stu($class_id,$type='') {
 		'guardian_name'=>'監:姓名','guardian_phone'=>'監:電話','guardian_address'=>'監:地址',
 		'guardian_relation'=>'監:關係','guardian_p_id'=>'監:身分證號','guardian_unit'=>'監:服務單位',
 		'guardian_work_name'=>'監:職稱','guardian_hand_phone'=>'監:行動','guardian_email'=>'監:電子郵件',
-		'grandfath_name'=>'祖父姓名','grandfath_alive'=>'祖父存歿\',
-		'grandmoth_name'=>'祖母姓名','grandmoth_alive'=>'祖母存歿\');
+		'grandfath_name'=>'祖父姓名','grandfath_alive'=>'祖父存歿',
+		'grandmoth_name'=>'祖母姓名','grandmoth_alive'=>'祖母存歿');
 
 		//欄位類型設定
 		$Option[type]=array(
@@ -196,7 +196,7 @@ function get_stu($class_id,$type='') {
    	$GR=array(1=>'父子',2=>'父女',3=>'母子',4=>'母女',5=>'祖孫',6=>'兄弟',7=>'兄妹',8=>'姐弟',9=>'姊妹',10=>'伯叔姑姪甥',11=>'其他');
    	$MR=array(1=>'生母',2=>'養母',3=>'繼母');
    	$FR=array(1=>'生父',2=>'養父',3=>'繼父');
-   	$Live=array(1=>'存',2=>'歿\');
+   	$Live=array(1=>'存',2=>'歿');
    	$Edu=array(1=>'博士',2=>'碩士',3=>'大學',4=>'專科',5=>'高中',6=>'國中',7=>'國小畢業',8=>'國小肄業',9=>'識字(未就學)',10=>'不識字');
  
 		//下拉式選單及RadioCheck選項資料設定

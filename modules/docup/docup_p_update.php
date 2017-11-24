@@ -12,7 +12,7 @@ if (empty($docup_p_id))
 	$docup_p_id = $_GET[docup_p_id];
 
 //檢查修改權
-$query = "select docup_p_owner from docup_p where docup_p_id='$docup_p_id' and teacher_sn='$_SESSION[session_tea_sn]'";
+$query = "select docup_p_owner from docup_p where docup_p_id='$docup_p_id' and teacher_sn={$_SESSION['session_tea_sn']}";
 $result = $CONN->Execute($query) or trigger_error("語法錯誤 !",E_USER_ERROR);
 if ($result->RecordCount() == 0 && !  checkid($_SERVER[SCRIPT_FILENAME],1)){
 	echo "沒有權限修改本專案";

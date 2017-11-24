@@ -59,7 +59,7 @@ if ($act == "修改確定") {
 
 }elseif ($_POST[deputy]) {
 	foreach ($_POST['deputy'] as $c_id=>$v)
-		$query="update teacher_absent_course set deputy_sn='$_SESSION[session_tea_sn]',deputy_date='".date("Y-m-d H:i:s")."' where c_id='$c_id'";
+		$query="update teacher_absent_course set deputy_sn={$_SESSION['session_tea_sn']},deputy_date='".date("Y-m-d H:i:s")."' where c_id='$c_id'";
 		$CONN->Execute($query);
 	$main=&room_setup_form();
 

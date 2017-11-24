@@ -8,7 +8,7 @@ sfs_check();
 ############### 更新異動資料 stud_move ##########################
 if ( $_POST[act]=='write_move'  && $_POST[move_id]!='' ){
 	$update_time=date("Y-m-d H:i:s");
-	$SQL="update stud_move set  move_kind='$_POST[move_kind]',move_year_seme='$_POST[move_year_seme]',move_date ='$_POST[move_date]',move_c_unit ='$_POST[move_c_unit]',move_c_date='$_POST[move_c_date]',move_c_word='$_POST[move_c_word]',move_c_num='$_POST[move_c_num]',school='$_POST[school]',update_time='$update_time' , update_id='$_SESSION[session_tea_sn]',update_ip='$_SERVER[REMOTE_ADDR]' where student_sn='$_POST['student_sn']' and move_id='$_POST[move_id]' ";
+	$SQL="update stud_move set  move_kind='$_POST[move_kind]',move_year_seme='$_POST[move_year_seme]',move_date ='$_POST[move_date]',move_c_unit ='$_POST[move_c_unit]',move_c_date='$_POST[move_c_date]',move_c_word='$_POST[move_c_word]',move_c_num='$_POST[move_c_num]',school='$_POST[school]',update_time='$update_time' , update_id={$_SESSION['session_tea_sn']},update_ip='$_SERVER[REMOTE_ADDR]' where student_sn={$_POST['student_sn']} and move_id='$_POST[move_id]' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$url=$_SERVER[PHP_SELF]."?Seme=".$_POST[Seme]."&Sclass=".$_POST[Sclass]."&St_sn=".$_POST['student_sn'];
 	header("Location:$url");
@@ -16,7 +16,7 @@ if ( $_POST[act]=='write_move'  && $_POST[move_id]!='' ){
 ############### 刪除異動資料 stud_move ##########################
 
 if ( $_POST[act]=='del_move'  && $_POST[move_id]!='' ){
-	$SQL="delete from stud_move where student_sn='$_POST['student_sn']'  and move_id='$_POST[move_id]' ";
+	$SQL="delete from stud_move where student_sn={$_POST['student_sn']}  and move_id='$_POST[move_id]' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$url=$_SERVER[PHP_SELF]."?Seme=".$_POST[Seme]."&Sclass=".$_POST[Sclass]."&St_sn=".$_POST['student_sn'];
 	header("Location:$url");
@@ -28,7 +28,7 @@ if ( $_POST[act]=='add_move'  && $_POST['student_sn']!='' && $_POST['stud_id']!=
 	$update_time=date("Y-m-d H:i:s");
 	$SQL="insert into stud_move (stud_id,move_kind,move_year_seme,move_date,move_c_unit,move_c_date,move_c_word,move_c_num,update_time,update_id,update_ip,school,student_sn) values({$_POST['stud_id']},'$_POST[move_kind]','$_POST[move_year_seme]',
 	'$_POST[move_date]','$_POST[move_c_unit]','$_POST[move_c_date]','$_POST[move_c_word]',
-	'$_POST[move_c_num]','$update_time','$_SESSION[session_tea_sn]','$_SERVER[REMOTE_ADDR]','$_POST[school]','$_POST['student_sn']' )";
+	'$_POST[move_c_num]','$update_time',{$_SESSION['session_tea_sn']},'$_SERVER[REMOTE_ADDR]','$_POST[school]',{$_POST['student_sn']} )";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$url=$_SERVER[PHP_SELF]."?Seme=".$_POST[Seme]."&Sclass=".$_POST[Sclass]."&St_sn=".$_POST['student_sn'];
 	header("Location:$url");
@@ -149,9 +149,11 @@ $arr = $rs->GetArray();
 return $arr ;
 }
 function backe($st="未填妥!按下後回上頁重填!") {
-echo"<BR><BR><BR><BR><CENTER><form>
+echo <<<EOL
+	"<BR><BR><BR><BR><CENTER><form>
 	<input type='button' name='b1' value='$st' onclick=\"history.back()\" style='font-size:12pt;color:red'>
 	</form></CENTER>";
+EOL;
 	exit;
 	}
 ?>

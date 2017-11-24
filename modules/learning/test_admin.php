@@ -67,7 +67,7 @@ if ($key == "修改"){
 }
 if($key == "確定修改"){
 	$b_edit_time = mysql_date();
-	$sql_update = "update test_data set ques='$ques',ch1='$ch[1]',ch2='$ch[2]',ch3='$ch[3]',ch4='$ch[4]',ch5='$ch[5]',ch6='$ch[6]',up_date='$b_edit_time',answer='$answer',note='$note',breed='$breed',teacher_sn='$_SESSION[session_tea_sn]'";
+	$sql_update = "update test_data set ques='$ques',ch1='$ch[1]',ch2='$ch[2]',ch3='$ch[3]',ch4='$ch[4]',ch5='$ch[5]',ch6='$ch[6]',up_date='$b_edit_time',answer='$answer',note='$note',breed='$breed',teacher_sn={$_SESSION['session_tea_sn']}";
 	$b_store = $qid."_".$_FILES[ques_up][name];
 	$b_old_store = $b_id."_".$old_up;
 	if($del_img==1){
@@ -113,11 +113,11 @@ if($key=='加分'){
 	$exper = $row["exper"]+3 ;  
 	$sql_update = "update test_score set exper='$exper'  where  s_id='$beef' " ;	
 	mysql_query($sql_update) or die ($sql_update);
-	$sql_update = "update test_data set ques='$ques',ch1='$ch[1]',ch2='$ch[2]',ch3='$ch[3]',ch4='$ch[4]',ch5='$ch[5]',ch6='$ch[6]',up_date='$b_edit_time',answer='$answer',note='$note',breed='$breed',teacher_sn='$_SESSION[session_tea_sn]',beef='0' where  qid='$qid'";
+	$sql_update = "update test_data set ques='$ques',ch1='$ch[1]',ch2='$ch[2]',ch3='$ch[3]',ch4='$ch[4]',ch5='$ch[5]',ch6='$ch[6]',up_date='$b_edit_time',answer='$answer',note='$note',breed='$breed',teacher_sn={$_SESSION['session_tea_sn']},beef='0' where  qid='$qid'";
 	mysql_query($sql_update) or die ($sql_update);
 }
 if($key=='無效'){
-	$sql_update = "update test_data set ques='$ques',ch1='$ch[1]',ch2='$ch[2]',ch3='$ch[3]',ch4='$ch[4]',ch5='$ch[5]',ch6='$ch[6]',up_date='$b_edit_time',answer='$answer',note='$note',breed='$breed',teacher_sn='$_SESSION[session_tea_sn]',beef='0' where  qid='$qid'";
+	$sql_update = "update test_data set ques='$ques',ch1='$ch[1]',ch2='$ch[2]',ch3='$ch[3]',ch4='$ch[4]',ch5='$ch[5]',ch6='$ch[6]',up_date='$b_edit_time',answer='$answer',note='$note',breed='$breed',teacher_sn={$_SESSION['session_tea_sn']},beef='0' where  qid='$qid'";
 	mysql_query($sql_update) or die ($sql_update);
 }
 

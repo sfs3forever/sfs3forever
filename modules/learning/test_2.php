@@ -41,7 +41,7 @@ $subm="<input type='submit' name='key' value='我的神奇寶貝' >";
 		$top=0;
 		if($old_top==5)
 			$top=1;
-		$sql_update = "update test_score set poke='$poke_up',up_date='$up_date',exper='0',top='$top'   where u_id='$u_id' and teacher_sn='$_SESSION[session_tea_sn]' ";  	
+		$sql_update = "update test_score set poke='$poke_up',up_date='$up_date',exper='0',top='$top'   where u_id='$u_id' and teacher_sn={$_SESSION['session_tea_sn']} ";  	
 		mysql_query($sql_update) or die ($sql_update);	
 		$poke_alt=$poke_up . "_" . $poke_a[$poke_up]['p_name'];
 		$poke_gif="<img src=poke_b/$poke_up" . ".gif  alt=$poke_alt >";

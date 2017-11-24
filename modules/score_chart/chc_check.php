@@ -58,7 +58,7 @@ else {
 $smarty->display($template_dir."chc_check.htm");
 
 if ( $_GET[class_id] ){
-	$class_id=$_GET[class_id];
+	$class_id={$_GET['class_id']};
 	$seme=split("_",$class_id);
 	$class_name=($seme[0]+0)."學年 第".$seme[1]."學期&nbsp;".($seme[2]+0)."年".($seme[3]+0)."班";
 	$seme=sprintf("%03d",$seme[0]).$seme[1];

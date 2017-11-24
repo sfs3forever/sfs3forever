@@ -19,11 +19,11 @@ if ($_POST['do_key']==$postBtn){
 	$bs_con = AddSlashes($_POST[bs_con]);
 	if ($_POST[bs_id]<>''){
 		/*
-		$sql_update = "update book_say set bs_title='$_POST[bs_title]',bs_con='$_POST[bs_con]',us_id='$_SESSION[session_tea_sn]' where bs_id='$_POST[bs_id]'";
+		$sql_update = "update book_say set bs_title='$_POST[bs_title]',bs_con='$_POST[bs_con]',us_id={$_SESSION['session_tea_sn']} where bs_id='$_POST[bs_id]'";
 		$CONN->Execute($sql_update) or trigger_error($sql_update,E_USER_ERROR);
 	     */
 ///mysqli
-$sql_update = "update book_say set bs_title=?,bs_con=?,us_id='$_SESSION[session_tea_sn]' where bs_id=?";
+$sql_update = "update book_say set bs_title=?,bs_con=?,us_id={$_SESSION['session_tea_sn']} where bs_id=?";
 $stmt = "";
 $stmt = $mysqliconn->prepare($sql_update);
 $stmt->bind_param('sss', $_POST[bs_title],$_POST[bs_con],$_POST[bs_id]);
@@ -34,11 +34,11 @@ $stmt->close();
 	}
 	else {
 		/*
-		$sql_insert = "insert into book_say (bs_title,bs_con,us_id) values ('$_POST[bs_title]','$_POST[bs_con]','$_SESSION[session_tea_sn]')";
+		$sql_insert = "insert into book_say (bs_title,bs_con,us_id) values ('$_POST[bs_title]','$_POST[bs_con]',{$_SESSION['session_tea_sn']})";
 		$CONN->Execute($sql_insert) or trigger_error($sql_update,E_USER_ERROR);
         */
 ///mysqli
-$sql_insert = "insert into book_say (bs_title,bs_con,us_id) values (?,?,'$_SESSION[session_tea_sn]')";
+$sql_insert = "insert into book_say (bs_title,bs_con,us_id) values (?,?,{$_SESSION['session_tea_sn']})";
 $stmt = "";
 $stmt = $mysqliconn->prepare($sql_insert);
 $stmt->bind_param('ss', $_POST[bs_title],$_POST[bs_con]);

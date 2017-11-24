@@ -68,7 +68,7 @@ $smarty->assign("check4",$check4);
 $query1.=" year='$sel_year' and semester='$sel_seme' ";
 
 
-$query1 .=" and teacher_sn='$_SESSION[session_tea_sn]'";
+$query1 .=" and teacher_sn={$_SESSION['session_tea_sn']}";
 
 if ($_POST[abs_kind]) {
 $query1 .=" and abs_kind='$_POST[abs_kind]'";

@@ -9,7 +9,7 @@
 include_once "config.php";
 sfs_check();
 
-$SQL="select st_sn,guid_tea_sn from stud_guid where guid_tea_sn='$_SESSION[session_tea_sn]' and  guid_c_isover ='0' ";
+$SQL="select st_sn,guid_tea_sn from stud_guid where guid_tea_sn={$_SESSION['session_tea_sn']} and  guid_c_isover ='0' ";
 $rs = $CONN->Execute($SQL) or die($SQL);
 $All_ss=$rs->GetArray();
 if ($rs->RecordCount()==0) backe("沒有您負責認輔的學生！");
@@ -32,7 +32,7 @@ relation='$_POST[relation]',
 ab_man_addr='$_POST[ab_man_addr]',
 ab_man_tel='$_POST[ab_man_tel]',
 guid_c_isover='$_POST[guid_c_isover]',
-update_id='$_SESSION[session_tea_sn]' ,
+update_id={$_SESSION['session_tea_sn']} ,
 end_date='$end_date',
 update_time='$now_t',
 
@@ -57,7 +57,7 @@ if ($_POST[act]=="write_event"){
 	if ($_POST[guid_kind]=='0' ||$_POST[guid_l_con]=='') backe("請填寫完整！");
 	$now_t=date("Y-m-d H:i:s");
 	$l_date=$_POST[Date_Year]."-".$_POST[Date_Month]."-".$_POST[Date_Day]." ".$_POST[Time_Hour].":".$_POST[Time_Minute].":00";
-	$SQL="insert into stud_guid_event(guid_c_id,guid_l_date,guid_kind,tutor,guid_l_con,update_id) values('$_POST[guid_c_id]','$l_date','$_POST[guid_kind]','$_SESSION[session_tea_sn]','".$_POST[guid_l_con]."','$_SESSION[session_tea_sn]') ";
+	$SQL="insert into stud_guid_event(guid_c_id,guid_l_date,guid_kind,tutor,guid_l_con,update_id) values('$_POST[guid_c_id]','$l_date','$_POST[guid_kind]',{$_SESSION['session_tea_sn']},'".$_POST[guid_l_con]."',{$_SESSION['session_tea_sn']}) ";
 	$rs = $CONN->Execute($SQL) or die($SQL);
 	$URL=$_SERVER[PHP_SELF]."?act=event&guid=".$_POST[guid_c_id];
 	header("Location:$URL");
@@ -69,7 +69,7 @@ if ($_POST[act]=="write_event_updata"){
 	if ($_POST[guid_kind]=='0' ||$_POST[guid_l_con]=='') backe("請填寫完整！");
 	$now_t=date("Y-m-d H:i:s");
 	$l_date=$_POST[Date_Year]."-".$_POST[Date_Month]."-".$_POST[Date_Day]." ".$_POST[Time_Hour].":".$_POST[Time_Minute].":00";
-	$SQL="update stud_guid_event set guid_l_date='$l_date',guid_kind='$_POST[guid_kind]',guid_l_con='$_POST[guid_l_con]',update_id='$_SESSION[session_tea_sn]' where  guid_l_id='$_POST[guid_l_id]' and guid_c_id ='$_POST[guid_c_id]' ";
+	$SQL="update stud_guid_event set guid_l_date='$l_date',guid_kind='$_POST[guid_kind]',guid_l_con='$_POST[guid_l_con]',update_id={$_SESSION['session_tea_sn']} where  guid_l_id='$_POST[guid_l_id]' and guid_c_id ='$_POST[guid_c_id]' ";
 	$rs = $CONN->Execute($SQL) or die($SQL);
 	$URL=$_SERVER[PHP_SELF]."?act=event&guid=".$_POST[guid_c_id];
 	header("Location:$URL");
@@ -78,7 +78,7 @@ if ($_POST[act]=="write_event_updata"){
 if ($_GET[act]=="del" && $_GET[del]!='' ){
 	$flag=check_event($_GET[del],$_SESSION[session_tea_sn]);
 	if ($flag!='Yes')  backe("這筆資料並非由您填寫的！");
-	$SQL="delete from stud_guid_event where guid_l_id ='$_GET[del]' and tutor ='$_SESSION[session_tea_sn]'";
+	$SQL="delete from stud_guid_event where guid_l_id ='$_GET[del]' and tutor ={$_SESSION['session_tea_sn']}";
 	$rs = $CONN->Execute($SQL) or die($SQL);
 	$URL=$_SERVER[PHP_SELF]."?act=event&guid=".$_GET[guid];
 	header("Location:$URL");

@@ -52,7 +52,7 @@ switch($do_key) {
 
 	//刪除
 	case "delete":
-	$query = "delete  from stud_seme_spe where ss_id='$_GET[ss_id]' and teach_id='$_SESSION[session_tea_sn]'";
+	$query = "delete  from stud_seme_spe where ss_id='$_GET[ss_id]' and teach_id={$_SESSION['session_tea_sn']}";
 	$CONN->Execute($query);
 	break;
 	
@@ -77,7 +77,7 @@ switch($do_key) {
 
 	//確定修改
 	case $editBtn:
-	$sql_update = "update stud_seme_spe set sp_date='$_POST[sp_date]',sp_memo='$_POST[sp_memo]',teach_id='{$_SESSION['session_tea_sn']}' where ss_id='$_POST[ss_id]'";
+	$sql_update = "update stud_seme_spe set sp_date='$_POST[sp_date]',sp_memo='$_POST[sp_memo]',teach_id='{$_SESSION['session_tea_sn']}' where ss_id={$_POST['ss_id']}";
 	$CONN->Execute($sql_update) or die($sql_update);
 	break;
 
@@ -192,7 +192,7 @@ function setfocus(element) {
 
 	$grid1->do_query(); //執行命令   
 	
-	$downstr = "<input type=\"hidden\" name=\"sel_seme_year_seme\" value=\"$_POST['sel_seme_year_seme']\">";
+	$downstr = "<input type=\"hidden\" name=\"sel_seme_year_seme\" value=\"{$_POST['sel_seme_year_seme']}\">";
 	$grid1->print_grid($stud_id,$upstr,$downstr); // 顯示畫面   
   
 

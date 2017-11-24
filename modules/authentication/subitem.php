@@ -9,7 +9,7 @@ sfs_check();
 head("學習認證-細目設定");
 
 $item_sn=$_POST[item_sn];
-$sn=$_POST[sn];
+$sn=$_POST['sn'];
 
 //橫向選單標籤
 echo print_menu($MENU_P);
@@ -22,7 +22,7 @@ if($_POST['act']=='新增'){
 if($_POST['act']=='更新'){
 	$sql_select="UPDATE authentication_subitem SET item_sn='{$_POST[item_sn]}',code='{$_POST[code]}',title='{$_POST[title]}',grades='{$_POST[grades]}',bonus='{$_POST[bonus]}' where sn=$sn";
 	$res=$CONN->Execute($sql_select) or user_error("更新失敗！<br>$sql_select",256);
-	$_POST[sn]=0;
+	$_POST['sn']=0;
 };
 
 if($_POST['act']=='刪除'){
@@ -59,7 +59,7 @@ $sql_select="select * from authentication_subitem WHERE item_sn='$item_sn' order
 $res=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
 //$res->MoveFirst();
 while(!$res->EOF) {
-	if($_POST[sn]==$res->fields[sn]){
+	if($_POST['sn']==$res->fields[sn]){
 		$showdata.="<tr bgcolor='#FFFAAA'><td align='center'>".($res->CurrentRow()+1)."</td>";
 		$showdata.="<td align='center'><input type='text' name='code' size=5 value={$res->fields[code]}></td>";		
 		$showdata.="<td><input type='text' name='title' size=50 value={$res->fields[title]}></td>";

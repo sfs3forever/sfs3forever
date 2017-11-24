@@ -14,10 +14,10 @@ $oth_arr_score = array("表現優異"=>5,"表現良好"=>4,"表現尚可"=>3,"�
 $oth_arr_score_2 = array(5=>"表現優異",4=>"表現良好",3=>"表現尚可",2=>"需再加油",1=>"有待改進",0=>"--");
 
 $year_seme=($_POST['year_seme'])?$_POST['year_seme']:$_GET[year_seme];
-$class_id=($_POST[class_id])?$_POST[class_id]: $_GET[class_id];
+$class_id=($_POST['class_id'])?$_POST['class_id']: $_GET[class_id];
 $student_sn=($_POST['student_sn'])?$_POST['student_sn']:$_GET['student_sn'];
 $act=($_POST[act])?$_POST[act]:$_GET[act];
-$stu_num=($_POST[stu_num])?$_POST[stu_num]:$_GET[stu_num];
+$stu_num=($_POST['stu_num'])?$_POST['stu_num']:$_GET[stu_num];
 
 //若為輸出檔案狀態, 算出正確學期
 if (($class_id)&&($act)) {

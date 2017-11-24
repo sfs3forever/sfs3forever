@@ -91,10 +91,10 @@ for($i=0;$i<count($student_sn);$i++){
 			$sss_id_rs=$CONN->Execute($sss_id_qry) or trigger_error("學期總成績資料表未建立",E_USER_ERROR);
 			$sss_id[$i]=$sss_id_rs->fields['sss_id'];
 			if($sss_id[$i]){//更新成績
-				$CONN->Execute("UPDATE stud_seme_score SET ss_score='$real_score[$i]',teacher_sn='$_SESSION[session_tea_sn]'  WHERE  sss_id='$sss_id[$i]'");
+				$CONN->Execute("UPDATE stud_seme_score SET ss_score='$real_score[$i]',teacher_sn={$_SESSION['session_tea_sn']}  WHERE  sss_id='$sss_id[$i]'");
 			}
 			else{//新增成績
-				$CONN->Execute("INSERT INTO stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,teacher_sn) values('$seme_year_seme','$student_sn[$i]','$ss_id','$real_score[$i]','$_SESSION[session_tea_sn]')");
+				$CONN->Execute("INSERT INTO stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,teacher_sn) values('$seme_year_seme','$student_sn[$i]','$ss_id','$real_score[$i]',{$_SESSION['session_tea_sn']})");
 				//echo "INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time) values('$class_id','$student_sn[$i]','$ss_id','$new_score','全學期','全學期','255','$update_time')";
 			}
 			//資料寫入完畢，跳出本程式
@@ -143,10 +143,10 @@ for($i=0;$i<count($student_sn);$i++){
 			$sss_id_rs=$CONN->Execute($sss_id_qry) or trigger_error(" $sss_id_qry 學期總成績資料表未建立",E_USER_ERROR);
 			$sss_id[$i]=$sss_id_rs->fields['sss_id'];
 			if($sss_id[$i]){//更新成績
-				$CONN->Execute("UPDATE stud_seme_score SET ss_score='$real_score[$i]',teacher_sn='$_SESSION[session_tea_sn]' WHERE  sss_id='$sss_id[$i]'");
+				$CONN->Execute("UPDATE stud_seme_score SET ss_score='$real_score[$i]',teacher_sn={$_SESSION['session_tea_sn']} WHERE  sss_id='$sss_id[$i]'");
 			}
 			else{//新增成績
-				$CONN->Execute("INSERT INTO stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,teacher_sn) values('$seme_year_seme','$student_sn[$i]','$ss_id','$real_score[$i]','$_SESSION[session_tea_sn]')");
+				$CONN->Execute("INSERT INTO stud_seme_score (seme_year_seme,student_sn,ss_id,ss_score,teacher_sn) values('$seme_year_seme','$student_sn[$i]','$ss_id','$real_score[$i]',{$_SESSION['session_tea_sn']})");
 				//echo "INSERT INTO $score_semester (class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time) values('$class_id','$student_sn[$i]','$ss_id','$new_score','全學期','全學期','255','$update_time')";
 			}
 			//資料寫入完畢，跳出本程式

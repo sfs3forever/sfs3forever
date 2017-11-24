@@ -1,6 +1,6 @@
 <?php
 
-if ($_POST[class_id]=='') die();
+if ($_POST['class_id']=='') die();
 if ($_POST[smenu]=='') die();
 
 
@@ -37,10 +37,10 @@ $break_page="<P STYLE='page-break-before: always;'>";
 //頁數
 $prn_page = 0;
 //全部頁數
-$all_class=count($_POST[class_id])-1;
+$all_class=count($_POST['class_id'])-1;
 
 ////------處理國中名冊輸出段落-----------///////
-if ($_POST[class_id]=='all' && $_POST[smenu]=='school2'){
+if ($_POST['class_id']=='all' && $_POST[smenu]=='school2'){
 	//直接指定該學期第2學期,組合後格式為0932,主要於stud_seme查詢
 	$seme_year_seme=sprintf("%03d",$_POST['year_seme'])."2";
 	//$_POST[sel_school]學校名稱,
@@ -71,8 +71,8 @@ if ($_POST[class_id]=='all' && $_POST[smenu]=='school2'){
 	}
 else{
 ///---------------處理依班級輸出的段落-------------------///
-///$_POST[class_id] 格式為 class_id[093_2_06_01]
-foreach ($_POST[class_id] as $class_id =>$NULLnull) {
+///$_POST['class_id'] 格式為 class_id[093_2_06_01]
+foreach ($_POST['class_id'] as $class_id =>$NULLnull) {
 	$P_ary=split("_",$class_id);
 	$curr_class_name=($P_ary[2]+0).sprintf("%02d",$P_ary[3]);
 //	echo $curr_class_name;

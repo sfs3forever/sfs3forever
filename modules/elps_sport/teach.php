@@ -9,7 +9,7 @@ if($_GET[mid]!='' || $_POST[mid]!='' ) {
 	if(ch_mid($cmid)!='3') backe("非操作時間");
 	}
 
-$SQL="select class_num from teacher_post where  teacher_sn='$_SESSION[session_tea_sn]' ";
+$SQL="select class_num from teacher_post where  teacher_sn={$_SESSION['session_tea_sn']} ";
 $rs=$CONN->Execute($SQL) or die($SQL);
 $arr=$rs->GetArray();
 $class_num=$arr[0][class_num];

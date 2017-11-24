@@ -11,7 +11,7 @@ if ($is_standalone!="1") head("文件資料庫");
 
 $post_office_p = room_kind();
 
-$sql_select = "select * from docup_p where  teacher_sn='$_SESSION[session_tea_sn]' \n";
+$sql_select = "select * from docup_p where  teacher_sn={$_SESSION['session_tea_sn']} \n";
 $result = $CONN->Execute($sql_select);
 ?>
 

@@ -38,7 +38,7 @@ thetable.bgColor=TheColor
 	$curr_class_num = $class_base[substr($res->fields[curr_class_num],0,-2)];
 	
 	
-echo "<span align=center>$_GET['stud_id'] -- $curr_class_num -- $stud_name 特殊優良表現記錄表</span>";
+echo "<span align=center>{$_GET['stud_id']} -- $curr_class_num -- $stud_name 特殊優良表現記錄表</span>";
 ?>
 <table  cellspacing=1  bgcolor="#cccccc">
   <tr bgcolor="#DBE9DC"><td>學年學期</td><td>記錄日期</td><td>優良表現事由</td><td>建檔者</td></tr>

@@ -81,7 +81,7 @@ if(checkid($SCRIPT_FILENAME,1) OR $class_num) {
 			//echo $sn_list;
 			
 			//抓取已經填報的資料
-			$query="SELECT student_sn,field,value,memo FROM investigate_record WHERE investigate_sn='$_POST[sn]' AND student_sn IN ($sn_list)";
+			$query="SELECT student_sn,field,value,memo FROM investigate_record WHERE investigate_sn={$_POST['sn']} AND student_sn IN ($sn_list)";
 			$res=$CONN->Execute($query);
 
 			while(! $res->EOF) {

@@ -68,7 +68,7 @@ if($class_id)
 	if($is_admin) {
 		$class_str="<select name='class_id' onchange='this.form.submit()'>";
 		while(list($cid,$v)=each($class_id_arr)) {
-			$selected=($_POST[class_id]==$cid)?"selected":"";
+			$selected=($_POST['class_id']==$cid)?"selected":"";
 			//檢查是否已經有填報
 			$sql="select record_id from lunch_feedback where class_id='$cid' and pdate='$sign_date'";
 			$res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);

@@ -38,12 +38,12 @@ if($_POST['grade']>=1){
 
 
 $show_ss=array("language"=>"語文","math"=>"數學","nature"=>"自然與生活科技","social"=>"社會","health"=>"健康與體育","art"=>"藝術與人文","complex"=>"綜合活動");
-if ($_POST[year_name] and count($_POST[class_id])>0) {
+if ($_POST[year_name] and count($_POST['class_id'])>0) {
 
 	$seme_year_seme=sprintf("%03d",$sel_year).$sel_seme;
 	$class_base=class_base($seme_year_seme);
 	$seme_class=$_POST[year_name]."%";
-	foreach($_POST[class_id] as $key =>$value){
+	foreach($_POST['class_id'] as $key =>$value){
 		if($value=="on"){
 			$ClassNum=$_POST[year_name].substr($key, -2);
 			$AllClassID[]=$ClassNum;

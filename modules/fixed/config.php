@@ -62,7 +62,7 @@ function board_checkid($chk){
 	$teach_id = -1 ;
 	$dbquery = " select a.teacher_sn,a.login_pass,a.name,b.post_office,b.teach_title_id ";
 	$dbquery .="from teacher_base a ,teacher_post b  "; 
-	$dbquery .="where a.teacher_sn = b.teacher_sn and a.teacher_sn='$_SESSION[session_tea_sn]'"; 
+	$dbquery .="where a.teacher_sn = b.teacher_sn and a.teacher_sn={$_SESSION['session_tea_sn']}"; 
 	$result= $CONN->Execute($dbquery) or user_error("讀取失敗！<br>$dbquery",256) ; 
 	
 	if ($result->RecordCount() > 0){

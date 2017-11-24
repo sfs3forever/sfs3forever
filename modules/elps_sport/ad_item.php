@@ -37,14 +37,14 @@ if ($_POST[act]=='item_add') {
 	for ($i=0;$i<(strlen($_POST[enterclass])/2);$i++) {
 	$worda=substr($_POST[enterclass],$i*2,2);//每次取出一個年級性別
 	if ($_POST[createnexttime]=='yes'){
-	$sql_insert = "insert into sport_item(mid,item,enterclass,sportkind,playera,passera,place,kind,skind ,sporttime,overtime,sunit,sord,imemo) values ('$_POST[mid]','$_POST[item]','$worda','$_POST[sportkind]','$_POST[playera]','$_POST[passera]','$_POST[place]','1','0' ,'$sporttime','$sporttime','$_POST[sunit]','$_POST[sord]','$_POST[imemo]') ";
+	$sql_insert = "insert into sport_item(mid,item,enterclass,sportkind,playera,passera,place,kind,skind ,sporttime,overtime,sunit,sord,imemo) values ('$_POST[mid]',{$_POST['item']},'$worda','$_POST[sportkind]','$_POST[playera]','$_POST[passera]','$_POST[place]','1','0' ,'$sporttime','$sporttime','$_POST[sunit]','$_POST[sord]','$_POST[imemo]') ";
 	$rs=$CONN->Execute($sql_insert) or die($sql_insert);
 	$linkid=$CONN->Insert_ID();
-	$sql_insert = "insert into sport_item(mid,item,enterclass,sportkind,playera,passera,kgp,kgm,place,kind,skind ,sporttime,overtime,sunit,sord,imemo) values ('$_POST[mid]','$_POST[item]','$worda','$_POST[sportkind]','$_POST[playera]','$_POST[passera]','$kgp','$kgm','$_POST[place]','2', '$linkid' ,'$sporttime','$sporttime','$_POST[sunit]','$_POST[sord]','$_POST[imemo]') ";
+	$sql_insert = "insert into sport_item(mid,item,enterclass,sportkind,playera,passera,kgp,kgm,place,kind,skind ,sporttime,overtime,sunit,sord,imemo) values ('$_POST[mid]',{$_POST['item']},'$worda','$_POST[sportkind]','$_POST[playera]','$_POST[passera]','$kgp','$kgm','$_POST[place]','2', '$linkid' ,'$sporttime','$sporttime','$_POST[sunit]','$_POST[sord]','$_POST[imemo]') ";
 	$rs=$CONN->Execute($sql_insert)or die($sql_insert);;
 		}
 	else{
-		$SQL="insert into sport_item(mid,item,enterclass,sportkind,playera,passera,kgp,kgm,place,kind,skind ,sporttime,overtime,sunit,sord,imemo) values ('$_POST[mid]','$_POST[item]','$worda','$_POST[sportkind]','$_POST[playera]','$_POST[passera]','$kgp','$kgm','$_POST[place]','2','0' ,'$sporttime','$sporttime','$_POST[sunit]','$_POST[sord]','$_POST[imemo]') ";
+		$SQL="insert into sport_item(mid,item,enterclass,sportkind,playera,passera,kgp,kgm,place,kind,skind ,sporttime,overtime,sunit,sord,imemo) values ('$_POST[mid]',{$_POST['item']},'$worda','$_POST[sportkind]','$_POST[playera]','$_POST[passera]','$kgp','$kgm','$_POST[place]','2','0' ,'$sporttime','$sporttime','$_POST[sunit]','$_POST[sord]','$_POST[imemo]') ";
 	$rs=$CONN->Execute($SQL) or die($SQL);//直接建立決賽
 			}
 		}//結束for迴圈
@@ -80,7 +80,7 @@ if ($_POST[act]=="item_update"){
 	if ( $_POST[sportorder]==''&&  $_POST[sportkind]=='' ) backe("未選擇！再來一次！");
 	if ( $_POST[playera]==''&&  $_POST[passera]=='' ) backe("未選擇！再來一次！");
 	if ( $_POST[place]=='') backe("未選擇！再來一次！");
-	$sql="update sport_item set item='$_POST[item]',enterclass='$_POST[enterclass]', sportorder= '$_POST[sportorder]' , sportkind='$_POST[sportkind]' ,playera='$_POST[playera]', passera='$_POST[passera]' , place='$_POST[place]', sporttime='$_POST[sporttime]' , overtime='$_POST[overtime]' ,kind='$_POST[kind]' where id='$_POST[id]' ";
+	$sql="update sport_item set item={$_POST['item']},enterclass='$_POST[enterclass]', sportorder= '$_POST[sportorder]' , sportkind='$_POST[sportkind]' ,playera='$_POST[playera]', passera='$_POST[passera]' , place='$_POST[place]', sporttime='$_POST[sporttime]' , overtime='$_POST[overtime]' ,kind='$_POST[kind]' where id='$_POST[id]' ";
 	$rs=$CONN->Execute($sql) or die($sql);
 	$url=$PHP_SELF."?mid=$mid&act=modify&item=".$_POST[id];header("Location:$url");
 

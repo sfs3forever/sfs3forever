@@ -2,13 +2,13 @@
 //查看網頁開始
 	$s_unit="<form  method='post' action=$PHP_SELF >" ;	
 	// 已收服的神奇寶貝
-	$sqlstr = "select a.*,b.unit_t,b.unit_m,b.u_s,b.unit_name from`test_score` a ,unit_u b WHERE a.u_id=b.u_id and   teacher_sn= '$_SESSION[session_tea_sn]'  and who={$_SESSION['session_who']} and poke>0 order by unit_t,unit_m,u_s" ;
+	$sqlstr = "select a.*,b.unit_t,b.unit_m,b.u_s,b.unit_name from`test_score` a ,unit_u b WHERE a.u_id=b.u_id and   teacher_sn= {$_SESSION['session_tea_sn']}  and who={$_SESSION['session_who']} and poke>0 order by unit_t,unit_m,u_s" ;
 
 	if($key=='依編號'){
-		$sqlstr = "select a.*,b.unit_t,b.unit_m,b.u_s,b.unit_name  from`test_score` a ,unit_u b WHERE a.u_id=b.u_id and   teacher_sn= '$_SESSION[session_tea_sn]'  and who={$_SESSION['session_who']} and poke>0 order by poke" ;
+		$sqlstr = "select a.*,b.unit_t,b.unit_m,b.u_s,b.unit_name  from`test_score` a ,unit_u b WHERE a.u_id=b.u_id and   teacher_sn= {$_SESSION['session_tea_sn']}  and who={$_SESSION['session_who']} and poke>0 order by poke" ;
 	}
 	if($key=='依戰鬥力'){
-		$sqlstr = "select a.*,b.unit_t,b.unit_m,b.u_s,b.unit_name  from`test_score` a ,unit_u b WHERE a.u_id=b.u_id and   teacher_sn= '$_SESSION[session_tea_sn]'  and who={$_SESSION['session_who']} and poke>0 order by a.total desc" ;
+		$sqlstr = "select a.*,b.unit_t,b.unit_m,b.u_s,b.unit_name  from`test_score` a ,unit_u b WHERE a.u_id=b.u_id and   teacher_sn= {$_SESSION['session_tea_sn']}  and who={$_SESSION['session_who']} and poke>0 order by a.total desc" ;
 	}
 	$result =$CONN->Execute($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256) ;
 	$s_unit.="<table align='center' border='1' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='95%' ><tr>";

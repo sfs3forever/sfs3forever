@@ -52,7 +52,7 @@ if($act=="getYearView"){
 	header("location: $_SERVER[PHP_SELF]?this_date=$_POST[this_date]");
 }elseif($act=="delThing"){
 	delThing($_GET[cal_sn]);
-	header("location: $_SERVER[PHP_SELF]?this_date=$_GET[this_date]");
+	header("location: $_SERVER[PHP_SELF]?this_date={$_GET['this_date']}");
 }elseif($act=="getMonthThingView"){
 	$main=&viewAll($year,$month,$day,"viewThing");
 }elseif($act=="getMonthThingListView"){

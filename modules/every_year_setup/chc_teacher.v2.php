@@ -4,7 +4,7 @@ include "config.php";
 sfs_check();
 $ary = array();
 if ($_POST[act]=='add' && $_POST['year_seme']!=''&& $_POST['grade']!='' ){
-	foreach ($_POST[class_id] as $new_class=>$tea_sn) {
+	foreach ($_POST['class_id'] as $new_class=>$tea_sn) {
 	if ($new_class=='' || $new_class=='0' || !$tea_sn) continue;
 
 	$ary[$tea_sn][sn]=$tea_sn;

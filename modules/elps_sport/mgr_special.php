@@ -32,7 +32,7 @@ if($_POST[act]=='act_select' ) {
 	if($_POST[item]=='') backe("操作錯誤!");
 	if($_POST[astu]=='') backe("未選擇學生!按下後回上頁重選!");
 /////流程檢查
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and mid='$_POST[mid]' and results != '' ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and mid='$_POST[mid]' and results != '' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	if ($rs->RecordCount() > 0 )  backe("該項目己開始輸入成績了!禁止重排！");
 ////操作處理
@@ -61,14 +61,14 @@ if($_POST[act]=='act_select2' ) {
 	if($_POST[spk]=='') backe("未選擇第幾組!按下後回上頁重選!");
 	if($_POST[item_limt_man]=='') backe("操作錯誤!沒有該組人數!");
 /////流程檢查
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and mid='$_POST[mid]' and results != '' ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and mid='$_POST[mid]' and results != '' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	if ($rs->RecordCount() > 0 )  backe("該項目己開始輸入成績了!禁止重排！");
 ////操作處理
 	$LimtA=($_POST[spk]-1)*$_POST[item_limt_man];
 	$La=$LimtA+1;
 	$Lb=($_POST[spk]*$_POST[item_limt_man]);
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and kmaster='2' and mid='$_POST[mid]' and sportorder >= '$La' and  sportorder <= '$Lb' order by sportorder ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and kmaster='2' and mid='$_POST[mid]' and sportorder >= '$La' and  sportorder <= '$Lb' order by sportorder ";
 //	die($SQL);
 	$rs=$CONN->Execute($SQL) or die($SQL);
 if ($rs->RecordCount() < $_POST[item_limt_man] ) $Lb=$La+$rs->RecordCount()-1;
@@ -89,7 +89,7 @@ if($_POST[act]=='del_select' ) {
 	if($_POST[item]=='') backe("操作錯誤!");
 	if($_POST[dstu]=='') backe("未選擇學生!按下後回上頁重選!");
 /////流程檢查
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and mid='$_POST[mid]' and results != '' ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and mid='$_POST[mid]' and results != '' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	if ($rs->RecordCount() > 0 )  backe("該項目己開始輸入成績了!禁止重排！");
 ////操作處理
@@ -107,11 +107,11 @@ if($_POST[act]=='del_all' ) {
 	if($_POST[mid]=='') backe("操作錯誤!");
 	if($_POST[item]=='') backe("操作錯誤!");
 /////流程檢查
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and mid='$_POST[mid]' and results != '' ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and mid='$_POST[mid]' and results != '' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	if ($rs->RecordCount() > 0 )  backe("該項目己開始輸入成績了!禁止重排！");
 ////操作處理
-	$SQL="update sport_res set sportorder='0' where  itemid ='$_POST[item]' and mid='$_POST[mid]' and kmaster='2' ";
+	$SQL="update sport_res set sportorder='0' where  itemid ={$_POST['item']} and mid='$_POST[mid]' and kmaster='2' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$url=$PHP_SELF."?mid=".$_POST[mid]."&item=".$_POST[item];header("Location:$url");
 }
@@ -121,11 +121,11 @@ if($_POST[act]=='act_sportnum' ) {
 	if($_POST[mid]=='') backe("操作錯誤!");
 	if($_POST[item]=='') backe("操作錯誤!");
 /////流程檢查
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and mid='$_POST[mid]' and results != '' ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and mid='$_POST[mid]' and results != '' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	if ($rs->RecordCount() > 0 )  backe("該項目己開始輸入成績了!禁止重排！");
 ////操作處理
-	$SQL="select id from sport_res  where itemid='$_POST[item]' and kmaster='2' and mid='$_POST[mid]'  order by  sportnum ";
+	$SQL="select id from sport_res  where itemid={$_POST['item']} and kmaster='2' and mid='$_POST[mid]'  order by  sportnum ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$arr=$rs->GetArray();
 	for($i=0; $i<$rs->RecordCount(); $i++) {
@@ -143,11 +143,11 @@ if($_POST[act]=='act_idclass' ) {
 	if($_POST[mid]=='') backe("操作錯誤!");
 	if($_POST[item]=='') backe("操作錯誤!");
 /////流程檢查
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and mid='$_POST[mid]' and results != '' ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and mid='$_POST[mid]' and results != '' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	if ($rs->RecordCount() > 0 )  backe("該項目己開始輸入成績了!禁止重排！");
 ////操作處理
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and  kmaster='2' order by  idclass ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and  kmaster='2' order by  idclass ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$arr=$rs->GetArray();
 	for($i=0; $i<$rs->RecordCount(); $i++) {
@@ -164,11 +164,11 @@ if($_POST[act]=='act_computer' ) {
 	if($_POST[mid]=='') backe("操作錯誤!");
 	if($_POST[item]=='') backe("操作錯誤!");
 /////流程檢查
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and mid='$_POST[mid]' and results != '' ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and mid='$_POST[mid]' and results != '' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	if ($rs->RecordCount() > 0 )  backe("該項目己開始輸入成績了!禁止重排！");
 ////操作處理
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and  kmaster='2'  order by  idclass ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and  kmaster='2'  order by  idclass ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$arr=$rs->GetArray();
 	$rrr=range(1,$rs->RecordCount());
@@ -187,11 +187,11 @@ if($_POST[act]=='act_computer2' ) {
 	if($_POST[mid]=='') backe("操作錯誤!");
 	if($_POST[item]=='') backe("操作錯誤!");
 /////流程檢查
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and mid='$_POST[mid]' and results != '' ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and mid='$_POST[mid]' and results != '' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	if ($rs->RecordCount() > 0 )  backe("該項目己開始輸入成績了!禁止重排！");
 ////操作處理
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and  kmaster='2' order by idclass ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and  kmaster='2' order by idclass ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$arr=$rs->GetArray();
 	$rrr=range(1,$rs->RecordCount());
@@ -220,11 +220,11 @@ if($_POST[act]=='act_computer3' ) {
 	if($_POST[mid]=='') backe("操作錯誤!");
 	if($_POST[item]=='') backe("操作錯誤!");
 /////流程檢查
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and mid='$_POST[mid]' and results != '' ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and mid='$_POST[mid]' and results != '' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	if ($rs->RecordCount() > 0 )  backe("該項目己開始輸入成績了!禁止重排！");
 ////操作處理
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and kmaster='2' order by idclass ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and kmaster='2' order by idclass ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$arr=$rs->GetArray();
 for ($i=1;$i<=$rs->RecordCount();$i++){
@@ -261,7 +261,7 @@ if($_POST[act]=='act_text_me' ) {
 	if($_POST[item]=='') backe("操作錯誤!");
 	if($_POST[chstu]=='') backe("未選擇學生!按下後回上頁重選!");
 /////流程檢查
-	$SQL="select id from sport_res  where itemid ='$_POST[item]' and mid='$_POST[mid]' and results != '' ";
+	$SQL="select id from sport_res  where itemid ={$_POST['item']} and mid='$_POST[mid]' and results != '' ";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	if ($rs->RecordCount() > 0 )  backe("該項目己開始輸入成績了!禁止重排！");
 ////操作處理

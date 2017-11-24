@@ -133,15 +133,3 @@ else {
 	return $obj_stu;
 }
 ?>
-
-
-
-
-
-
-
-
-
-
-
-

@@ -26,7 +26,7 @@ function tagall(status) {
 HERE;
 
 $item_sn=$_POST[item_sn];
-$sn=$_POST[sn];
+$sn=$_POST['sn'];
 $curr_class_id=$_POST['curr_class_id'];
 $selected_stud=$_POST[selected_stud];
 $cancel_sn=$_POST[cancel_sn];

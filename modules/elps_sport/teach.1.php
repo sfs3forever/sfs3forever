@@ -4,7 +4,7 @@ include "config.php";
 //認證
 //sfs_check();
 unset($class_num);
-$SQL="select class_num from teacher_post where  teacher_sn='$_SESSION[session_tea_sn]' ";
+$SQL="select class_num from teacher_post where  teacher_sn={$_SESSION['session_tea_sn']} ";
 $rs=$CONN->Execute($SQL) or die($SQL);
 $arr=$rs->GetArray();
 $class_num=$arr[0][class_num];

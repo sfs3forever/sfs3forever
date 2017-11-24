@@ -14,7 +14,7 @@ if ($docup_id =='');
 //取得登入人員所在處室
 $post_office = "";
 if($_SESSION[session_tea_sn] !=""){
-	$query = "select post_office from teacher_post where teach_id='$_SESSION[session_tea_sn]' ";
+	$query = "select post_office from teacher_post where teach_id={$_SESSION['session_tea_sn']} ";
 	$result = $CONN->Execute($query);
 	$post_office = $result->rs[0];
 }

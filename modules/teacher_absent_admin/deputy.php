@@ -43,7 +43,7 @@ if ($_POST['act']) {
 	foreach($_POST[$target] as $key=>$id){
 		switch($target){
 			case 'deputy':	$query="update teacher_absent set status='1',{$target}_date='".date("Y-m-d H:i:s")."' where id='$id'"; break;
-			default: $query="update teacher_absent set {$target}_sn='$_SESSION[session_tea_sn]',{$target}_date='".date("Y-m-d H:i:s")."' where id='$id'";			
+			default: $query="update teacher_absent set {$target}_sn={$_SESSION['session_tea_sn']},{$target}_date='".date("Y-m-d H:i:s")."' where id='$id'";			
 		}
 		$CONN->Execute($query);		
 	}	
@@ -95,7 +95,7 @@ if ($_POST[deputy]) {
 
 if ($_POST[check1]) {
 	list($id,$v)=each($_POST[check1]);
-		$query="update teacher_absent set check1_sn='$_SESSION[session_tea_sn]',check1_date='".date("Y-m-d H:i:s")."' where id='$id'";
+		$query="update teacher_absent set check1_sn={$_SESSION['session_tea_sn']},check1_date='".date("Y-m-d H:i:s")."' where id='$id'";
 		$CONN->Execute($query);
 } elseif ($_POST[check1_c]) {
 	list($id,$v)=each($_POST[check1_c]);
@@ -105,7 +105,7 @@ if ($_POST[check1]) {
 
 if ($_POST[check2]) {
 	list($id,$v)=each($_POST[check2]);
-		$query="update teacher_absent set check2_sn='$_SESSION[session_tea_sn]',check2_date='".date("Y-m-d H:i:s")."' where id='$id'";
+		$query="update teacher_absent set check2_sn={$_SESSION['session_tea_sn']},check2_date='".date("Y-m-d H:i:s")."' where id='$id'";
 		$CONN->Execute($query);
 } elseif ($_POST[check2_c]) {
 	list($id,$v)=each($_POST[check2_c]);
@@ -115,7 +115,7 @@ if ($_POST[check2]) {
 
 if ($_POST[check3]) {
 	list($id,$v)=each($_POST[check3]);
-		$query="update teacher_absent set check3_sn='$_SESSION[session_tea_sn]',check3_date='".date("Y-m-d H:i:s")."' where id='$id'";
+		$query="update teacher_absent set check3_sn={$_SESSION['session_tea_sn']},check3_date='".date("Y-m-d H:i:s")."' where id='$id'";
 		$CONN->Execute($query);
 } elseif ($_POST[check3_c]) {
 	list($id,$v)=each($_POST[check3_c]);
@@ -125,7 +125,7 @@ if ($_POST[check3]) {
 
 if ($_POST[check4]) {
 	list($id,$v)=each($_POST[check4]);
-		$query="update teacher_absent set check4_sn='$_SESSION[session_tea_sn]',check4_date='".date("Y-m-d H:i:s")."' where id='$id'";
+		$query="update teacher_absent set check4_sn={$_SESSION['session_tea_sn']},check4_date='".date("Y-m-d H:i:s")."' where id='$id'";
 		$CONN->Execute($query);
 } elseif ($_POST[check4_c]) {
 	list($id,$v)=each($_POST[check4_c]);

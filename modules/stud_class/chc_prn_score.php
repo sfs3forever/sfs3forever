@@ -38,12 +38,12 @@ return $st_sn;
 }
 
 //個資記錄
-$cid=implode(",",$_POST[class_id]);
+$cid=implode(",",$_POST['class_id']);
 $test=pipa_log("印出本班網頁式學籍記錄表\r\n班級代碼：$cid\r\n");
 
 ///以班級陣列取出學生
-if ($_POST[act]=='OK' && is_array($_POST[class_id]) ){
-	$sn_ary=get_stsn($_POST[class_id]);
+if ($_POST[act]=='OK' && is_array($_POST['class_id']) ){
+	$sn_ary=get_stsn($_POST['class_id']);
 //			print_r($sn_ary);die();
 	}
 

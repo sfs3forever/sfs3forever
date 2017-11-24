@@ -6,11 +6,11 @@ include "config.php";
 sfs_check();
 
 $year_seme=($_POST['year_seme'])?$_POST['year_seme']:$_GET[year_seme];
-$class_id=($_POST[class_id])?$_POST[class_id]: $_GET[class_id];
+$class_id=($_POST['class_id'])?$_POST['class_id']: $_GET[class_id];
 $student_sn=($_POST['student_sn'])?$_POST['student_sn']:$_GET['student_sn'];
 $act=($_POST[act])?$_POST[act]:$_GET[act];
 $act1=($_POST[act1])?$_POST[act1]:$_GET[act1];
-$stu_num=($_POST[stu_num])?$_POST[stu_num]:$_GET[stu_num];
+$stu_num=($_POST['stu_num'])?$_POST['stu_num']:$_GET[stu_num];
 $stage = ($_POST[stage])?$_POST[stage]:$_GET[stage]; //階段
 $yorn = findyorn();  //是否有平時成績
 $start_date=($_POST[start_date])?$_POST[start_date]: $_GET[start_date];

@@ -137,7 +137,7 @@ while ($array_stud = $record->FetchRow()) {
       echo "<tr bgcolor='$temp_bgcolor'>";
       if ($array_stud[stud_study_cond]==0) $temp_color="";
          else $temp_color="color='red'";
-      echo "<td><font size='2' ".$temp_color.">$array_stud['seme_class']</font></td>";
+      echo "<td><font size='2' ".$temp_color.">{$array_stud['seme_class']}</font></td>";
       echo "<td><font size='2' ".$temp_color.">$array_stud[seme_num]</font></td>";
       echo "<td><font size='2' ".$temp_color.">$array_stud[stud_name]</font></td>";
       echo "<td><font size='2' ".$temp_color.">$array_stud[stud_sex]</font></td>";
@@ -220,7 +220,7 @@ function save_csv($find_year_seme,$find_spe,$show_word){
               echo "<tr bgcolor='$temp_bgcolor'>";
               if ($array_stud[stud_study_cond]==0) $temp_color="";
                  else $temp_color="color='red'";
-              echo "<td><font size='2' ".$temp_color.">$array_stud['seme_class']</font></td>";
+              echo "<td><font size='2' ".$temp_color.">{$array_stud['seme_class']}</font></td>";
               echo "<td><font size='2' ".$temp_color.">$array_stud[seme_num]</font></td>";
               echo "<td><font size='2' ".$temp_color.">$array_stud[stud_name]</font></td>";
               echo "<td><font size='2' ".$temp_color.">$array_stud[stud_sex]</font></td>";

@@ -73,11 +73,11 @@ while ($row = $result->FetchRow() ) {
 }
 //取得舊資料
 $u_id=intval($u_id);
-$sqlstr = "select * from test_score where  u_id='$u_id' and teacher_sn='$_SESSION[session_tea_sn]' " ;
+$sqlstr = "select * from test_score where  u_id='$u_id' and teacher_sn={$_SESSION['session_tea_sn']} " ;
 $result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);
 $row= mysql_fetch_array($result);
 if($row['s_id']=="" and $s_unit==""){  //新資料
-	$sql_insert = "insert into test_score (u_id,stud_id,who,stud_name,teacher_sn) values ('$u_id',{$_SESSION['session_log_id']},{$_SESSION['session_who']},{$_SESSION['session_tea_name']},'$_SESSION[session_tea_sn]')";
+	$sql_insert = "insert into test_score (u_id,stud_id,who,stud_name,teacher_sn) values ('$u_id',{$_SESSION['session_log_id']},{$_SESSION['session_who']},{$_SESSION['session_tea_name']},{$_SESSION['session_tea_sn']})";
 	mysql_query($sql_insert) or die ($sql_insert); 
 	$sqlstr = "select * from test_score where  u_id='$u_id' and stud_id={$_SESSION['session_log_id']} " ;
 	$result = mysql_query($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256);

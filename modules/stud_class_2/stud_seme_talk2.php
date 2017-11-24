@@ -60,7 +60,7 @@ switch($do_key) {
 
 	//刪除 
 	case "delete":
-	$query = "delete from stud_seme_talk where sst_id='$_GET[sst_id]' and teach_id='$_SESSION[session_tea_sn]'" ;
+	$query = "delete from stud_seme_talk where sst_id='$_GET[sst_id]' and teach_id={$_SESSION['session_tea_sn']}" ;
 	$CONN->Execute($query);
 	break;
 

@@ -122,7 +122,7 @@ if (!ini_get('register_globals')) {
 				
 //		echo $line[8]."上傳 ok!<br>\n";
 				//$f_temp = explode(".", $line[8]);
-				fputs($file_list,"$temp_name[0].jpg::$_SESSION['session_log_id']::$_SESSION['session_tea_name'] \n");
+				fputs($file_list,"$temp_name[0].jpg::{$_SESSION['session_log_id']}::{$_SESSION['session_tea_name']} \n");
 				$i++;
 				
 			}
@@ -153,7 +153,7 @@ if (!ini_get('register_globals')) {
 
 		$th_image = $e_path.".jpg";			
 		$th_name = $e_path."_th.jpg";
-		fputs($file_list,"$temp_file_name::$_SESSION['session_log_id']::$_SESSION['session_tea_name']\n");
+		fputs($file_list,"$temp_file_name::{$_SESSION['session_log_id']}::{$_SESSION['session_tea_name']}\n");
 		system($convert_path."convert -geometry 96 ".$_FILES[infile][tmp_name]." $th_name &");
 		system($convert_path."convert -geometry 500 ".$_FILES[infile][tmp_name]." $th_image &");	
 //		echo $convert_path."convert -geometry 500 ".$_FILES[infile][tmp_name]." $th_image &";
@@ -198,7 +198,7 @@ else if ($_GET[sel]== 'del')
 		@$openFile = fopen($filelist_path,"r") or die ("Access is denied. Set permission to ".$filelist_path." by command in console \"chmod 666 ".$filelist_path."\"");
 		$str = "";
 		while ($line = fgets($openFile, 4096)) {			
-			if (!($line == "$image::$_SESSION['session_log_id']::$session_tea_name\n"))
+			if (!($line == "$image::{$_SESSION['session_log_id']}::$session_tea_name\n"))
 				$str .= $line ;	
 		}
 		@$openFile = fopen($filelist_path,"w");

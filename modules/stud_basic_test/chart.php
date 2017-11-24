@@ -109,7 +109,7 @@ if ($_POST['add'] && $_POST['stud_id']) {
 }
 
 //計算並儲存非應屆學生資料
-$s=intval($_POST[sn]);
+$s=intval($_POST['sn']);
 if ($s) {
 	$query="select * from stud_base where student_sn='$s'";
 	$res=$CONN->Execute($query);

@@ -139,7 +139,7 @@ $smarty->assign("study_cond",study_cond());
 $smarty->assign("semes",$semes);
 $smarty->assign("area_span",$area_span); 
 if ($_POST[form1]) {
-	$query =  "select b.title_name from teacher_post a ,teacher_title b ,teacher_base c where a.teacher_sn=c.teacher_sn and a.teach_title_id=b.teach_title_id and a.teacher_sn='$_SESSION[session_tea_sn]'";
+	$query =  "select b.title_name from teacher_post a ,teacher_title b ,teacher_base c where a.teacher_sn=c.teacher_sn and a.teach_title_id=b.teach_title_id and a.teacher_sn={$_SESSION['session_tea_sn']}";
 	$res = $CONN->Execute($query);
 	switch ($_POST[sel_sty]) {
 		case 1:

@@ -257,7 +257,7 @@ foot();
 function change_temp($arr,$source) {
 	$temp_str = $source;
 	while(list($id,$val) = each($arr)){
-		$val iconv("Big5","UTF-8",$val);
+		$val = iconv("Big5","UTF-8",$val);
 		$temp_str = str_replace("{".$id."}", $val,$temp_str);
 	}
 	return $temp_str;

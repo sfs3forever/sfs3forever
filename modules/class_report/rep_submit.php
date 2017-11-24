@@ -29,7 +29,7 @@ $nor_score="nor_score_".$sel_year."_".$sel_seme;
 //POST後的動作****************************************/
 if ($_POST['act']=='SUBMIT_IT') {
 	//
-	$query = "select teacher_sn,class_id,ss_id from score_course where course_id='$_POST[teacher_course]'";
+	$query = "select teacher_sn,class_id,ss_id from score_course where course_id={$_POST['teacher_course']}";
 	$update_rs=$CONN->Execute($query);
 	$teacher_sn=$update_rs->fields['teacher_sn'];
 	$class_id=$update_rs->fields['class_id'];
@@ -50,7 +50,7 @@ if ($_POST['act']=='SUBMIT_IT') {
 		foreach ($STUD as $V) {
 	  	$score=number_format($SCORES[$V['student_sn']]['avg'],2);
 	  	$student_sn=$V['student_sn'];
-			$sql = "REPLACE INTO $score_semester(class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$student_sn','$ss_id','$score','$test_kind','$test_kind','$test_sort','$now','$_SESSION[session_tea_sn]')";
+			$sql = "REPLACE INTO $score_semester(class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,teacher_sn) values('$class_id','$student_sn','$ss_id','$score','$test_kind','$test_kind','$test_sort','$now',{$_SESSION['session_tea_sn']})";
 			$res=$CONN->Execute($sql) or die("SQL錯誤, query=".$sql);
 		}
 		
@@ -420,7 +420,7 @@ if ($_POST['teacher_course']) {
 //$_POST['curr_sort']會自動選擇最新階段
 //取得目前學期的所有可讀取的成績單
 
-	$query = "select teacher_sn,class_id,ss_id from score_course where course_id='$_POST[teacher_course]'";
+	$query = "select teacher_sn,class_id,ss_id from score_course where course_id={$_POST['teacher_course']}";
 	$update_rs=$CONN->Execute($query);
 	$teacher_sn=$update_rs->fields['teacher_sn'];
 	$class_id=$update_rs->fields['class_id'];

@@ -31,7 +31,7 @@ if (!board_checkid($bk_id)) {
 }
 //-----------------------------------
 
-$query = "select  a.post_office , b.title_name ,c.name from teacher_post a ,teacher_title b ,teacher_base c where a.teacher_sn = c.teacher_sn and  a.teach_title_id =b.teach_title_id  and a.teacher_sn='$_SESSION[session_tea_sn]' ";
+$query = "select  a.post_office , b.title_name ,c.name from teacher_post a ,teacher_title b ,teacher_base c where a.teacher_sn = c.teacher_sn and  a.teach_title_id =b.teach_title_id  and a.teacher_sn={$_SESSION['session_tea_sn']} ";
 $result = $CONN->Execute($query) or die($query);
 
 $row = $result->fetchRow();

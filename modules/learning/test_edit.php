@@ -181,7 +181,7 @@ if ($key == "修改"){
 
 }elseif($key == "確定修改"){
 	$b_edit_time = mysql_date();
-	$sql_update = "update test_data set ques='$ques',ch1='$ch[1]',ch2='$ch[2]',ch3='$ch[3]',ch4='$ch[4]',ch5='$ch[5]',ch6='$ch[6]',up_date='$b_edit_time',answer='$answer',note='$note',breed='$breed',teacher_sn='$_SESSION[session_tea_sn]'";
+	$sql_update = "update test_data set ques='$ques',ch1='$ch[1]',ch2='$ch[2]',ch3='$ch[3]',ch4='$ch[4]',ch5='$ch[5]',ch6='$ch[6]',up_date='$b_edit_time',answer='$answer',note='$note',breed='$breed',teacher_sn={$_SESSION['session_tea_sn']}";
 	$b_store = $qid."_".$_FILES[ques_up][name];
 	$b_old_store = $b_id."_".$old_up;
 	if($del_img==1){

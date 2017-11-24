@@ -154,10 +154,10 @@ function import($scoredata,$scoredata_name,$scoredata_size){
 						if($sss_id){
 							if ($seme_year_seme_A[2]=='memo.csv'){
 								$ss_score = addslashes(trim($ss_score));
-								$update_sql="update  stud_seme_score set ss_score_memo='$ss_score',teacher_sn='$_SESSION[session_tea_sn]' where sss_id=$sss_id";
+								$update_sql="update  stud_seme_score set ss_score_memo='$ss_score',teacher_sn={$_SESSION['session_tea_sn']} where sss_id=$sss_id";
 							}
 							else
-								$update_sql="update  stud_seme_score set ss_score='$ss_score',teacher_sn='$_SESSION[session_tea_sn]' where sss_id=$sss_id";
+								$update_sql="update  stud_seme_score set ss_score='$ss_score',teacher_sn={$_SESSION['session_tea_sn']} where sss_id=$sss_id";
 							$CONN->Execute($update_sql) or die($update_sql);
 						}	
 						else{
@@ -212,7 +212,7 @@ function import($scoredata,$scoredata_name,$scoredata_size){
 						if ($student_sn!=''){
 							$class_id=student_sn_to_class_id($student_sn,$y1,$y2);
 							$update_time=date ("Y-m-d H:i:s");
-							$insert_sql="insert into $score_semester(class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,sendmit,teacher_sn) values('$class_id','$student_sn','$ss_id_A[$NN]','$ss_score','全學期','全學期','255','$update_time','0','$_SESSION[session_tea_sn]')"; 
+							$insert_sql="insert into $score_semester(class_id,student_sn,ss_id,score,test_name,test_kind,test_sort,update_time,sendmit,teacher_sn) values('$class_id','$student_sn','$ss_id_A[$NN]','$ss_score','全學期','全學期','255','$update_time','0',{$_SESSION['session_tea_sn']})"; 
 							$CONN->Execute($insert_sql);
 						}
 					}	

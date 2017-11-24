@@ -13,7 +13,7 @@ $act=$_REQUEST[act];
 
 //執行動作判斷
 if($act=="update"){
-        grant_update($_POST[data],$_POST[sn]);
+        grant_update($_POST[data],$_POST['sn']);
         header("location: index.php?type=$type");
 }elseif($act=="del"){
         grant_del($_GET[sn]);

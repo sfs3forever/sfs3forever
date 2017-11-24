@@ -53,7 +53,7 @@ function process() {
 function init() {
 	($_GET[year_seme]=='') ? $this->year_seme=$_POST['year_seme']:$this->year_seme=$_GET[year_seme];
 	if ($this->year_seme=='') $this->year_seme=curr_year()."_".curr_seme();
-	($_GET[class_id]=='') ? $this->class_id=$_POST[class_id]:$this->class_id=$_GET[class_id];
+	($_GET[class_id]=='') ? $this->class_id=$_POST['class_id']:$this->class_id={$_GET['class_id']};
 	
 	($_GET[SSID]=='' ) ? $this->SSID=$_POST[SSID]:$this->SSID=$_GET[SSID];
 	 $tmp=split("_",$this->year_seme);
@@ -73,14 +73,14 @@ function update_memo(){
 //$_POST[memo]=='' ||
 //echo "<pre>";
 //print_r($_POST);die();
-	if ( $_POST['year_seme']==''|| $_POST[SSID]==''||$_POST[class_id]=='') return ;
+	if ( $_POST['year_seme']==''|| $_POST[SSID]==''||$_POST['class_id']=='') return ;
 	foreach ($_POST[memo] as $key =>$val ){
 		if ($key=='') continue ;
 		$SQL="update stud_seme_score set ss_score_memo='{$val}' where sss_id='{$key}' and ss_id ='{$_POST[SSID]}'  ";	
 		$rs=&$this->CONN->Execute($SQL) or die("無法查詢，語法:".$SQL);	
 	}
 	
-	$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST['year_seme']."&class_id=".$_POST[class_id]."&mods=".$_POST[mods]."&SSID=".$_POST[SSID];
+	$URL=$_SERVER[PHP_SELF]."?year_seme=".$_POST['year_seme']."&class_id=".$_POST['class_id']."&mods=".$_POST[mods]."&SSID=".$_POST[SSID];
 	Header("Location:".$URL);
 }
 

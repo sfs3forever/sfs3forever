@@ -28,12 +28,12 @@ $Submit = $_POST['Submit'] ;
 if ($Submit=="新增期別") {
    $sqlstr = " insert into stud_team_kind 
             (id ,class_kind,doc,beg_date,end_date ) 
-             values (0,'$_POST[item]','$_POST[doc]','$_POST[begDate]','$_POST[endDate]') " ;
+             values (0,{$_POST['item']},'$_POST[doc]','$_POST[begDate]','$_POST[endDate]') " ;
   //echo  $sqlstr ;
   $result =  $CONN->Execute($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256) ;	
   
   //取得現在所加入期別
-  $sqlstr = " select id  from stud_team_kind where class_kind = '$_POST[item]' 
+  $sqlstr = " select id  from stud_team_kind where class_kind = {$_POST['item']} 
                                                    and beg_date='$_POST[begDate]' 
                                                    and end_date = '$_POST[endDate]' " ;
   $result =  $CONN->Execute($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256) ;            
@@ -78,7 +78,7 @@ if ($Submit=="新增期別") {
 
 //修改期別
 if ($Submit=="修改期別內容") {
-   $sqlstr = " update   stud_team_kind set class_kind='$_POST[item]' ,doc='$_POST[doc]',beg_date='$_POST[begDate]',end_date='$_POST[endDate]' 
+   $sqlstr = " update   stud_team_kind set class_kind={$_POST['item']} ,doc='$_POST[doc]',beg_date='$_POST[begDate]',end_date='$_POST[endDate]' 
                where id= '$_POST[id]'  ";
   //echo  $sqlstr ;
   $result =  $CONN->Execute($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256) ;	
@@ -113,7 +113,7 @@ if ($Submit=="新增班別") {
 //修改課程
 if ($Submit=="修改班別資料") {
 
-   $sqlstr = " update   stud_team_kind set class_kind='$_POST[item]' ,
+   $sqlstr = " update   stud_team_kind set class_kind={$_POST['item']} ,
                teach = '$_POST[teach]' , 
                stud_max = '$_POST[max_stud]' ,
                stud_back ='$_POST[backup]', 

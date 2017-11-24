@@ -58,7 +58,7 @@ $curr_year_seme=sprintf("%03d%d",curr_year(),curr_seme());
 
 $item_id=$_REQUEST[item_id];
 
-$class_id=$_POST[class_id];
+$class_id=$_POST['class_id'];
 $selected_stud=$_POST[selected_stud];
 $paid_date=$_POST[paid_date];
 $dollars=$_POST[dollars];

@@ -66,7 +66,7 @@ function display(){
 function sendmit_open() {
 	//echo "<pre>";print_r($_POST);die();
 	if ($_POST['year_seme']=='') return;
-	if ($_POST[class_id]=='') {return;}else {$class_id=$_POST[class_id];}
+	if ($_POST['class_id']=='') {return;}else {$class_id=$_POST['class_id'];}
 	if ($_POST[sendmit]=='') {return;}else {$sendmit=$_POST[sendmit];}
 	
 	// 095_1_02_01

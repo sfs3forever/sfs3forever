@@ -34,8 +34,8 @@ function get_stsn($class_id){
 	return $st_sn;
 }
 ///以班級陣列取出學生
-if ($_POST[act]=='OK' && is_array($_POST[class_id]) ){
-	$sn_ary=get_stsn($_POST[class_id]);
+if ($_POST[act]=='OK' && is_array($_POST['class_id']) ){
+	$sn_ary=get_stsn($_POST['class_id']);
 //			print_r($sn_ary);die();
 	}
 

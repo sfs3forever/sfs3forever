@@ -8,8 +8,8 @@ sfs_check();
 
 if ($_POST[act]=='OK') {
 	//以班級陣列取出學生
-	if (is_array($_POST[class_id]) ){
-		$sn_ary=get_stsn($_POST[class_id]);
+	if (is_array($_POST['class_id']) ){
+		$sn_ary=get_stsn($_POST['class_id']);
 	}
 
 	//以學號取出學生

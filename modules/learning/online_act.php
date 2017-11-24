@@ -206,7 +206,7 @@ if($my_games>=$n_games ){
 	$sql_update = "update test_online set h_who='', g_who=''  where p_sn='$p_sn' "; 	
 	mysql_query($sql_update) or die ($sql_update);	
 	$sql_insert = "INSERT INTO test_badge (  stud_id , who , badge , type , a_stud_id , a_who , up_date , teacher_sn ) 
-			values ({$_SESSION['session_log_id']},{$_SESSION['session_who']},'$badge','1','$he_stud_id','$he_who','$att_time','$_SESSION[session_tea_sn]')";
+			values ({$_SESSION['session_log_id']},{$_SESSION['session_who']},'$badge','1','$he_stud_id','$he_who','$att_time',{$_SESSION['session_tea_sn']})";
 	mysql_query($sql_insert) or die ($sql_insert); 
 	Header ("Location: test.php?key=我的徽章");
 }

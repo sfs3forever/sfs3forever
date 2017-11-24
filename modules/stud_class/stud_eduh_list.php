@@ -175,7 +175,7 @@ function setfocus(element) {
 	$grid1->class_ccs = " class=leftmenu";  // 顏色顯示
 
 	$grid1->sql_str = "select a.stud_id,a.stud_name,a.stud_sex,b.seme_num as sit_num from stud_base a,stud_seme b where a.student_sn=b.student_sn and a.stud_study_cond=0 and b.seme_year_seme='$c_curr_seme' and b.seme_class='$class_num' order by b.seme_num";   //SQL 命令   
-	$grid1->down_str = "<input type=\"hidden\" name=\"sel_seme_year_seme\" value=\"$_POST['sel_seme_year_seme']\">";
+	$grid1->down_str = "<input type=\"hidden\" name=\"sel_seme_year_seme\" value=\"{$_POST['sel_seme_year_seme']}\">";
 	$grid1->do_query(); //執行命令   
 	$downstr = "<br><font size=2><a href=\"stud_eduh_class.php\" target=\"showclass\">顯示本學期記錄</a></font>";
 	$grid1->print_grid($stud_id,$upstr,$downstr); // 顯示畫面   

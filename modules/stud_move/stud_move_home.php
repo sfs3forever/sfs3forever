@@ -15,7 +15,7 @@ $seme_class=intval($c[2].$c[3]);
 switch($_REQUEST[do_key]) {
 	case $postHome :
 		//記註為在家自學
-		$sql = "update stud_base set stud_study_cond='15' where student_sn='$_POST['student_sn']'";
+		$sql = "update stud_base set stud_study_cond='15' where student_sn={$_POST['student_sn']}";
 		$CONN->Execute($sql) or die($sql);
 	break;
 

@@ -39,7 +39,7 @@ if ($res->RecordCount()>0) {
  while ($row=$res->FetchRow()) {
   $ann_num++;
 //$ann_data[$ann_num]=big52utf8($row['b_open_date']." ".$row['b_sub']." <font size=1>(".$row['b_unit']."_".$row['b_title'].")</font>");
- $ann_data[$ann_num]=big52utf8(addslashes($row['b_sub']))."<font size=5 color=#000000>--??.$row['b_open_date'].",擐?/".big52utf8($row['b_unit'])."/".big52utf8($row['b_title'])."?砍???/font>";
+$ann_data[$ann_num]=big52utf8(addslashes($row['b_sub']))."<font size=5 color=#000000>--《".$row['    b_open_date'].",首頁/".big52utf8($row['b_unit'])."/".big52utf8($row['b_title'])."公告》</font>";
  }
 } else {
  $ann_num=0;

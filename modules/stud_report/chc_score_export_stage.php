@@ -41,12 +41,12 @@ $break_page="<P STYLE='page-break-before: always;'>";
 $prn_page = 0;
 
 ///以班級陣列取出學生
-if ($_POST[act]=='OK' && is_array($_POST[class_id]) ){
-	//print_r($_POST[class_id]);
+if ($_POST[act]=='OK' && is_array($_POST['class_id']) ){
+	//print_r($_POST['class_id']);
 	//--- 取得所有班級的學生代號
 
 	$class_data=array();
-	foreach($_POST[class_id] as $class_id=>$data) {
+	foreach($_POST['class_id'] as $class_id=>$data) {
 		$sn_ary=get_stsn($class_id);
 		foreach($sn_ary as $student_sn) {
 			$class_data[$class_id][$student_sn][seme_ary]=seme_num_detail($student_sn);

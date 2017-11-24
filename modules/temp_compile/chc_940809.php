@@ -151,7 +151,7 @@ class new_stud{
 		if ($this->Year=='' ) backe("沒有學年度！");
 		$stu=$this->move_it_sub();//取學生資料
 		//echo "<pre>";print_r($_POST);die($SQL);
-		foreach ($_POST[class_id] as $key =>$val){
+		foreach ($_POST['class_id'] as $key =>$val){
 			$tmp1=explode("_",$key);
 			$oyear=$tmp1[0];//舊年級
 			$oclass=$tmp1[1];//舊班級

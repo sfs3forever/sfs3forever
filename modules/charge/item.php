@@ -50,7 +50,7 @@ if($_POST['act']=='新增'){
 
 if($_POST['act']=='修改'){
 
-	$sql_select="update charge_item set year_seme='$work_year_seme',item_type='$_POST[item_type]',item='$_POST[item]',start_date='$_POST[start_date]',end_date='$_POST[end_date]',comment='$_POST[comment]',creater={$_SESSION['session_tea_name']},authority='$_POST[authority]',paid_method='$_POST[paid_method]',announce_note='$_POST[announce_note]',announce_note2='$_POST[announce_note2]',cooperate=$_POST[cooperate] where item_id=$item_id;";
+	$sql_select="update charge_item set year_seme='$work_year_seme',item_type='$_POST[item_type]',item={$_POST['item']},start_date='$_POST[start_date]',end_date='$_POST[end_date]',comment='$_POST[comment]',creater={$_SESSION['session_tea_name']},authority='$_POST[authority]',paid_method='$_POST[paid_method]',announce_note='$_POST[announce_note]',announce_note2='$_POST[announce_note2]',cooperate=$_POST[cooperate] where item_id=$item_id;";
 
 	$res=$CONN->Execute($sql_select) or user_error("修改失敗！<br>$sql_select",256);
 

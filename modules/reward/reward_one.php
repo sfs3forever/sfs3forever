@@ -511,7 +511,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$One="",$id=""){
 				$cancel_date=DtoCh($cancel_date);
 			$oo_path="bad";
 		}
-		$url_str="$_SERVER['SCRIPT_NAME']?sel_year=$sel_year&sel_seme=$sel_seme&sel_week=$sel_week&reward_id=$reward_id";
+		$url_str="{$_SERVER['SCRIPT_NAME']}?sel_year=$sel_year&sel_seme=$sel_seme&sel_week=$sel_week&reward_id=$reward_id";
 		$chked=($chk_id[$reward_id])?"checked":"";
 		$reward_data.="
 		<tr bgcolor=$bgcolor>

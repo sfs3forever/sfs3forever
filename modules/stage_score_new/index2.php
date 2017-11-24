@@ -6,7 +6,7 @@ include "config.php";
 sfs_check();
 
 $year_seme=$_POST['year_seme']?$_POST['year_seme']:sprintf("%03d%d",curr_year(),curr_seme());
-$class_id=$_POST[class_id]?$_POST[class_id]:'';
+$class_id=$_POST['class_id']?$_POST['class_id']:'';
 $subject_arr=$_POST[subject];
 
 $stage_item_arr=explode(',',$stage_item);

@@ -38,11 +38,11 @@ $act=$_REQUEST[act];
 //執行動作判斷
 
 if($act=="dlar"){
-	downlod_ar($_POST['stud_id'],$_POST[class_id],$_POST[sp_sn],$_POST[stu_num],$sel_year,$sel_seme);
-	header("location: {$_SERVER['PHP_SELF']}?class_id=$_POST[class_id]&stud_id=$_POST['stud_id']");
+	downlod_ar($_POST['stud_id'],$_POST['class_id'],$_POST['sp_sn'],$_POST['stu_num'],$sel_year,$sel_seme);
+	header("location: {$_SERVER['PHP_SELF']}?class_id={$_POST['class_id']}&stud_id={$_POST['stud_id']}");
 }elseif($act=="dlar_all"){
-	downlod_ar("",$_POST[class_id],$_POST[sp_sn],"",$sel_year,$sel_seme,"all");
-	header("location: {$_SERVER['PHP_SELF']}?class_id=$_POST[class_id]");
+	downlod_ar("",$_POST['class_id'],$_POST['sp_sn'],"",$sel_year,$sel_seme,"all");
+	header("location: {$_SERVER['PHP_SELF']}?class_id={$_POST['class_id']}");
 }elseif($_REQUEST[error]==1){
 	user_error("該班級無學生資料，無法繼續。<ol>
 	<li>請確認您有任教班級。

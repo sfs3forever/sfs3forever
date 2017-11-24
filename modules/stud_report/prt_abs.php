@@ -1,6 +1,6 @@
 <?php
 
-if ($_POST[class_id]=='') die();
+if ($_POST['class_id']=='') die();
 
 require_once("./chc_config.php");
 sfs_check();
@@ -17,9 +17,9 @@ $smarty->display($template_dir."report_abs_head.htm");
 
 $break_page="<P STYLE='page-break-before: always;'>";//換頁符號
 $prn_page = 0;//頁數
-$all_class=count($_POST[class_id])-1;
+$all_class=count($_POST['class_id'])-1;
 
-foreach ($_POST[class_id] as $class_id =>$NULLnull) {
+foreach ($_POST['class_id'] as $class_id =>$NULLnull) {
 	//$class_id='093_2_04_02';
 	list($year,$seme,$grade,$cla_no)=explode('_',$class_id);
 	

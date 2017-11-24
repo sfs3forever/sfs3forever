@@ -69,7 +69,7 @@ switch ($set) {
 $result=mysql_query($query);
 
 $IF_READ[0]="-";
-$IF_READ[1]="撌脰???;
+$IF_READ[1]="已讀取";
 
 
 ?>

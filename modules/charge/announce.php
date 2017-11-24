@@ -13,7 +13,7 @@ if($work_year_seme=='') $work_year_seme = sprintf("%03d%d",curr_year(),curr_seme
 $curr_year_seme=sprintf("%03d%d",curr_year(),curr_seme());
 
 $item_id=$_REQUEST[item_id];
-$class_id=$_POST[class_id];
+$class_id=$_POST['class_id'];
 $selected_stud=$_POST[selected_stud];
 $dollars=$_POST[dollars];
 $grade=substr($class_id,0,1);

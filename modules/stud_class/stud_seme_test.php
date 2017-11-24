@@ -48,12 +48,12 @@ if ($do_key ==  $newBtn) {
 		$res= $CONN->Execute($query);
 		while($row = $res->fetchrow()) {
 				$stud_temp_id= $row['stud_id'];
-				$sql_insert = "insert into stud_seme_test (seme_year_seme,stud_id,st_numb,st_name,st_score_numb,st_data_from,st_chang_numb,st_name_long,teacher_sn) values ('$seme_year_seme','$stud_temp_id','$_POST[st_numb]','$_POST[st_name]','$_POST[st_score_numb]','$_POST[st_data_from]','$_POST[st_chang_numb]','$_POST[st_name_long]','$_SESSION[session_tea_sn]')";
+				$sql_insert = "insert into stud_seme_test (seme_year_seme,stud_id,st_numb,st_name,st_score_numb,st_data_from,st_chang_numb,st_name_long,teacher_sn) values ('$seme_year_seme','$stud_temp_id','$_POST[st_numb]','$_POST[st_name]','$_POST[st_score_numb]','$_POST[st_data_from]','$_POST[st_chang_numb]','$_POST[st_name_long]',{$_SESSION['session_tea_sn']})";
 				$CONN->Execute($sql_insert) or die($sql_insert);
 		}
 	}
 	else {
-		$sql_insert = "insert into stud_seme_test (seme_year_seme,stud_id,st_numb,st_name,st_score_numb,st_data_from,st_chang_numb,st_name_long,teacher_sn) values ('$seme_year_seme',{$_POST['stud_id']},'$_POST[st_numb]','$_POST[st_name]','$_POST[st_score_numb]','$_POST[st_data_from]','$_POST[st_chang_numb]','$_POST[st_name_long]','$_SESSION[session_tea_sn]')";
+		$sql_insert = "insert into stud_seme_test (seme_year_seme,stud_id,st_numb,st_name,st_score_numb,st_data_from,st_chang_numb,st_name_long,teacher_sn) values ('$seme_year_seme',{$_POST['stud_id']},'$_POST[st_numb]','$_POST[st_name]','$_POST[st_score_numb]','$_POST[st_data_from]','$_POST[st_chang_numb]','$_POST[st_name_long]',{$_SESSION['session_tea_sn']})";
 		$CONN->Execute($sql_insert) or die($sql_insert);
 	}
 	$st_numb = ""; 
@@ -71,7 +71,7 @@ elseif ($do_key ==$editBtn ) {
 	$CONN->Execute($sql_update) or die($sql_update);	
 }
 elseif ($_POST['act'] == 'delete') {
-	$query = "delete  from stud_seme_test where st_id='$_POST[st_id]' and teacher_sn='$_SESSION[session_tea_sn]'";
+	$query = "delete  from stud_seme_test where st_id='$_POST[st_id]' and teacher_sn={$_SESSION['session_tea_sn']}";
 	$CONN->Execute($query);
 }
 elseif ($_POST['act'] == 'edit') {

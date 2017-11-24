@@ -9,7 +9,7 @@ include_once "../../include/sfs_case_studclass.php";
 set_time_limit(300) ;
 
 sfs_check();
-$query = "SELECT id_sn FROM pro_check_new WHERE pro_kind_id='1' and id_kind='教師' and id_sn='$_SESSION[session_tea_sn]'";
+$query = "SELECT id_sn FROM pro_check_new WHERE pro_kind_id='1' and id_kind='教師' and id_sn={$_SESSION['session_tea_sn']}";
 $res = $CONN->Execute($query);
 if ($res->RecordCount()==0){
 	head("本程式須升級,請連絡網管人員處理");

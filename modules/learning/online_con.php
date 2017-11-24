@@ -68,7 +68,7 @@ if($key=='當館主'){
 		if($unit_t!='')
 				$cond.=" and  unit_t>'$unit_t' ";
 
-		$sqlstr = "select a.*,b.unit_m,b.unit_t  from test_score a,unit_u b WHERE  a.u_id=b.u_id and  teacher_sn= '$_SESSION[session_tea_sn]'  and who={$_SESSION['session_who']} and poke>0 and a.total>=100 $cond order by total desc" ;
+		$sqlstr = "select a.*,b.unit_m,b.unit_t  from test_score a,unit_u b WHERE  a.u_id=b.u_id and  teacher_sn= {$_SESSION['session_tea_sn']}  and who={$_SESSION['session_who']} and poke>0 and a.total>=100 $cond order by total desc" ;
 		//$sqlstr = "select a.*,b.unit_m,b.unit_t  from test_score a,unit_u b WHERE  a.u_id=b.u_id and stud_id= '$stud_id'  and who='$who' and poke>0 and a.total>=100 $cond  order by total desc" ;
 
 		$result =$CONN->Execute($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256) ;
@@ -125,7 +125,7 @@ if($key=='挑戰去'){
 		if($unit_t!='')
 				$cond.=" and  unit_t>'$unit_t' ";
 
-		$sqlstr = "select a.*,b.unit_m,b.unit_t  from test_score a,unit_u b WHERE  a.u_id=b.u_id and   teacher_sn= '$_SESSION[session_tea_sn]'  and who={$_SESSION['session_who']} and poke>0 and a.total>=100 $cond order by total desc" ;
+		$sqlstr = "select a.*,b.unit_m,b.unit_t  from test_score a,unit_u b WHERE  a.u_id=b.u_id and   teacher_sn= {$_SESSION['session_tea_sn']}  and who={$_SESSION['session_who']} and poke>0 and a.total>=100 $cond order by total desc" ;
 
 		$result =$CONN->Execute($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256) ;
 		$i=0;

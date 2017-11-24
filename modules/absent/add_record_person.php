@@ -29,7 +29,7 @@ if ($_POST['student_sn']=="" && $_POST['stud_id']) {
 	$smarty->display("absent_add_record_person.tpl");
 	exit;
 } elseif ($_POST['student_sn']) {
-	$query="select * from stud_base where student_sn='$_POST['student_sn']'";
+	$query="select * from stud_base where student_sn={$_POST['student_sn']}";
 	$res=$CONN->Execute($query);
 	$smarty->assign("stud_name",$res->fields['stud_name']);
 	$smarty->assign("stud_study_cond",$res->fields[stud_study_cond]);

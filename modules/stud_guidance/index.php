@@ -13,7 +13,7 @@ if ($_POST[act]=='write'){
 	($_POST[c_isover]=='0') ? $end_date='0000-00-00':$end_date=$_POST[end_date];
 	$now_t=date("Y-m-d H:i:s");
 	$c_kind=join(',',$_POST[c_kind]);
-	$SQL="update stud_guid set  guid_c_from='$_POST[c_from]',begin_date='$_POST[c_bdate]',guid_tea_sn ='$_POST[tea_sn]',guid_c_kind='$c_kind',guid_c_isover='$_POST[c_isover]',guid_over_reason='$_POST[guid_over_reason]',update_time='$now_t',end_date='$end_date',update_id='$_SESSION[session_tea_sn]' where guid_c_id='$_POST[guid_c_id]'";
+	$SQL="update stud_guid set  guid_c_from='$_POST[c_from]',begin_date='$_POST[c_bdate]',guid_tea_sn ='$_POST[tea_sn]',guid_c_kind='$c_kind',guid_c_isover='$_POST[c_isover]',guid_over_reason='$_POST[guid_over_reason]',update_time='$now_t',end_date='$end_date',update_id={$_SESSION['session_tea_sn']} where guid_c_id='$_POST[guid_c_id]'";
 	$rs=$CONN->Execute($SQL) or die($SQL);
 	$URL=$_SERVER[PHP_SELF]."?view=".$_POST[view];
 	header("Location:$URL");

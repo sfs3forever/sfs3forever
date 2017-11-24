@@ -90,12 +90,12 @@ switch ($_REQUEST[do_key]) {
     case $postReinBtn :
         $update_ip = getip();
         $temp_arr = explode("_", $_POST[stud_class]);
-        $query = "select stud_id from stud_base where student_sn='$_POST['student_sn']'";
+        $query = "select stud_id from stud_base where student_sn={$_POST['student_sn']}";
         $res = $CONN->Execute($query) or die($query);
         $stud_id = $res->fields['stud_id'];
 
         //加入異動記錄
-        $sql_insert = "insert into stud_move (stud_id,move_kind,move_year_seme,move_date,move_c_unit,move_c_date,move_c_word,move_c_num,update_id,update_ip,update_time,student_sn,school,school_id,city) values ('$stud_id','$_POST[move_kind]','$curr_seme','$_POST[move_date]','$_POST[move_c_unit]','$_POST[move_c_date]','$_POST[move_c_word]','$_POST[move_c_num]','$_POST[update_id]','$update_ip','" . date("Y-m-d h:i:s") . "','$_POST['student_sn']','$_POST[school]','$_POST[school_id]','$_POST[city]')";
+        $sql_insert = "insert into stud_move (stud_id,move_kind,move_year_seme,move_date,move_c_unit,move_c_date,move_c_word,move_c_num,update_id,update_ip,update_time,student_sn,school,school_id,city) values ('$stud_id','$_POST[move_kind]','$curr_seme','$_POST[move_date]','$_POST[move_c_unit]','$_POST[move_c_date]','$_POST[move_c_word]','$_POST[move_c_num]','$_POST[update_id]','$update_ip','" . date("Y-m-d h:i:s") . "',{$_POST['student_sn']},'$_POST[school]','$_POST[school_id]','$_POST[city]')";
         $CONN->Execute($sql_insert) or die($sql_insert);
 
         //更新stud_base
@@ -104,16 +104,16 @@ switch ($_REQUEST[do_key]) {
         $res = $CONN->Execute($query) or die($query);
         $new_site_num = $res->rs[0] + 1;
         $temp_class_num = intval($temp_arr[2]) . $temp_arr[3] . sprintf("%02d", $new_site_num);
-        $query = "update stud_base set curr_class_num='$temp_class_num',stud_study_cond='0' where student_sn='$_POST['student_sn']'";
+        $query = "update stud_base set curr_class_num='$temp_class_num',stud_study_cond='0' where student_sn={$_POST['student_sn']}";
         $CONN->Execute($query) or die($query);
 
         //更新或新增stud_seme table
         $query = "select c_name from school_class where class_id='$_POST[stud_class]' and enable='1'";
         $res = $CONN->Execute($query) or die($query);
         $seme_class_name = $res->fields[c_name];
-        //$query = "replace INTO stud_seme (seme_year_seme,stud_id,seme_class,seme_class_name,seme_num,student_sn) VALUES ('$seme_year_seme', '$stud_id', '$temp_class', '$seme_class_name', '$new_site_num', '$_POST['student_sn']');";
+        //$query = "replace INTO stud_seme (seme_year_seme,stud_id,seme_class,seme_class_name,seme_num,student_sn) VALUES ('$seme_year_seme', '$stud_id', '$temp_class', '$seme_class_name', '$new_site_num', {$_POST['student_sn']});";
         //2017.09.29 改為存至現在學期
-        $query = "replace INTO stud_seme (seme_year_seme,stud_id,seme_class,seme_class_name,seme_num,student_sn) VALUES ('$curr_seme', '$stud_id', '$temp_class', '$seme_class_name', '$new_site_num', '$_POST['student_sn']');";
+        $query = "replace INTO stud_seme (seme_year_seme,stud_id,seme_class,seme_class_name,seme_num,student_sn) VALUES ('$curr_seme', '$stud_id', '$temp_class', '$seme_class_name', '$new_site_num', {$_POST['student_sn']});";
         $CONN->Execute($query) or die($query);
 
         break;
@@ -138,7 +138,7 @@ switch ($_REQUEST[do_key]) {
 
     case $editBtn :
         //修改異動記錄
-        $sql_update = "update stud_move set move_kind='$_POST[move_kind]',move_date='$_POST[move_date]',move_c_unit='$_POST[move_c_unit]',move_c_date='$_POST[move_c_date]',school = '$_POST[school]',school_id='$_POST[school_id]',city='$_POST[city]',move_c_word='$_POST[move_c_word]',move_c_num='$_POST[move_c_num]',update_id='" . $_SESSION['session_log_id'] . "',update_ip='" . getip() . "',update_time='" . date("Y-m-d h:i:s") . "' where student_sn='$_POST['student_sn']' and move_id='$_POST[move_id]'";
+        $sql_update = "update stud_move set move_kind='$_POST[move_kind]',move_date='$_POST[move_date]',move_c_unit='$_POST[move_c_unit]',move_c_date='$_POST[move_c_date]',school = '$_POST[school]',school_id='$_POST[school_id]',city='$_POST[city]',move_c_word='$_POST[move_c_word]',move_c_num='$_POST[move_c_num]',update_id='" . $_SESSION['session_log_id'] . "',update_ip='" . getip() . "',update_time='" . date("Y-m-d h:i:s") . "' where student_sn={$_POST['student_sn']} and move_id='$_POST[move_id]'";
         $CONN->Execute($sql_update) or die($sql_update);
         break;
 
@@ -160,7 +160,7 @@ switch ($_REQUEST[do_key]) {
         $smarty->assign("default_unit", $res->fields[move_c_unit]);
         $smarty->assign("default_word", $res->fields[move_c_word]);
         $smarty->assign("default_num", $res->fields[move_c_num]);
-        $query = "select * from stud_base where student_sn='$_POST['student_sn']'";
+        $query = "select * from stud_base where student_sn={$_POST['student_sn']}";
         $res = $CONN->Execute($query) or die($query);
         $stud_arr[$res->fields['student_sn']] = $res->fields['stud_id'] . "--" . $res->fields['stud_name'];
         break;
@@ -211,7 +211,7 @@ $smarty->assign("stud_sel", $sel1->get_select());
 
 
 if ($_POST['student_sn']) {
-    $query = "select seme_class_name from stud_seme where student_sn='$_POST['student_sn']' order by seme_year_seme DESC ";
+    $query = "select seme_class_name from stud_seme where student_sn={$_POST['student_sn']} order by seme_year_seme DESC ";
     $res = $CONN->Execute($query) or die($query);
     $old_class_name = "原班級: " . $res->fields[seme_class_name];
 } else

@@ -8,7 +8,7 @@ include "docup_config.php";
 sfs_check();
 //------------------------
 if ($_POST[key] == "新增"){
-	$sql_insert = "insert into docup_p (doc_kind_id,docup_p_id,docup_p_date,docup_p_name,docup_p_memo,docup_p_owner,teacher_sn) values ('$_POST[doc_kind_id]','$_POST[docup_p_id]','$now','$_POST[docup_p_name]','$_POST[docup_p_memo]','".$_SESSION['session_tea_name']."','$_SESSION[session_tea_sn]')";
+	$sql_insert = "insert into docup_p (doc_kind_id,docup_p_id,docup_p_date,docup_p_name,docup_p_memo,docup_p_owner,teacher_sn) values ('$_POST[doc_kind_id]','$_POST[docup_p_id]','$now','$_POST[docup_p_name]','$_POST[docup_p_memo]','".$_SESSION['session_tea_name']."',{$_SESSION['session_tea_sn']})";
 	$result =$CONN->Execute($sql_insert)or trigger_error("語法錯誤",E_USER_ERROR);
 	if ($_POST[doc_kind_id] != "")	
 		header ("Location: doc_kind_list.php?doc_kind_id=$_POST[doc_kind_id]");

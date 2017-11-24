@@ -29,7 +29,7 @@ $sort_ary=array('1'=>'第一次','2'=>'第二次','3'=>'第三次');
 
 $year_seme = $_POST['year_seme'];
 $grade = $_POST['grade'];
-$class_id = $_POST[class_id];
+$class_id = $_POST['class_id'];
 $test_sort=$_POST[test_sort];
 if (empty($test_sort)) $test_sort=1;
 if (empty($year_seme)) $year_seme = sprintf("%03d%d",curr_year(),curr_seme());

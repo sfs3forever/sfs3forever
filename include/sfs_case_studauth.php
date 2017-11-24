@@ -34,7 +34,7 @@
 		{
 			$use_date = $now;
 			$student_sn = $result->fields['student_sn'];
-			$sql_insert = "insert into pro_check_new (pro_kind_id,id_kind,id_sn,set_sn,p_start_date,p_end_date,oth_set) values ($pro_kind_id,'學號','$student_sn','$_SESSION[session_tea_sn]','$use_date','$use_last_date','$class_num')";
+			$sql_insert = "insert into pro_check_new (pro_kind_id,id_kind,id_sn,set_sn,p_start_date,p_end_date,oth_set) values ($pro_kind_id,'學號','$student_sn',{$_SESSION['session_tea_sn']},'$use_date','$use_last_date','$class_num')";
 			$CONN->Execute($sql_insert) or die ($sql_insert);
 
 		}

@@ -20,7 +20,7 @@ if ($_REQUEST[year_seme]) {
 }
 
 $id=$_REQUEST[id];
-$class_id=$_POST[class_id];
+$class_id=$_POST['class_id'];
 $score_spec="score_spec_".$sel_year."_".$sel_seme;
 $creat_table_sql="
 	CREATE TABLE if not exists $score_spec(

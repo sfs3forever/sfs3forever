@@ -3,10 +3,10 @@
 
 	$s_unit="<form  method='post' action=$PHP_SELF >" ;	
 	// 已收集的徽章
-	$sqlstr = "select * from`test_badge`  WHERE   teacher_sn= '$_SESSION[session_tea_sn]'  and who={$_SESSION['session_who']}  order by up_date desc " ;
+	$sqlstr = "select * from`test_badge`  WHERE   teacher_sn= {$_SESSION['session_tea_sn']}  and who={$_SESSION['session_who']}  order by up_date desc " ;
 
 	if($key=='依序號'){
-	$sqlstr = "select * from`test_badge`  WHERE    teacher_sn= '$_SESSION[session_tea_sn]'  and who={$_SESSION['session_who']}  order by badge " ;
+	$sqlstr = "select * from`test_badge`  WHERE    teacher_sn= {$_SESSION['session_tea_sn']}  and who={$_SESSION['session_who']}  order by badge " ;
 	}
 	$result =$CONN->Execute($sqlstr) or user_error("讀取失敗！<br>$sqlstr",256) ;
 	$s_unit.="<table align='center' border='1' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='95%' ><tr>";
