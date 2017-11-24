@@ -5,7 +5,7 @@ include "config.php";
 
 //使用者認證
 sfs_check();
-$year_seme = ($_POST['year_seme'])?$_POST['year_seme']:$_GET[year_seme];
+$year_seme = ($_POST['year_seme'])?$_POST['year_seme']:$_GET['year_seme'];
 if($year_seme=='')	$year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 	
 $use_rate=$_REQUEST['use_rate'];

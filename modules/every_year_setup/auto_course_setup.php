@@ -302,13 +302,13 @@ function &ss_class_num($sel_year,$sel_seme){
 		$td="";
 		$all="";
 		$Cyear=$yc[Cyear];
-		if(!empty($yc[class_id])){
-			$cd=class_id_2_old($yc[class_id]);
+		if(!empty($yc['class_id'])){
+			$cd=class_id_2_old($yc['class_id']);
 		}
 		
-		$cy_name=(!empty($yc[class_id]))?$cd[5]:$school_kind_name[$Cyear];
+		$cy_name=(!empty($yc['class_id']))?$cd[5]:$school_kind_name[$Cyear];
 		
-		$class=&get_all_ss($sel_year,$sel_seme,$yc[Cyear],$yc[class_id]);
+		$class=&get_all_ss($sel_year,$sel_seme,$yc[Cyear],$yc['class_id']);
 		$n=sizeof($class);
 		for($j=0;$j<$n;$j++){
 			$ss_id=$class[$j][ss_id];
@@ -938,7 +938,7 @@ function &same_course_day_set($sel_year,$sel_seme,$ctmp){
 	for($i=0;$i<sizeof($ctmp_sn);$i++){
 		//取得暫存的排課表中某一筆的詳細資料
 		$ctmp_data=get_ctmp_data($ctmp_sn[$i]);
-		$class_id=$ctmp_data[class_id];
+		$class_id=$ctmp_data['class_id'];
 		$time=get_set_class_time($sel_year,$sel_seme,$class_id);
 		if($i==0){
 			//母樣本
@@ -1395,7 +1395,7 @@ function fix_class($sel_year,$sel_seme){
 		//找出A教師在A節，B班是哪一班，以及哪一節課
 		$other=get_teacher_time($sel_year,$sel_seme,$time,$class_id,$teacher_sn);
 		
-		$other_class_id=$other[class_id];
+		$other_class_id=$other['class_id'];
 		$other_ctmp_sn=$other[ctmp_sn];
 		
 		$OC=class_id_2_old($other_class_id);
@@ -1510,7 +1510,7 @@ function get_teacher_time($sel_year,$sel_seme,$time,$class_id,$teacher_sn){
 	$recordSet=$CONN->Execute($sql_select);
 	while(list($ctmp_sn,$class_id) = $recordSet->FetchRow()){
 		$main[ctmp_sn]=$ctmp_sn;
-		$main[class_id]=$class_id;
+		$main['class_id']=$class_id;
 		return $main;
 	}
 	return;

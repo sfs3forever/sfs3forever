@@ -44,7 +44,7 @@ if($_POST['act']=='統計輸出'){
 			while(!$res->EOF){
 				$subitem_sn=$res->fields[sub_item_sn];
 				$item_sn=$subitem_array[$subitem_sn][item_sn];
-				$record_array[$student_sn][$item_sn][$subitem_sn][year_seme]=$res->fields[year_seme];
+				$record_array[$student_sn][$item_sn][$subitem_sn]['year_seme']=$res->fields['year_seme'];
 				$record_array[$student_sn][$item_sn][$subitem_sn][teacher_sn]=$res->fields[teacher_sn];
 				$record_array[$student_sn][$item_sn][$subitem_sn][date]=$res->fields[date];
 				$record_array[$student_sn][$item_sn][$subitem_sn][score]=$res->fields[score]?$res->fields[score]:'';
@@ -77,7 +77,7 @@ if($_POST['act']=='統計輸出'){
 				$student_data.="<table border=2 cellpadding=6 cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='100%'><tr align='center'><td colspan=5>$item_data</td></tr>";
 				$student_data.="<tr align='center' bgcolor='#FFCCCC'><td>認證細目</td><td>認證學期</td><td>認證日期</td><td>得分</td><td>備註</td></tr>";
 				foreach($sub_items as $subitem_sn=>$record_data) {
-					$record_data_list='<td>'.$record_data[year_seme].'</td><td>'.$record_data[date].'</td><td>'.$record_data[score].'</td><td>'.$record_data[note].'</td>';
+					$record_data_list='<td>'.$record_data['year_seme'].'</td><td>'.$record_data[date].'</td><td>'.$record_data[score].'</td><td>'.$record_data[note].'</td>';
 					$subitem_data="<tr align='center'><td>".$subitem_array[$subitem_sn][code].' '.$subitem_array[$subitem_sn][title].' (*'.$subitem_array[$subitem_sn][bonus].')</td>'.$record_data_list.'</tr>';
 					$bonus+=$subitem_array[$subitem_sn][bonus];
 					$student_data.=$subitem_data;

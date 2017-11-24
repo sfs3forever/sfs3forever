@@ -51,7 +51,7 @@ function class_menu($sel_year,$sel_seme,$c_year,&$class_id) {
 	$sql="select class_id,c_year,c_name from school_class where enable='1' and year='$sel_year' and semester='$sel_seme' $class_str order by class_id";
 	$rs=$CONN->Execute($sql);
 	while (!$rs->EOF) {
-		$class[$rs->fields[class_id]]=$class_year[$rs->fields[c_year]].$rs->fields[c_name]."班";
+		$class[$rs->fields['class_id']]=$class_year[$rs->fields[c_year]].$rs->fields[c_name]."班";
 		$rs->MoveNext();
 	}
 	$class_keys=array_keys($class);

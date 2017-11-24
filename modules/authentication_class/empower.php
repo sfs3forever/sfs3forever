@@ -125,7 +125,7 @@ if($my_class_id){   //判定是否為班級導師
 		while(!$res_empowered->EOF) {
 			$item_sn=$res_empowered->fields[item_sn];
 			$subitem_sn=$res_empowered->fields[subitem_sn];
-			$class_id=$res_empowered->fields[class_id];
+			$class_id=$res_empowered->fields['class_id'];
 			$item_data=$item_array[$item_sn][nature].'-'.$item_array[$item_sn][title];
 			$class_name=$class_base[$class_id];
 			$teacher_name=$teacher_array[$res_empowered->fields[teacher_sn]];

@@ -58,10 +58,10 @@ while ($data=$recordSet->FetchRow()) {
          $clandata.="</select>";
          $clanarea.="</select>";
 
-         $class_name=$class_base[$data[class_id]];
+         $class_name=$class_base[$data['class_id']];
 
          $listdata.="<tr>
-         <td>$data['student_sn']</td>
+         <td>{$data['student_sn']}</td>
          <td>$class_name</td>
          <td>$data[stud_id]</td>
          <td>$data[stud_name]</td>

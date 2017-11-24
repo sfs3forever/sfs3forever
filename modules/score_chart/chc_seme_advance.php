@@ -29,8 +29,8 @@ class chc_seme_advance{
 	}
 	//擷取資料
 	function all(){
-		if ($_GET[class_id]=='') return;
-		$this->class_id={$_GET['class_id']};
+		if ($_GET['class_id']=='') return;
+		$this->class_id=$_GET['class_id'];
 		$this->stu=$this->get_stu();
 		$this->subj=$this->get_subj("seme");
 		$this->sco=$this->get_sco($_GET[kind]);

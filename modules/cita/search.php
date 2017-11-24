@@ -50,7 +50,7 @@ echo "<table align=center width='90%' border='1' cellspacing='0' cellpadding='4'
 while ($stmt->fetch()) {
 	$note=$cond_arr[$cond];	
 	$curr=curr_class_num2_data($curr_class_num);
- 	$curr_class_num=$curr[class_id]."-".$curr[num];
+ 	$curr_class_num=$curr['class_id']."-".$curr[num];
       echo "<tr><td><a href='show.php?stud_id=$stud_id'>$stud_name</a></td><td>$curr_class_num $note</td</tr>" ;
  
 
@@ -62,7 +62,7 @@ while ($row = mysql_fetch_array($result)){
 	$cond = $row["stud_study_cond"];
 	$note=$cond_arr[$cond];	
 	$curr=curr_class_num2_data($row["curr_class_num"]);
- 	$curr_class_num=$curr[class_id]."-".$curr[num];
+ 	$curr_class_num=$curr['class_id']."-".$curr[num];
       echo "<tr><td><a href='show.php?stud_id=$stud_id'>$stud_name</a></td><td>$curr_class_num $note</td</tr>" ;
    
   }

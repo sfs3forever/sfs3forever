@@ -30,7 +30,7 @@ print_menu($school_menu_p);
 	$smarty->right_delimiter="}}";
 
 // 2.判斷學年度
-	($_GET[year_seme]=='') ? $year_seme=curr_year()."_".curr_seme():$year_seme=$_GET[year_seme];
+	($_GET['year_seme']=='') ? $year_seme=curr_year()."_".curr_seme():$year_seme=$_GET['year_seme'];
 
 // 3.指派下拉式選擇學期
 	$smarty->assign("sel_year",sel_year('year_seme',$year_seme));//學年度選單
@@ -49,7 +49,7 @@ if($year_seme!='' && $_GET[grade]!='' ){
 		if($all_class_array[$i]['class_id']!='') { 
 			$class_word=($all_class_array[$i][c_name]=="全年級") ? "":"班";
 			$prt_ary[$i]['class_id']=$all_class_array[$i]['class_id'];
-			$bgcolor=($_GET[class_id]==$all_class_array[$i]['class_id']) ? "bgcolor=#FFEBD6":"";
+			$bgcolor=($_GET['class_id']==$all_class_array[$i]['class_id']) ? "bgcolor=#FFEBD6":"";
 			$prt_ary[$i][c_name]="<TD width=10% $bgcolor><LABEL><INPUT TYPE='checkbox' NAME='class_id[]' ";
 			$prt_ary[$i][c_name].=" value='".$all_class_array[$i]['class_id']."' ";
 			$prt_ary[$i][c_name].="onclick='jamp(this.value);' >";
@@ -68,9 +68,9 @@ if($year_seme!='' && $_GET[grade]!='' ){
 	}
 
 ##################列示課程代碼##########################
-if ($_GET[class_id]!=''){
+if ($_GET['class_id']!=''){
 	$smarty->assign("PHP_SELF",$_SERVER[PHP_SELF]);
-	$ss_ary=get_subj2($_GET[class_id]);//取得課程資料score_ss
+	$ss_ary=get_subj2($_GET['class_id']);//取得課程資料score_ss
 	$scope_name=get_subj3("scope");//取領域名
 	$subj_name=get_subj3("subject");//取科目名
 

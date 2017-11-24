@@ -182,12 +182,12 @@ $showdata="<table border='1' cellpadding='3' cellspacing='0' style='border-colla
 	//<input type='reset' value='回復'>
 $res->MoveFirst();
 while(!$res->EOF) {
-	$curr_grade=substr($res->fields[class_id],0,1)-$grade_offset;
+	$curr_grade=substr($res->fields['class_id'],0,1)-$grade_offset;
 	$my_decrease=round($grade_dollar[$curr_grade]*$res->fields[percent]/100);
 	$my_dollar=$grade_dollar[$curr_grade]-$my_decrease;
 	if($decrease_id==$res->fields[decrease_id]){
 		$showdata.="<tr bgcolor=#AAFFCC><td align='center'>".($res->CurrentRow()+1)."</td>";
-		$showdata.="<td align='center'>".$class_base[$res->fields[class_id]]."</td>";
+		$showdata.="<td align='center'>".$class_base[$res->fields['class_id']]."</td>";
 		$showdata.="<td align='center'>".$res->fields[class_no]."</td>";
 		$showdata.="<td align='center'>".$res->fields['stud_name']."</td>";
 		$showdata.="<td align='center'>".$grade_dollar[$curr_grade]."</td>";
@@ -199,7 +199,7 @@ while(!$res->EOF) {
 		$showdata.="<td align='center'><input type='submit' value='修改' name='act' onclick='return confirm(\"確定要更改[".$res->fields['stud_name']."]?\")'>　<input type='submit' value='刪除' name='act' onclick='return confirm(\"真的要刪除[".$res->fields['stud_name']."]?\")'></td></tr>";
 	} else {	
 		$showdata.="<tr bgcolor=#FFFFDD><td align='center'>".($res->CurrentRow()+1)."</td>";
-		$showdata.="<td align='center'>".$class_base[$res->fields[class_id]]."</td>";
+		$showdata.="<td align='center'>".$class_base[$res->fields['class_id']]."</td>";
 		$showdata.="<td align='center'>".$res->fields[class_no]."</td>";
 		$showdata.="<td align='center'>".$res->fields['stud_name']."</td>";
 		$showdata.="<td align='center'>".$grade_dollar[$curr_grade]."</td>";

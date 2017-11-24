@@ -27,7 +27,7 @@ function  stud_seme_class($seme_year_seme=""){
         $sql="select class_id,c_name  from school_class where year='$year' and semester=$semester order by c_year, c_sort";
         $rs=$CONN->Execute($sql);
         while(!$rs->EOF){
-                $class_id = $rs->fields[class_id];
+                $class_id = $rs->fields['class_id'];
                 $class_arr = explode("_",$class_id);
                 $AAA['seme_class'][]= sprintf("%d%s",$class_arr[2],$class_arr[3]);
                 $AAA[seme_class_name][]=$rs->rs[1];

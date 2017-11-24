@@ -47,8 +47,8 @@ $scopev=explode(",",$scopeall);
   
   $str="";
   
-  $t=$class_year; //??
-  if ($class_year>=7)$t=$class_year-7; //?葉
+  $t=$class_year; //國小
+  if ($class_year>=7)$t=$class_year-7; //國中
   $tt=$t+1;
 
 
@@ -81,7 +81,7 @@ $scopev=explode(",",$scopeall);
   	  if ($getpr1[$i]==-1)
 	  {
 	  $getpr1[$i]=0;
-	  $sel_semex1=iconv("UTF-8","BIG5","???);
+	  $sel_semex1=iconv("UTF-8","BIG5","非本校");
 	  }
   
   //$str.="{ label: \"$i-$sel_semex1\", y: $getpr1[$i] },";
@@ -115,7 +115,7 @@ $scopev=explode(",",$scopeall);
   if ($getpr2[$i]==-1)
   {
 	  $getpr2[$i]=0;
-	  $sel_semex2=iconv("UTF-8","BIG5","???);
+	  $sel_semex2=iconv("UTF-8","BIG5","非本校");
   }
   
   
@@ -139,8 +139,8 @@ function pr_view_mix($scopeall)
 {
  global $CONN,$sel_year,$sel_seme,$class_id,$ss_id,$test_sort,$test_kind,$rate,$student_sn,$h,$subject1,$class_year;
 	  
- $t=$class_year; //??
- if ($class_year>=7)$t=$class_year-7; //?葉
+ $t=$class_year; //國小
+ if ($class_year>=7)$t=$class_year-7; //國中
  $tt=$t+1;
  $str=""; 
 
@@ -151,7 +151,7 @@ function pr_view_mix($scopeall)
  $class_id=$i."_".$sel_semex1."_0".($class_year-$tt);
  $getpr1[$i]=get_pr_from_student_sn($i,$sel_semex1,$class_id,$ss_id,$test_sort,$test_kind,$rate,$student_sn,$tt,$subject1,$scopeall);
 
- if ($getpr1[$i]==-1){$sel_semex1=iconv("UTF-8","BIG5","???);$getpr1[$i]="0";}
+ if ($getpr1[$i]==-1){$sel_semex1=iconv("UTF-8","BIG5","非本校");$getpr1[$i]="0";}
  //$str.="{ label: \"$i-$sel_semex1\", y: $getpr1[$i] },";
  $str.="$i-$sel_semex1&$getpr1[$i]&";
 
@@ -160,7 +160,7 @@ function pr_view_mix($scopeall)
   $sel_semex2=2;
   $class_id=$i."_".$sel_semex2."_0".($class_year-$tt);
   $getpr2[$i]=get_pr_from_student_sn($i,$sel_semex2,$class_id,$ss_id,$test_sort,$test_kind,$rate,$student_sn,$tt,$subject1,$scopeall);
-  if ($getpr2[$i]==-1){$sel_semex2=iconv("UTF-8","BIG5","???);$getpr2[$i]="0";}
+  if ($getpr2[$i]==-1){$sel_semex2=iconv("UTF-8","BIG5","非本校");$getpr2[$i]="0";}
  
   //$str.="{ label: \"$i-$sel_semex2\", y: $getpr2[$i] },";
   $str.="$i-$sel_semex2&$getpr2[$i]&";
@@ -175,14 +175,14 @@ function pr_view_mix($scopeall)
 
    
   
-if($sel_seme>0)//摮豢?
+if($sel_seme>0)//學期
 {  
 
 
  $ax=explode("_",$class_id);
  $str="";
  
- if (!empty($ax[3])) //?剔?
+ if (!empty($ax[3])) //班級
  {
 	 
 		  $strp[0]=pr_view($scopev[0]);		  
@@ -190,7 +190,7 @@ if($sel_seme>0)//摮豢?
 
 
  }
- else //?典僑蝝毽??
+ else //全年級混合
  {
 	 
 		  
@@ -204,7 +204,7 @@ if($sel_seme>0)//摮豢?
  
  
  
-if(empty($sel_seme))//摮詨僑摨?
+if(empty($sel_seme))//學年度
 {
 
 
@@ -240,7 +240,7 @@ if(empty($sel_seme))//摮詨僑摨?
  
  
  }
- else //?
+ else //各班
  {
 
 		  
@@ -257,7 +257,7 @@ if(empty($sel_seme))//摮詨僑摨?
 
   
 
-$vx=iconv("UTF-8","big5","???R??);
+$vx=iconv("UTF-8","big5","各領域PR值");
 		
 		if (!empty($strp[0]))
         {

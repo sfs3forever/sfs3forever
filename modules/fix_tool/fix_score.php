@@ -69,8 +69,8 @@ if($_GET[st_sn]!='') {
 	$SQL="select * from  stud_seme where student_sn='$_GET[st_sn]'  order by seme_year_seme ";
 	$arr_b=get_order2($SQL);
 	}
-if($_GET[st_sn]!='' && $_GET[year_seme]!='') {
-	$Score_Table="score_semester_".sprintf("%d",substr($_GET[year_seme],0,3))."_".substr($_GET[year_seme],3,1);
+if($_GET[st_sn]!='' && $_GET['year_seme']!='') {
+	$Score_Table="score_semester_".sprintf("%d",substr($_GET['year_seme'],0,3))."_".substr($_GET['year_seme'],3,1);
 	//該學期成績表
 	$SQL="select * from  $Score_Table where student_sn='$_GET[st_sn]' order by ss_id ,test_sort ";
 	$rs=$CONN->Execute($SQL) or die(backinput());
@@ -87,8 +87,8 @@ if($_GET[st_sn]!='' && $_GET[year_seme]!='') {
 		}
 ///////////////// 找出當學期年班//////////////////////////
 	for($i=0;$i<count($arr_b);$i++){
-	if($arr_b[$i]['seme_year_seme']===$_GET[year_seme]) {
-	$stu_class_id=substr($_GET[year_seme],0,3)."_".substr($_GET[year_seme],3,1)."_".sprintf("%02d",substr($arr_b[$i]['seme_class'],0,1))."_".sprintf("%02d",substr($arr_b[$i]['seme_class'],1,2));
+	if($arr_b[$i]['seme_year_seme']===$_GET['year_seme']) {
+	$stu_class_id=substr($_GET['year_seme'],0,3)."_".substr($_GET['year_seme'],3,1)."_".sprintf("%02d",substr($arr_b[$i]['seme_class'],0,1))."_".sprintf("%02d",substr($arr_b[$i]['seme_class'],1,2));
 	$stu_sn=$arr_b[$i]['student_sn'];
 	}
 	}

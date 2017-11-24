@@ -58,7 +58,7 @@ print_menu($school_menu_p);
 // 2.判斷學年度
 
 $now_year_seme=curr_year()."_".curr_seme();
-($_GET[year_seme]=='') ? $year_seme=$now_year_seme:$year_seme=$_GET[year_seme];
+($_GET['year_seme']=='') ? $year_seme=$now_year_seme:$year_seme=$_GET['year_seme'];
 $sel_year= split("_",$year_seme);//切開字串
 
 	//選擇的學年度

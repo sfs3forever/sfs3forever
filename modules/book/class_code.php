@@ -23,7 +23,7 @@ $mysqliconn = get_mysqli_conn();
 $query = "select stud_id,stud_name from stud_base  where curr_class_num like ? and stud_study_cond =0 order by curr_class_num";
 $stmt = "";
 $stmt = $mysqliconn->prepare($query);
-$_POST['class_id']="$_POST['class_id']%";
+$_POST['class_id']="{$_POST['class_id']}%";
 $stmt->bind_param('s',$_POST['class_id']);
 $stmt->execute();
 $stmt->bind_result($stud_id,$stud_name);

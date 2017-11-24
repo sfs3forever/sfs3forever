@@ -60,7 +60,7 @@ class score_reset{
 	// 寫入資料表
 	function resetdata() {
 	    if ($this->act=="send") {
-			$select_year_seme=explode("-",$this->year_seme=$_REQUEST[year_seme]);
+			$select_year_seme=explode("-",$this->year_seme=$_REQUEST['year_seme']);
 			$sel_year=sprintf("%03d", $select_year_seme[0]);
 			$sel_seme=$select_year_seme[1];
 			$year_seme=$sel_year.$sel_seme;

@@ -79,7 +79,7 @@ if($_POST['Submit1']=='儲存'){
 	$query="select * from $class_kind where year='$new_sel_year' order by class_id";
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
-		$class_id=$res->fields[class_id];
+		$class_id=$res->fields['class_id'];
 		$cclass[$class_id]=$res->fields[c_name];
 		if ($cclass[$class_id]=="") $cclass[$class_id]="*";
 		$res->MoveNext();
@@ -291,7 +291,7 @@ switch($work){
 			$query="select class_id,c_name from $class_kind where year='$new_sel_year' and class_id like '$chk%' order by class_id";
 			$res=$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 			while (!$res->EOF) {
-				echo "<tr bgcolor='#E1E6FF'><td align='center'>".$school_kind_name[$chk]."<input type='text' size='4' name='c_name[".$res->fields[class_id]."]' value='".$res->fields[c_name]."'>班</td></tr>\n";
+				echo "<tr bgcolor='#E1E6FF'><td align='center'>".$school_kind_name[$chk]."<input type='text' size='4' name='c_name[".$res->fields['class_id']."]' value='".$res->fields[c_name]."'>班</td></tr>\n";
 				$res->MoveNext();
 			}
 			echo "</table><input type='submit' name='Submit2' value='確定修改'><input type='hidden' name='class_year_b' value='$class_year_b'><input type='hidden' name='class_kind' value='$class_kind'></form></td>";
@@ -381,7 +381,7 @@ switch($work){
 		$query="select * from $class_kind where year='$new_sel_year' and class_id like '$class_year_b%'";
 		$res=$CONN->Execute($query);
 		while (!$res->EOF){
-			$class_id=$res->fields[class_id];
+			$class_id=$res->fields['class_id'];
 			$query="select stud_sex,count(stud_name) from new_stud where stud_study_year='$new_sel_year' and $class_sort='$class_id' group by stud_sex";
 			$res_sex=$CONN->Execute($query);
 			while (!$res_sex->EOF) {
@@ -479,7 +479,7 @@ switch($work){
 			$query="select * from $class_kind where year='$new_sel_year' and class_id like '$class_year_b%' order by class_id";
 			$res=$CONN->Execute($query);
 			while (!$res->EOF) {
-				$classn[$res->fields[class_id]]=$res->fields[c_name]."班";
+				$classn[$res->fields['class_id']]=$res->fields[c_name]."班";
 				$res->MoveNext();
 			}
 			$sc=$class_year_b.sprintf("%02d",$start_class);
@@ -740,8 +740,8 @@ function  full_class_name($id,$col_name,$stud_study_year,$class_year_b,$class_ki
 		return "尚未設定班級，請先設定！";
 	else {
 		while (!$res->EOF) {
-			$selected=($id==$res->fields[class_id])?"selected":"";
-			$temp_str.="<option value='".$res->fields[class_id]."' $selected>".$res->fields[c_name]."班</option>\n";
+			$selected=($id==$res->fields['class_id'])?"selected":"";
+			$temp_str.="<option value='".$res->fields['class_id']."' $selected>".$res->fields[c_name]."班</option>\n";
 			$res->MoveNext();
 		}
 		$temp_str.="</select>\n";

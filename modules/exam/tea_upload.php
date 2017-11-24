@@ -187,7 +187,7 @@ $sql_select .= "where exam_kind.e_kind_id =exam.e_kind_id and  exam.exam_id='$ex
 $result = $CONN->Execute($sql_select)or die($sql_select);
 //取出使用學生的學年度(3位元)學期(1位元)年級(1位元)學期(1位元)班別(1~ 位元)
 $tempc = sprintf("%03s%d%s",curr_year(),curr_seme(),substr($_SESSION[session_curr_class_num],0,strlen($_SESSION[session_curr_class_num])-2));
-//echo "$tempc,$row[class_id]<BR>";
+//echo "$tempc,$row['class_id']<BR>";
 //檢查上傳權限
 //判斷是否開始上傳作業 exam_isupload == 1
 //判斷是否為該班學生或指導教師，再給予上傳權限
@@ -210,7 +210,7 @@ include "header.php";
 <form  enctype="multipart/form-data" method="post">
 <?php 
 if ($_SESSION['session_tea_name'] !="")
-	echo "<h3>指導老師：$_SESSION['session_tea_name'] </h3>";
+	echo "<h3>指導老師：{$_SESSION['session_tea_name']} </h3>";
 else
 	echo "<h3>學員：$_SESSION[session_stud_name] </h3>";
 ?>

@@ -54,7 +54,7 @@ function list_eduh($year,$semester,$count_num){
         $show.="<table border='1'><tr bgcolor='#00ffff'><td>班級</td><td>人數</td><td>有紀錄</td><td>無紀錄</td><td>待紀錄之學生</td><td>導師</td></tr>";
         //逐班比對資料
         while ($array_class = $record_class->FetchRow()) {
-              $temp = explode("_",$array_class[class_id]); //091_1_07_01$array_class
+              $temp = explode("_",$array_class['class_id']); //091_1_07_01$array_class
               $temp[2]=(substr($temp[2],0,1)=='0')?substr($temp[2],1,strlen($temp[2]-1)):$temp[2];
               $temp_class=$temp[2].$temp[3];//$class_temp為班級，如701
 

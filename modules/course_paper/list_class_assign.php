@@ -63,7 +63,7 @@ $res=$CONN->Execute($query);
 while(!$res->EOF) {
 	$subject_id=$res->fields[subject_id];
 	if ($subject_id=="0") $subject_id=$res->fields[scope_id];
-	$class_id=$res->fields[class_id];
+	$class_id=$res->fields['class_id'];
 	for ($i=0;$i<=4;$i++) {
 		$j=$i;
 		if ($ss[$class_id][$subject_id][teacher_sn][$j]=="") break;

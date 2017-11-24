@@ -4,7 +4,7 @@ $latestTimestamp = 1487251992;
 $sn=1;
 if(isTableValid($phDB,"updatePh")){
 	//update ph data
-	//??鞈?摨咨imestamp
+	//取得資料庫timestamp
 	$stmt = $phDB->prepare("select * from updatePh where sn = :sn");
 	$stmt->bindParam(":sn", $sn, PDO::PARAM_INT);
 	$stmt->execute();
@@ -17,23 +17,23 @@ if(isTableValid($phDB,"updatePh")){
 	
 	
 	if($dbTimestamp != $latestTimestamp){
-		//?湔鞈?摨?
+		//更新資料庫
 		$ty = "ciou";
-		$ph="???;
+		$ph="ㄑㄧㄡ";
 		$stmt = $phDB->prepare("UPDATE ph SET ty = :ty where ph = :ph");
 		$stmt->bindParam(":ty", $ty, PDO::PARAM_STR);
 		$stmt->bindParam(":ph", $ph, PDO::PARAM_STR);
 		$stmt->execute();
 
                 $ty = "rong";
-                $ph="??瓦?;
+                $ph="ㄖㄨㄥˊ";
                 $stmt = $phDB->prepare("UPDATE ph SET ty = :ty where ph = :ph");
                 $stmt->bindParam(":ty", $ty, PDO::PARAM_STR);
                 $stmt->bindParam(":ph", $ph, PDO::PARAM_STR);
                 $stmt->execute();
 
 
-		//?湔timestamp 2017/02/17
+		//更新timestamp 2017/02/17
 		$stmt = $phDB->prepare("UPDATE updatePh SET timestamp = :timestamp where sn = :sn");
 		$stmt->bindParam(":sn", $sn, PDO::PARAM_INT);
 		$stmt->bindParam(":timestamp", $latestTimestamp, PDO::PARAM_INT);
@@ -44,7 +44,7 @@ if(isTableValid($phDB,"updatePh")){
 		$smarty->right_delimiter='}>';
 		$smarty->setCompileDir($templates_c);
 		$smarty->assign("showModal","true");
-		$smarty->assign("infoMsg","?湔?????瓦?);
+		$smarty->assign("infoMsg","更新ㄑㄧㄡ,ㄖㄨㄥˊ");
 
 		$smarty->display("templates/showModal.tpl");
 		
@@ -70,7 +70,7 @@ if(isTableValid($phDB,"updatePh")){
 	$smarty->right_delimiter='}>';
 	$smarty->setCompileDir($templates_c);
 	$smarty->assign("showModal","true");
-	$smarty->assign("infoMsg","鞈?銵典歇?湔,隢??璅∠?");
+	$smarty->assign("infoMsg","資料表已更新,請重啟本模組");
 
 	$smarty->display("templates/showModal.tpl");
 

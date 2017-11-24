@@ -51,7 +51,7 @@ $start_date=sprintf("%04d-%02d-%02d",$start_year,$start_month,$start_day);
 
 $act=$_REQUEST[act];
 $stud_id=$_REQUEST[stud_id];
-$class_id=$_REQUEST[class_id];
+$class_id=$_REQUEST['class_id'];
 $year_name=$_POST[year_name];
 $class_name=$_POST[class_name];
 $class_num=$_POST[class_num];

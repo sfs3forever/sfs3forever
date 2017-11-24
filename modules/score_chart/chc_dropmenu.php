@@ -72,14 +72,14 @@ function grade() {
 	$str="<select name='".$this->Sclass."' onChange=\"location.href='".$url."'+this.options[this.selectedIndex].value;\">\n";
 	$str.= "<option value=''>-未選擇-</option>\n";
 	foreach($All as $ary) {
-		($ary[class_id]==$_GET[$this->Sclass]) ? $bb=' selected':$bb='';
-		$str.= "<option value='".$ary[class_id]."' $bb>".$grade[$ary[c_year]].$ary[c_name]."班 (".$ary[teacher_1].")</option>\n";		
+		($ary['class_id']==$_GET[$this->Sclass]) ? $bb=' selected':$bb='';
+		$str.= "<option value='".$ary['class_id']."' $bb>".$grade[$ary[c_year]].$ary[c_name]."班 (".$ary[teacher_1].")</option>\n";		
 		}
 	$str.="</select>";
 	*/ 
 	foreach($All as $ary) {
-		($ary[class_id]==$_GET[$this->Sclass]) ? $bb=' selected':$bb='';
-		$str[]= $ary[class_id];		
+		($ary['class_id']==$_GET[$this->Sclass]) ? $bb=' selected':$bb='';
+		$str[]= $ary['class_id'];		
 		}
 	return $str;
 	}

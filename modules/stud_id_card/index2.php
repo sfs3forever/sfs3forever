@@ -6,8 +6,8 @@ include "config.php";
 sfs_check();
 
 //若有選擇學年學期，進行分割取得學年及學期
-if(!empty($_REQUEST[year_seme])){
-	$ys=explode("-",$_REQUEST[year_seme]);
+if(!empty($_REQUEST['year_seme'])){
+	$ys=explode("-",$_REQUEST['year_seme']);
 	$sel_year=$ys[0];
 	$sel_seme=$ys[1];
 }else{

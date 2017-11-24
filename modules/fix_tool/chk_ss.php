@@ -66,7 +66,7 @@ class chk_SS{
 		$All=$rs->GetArray();//echo "<pre>";print_r($All);
 		foreach($All as $ary){
 			$a=sprintf("%03d",$ary[year])."_".$ary[semester]."_".sprintf("%02d",$ary[class_year]);//095_2_01
-			$b=substr($ary[class_id],0,8);
+			$b=substr($ary['class_id'],0,8);
 			if ($a!=$b) {
 				$Err[$ary[ss_id]]=$ary;
 				$all_Err[]=$ary[ss_id];

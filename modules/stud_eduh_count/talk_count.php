@@ -65,7 +65,7 @@ function list_talk($year,$semester,$count_num){
         $show.="<table width=100% border='1'><tr bgcolor='#00ffff'><td width=5% align=center>班級</td><td width=5% align=center>人數</td><td width=10% align=center>符合人數</td><td width=10% align=center>未符合人數</td><td>待紀錄之學生</td><td width=10% align=center>導師</td></tr>";
         //逐班比對資料
         while ($array_class = $record_class->FetchRow()) {
-              $temp = explode("_",$array_class[class_id]); //091_1_07_01$array_class
+              $temp = explode("_",$array_class['class_id']); //091_1_07_01$array_class
               $temp[2]=(substr($temp[2],0,1)=='0')?substr($temp[2],1,strlen($temp[2]-1)):$temp[2];
               $temp_class=$temp[2].$temp[3];//$class_temp為班級，如701
 

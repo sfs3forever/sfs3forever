@@ -147,7 +147,7 @@ $select_course_id_sql="select * from score_course where course_id=$teacher_cours
 $rs_select_course_id=$CONN->Execute($select_course_id_sql);
 $year= $rs_select_course_id->fields['year'];
 $semester= $rs_select_course_id->fields['semester'];
-$class_id=$rs_select_course_id->fields[class_id];
+$class_id=$rs_select_course_id->fields['class_id'];
 $class_year=$rs_select_course_id->fields[class_year];
 $ss_id= $rs_select_course_id->fields['ss_id'];
 $teacher_sn = $rs_select_course_id->fields['teacher_sn'];

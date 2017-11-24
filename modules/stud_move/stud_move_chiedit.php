@@ -138,7 +138,7 @@ function link_a($Seme,$Sclass=''){
 	$ss.="<option value='$key1' $cc>$val </option>\n";
 	}
 	$ss.="</select>";
-Return $ss;
+return $ss;
 }
 
 ##################取資料函式###########################
@@ -149,11 +149,9 @@ $arr = $rs->GetArray();
 return $arr ;
 }
 function backe($st="未填妥!按下後回上頁重填!") {
-echo <<<EOL
-	"<BR><BR><BR><BR><CENTER><form>
-	<input type='button' name='b1' value='$st' onclick=\"history.back()\" style='font-size:12pt;color:red'>
+echo "<BR><BR><BR><BR><CENTER><form>
+	<input type='button' name='b1' value=\"$st\" onclick=\"history.back()\" style='font-size:12pt;color:red'>
 	</form></CENTER>";
-EOL;
 	exit;
 	}
 ?>

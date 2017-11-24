@@ -333,7 +333,7 @@ function add_set_room($time,$room,$teacher_sn){
 		if ($_POST[class_kind]==0) {
 			$query="select class_id from score_course where year='".curr_year()."' and semester='".curr_seme()."' and day='$t[1]' and sector='$t[2]' and teacher_sn='".$_SESSION[session_tea_sn]."'";
 			$res=$CONN->Execute($query);
-			$c=explode("_",$res->fields[class_id]);
+			$c=explode("_",$res->fields['class_id']);
 			$seme_class=intval($c[2].$c[3]);
 			if ($seme_class=="0") $seme_class="";
 		} else {			

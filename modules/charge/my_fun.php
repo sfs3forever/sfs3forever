@@ -8,7 +8,7 @@ function get_item_class($item_id,$class_base,$selectd_class_id) {
 	$res=$CONN->Execute($sql);
 	$result="<select name='class_id' onChange='this.form.submit()'><option></option>";
 	while(!$res->EOF){
-		$class_id=$res->fields[class_id];
+		$class_id=$res->fields['class_id'];
 		$result.="<option value='$class_id'".($class_id==$selectd_class_id?" selected":"").">".$class_base[$class_id]."</option>";
 		$res->MoveNext();
 	}

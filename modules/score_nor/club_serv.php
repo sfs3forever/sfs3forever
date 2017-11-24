@@ -47,7 +47,7 @@ $smarty->right_delimiter="}}";
 $smarty->assign("M_SETUP",$M_SETUP);
 
 // 2.判斷學年度
-	($_GET[year_seme]=='') ? $year_seme=curr_year()."_".curr_seme():$year_seme=$_GET[year_seme];
+	($_GET['year_seme']=='') ? $year_seme=curr_year()."_".curr_seme():$year_seme=$_GET['year_seme'];
 
 // 3.指派下拉式選擇學期
 	$smarty->assign("sel_year",sel_year('year_seme',$year_seme));

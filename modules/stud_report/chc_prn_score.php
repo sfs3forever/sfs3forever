@@ -84,7 +84,7 @@ $break_page="<P STYLE='page-break-before: always;'>";
 $query="select a.class_id,b.link_ss,count(a.course_id) as num from score_course a left join score_ss b on a.ss_id=b.ss_id where b.enable='1' group by a.class_id,b.link_ss";
 $res=$CONN->Execute($query);
 while (!$res->EOF) {
-	$section_num[$res->fields[class_id]][$res->fields[link_ss]]=$res->fields[num];
+	$section_num[$res->fields['class_id']][$res->fields[link_ss]]=$res->fields[num];
 	$res->MoveNext();
 }
 
@@ -140,7 +140,7 @@ foreach($sn_ary as $student_sn) {
 function ch_nor($data,$all_Sco){
 	global $IS_JHORES;
 	foreach ($data as $key => $ary){
-		$tmp=split("_",$ary[class_id]);
+		$tmp=split("_",$ary['class_id']);
 		$tmp2=$tmp[0]-($tmp[2]-$IS_JHORES);
 		if ($tmp2>=94){
 			$ary[scope_score]["日常生活表現"][item_detail][nor][score]="--"; 

@@ -8,7 +8,7 @@ include_once "config.php";
 sfs_check();
 
 //取得學年學期
-$year_seme=$_REQUEST[year_seme];
+$year_seme=$_REQUEST['year_seme'];
 if ($year_seme) {
 	$sel_year=intval(substr($year_seme,0,3));
 	$sel_seme=substr($year_seme,3,1);
@@ -59,7 +59,7 @@ if ($One) {
 if ($year_name && $class_name) 
 	$class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,($year_name+$IS_JHORES),$class_name);
 else
-	$class_id=$_REQUEST[class_id];
+	$class_id=$_REQUEST['class_id'];
 if ($past_class_id && $class_id!=$past_class_id) $One="";
 
 //加入一班資料
@@ -286,7 +286,7 @@ function &signForm($sel_year,$sel_seme,$act,$id=""){
 	$query="select class_id,c_name from school_class where year='$sel_year' and semester='$sel_seme' order by class_id";
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
-		$c=explode("_",$res->fields[class_id]);
+		$c=explode("_",$res->fields['class_id']);
 		$c_year=intval($c[2]);
 		$c_name[$c_year.$c[3]]=$class_year[$c_year].$res->fields[c_name]."班";
 		$res->MoveNext();

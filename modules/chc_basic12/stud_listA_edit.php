@@ -107,7 +107,7 @@ class chc_seme{
 	}
 	//擷取資料
 	function all(){
-		if ($_GET[class_id]=='') return;
+		if ($_GET['class_id']=='') return;
 		$this->class_id=$_GET['class_id'];
 		$this->stu=$this->get_stu();
 //		print_r($this->sco);		
@@ -238,8 +238,8 @@ function grade() {
 	$str="<select name='".$this->Sclass."' onChange=\"location.href='".$url."'+this.options[this.selectedIndex].value;\">\n";
 	$str.= "<option value=''>-未選擇-</option>\n";
 	foreach($All as $ary) {
-		($ary[class_id]==$_GET[$this->Sclass]) ? $bb=' selected':$bb='';
-		$str.= "<option value='".$ary[class_id]."' $bb>".$grade[$ary[c_year]].$ary[c_name]."班 (".$ary[teacher_1].")</option>\n";
+		($ary['class_id']==$_GET[$this->Sclass]) ? $bb=' selected':$bb='';
+		$str.= "<option value='".$ary['class_id']."' $bb>".$grade[$ary[c_year]].$ary[c_name]."班 (".$ary[teacher_1].")</option>\n";
 		}
 	$str.="</select>";
 	return $str;

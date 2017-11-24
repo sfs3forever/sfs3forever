@@ -28,7 +28,7 @@ if($match==1){
 }
 $att_time = mysql_date();
 if ($_SESSION['session_log_id'] != ""){
-	$login= "歡迎 $_SESSION['session_tea_name'] 登入! </td>";
+	$login= "歡迎 {$_SESSION['session_tea_name']} 登入! </td>";
 }	
 $c_title= "<font size=6 face=標楷體 color=#800000><b>$s_title</b> </font>";	
 
@@ -287,7 +287,7 @@ while ($row = $result->FetchRow() ) {
 		$bgcolor='FFFF66';
 		if($_SESSION['session_log_id']==$h_stud_id  and  $_SESSION['session_who']==$h_who  and $match==0){ // 本人
 			$ch_peo="館主";
-			$ch_games="$_SESSION['session_tea_name']";
+			$ch_games="{$_SESSION['session_tea_name']}";
 			$cg_peo="<a href=$PHP_SELF?key=取消&p_sn=$p_sn>取消</a>";
 			$bgcolor='FF5566';
 		}

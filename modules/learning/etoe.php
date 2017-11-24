@@ -72,7 +72,7 @@ if($_SESSION['session_who']=="教師" ){   // 教師可以檢視題庫內容
 $s_title= $modules[$m] . $c_tome .$c_unit; 
 
 if ($_SESSION['session_log_id'] != ""){
-	$login= "歡迎 $_SESSION['session_tea_name'] 登入! 　<a href=\"$_SERVER[PHP_SELF]?logout=yes&unit=$unit\">登出</a></td>";
+	$login= "歡迎 {$_SESSION['session_tea_name']} 登入! 　<a href=\"$_SERVER[PHP_SELF]?logout=yes&unit=$unit\">登出</a></td>";
 }else{
 	$login= "<a href=\"$_SERVER[PHP_SELF]?logout=no&unit=$unit\">登入</a>";
 }	

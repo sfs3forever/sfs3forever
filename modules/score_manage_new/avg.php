@@ -280,7 +280,7 @@ if ($year_name && $stage) {
 		$res=$CONN->Execute($query);
 		$i=1;
 		while (!$res->EOF) {
-			$class_score=str_replace($res->fields[class_id],$i,$class_score);
+			$class_score=str_replace($res->fields['class_id'],$i,$class_score);
 			$i++;
 			$res->MoveNext();
 		}

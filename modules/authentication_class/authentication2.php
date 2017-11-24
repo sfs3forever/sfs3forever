@@ -83,7 +83,7 @@ $sql_select="select distinct class_id from authentication_empower WHERE empowere
 $recordSet=$CONN->Execute($sql_select) or user_error("讀取失敗！<br>$sql_select",256);
 while(!$recordSet->EOF)
 {
-	$class_id=$recordSet->fields[class_id];
+	$class_id=$recordSet->fields['class_id'];
 	if($my_class_id<>$class_id){
 		$class_name=$class_base[$class_id];
 		if($curr_class_id==$class_id){

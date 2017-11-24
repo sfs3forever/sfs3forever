@@ -17,7 +17,7 @@ if ($_POST['act']=="del") {
 }
 
 //取得學年學期
-$year_seme=$_REQUEST[year_seme];
+$year_seme=$_REQUEST['year_seme'];
 if ($year_seme) {
 	$sel_year=intval(substr($year_seme,0,3));
 	$sel_seme=substr($year_seme,3,1);

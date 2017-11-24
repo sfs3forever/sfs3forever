@@ -469,7 +469,7 @@ switch($work){
 				$chk_str="old_school";
 			} else {
 				$i=$res->fields[c_sort];
-				$name_arr[$i]=$res->fields[class_id];
+				$name_arr[$i]=$res->fields['class_id'];
 				$cname_arr[$i]=addslashes($res->fields[c_name])."班";
 				$chk_str="temp_class";
 			}

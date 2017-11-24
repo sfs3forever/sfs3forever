@@ -49,7 +49,7 @@ switch ($_POST[key]) {
 	$addnum = 0;
 	$chgnum = 0;
 	while (!$result->EOF) {
-		$class_temp = substr($result->fields[class_id],-3);
+		$class_temp = substr($result->fields['class_id'],-3);
 		$query2 = "select stud_id,stud_name,curr_class_num,email_pass from stud_base where stud_study_cond=0 and curr_class_num like '$class_temp%' order by curr_class_num ";
 		$result2 = $CONN->Execute($query2);
 		

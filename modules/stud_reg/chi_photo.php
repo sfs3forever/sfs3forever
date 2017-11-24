@@ -124,7 +124,7 @@ function grade() {
     $All=$rs->GetArray();
 
     foreach($All as $ary) {
-    	$tmp[$ary[class_id]]=$grade[$ary[c_year]].$ary[c_name]."班 (".$ary[teacher_1].")";
+    	$tmp[$ary['class_id']]=$grade[$ary[c_year]].$ary[c_name]."班 (".$ary[teacher_1].")";
 		}
     return $tmp;
 } 

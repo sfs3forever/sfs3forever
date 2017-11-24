@@ -67,10 +67,10 @@ class stud_sta{
 	}
 	//擷取資料
 	function all(){
-		if ($_GET[class_id]=='') return;
-		$SEME=split("_",$_GET[year_seme]);
+		if ($_GET['class_id']=='') return;
+		$SEME=split("_",$_GET['year_seme']);
 		$SEME4=sprintf("%03d",$SEME[0]).$SEME[1];
-		$Class=split("_",$_GET[class_id]);//095_1_01_03
+		$Class=split("_",$_GET['class_id']);//095_1_01_03
 		$Class3=($Class[2]+0).sprintf("%02d",$Class[3]);
 		$SQL="select  a.stud_id, a.student_sn,b.seme_num,a.stud_name, a.stud_sex from stud_base a  , stud_seme b where b.seme_year_seme ='{$SEME4}' and b.seme_class ='{$Class3}' and a.student_sn=b.student_sn order by b.seme_class, b.seme_num  ";
 		$rs=&$this->CONN->Execute($SQL) or die($SQL);

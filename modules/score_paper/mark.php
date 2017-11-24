@@ -47,7 +47,7 @@ function &get_all_mark($sel_year,$sel_seme){
 	$student_sn=stud_id2student_sn($stud_id);
 	
 	$c=curr_class_num2_data($curr_class_num);
-	$class_id=old_class_2_new_id($c[class_id],$sel_year,$sel_seme);
+	$class_id=old_class_2_new_id($c['class_id'],$sel_year,$sel_seme);
 	$class=get_stud_base_array($class_id,$stud_id);
 	$mark_all.=make_list($class,"班級及個人","","",false);
 	$mark_list.=get_mark($class);

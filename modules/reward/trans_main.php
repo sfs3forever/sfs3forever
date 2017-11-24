@@ -55,7 +55,7 @@ include "../../include/sfs_oo_zip2.php";
 	$query="select class_id,c_name from school_class where year='$sel_year' and semester='$sel_seme' order by class_id";
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
-		$class_id=$res->fields[class_id];
+		$class_id=$res->fields['class_id'];
 		$c=explode("_",$class_id);
 		$c_year=intval($c[2]);
 		$class_name[$c_year.$c[3]]=$class_year[$c_year].$res->fields[c_name];

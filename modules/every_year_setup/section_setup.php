@@ -8,7 +8,7 @@ include "config.php";
 sfs_check();
 
 //若有選擇學年學期，進行分割取得學年及學期
-if(!empty($_REQUEST[year_seme])){
+if(!empty($_REQUEST['year_seme'])){
 	$ys=explode("-",$year_seme);
 	$sel_year=$ys[0];
 	$sel_seme=$ys[1];
@@ -16,7 +16,7 @@ if(!empty($_REQUEST[year_seme])){
 
 $sel_year=(empty($_REQUEST[sel_year]))?curr_year():$_REQUEST[sel_year]; //目前學年
 $sel_seme=(empty($_REQUEST[sel_seme]))?curr_seme():$_REQUEST[sel_seme]; //目前學期
-$class_id=$_REQUEST[class_id];
+$class_id=$_REQUEST['class_id'];
 $act=$_REQUEST[act];
 $ss_id=$_REQUEST[ss_id];
 $input_course_name=$_POST[input_course_name];

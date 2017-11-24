@@ -127,10 +127,10 @@ function  curr_class_num2_data($curr_class_num){
 	if (!$curr_class_num) user_error("沒有傳入curr_class_num！請檢查！",256);
 
 	if(strlen($curr_class_num)==5){
-		$stu[class_id]=substr($curr_class_num,0,3);
+		$stu['class_id']=substr($curr_class_num,0,3);
 		$stu[num]=substr($curr_class_num,3,2);
 	}elseif(strlen($curr_class_num)==6){
-		$stu[class_id]=substr($curr_class_num,0,4);
+		$stu['class_id']=substr($curr_class_num,0,4);
 		$stu[num]=substr($curr_class_num,4,2);
 	}
 	return $stu;

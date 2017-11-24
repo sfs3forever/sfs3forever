@@ -22,7 +22,7 @@ $One=$_REQUEST[One];
 $year_name=$_REQUEST[year_name];
 $class_name=$_REQUEST[class_name];
 $class_num=$_REQUEST[class_num];
-$class_id=$_REQUEST[class_id];
+$class_id=$_REQUEST['class_id'];
 
 if ($_POST[change_date]) {
         $year=$_POST[input_year];
@@ -200,7 +200,7 @@ function &mainForm($sel_year,$sel_seme,$class_id="",$thisOne=array(),$One=""){
                 <table cellspacing='1' cellpadding='2' bgcolor='#E2ECFC' class='small'>
                 <tr bgcolor='#FEFBDA'>
                 <td align='center'>
-                <a href="{$_SERVER['SCRIPT_NAME']} ?act={$_REQUEST['act']}&this_day=$today&class_id=$class_id class='box'>
+                <a href="{$_SERVER['SCRIPT_NAME']}?act={$_REQUEST['act']}&this_day=$today&class_id=$class_id" class='box'>
                 <img src='".$SFS_PATH_HTML."images/today.png' alt='回到今天' width='16' height='16' hspace='2' border='0' align='absmiddle'>回到今天</a>
                 </td></tr>
                 <tr bgcolor='#FFFFFF'><td>$mc</td></tr>

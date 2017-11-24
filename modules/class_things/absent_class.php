@@ -308,7 +308,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$thisOne=array(),$One=""){
 			$df=(!empty($aaa[allday]))?"":"<td bgcolor='#FFE6D9'>$aaa[df]</td>";
 			$all_day=(!empty($aaa[allday]))?"":"<td bgcolor='#E8F9C8'>$aaa[allday]</td>";
 			$tool="功能";
-			$select_col="<td bgcolor='#ECff8F9' align='center'><a href='$_SERVER['SCRIPT_NAME']?class_id=$class_id&One=$id&this_date=$year-$month-$day'>編輯</a>|<a href='$_SERVER['SCRIPT_NAME']?act=clear&class_id=$class_id&stud_id=$id&this_date=$year-$month-$day'>清除</a></td>";
+			$select_col="<td bgcolor='#ECff8F9' align='center'><a href=\"{$_SERVER['SCRIPT_NAME']}?class_id=$class_id&One=$id&this_date=$year-$month-$day\">編輯</a>|<a href=\"{$_SERVER['SCRIPT_NAME']}?act=clear&class_id=$class_id&stud_id=$id&this_date=$year-$month-$day\">清除</a></td>";
 		}
 		
 		//勾選盒
@@ -320,7 +320,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$thisOne=array(),$One=""){
 		<tr bgcolor='#FFFFFF'>
 		<td>$id</td>
 		<td>".$num[$id]."</td>
-		<td>$chkBox<a href='$_SERVER['SCRIPT_NAME']?class_id=$class_id&One=$id&this_date=$year-$month-$day'>$name</a></td>		
+		<td>$chkBox<a href="{$_SERVER['SCRIPT_NAME']}?class_id=$class_id&One=$id&this_date=$year-$month-$day">$name</a></td>		
 		$uf
 		$sections_data
 		$df		
@@ -394,7 +394,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$thisOne=array(),$One=""){
 			else
 				$data.="<tr bgcolor='#FFFFFF'>";
 			$data.="
-			<td align='center'><a href='$_SERVER['SCRIPT_NAME']?class_id=$class_id&this_date=$did'>".$did."<br>(".$weekN[$dd[wday]-1].")</a></td>	
+			<td align='center'><a href=\"{$_SERVER['SCRIPT_NAME']}?class_id=$class_id&this_date=$did">".$did."<br>(".$weekN[$dd[wday]-1].")</a></td>	
 			$uf
 			$sections_data
 			$df		

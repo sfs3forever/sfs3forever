@@ -1283,7 +1283,7 @@ function get_course_tea_arr($sel_year,$sel_seme) {
 	while (!$res->EOF) {
 		$temp_ds = $res->fields[day]."_".$res->fields[sector];
 		$temp_arr[$res->fields[teacher_sn]][$temp_ds][ss_id] = $res->fields[ss_id];
-		$temp_arr[$res->fields[teacher_sn]][$temp_ds]['class_id'] = $res->fields[class_id];
+		$temp_arr[$res->fields[teacher_sn]][$temp_ds]['class_id'] = $res->fields['class_id'];
 		$res->MoveNext();
 	}
 	return $temp_arr;
@@ -1298,7 +1298,7 @@ function get_course_tea_out_arr($sel_year,$sel_seme,$class_id) {
 	while (!$res->EOF) {
 		$temp_ds = $res->fields[day]."_".$res->fields[sector];
 		$temp_arr[$res->fields[teacher_sn]][$temp_ds][ss_id] = $res->fields[ss_id];
-		$temp_arr[$res->fields[teacher_sn]][$temp_ds]['class_id'] = $res->fields[class_id];
+		$temp_arr[$res->fields[teacher_sn]][$temp_ds]['class_id'] = $res->fields['class_id'];
 		$res->MoveNext();
 	}
 	return $temp_arr;
@@ -1336,7 +1336,7 @@ function get_course_tea_double_arr($sel_year,$sel_seme) {
 	  while (!$res->EOF) {
 	  	$temp_ds = $res->fields[day]."_".$res->fields[sector];
 	  	//取得班級資料
-	  	$class_id= $res->fields[class_id] ;
+	  	$class_id= $res->fields['class_id'] ;
 	    $the_class=get_class_all($class_id);
 	   // echo $the_class[name] ; 
 		  $temp_arr2[$res->fields[teacher_sn]][$temp_ds][] ="<a href=\"?act=list_class_table&sel_year=$sel_year&sel_seme=$sel_seme&set_teacher_sn=$sn&class_id=$class_id\"> $the_class[name]</a>";

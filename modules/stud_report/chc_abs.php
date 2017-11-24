@@ -17,7 +17,7 @@ $smarty->left_delimiter="{{";
 $smarty->right_delimiter="}}";
 
 // 2.判斷學年度
-	($_GET[year_seme]=='') ? $year_seme=curr_year()."_".curr_seme():$year_seme=$_GET[year_seme];
+	($_GET['year_seme']=='') ? $year_seme=curr_year()."_".curr_seme():$year_seme=$_GET['year_seme'];
 
 // 3.指派下拉式選擇學期
 	$smarty->assign("sel_year",sel_year('year_seme',$year_seme));
@@ -120,28 +120,18 @@ return $str;
 ##  傳出以  class_id  為索引的陣列  
 function get_class_info1($grade='all',$year_seme='') {
 	global $CONN ;
-if ($year_seme=='') {
-	$curr_year=curr_year(); $curr_seme=curr_seme();}
-else {
-	$CID=split("_",$year_seme);//093_1
-	$curr_year=$CID[0]; $curr_seme=$CID[1];}
+	if ($year_seme=='') {
+		$curr_year=curr_year(); $curr_seme=curr_seme();
+	}else {
+		$CID=split("_",$year_seme);//093_1
+		$curr_year=$CID[0]; $curr_seme=$CID[1];
+	}
 	($grade=='all') ? $ADD_SQL='':$ADD_SQL=" and c_year='$grade'  ";
-	$SQL="select class_id,c_name,teacher_1 from  school_class where year='$curr_year' and semester='$curr_seme' and enable=1  $ADD_SQL order by class_id  ";
+	$SQL="select class_id,c_name,teacher_1 from  school_class where year=$curr_year and semester=$curr_seme and enable=1  $ADD_SQL order by class_id  ";
 	$rs=$CONN->Execute($SQL) or die("無法查詢，語法:".$SQL);
 	if ($rs->RecordCount()==0) return"尚未設定班級資料！";
 	$obj_stu=$rs->GetArray();
 	return $obj_stu;
 }
+
 ?>
-
-
-
-
-
-
-
-
-
-
-
-

@@ -8,7 +8,7 @@ include_once "config.php";
 sfs_check();
 
 //取得學年學期
-$year_seme=$_REQUEST[year_seme];
+$year_seme=$_REQUEST['year_seme'];
 if ($year_seme) {
 	$sel_year=intval(substr($year_seme,0,3));
 	$sel_seme=substr($year_seme,3,1);
@@ -49,8 +49,8 @@ elseif (!empty($_REQUEST[reward_id])) {
 	$One=$res->fields['stud_id'];
 } else {
 	//如果班級選單改變
-	if ($_REQUEST[class_id]!=$_REQUEST[past_class_id]) {
-		$class_id=$_REQUEST[class_id];
+	if ($_REQUEST['class_id']!=$_REQUEST[past_class_id]) {
+		$class_id=$_REQUEST['class_id'];
 		$c=explode("_",$class_id);
 		$seme_class=intval($c[2]).$c[3];
 		$year_name=intval($c[2]);
@@ -131,7 +131,7 @@ if ($act!="清除內容" && ($act=="確定新增" || $act=="確定修改" || $on
 
 //執行動作判斷
 if($act=="edit"){
-	$main=&mainForm($sel_year,$sel_seme,$_REQUEST[class_id],$One,$_REQUEST[reward_id]);
+	$main=&mainForm($sel_year,$sel_seme,$_REQUEST['class_id'],$One,$_REQUEST[reward_id]);
 }elseif($act=="確定新增"){
 	if ($_POST['act_paste']) {
 	
@@ -225,7 +225,7 @@ if($act=="edit"){
 	 }
   }
 	
-	$main=&mainForm($sel_year,$sel_seme,$_REQUEST[class_id],$One,$dep_id);
+	$main=&mainForm($sel_year,$sel_seme,$_REQUEST['class_id'],$One,$dep_id);
 }elseif($act=="確定修改"){
 	$reward_id=$_POST[reward_id];
   //檢查是否資料有更動, 若有更動, 不再歸屬於團體獎懲, 把 dep_id 改為自己的 reward_id
@@ -240,12 +240,12 @@ if($act=="edit"){
 	$query="update reward set reward_div='$reward_div',reward_kind='$reward_kind',reward_reason='$reward_reason',reward_base='$reward_base',reward_date='$reward_date',reward_bonus='$reward_bonus'".$dep_id." where reward_id='$reward_id'";
 	$CONN->Execute($query);
 	cal_rew($sel_year,$sel_seme,$One);
-	$main=&mainForm($sel_year,$sel_seme,$_REQUEST[class_id],$One,$reward_id);
+	$main=&mainForm($sel_year,$sel_seme,$_REQUEST['class_id'],$One,$reward_id);
 }elseif($act=="del"){
 	del_one($sel_year,$sel_seme,$_REQUEST[reward_id]);
-	$main=&mainForm($sel_year,$sel_seme,$_REQUEST[class_id],$One,"");
+	$main=&mainForm($sel_year,$sel_seme,$_REQUEST['class_id'],$One,"");
 }else{
-	$main=&mainForm($sel_year,$sel_seme,$_REQUEST[class_id],$One,"");
+	$main=&mainForm($sel_year,$sel_seme,$_REQUEST['class_id'],$One,"");
 }
 
 
@@ -465,7 +465,7 @@ function &signForm($sel_year,$sel_seme,$class_id,$One="",$id=""){
 	$query="select class_id,c_name from school_class where year='$sel_year' and semester='$sel_seme' order by class_id";
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
-		$class_id=$res->fields[class_id];
+		$class_id=$res->fields['class_id'];
 		$c=explode("_",$class_id);
 		$c_year=intval($c[2]);
 		$class_name[$c_year.$c[3]]=$class_year[$c_year].$res->fields[c_name]."班";

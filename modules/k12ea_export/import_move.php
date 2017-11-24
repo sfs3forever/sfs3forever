@@ -1,26 +1,26 @@
 <?php
 	
-	$stud_moved_array=array("頧"=>"1","頧"=>"2","銝剛?敺拙飛"=>"3","隡飛敺拙飛"=>"4","?Ｘ平"=>"5","隡飛"=>"6","?箏?"=>"7","隤踵"=>"8","??"=>"9","??"=>"10","甇颱滿"=>"11","銝剛?"=>"12","?啁??亙飛"=>"13","頧飛敺拙飛"=>"14","?典振?芸飛"=>"15");
+	$stud_moved_array=array("轉出"=>"1","轉入"=>"2","中輟復學"=>"3","休學復學"=>"4","畢業"=>"5","休學"=>"6","出國"=>"7","調校"=>"8","升級"=>"9","降級"=>"10","死亡"=>"11","中輟"=>"12","新生入學"=>"13","轉學復學"=>"14","在家自學"=>"15");
 
-	//echo "<BR>".$stud_moved_array["頧"]."<BR>".$stud_moved_array["頧"]."<BR>".$stud_moved_array["銝剛?敺拙飛"]."<BR>".$stud_moved_array["隡飛敺拙飛"]."<BR>";
+	//echo "<BR>".$stud_moved_array["轉出"]."<BR>".$stud_moved_array["轉入"]."<BR>".$stud_moved_array["中輟復學"]."<BR>".$stud_moved_array["休學復學"]."<BR>";
 
 	$seme_year_seme_s=0+$seme_year_seme;
 	$SQL='';
-	$move_datas=$student->?啣?鞈?->?啣?鞈?_鞈??批捆;
+	$move_datas=$student->異動資料->異動資料_資料內容;
 	foreach($move_datas as $move_data){
-		//隞乩?撖怠 ?啣?鞈?銵?stud_move
-		$sst_city=$move_data->?停霈蝮??;
-		$sst_school=$move_data->?停霈摮豢?迂;
-		$sst_code=$move_data->?停霈摮豢隞?Ⅳ;
-		$move_date=$move_data->?啣??交?;
-		$move_c_unit=$move_data->?啣??詨?璈??迂;
+		//以下寫在 異動資料表 stud_move
+		$sst_city=$move_data->原就讀縣市;
+		$sst_school=$move_data->原就讀學校名稱;
+		$sst_code=$move_data->原就讀學校代碼;
+		$move_date=$move_data->異動日期;
+		$move_c_unit=$move_data->異動核准機關名稱;
 		
-		$reason=$move_data->?啣???;
+		$reason=$move_data->異動原因;
 		$move_kind=$stud_moved_array["$reason"];
 		
-		$move_c_date=$move_data->?詨???_?交?;
-		$move_c_word=$move_data->?詨???_摮?
-		$move_c_num=$move_data->?詨???_??
+		$move_c_date=$move_data->核准文號_日期;
+		$move_c_word=$move_data->核准文號_字;
+		$move_c_num=$move_data->核准文號_號;
 		$update_id=$_SESSION['session_log_id'];
 		$update_ip=$REMOTE_ADDR;
 		
@@ -33,10 +33,10 @@
 	if(substr($SQL,-7)<>'VALUES ') {
 		$SQL=iconv("UTF-8","Big5//IGNORE",$SQL);
 		$SQL=str_replace("'null'","''",$SQL);
-		//??蝛箏?????
-		$rs = $CONN->Execute("DELETE FROM stud_move_import WHERE student_sn=$student_sn AND move_year_seme='$seme_year_seme_s'") or user_error("?芷 stud_move_import ?抒?頧飛????隤?( student_sn:$student_sn  seme_year_seme=$seme_year_seme_s)! <br><br>",256) ;
-		$rs = $CONN->Execute($SQL) or user_error(" ?臬 student_sn=$student_sn  stud_id=$stud_id ?啣?閮? ( stud_move_import ) 憭望?! <br><br>$SQL",256) ;
-		echo iconv("UTF-8","Big5//IGNORE","<BR>#???臬 student_sn=$student_sn  stud_id=$stud_id ?啣?閮? ( stud_move_import ) OK ! ");
+		//先清空原有紀錄
+		$rs = $CONN->Execute("DELETE FROM stud_move_import WHERE student_sn=$student_sn AND move_year_seme='$seme_year_seme_s'") or user_error("刪除 stud_move_import 內的轉學生紀錄發生錯誤 ( student_sn:$student_sn  seme_year_seme=$seme_year_seme_s)! <br><br>",256) ;
+		$rs = $CONN->Execute($SQL) or user_error(" 匯入 student_sn=$student_sn  stud_id=$stud_id 異動記錄 ( stud_move_import ) 失敗! <br><br>$SQL",256) ;
+		echo iconv("UTF-8","Big5//IGNORE","<BR>#◎ 匯入 student_sn=$student_sn  stud_id=$stud_id 異動記錄 ( stud_move_import ) OK ! ");
 		if($ShowSQL) echo '<BR>'.$SQL;
 	}	
 ?>

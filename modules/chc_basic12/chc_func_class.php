@@ -390,7 +390,7 @@ function get_base_data($student_sn) {
  $rs = $CONN->Execute($sql);
  if ($rs and $ro=$rs->FetchNextObject(false)) {
  	$class_id=sprintf("%03d_%1d_%02d_%02d",substr($ro->seme_year_seme,0,3),substr($ro->seme_year_seme,-1),substr($ro->seme_class,0,1),substr($ro->seme_class,1));
- 	$data[class_id]=$class_id;
+ 	$data['class_id']=$class_id;
  	$data[cla_no]=substr($ro->seme_class,1);
  	$data[seme_num]=$ro->seme_num;
  }
@@ -590,8 +590,8 @@ class data_student {
 			} else {
 				foreach ($this->seme_ary as $grade_seme=>$detail) {
 					if (!empty($detail)) {
-						$detail[seme_score]=seme_score_chc($detail[class_id], $student_sn, $this->base[stud_id]);//所有科目成績
-						$detail[scope_score]=seme_score2smarty($detail[seme_score],$detail[class_id]);
+						$detail[seme_score]=seme_score_chc($detail['class_id'], $student_sn, $this->base[stud_id]);//所有科目成績
+						$detail[scope_score]=seme_score2smarty($detail[seme_score],$detail['class_id']);
 						$this->seme_ary[$grade_seme]=$detail;
 					}
 				}

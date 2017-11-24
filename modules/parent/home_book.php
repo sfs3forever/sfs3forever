@@ -21,7 +21,7 @@ $date=($_GET['date'])?$_GET['date']:$_POST['date'];
 $today=($_GET['today'])?$_GET['today']:$_POST['today'];
 $re_link=($_GET[re_link])?$_GET[re_link]:$_POST[re_link];
 $stud_id=($_GET['stud_id'])?$_GET['stud_id']:$_POST['stud_id'];
-$class_id=($_GET[class_id])?$_GET[class_id]:$_POST['class_id'];
+$class_id=($_GET['class_id'])?$_GET['class_id']:$_POST['class_id'];
 foreach($_POST['member'] as $K=> $V) $member[$K]=$V;
 
 
@@ -41,7 +41,7 @@ if(empty($sel_seme))$sel_seme = curr_seme(); //目前學期
 //global $stud_id;
 //echo $stud_id;
 $classinfo=stud_id_to_classinfo($stud_id);
-$class_id=$classinfo[class_id];
+$class_id=$classinfo['class_id'];
 $teacher_sn=$classinfo[teacher_sn];
 //echo $class_id;
 //echo $teacher_sn;
@@ -353,7 +353,7 @@ function  stud_id_to_classinfo($stud_id){
     $class_id=sprintf("%03d_%d_%02d_%02d",$sel_year,$sel_seme,$class_year,$class_sort);	
 	$rs=&$CONN->Execute("select  teacher_sn  from  teacher_post where class_num='$class_year_sort'");
     $teacher_sn=$rs->fields['teacher_sn'];	
-	$classinfo[class_id]=$class_id;
+	$classinfo['class_id']=$class_id;
 	$classinfo[teacher_sn]=$teacher_sn;
 	return $classinfo;
 }

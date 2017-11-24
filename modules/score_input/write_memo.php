@@ -104,7 +104,7 @@ else
 
 $res = $CONN->Execute($query)or trigger_error($query,E_USER_ERROR);
 while(!$res->EOF){
-	$temp_arr = explode("_",$res->fields[class_id]);
+	$temp_arr = explode("_",$res->fields['class_id']);
 	$temp_id = sprintf("%d%02d",$temp_arr[2],$temp_arr[3]);
 	$temp_ss_id = $res->fields[subject_id];
 	$cid=$res->fields[course_id];

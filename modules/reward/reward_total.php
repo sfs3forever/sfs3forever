@@ -17,7 +17,7 @@ $tool_bar=&make_menu($student_menu_p);
 $today=date("Y-m-d");
 
 //取得學年學期
-$year_seme=$_REQUEST[year_seme];
+$year_seme=$_REQUEST['year_seme'];
 if ($year_seme) {
 	$sel_year=intval(substr($year_seme,0,3));
 	$sel_seme=substr($year_seme,3,1);

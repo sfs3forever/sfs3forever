@@ -141,14 +141,14 @@ include "header.php";
 include "menu.php";
 
 // $class_id 0-3 ->學年 4->學期 5->年級 6- 班級 	
-$curr_year = intval(substr($_GET[class_id],0,3))."學年度";
-if (substr($_GET[class_id],3,1) == 1 )
+$curr_year = intval(substr($_GET['class_id'],0,3))."學年度";
+if (substr($_GET['class_id'],3,1) == 1 )
 	$temp_seme = "上學期";
 else
 	$temp_seme = "下學期";
 	
-$temp_year = substr($_GET[class_id],4,1); //取得年級	
-$temp_class = substr($_GET[class_id],5); //取得班級
+$temp_year = substr($_GET['class_id'],4,1); //取得年級	
+$temp_class = substr($_GET['class_id'],5); //取得班級
 
 ?>
 <h3>修改班級資料(<font color=red><?php echo $curr_year. $temp_seme ?></font>)</h3>
@@ -209,7 +209,7 @@ $temp_class = substr($_GET[class_id],5); //取得班級
 <tr>
 	<td>
 	<input type="hidden" name=e_kind_id value="<?php echo $e_kind_id; ?>">
-	<input type="hidden" name=curr_year value="<?php echo substr($_GET[class_id],0,4); ?>">
+	<input type="hidden" name=curr_year value="<?php echo substr($_GET['class_id'],0,4); ?>">
 	<input type="submit" name=key value="修改">
 	&nbsp;&nbsp;<input type="button"  value= "回上頁" onclick="history.back()">
 	</td>

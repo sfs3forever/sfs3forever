@@ -8,7 +8,7 @@ include "config.php";
 sfs_check();
 
 //取得學年學期
-$year_seme=$_REQUEST[year_seme];
+$year_seme=$_REQUEST['year_seme'];
 if ($year_seme) {
 	$sel_year=intval(substr($year_seme,0,3));
 	$sel_seme=substr($year_seme,3,1);
@@ -141,7 +141,7 @@ function reward_data($sel_year,$sel_seme) {
 	$query="select class_id,c_name from school_class where year='$sel_year' and semester='$sel_seme' order by class_id";
 	$res=$CONN->Execute($query);
 	while (!$res->EOF) {
-		$class_id=$res->fields[class_id];
+		$class_id=$res->fields['class_id'];
 		$c=explode("_",$class_id);
 		$c_year=intval($c[2]);
 		$class_name[$c_year.$c[3]]=$class_year[$c_year].$res->fields[c_name];

@@ -475,7 +475,7 @@ function get_course_tea_arr($sel_year,$sel_seme) {
 	while (!$res->EOF) {
 		$temp_ds = $res->fields[day]."_".$res->fields[sector];
 		$temp_arr[$res->fields[teacher_sn]][$temp_ds][ss_id] = $res->fields[ss_id];
-		$temp_arr[$res->fields[teacher_sn]][$temp_ds]['class_id'] = $res->fields[class_id];
+		$temp_arr[$res->fields[teacher_sn]][$temp_ds]['class_id'] = $res->fields['class_id'];
 		$res->MoveNext();
 	}
 	return $temp_arr;

@@ -17,7 +17,7 @@ $res=$CONN->Execute($query) or trigger_error("讀取本學期任教科目錯誤"
 $ss_id_array=array();
 while(! $res->EOF) {
 	$ss_id=$res->fields[ss_id];
-	$ss_id_array[$ss_id]=$res->fields[class_id];
+	$ss_id_array[$ss_id]=$res->fields['class_id'];
 	$res->MoveNext();
 }
 

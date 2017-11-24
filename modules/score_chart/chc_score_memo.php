@@ -43,7 +43,7 @@ function process() {
 	$this->YS_ary=$this->sel_year();//學期陣列
 	$this->YC_ary=$this->grade();//年級班級陣列
 	if ($this->class_id!='') $this->sub=$this->get_subj($this->class_id);
-	if ($_GET[SSID]!='' && $_GET[class_id]!=''){
+	if ($_GET[SSID]!='' && $_GET['class_id']!=''){
 		$this->get_stu();
 		$this->get_sco();
 		}
@@ -51,9 +51,9 @@ function process() {
 }
 
 function init() {
-	($_GET[year_seme]=='') ? $this->year_seme=$_POST['year_seme']:$this->year_seme=$_GET[year_seme];
+	($_GET['year_seme']=='') ? $this->year_seme=$_POST['year_seme']:$this->year_seme=$_GET['year_seme'];
 	if ($this->year_seme=='') $this->year_seme=curr_year()."_".curr_seme();
-	($_GET[class_id]=='') ? $this->class_id=$_POST['class_id']:$this->class_id={$_GET['class_id']};
+	($_GET['class_id']=='') ? $this->class_id=$_POST['class_id']:$this->class_id=$_GET['class_id'];
 	
 	($_GET[SSID]=='' ) ? $this->SSID=$_POST[SSID]:$this->SSID=$_GET[SSID];
 	 $tmp=split("_",$this->year_seme);
@@ -151,7 +151,7 @@ function grade() {
     $All=$rs->GetArray();
 
     foreach($All as $ary) {
-    	$tmp[$ary[class_id]]=$grade[$ary[c_year]].$ary[c_name]."班 (".$ary[teacher_1].")";
+    	$tmp[$ary['class_id']]=$grade[$ary[c_year]].$ary[c_name]."班 (".$ary[teacher_1].")";
 		}
     return $tmp;
 } 

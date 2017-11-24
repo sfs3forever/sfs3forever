@@ -22,8 +22,8 @@ $template=$_POST[template];
 $sel_stud=$_POST[sel_stud];
 $stud_id_list=implode(',',$sel_stud);
 
-if ($_REQUEST[year_seme]=='')
-  	         $_REQUEST[year_seme] = sprintf("%03d%d",curr_year(),curr_seme());
+if ($_REQUEST['year_seme']=='')
+  	         $_REQUEST['year_seme'] = sprintf("%03d%d",curr_year(),curr_seme());
 
 //不需iconv 轉換陣列
 $no_iconv_arr = array();
@@ -432,7 +432,7 @@ exit;
 		//Openoffice檔案的路徑
 		$oo_path = $template;
 		//檔名
-		$filename=$work_year_seme."輔導紀錄表_".$_REQUEST[year_seme]."_".$class_id.".sxw";
+		$filename=$work_year_seme."輔導紀錄表_".$_REQUEST['year_seme']."_".$class_id.".sxw";
 		//新增一個 zipfile 實例
 		$ttt = new EasyZip;
 		$ttt->setPath($oo_path);
@@ -1160,7 +1160,7 @@ echo "<form enctype='multipart/form-data' action=\"{$_SERVER['PHP_SELF']}\" meth
 $sel1 = new drop_select();
 $sel1->top_option =  "選擇學年";
 $sel1->s_name = "year_seme";
-$sel1->id = $_REQUEST[year_seme];
+$sel1->id = $_REQUEST['year_seme'];
 $sel1->is_submit = true;
 $sel1->arr = get_class_seme();
 $sel1->do_select();
@@ -1171,7 +1171,7 @@ $sel1->top_option =  "選擇班級";
 $sel1->s_name = "class_id";
 $sel1->id = $class_id;
 $sel1->is_submit = true;
-$sel1->arr = class_base($_REQUEST[year_seme]);
+$sel1->arr = class_base($_REQUEST['year_seme']);
 $sel1->do_select();
 */
 

@@ -464,7 +464,7 @@ switch($work){
 		$query="select * from temp_class where year='$new_sel_year' and class_id like '$class_year_b%' order by class_id";
 		$res=$CONN->Execute($query) or trigger_error($query,E_USER_ERROR);
 		while (!$res->EOF) {
-			$classn[$res->fields[class_id]]=$res->fields[c_name]."班";
+			$classn[$res->fields['class_id']]=$res->fields[c_name]."班";
 			$res->MoveNext();
 		}
 		echo "<form name='form' method='post' action='{$_SERVER['PHP_SELF']}'>$class_menu<input type='hidden' name='work' value='$work'><input type='hidden' name='class_year_b' value='$class_year_b'></form></table>";
@@ -579,7 +579,7 @@ switch($work){
 		$query="select * from school_class where year='$new_sel_year' and semester='1' and class_id like '$class_id%' order by class_id";
 		$res=$CONN->Execute($query);
 		while (!$res->EOF){
-			$cid=$res->fields[class_id];
+			$cid=$res->fields['class_id'];
 			$c=explode("_",$cid);
 			$chk=($class_arr[intval($c[3])])?"checked":"";
 			if (!$ksel[1]) 	$chk_cstr="<td align='center'><input type='checkbox' name='class_arr[".intval($c[3])."]' id='class_arr' $chk></td>";
@@ -670,7 +670,7 @@ switch($work){
 			return "尚未設定臨時班級，請先設定！";
 		else {
 			while (!$res->EOF) {
-				$temp_class_arr[$res->fields[class_id]]=$res->fields[c_name]."班";
+				$temp_class_arr[$res->fields['class_id']]=$res->fields[c_name]."班";
 				$res->MoveNext();
 			}
 		}
@@ -687,7 +687,7 @@ switch($work){
 			$query="select * from school_class where year='$new_sel_year' and semester='1' and c_year='$class_year_b' order by class_id";
 			$res=$CONN->Execute($query);
 			while (!$res->EOF) {
-				$classn[$res->fields[class_id]]=$res->fields[c_name]."班";
+				$classn[$res->fields['class_id']]=$res->fields[c_name]."班";
 				$res->MoveNext();
 			}
 			$csex=array("1"=>"男","2"=>"女");
@@ -1042,8 +1042,8 @@ function  full_class_name($id,$col_name,$stud_study_year,$class_year_b,$onchange
 		return "尚未設定正式班級，請先設定！";
 	else {
 		while (!$res->EOF) {
-			$selected=($id==$res->fields[class_id])?"selected":"";
-			$temp_str.=($except==$res->fields[class_id])?"":"<option value='".$res->fields[class_id]."' $selected>".$res->fields[c_name]."班</option>\n";
+			$selected=($id==$res->fields['class_id'])?"selected":"";
+			$temp_str.=($except==$res->fields['class_id'])?"":"<option value='".$res->fields['class_id']."' $selected>".$res->fields[c_name]."班</option>\n";
 			$res->MoveNext();
 		}
 		$temp_str.="</select>\n";

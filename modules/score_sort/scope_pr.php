@@ -8,7 +8,7 @@ session_start();
 $_SESSION['test']="12345";
 
 
-$year_seme=$_REQUEST[year_seme];
+$year_seme=$_REQUEST['year_seme'];
 
 if($year_seme=="")
         $year_seme = sprintf("%03d%d",curr_year(),curr_seme());

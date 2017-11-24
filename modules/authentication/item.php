@@ -192,7 +192,7 @@ $showdata="<table border='1' cellpadding='3' cellspacing='0' style='border-colla
 			$authority_ref="<select name='authority_ref' onchange='this.form.authority.value=this.options[this.selectedIndex].text'><option></option>$authority_ref</select>";
 
 			$showdata.="<tr bgcolor='#FFFAAA'><td align='center'>".($res->CurrentRow()+1)."</td>";
-			$showdata.="<td align='center'>".$res->fields[year_seme]."</td>";
+			$showdata.="<td align='center'>".$res->fields['year_seme']."</td>";
 			$showdata.="<td align='center'><input type='text' name='nature' size=10 value={$res->fields[nature]}></td>";		
 			$showdata.="<td align='center'><input type='text' name='code' size=5 value={$res->fields[code]}></td>";
 			$showdata.="<td><input type='text' name='title' size=60 value={$res->fields[title]}></td>";
@@ -208,7 +208,7 @@ $showdata="<table border='1' cellpadding='3' cellspacing='0' style='border-colla
 		} else {	
 			$item_sn=$res->fields[sn];
 			$showdata.="<tr bgcolor=$item_color><td align='center'>".($res->CurrentRow()+1)."</td>";
-			$showdata.="<td align='center'>".$res->fields[year_seme]."</td>";
+			$showdata.="<td align='center'>".$res->fields['year_seme']."</td>";
 			$showdata.="<td align='center'>".$res->fields[nature]."</td>";		
 			$showdata.="<td align='center'>".$res->fields[code]."</td>";
 			$showdata.="<td>".$res->fields[title]."</td>";

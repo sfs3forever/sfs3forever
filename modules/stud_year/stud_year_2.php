@@ -8,8 +8,8 @@ include "stud_year_config.php";
 sfs_check();
 
 //若有選擇學年學期，進行分割取得學年及學期
-if(!empty($_REQUEST[year_seme])){
-	$ys=explode("-",$_REQUEST[year_seme]);
+if(!empty($_REQUEST['year_seme'])){
+	$ys=explode("-",$_REQUEST['year_seme']);
 	$curr_year=$ys[0];
 	$curr_seme=$ys[1];
 }else{
@@ -34,7 +34,7 @@ if (!ini_get('register_globals')) {
 //按鍵處理
 if($act=="立即移動"){
 	move2class($old_class_id,$to_class_id,$stud_id);
-	header("location: {$_SERVER['PHP_SELF']}?year_seme=$_REQUEST[year_seme]&class_id=$to_class_id");
+	header("location: {$_SERVER['PHP_SELF']}?year_seme={$_REQUEST['year_seme']}&class_id=$to_class_id");
 }else{
 	$main=&main_form($curr_year,$curr_seme,$class_id);
 }
@@ -51,7 +51,7 @@ function jumpMenu_seme(){
 
 
 function jumpMenu(){
-	location="<?php echo $_SERVER['PHP_SELF']?>?act=<?php echo $act;?>&year_seme=<?php echo $_REQUEST[year_seme]?>&class_id=" + document.myform.class_id.options[document.myform.class_id.selectedIndex].value;
+	location="<?php echo $_SERVER['PHP_SELF']?>?act=<?php echo $act;?>&year_seme=<?php echo $_REQUEST['year_seme']?>&class_id=" + document.myform.class_id.options[document.myform.class_id.selectedIndex].value;
 	//location="<?php echo $_SERVER['PHP_SELF'] ?>?act=<?php echo $act;?>&class_id=" + document.myform.class_id.options[document.myform.class_id.selectedIndex].value;
 }
 
@@ -84,7 +84,7 @@ function &main_form($curr_year,$curr_seme,$class_id){
 	}
 	
 	//取得年度與學期的下拉選單
-	$date_select=&class_ok_setup_year($curr_year,$curr_seme,"year_seme","jumpMenu_seme",$_REQUEST[year_seme]);
+	$date_select=&class_ok_setup_year($curr_year,$curr_seme,"year_seme","jumpMenu_seme",$_REQUEST['year_seme']);
 
 	//班級選單
 	$get_class_select=&get_class_select($curr_year,$curr_seme,"","class_id","jumpMenu",$class_id,"長");
@@ -138,7 +138,7 @@ function &main_form($curr_year,$curr_seme,$class_id){
 	把勾選的學生都調到：<p>
 	$class_select
 	<input type='hidden' name='old_class_id' value='$class_id'>
-	<input type='hidden' name='year_seme' value='$_REQUEST[year_seme]'>
+	<input type='hidden' name='year_seme' value={$_REQUEST['year_seme']}>
 	<input type=submit name='act' value='立即移動'></td></tr>
 	</form></table>
 	";
@@ -151,8 +151,8 @@ function &main_form($curr_year,$curr_seme,$class_id){
 //把學生們移到某個班級
 function move2class($old_class_id,$to_class_id,$stud_id){
 	global $CONN;
-	if(!empty($_REQUEST[year_seme])){
-	$ys=explode("-",$_REQUEST[year_seme]);
+	if(!empty($_REQUEST['year_seme'])){
+	$ys=explode("-",$_REQUEST['year_seme']);
 	$curr_year=$ys[0];
 	$curr_seme=$ys[1];
 }else{

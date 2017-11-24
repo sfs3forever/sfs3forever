@@ -36,7 +36,7 @@
 <td>
 {{foreach item=arr key=key from=$this->sClass}}
 
-<LABEL><INPUT TYPE='checkbox' NAME='Rand[class_id][{{$arr.class_id}}]'  value='{{$arr.c_name}}'>{{$arr.c_name}}班</LABEL>
+<LABEL><INPUT TYPE='checkbox' NAME='Rand['class_id'][{{$arr.class_id}}]'  value='{{$arr.c_name}}'>{{$arr.c_name}}班</LABEL>
 {{if $key!=0 && ($key%5)==4}}<br>{{/if}}
 {{/foreach}}
 </td></tr>

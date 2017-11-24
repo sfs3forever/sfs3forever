@@ -56,7 +56,7 @@ $showdata="<tr>
 		if($res->fields[item])
 		{
 			$showdata.="<tr bgcolor=#FFFFDD><td align='center'>".$res->fields[pdate]."(".$c_day[$res->fields[pMday]+1].")</td>";
-			$showdata.="<td align='center'>".$class_base[$res->fields[class_id]]."</td>";
+			$showdata.="<td align='center'>".$class_base[$res->fields['class_id']]."</td>";
 			$showdata.="<td align='center'>".$res->fields[item]."</td>";
 			$showdata.="<td width='30%'>".$res->fields[memo]."</td>";
 			$showdata.="<td width='20%'></td></td></tr>";

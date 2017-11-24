@@ -6,7 +6,7 @@ include "./my_fun.php";
 
 //使用者認證
 sfs_check();
-$year_seme=$_REQUEST[year_seme];
+$year_seme=$_REQUEST['year_seme'];
 if($year_seme=="")
 	$year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 else {

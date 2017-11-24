@@ -34,7 +34,7 @@ head("成績管理");
 $menu_p = array("index.php"=>"成績管理", "score_error.php"=>"成績檢查");
 print_menu($menu_p);
 //整體變數處理
-$class_id = $_GET[class_id];
+$class_id = $_GET['class_id'];
 if (empty($class_id))
 	$class_id = $_POST['class_id'];
 if($class_id == $_POST[old_class_id] or $_GET[is_open]==1) {
@@ -53,7 +53,7 @@ echo "<table border=0 cellspacing=1 cellpadding=2 width=100% bgcolor=#cccccc><tr
 
 //網頁內容請置於此處
 /***********************************************************************************/
-$year_seme = ($_GET['year_seme'])?"{$_GET[year_seme]}":"{$_POST['year_seme']}";
+$year_seme = ($_GET['year_seme'])?"{$_GET['year_seme']}":"{$_POST['year_seme']}";
 if($year_seme == '')
 	$year_seme = sprintf("%03d%d",curr_year(),curr_seme());
 $class_seme_arr = get_class_seme();
@@ -79,14 +79,14 @@ $query = "select class_id from $score_semester where class_id like '$this_year_s
 $res = $CONN->Execute($query) or trigger_error("$sel_year 學年第 $sel_seme 學期成績未建立" ,E_USER_ERROR);
 //如果未設班級時，以第一班為初始
 if (empty($class_id)){
-	$class_id = $res->fields[class_id];
-	$temp_arr = explode("_",$res->fields[class_id]);
+	$class_id = $res->fields['class_id'];
+	$temp_arr = explode("_",$res->fields['class_id']);
 	$class_id=sprintf("%d%02d", $temp_arr[2],$temp_arr[3]);
 }
 
 //將成績已傳至教務處的班級放入陣列中
 while(!$res->EOF) {
-	$temp_arr = explode("_",$res->fields[class_id]);
+	$temp_arr = explode("_",$res->fields['class_id']);
 	$tid =sprintf("%d%02d", $temp_arr[2],$temp_arr[3]);
 	$temp_name = $curr_class_base[$tid];
 	$class_in_arr[$tid] = $temp_name;

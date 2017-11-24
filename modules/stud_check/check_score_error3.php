@@ -30,7 +30,7 @@ if ($act=="開始檢查" || $del) {
 	$query = "select ss_id,year,semester,class_id from score_ss where enable='1' and class_id <> '' order by class_id,ss_id";
 	$res = $CONN->Execute($query);
 	while(!$res->EOF){
-		$class_id=$res->fields[class_id];
+		$class_id=$res->fields['class_id'];
 		$c=explode("_",$class_id);
 		$ss_id_arr[$res->fields[year]][$res->fields[semester]][intval($c[2])][intval($c[3])].="'".$res->fields[ss_id]."',";
 		$vals[$res->fields[year]][$res->fields[semester]][intval($c[2])][intval($c[3])]=1;

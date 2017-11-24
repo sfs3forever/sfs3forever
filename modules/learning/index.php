@@ -111,7 +111,7 @@ $testadmin="<a href=test_admin.php>線上測驗管理</a>";
 
 
 if ($_SESSION['session_log_id'] != ""){
-	$login= "歡迎 $_SESSION['session_tea_name'] 登入! 　<a href=\"$_SERVER[PHP_SELF]?logout=yes&bk_id=$bk_id\">登出</a></td>";
+	$login= "歡迎 {$_SESSION['session_tea_name']} 登入! 　<a href=\"$_SERVER[PHP_SELF]?logout=yes&bk_id=$bk_id\">登出</a></td>";
 }else{
 	$login= "<a href=\"$_SERVER[PHP_SELF]?logout=no&bk_id=$bk_id\">登入</a>";
 }	

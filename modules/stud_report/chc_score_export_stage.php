@@ -59,9 +59,9 @@ if ($_POST[act]=='OK' && is_array($_POST['class_id']) ){
 		foreach($stud_ary as $student_sn=>$stud) {
 			foreach($stud[seme_ary] as $seme_key=>$seme_data) {
 				if (!empty($seme_data)) {
-					if (strpos($sub_str,$seme_data[class_id])===false) {
-						$sub_str .= '/'.$seme_data[class_id];
-						$class_sub=get_subj($seme_data[class_id],'stage'); //取得需段考的科目
+					if (strpos($sub_str,$seme_data['class_id'])===false) {
+						$sub_str .= '/'.$seme_data['class_id'];
+						$class_sub=get_subj($seme_data['class_id'],'stage'); //取得需段考的科目
 						foreach ($class_sub as $ss_id=>$sub) {
 							$sub_name=$sub[sb];
 							if (empty($sub_ary[$seme_key][$sub_name])) {
@@ -87,7 +87,7 @@ if ($_POST[act]=='OK' && is_array($_POST['class_id']) ){
 			$base_ary = get_base_data($student_sn);
 			$class_data[$class_id][$student_sn][base][stud_id]=$base_ary[stud_id];
 			$class_data[$class_id][$student_sn][base]['stud_name']=$base_ary[stud_name];
-			$class_data[$class_id][$student_sn][base]['class_id']=$base_ary[class_id];
+			$class_data[$class_id][$student_sn][base]['class_id']=$base_ary['class_id'];
 			$class_data[$class_id][$student_sn][base][cla_no]=$base_ary[cla_no];
 			$class_data[$class_id][$student_sn][base]['seme_num']=$base_ary[seme_num];
 			$class_data[$class_id][$student_sn][base][stud_sex]=$base_ary[stud_sex];
@@ -98,7 +98,7 @@ if ($_POST[act]=='OK' && is_array($_POST['class_id']) ){
 					unset($class_data[$class_id][$student_sn][seme_ary][$seme_key]);
 				}
 				else {
-					$stage_score=stage_score_chc($seme_data[class_id], $student_sn);
+					$stage_score=stage_score_chc($seme_data['class_id'], $student_sn);
 					$class_data[$class_id][$student_sn][seme_ary][$seme_key][stage_score]=$sub_ary[$seme_key];
 					foreach($stage_score as $ss_id=>$score_ary) {
 						$sub_name=$score_ary[sb];

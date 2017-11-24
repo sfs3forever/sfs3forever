@@ -62,11 +62,11 @@ $res=$CONN->Execute($sql) or user_error("讀取失敗！<br>$sql",256);
 $signed_class=$res->recordcount();
 while(!$res->EOF)
 {
-	if($list_class==$res->fields[class_id]) $is_this_class='selected'; else	$is_this_class='';
-	$class_combo.="<option $is_this_class value='".$res->fields[class_id]."'>".$class_base[$res->fields[class_id]]."</option>";	
+	if($list_class==$res->fields['class_id']) $is_this_class='selected'; else	$is_this_class='';
+	$class_combo.="<option $is_this_class value='".$res->fields['class_id']."'>".$class_base[$res->fields['class_id']]."</option>";	
 	
 	//將此班級自未填報名單剔除
-	unset($unsigned[$res->fields[class_id]]);
+	unset($unsigned[$res->fields['class_id']]);
 
 	$res->MoveNext();
 }
@@ -101,7 +101,7 @@ $showdata="<tr>
 	{
 		if($res->fields[item])
 		{
-			$showdata.="<tr bgcolor=#FFFFDD><td align='center'>".$class_base[$res->fields[class_id]]."</td>";
+			$showdata.="<tr bgcolor=#FFFFDD><td align='center'>".$class_base[$res->fields['class_id']]."</td>";
 			$showdata.="<td align='center'>".$res->fields[item]."</td>";
 			$showdata.="<td align='center'>".$res->fields[quantity]."</td>";
 			$showdata.="<td align='center'>".$res->fields[taste]."</td>";

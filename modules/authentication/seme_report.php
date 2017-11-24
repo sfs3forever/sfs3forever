@@ -24,7 +24,7 @@ if($item_sn_array AND $_POST['act']=='統計列印') {
 					<td align='center'>開列者</td>
 					</tr>";
 		$showdata.="<tr bgcolor=$item_color><td align='center'>{$room_kind_array[($res->fields[room_id])]}</td>
-					<td align='center'>{$res->fields[year_seme]}</td>
+					<td align='center'>{$res->fields['year_seme']}</td>
 					<td align='center'>{$res->fields[nature]}</td>		
 					<td align='center'>{$res->fields[code]}</td>
 					<td align='center'>{$res->fields[start_date]}~{$res->fields[end_date]}</td>
@@ -52,7 +52,7 @@ if($item_sn_array AND $_POST['act']=='統計列印') {
 			$res_count=$CONN->Execute($sql_count) or user_error("統計失敗！<br>$sql_count",256);
 			while(!$res_count->EOF) {
 
-				$semester_info.="<li>[{$res_count->fields[year_seme]}]認證 ".sprintf("%5d",$res_count->fields[counter])."人，平均分數 {$res_count->fields[score]}。</li>";
+				$semester_info.="<li>[{$res_count->fields['year_seme']}]認證 ".sprintf("%5d",$res_count->fields[counter])."人，平均分數 {$res_count->fields[score]}。</li>";
 				$res_count->MoveNext();
 			}
 			$showdata.="<tr bgcolor='#FFFFFF'><td align='center'>".($res->CurrentRow()+1)."</td>

@@ -158,7 +158,7 @@ function &mainForm($sel_year,$sel_seme,$week_num=""){
 		<table cellspacing='1' cellpadding='2' bgcolor='#E2ECFC' class='small'>
 		<tr bgcolor='#FEFBDA'>
 		<td align='center'>		
-		<a href='$_SERVER['SCRIPT_NAME']?act=$_REQUEST[act]&this_day=$today' class='box'><img src='".$SFS_PATH_HTML."images/today.png' alt='回到今天' width='16' height='16' hspace='2' border='0' align='absmiddle'>回到今天</a>
+		<a href=\"{$_SERVER['SCRIPT_NAME']}?act=$_REQUEST[act]&this_day=$today\" class='box'><img src='".$SFS_PATH_HTML."images/today.png' alt='回到今天' width='16' height='16' hspace='2' border='0' align='absmiddle'>回到今天</a>
 		</td></tr>
 		<tr bgcolor='#FFFFFF'><td>$mc</td></tr>
 		</table>

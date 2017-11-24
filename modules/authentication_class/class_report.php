@@ -36,7 +36,7 @@ if($item_sn_array AND $_POST['act']=='統計列印') {
 					<td align='center'>開列者</td>
 					</tr>";
 		$showdata.="<tr bgcolor=$item_color><td align='center'>{$room_kind_array[($res->fields[room_id])]}</td>
-					<td align='center'>{$res->fields[year_seme]}</td>
+					<td align='center'>{$res->fields['year_seme']}</td>
 					<td align='center'>{$res->fields[nature]}</td>		
 					<td align='center'>{$res->fields[code]}</td>
 					<td align='center'>{$res->fields[start_date]}~{$res->fields[end_date]}</td>

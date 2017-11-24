@@ -93,8 +93,8 @@ function show_class_mode() {
 	var class_id = class_id_id[class_idx] ;
 
   //在他班的排課 節次
-  var begi = the_class_course_star[class_id] ;
-  var endi = the_class_course_end[class_id] ;
+  var begi = the_class_course_star['class_id'] ;
+  var endi = the_class_course_end['class_id'] ;
 
 
   //出現已排課圖示
@@ -522,14 +522,14 @@ function list_teacher_table($sel_year,$sel_seme,$teacher_sn="",$set_class_id="",
     $i = 0 ; 
 	  while (!$res->EOF) {
 
-	     $now_class_id = $res->fields[class_id] ;
+	     $now_class_id = $res->fields['class_id'] ;
 	     //echo   $now_class_id ;  
 	     
 			     if (!isset($sn_star[$now_class_id])) 	{
 			 	     $sn_star[$now_class_id] = $i ;		
 			 	     $sn_end[$now_class_id] = $i ;	
 			     }				 	 	
-			 	   //$js_str1 .= "the_class_course[$i]= '".  $class_array[$res->fields[class_id]] .  addslashes($select_ss_arr[$res->fields[ss_id]]) . "(". addslashes( $all_teacher_array[ $res->fields[teacher_sn] ] )  . ")' ;\n " ;
+			 	   //$js_str1 .= "the_class_course[$i]= '".  $class_array[$res->fields['class_id']] .  addslashes($select_ss_arr[$res->fields[ss_id]]) . "(". addslashes( $all_teacher_array[ $res->fields[teacher_sn] ] )  . ")' ;\n " ;
 				   $js_str1 .= "the_class_course[$i]= '".  addslashes($select_ss_arr[$res->fields[ss_id]]) . "(". addslashes( $all_teacher_array[ $res->fields[teacher_sn] ] ) . ")' ;\n " ;
 			 	   
 				   $js_str2 .= "the_class_course_pos[$i] = '" .$res->fields[day] ."_" . $res->fields[sector] ."' ;\n " ;
@@ -944,7 +944,7 @@ function get_course_teacher_arr($sel_year,$sel_seme,$teacher_sn) {
 	$res = $CONN->Execute($query) or trigger_error("SQL 錯誤",E_USER_ERROR);
 	while (!$res->EOF) {
 		$temp_ds = $res->fields[day]."_".$res->fields[sector];
-		$temp_arr[$temp_ds]['class_id']=$res->fields[class_id];
+		$temp_arr[$temp_ds]['class_id']=$res->fields['class_id'];
 		$temp_arr[$temp_ds][room]=$res->fields[room];
 		//$temp_arr[$temp_ds][name]=$res->fields[name];
 		$temp_arr[$temp_ds][ss_id]=$res->fields[ss_id];

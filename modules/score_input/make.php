@@ -28,8 +28,8 @@ sfs_check();
 
 /*
 //若有選擇學年學期，進行分割取得學年及學期
-if(!empty($_REQUEST[year_seme])){
-	$ys=explode("-",$_REQUEST[year_seme]);
+if(!empty($_REQUEST['year_seme'])){
+	$ys=explode("-",$_REQUEST['year_seme']);
 	$sel_year=$ys[0];
 	$sel_seme=$ys[1];
 }else{
@@ -90,11 +90,11 @@ print_menu($menu_p);
 <script language="JavaScript">
 <!-- Begin
 function jumpMenu_seme(){
-	location="<?php echo $_SERVER['PHP_SELF']?>?act=<?php echo $act;?>&year_seme=" + document.myform.year_seme.options[document.myform.year_seme.selectedIndex].value + "&class_id=<?php echo $_REQUEST[class_id]?>";
+	location="<?php echo $_SERVER['PHP_SELF']?>?act=<?php echo $act;?>&year_seme=" + document.myform.year_seme.options[document.myform.year_seme.selectedIndex].value + "&class_id=<?php echo $_REQUEST['class_id']?>";
 }
 
 function jumpMenu_seme_1(){
-	location="<?php echo $_SERVER['PHP_SELF']?>?act=<?php echo $act;?>&year_seme=<?php echo $_REQUEST[year_seme]?>&class_id=" + document.myform.class_id.options[document.myform.class_id.selectedIndex].value;
+	location="<?php echo $_SERVER['PHP_SELF']?>?act=<?php echo $act;?>&year_seme=<?php echo $_REQUEST['year_seme']?>&class_id=" + document.myform.class_id.options[document.myform.class_id.selectedIndex].value;
 }
 //  End -->$oth_data
 </script>
@@ -113,7 +113,7 @@ function &main_form($sel_year,$sel_seme,$class_id,$stud_id){
 	//$class_select=&get_class_select($sel_year,$sel_seme,"","class_id","jumpMenu_seme_1",$_REQUEST['class_id']);
 
 	//取得學生選單
-	//if(empty($class_select) or empty($date_select))	header("location:{$_SERVER['PHP_SELF']}?error=1&year_seme=$_REQUEST[year_seme]");
+	//if(empty($class_select) or empty($date_select))	header("location:{$_SERVER['PHP_SELF']}?error=1&year_seme=$_REQUEST['year_seme']");
 
 
 	if(!empty($class_id)){
@@ -170,7 +170,7 @@ function &main_form($sel_year,$sel_seme,$class_id,$stud_id){
 			<input type='hidden' name='stud_id' value='$stud_id'>
 			<input type='hidden' name='stu_num' value='$stu_class_num[num]'>
 			<input type='hidden' name='class_id' value='$class_id'>
-			<input type='hidden' name='year_seme' value='$_REQUEST[year_seme]'>
+			<input type='hidden' name='year_seme' value={$_REQUEST['year_seme']}>
 			<br>
 			<input type='submit' value='下載'>
 			</form>

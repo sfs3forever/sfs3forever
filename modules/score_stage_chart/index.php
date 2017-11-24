@@ -5,8 +5,8 @@ include "config.php";
 
 sfs_check();
 
-$year_seme=($_POST['year_seme'])?$_POST['year_seme']:$_GET[year_seme];
-$class_id=($_POST['class_id'])?$_POST['class_id']: $_GET[class_id];
+$year_seme=($_POST['year_seme'])?$_POST['year_seme']:$_GET['year_seme'];
+$class_id=($_POST['class_id'])?$_POST['class_id']: $_GET['class_id'];
 $student_sn=($_POST['student_sn'])?$_POST['student_sn']:$_GET['student_sn'];
 $act=($_POST[act])?$_POST[act]:$_GET[act];
 $act1=($_POST[act1])?$_POST[act1]:$_GET[act1];

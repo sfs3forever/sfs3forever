@@ -5,7 +5,7 @@ include_once ('my_functions.php');
 ?>
 <html>
 <head>
-<title>?∪?MSN
+<title>校園MSN
 <?php
 
 if ($_SESSION['MSN_LOGIN_ID']!="") {
@@ -14,9 +14,9 @@ if ($_SESSION['MSN_LOGIN_ID']!="") {
    $query="select * from sc_msn_online where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
    $result=mysql_query($query);
 	 $row=mysql_fetch_array($result,1);
- echo "-[".$row['name']."]-銝?";
+ echo "-[".$row['name']."]-上線";
 }else{
- echo "- ?芰??;
+ echo "- 未登入";
 }
 ?>	
 	</title>
@@ -33,7 +33,7 @@ if ($_SESSION['MSN_LOGIN_ID']!="") {
 
 	<noframes>
 	<body>
-	<p>甇斤雯?蝙?冽??塚?雿?函??汗?其??舀獢??/p>
+	<p>此網頁使用框架，但是您的瀏覽器不支援框架。</p>
 
 	</body>
 	</noframes>

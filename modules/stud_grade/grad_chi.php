@@ -10,7 +10,7 @@ sfs_check();
 if ($_GET[smenu]=='') header("Location:$_SERVER[PHP_SELF]?smenu=grad");
 
 // 2.判斷學年度,只取年度即可
-($_GET[year_seme]=='') ? $year_seme=curr_year():$year_seme=$_GET[year_seme];
+($_GET['year_seme']=='') ? $year_seme=curr_year():$year_seme=$_GET['year_seme'];
 ($_GET[smenu]=='') ? $smenu="grad" : $smenu=$_GET[smenu];
 
 //取得該年度畢業班升學學校//

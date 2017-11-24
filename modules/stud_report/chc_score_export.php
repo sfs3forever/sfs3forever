@@ -64,9 +64,9 @@ if ($_POST[act]=='OK' && is_array($_POST['class_id']) ){
 		foreach($stud_ary as $student_sn=>$stud) {
 			foreach($stud[seme_ary] as $seme_key=>$seme_data) {
 				if (!empty($seme_data)) {
-					if (strpos($sub_str,$seme_data[class_id])===false) {
-						$sub_str .= '/'.$seme_data[class_id];
-						$class_sub=get_subj($seme_data[class_id],'seme');
+					if (strpos($sub_str,$seme_data['class_id'])===false) {
+						$sub_str .= '/'.$seme_data['class_id'];
+						$class_sub=get_subj($seme_data['class_id'],'seme');
 						foreach ($class_sub as $ss_id=>$sub) {
 							$sub_name=$sub[sb];
 							if (empty($sub_ary[$seme_key][$sub_name])) {
@@ -89,7 +89,7 @@ if ($_POST[act]=='OK' && is_array($_POST['class_id']) ){
 			$base_ary = get_base_data($student_sn);
 			$class_data[$class_id][$student_sn][base][stud_id]=$base_ary[stud_id];
 			$class_data[$class_id][$student_sn][base]['stud_name']=$base_ary[stud_name];
-			$class_data[$class_id][$student_sn][base]['class_id']=$base_ary[class_id];
+			$class_data[$class_id][$student_sn][base]['class_id']=$base_ary['class_id'];
 			$class_data[$class_id][$student_sn][base][cla_no]=$base_ary[cla_no];
 			$class_data[$class_id][$student_sn][base]['seme_num']=$base_ary[seme_num];
 			$stud_id=$base_ary[stud_id];
@@ -100,7 +100,7 @@ if ($_POST[act]=='OK' && is_array($_POST['class_id']) ){
 				}
 				else {
 					//print "<br> testing seme_key= $seme_key ";
-					$seme_score=seme_score_chc($seme_data[class_id], $student_sn, $stud_id);
+					$seme_score=seme_score_chc($seme_data['class_id'], $student_sn, $stud_id);
 					$class_data[$class_id][$student_sn][seme_ary][$seme_key][seme_score]=$sub_ary[$seme_key];
 				//print_r($seme_data);
 				//print_r($seme_score);

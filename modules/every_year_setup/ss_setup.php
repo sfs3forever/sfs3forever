@@ -10,8 +10,8 @@ $m_arr = &get_module_setup("every_year_setup");
 extract($m_arr);
 
 //若有選擇學年學期，進行分割取得學年及學期
-if(!empty($_REQUEST[year_seme])){
-	$ys=explode("-",$_REQUEST[year_seme]);
+if(!empty($_REQUEST['year_seme'])){
+	$ys=explode("-",$_REQUEST['year_seme']);
 	$sel_year=$ys[0];
 	$sel_seme=$ys[1];
 }
@@ -25,7 +25,7 @@ else {
 
 $Cyear=$_REQUEST[Cyear];
 $Cyear=$Cyear?$Cyear:($IS_JHORES+1);
-$class_id=$_REQUEST[class_id];
+$class_id=$_REQUEST['class_id'];
 $act=$_REQUEST[act];
 $ss_id=$_REQUEST[ss_id];
 $scope_id=$_REQUEST[scope_id];
@@ -485,7 +485,7 @@ function &list_ss($sel_year,$sel_seme,$Cyear="",$class_id="",$mode="",$id=0,$add
 	//print_r($_REQUEST);
 	$limit_memo ='';
 	if ($_REQUEST[sel_year]<>''){
-		$query = "select count(*) from score_semester_$_REQUEST[sel_year]_$_REQUEST[sel_seme] where class_id='$_REQUEST[class_id]'";
+		$query = "select count(*) from score_semester_{$_REQUEST['sel_year']}_{$_REQUEST['sel_seme']} where class_id={$_REQUEST['class_id']}";
 		$res_con = $CONN->Execute($query);// or trigger_error("系統錯誤! $query",E_USER_ERROR);
 		if ($res_con->rs[0]>0){
 			$limit_memo = "<font color='red'>該班先前已設定為年級課程,並已有成績紀錄,不允許重設為班級課程</font>";
@@ -1010,7 +1010,7 @@ function &list_all_ss($sel_year,$sel_seme){
 	$yc_array=get_ss_yc($sel_year,$sel_seme);
 	
 	foreach($yc_array as $yc){
-		$main.=list_ss($sel_year,$sel_seme,$yc[Cyear],$yc[class_id],"clear_view");
+		$main.=list_ss($sel_year,$sel_seme,$yc[Cyear],$yc['class_id'],"clear_view");
 	}
 	
 	//相關功能表

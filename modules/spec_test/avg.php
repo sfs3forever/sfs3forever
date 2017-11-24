@@ -16,8 +16,8 @@ if (!$csv) {
 }
 
 //主要內容
-if ($_REQUEST[year_seme]) {
-	$ys=explode("_",$_REQUEST[year_seme]);
+if ($_REQUEST['year_seme']) {
+	$ys=explode("_",$_REQUEST['year_seme']);
 	$sel_year=$ys[0];
 	$sel_seme=$ys[1];
 } else {

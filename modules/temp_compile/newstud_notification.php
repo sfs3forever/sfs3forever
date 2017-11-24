@@ -213,7 +213,7 @@ function make_ooo($new_stud_table,$new_stud_notification_table){
 	$res=$CONN->Execute($query);
 	if ($res)
 		while (!$res->EOF) {
-			$class_id=$res->fields[class_id];
+			$class_id=$res->fields['class_id'];
 			$cclass[$class_id]=$class_year[substr($class_id,0,1)].$res->fields[c_name]."班";
 			$res->MoveNext();
 		}
@@ -321,7 +321,7 @@ function make_html($new_stud_table,$new_stud_notification_table){
 	$res=$CONN->Execute($query);
 	if ($res)
 		while (!$res->EOF) {
-			$class_id=$res->fields[class_id];
+			$class_id=$res->fields['class_id'];
 			$cclass[$class_id]=$class_year[substr($class_id,0,1)].$res->fields[c_name]."班";
 			$res->MoveNext();
 		}

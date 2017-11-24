@@ -341,7 +341,7 @@ $res->MoveFirst();
 
 while(!$res->EOF) {
 
-	$curr_grade=substr($res->fields[class_id],0,1)-1;
+	$curr_grade=substr($res->fields['class_id'],0,1)-1;
 
 	$my_decrease=round($grade_dollar[$curr_grade]*$res->fields[percent]/100);
 
@@ -353,7 +353,7 @@ while(!$res->EOF) {
 
 		$showdata.="<tr bgcolor=#AAFFCC><td align='center'>".($res->CurrentRow()+1)."</td>";
 
-		$showdata.="<td align='center'>".$class_base[$res->fields[class_id]]."</td>";
+		$showdata.="<td align='center'>".$class_base[$res->fields['class_id']]."</td>";
 
 		$showdata.="<td align='center'>".$res->fields[class_no]."</td>";
 
@@ -377,7 +377,7 @@ while(!$res->EOF) {
 
 		$showdata.="<tr bgcolor=#FFFFDD><td align='center'>".($res->CurrentRow()+1)."</td>";
 
-		$showdata.="<td align='center'>".$class_base[$res->fields[class_id]]."</td>";
+		$showdata.="<td align='center'>".$class_base[$res->fields['class_id']]."</td>";
 
 		$showdata.="<td align='center'>".$res->fields[class_no]."</td>";
 

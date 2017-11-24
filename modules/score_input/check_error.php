@@ -32,7 +32,7 @@ if ($_GET[do_key] == "delete"){
 	$del_str = '';
 	while(!$res->EOF){
 		$min_v = $res->fields[min_v];
-		$class_id = $res->fields[class_id];
+		$class_id = $res->fields['class_id'];
 		$student_sn = $res->fields['student_sn'];
 		$ss_id= $res->fields[ss_id];
 		$test_kind=$res->fields[test_kind];
@@ -55,7 +55,7 @@ else if ($_GET[do_key]=='query'){
 	}
 	$query = "select * from $temp_arr[0] where class_id='$temp_arr[1]' and student_sn=$temp_arr[2] and ss_id=$temp_arr[3] and test_kind='$temp_arr[4]' and test_sort=$temp_arr[5] ";
 	$res2 = $CONN->Execute($query);
-	$class_id = $res2->fields[class_id];
+	$class_id = $res2->fields['class_id'];
 	$student_sn = $res2->fields['student_sn'];
 	$ss_id = $res2->fields[ss_id];
 	$test_kind = $res2->fields[test_kind];
@@ -109,7 +109,7 @@ while(!$res->EOF){
 	}
 	if($_GET[do_print]==$table){
 		while(!$res2->EOF){
-			$class_id = $res2->fields[class_id];
+			$class_id = $res2->fields['class_id'];
 			$student_sn = $res2->fields['student_sn'];
 			$ss_id = $res2->fields[ss_id];
 			$test_kind = $res2->fields[test_kind];

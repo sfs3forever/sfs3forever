@@ -152,7 +152,7 @@ if($key=="我的徽章" or $key=='依序號'or $key=='依日期'){
 
 <?php
 
-$login= "<font size=5 color='9933ff' face=標楷體>訓練家：$_SESSION['session_tea_name']</font>";
+$login= "<font size=5 color='9933ff' face=標楷體>訓練家：{$_SESSION['session_tea_name']}</font>";
 $power="戰鬥力：<font size=5 color=red> " . $total . " </font>".$power_msg ;   //即時更新成績　
 if($poke>0 ){
 	$poke_alt=$poke . "_" . $poke_a[$poke]['p_name'];

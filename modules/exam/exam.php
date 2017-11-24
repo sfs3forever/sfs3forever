@@ -80,7 +80,7 @@ $result = $CONN->Execute($sql_select) or trigger_error("SQL 錯誤",E_USER_ERROR
 
 $class_select_arr[-1]="所有班級";
 while(!$result->EOF){
-	$temp_class = substr($result->fields[class_id],-3);
+	$temp_class = substr($result->fields['class_id'],-3);
 	$class_select_arr[$result->fields[e_kind_id]] = $class_name[$temp_class];
 	$result->MoveNext();
 }

@@ -26,7 +26,7 @@ if ($_POST['year_seme']) {
 }
 
 $id=$_REQUEST[id];
-$class_id=$_REQUEST[class_id];
+$class_id=$_REQUEST['class_id'];
 $sch_name=$_POST[sch_name];
 $n_chk=($sch_name)?"checked":"";
 $weight=$_POST[weight];

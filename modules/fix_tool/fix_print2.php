@@ -127,8 +127,8 @@ class score_ss{
 		$AA='';
 		foreach ($this->all as $ary){
 		 	$ss_id=$ary[ss_id];
-			if ($ary[class_id]==$classid && $classid!='') $AA[$ss_id]=$ary;
-			if ($classid=='' && $ary[class_id]=='') $AA[$ss_id]=$ary;
+			if ($ary['class_id']==$classid && $classid!='') $AA[$ss_id]=$ary;
+			if ($classid=='' && $ary['class_id']=='') $AA[$ss_id]=$ary;
 		}
 		return $AA;
 	}
@@ -142,7 +142,7 @@ class score_ss{
 		if ($rs->RecordCount()==0) return "尚未設定任何科目資料！";
 		$obj=$rs->GetArray();
 		foreach ($obj as $ary){
-			$cla=$ary[class_id];
+			$cla=$ary['class_id'];
 			$ssid=$ary[ss_id];		
 			$this->ScoTol[$cla][$ssid]=$ary[stol];
 			$this->ScoTol2[$ssid]=$this->ScoTol2[$ssid]+$ary[stol];
@@ -160,7 +160,7 @@ function Course(){
 		$rs=$this->CONN->Execute($SQL) or die("無法查詢，語法:".$SQL);
 		$all=$rs->GetArray();
 		foreach ($all as $ary){
-			$cla=$ary[class_id];
+			$cla=$ary['class_id'];
 			$ss_id=$ary[ss_id];
 			$AA[$cla][$ss_id]=$ary[stol];
 		}
@@ -205,8 +205,8 @@ function grade() {
     $str="<select name='".$this->Sclass."' onChange=\"location.href='".$url."'+this.options[this.selectedIndex].value;\">\n";
     $str.= "<option value=''>-未選擇-</option>\n";
     foreach($All as $ary) {
-        ($ary[class_id]==$_GET[$this->Sclass]) ? $bb=' selected':$bb='';
-        $str.= "<option value='".$ary[class_id]."' $bb>".$grade[$ary[c_year]].$ary[c_name]."班 (".$ary[teacher_1].")</option>\n";
+        ($ary['class_id']==$_GET[$this->Sclass]) ? $bb=' selected':$bb='';
+        $str.= "<option value='".$ary['class_id']."' $bb>".$grade[$ary[c_year]].$ary[c_name]."班 (".$ary[teacher_1].")</option>\n";
         }
     $str.="</select>";
     return $str;

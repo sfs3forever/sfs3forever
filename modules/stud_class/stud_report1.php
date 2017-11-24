@@ -504,7 +504,7 @@ exit;
 		$oo_path = $template;
 		
 		//檔名
-		$filename=$work_year_seme."學籍紀錄表_".$_REQUEST[year_seme]."_".$class_id.".sxw";
+		$filename=$work_year_seme."學籍紀錄表_".$_REQUEST['year_seme']."_".$class_id.".sxw";
 		//新增一個 zipfile 實例
 		$ttt = new EasyZip;
 		$ttt->setPath($oo_path);
@@ -1004,7 +1004,7 @@ function tagall(status) {
 </script>
 HERE;
 
-//if ($_REQUEST[year_seme]=='')
+//if ($_REQUEST['year_seme']=='')
 	$year_seme= sprintf("%03d%d",curr_year(),curr_seme());
 
 echo "<form  enctype='multipart/form-data' action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" name=\"myform\">";
@@ -1012,7 +1012,7 @@ echo "<form  enctype='multipart/form-data' action=\"{$_SERVER['PHP_SELF']}\" met
 $sel1 = new drop_select();
 $sel1->top_option =  "選擇學年";
 $sel1->s_name = "year_seme";
-$sel1->id = $_REQUEST[year_seme];
+$sel1->id = $_REQUEST['year_seme'];
 $sel1->is_submit = true;
 $sel1->arr = get_class_seme();
 $sel1->do_select();
@@ -1023,7 +1023,7 @@ $sel1->top_option =  "選擇班級";
 $sel1->s_name = "class_id";
 $sel1->id = $class_id;
 $sel1->is_submit = true;
-$sel1->arr = class_base($_REQUEST[year_seme]);
+$sel1->arr = class_base($_REQUEST['year_seme']);
 $sel1->do_select();
 */
 

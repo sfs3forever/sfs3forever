@@ -58,12 +58,12 @@ function &grant_mainForm($sn="",$mode){
 
         <tr bgcolor='#FFFFFF'>
         <td>學期別</td>
-        <td><input type='text' name='data[year_seme]' value='$DBV[year_seme]' size='6' maxlength='6'></td>
+        <td><input type='text' name='data['year_seme']' value='$DBV['year_seme']' size='6' maxlength='6'></td>
         </tr>
 
         <tr bgcolor='#FFFFFF'>
         <td>學籍流水號</td>
-        <td><input type='text' name='data['student_sn']' value='$DBV['student_sn']' size='10' maxlength='10'></td>
+        <td><input type='text' name={data['student_sn']} value={$DBV['student_sn']} size='10' maxlength='10'></td>
         </tr>
 
         <tr bgcolor='#FFFFFF'>
@@ -79,12 +79,12 @@ function &grant_mainForm($sn="",$mode){
 
         </table>
         <input type='hidden' name='sn' value='$sn'>
-        <input type='hidden' name='work_year_seme' value='$DBV[year_seme]'>
+        <input type='hidden' name='work_year_seme' value='$DBV['year_seme']'>
         <input type='hidden' name='act' value='$submit'>
         <input type='submit' value='送出'>
         </form>
 
-        <a href='index.php?work_year_seme=$DBV[year_seme]'>回原年度紀錄列表</a>
+        <a href='index.php?work_year_seme=$DBV['year_seme']'>回原年度紀錄列表</a>
         ";
         return $main;
 }
@@ -93,7 +93,7 @@ function &grant_mainForm($sn="",$mode){
 function grant_update($data,$sn){
         global $CONN;
 
-        $sql_update = "update grant_aid set year_seme='$data[year_seme]',student_sn='$data['student_sn']',dollar='$data[dollar]' where sn='$sn'";
+        $sql_update = "update grant_aid set year_seme={$data['year_seme']},student_sn={$data['student_sn']},dollar={$data[dollar]} where sn=$sn";
         $CONN->Execute($sql_update) or user_error("更新失敗！<br>$sql_update",256);
         return $sn;
 }

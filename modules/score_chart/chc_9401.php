@@ -38,7 +38,7 @@ if($_POST['year_seme'] && $_POST['grade'] &&  $_POST[act]=='write_def'){
 }
 
 ##################  文字檔處理  ##########################
-if($_GET[year_seme]!='' && $_GET[grade]!='' ) {
+if($_GET['year_seme']!='' && $_GET[grade]!='' ) {
 	$fname_1=$_GET[grade].'.txt';
 	$fname=chk_file($fname_1);
 	if (file_exists($fname)) {
@@ -69,7 +69,7 @@ $smarty->left_delimiter="{{";
 $smarty->right_delimiter="}}";
 
 // 2.判斷學年度
-	($_GET[year_seme]=='') ? $year_seme=curr_year()."_".curr_seme():$year_seme=$_GET[year_seme];
+	($_GET['year_seme']=='') ? $year_seme=curr_year()."_".curr_seme():$year_seme=$_GET['year_seme'];
 
 // 3.指派下拉式選擇學期
 	$smarty->assign("sel_year",sel_year('year_seme',$year_seme));

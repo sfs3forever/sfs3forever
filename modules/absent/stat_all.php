@@ -34,13 +34,13 @@ if($act=="儲存登記"){
 	add_all($sel_year,$sel_seme,$_POST['class_id'],$_POST[date],$_POST[s]);
 	header("location: $_SERVER[PHP_SELF]?this_date=$_POST[date]&class_id={$_POST['class_id']}");
 }elseif($act=="print"){
-	$main=statForm($sel_year,$sel_seme,$_GET[class_id],"print");
+	$main=statForm($sel_year,$sel_seme,$_GET['class_id'],"print");
 	echo $main;
 	exit;
 }elseif($act=="取消返回"){
 	header("location: $_SERVER[PHP_SELF]?this_date=$_POST[date]&class_id={$_POST['class_id']}");
 }else{
-	$main=&mainForm($sel_year,$sel_seme,$_REQUEST[class_id]);
+	$main=&mainForm($sel_year,$sel_seme,$_REQUEST['class_id']);
 }
 
 

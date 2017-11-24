@@ -182,7 +182,7 @@ function save_csv($year,$semester){
                     //送出資料
                     $array_class[c_year]=($array_class[c_year]>6)?$array_class[c_year]-6:$array_class[c_year];
                     echo "<tr>";
-                    echo "<td>$array_class[c_year]</td><td>$array_class[c_name]</td><td>$array_class[c_year]".substr(strrchr($array_class[class_id],"_"),1)."</td>";
+                    echo "<td>$array_class[c_year]</td><td>$array_class[c_name]</td><td>$array_class[c_year]".substr(strrchr($array_class['class_id'],"_"),1)."</td>";
                     echo "<td>$array_student[stud_id]</td><td>$array_student[seme_num]</td><td>$array_student[stud_name]</td>";
                     if ($array_student[stud_sex]==1) echo "<td>男</td>";
                       else echo "<td>女</td>";

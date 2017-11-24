@@ -156,7 +156,7 @@ if ($admin==1){
 	if ($res->RecordCount()>0) {
 		while(!$res->EOF) {
 			$m=$res->FetchRow();
-			$n=explode("_",$m[class_id]);
+			$n=explode("_",$m['class_id']);
 			$nn=intval($n[2].$n[3]);
 			$c_arr[$nn]=$class_arr[$nn];
 		}

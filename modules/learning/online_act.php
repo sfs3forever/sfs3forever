@@ -483,7 +483,7 @@ if($my_att=='2' and  $he_att=='2' ){
 
 <?php
 
-$login= "<font size=5 color='9933ff' face=標楷體>訓練家：$_SESSION['session_tea_name']</font>";
+$login= "<font size=5 color='9933ff' face=標楷體>訓練家：{$_SESSION['session_tea_name']}</font>";
 $power="戰鬥力：<font size=5 color=red> " . $my_total . " </font>".$power_msg ;   //即時更新成績　
 ?>
 

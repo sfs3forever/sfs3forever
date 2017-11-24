@@ -187,7 +187,7 @@ if($ss_id){//列出該科目，提供分組與指定分組老師
 				$query = "select a.course_id,a.class_id,b.scope_id,b.subject_id from score_course a,score_ss b where a.day<>'' and a.ss_id=b.ss_id and b.need_exam=1 and a.year=".curr_year()." and a.semester=".curr_seme()." and a.teacher_sn='$teacher_sn[$ci]' group by a.class_id,b.scope_id,b.subject_id";
 				$res = $CONN->Execute($query)or trigger_error($query,E_USER_ERROR);
 				while(!$res->EOF){
-					$temp_arr = explode("_",$res->fields[class_id]);
+					$temp_arr = explode("_",$res->fields['class_id']);
 					$temp_id = sprintf("%d%02d",$temp_arr[2],$temp_arr[3]);
 					$temp_ss_id = $res->fields[subject_id];
 					$cs_id = $res->fields[course_id];

@@ -45,7 +45,7 @@ $query = "select class_id,e_kind_id from exam_kind where class_id like '$curr_cl
 $result = $CONN->Execute($query);
 $class_select = "<select name=e_kind_id[] size=6 multiple>"; //班級選項
 while (!$result->EOF) {
-	$temp_class = substr($result->fields[class_id],-3);
+	$temp_class = substr($result->fields['class_id'],-3);
 	$class_select .= "<option value=\"".$result->rs[1]."\">$class_name[$temp_class]";
 	$result->MoveNext();
 

@@ -120,7 +120,7 @@ class score_ss{
 		if ($rs->RecordCount()==0) return "尚未設定任何科目資料！";
 		$obj=$rs->GetArray();
 		foreach ($obj as $ary){
-			$cla=$ary[class_id];
+			$cla=$ary['class_id'];
 			$ssid=$ary[ss_id];		
 			$this->ScoTol[$cla][$ssid]=$ary[stol];
 			$this->ScoTol2[$ssid]=$this->ScoTol2[$ssid]+$ary[stol];

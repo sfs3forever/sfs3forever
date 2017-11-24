@@ -118,7 +118,7 @@ while (!$result->EOF) {
 	$result->MoveNext();	
 };
 
-$temp_year = substr($_GET[class_id],4,1); //取得年級	
+$temp_year = substr($_GET['class_id'],4,1); //取得年級	
 $temp_class = sprintf("%02d",substr($class_id,5)); //取得班級
 include "header.php";
 
