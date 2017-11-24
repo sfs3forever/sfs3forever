@@ -14,7 +14,7 @@ if(!empty($_REQUEST['year_seme'])){
 	$sel_seme=$ys[1];
 }
 
-$sel_year=(empty($_REQUEST[sel_year]))?curr_year():$_REQUEST[sel_year]; //目前學年
+$sel_year=(empty($_REQUEST['sel_year']))?curr_year():$_REQUEST['sel_year']; //目前學年
 $sel_seme=(empty($_REQUEST[sel_seme]))?curr_seme():$_REQUEST[sel_seme]; //目前學期
 $class_id=$_REQUEST['class_id'];
 $act=$_REQUEST[act];

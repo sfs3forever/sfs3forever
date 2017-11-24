@@ -9,7 +9,7 @@ sfs_check();
 //主選單設定
 //$school_menu_p=(empty($school_menu_p))?array():$school_menu_p;
 
-$sel_year=(empty($_REQUEST[sel_year]))?curr_year():$_REQUEST[sel_year]; //目前學年
+$sel_year=(empty($_REQUEST['sel_year']))?curr_year():$_REQUEST['sel_year']; //目前學年
 $sel_seme=(empty($_REQUEST[sel_seme]))?curr_seme():$_REQUEST[sel_seme]; //目前學期
 //由系統取得任教班級代號
 $class_num=get_teach_class();

@@ -19,8 +19,8 @@ $year=($_GET[year])?$_GET[year]:$_POST[year];
 $day=($_GET[day])?$_GET[day]:$_POST[day];
 
 $withseme=($_GET[withseme])?$_GET[withseme]:$_POST[withseme];
-$sel_year=($_GET[sel_year])?$_GET[sel_year]:$_POST[sel_year];
-$sel_seme=($_GET[sel_seme])?$_GET[sel_seme]:$_POST[sel_seme];
+$sel_year=($_GET['sel_year'])?$_GET['sel_year']:$_POST['sel_year'];
+$sel_seme=($_GET['sel_seme'])?$_GET['sel_seme']:$_POST['sel_seme'];
 
 if(!empty($_GET[this_date]) or !empty($_POST[this_date])){
 	$this_date=($_GET[this_date])?$_GET[this_date]:$_POST[this_date];

@@ -17,7 +17,7 @@ print_menu($menu_p,$linkstr);
 //預設值設定
 $act=$_REQUEST[act];
 
-$sel_year=(empty($_REQUEST[sel_year]))?curr_year():$_REQUEST[sel_year]; //目前學年
+$sel_year=(empty($_REQUEST['sel_year']))?curr_year():$_REQUEST['sel_year']; //目前學年
 $sel_seme=(empty($_REQUEST[sel_seme]))?curr_seme():$_REQUEST[sel_seme]; //目前學期
 $curr_seme = $sel_year.$sel_seme; //現在學年學期
 //echo $_SESSION['session_log_id'];

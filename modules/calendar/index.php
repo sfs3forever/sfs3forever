@@ -590,13 +590,13 @@ function get_cal_to_who($cal_sn){
 
 //新增一個事件
 function addOneThing($data){
-	global $CONN,$MODULE_TABLE_NAME;
+	global $CONN,$MODULE_TABLE_NAME,$conID;
 	$min=(empty($data[min]))?"00":$data[min];
 	$time=$data[h].":".$min;
 
 	$sql_insert = "insert into $MODULE_TABLE_NAME[0] (year,month,day,week,time,place,thing,kind,teacher_sn,from_teacher_sn,from_cal_sn,restart,restart_day,restart_end,import,post_time) values ($data[year],$data[month],$data[day],'$data[week]','$time','$data[place]','$data[thing]','$data[kind]',$_SESSION[session_tea_sn],$_SESSION[session_tea_sn],'0','$data[restart]','$data[restart_day]','$data[restart_end]','$data[import]',now())";
 	$CONN->Execute($sql_insert) or user_error("新增事件失敗！<br>$sql_insert",256);
-	$from_cal_sn=mysql_insert_id();
+	$from_cal_sn=mysqli_insert_id($conID);
 	
 	if($data[kind]!="0"){
 		//若是給全校則取得全校教師編號

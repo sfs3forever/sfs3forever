@@ -59,13 +59,13 @@ function &main_form(){
 
 //新增
 function add($data){
-	global $CONN;
+	global $CONN,$conID;
 	//取得該分類下最後一個排序數字
 	$sort=get_sort($data[of_group]);
 
 	$sql_insert = "insert into sfs_module (showname,dirname,sort,isopen,islive,of_group,ver,icon_image,author,creat_date,kind,txt) values ('$data[showname]','$data[dirname]','$sort','$data[isopen]','$data[islive]','$data[of_group]','$data[ver]','$data[icon_image]','$data[author]','$data[creat_date]','$data[kind]','$data[txt]')";
 	$CONN->Execute($sql_insert) or user_error("新增失敗！<br>$sql_insert",256);
-	$msn=mysql_insert_id();
+	$msn=mysqli_insert_id($conID);
 	return $msn;
 }
 

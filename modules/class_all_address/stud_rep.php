@@ -12,7 +12,7 @@ sfs_check();
 $curr_year = curr_year();
 $curr_seme = curr_seme();
 $class_name_arr = class_base() ;
-$class_name= $class_name_arr[$_REQUEST[sel_year]] ;
+$class_name= $class_name_arr[$_REQUEST['sel_year']] ;
 
 
 if ($_POST[Submit1]=='下載學生名冊'){
@@ -36,12 +36,12 @@ if ($_POST[Submit1]=='下載學生名冊'){
 	//列出學生
 	if ($_POST[allyear]==1){
 		$year_base = year_base();
-		$smarty->assign("title_class",$year_base[substr($_POST[sel_year],0,1)]."級");
-		$sel_where = "seme_class like '".substr($_POST[sel_year],0,1)."%'";
+		$smarty->assign("title_class",$year_base[substr($_POST['sel_year'],0,1)]."級");
+		$sel_where = "seme_class like '".substr($_POST['sel_year'],0,1)."%'";
 	}
 	else {
-		$smarty->assign("title_class",$class_name_arr[$_POST[sel_year]]);
-		$sel_where = "seme_class=$_POST[sel_year]";
+		$smarty->assign("title_class",$class_name_arr[$_POST['sel_year']]);
+		$sel_where = "seme_class=$_POST['sel_year']";
 	}
 	$query = "select a.stud_id,a.stud_name,a.stud_sex,a.stud_birthday,a.stud_person_id,a.stud_mschool_name,a.stud_addr_1 ,b.seme_class,b.seme_num,a.stud_study_year from stud_base a ,stud_seme b where a.stud_study_cond=0 AND a.student_sn=b.student_sn and   b.seme_year_seme=$seme_year_seme and $sel_where order by seme_class,seme_num";
 
@@ -77,7 +77,7 @@ print_menu($menu_p);
 
 $sel1 = new drop_select(); //選單類別
 $sel1->s_name = "sel_year"; //選單名稱
-$sel1->id = $_POST[sel_year];
+$sel1->id = $_POST['sel_year'];
 $sel1->has_empty = false;
 $sel1->arr = $class_name_arr ; //內容陣列(六個學年)
 $sel1->is_submit = true;

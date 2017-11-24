@@ -124,9 +124,9 @@ function &main_form($interface_sn=""){
 
 //新增一個設定
 function add_col($C){
-	global $CONN;
+	global $CONN,$conID;
 	$sql_insert = "insert into score_input_interface (title,text,html,sshtml,all_ss) values ('$C[title]','$C[text]','$C[html]','$C[sshtml]','$C[all_ss]')";
-	if($CONN->Execute($sql_insert))	return mysql_insert_id();
+	if($CONN->Execute($sql_insert))	return mysqli_insert_id($conID);
 	die($sql_insert);
 	return  false;
 }

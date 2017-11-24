@@ -110,7 +110,7 @@ function &postMsgForm($mode="add",$postSerial="",$toSomeOne="all"){
 
 //加入公告
 function addpost($post="",$mode="add",$postSerial=""){
-	global $POSTUPDIR,$CONN,$teacher_sn;
+	global $POSTUPDIR,$CONN,$teacher_sn,$conID;
 	//檢查標題、內容
 	if(empty($post[title]))trigger_error("沒有輸入標題。",E_USER_ERROR);
 	if(empty($post[content]))trigger_error("沒有輸入內容。",E_USER_ERROR);
@@ -135,7 +135,7 @@ function addpost($post="",$mode="add",$postSerial=""){
 	$CONN->Execute($sql_insert) or trigger_error("SQL語法錯誤： $sql_insert", E_USER_ERROR);
 
 	if($mode=="add"){
-		$insert_id=mysql_insert_id();
+		$insert_id=mysqli_insert_id($conID);
 	}elseif($mode=="modify"){
 		$insert_id=$postSerial;
 	}

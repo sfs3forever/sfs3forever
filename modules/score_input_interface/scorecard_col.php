@@ -191,9 +191,9 @@ function &get_col_setup($interface_sn="",$col_sn="",$modify_col_sn="",$enable=""
 
 //新增一個欄位設定
 function add_col($C,$interface_sn){
-	global $CONN;
+	global $CONN,$conID;
 	$sql_insert = "insert into score_input_col (interface_sn,col_text,col_value,col_type,col_fn,col_ss,col_comment,col_check,col_date,enable) values ($interface_sn,'$C[col_text]','$C[col_value]','$C[col_type]','$C[col_fn]','$C[col_ss]','$C[col_comment]','$C[col_check]',now(),'1')";
-	if($CONN->Execute($sql_insert))	return mysql_insert_id();
+	if($CONN->Execute($sql_insert))	return mysqli_insert_id($conID);
 	return  false;
 }
 

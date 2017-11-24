@@ -217,7 +217,7 @@ function make_class_id($year,$semester,$c_year,$c_sort){
 
 //新增一個班級設定
 function add_setup($year,$semester,$c_year,$c_sort,$c_name){
-	global $CONN;
+	global $CONN, $conID;
 	
 	$class_id=make_class_id($year,$semester,$c_year,$c_sort);
 	if($c_name!=""){
@@ -226,7 +226,7 @@ function add_setup($year,$semester,$c_year,$c_sort,$c_name){
 		$sql_insert = "insert into school_class (class_id,year,semester,c_year,c_sort,enable) values ('$class_id',$year,'$semester','$c_year',$c_sort,'1')";		
 	}	
 	$CONN->Execute($sql_insert) or user_error("執行錯誤：$sql_insert<br>",256);
-	return mysql_insert_id();
+	return mysqli_insert_id($conID);
 }
 
 

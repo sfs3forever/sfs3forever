@@ -33,7 +33,7 @@ if ($_POST[form1]) {
 		$student_sn[]=$sn;
 	}
 	
-	foreach($_POST[sel_seme] as $k=>$v) {
+	foreach($_POST['sel_seme'] as $k=>$v) {
 		$w=explode("_",$v);
 		$max_seme=sprintf("%03d",$w[0]).$w[1];
 		$semes[]=$max_seme;

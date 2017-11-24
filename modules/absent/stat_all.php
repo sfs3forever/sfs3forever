@@ -6,7 +6,7 @@
 include_once "config.php";
 
 sfs_check();
-$sel_year=(empty($_REQUEST[sel_year]))?curr_year():$_REQUEST[sel_year];
+$sel_year=(empty($_REQUEST['sel_year']))?curr_year():$_REQUEST['sel_year'];
 $sel_seme=(empty($_REQUEST[sel_seme]))?curr_seme():$_REQUEST[sel_seme];
 
 //default start_date and end_date

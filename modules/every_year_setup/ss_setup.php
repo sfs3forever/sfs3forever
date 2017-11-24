@@ -17,20 +17,20 @@ if(!empty($_REQUEST['year_seme'])){
 }
 else {
 	// 避免 cookie 錯誤
-	if ($_GET[sel_year]) $_POST[sel_year] = $_GET[sel_year];
-        if ($_GET[sel_seme]) $_POST[sel_seme] = $_GET[sel_seme];
-        $sel_year=(empty($_POST[sel_year]))?curr_year():$_POST[sel_year]; //目前學年
-        $sel_seme=(empty($_POST[sel_seme]))?curr_seme():$_POST[sel_seme]; //目前學期
+	if ($_GET['sel_year']) $_POST['sel_year'] = $_GET['sel_year'];
+        if ($_GET['sel_seme']) $_POST['sel_seme'] = $_GET['sel_seme'];
+        $sel_year=(empty($_POST['sel_year']))?curr_year():$_POST['sel_year']; //目前學年
+        $sel_seme=(empty($_POST['sel_seme']))?curr_seme():$_POST['sel_seme']; //目前學期
 }
 
-$Cyear=$_REQUEST[Cyear];
+$Cyear=$_REQUEST['Cyear'];
 $Cyear=$Cyear?$Cyear:($IS_JHORES+1);
 $class_id=$_REQUEST['class_id'];
-$act=$_REQUEST[act];
-$ss_id=$_REQUEST[ss_id];
-$scope_id=$_REQUEST[scope_id];
-$subject_id=$_REQUEST[subject_id];
-$copy_set = $_REQUEST[copy_set];
+$act=$_REQUEST['act'];
+$ss_id=$_REQUEST['ss_id'];
+$scope_id=$_REQUEST['scope_id'];
+$subject_id=$_REQUEST['subject_id'];
+$copy_set = $_REQUEST['copy_set'];
 //錯誤設定
 if($error==1){
 	$act="error";
@@ -42,7 +42,7 @@ if($error==1){
 if($act=="error"){
 	$main=&error_tbl($error_title,$error_main);
 }elseif($act=="新增" or $act=="加入分科"){
-	add_ss($_REQUEST[subject_id],$_REQUEST[subject_name],$_REQUEST[subject_kind],$sel_year,$sel_seme,$_REQUEST[scope_id],$_REQUEST[need_exam],$_REQUEST[rate],$Cyear,$class_id,$_REQUEST['print'],$_REQUEST['sort'],$_REQUEST[sub_sort]);
+	add_ss($_REQUEST['subject_id'],$_REQUEST['subject_name'],$_REQUEST['subject_kind'],$sel_year,$sel_seme,$_REQUEST['scope_id'],$_REQUEST['need_exam'],$_REQUEST['rate'],$Cyear,$class_id,$_REQUEST['print'],$_REQUEST['sort'],$_REQUEST['sub_sort']);
 	header("location: {$_SERVER['PHP_SELF']}?sel_year=$sel_year&sel_seme=$sel_seme&act=set_ss&Cyear=$Cyear&class_id=$class_id");
 }elseif($act=="儲存"){
 	update_ss($ss_id,$scope_id,$subject_id,$sel_year,$sel_seme);
@@ -61,7 +61,7 @@ if($act=="error"){
 	del_all_ss($sel_year,$sel_seme,$Cyear,$class_id);
 	header("location: {$_SERVER['PHP_SELF']}?sel_year=$sel_year&sel_seme=$sel_seme&act=set_ss&Cyear=$Cyear&class_id=$class_id");
 }elseif($act=="儲存設定"){
-	update_exam_rate_set($ss_id,$scope_id,$subject_id,$_REQUEST[need_exam],$_REQUEST[rate],$_REQUEST['print'],$_REQUEST[link_ss],$_REQUEST['sort'],$_REQUEST[sub_sort],$_REQUEST[pre_scope_sort],$sel_year,$sel_seme,$_REQUEST[nor_item_kind],$_REQUEST[sections],$_REQUEST[k12ea_category],$_REQUEST[k12ea_area],$_REQUEST[k12ea_subject],$_REQUEST[k12ea_language]);
+	ss_setupupdate_exam_rate_set($ss_id,$scope_id,$subject_id,$_REQUEST['need_exam'],$_REQUEST['rate'],$_REQUEST['print'],$_REQUEST['link_ss'],$_REQUEST['sort'],$_REQUEST['sub_sort'],$_REQUEST['pre_scope_sort'],$sel_year,$sel_seme,$_REQUEST['nor_item_kind'],$_REQUEST['sections'],$_REQUEST['k12ea_category'],$_REQUEST['k12ea_area'],$_REQUEST['k12ea_subject'],$_REQUEST['k12ea_language']);
 	header("location: {$_SERVER['PHP_SELF']}?sel_year=$sel_year&sel_seme=$sel_seme&act=set_ss&Cyear=$Cyear&class_id=$class_id");
 }elseif($act=="add_ss" or $act=="view" or $act=="開始設定" or $act=="set_ss" or $act=="modify_exam" or $act=="add_subject"){
 	if($act=="開始設定")$act="set_ss";
@@ -484,7 +484,7 @@ function &list_ss($sel_year,$sel_seme,$Cyear="",$class_id="",$mode="",$id=0,$add
 	//若已排定課程或有成績時,不允許更改
 	//print_r($_REQUEST);
 	$limit_memo ='';
-	if ($_REQUEST[sel_year]<>''){
+	if ($_REQUEST['sel_year']<>''){
 		$query = "select count(*) from score_semester_{$_REQUEST['sel_year']}_{$_REQUEST['sel_seme']} where class_id={$_REQUEST['class_id']}";
 		$res_con = $CONN->Execute($query);// or trigger_error("系統錯誤! $query",E_USER_ERROR);
 		if ($res_con->rs[0]>0){
@@ -1182,7 +1182,7 @@ function auto_copy($sel_year,$sel_seme,$Cyear,$class_id,$kind=""){
 						//科目是否有設定要輸入成績
 						$need_exam ='1' ;
 						$print = '1' ;    				
-						list($sub_subject, $need_exam_t , $print_t) = split ('-', $sub_subject_s) ;
+						list($sub_subject, $need_exam_t , $print_t) = explode ('-', $sub_subject_s) ;
 
 						if ($need_exam_t =='0' ) { 
 							$need_exam='' ;
@@ -1262,7 +1262,7 @@ function chk_subject_id($subject_name,$kind,$enable='1'){
 
 //新增年度科目
 function autoadd_ss($sel_year,$sel_seme,$scope_id,$subject_id,$need_exam,$rate,$print,$Cyear="",$class_id="",$enable,$sort,$sub_sort,$link_ss,$k12ea_category,$k12ea_area,$k12ea_subject,$k12ea_language){
-	global $CONN;
+	global $CONN, $conID;
 	//假如完全沒有科目資料則退出
 	if(empty($scope_id)){
 		return;
@@ -1272,7 +1272,7 @@ function autoadd_ss($sel_year,$sel_seme,$scope_id,$subject_id,$need_exam,$rate,$
 	$sql_insert = "insert into score_ss (scope_id,subject_id,year,semester,class_year,class_id,enable,need_exam,rate,print,sort,sub_sort,link_ss,k12ea_category,k12ea_area,k12ea_subject,k12ea_language) values ('$scope_id','$subject_id','$sel_year','$sel_seme','$Cyear','$class_id','1','$need_exam','$rate','$print','$sort','$sub_sort','$link_ss','$k12ea_category','$k12ea_area','$k12ea_subject','$k12ea_language')";
 	$CONN->Execute($sql_insert) or user_error($sql_insert,256);	
 
-	return mysql_insert_id();
+	return mysqli_insert_id($conID);
 }
 
 //九年一貫科目對應
@@ -1281,7 +1281,7 @@ function compare_ss($sel_year,$sel_seme,$The_Class,$subject_link_ss){
 	foreach($The_Class as $scope_name => $subject_name){
 		if(is_array($subject_name)){
 			foreach($subject_name as $sub_subject){
-			  list($sub_subject, $need_exam_t , $print_t) = split ('-', $sub_subject) ;
+			  list($sub_subject, $need_exam_t , $print_t) = explode ('-', $sub_subject) ;
 				$subject=$scope_name."-".$sub_subject;			
 				if($subject==$subject_link_ss){
 					return $subject;
@@ -1302,7 +1302,7 @@ function none_compare_ss($sel_year,$sel_seme,$The_Class,$array2){
 	foreach($The_Class as $scope_name => $subject_name){
 		if(is_array($subject_name)){
 			foreach($subject_name as $sub_subject){
-				list($sub_subject, $need_exam_t , $print_t) = split ('-', $sub_subject) ;
+				list($sub_subject, $need_exam_t , $print_t) = explode ('-', $sub_subject) ;
 				$subject=$scope_name."-".$sub_subject;
 			}
 		}else{	

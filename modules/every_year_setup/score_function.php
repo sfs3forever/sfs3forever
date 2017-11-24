@@ -4,14 +4,14 @@
 
 //新增學科(score_subject)
 function add_subject($name="",$kind="",$school=""){
-	global $CONN;
+	global $CONN, $conID;
 
 	for($i=0;$i<sizeof($school);$i++){
 		$school_v.=$school[$i].",";
 	}
 	$school_v=substr($school_v,0,-1);
 	$sql_insert = "insert into score_subject (subject_name,subject_school,subject_kind,enable) values ('$name','$school_v','$kind','1')";
-	if($CONN->Execute($sql_insert))	return mysql_insert_id();
+	if($CONN->Execute($sql_insert))	return mysqli_insert_id($conID);
 	return  false;
 }
 

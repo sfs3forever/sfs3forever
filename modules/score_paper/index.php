@@ -105,11 +105,11 @@ function readme(){
 
 //新增
 function score_paper_add($data){
-        global $CONN;
+        global $CONN,$conID;
 
         $sql_insert = "insert into score_paper (sp_sn,file_name,sp_name,descriptive,enable) values ('$data[sp_sn]','".$_FILES['userfile']['name']."','$data[sp_name]','$data[descriptive]','$data[enable]')";
         $CONN->Execute($sql_insert) or user_error("新增失敗！<br>$sql_insert",256);
-        $sp_sn=mysql_insert_id();
+        $sp_sn=mysqli_insert_id($conID);
         $msg=unzip($sp_sn);
         return $msg;
 }

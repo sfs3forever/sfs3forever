@@ -241,14 +241,14 @@ function &main_form($interface_sn="",$sel_year="",$sel_seme="",$class_id="",$stu
 
 //儲存值
 function save_value($C,$interface_sn,$sel_year,$sel_seme,$stud_id,$class_id){
-	global $CONN;
+	global $CONN,$conID;
 	reset($C);
 	while(list($k,$v)=each($C)){
 		$array[]=$k."：".$v;
 	}
 	$value = implode("^^", $array);
 	$sql_insert = "insert into score_input_value (interface_sn,date,stud_id,class_id,value,sel_year,sel_seme) values ($interface_sn,now(),'$stud_id','$class_id','$value',$sel_year,'$sel_seme')";
-	if($CONN->Execute($sql_insert))	return mysql_insert_id();
+	if($CONN->Execute($sql_insert))	return mysqli_insert_id($conID);
 	die($sql_insert);
 	return  false;
 }

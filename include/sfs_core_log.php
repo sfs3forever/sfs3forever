@@ -17,7 +17,7 @@ function sfs_log($log_table,$update_kind,$chang_id='') {
 
 //比較簡易，並可儲存大量中文說明的log紀錄
 function add_log($log,$mark) {
-	global $CONN;
+	global $CONN,$conID;
 	// 確定連線成立
 	if (!$CONN) user_error("資料庫連線不存在！請檢查相關設定！",256);
 	if ($_SESSION['session_log_id'] !='') {
@@ -25,7 +25,7 @@ function add_log($log,$mark) {
 		$sql_insert = "insert into sfs3_log (log,mark,id,time) values ('$log','$mark','{$_SESSION['session_log_id']}',now())";
 		$CONN->Execute($sql_insert) or trigger_error("log存入失敗： $sql_insert", E_USER_ERROR);
 	}
-	$n=mysql_insert_id();
+	$n=mysqli_insert_id($conID);
 	return $n;
 }
 

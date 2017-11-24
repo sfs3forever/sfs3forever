@@ -12,7 +12,7 @@ extract($m_arr, EXTR_OVERWRITE);
 if ($is_absent=='n') header("Location: name_form.php");
 
 sfs_check();
-$sel_year=(empty($_REQUEST[sel_year]))?curr_year():$_REQUEST[sel_year];
+$sel_year=(empty($_REQUEST['sel_year']))?curr_year():$_REQUEST['sel_year'];
 $sel_seme=(empty($_REQUEST[sel_seme]))?curr_seme():$_REQUEST[sel_seme];
 
 if(!empty($_REQUEST[this_date])){

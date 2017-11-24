@@ -245,7 +245,7 @@ function &main_form($interface_sn="",$sel_year="",$sel_seme="",$class_id="",$stu
 function save_value(){
 	global $CONN;
 	//日常生活表現存檔
-	$seme_year_seme = sprintf("%03d%d",$_POST[sel_year],$_POST[sel_seme]);
+	$seme_year_seme = sprintf("%03d%d",$_POST['sel_year'],$_POST['sel_seme']);
 	for ($i=1;$i<=4;$i++){
 		$query = "replace into stud_seme_score_oth (seme_year_seme,stud_id,ss_kind,ss_id,ss_val) values('$seme_year_seme',{$_POST['stud_id']},'生活表現評量','$i','".$_POST["a_$i"]."')";
 		$CONN->Execute($query) or trigger_error("sql 錯誤 $query",E_USER_ERROR);		

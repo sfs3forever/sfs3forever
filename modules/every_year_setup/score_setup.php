@@ -383,14 +383,14 @@ function save_one($setup_id="",$sel_year="",$sel_seme="",$main_data="",$Cyear=""
 	global $CONN;
 	//假如無考試設定id，去取得
 	$sm=&get_all_setup($setup_id,$sel_year,$sel_seme,$Cyear);
-	$setup_id=$sm[setup_id];
+	$setup_id=$sm['setup_id'];
 
 	//如果仍沒有，表示該學期還未有資料，那麼就新增一筆資料。
 	if(empty($setup_id)){
 		$setup_id=add_setup($main_data,$sel_year,$sel_seme,$Cyear);
 
 		//刪除多餘節數的課表資料
-		$sql = "delete from score_course where year='$sel_year' and semester='$sel_seme' and class_year='$Cyear' and sector>{$main_data[sections]}";
+		$sql = "delete from score_course where year='$sel_year' and semester='$sel_seme' and class_year='$Cyear' and sector>{$main_data['sections']}";
 		$CONN->Execute($sql) or trigger_error("SQL語法錯誤： $sql", E_USER_ERROR);
 
 		if(!empty($setup_id))	return $setup_id;
@@ -398,7 +398,7 @@ function save_one($setup_id="",$sel_year="",$sel_seme="",$main_data="",$Cyear=""
 		if(update_setup($setup_id,$main_data,$sel_year,$sel_seme,$Cyear))
 		
 		//刪除多餘節數的課表資料
-		$sql = "delete from score_course where year='$sel_year' and semester='$sel_seme' and class_year='$Cyear' and sector>{$main_data[sections]}";
+		$sql = "delete from score_course where year='$sel_year' and semester='$sel_seme' and class_year='$Cyear' and sector>{$main_data['sections']}";
 		$CONN->Execute($sql) or trigger_error("SQL語法錯誤： $sql", E_USER_ERROR);
 
 		return $setup_id;
@@ -423,7 +423,7 @@ function &say_rule($rule=""){
 
 //新增考試設定
 function add_setup($main_data="",$sel_year="",$sel_seme="",$Cyear=""){
-	global $CONN;
+	global $CONN, $conID;
 
 	if(empty($main_data[score_mode]))$main_data[score_mode] = all;
 	//$rule=make_rule($main_data);
@@ -437,7 +437,7 @@ function add_setup($main_data="",$sel_year="",$sel_seme="",$Cyear=""){
 	$sql_insert = "insert into score_setup (year,semester,class_year,allow_modify,performance_test_times,practice_test_times,test_ratio,rule,score_mode,sections,interface_sn,update_date,enable) values ($sel_year,'$sel_seme','$Cyear','$main_data[allow_modify]','$main_data[performance_test_times]','1','$test_ratio','$rule','$main_data[score_mode]','$main_data[sections]','$main_data[interface_sn]',now(),'1')";
 	$CONN->Execute($sql_insert) or trigger_error("SQL語法錯誤： $sql_insert", E_USER_ERROR);
 
-	return mysql_insert_id();
+	return mysqli_insert_id($conID);
 }
 
 

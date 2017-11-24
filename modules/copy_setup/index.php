@@ -7,7 +7,7 @@ sfs_check();
 
 $act=$_REQUEST[act];
 $err=$_GET[err];
-$sel_year=(empty($_REQUEST[sel_year]))?curr_year():$_REQUEST[sel_year]; //目前學年
+$sel_year=(empty($_REQUEST['sel_year']))?curr_year():$_REQUEST['sel_year']; //目前學年
 $sel_seme=(empty($_REQUEST[sel_seme]))?curr_seme():$_REQUEST[sel_seme]; //目前學期
 
 //主要內容

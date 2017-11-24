@@ -13,7 +13,7 @@ if ($year_seme) {
 	$sel_year=intval(substr($year_seme,0,3));
 	$sel_seme=substr($year_seme,3,1);
 } else {
-	$sel_year=(empty($_REQUEST[sel_year]))?curr_year():$_REQUEST[sel_year];
+	$sel_year=(empty($_REQUEST['sel_year']))?curr_year():$_REQUEST['sel_year'];
 	$sel_seme=(empty($_REQUEST[sel_seme]))?curr_seme():$_REQUEST[sel_seme];
 }
 $seme_year_seme=sprintf("%03d",$sel_year).$sel_seme;

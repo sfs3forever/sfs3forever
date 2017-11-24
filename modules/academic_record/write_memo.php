@@ -43,7 +43,7 @@ if($_POST[act]=="存檔"){
 	
 	$sss_id_arr = explode(",",$_POST[temp_sss_id]);
 	$ss_id_arr = explode(",",$_POST[temp_ss_id]);
-	$seme_year_seme = sprintf("%03d%d",$_POST[sel_year],$_POST[sel_seme]);
+	$seme_year_seme = sprintf("%03d%d",$_POST['sel_year'],$_POST['sel_seme']);
 	reset($sss_id_arr);
 	while(list($id,$val) = each($sss_id_arr)){
 		if($ss_id_array[$ss_id_arr[$id]])

@@ -188,7 +188,7 @@ function &get_all_setup($setup_id="",$sel_year="",$sel_seme="",$Cyear=""){
 	$sql_select = "select * from score_setup $where";
 	//die($sql_select);
 	$recordSet=$CONN->Execute($sql_select) or trigger_error("SQL語法錯誤： $sql_select", E_USER_ERROR);
-	$main = $recordSet->FetchRow();
+	$main = $recordSet->FetchRowAssoc();
 	return $main;
 }
 

@@ -45,7 +45,7 @@ foot();
 
 //新增一筆學校填報相關資料
 function add_school_sign_data($ofsn,$teacher_sn,$col,$schfi_sn=0){
-	global $CONN;
+	global $CONN,$conID;
 	if(empty($teacher_sn))return false;
 	if(!empty($schfi_sn)){
 		$str="update form_fill_in set fill_time=now() where schfi_sn=$schfi_sn";
@@ -55,7 +55,7 @@ function add_school_sign_data($ofsn,$teacher_sn,$col,$schfi_sn=0){
 	
 	$CONN->Execute($str) or user_error("填報失敗！<br>$str", 256);
 	
-	$mysql_insert_id=(!empty($schfi_sn))?$schfi_sn:mysql_insert_id();
+	$mysql_insert_id=(!empty($schfi_sn))?$schfi_sn:mysqli_insert_id($conID);
 	$mode=(!empty($schfi_sn))?"update":"add";
 	$result=add_school_ans_data($mysql_insert_id,$teacher_sn,$ofsn,$col,$mode);
 

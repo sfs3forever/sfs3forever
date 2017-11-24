@@ -24,11 +24,12 @@ function Recordset($SQL) {
 }
 
 function Execute($SQL) {
+	global $conID;
 	if (($this->stdpass != "") && ($this->stduser != "") && ($this->server != "")) { 
 	$link = @mysql_connect($this->server, $this->stduser, $this->stdpass)  or  $this->DBDie("無法連接資料庫,請檢查連線資訊!<BR>");
 	}
 	$rs = mysql_db_query($this->db, $SQL) or $this->DBDie("資料庫名稱或指令敘述錯誤!<BR> $SQL ");
-	return mysql_insert_id();
+	return mysqli_insert_id($conID);
 	if (($this->stdpass != "") && ($this->stduser != "") && ($this->server != "")) {
 		$this->DBClose($link); 
 	}

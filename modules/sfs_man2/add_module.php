@@ -166,13 +166,13 @@ function &addForm($dir,$id_kind){
 
 //新增儲存模組設定資訊
 function add_prob(){
-	global $CONN,$MODULE_DIR,$UPLOAD_PATH;
+	global $CONN,$MODULE_DIR,$UPLOAD_PATH,$conID;
 	//取得該分類下最後一個排序數字
 	$sort=get_sort($_POST[of_group]);
 	if (!$_POST['isopen']) $_POST['isopen'] =0 ;
 	$sql_insert = "insert into sfs_module (showname,dirname,sort,isopen,islive,of_group,ver,author,creat_date,kind) values ('$_POST[showname]','$_POST[dirname]','$sort','$_POST[isopen]','$_POST[islive]','$_POST[of_group]','$_POST[ver]','$_POST[author]','$_POST[creat_date]','模組')";
 	$CONN->Execute($sql_insert) or user_error("新增失敗！<br>$sql_insert",256);
-	$msn=mysql_insert_id();
+	$msn=mysqli_insert_id($conID);
 
 	//儲存權限部分
 	if(!empty($_POST[id_kind])){

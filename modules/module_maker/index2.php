@@ -144,13 +144,13 @@ function &module_maker_mainForm($mms="",$mode){
 
 //新增
 function module_maker_add($data){
-	global $CONN;
+	global $CONN,$conID;
 	if(empty($data[showname]))$data[showname]="新模組";
 	if(empty($data[dirname]))$data[dirname]="new_module";
 	
 	$sql_insert = "insert into module_maker (mms,author,email,creat_date,lable,showname,dirname,index_page,description,install,news,readme) values ('$data[mms]','$data[author]','$data[email]','$data[creat_date]','$data[lable]','$data[showname]','$data[dirname]','$data[index_page]','$data[description]','$data[install]','$data[news]','$data[readme]')";
 	$CONN->Execute($sql_insert) or user_error("新增失敗！<br>$sql_insert",256);
-	$mms=mysql_insert_id();
+	$mms=mysqli_insert_id($conID);
 	return $mms;
 }
 

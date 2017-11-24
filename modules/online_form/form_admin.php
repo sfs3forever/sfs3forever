@@ -322,7 +322,7 @@ function save_modify($ofsn,$teacher_sn,$newForm){
 
 //新增或更新一個欄位，把欄位設定寫入資料庫
 function add_col2db($ofsn,$title,$text,$dataType,$value,$chk,$function,$sort,$col_sn=0){
-	global $CONN;
+	global $CONN,$conID;
 	if(!empty($col_sn)){
 		$str="update form_col set ofsn=$ofsn,col_title='$title',col_text='$text',col_dataType='$dataType',col_value='$value',col_chk='$chk',col_function='$function',col_sort=$sort where col_sn=$col_sn";
 	}else{
@@ -335,7 +335,7 @@ function add_col2db($ofsn,$title,$text,$dataType,$value,$chk,$function,$sort,$co
 	$recordSet=$CONN->Execute($str) or die($str);
 
 	if(!empty($recordSet)){
-		$ID=(!empty($col_sn))?$col_sn:mysql_insert_id();
+		$ID=(!empty($col_sn))?$col_sn:mysqli_insert_id($conID);
 	}else{
 		trigger_error($str, E_USER_ERROR);
 	}
@@ -370,10 +370,10 @@ function del_form($ofsn){
 
 //先開一個檔
 function addnew($teacher_sn){
-	global $CONN,$today;
+	global $CONN,$today,$conID;
 	$sql_insert="insert into form_all (of_title,of_start_date,of_dead_line,of_text,teacher_sn,of_date,enable) values('無主題',now(),now(),'',$teacher_sn,now(),'0')";
 	$CONN->Execute($sql_insert) or user_error($sql_insert,256);
-	$ofsn=mysql_insert_id();
+	$ofsn=mysqli_insert_id($conID);
 	return $ofsn;
 }
 
@@ -412,7 +412,7 @@ function &view_form_result($ofsn=0,$mode=""){
 
 	$f=get_form_data($ofsn);
 	$ok=get_ok_count($ofsn);
-	$sel_year=(empty($_REQUEST[sel_year]))?curr_year():$_REQUEST[sel_year];
+	$sel_year=(empty($_REQUEST['sel_year']))?curr_year():$_REQUEST['sel_year'];
 	$sel_seme=(empty($_REQUEST[sel_seme]))?curr_seme():$_REQUEST[sel_seme];
 
 

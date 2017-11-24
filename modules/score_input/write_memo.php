@@ -17,7 +17,7 @@ sfs_check();
 if($_POST[act]=="存檔"){
 	$sss_id_arr = explode(",",$_POST[temp_sss_id]);
 	$stud_id_arr = explode(",",$_POST[temp_stud_id]);
-	$seme_year_seme = sprintf("%03d%d",$_POST[sel_year],$_POST[sel_seme]);
+	$seme_year_seme = sprintf("%03d%d",$_POST['sel_year'],$_POST['sel_seme']);
 	//學習描述評語
 	while(list($id,$val) = each($sss_id_arr)){
 		if ($val<>''){
@@ -143,7 +143,7 @@ $top_str = "<form action=\"$_SERVER[PHP_SELF]\" name=\"myform\" method=\"post\" 
 if ($teacher_course) {
 	//經由快貼傳入文字陣列===================================================
 	if ($_POST['thepaste']) {
-		$seme_year_seme = sprintf("%03d%d",$_POST[sel_year],$_POST[sel_seme]);
+		$seme_year_seme = sprintf("%03d%d",$_POST['sel_year'],$_POST['sel_seme']);
 	  $data_arr=explode("\n",$_POST['paste_arr']);
 	  $ss_id=$_POST['ss_id'];
 	  foreach($data_arr as $a) {
