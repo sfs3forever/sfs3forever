@@ -78,7 +78,7 @@ if ($is_standalone != "1")
 
                         //查詢單位版區
                         $query = "select bk_id,board_name from board_kind order by bk_id";
-                        $result = mysql_query($query);
+                        $result = mysqli_query($conID, $query);
                         while ($row = mysqli_fetch_row($result))
                             $board_kind_p [$row[0]] = $row[1];
 

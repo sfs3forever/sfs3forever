@@ -33,7 +33,7 @@ function get_teacher_name_by_id($teach_id){
 function get_teacher_email_by_id($teach_id){
 	$MYEMAIL="";
 	$query="select b.email,b.email2,b.email3 from teacher_base a,teacher_connect b where a.teacher_sn=b.teacher_sn and a.teach_id='$teach_id'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	list($email,$email2,$email3)=mysqli_fetch_row($result);
 	$MYEMAIL=($email=="")?$email2:$email;
 	if ($MYEMAIL=="") $MYEMAIL=$email3;
@@ -61,7 +61,7 @@ function get_name_state($teach_id)
 {
  mysql_query("SET NAMES 'utf8'");
  $query="select name,state from sc_msn_online where teach_id='".$teach_id."'";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  list($N[0],$N[1]) = mysqli_fetch_row($result);
  return $N;
 }
@@ -84,7 +84,7 @@ function delete_file($idnumber,$to_id) {
      } // end unlink file
      //?芷??閮?
      $query="delete from sc_msn_file where idnumber='".$idnumber."'";
-     mysql_query($query);
+     mysqli_query($conID, $query);
     }// end if mysql_num_rows
 } // end function
 
@@ -94,7 +94,7 @@ function delete_onefile($filename) {
 	global $download_path;
     unlink($download_path.$filename);
      $query="delete from sc_msn_file where filename='".$filename."'";
-     mysql_query($query);
+     mysqli_query($conID, $query);
 } // end function
 
 

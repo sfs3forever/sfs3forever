@@ -10,7 +10,7 @@ echo "<tr><td bgcolor=#8080FF width=20% align=center><strong>分類號</strong><
 echo "<td bgcolor=#8080FF width=60% align=center><strong>圖書分類</strong></td>";
 echo "<td bgcolor=#8080FF width=20% align=center><strong>目前<BR>借出冊數</strong></td></tr>";
 $query = " select * from bookch1 order by bookch1_id ";
-$result= mysql_query($query,$conID);
+$result= mysqli_query($conID,$query);
 $i=0;
 $tol=0;
 while ($row = mysql_fetch_array($result)){

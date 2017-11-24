@@ -65,7 +65,7 @@ $feedback_deadline=($feedback_deadline==0)?60:$feedback_deadline;
 if ($_POST['mode']=='save') {
  foreach ($_POST['feedback'] as $sn=>$feedback) {
   $query="update stud_service_detail set feedback='$feedback' where sn='$sn' and student_sn='".$_SESSION['session_tea_sn']."'";
-  if (mysql_query($query)) {
+  if (mysqli_query($conID, $query)) {
    $SAVE_INFO="己於".date("Y-m-d H:i:s")."儲存完畢!";
   }else{
    echo "Error! Query=$query";
@@ -95,7 +95,7 @@ if ($_POST['mode']=='save') {
  //列出該生該學期所有服務學習資料 
  if ($c_curr_seme!="") {
   $query="select  a.*,b.sn as detail_sn,b.minutes,b.feedback,c.seme_class from stud_service a, stud_service_detail b,stud_seme c where a.sn=b.item_sn and a.year_seme='$c_curr_seme' and b.student_sn='".$_SESSION['session_tea_sn']."' and c.seme_year_seme='$c_curr_seme' and c.student_sn=b.student_sn";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   if (mysql_num_rows($res)==0) {
    echo "本學期你沒有任何服務記錄!!";
    exit();

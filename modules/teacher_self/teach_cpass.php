@@ -28,7 +28,7 @@ print_menu($teach_menu_p);
 <?php
 if ($key =="更改密碼") {
 	$query = "update teacher_base set login_pass ='$login_pass' where teacher_sn ='{$_SESSION['session_tea_sn']}' ";
-	mysql_query($query,$conID);
+	mysqli_query($conID,$query);
 	echo "<tr><td class=title_mbody >密碼更改成功</td></tr>";
 	echo "<tr><td>您的新密碼: <font color=red>$login_pass</font></td></tr>";
 }

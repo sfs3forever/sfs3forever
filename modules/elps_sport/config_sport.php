@@ -295,7 +295,7 @@ function checkip($rip) {
 for ($i=0;$i<count($allowIP);$i++) {
 	$AIP=split("\.",$allowIP[$i]);
 if ($rip[0]==$AIP[0] && $rip[1]==$AIP[1] &&  $rip[2]==$AIP[2] ) {
-	$AIPB=split("-",$AIP[3]);
+	$AIPB=explode("-",$AIP[3]);
 	for ($j=$AIPB[0];$j<=$AIPB[1];$j++) {
 		if ($j==$rip[3]) {$login='on';}
 		}

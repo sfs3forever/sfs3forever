@@ -157,7 +157,7 @@ if ($teacher_course) {
 	   
 	   if ($stud_sss_id) {
 			$query = "update stud_seme_score set ss_score_memo = '$score_memo',teacher_sn='$_SEESION[session_tea_sn]' where sss_id='$stud_sss_id'";
-	    mysql_query($query);
+	    mysqli_query($conID, $query);
 	   } // end if $stud_sss_id
 	  
 	  } // end foreach	

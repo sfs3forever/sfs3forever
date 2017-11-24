@@ -2,7 +2,7 @@
 //取得評審資料
 function get_judge_user($tsn,$teacher_sn) {
   $query="select a.name,b.* from teacher_base a,contest_judge_user b where a.teacher_sn=b.teacher_sn and a.teacher_sn='$teacher_sn' and b.tsn='$tsn'";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   
   return mysql_fetch_array($res,1);	
 
@@ -12,7 +12,7 @@ function get_judge_user($tsn,$teacher_sn) {
 function judge_login($active,$INFO) {
  global $PHP_CONTEST;
  $query="select b.* from contest_judge_user a,contest_setup b where a.tsn=b.tsn and a.teacher_sn='".$_SESSION['session_tea_sn']."' and b.open_judge=1";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  if (mysql_num_rows($result)==0) {
   echo "抱歉, 未邀請您替任何競賽評分!";
   exit();
@@ -80,7 +80,7 @@ function list_judge_user($TSN) {
  	 		<tr>
  	 <?php
  	  $query="select a.teacher_sn,b.name from contest_judge_user a,teacher_base b where a.teacher_sn=b.teacher_sn and a.tsn='$TSN'";
- 	  $res=mysql_query($query);
+ 	  $res=mysqli_query($conID, $query);
  	  $i=0;
  	  while ($row=mysql_fetch_array($res,1)) {
  	  $i++;
@@ -105,7 +105,7 @@ function list_judge_user($TSN) {
 //取得評語
 function get_prize_memo($tsn,$student_sn) {
  $query="select prize_memo from contest_score_record2 where tsn='$tsn' and student_sn='$student_sn'";
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
  $D="";  
  while ($row=mysql_fetch_array($res,1)) {
    $D.=($D=='')?$row['prize_memo']:"<br>".$row['prize_memo'];

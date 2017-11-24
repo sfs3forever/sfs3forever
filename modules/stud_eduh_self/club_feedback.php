@@ -45,7 +45,7 @@ $stmt->execute();
 $stmt->close();
 //mysqli
 	 
-	 //if (mysql_query($query)) {
+	 //if (mysqli_query($conID, $query)) {
 	 if ($mysqliconn->affected_rows==1){	 
 			 $INFO="資料己於 ".date('Y-m-d H:i:s')."儲存完畢!";
      } else {

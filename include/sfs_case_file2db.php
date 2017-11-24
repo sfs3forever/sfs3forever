@@ -5,7 +5,7 @@
 
 //上傳檔案到檔案資料庫中
 function uploadfile($userfile,$userfile_type,$userfile_size,$userfile_name,$description,$eduer_unit_sn,$category_sn,$col_name,$col_sn,$unit_sn,$enable){
-	global $CONN,$tmp_path;
+	global $CONN,$tmp_path,$conID;
 
 	// 確定連線成立
 	if (!$CONN) user_error("資料庫連線不存在！請檢查相關設定！",256);
@@ -15,7 +15,7 @@ function uploadfile($userfile,$userfile_type,$userfile_size,$userfile_name,$desc
 		$data = Base64_Encode(addslashes(fread(fopen($tmp_path.'/'.basename($userfile), $mode), filesize($userfile))));
 		$str="INSERT INTO file_db (eduer_unit_sn,filename,main_data,description,type,size,date,category_sn,col_name,col_sn,unit_sn,enable) VALUES ('$eduer_unit_sn','$userfile_name','$data','$description','$userfile_type','$userfile_size',now(),'$category_sn','$col_name','$col_sn','$unit_sn','$enable')";
 		$CONN->Execute($str) or trigger_error($str, E_USER_ERROR);
-		$fsn=mysql_insert_id();
+		$fsn=mysqli_insert_id($conID);
 	}
 	return $fsn;
 }

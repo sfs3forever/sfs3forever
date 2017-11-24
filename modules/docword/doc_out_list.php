@@ -54,8 +54,8 @@ $stmt->close();
 ///mysqli
 
 /*
-$result = mysql_query($query)or die($query);
-$result = mysql_query($query);
+$result = mysqli_query($conID, $query)or die($query);
+$result = mysqli_query($conID, $query);
 $row = mysqli_fetch_row($result);
 $num_record = $row[0];
 */
@@ -183,7 +183,7 @@ $stmt->bind_result($doc1_id,$doc1_year_limit,$doc1_kind,$doc1_date,$doc1_date_si
 ///mysqli
 
 
-//$result = mysql_query($query);
+//$result = mysqli_query($conID, $query);
 //while ($row = mysql_fetch_array($result)) {
 while ($stmt->fetch()) {
 	/*

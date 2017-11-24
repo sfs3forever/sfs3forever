@@ -90,7 +90,7 @@ if($order=='')
 if($stud_clnu!=''){
 	$stud_clnu=intval($stud_clnu);
 	$query = "select stud_id from stud_base where curr_class_num ='$stud_clnu' and  stud_study_cond='0'";
-	$result	= mysql_query($query);
+	$result	= mysqli_query($conID, $query);
 	$row = mysql_fetch_array($result);
 	$stud_id=$row["stud_id"];
 	
@@ -284,7 +284,7 @@ if($order=='')
 if($stud_clnu!=''){
 	$stud_clnu=intval($stud_clnu);
 	$query = "select stud_id from stud_base where curr_class_num ='$stud_clnu' and  stud_study_cond='0'";
-	$result	= mysql_query($query);
+	$result	= mysqli_query($conID, $query);
 	$row = mysql_fetch_array($result);
 	$stud_id=$row["stud_id"];
 	

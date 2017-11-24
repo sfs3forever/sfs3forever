@@ -40,7 +40,7 @@ function listitembank($PAGE) {
    	 $PAGEALL=ceil($ALL/$PHP_PAGE); //無條件進位
    	 $st=($PAGE-1)*$PHP_PAGE;
    	 $query="select * from contest_itembank limit ".$st.",".$PHP_PAGE;
-   	 $result=mysql_query($query);
+   	 $result=mysqli_query($conID, $query);
 
      if (mysql_num_rows($result)) {
      
@@ -89,7 +89,7 @@ function listitembank($PAGE) {
 
 function get_item($ibsn) {
  $query="select * from contest_itembank where ibsn='$ibsn'";
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
  
  return mysql_fetch_array($res);
  

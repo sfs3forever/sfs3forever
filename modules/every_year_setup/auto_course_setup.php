@@ -916,7 +916,7 @@ function &make_preview_tbl($sel_year,$sel_seme){
 
 //儲存預設科目設定
 function save_same_course($sel_year,$sel_seme,$set_class_id,$set_ctsn){
-	global $CONN,$weekN;
+	global $CONN,$weekN,$conID;
 	
 	for($i=0;$i<sizeof($set_class_id);$i++){
 		$class_id=$set_class_id[$i];
@@ -926,7 +926,7 @@ function save_same_course($sel_year,$sel_seme,$set_class_id,$set_ctsn){
 		$sql_insert = "insert into course_tmp (year,semester,class_id,teacher_sn,class_year,class_name,ss_id) values 
 	($sel_year,'$sel_seme','$class_id','$ctsn_data[teacher_sn]','$c[3]','$c[4]','$ctsn_data[ss_id]')";
 		$CONN->Execute($sql_insert)	or trigger_error("SQL語法執行錯誤： $sql_insert", E_USER_ERROR);
-		$ctmp_sn[]=mysql_insert_id();
+		$ctmp_sn[]=mysqli_insert_id($conID);
 	}
 	return $ctmp_sn;
 }

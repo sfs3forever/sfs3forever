@@ -34,7 +34,7 @@ $c_curr_seme=sprintf('%03d%1d',$curr_year,$curr_seme);
 			//依年級列出社團一覽表 , 檢查 club_class值
       foreach ($class_year_array as $K=>$class_year_name) {
 			  $query="select * from stud_club_base where year_seme='$c_curr_seme' and club_class='$K' order by club_name";
-			  $result=mysql_query($query);
+			  $result=mysqli_query($conID, $query);
 			  //該年級有社團再列出
 			  if (mysql_num_rows($result)) {
 			?>

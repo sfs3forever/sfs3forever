@@ -49,7 +49,7 @@ $ibsn="i".date("y").date("m").date("d").date("H").date("i").date("s");
 	 $a=floor(rand(10,99));
 	 $ibsn_test=$ibsn.$a;
 	 $query="select count(*) as num from contest_itembank where ibsn='".$ibsn_test."'";
-	 $res=mysql_query($query);
+	 $res=mysqli_query($conID, $query);
 	 list($exist)=mysqli_fetch_row($res);
 	} while ($exist>0);
 
@@ -57,7 +57,7 @@ $ibsn="i".date("y").date("m").date("d").date("H").date("i").date("s");
 	
 //存入
 	$query="insert into contest_itembank (ibsn,question,ans,ans_url) values ('$ibsn','$question','$ans','$ans_url')";
-  if (mysql_query($query)) {
+  if (mysqli_query($conID, $query)) {
   	//計算要跳要的頁碼
   	list($ALL)=mysqli_fetch_row(mysql_query("select count(*) as num from itembank"));
    	$_POST['option2']=ceil($ALL/$PHP_PAGE); //無條件進位
@@ -86,7 +86,7 @@ if ($_POST['act']=='pasting') {
 	 		$a=floor(rand(10,99));
 	 		$ibsn_test=$ibsn.$a;
 	 		$query="select count(*) as num from contest_itembank where ibsn='".$ibsn_test."'";
-	 		$res=mysql_query($query);
+	 		$res=mysqli_query($conID, $query);
 	 		list($exist)=mysqli_fetch_row($res);
 		} while ($exist>0);
 
@@ -94,7 +94,7 @@ if ($_POST['act']=='pasting') {
 	
 		//存入
 		$query="insert into contest_itembank (ibsn,question,ans,ans_url) values ('$ibsn','$question','$ans','$ans_url')";
-  	mysql_query($query);
+  	mysqli_query($conID, $query);
     } // end if question!='' and $ans!=''
   } // end foreach
 
@@ -110,10 +110,10 @@ if ($_POST['act']=='pasting') {
 if ($_POST['act']=='updating') {
   $ibsn=$_POST['option1'];
 	$query="update contest_itembank set question='".$_POST['question']."',ans='".$_POST['ans']."',ans_url='".$_POST['ans_url']."' where ibsn='".$ibsn."'";
-  if (mysql_query($query)) {
+  if (mysqli_query($conID, $query)) {
   	//更新題本中的解答
   	$query="update contest_ibgroup set question='".$_POST['question']."',ans='".$_POST['ans']."',ans_url='".$_POST['ans_url']."' where ibsn='".$ibsn."'";
-  	mysql_query($query);
+  	mysqli_query($conID, $query);
    $_POST['act']='';
   }else{
    echo "Error! query=".$query;
@@ -125,7 +125,7 @@ if ($_POST['act']=='updating') {
 if ($_POST['act']=='delete') {
   $ibsn=$_POST['option1'];
 	$query="delete from contest_itembank where ibsn='".$ibsn."'";
-  if (mysql_query($query)) {
+  if (mysqli_query($conID, $query)) {
   	mysql_query("optimize table contest_itembank");
     mysql_query("alter table contest_itembank drop id");
     mysql_query("alter table contest_itembank add id int(5) auto_increment not null primary key first");
@@ -140,7 +140,7 @@ if ($_POST['act']=='delete') {
 if ($_POST['act']=='delete_tag') {
   foreach ($_POST['tag_it'] as $ibsn) { 
 	 $query="delete from contest_itembank where ibsn='".$ibsn."'";
-   mysql_query($query);
+   mysqli_query($conID, $query);
   }
   	mysql_query("optimize table contest_itembank");
     mysql_query("alter table contest_itembank drop id");

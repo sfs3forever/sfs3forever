@@ -15,14 +15,14 @@ if (!isset($_SESSION['MSN_LOGIN_ID'])) {
 mysql_query("SET NAMES 'utf8'");
 
 $query="select filename_r,file_download from sc_msn_file where filename='".$file_name."'";
-$result=mysql_query($query);
+$result=mysqli_query($conID, $query);
 
 if (mysql_num_rows($result)) {
 list($filename_r,$file_download)=mysqli_fetch_row($result);
 //$filename_r=addslashes($filename_r);
 $file_download+=1;
 $query="update sc_msn_file set file_download='".$file_download."' where filename='".$file_name."'";
-mysql_query($query);
+mysqli_query($conID, $query);
 }else{
  exit();
 }

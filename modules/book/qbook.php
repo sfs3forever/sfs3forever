@@ -19,7 +19,7 @@ if ($qbook_name != "") $topage=0;
 if ($bookch1_id =="")
 	$bookch1_id = "000";
 $query = "select * from bookch1 order by bookch1_id";
-$result = mysql_query($query,$conID);
+$result = mysqli_query($conID,$query);
 //分類號選項
 $tt=""; 
 while ($row = mysql_fetch_array ($result)){
@@ -43,7 +43,7 @@ if ($qbook_name != "")
 else
 	$query .= " where bookch1_id = '$bookch1_id'"; 
 
-$result = mysql_query($query,$conID);
+$result = mysqli_query($conID,$query);
 $row = mysql_fetch_array($result);
 $cc = $row["cc"];
 */
@@ -115,7 +115,7 @@ $stmt->execute();
 $stmt->bind_result($bookch1_name,$bookch1_id,$book_id,$book_name,$book_num,$book_author,$book_maker,$book_myear,$book_bind,$book_dollar,$book_price,$book_gid,$book_content,$book_isborrow,$book_isbn,$book_isout,$book_buy_date,$create_time,$update_time);
 
 ///mysqli
-//$result = mysql_query($query,$conID);
+//$result = mysqli_query($conID,$query);
 
 
 $stopi=0;

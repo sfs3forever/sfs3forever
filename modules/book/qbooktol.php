@@ -11,7 +11,7 @@ echo "<td bgcolor=#8080FF width=60% align=center><strong>圖書分類</strong></
 echo "<td bgcolor=#8080FF width=20% align=center><strong>數量(冊)</strong></td></tr>";
 //$query = " select * from bookch1 order by bookch1_id ";
 $query = "SELECT a.bookch1_id, a.bookch1_name, COUNT(*) AS cc  FROM bookch1 a, book b WHERE a.bookch1_id=b.bookch1_id GROUP BY b.bookch1_id";
-$result= mysql_query($query,$conID);
+$result= mysqli_query($conID,$query);
 $i=0;
 $tol=0;
 while ($row = mysql_fetch_array($result)){

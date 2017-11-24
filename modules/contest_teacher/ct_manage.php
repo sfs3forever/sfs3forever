@@ -79,7 +79,7 @@ if (@$_POST['act']=="inserting") {
 	@$open_review=$_POST['open_review'];
 	
   $query="insert into contest_setup (year_seme,title,qtext,sttime,endtime,memo,active,open_judge,open_review,password,delete_enable,type_id_1,type_id_2) values ('$c_curr_seme','$title','$qtext','$sttime','$endtime','$memo','$active','$open_judge','$open_review','$password','$delete_enable','$type_id_1','$type_id_2')";
-  if (mysql_query($query)) {
+  if (mysqli_query($conID, $query)) {
  
    //取回最後的 auto_increat 的ID值
   list($tsn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
@@ -92,7 +92,7 @@ if (@$_POST['act']=="inserting") {
                $i++;
                $sco_sn="s".date("y").date("m").date("d").date("H").date("i").date("s").$i;
                $query="insert into contest_score_setup (tsn,sco_sn,sco_text) values ('$tsn','$sco_sn','$sco_text')";
-               mysql_query($query);
+               mysqli_query($conID, $query);
               }
          } // end if $active
          if ($active==4) {
@@ -101,7 +101,7 @@ if (@$_POST['act']=="inserting") {
                $i++;
                $sco_sn="s".date("y").date("m").date("d").date("H").date("i").date("s").$i;
                $query="insert into contest_score_setup (tsn,sco_sn,sco_text) values ('$tsn','$sco_sn','$sco_text')";
-               mysql_query($query);
+               mysqli_query($conID, $query);
               }
          } // end if $active
          //Scratch動畫預設評分項目
@@ -111,7 +111,7 @@ if (@$_POST['act']=="inserting") {
                $i++;
                $sco_sn="s".date("y").date("m").date("d").date("H").date("i").date("s").$i;
                $query="insert into contest_score_setup (tsn,sco_sn,sco_text) values ('$tsn','$sco_sn','$sco_text')";
-               mysql_query($query);
+               mysqli_query($conID, $query);
               }
 
          } // end if $active
@@ -133,7 +133,7 @@ if (@$_POST['act']=="delete") {
   if ($TEST['active']==1) {
 	//刪除查資料比賽內的題目
  $query="delete from contest_ibgroup where tsn='".$_POST['option1']."'";
-  mysql_query($query);
+  mysqli_query($conID, $query);
   //更新id 編碼
   mysql_query("optimize test_ibgroup");
   mysql_query("alter table test_ibgroup id");
@@ -141,7 +141,7 @@ if (@$_POST['act']=="delete") {
  
  //刪除作答記錄 contest_record1
   $query="delete from contest_record1 where tsn='".$_POST['option1']."'";
-  mysql_query($query);
+  mysqli_query($conID, $query);
   //更新id 編碼
   mysql_query("optimize contest_record1");
   mysql_query("alter table contest_record1 id");
@@ -151,7 +151,7 @@ if (@$_POST['act']=="delete") {
  	//作品上傳類
  	//contest_record2 , filename己上傳的檔案
  	$query="select filename from contest_record2 where tsn='".$_POST['option1']."'";
- 	$res=mysql_query($query);
+ 	$res=mysqli_query($conID, $query);
  	while ($F=mysql_fetch_array($res,1)) {
  	   	  unlink ($UPLOAD_P[$TEST['active']].$F['filename']);
   	   	if ($TEST['active']==2) {
@@ -165,7 +165,7 @@ if (@$_POST['act']=="delete") {
  	//細項評分記錄
   //contest_score_user ,先select contest_score_setup裡tsn=$_POST['option1']的sco_sn
 	  $query="select sco_sn from contest_score_setup where tsn='".$_POST['option1']."'";
-	  $res=mysql_query($query);
+	  $res=mysqli_query($conID, $query);
  	  while ($row=mysql_fetch_array($res,1)) {
  	   $sql_del="delete from contest_score_user where sco_sn='".$row['sco_sn']."'";
  	   mysql_query($sql_del);
@@ -184,7 +184,7 @@ if (@$_POST['act']=="delete") {
    mysql_query("delete from contest_judge_user where tsn='".$_POST['option1']."'");  
  //刪除競賽記錄
  $query="delete from contest_setup where tsn='".$_POST['option1']."'";
- mysql_query($query);
+ mysqli_query($conID, $query);
  $_POST['act']='';
   
 } // end if $_POST['act']=='delete'
@@ -215,7 +215,7 @@ if (@$_POST['act']=='updating' or @$_POST['act']=='add_score_setup' or @$_POST['
 	
   $query="update contest_setup set title='$title',qtext='$qtext',sttime='$sttime',endtime='$endtime',memo='$memo',active='$active',open_judge='$open_judge',open_review='$open_review',password='$password',delete_enable='$delete_enable',type_id_1='$type_id_1',type_id_2='$type_id_2' where tsn='".$_POST['option1']."'";
 
-  if (mysql_query($query)) {
+  if (mysqli_query($conID, $query)) {
   	//若有新增評分細目
   	switch ($_POST['act']) {
   	 case 'add_score_setup':
@@ -225,19 +225,19 @@ if (@$_POST['act']=='updating' or @$_POST['act']=='add_score_setup' or @$_POST['
 	      $a=floor(rand(10,99));
 	      $sco_sn_test=$sco_sn.$a;
 	      $query="select count(*) as num from contest_score_setup where sco_sn='".$sco_sn_test."'";
-	      $res=mysql_query($query);
+	      $res=mysqli_query($conID, $query);
 	      list($exist)=mysqli_fetch_row($res);
      	} while ($exist>0);
 	     $sco_sn=$sco_sn_test;
        //資料內容
  	     $sco_text=$_POST['sco_text'];
   	   $query="insert into contest_score_setup (tsn,sco_sn,sco_text) values ('".$_POST['option1']."','$sco_sn','$sco_text')";
-  	   mysql_query($query); 
+  	   mysqli_query($conID, $query); 
 			 $_POST['act']="update";
   	 break;
   	 case 'del_score_setup':
 			 $query="delete from contest_score_setup where sco_sn='".$_POST['option2']."'";
-       mysql_query($query);
+       mysqli_query($conID, $query);
        //更新id 編碼
 		   mysql_query("optimize contest_score_setup");
   		 mysql_query("alter table contest_score_setup id");
@@ -271,7 +271,7 @@ if (@$_POST['act']=='updating' or @$_POST['act']=='add_score_setup' or @$_POST['
   //刪除1題
   if  ($_POST['act']=='search_delete_one') {
     $query="delete from contest_ibgroup where tsn='".$_POST['option1']."' and ibsn='".$_POST['option2']."'";
-    mysql_query($query);
+    mysqli_query($conID, $query);
     $_POST['act']="search";
   }
     
@@ -279,7 +279,7 @@ if (@$_POST['act']=='updating' or @$_POST['act']=='add_score_setup' or @$_POST['
   if ($_POST['act']=='search_delete_select') {
     foreach ($_POST['select_ibgroup'] as $ibsn) {
     	$query="delete from contest_ibgroup where tsn='".$_POST['option1']."' and ibsn='$ibsn'";
-    	mysql_query($query);
+    	mysqli_query($conID, $query);
     } // end foreach
     $_POST['act']="search";
   }
@@ -289,14 +289,14 @@ if (@$_POST['act']=='updating' or @$_POST['act']=='add_score_setup' or @$_POST['
   	foreach ($_POST['select_ibgroup'] as $ibsn) {
   	  //寫入題目代碼
   		$query="select * from contest_itembank where ibsn='$ibsn'";
-  		$res=mysql_query($query);
+  		$res=mysqli_query($conID, $query);
   		$row=mysql_fetch_array($res);
   		$query="insert into contest_ibgroup (tsn,ibsn,question,ans,ans_url) values ('".$_POST['option1']."','$ibsn','".SafeAddSlashes($row['question'])."','".SafeAddSlashes($row['ans'])."','".$row['ans_url']."')";
-  		mysql_query($query);
+  		mysqli_query($conID, $query);
  		} // end foreach
  		//寫入出題序
  		$query="select ibsn from contest_ibgroup where tsn='".$_POST['option1']."'";
- 		$result=mysql_query($query);
+ 		$result=mysqli_query($conID, $query);
  		$tsort=0;
  		while ($row=mysqli_fetch_row($result)) {
   		list($ibsn)=$row;
@@ -310,7 +310,7 @@ if (@$_POST['act']=='updating' or @$_POST['act']=='add_score_setup' or @$_POST['
 if ($_POST['act']=='edituser_add_by_stud_id') {
  //限定本學期該學號,且正常就學中的學生, 取得 studnent_sn
  $query="select stud_name,seme_class,seme_num,a.student_sn from stud_base a,stud_seme b where a.stud_study_cond in (0,15) and b.seme_year_seme='$c_curr_seme' and a.student_sn=b.student_sn and a.stud_id='".$_POST['stud_id']."'";
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
  if (mysql_num_rows($res)==1) {
  	$row=mysql_fetch_array($res,1);
   //參數 傳入 $tsn 及 報名學生 array
@@ -328,7 +328,7 @@ if ($_POST['act']=='edituser_add_by_stud_id') {
 //以班級座號報名一人
 if ($_POST['act']=='edituser_add_by_classnum') {
  $query="select stud_name,seme_class,seme_num,a.student_sn from stud_base a,stud_seme b where a.stud_study_cond in (0,15) and b.seme_year_seme='$c_curr_seme' and a.student_sn=b.student_sn and b.seme_class='".substr($_POST['classnum'],0,3)."' and b.seme_num=".substr($_POST['classnum'],3,2);
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
  if (mysql_num_rows($res)==1) {
  	$row=mysql_fetch_array($res,1);
   //參數 傳入 $tsn 及 報名學生 array
@@ -348,7 +348,7 @@ if ($_POST['act']=='edituser_class_add') {
  foreach ($_POST['class_id'] as $class_id) {
 	$seme_class=sprintf("%d%02d",substr($class_id,6,2),substr($class_id,9,2));
   $query="select a.student_sn,stud_name,seme_class,seme_num from stud_seme a,stud_base b where a.student_sn=b.student_sn and a.seme_year_seme='$c_curr_seme' and a.seme_class='$seme_class' and b.stud_study_cond in (0,15)";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   while ($STUDENT=mysql_fetch_array($res,1)) {
     $INFO=contest_add_user($_POST['option1'],$STUDENT);
     if (substr($INFO,0,4)=='報名') $i++;
@@ -390,10 +390,10 @@ if ($_POST['act']=='cleartyperec') {
   if (@$_POST['act']=="editgroup_update") {
   	//先清掉原本是此生組員的記錄
   	$query="update contest_user set ifgroup='' where tsn='".$_POST['option1']."' and ifgroup='".$_POST['option2']."'";
-  	mysql_query($query);
+  	mysqli_query($conID, $query);
    foreach ($_POST['ifgroup'] as $student_sn) {
   	$query="update contest_user set ifgroup='".$_POST['option2']."' where tsn='".$_POST['option1']."' and student_sn='".$student_sn."'";
-    mysql_query($query);
+    mysqli_query($conID, $query);
    }
    $_POST['act']='edituser';
   }
@@ -402,23 +402,23 @@ if ($_POST['act']=='cleartyperec') {
   if (@$_POST['act']=="judge_add") {
     foreach ($_POST['judge_teacher'] as $teacher_sn) {
       $query="insert into contest_judge_user (teacher_sn,tsn) values ('$teacher_sn','".$_POST['option1']."')";
-      mysql_query($query);
+      mysqli_query($conID, $query);
     }
     $_POST['act']='judge';
   }
 
   if (@$_POST['act']=="judge_del") {
       $query="delete from contest_judge_user where teacher_sn='".$_POST['option2']."' and tsn='".$_POST['option1']."'";
-      mysql_query($query);
+      mysqli_query($conID, $query);
            
       //將評分記錄也刪除
       $query="delete from contest_score_record2 where teacher_sn='".$_POST['option2']."' and tsn='".$_POST['option1']."'";
-      mysql_query($query); 
+      mysqli_query($conID, $query); 
       
     	//細項評分記錄
      	//contest_score_user ,先select contest_score_setup裡tsn=$_POST['option1']的sco_sn
 	  	$query="select sco_sn from contest_score_setup where tsn='".$_POST['option1']."'";
-	  	$res=mysql_query($query);
+	  	$res=mysqli_query($conID, $query);
  	  	while ($row=mysql_fetch_array($res,1)) {
  	   		$sql_del="delete from contest_score_user where sco_sn='".$row['sco_sn']."' and teacher_sn='".$_POST['option2']."'";
  	   		mysql_query($sql_del);
@@ -845,7 +845,7 @@ if ($_POST['act']=='edituser_class') {
  	<?php
 	//從 school_class 找出班級, 依年級
 	$query="SELECT DISTINCT c_year FROM `school_class` WHERE year ='".curr_year()."' AND semester ='".curr_seme()."' order by c_year";
-	$res_year=mysql_query($query);
+	$res_year=mysqli_query($conID, $query);
 	while ($row_year=mysql_fetch_array($res_year)) {
  	?>
  	<td>
@@ -858,7 +858,7 @@ if ($_POST['act']=='edituser_class') {
  	<?php
  	//列出每一年級的班級
  		$query="select class_id,c_year,c_name,c_kind  from `school_class` where c_year='".$row_year['c_year']."' and  year ='".curr_year()."' AND semester ='".curr_seme()."' order by class_id";
- 		$res_class=mysql_query($query);
+ 		$res_class=mysqli_query($conID, $query);
  		while($row_class=mysql_fetch_array($res_class)) {
  			$c_year=$row_class['c_year'];
  			$c_name=$row_class['c_name'];
@@ -936,7 +936,7 @@ if ($_POST['act']=='editgroup') {
   //取出名單 , 尚未被指定為組員者或為本人之組員, 且非本人
  	$query="select a.*,b.stud_id,b.stud_name,b.email_pass,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c,contest_setup d where a.student_sn=b.student_sn and a.student_sn=c.student_sn and a.tsn=d.tsn and d.year_seme=c.seme_year_seme and a.tsn='".$_POST['option1']."' and (a.ifgroup='' or a.ifgroup='".$_POST['option2']."') and a.student_sn!='".$_POST['option2']."' order by c.seme_class,c.seme_num";
   
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
     while ($row=mysql_fetch_array($result,1)) {
      
      if (chk_ifgroup($TEST,$row['student_sn'])) { //無作答記錄 , 且本身沒有組員(非組長)
@@ -1000,7 +1000,7 @@ if ($_POST['act']=='judge') {
 
    <?php
    
-   $result=mysql_query($query);
+   $result=mysqli_query($conID, $query);
    $i=0;
    while ($row=mysql_fetch_array($result,1)) {
    $i++;

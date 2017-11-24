@@ -204,7 +204,7 @@ $rs =$CONN->Execute($SQL) or user_error("讀取失敗！<br>$SQL",256) ;
 $obj_stu=$rs->GetArray();//echo $SQL;//echo "<pre>";print_r($obj_stu);
 //轉換生日顯示
 for($i=0;$i<count($obj_stu);$i++){
-	$bir=split("-",$obj_stu[$i][stud_birthday]);
+	$bir=explode("-",$obj_stu[$i][stud_birthday]);
 	$obj_stu[$i][birth]=($bir[0]-1911)."-".$bir[1]."-".$bir[2];
 	}
 //送入顯示的學生資料陣列

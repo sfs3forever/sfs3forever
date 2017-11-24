@@ -21,7 +21,7 @@ switch ($key) {
 //預設第一個版區
 if (!$bk_id) {
 	$query = "select bk_id from jboard_kind order by bk_id limit 0,1 ";
-	$result = mysql_query($query);
+	$result = mysqli_query($conID, $query);
 	$row = mysqli_fetch_row($result);
 	$bk_id = $row[0];
 }
@@ -37,7 +37,7 @@ $post_office_p[99] = "所有教師";
 $title_p = array();
 $query = "SELECT *  FROM teacher_title ";
 $query .= " where title_kind >= '$titl_kind' and enable=1 order by title_kind,teach_title_id ";
-$result = mysql_query($query,$conID)or die ($query);          
+$result = mysqli_query($conID,$query)or die ($query);          
 while ($row= mysql_fetch_array($result))
 	$title_p[$row["teach_title_id"]] = $row["title_name"];
 

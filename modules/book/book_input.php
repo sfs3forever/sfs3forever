@@ -29,7 +29,7 @@ $qbook_name = trim (stripslashes($qbook_name));
 if ($bookch1_id =="")
 	$bookch1_id = "000";
 $query = "select * from bookch1 order by bookch1_id";
-$result = mysql_query($query,$conID);
+$result = mysqli_query($conID,$query);
 //分類號選項
 $tt=""; 
 while ($row = mysql_fetch_array ($result)){
@@ -75,7 +75,7 @@ $stmt->close();
 
 ///mysqli
 
-//$result = mysql_query($query,$conID);
+//$result = mysqli_query($conID,$query);
 //$row = mysql_fetch_array($result);
 //$cc = $row["cc"];
 if ($cc % $showpage > 0 )
@@ -117,7 +117,7 @@ $stmt->bind_result($bookch1_name,$bookch1_id,$book_id,$book_name,$book_num,$book
 
 ///mysqli
 
-//$result = mysql_query($query,$conID);
+//$result = mysqli_query($conID,$query);
 $stopi=0;
 echo "<form action=\"$PHP_SELF\" method=\"post\" name=\"bookform\">";
 echo "<center><BR><table border=0 width=95% cellpadding=0 cellspacing=0  >";

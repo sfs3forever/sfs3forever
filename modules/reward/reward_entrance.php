@@ -31,15 +31,15 @@ $move_year_seme = intval(substr($work_year_seme,0,-1)).substr($work_year_seme,-1
 if ($_POST['act']=='del_reward') {
   //取得 stud_id
   $query="select stud_id from stud_base where student_sn='".$_POST['selected_student']."'";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   list($stud_id)=mysqli_fetch_row($res);
   //取得獎懲學期
   $query="select reward_year_seme from reward where reward_id='".$_POST['option1']."'";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   list($reward_year_seme)=mysqli_fetch_row($res);
   
   $query="delete from reward where reward_id='".$_POST['option1']."'";
-  mysql_query($query);
+  mysqli_query($conID, $query);
   
 	cal_rew(substr($reward_year_seme,0,strlen($reward_year_seme)-1),substr($reward_year_seme,-1),$stud_id); 
 
@@ -55,7 +55,7 @@ if ($_POST['act']=='add_reward') {
 	}
 	
   $query="select stud_id from stud_base where student_sn='".$_POST['selected_student']."'";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   list($stud_id)=mysqli_fetch_row($res);
 
   if ($stud_id=='') {

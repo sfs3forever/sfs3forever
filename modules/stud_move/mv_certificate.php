@@ -80,7 +80,7 @@ class certificate{
 		$this->mv_info=$arr[0];//轉學資料
 		unset($arr);
 
-		$aa=split("-",$this->mv_info[move_date]);
+		$aa=explode("-",$this->mv_info[move_date]);
 		$this->mv_info[C_move_date]=($aa[0]-1911).".".$aa[1].".".$aa[2];//轉學資料
 		$this->mv_info[reason2]=$this->mv_info[reason]?$this->mv_info[reason]:"□遷居 □其他:_____________";
 
@@ -95,7 +95,7 @@ class certificate{
 		unset($arr);
 
 		($this->base[stud_sex]=='1')  ? $this->base[C_sex]='男':$this->base[C_sex]='女';
-		$aa=split("-",$this->base[stud_birthday]);
+		$aa=explode("-",$this->base[stud_birthday]);
 		$this->base[C_birthday]=($aa[0]-1911).".".$aa[1].".".$aa[2];
 		$this->base[C_birthday2]=($aa[0]-1911)."年".$aa[1]."月".$aa[2]."日";
 		$this->Now=array((date("Y")-1911),date("m"),date("d"));

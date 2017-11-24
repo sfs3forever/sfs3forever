@@ -80,7 +80,7 @@ if ($_POST['act']=='save') {
                         $net_edit=$res->fields['net_edit'];
                         $query="update comp_roomsite set net_ip='$net_ip',site_num='$site_num' where net_edit='$net_edit'";
                         echo $query."<br>";
-                        if (mysql_query($query)) {
+                        if (mysqli_query($conID, $query)) {
                             echo "已更新本座位資料.<br>";
                         } else {
                             echo "更新座位資料失敗.<br>";
@@ -88,7 +88,7 @@ if ($_POST['act']=='save') {
 
                     } else {
                         $query="insert into comp_roomsite (net_edit,net_ip,site_num) values ('$net_edit','$net_ip','$site_num')";
-                        if (mysql_query($query)) {
+                        if (mysqli_query($conID, $query)) {
                             echo "已儲存本座位資料.<br>";
                         } else {
                             echo "儲存座位資料失敗. $query <br>";
@@ -126,7 +126,7 @@ if ($_POST['act']=='save') {
                         if ($res->RecordCount()) {
                             $net_edit=$res->fields['net_edit'];
                             $query="update comp_roomsite set net_ip='$net_ip',site_num='$site_num' where net_edit='$net_edit'";
-                            if (mysql_query($query)) {
+                            if (mysqli_query($conID, $query)) {
                                 echo "已更新本座位資料.<br>";
                             } else {
                                 echo "更新座位資料失敗.<br>";
@@ -134,7 +134,7 @@ if ($_POST['act']=='save') {
 
                         } else {
                             $query="insert into comp_roomsite (net_edit,net_ip,site_num) values ('$net_edit','$net_ip','$site_num')";
-                            if (mysql_query($query)) {
+                            if (mysqli_query($conID, $query)) {
                                 echo "已儲存本座位資料.<br>";
                             } else {
                                 echo "儲存座位資料失敗. $query <br>";
@@ -217,7 +217,7 @@ if ($comproom!="") {
  $COMP[3]=300;
  //讀取現有設定
  $query="select * from comp_roomsite where net_edit like '".$COMP_INT."%' and site_num>'0' and net_ip!=''";
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
  while ($row=mysql_fetch_array($res,1)) {
    	 	$net_ip[$row['net_edit']]=$row['net_ip'];
       $site_num[$row['net_edit']]=$row['site_num'];

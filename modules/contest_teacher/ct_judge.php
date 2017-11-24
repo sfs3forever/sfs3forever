@@ -34,7 +34,7 @@ $Now=date("Y-m-d H:i:s");
 //登入, 確認評分的競賽
 if ($_POST['act']=='login') {
  $query="select b.* from contest_judge_user a,contest_setup b where a.tsn=b.tsn and a.teacher_sn='".$_SESSION['session_tea_sn']."' and a.tsn='".$_POST['tsn']."' and b.open_judge=1";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  $Teacher=get_judge_user($_POST['tsn'],$_SESSION['session_tea_sn']);
  if ($row=mysql_fetch_array($result,1)) {
  	//登入成功
@@ -43,7 +43,7 @@ if ($_POST['act']=='login') {
   //回寫登入記錄
   $L=$Teacher['logintimes']+1;
   $query="update contest_judge_user set lastlogin='".date("Y-m-d H:i:s")."',logintimes='$L' where tsn='".$_POST['tsn']."' and teacher_sn='".$_SESSION['session_tea_sn']."'"; 
-  mysql_query($query);
+  mysqli_query($conID, $query);
   } else {
     $INFO="您並未獲邀評分本次的競賽, 請重新選擇!";
     $_POST['act']="";
@@ -54,11 +54,11 @@ if ($_POST['act']=='login') {
 //寫入某生查資料成績
 if (@$_POST['act']=='score_search_write') {
   $query="update contest_record1 set chk=0,teacher_sn='".$_SESSION['session_tea_sn']."' where tsn='".$_POST['option1']."' and student_sn='".$_POST['option2']."'";
-  mysql_query($query);
+  mysqli_query($conID, $query);
   if (count(@$_POST['chk'])>0) {
      foreach ($_POST['chk'] as $ibsn=>$val) {
       $query="update contest_record1 set chk=$val where tsn='".$_POST['option1']."' and student_sn='".$_POST['option2']."' and ibsn='$ibsn'";
-      mysql_query($query);
+      mysqli_query($conID, $query);
      }// end foreach
 	 }
 	 $INFO="已於".date("Y-m-d H:i:s")."進行儲存";
@@ -96,7 +96,7 @@ if ($_POST['act']=='score_upload') {
 		    }else{
 			   	$query="insert into contest_score_record2 (tsn,student_sn,teacher_sn,score,prize_memo) values ('".$_POST['option1']."','$k','".$_SESSION['session_tea_sn']."','".$score."','".$_POST['prize_memo'][$k]."')";
 			  }
-			  if (!mysql_query($query)) {
+			  if (!mysqli_query($conID, $query)) {
 			   echo "Error! query=$query";
 			   exit();
 			  }
@@ -109,7 +109,7 @@ if ($_POST['act']=='score_upload') {
 			     }else{
 			     	$query="insert into contest_score_user (student_sn,teacher_sn,sco_sn,sco_num) values ('$k','".$_SESSION['session_tea_sn']."','$sco_sn','$sco_num')";
 			  	}
-			  	mysql_query($query);
+			  	mysqli_query($conID, $query);
 			  } // end foreach count($_POST[$K])
 			 }// end if count($_POST[$k])>0
 		  }//end if ($score!="")
@@ -125,7 +125,7 @@ if ($_POST['act']=='score_upload') {
 if ($_POST['act']=='prize_write') {
 		//由於陣列 post , 無資料不會發送, 先清除所有記錄, 以免原本有資料，但後清除資料者不會更動
 		$query="update contest_user set prize_id=null,prize_text=null where tsn='".$_POST['option1']."'";
-		mysql_query($query);
+		mysqli_query($conID, $query);
 		$if_write=0;
 		foreach ($_POST['prize_id'] as $k=>$prize_id) {
 			if ($prize_id>0) {
@@ -134,7 +134,7 @@ if ($_POST['act']=='prize_write') {
 				$prize_memo=$_POST['prize_memo'][$k];
 			  $query="update contest_user set prize_id='$prize_id',prize_text='$prize_text' where tsn='".$_POST['option1']."' and student_sn='".$k."'";
 			  //echo $query."<br>";
-			  mysql_query($query);
+			  mysqli_query($conID, $query);
 			
 		  }
 		} // end foreach
@@ -232,7 +232,7 @@ if ($_POST['act']=='score') {
  			$i++;	
     	 //學生已查資料筆數
     	 $query="select count(*) as num from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."'";
-    	 list($N)=mysqli_fetch_row(mysql_query($query));
+    	 list($N)=mysqli_fetch_row(mysqli_query($conID, $query));
     	 $RR="已作答 ".$N." 題";
     	 $Fcolor=($N>0)?"#0000FF":"#C0C0C0";
      	 //學生已評分記錄
@@ -248,7 +248,7 @@ if ($_POST['act']=='score') {
     	  $CC="<font color=#FF0000>答對 ".$chk_right." 題，答錯 ".$chk_wrong." 題</font>";
     	  //取得評分老師
     	  $query="select distinct teacher_sn from contest_record1 where  tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."'";	
-    	  list($teacher_sn)=mysqli_fetch_row(mysql_query($query));
+    	  list($teacher_sn)=mysqli_fetch_row(mysqli_query($conID, $query));
     	 }
  //       	<tr bgcolor="#FFFFFF" onmouseover="setPointer(this, 'over', '#FFFFFF', '#CCFFCC', '#FFCC99')" onmouseout="setPointer(this, 'out', '#FFFFFF', '#CCFFCC', '#FFCC99')" onmousedown="setPointer(this, 'click', '#FFFFFF', '#CCFFCC', '#FFCC99')" >
     	 
@@ -281,7 +281,7 @@ if ($_POST['act']=='score') {
   //取得每個評分細目欄位代碼
      $SCORE_SET_NUM=0;
      $query="select * from contest_score_setup where tsn='".$_POST['option1']."'";
-     $result=mysql_query($query);
+     $result=mysqli_query($conID, $query);
      if (mysql_num_rows($result)) {
       while ($row=mysql_fetch_array($result,1)) {
        $SCORE_SET_NUM++;
@@ -309,7 +309,7 @@ if ($_POST['act']=='score') {
    while ($Stud=mysql_fetch_array($result_stud,1)) {
     	 //查詢是否上傳
     	 $query="select * from contest_record2 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."'";
-    	 $result_file=mysql_query($query);
+    	 $result_file=mysqli_query($conID, $query);
     	 $N=mysql_num_rows($result_file);
     	 $Fcolor=($N>0)?"#0000FF":"#C0C0C0";
     	 if ($N>0) {
@@ -377,7 +377,7 @@ if ($_POST['act']=='score') {
    			for ($i=1;$i<=$SCORE_SET_NUM;$i++) {
    				$thisScore=0;
    				$query="select sco_num from contest_score_user where sco_sn='".$SCORE_FIELD[$i]."' and student_sn='".$Stud['student_sn']."' and teacher_sn='".$_SESSION['session_tea_sn']."'";
-   				if ($row=mysqli_fetch_row(mysql_query($query))) list($thisScore)=$row;
+   				if ($row=mysqli_fetch_row(mysqli_query($conID, $query))) list($thisScore)=$row;
    				?>
    				 <td style="font-size:10pt;color:<?php echo $Fcolor;?>" align="center">
    				<?php
@@ -397,7 +397,7 @@ if ($_POST['act']=='score') {
    	   } // end for 列出細項評分
    	   //總分
    	   $query="select score,prize_memo from contest_score_record2 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."' and teacher_sn='".$_SESSION['session_tea_sn']."'";
-   	    list($score,$prize_memo)=mysqli_fetch_row(mysql_query($query));
+   	    list($score,$prize_memo)=mysqli_fetch_row(mysqli_query($conID, $query));
 				if ($N>0) { 
    		?>
    		<td style="font-size:10pt;color:<?php echo $Fcolor;?>" align="center">
@@ -468,7 +468,7 @@ if ($_POST['act']=='score_search') {
       <?php
       $I=0;
       $query="SELECT a.* , b.question,b.ans,b.ans_url FROM contest_record1 AS a, contest_ibgroup AS b WHERE a.tsn=b.tsn and a.tsn='".$_POST['option1']."' and a.ibsn=b.ibsn and a.student_sn='".$_POST['option2']."' order by b.tsort";
-      $result=mysql_query($query);
+      $result=mysqli_query($conID, $query);
       while ($ITEM=mysql_fetch_array($result,1)) {
       	$I++;
       	if ($ITEM['ans']=='' or $ITEM['lurl']=='') $ITEM['chk']=-1;
@@ -534,7 +534,7 @@ if ($_POST['act']=='prize') {
 <?php	
   //取出學生
   $query="select a.*,b.stud_id,b.stud_name,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c,contest_setup d where a.tsn=d.tsn and c.seme_year_seme=d.year_seme and a.tsn='".$TEST['tsn']."' and a.ifgroup='' and a.student_sn=b.student_sn and b.student_sn=c.student_sn order by seme_class,seme_num";
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
   $t=0;
    while ($Stud=mysql_fetch_array($result,1)) {
     	//依active 分開處理
@@ -545,7 +545,7 @@ if ($_POST['act']=='prize') {
     	 $REC=get_stud_record1_info($TEST,$Stud['student_sn']);
     	 /***
     	 $query="select count(*) as num from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."'";
-    	 list($N)=mysqli_fetch_row(mysql_query($query));
+    	 list($N)=mysqli_fetch_row(mysqli_query($conID, $query));
     	 $Fcolor=($N>0)?"#0000FF":"#C0C0C0";
      	 //學生已評分記錄
      	 $chk_right=mysql_num_rows(mysql_query("select * from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."' and chk=1"));
@@ -745,7 +745,7 @@ function table_title_1($tsn) {
    		<td style="font-size:10pt;color:#800000" width="70" align="center">競賽作品</td>
      <?php
      $query="select * from contest_score_setup where tsn='".$tsn."'";
-     $result=mysql_query($query);
+     $result=mysqli_query($conID, $query);
      if (mysql_num_rows($result)) {
       while ($row=mysql_fetch_array($result,1)) {
       ?>

@@ -290,7 +290,7 @@ function teacher_absent($id){
 	global $CONN,$course_kind,$view_tsn,$sel_year,$sel_seme,$teacher_sn,$class_dis,$check2_sn,$c_start_date,$c_end_date,$check1,$check2,$check3,$check4;
 
 		$query="select * from teacher_absent where id='".$id."'";
-		$result = mysql_query($query) or die ($query);
+		$result = mysqli_query($conID, $query) or die ($query);
 		$row = mysql_fetch_array($result);
 		
 		$view_tsn=$row["teacher_sn"];

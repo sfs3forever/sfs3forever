@@ -115,12 +115,12 @@ if($_POST['go']=='寫入新增的異動資料')
 //增加一個社團記錄
 if ($_POST['club_act']=='club_add') {
  $query="insert into association (student_sn,seme_year_seme,association_name,score,description,update_sn,update_time) values ('".$selected_student."','".$_POST['year_seme']."','".$_POST['association_name']."','".$_POST['score']."','".$_POST['description']."','".$_SESSION['session_tea_sn']."',NOW())";
- mysql_query($query);
+ mysqli_query($conID, $query);
 }
 //刪除一個社團記錄
 if ($_POST['club_act']=='club_delete') {
  $query="delete from association where sn='".$_POST['club_option']."'";
- mysql_query($query);
+ mysqli_query($conID, $query);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -410,7 +410,7 @@ switch($selected_type)
 			  </tr>
 			  ";
 			$query="select * from association where student_sn='$selected_student' order by seme_year_seme";
-			$res=mysql_query($query);
+			$res=mysqli_query($conID, $query);
 			while ($row=mysql_fetch_array($res,1)) {
 			 $del_mode=($row['club_sn']>0)?"<font size=2 color=red><i>校內社團</i></font>":"<input type='button' value='刪除' onclick=\"if(confirm('您確定要刪除該生的\社團:「".$row['association_name']."」記錄?')) { document.myform.club_option.value='".$row['sn']."';document.myform.club_act.value='club_delete';document.myform.submit(); } \">";
 			 $dd="

@@ -158,7 +158,7 @@ foreach ($_POST['class_id'] as $class_id_key=>$null) {
 	   $query="select b.sn,a.minutes,a.feedback,b.service_date,b.department,b.item,b.memo,b.sponsor from stud_service_detail a,stud_service b where a.item_sn=b.sn and b.year_seme='$seme_year_seme' and b.confirm=1 and a.student_sn=$student_sn order by service_date";
 	   
 	   
-	   $res=mysql_query($query);
+	   $res=mysqli_query($conID, $query);
 	   $service_detail="";
 	   $MINS=0; $HOURS=0;
 	   while ($row=mysql_fetch_array($res)) {
@@ -180,12 +180,12 @@ foreach ($_POST['class_id'] as $class_id_key=>$null) {
 	
 	  if ($IS_JHORES==6 and $stud_club=='checked') {
 	   $query="select association_name,score,description,club_sn,stud_feedback from association where seme_year_seme='$seme_year_seme' and student_sn=$student_sn";
-	   $res=mysql_query($query);
+	   $res=mysqli_query($conID, $query);
 	   $club_detail="";
 	   $t=0;
 	   while ($row=mysql_fetch_array($res)) {
 	   	$query="select pass_score from stud_club_base where club_sn='".$row['club_sn']."'";
-	   	$res_pass=mysql_query($query);
+	   	$res_pass=mysqli_query($conID, $query);
 	   	list($pass_score)=mysqli_fetch_row($res_pass);
 	   	if ($row['score']>=$pass_score) {
 	   	  $t++;

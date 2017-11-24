@@ -268,7 +268,7 @@ function chk_have_ys($tbl="",$year="",$semester=""){
 
 //開始複製班級設定
 function go_class_setup($ys="",$to_y="",$to_s=""){
-	global $CONN;
+	global $CONN,$conID;
 	if(empty($ys) or empty($to_y) or empty($to_s))return;
 
 	$y=substr($ys,0,3)*1;
@@ -286,7 +286,7 @@ function go_class_setup($ys="",$to_y="",$to_s=""){
 		$teacher_2 = addslashes($teacher_2);
 		$sql_insert = "insert into school_class (class_id,year,semester,c_year,c_name,c_kind,c_sort,enable,teacher_1,teacher_2) values ('$new_class_id','$to_y','$to_s','$c_year','$c_name','$c_kind','$c_sort','1','$teacher_1','$teacher_2')";
 		$CONN->Execute($sql_insert) or user_error("班級複製失敗！<br>$sql_insert",256);
-		$sn=mysql_insert_id();
+		$sn=mysqli_insert_id($conID);
 		$log[]=$sn;
 		$record[$sn]=$class_id;
 	}
@@ -296,7 +296,7 @@ function go_class_setup($ys="",$to_y="",$to_s=""){
 
 //開始複製成績設定
 function go_score_setup($ys="",$to_y="",$to_s=""){
-	global $CONN;
+	global $CONN,$conID;
 	if(empty($ys) or empty($to_y) or empty($to_s))return;
 
 	$y=substr($ys,0,3)*1;
@@ -316,7 +316,7 @@ function go_score_setup($ys="",$to_y="",$to_s=""){
 	while (list($setup_id,$class_year,$allow_modify,$performance_test_times,$practice_test_times,$test_ratio,$rule,$score_mode,$sections,$interface_sn)=$recordSet->FetchRow()) {
 		$sql_insert = "insert into score_setup (year,semester,class_year,allow_modify,performance_test_times,practice_test_times,test_ratio,rule,score_mode,sections,interface_sn,update_date,enable) values ('$to_y','$to_s','$class_year','$allow_modify','$performance_test_times','$practice_test_times','$test_ratio','$rule','$score_mode','$sections','$interface_sn',now(),'1')";
 		$CONN->Execute($sql_insert) or user_error("成績設定複製失敗！<br>$sql_insert",256);
-		$sn=mysql_insert_id();
+		$sn=mysqli_insert_id($conID);
 		$log[]=$sn;
 		$record[$sn]=$setup_id;
 	}
@@ -326,7 +326,7 @@ function go_score_setup($ys="",$to_y="",$to_s=""){
 
 //開始複製課程設定
 function go_ss_setup($ys="",$to_y="",$to_s=""){
-	global $CONN;
+	global $CONN,$conID;
 	if(empty($ys) or empty($to_y) or empty($to_s))return;
 
 	$y=substr($ys,0,3)*1;
@@ -351,7 +351,7 @@ function go_ss_setup($ys="",$to_y="",$to_s=""){
 			$sql_insert = "insert into score_ss (scope_id,subject_id,year,semester,class_year,enable,need_exam,rate,sort,sub_sort,print,link_ss,nor_item_kind,sections,k12ea_category,k12ea_area,k12ea_subject,k12ea_language,k12ea_frequency) values ('$scope_id','$subject_id','$to_y','$to_s','$class_year','1','$need_exam','$rate','$sort','$sub_sort','$print','$link_ss','$nor_item_kind','$sections','$k12ea_category','$k12ea_area','$k12ea_subject','$k12ea_language','$k12ea_frequency')";
 
 		$CONN->Execute($sql_insert) or user_error("課程設定複製失敗！<br>$sql_insert",256);
-		$sn=mysql_insert_id();
+		$sn=mysqli_insert_id($conID);
 		$log[]=$sn;
 		$record[$sn]=$ss_id;
 	}
@@ -362,7 +362,7 @@ function go_ss_setup($ys="",$to_y="",$to_s=""){
 
 //開始複製課表設定
 function go_course_setup($ys="",$to_y="",$to_s=""){
-	global $CONN;
+	global $CONN,$conID;
 	if(empty($ys) or empty($to_y) or empty($to_s))return;
 
 	$y=substr($ys,0,3)*1;
@@ -384,7 +384,7 @@ function go_course_setup($ys="",$to_y="",$to_s=""){
 		$new_class_id=sprintf("%03d_%01d", $to_y, $to_s).substr($class_id,-6);
 		$sql_insert = "insert into score_course (year,semester,class_id,teacher_sn,class_year,class_name,day,sector,ss_id,room,allow,c_kind) values ('$to_y','$to_s','$new_class_id','$teacher_sn','$class_year','$class_name','$day','$sector','$new_ss_id[$ss_id]','$room','$allow','$c_kind')";
 		$CONN->Execute($sql_insert) or user_error("課表設定複製失敗！<br>$sql_insert",256);
-		$sn=mysql_insert_id();
+		$sn=mysqli_insert_id($conID);
 		$log[]=$sn;
 		$record[$sn]=$course_id;
 	}

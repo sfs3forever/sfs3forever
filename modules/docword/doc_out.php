@@ -24,7 +24,7 @@ $mysqliconn = get_mysqli_conn();
 
 if ($key =="登錄公文"){
 	//$query = "insert into sch_doc1 (doc1_id,doc1_year_limit,doc1_kind,doc1_date,doc1_date_sign,doc1_unit,doc1_word,doc1_main,doc1_unit_num1,teach_id,doc1_k_id) values ('$doc1_id','$doc1_year_limit','$doc1_kind','$doc1_date','$doc1_date_sign','$doc1_unit','$doc1_word','$doc1_main','$doc1_unit_num1','$session_log_id','1')";
-	//mysql_query($query)or die($query);
+	//mysqli_query($conID, $query)or die($query);
 
 ///mysqli
 $query = "insert into sch_doc1 (doc1_id,doc1_year_limit,doc1_kind,doc1_date,doc1_date_sign,doc1_unit,doc1_word,doc1_main,doc1_unit_num1,teach_id,doc1_k_id) values (?,?,?,?,?,?,?,?,?,?,'1')";

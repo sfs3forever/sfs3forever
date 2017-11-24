@@ -176,7 +176,7 @@ if ($student_sn!="") {
  $query.=" order by certificate_date";
  
  /* php 的MySQL函式寫法 
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
  while ($row=mysql_fetch_array($res,1)) {
 */
  /* ADODB 的寫法 */

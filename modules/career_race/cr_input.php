@@ -32,7 +32,7 @@ $start=0;
 if ($_POST['act']=='DeleteOne') {
 	$sn=$_POST['option1'];
 	$query="delete from career_race where sn='$sn'";
-	mysql_query($query);
+	mysqli_query($conID, $query);
 	$_POST['act']='';
 }
 
@@ -56,7 +56,7 @@ if ($_POST['act']=='save') {
 	$query="insert into career_race set student_sn='$student_sn',level='$level',squad='$squad',name='$name',
 	rank='$rank',certificate_date='$certificate_date',sponsor='$sponsor',memo='$memo',
 	word='{$word}', weight='{$weight}', weight_tech='{$weight_tech}',year='$year',nature='$nature' ,	update_sn='".$_SESSION['session_tea_sn']."'";
-   		if (!mysql_query($query)) {
+   		if (!mysqli_query($conID, $query)) {
    		 $MSG="儲存資料失敗!";
    		  echo $query;die($MSG);
 			} 
@@ -80,7 +80,7 @@ if ($_POST['act']=='update') {
 	$nature=$_POST['nature'];
 	
 	$query="update career_race set level='$level',squad='$squad',name='$name',rank='$rank', certificate_date='$certificate_date',sponsor='$sponsor',memo='$memo', word='$word',weight='$weight',weight_tech='$weight_tech',year='$year',nature='$nature' where sn='".$_POST['option1']."' and student_sn='$student_sn'";
-   		if (!mysql_query($query)) {
+   		if (!mysqli_query($conID, $query)) {
    		 $MSG="儲存資料失敗!";
    		 echo$query;die($MSG);
 			}  
@@ -90,7 +90,7 @@ if ($_POST['act']=='update') {
 //若有指定編輯
 if ($_POST['act']=='edit') {
 	$query="select a.student_sn,a.curr_class_num from stud_base a,career_race b where a.student_sn=b.student_sn and b.sn='".$_POST['option1']."'";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   $row=mysql_fetch_array($res,1);
   $_POST['to_class']=substr($row['curr_class_num'],0,3);
   $_POST['to_student']=$row['student_sn'];
@@ -102,7 +102,7 @@ if ($_POST['act']=='edit') {
 //取得班級所有學生 array
 if (isset($_POST['to_class'])) {
 	$query="select a.student_sn,a.stud_id,a.seme_class,a.seme_num,b.stud_name from stud_seme a,stud_base b where a.student_sn=b.student_sn and a.seme_year_seme='$c_curr_seme' and a.seme_class='".$_POST['to_class']."' order by a.seme_num";
-	$res=mysql_query($query);
+	$res=mysqli_query($conID, $query);
 	$student_array=array();
 	while ($row=mysql_fetch_array($res,1)) {
 		$student_array[$row['student_sn']]=$row['seme_num']." ".$row['stud_name'];

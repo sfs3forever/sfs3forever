@@ -38,7 +38,7 @@ if ($_POST['act']=='myans') {
  $EndTest=NowAllSec($TEST['endtime']);
   //檢驗已答題數
   $query="select count(*) as num from contest_record1 where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."'";
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
   list($N)=mysqli_fetch_row($result);  
 
  //避免連線逾時問題，1秒緩衝時間內仍儲存 , 
@@ -49,9 +49,9 @@ if ($_POST['act']=='myans') {
   $anstime=date("Y-m-d H:i:s");
   //避免重覆作答=========================================================
   $query="select * from contest_record1 where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."' and ibsn='".$ibsn."'";
-  if (mysql_num_rows(mysql_query($query))==0) {
+  if (mysql_num_rows(mysqli_query($conID, $query))==0) {
   	$query="insert into contest_record1 (tsn,student_sn,ibsn,myans,lurl,anstime) values ('".$_POST['option1']."','".$_SESSION['session_tea_sn']."','$ibsn','$myans','$lurl','$anstime')";
-  		if (mysql_query($query)) {
+  		if (mysqli_query($conID, $query)) {
   			$N++;
   			if ($N>=$TEST['search_ibgroup']) {
   			 $_POST['act']='End'; //作答完畢
@@ -131,12 +131,12 @@ if ($_POST['act']=='Start') {
  //該生已作答題數
   $LeaveTime=$EndTest-$NOWsec; //剩餘秒數
   $query="select count(*) as num from contest_record1 where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."'";
-  list($N)=mysqli_fetch_row(mysql_query($query));
+  list($N)=mysqli_fetch_row(mysqli_query($conID, $query));
   //還沒作答完畢
   if ($N<$TEST['search_ibgroup']) {
   $N+=1; //列出下一題
   $query="select * from contest_ibgroup where tsn='".$_POST['option1']."' and tsort='".$N."'";
-  $ITEM=mysql_fetch_array(mysql_query($query)); //題目
+  $ITEM=mysql_fetch_array(mysqli_query($conID, $query)); //題目
   ?>
   <input type='hidden' name='ibsn' value='<?php echo $ITEM['ibsn'];?>'>
   <table border="0" width="100%">
@@ -243,7 +243,7 @@ if ($_POST['act']=='End') {
       <?php
       $I=0;
       $query="SELECT a.* , b.question,b.ans FROM contest_record1 AS a, contest_ibgroup AS b WHERE a.tsn=b.tsn and a.tsn='".$_POST['option1']."' and a.student_sn='".$_SESSION['session_tea_sn']."' and a.ibsn = b.ibsn order by a.anstime";
-      $result=mysql_query($query);
+      $result=mysqli_query($conID, $query);
       while ($ITEM=mysql_fetch_array($result)) {
       	$I++;
       	?>

@@ -6,7 +6,7 @@ include_once('login.inc');
 /***
 if ($_POST['act']=='login') {
  $query="select * from contest_user where tsn='".$_POST['tsn']."' and student_sn='".$_SESSION['session_tea_sn']."' and ifgroup=''";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  if ($STUDENT=mysql_fetch_array($result,1)) {
  	//登入成功
   $_POST['act']="Start";
@@ -14,7 +14,7 @@ if ($_POST['act']=='login') {
   //回寫登入記錄
   $L=$STUDENT['logintimes']+1;
   $query="update contest_user set lastlogin='".date("Y-m-d H:i:s")."',logintimes='$L' where tsn='".$_POST['tsn']."' and student_sn='".$_SESSION['session_tea_sn']."'"; 
-  mysql_query($query);
+  mysqli_query($conID, $query);
   } else {
     $INFO="你並未參加本次的競賽, 或你並不是團隊中的組長, 請重新選擇!";
     $_POST['act']="";
@@ -47,7 +47,7 @@ if (@$_POST['act']=='Upload') {
 
       //檢查是否重復上傳, 若是, 則不再 insert
   	  $query="select * from contest_record2 where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."'";
-  	  $result=mysql_query($query);
+  	  $result=mysqli_query($conID, $query);
   	  $D=mysql_num_rows($result);
   	  if ($D>0) {
   	   $F=mysql_fetch_array($result,1);
@@ -84,7 +84,7 @@ if (@$_POST['act']=='Upload') {
           } else {
            $query="update contest_record2 set filename='".$filename."',anstime='".date('Y-m-d H:i:s')."' where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."'";
           }// end if $D==0
-         if (!mysql_query($query)) {
+         if (!mysqli_query($conID, $query)) {
            echo "Error! Query=".$query;
            exit();
          }
@@ -162,7 +162,7 @@ if ($_POST['act']=='Start') {
   
   //檢查是否已上傳
   $query="select * from contest_record2 where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."'";
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
   $N=0;
  	 if (mysql_num_rows($result)>0) {
  	 $row=mysql_fetch_array($result,1);
@@ -280,7 +280,7 @@ test_main($_POST['option1'],1);
   $STUD=get_student($_SESSION['session_tea_sn']);
   //檢查是否已上傳
   $query="select * from contest_record2 where tsn='".$_POST['option1']."' and student_sn='".$_SESSION['session_tea_sn']."'";
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
   $N=0;
  	 if (mysql_num_rows($result)>0) {
  	 $row=mysql_fetch_array($result,1);

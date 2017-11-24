@@ -182,7 +182,7 @@ if ($_POST['key'] == "確定新增") {
 
         /*
           $query = "update  bookch1 set tolnum = tolnum + 1 where bookch1_id = '$_POST[bookch1_id]'";
-          mysql_query($query,$conID) or die($query);
+          mysqli_query($conID,$query) or die($query);
          */
         //mysqli
         $query = "update  bookch1 set tolnum = tolnum + 1 where bookch1_id = ?";

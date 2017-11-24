@@ -36,7 +36,7 @@ input.selectoption {
 if ($_GET['act']=='logout') {
 	mysql_query("SET NAMES 'utf8'");
 	$query="update sc_msn_online set ifonline='0' where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
-	mysql_query($query);
+	mysqli_query($conID, $query);
   $_SESSION['MSN_LOGIN_ID']="";
   echo "<Script>reload()</Script>";
 }
@@ -58,7 +58,7 @@ $log_id=$_POST['log_id'];
 $log_pass=pass_operate($_POST['log_pass']);
 if ($IS_UTF8==0) mysql_query("SET NAMES 'latin1'");
 $query="select teacher_sn, login_pass from teacher_base where teach_condition=0 and teach_id='$log_id' and login_pass='$log_pass' and teach_id<>''";
-$result=mysql_query($query);
+$result=mysqli_query($conID, $query);
 
 if (mysql_num_rows($result)) {
 
@@ -69,7 +69,7 @@ if (mysql_num_rows($result)) {
    $onlinetime=date("Y-m-d H:i:s");
 	 mysql_query("SET NAMES 'utf8'");
    $query="select * from sc_msn_online where teach_id='$log_id'";
-   $result=mysql_query($query);
+   $result=mysqli_query($conID, $query);
    //撌脩?仿? MSN 
    if (mysql_num_rows($result)) {
    	  $row=mysql_fetch_array($result,1);
@@ -79,7 +79,7 @@ if (mysql_num_rows($result)) {
    	  $_SESSION['is_upload']=$row['is_upload'];
    	  $hits++;
    	  $query="update sc_msn_online set onlinetime='".date("Y-m-d H:i:s")."',ifonline='1',hits='$hits' where teach_id='$log_id'";
-      mysql_query($query);
+      mysqli_query($conID, $query);
    }else{
    	if ($IS_UTF8==0) {
    		mysql_query("SET NAMES 'latin1'");
@@ -89,7 +89,7 @@ if (mysql_num_rows($result)) {
     }
   	  mysql_query("SET NAMES 'utf8'");
    	  $query="insert into sc_msn_online (teach_id,name,from_ip,lasttime,onlinetime,ifonline,state,hits) values ('".$_SESSION['MSN_LOGIN_ID']."','".$name."','".$my_ip."','".$onlinetime."','".$onlinetime."','1','銝?','1')";
-    if (!mysql_query($query)) {
+    if (!mysqli_query($conID, $query)) {
       echo "$query=".$query;
       exit;
     }
@@ -100,13 +100,13 @@ if (mysql_num_rows($result)) {
   //?芸?文歇霈??
   if ($CLEAN_MODE) $query.=" and ifread=1";
   
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
   
   while ($row=mysql_fetch_array($result,1)) {
    //?芷?祉?????
    delete_file($row['idnumber'],$row['to_id']);
    $query="delete from sc_msn_data where id='".$row['id']."'";
-   mysql_query($query);
+   mysqli_query($conID, $query);
   }//end while
  } else {
  	$INFO="-撣唾???蝣潮隤歹?";  
@@ -123,10 +123,10 @@ if ($_SESSION['MSN_LOGIN_ID']!="") {
 //???葦蝑?
 if ($IS_UTF8==0) mysql_query("SET NAMES 'latin1'");
 $query="select teacher_sn from teacher_base where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
-$result=mysql_query($query);
+$result=mysqli_query($conID, $query);
 list($teacher_sn)=mysqli_fetch_row($result);
 $query="select post_kind from teacher_post where teacher_sn='".$teacher_sn."'";
-$result=mysql_query($query);
+$result=mysqli_query($conID, $query);
 list($POST_KIND)=mysqli_fetch_row($result);
 
 mysql_query("SET NAMES 'utf8'");	

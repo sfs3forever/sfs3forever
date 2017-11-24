@@ -66,7 +66,7 @@ if ($StartSec<$nowsec and $EndSec>$nowsec) {
 	
 	//取得可選修的社團
 	$query="select * from stud_club_base where year_seme='$c_curr_seme' and club_open='1' and (club_class='$CLASS' or club_class='100')"; 
-	$res_club=mysql_query($query);
+	$res_club=mysqli_query($conID, $query);
 	$club_num=mysql_num_rows($res_club);
 	//社團可供選擇名額
 	$club_for_stud_num=club_for_stud_num($CLASS,$c_curr_seme);
@@ -96,17 +96,17 @@ if ($StartSec<$nowsec and $EndSec>$nowsec) {
 	  	if (($SETUP['choice_over']==0 and get_club_choice_rank($club_sn,1)>=$CLUB_SET['club_student_num']) or ($club_student_number>=$CLUB_SET['club_student_num'])) {
 		   $INFO="社團 【".$CLUB_SET['club_name']."】人數已滿！未能儲存!";
 		   $query="delete from stud_club_temp where  year_seme='$c_curr_seme' and student_sn='".$STUD['student_sn']."' and choice_rank='$K'";
-		   mysql_query($query);
+		   mysqli_query($conID, $query);
 		  } else {
 	    $query="select * from stud_club_temp where year_seme='$c_curr_seme' and student_sn='".$STUD['student_sn']."' and choice_rank='$K'";
-	    $result=mysql_query($query);
+	    $result=mysqli_query($conID, $query);
 	    if (mysql_num_rows($result)) {
 	   			$query="update stud_club_temp set club_sn='$club_sn' where year_seme='$c_curr_seme' and student_sn='".$STUD['student_sn']."' and choice_rank='$K'";
 	    	}else{
 	   			$query="insert into stud_club_temp (club_sn,year_seme,student_sn,choice_rank) values ('$club_sn','$c_curr_seme','".$STUD['student_sn']."','$K')";
 	    } // end if mysql_num_rows
 	    
-	    if (mysql_query($query)) {
+	    if (mysqli_query($conID, $query)) {
 	     $INFO="已於".date("Y-m-d H:i:s")."儲存你的志願!";	    
 	    }else{
 	     echo "Error! query=$query";
@@ -173,7 +173,7 @@ if ($StartSec<$nowsec and $EndSec>$nowsec) {
 					    	$choice=get_seme_stud_choice_rank($c_curr_seme,$STUD['student_sn'],$i); //傳回　club_sn
 					    		//取得可選修的社團
 								$query="select * from stud_club_base where year_seme='$c_curr_seme' and club_open='1' and (club_class='$CLASS' or club_class='100') order by club_class,club_name"; 
-								$res_club=mysql_query($query);
+								$res_club=mysqli_query($conID, $query);
 								?>
 					    	 <tr>
 					    	 	<td align="left">

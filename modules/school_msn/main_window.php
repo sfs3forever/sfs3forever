@@ -12,7 +12,7 @@ if ($_SESSION['MSN_LOGIN_ID']!="") {
  //$MyName=big52utf8(get_teacher_name_by_id($_SESSION['MSN_LOGIN_ID']));
  	 mysql_query("SET NAMES 'utf8'");
    $query="select * from sc_msn_online where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
-   $result=mysql_query($query);
+   $result=mysqli_query($conID, $query);
 	 $row=mysql_fetch_array($result,1);
  echo "-[".$row['name']."]-上線";
 }else{

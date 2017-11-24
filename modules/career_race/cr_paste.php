@@ -77,7 +77,7 @@ if ($_POST['act']=='save') {
    		//$query="insert into career_race set student_sn='$student_sn',level=".$data_arr[4].",squad=".$data_arr[5].",name='".$data_arr[6]."',rank='".$data_arr[7]."',certificate_date='".$data_arr[8]."',sponsor='".$data_arr[9]."',memo='".$data_arr[10]."',update_sn='".$_SESSION['session_tea_sn']."'";
    		$query="insert into career_race set student_sn='{$student_sn}',year='{$data_arr[4]}',nature='{$data_arr[5]}',level='{$data_arr[6]}',
    		squad='{$data_arr[7]}' ,`name`='{$data_arr[8]}', rank='{$data_arr[9]}',	certificate_date='{$data_arr[10]}',sponsor='{$data_arr[11]}',memo='{$data_arr[12]}', update_sn='{$_SESSION['session_tea_sn']}', `word`='{$data_arr[13]}', `weight`='{$data_arr[14]}' ";
-   		if (mysql_query($query)) {
+   		if (mysqli_query($conID, $query)) {
    		 $save_ok+=1;
    		} else {
    		 echo "Error! query=$query";
@@ -120,7 +120,7 @@ if ($_POST['act']=='save') {
    		squad='{$data_arr[5]}',name='{$data_arr[6]}',rank='{$data_arr[7]}',
    		certificate_date='{$data_arr[8]}',sponsor='{$data_arr[9]}',memo='{$data_arr[10]}' ,
    		update_sn='{$_SESSION['session_tea_sn']}' , `word`='{$data_arr[11]}', `weight`='{$data_arr[12]}' ";
-   		if (mysql_query($query)) {
+   		if (mysqli_query($conID, $query)) {
    		 $save_ok+=1;
    		} else {
    		 echo "Error! query=$query";
@@ -143,7 +143,7 @@ if ($_POST['act']=='save') {
 if ($_POST['act']=='delete') {
  foreach ($_POST['check_it'] as $v) {
  	$query="delete from career_race where sn='$v'";
- 	mysql_query($query); 
+ 	mysqli_query($conID, $query); 
  }
 } // end if delete
 
@@ -151,7 +151,7 @@ if ($_POST['act']=='delete') {
 if ($_POST['act']=='DeleteOne') {
 	$sn=$_POST['option1'];
 	$query="delete from career_race where sn='$sn'";
-	mysql_query($query);
+	mysqli_query($conID, $query);
 }
 
 //讀取本學年度使用者已登錄的所有競賽

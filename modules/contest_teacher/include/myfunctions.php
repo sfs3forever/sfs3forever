@@ -53,7 +53,7 @@ function shownews($NEW) {
 		
 		<?php
 		$query="select * from contest_files where nsn='".$NEW['nsn']."'";
- 	  $result=mysql_query($query);
+ 	  $result=mysqli_query($conID, $query);
  	  if (mysql_num_rows($result)>0) {
       ?>
     <tr><td>
@@ -96,7 +96,7 @@ function shownews($NEW) {
 
 function showgroups($tsn,$stid) {
  $query="select stid,name from contest_user where tsn='$tsn' and ifgroup='$stid'";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  if (mysql_num_rows($result)>0) {
  echo "&nbsp;( 組員: &nbsp;";
   while ($row=mysql_fetch_array($result,1)) {
@@ -127,11 +127,11 @@ function listnews($target) {
    	 $PAGEALL=ceil($ALL/$PHP_PAGE); //無條件進位
    	 $st=($target-1)*$PHP_PAGE;
    	 $query="select * from news limit ".$st.",".$PHP_PAGE;
-   	 $result=mysql_query($query);
+   	 $result=mysqli_query($conID, $query);
  	  while ($row=mysqli_fetch_row($result)) {
  	  	list($id,$nsn,$title,$sttime,$endtime,$memo)=$row;
  	  $query="select count(*) as num from files where nsn='".$nsn."'";
- 	  list($F)=mysqli_fetch_row(mysql_query($query));
+ 	  list($F)=mysqli_fetch_row(mysqli_query($conID, $query));
  	?>
    	<tr>
    		<td style="font-size:10pt" align="center"><?php echo $id;?></td>
@@ -239,7 +239,7 @@ function form_news($NEWS) {
 				<?php
 				//檢查有沒有附加檔案
 				$query="select * from contest_files where nsn='".$NEWS['nsn']."'";
-				$result=mysql_query($query);
+				$result=mysqli_query($conID, $query);
 				if (mysql_num_rows($result)>0) {
 				?>
 				<table border="1" width="100%"style=" border-collapse: collapse" bordercolor="#FFCCCC">
@@ -295,7 +295,7 @@ function news_files($nsn) {
       copy($_FILES['thefile']['tmp_name'][$i],$UPLOAD_NEWS_PATH.$filename);
       //替file建立sn      
        $query="insert into contest_files (nsn,ftext,filename) values ('$nsn','$ftext','$filename')";
-       mysql_query($query);
+       mysqli_query($conID, $query);
       } // end if check_file_attr
      } 
     }// end for
@@ -317,7 +317,7 @@ function check_file_attr($ATTR) {
 function stud_login($active,$INFO) {
  global $PHP_CONTEST;
  $query="select * from contest_setup where endtime>'".date('Y-m-d H:i:s')."' and active='".$active."' order by sttime";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  if (mysql_num_rows($result)==0) {
   echo "目前系統中沒有相關競賽(類別:".$PHP_CONTEST[$active].") 正在進行或即將進行!";
   exit();
@@ -400,7 +400,7 @@ function stud_login($active,$INFO) {
 function get_student($student_sn) {
   global $c_curr_seme;
   $query="select a.stud_name,b.seme_class,b.seme_num from stud_base a,stud_seme b where a.student_sn=b.student_sn and a.student_sn='$student_sn' and b.seme_year_seme='$c_curr_seme'";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   $stud=mysql_fetch_array($res,1);
   //轉換中文班級名稱
   $C=sprintf('%03d_%d_%02d_%02d',substr($c_curr_seme,0,3),substr($c_curr_seme,-1,1),substr($stud['seme_class'],0,1),substr($stud['seme_class'],1,2));
@@ -416,7 +416,7 @@ function get_student($student_sn) {
 //學生作答記錄 (查資料),傳入 $TEST array , $student_sn , 傳回 array [0]=1有上傳，array[0]=0 無上傳，arrray[1]=顯示的訊息
 function get_stud_record1_info($TEST,$student_sn) {
      	 $query="select count(*) as num from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."'";
-    	 list($N)=mysqli_fetch_row(mysql_query($query));
+    	 list($N)=mysqli_fetch_row(mysqli_query($conID, $query));
     	 $RR[1]="已作答 ".$N." 題";
     	 $RR[0]=($N==0)?0:1;   //1表有作答，0表無作答
     	 
@@ -437,7 +437,7 @@ function get_stud_record1_info($TEST,$student_sn) {
        //取得最後作答時間
        if ($RR['0']==1) {
         $query="select anstime from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."' order by anstime desc limit 0,1";
-        list($t)=mysqli_fetch_row(mysql_query($query));
+        list($t)=mysqli_fetch_row(mysqli_query($conID, $query));
         $RR[4]=$t;
        } else {
          $RR[4]="無作答";
@@ -450,7 +450,7 @@ function get_stud_record1_info($TEST,$student_sn) {
 function get_stud_record2_info($TEST,$student_sn) {
   global $UPLOAD_U;
     	 $query="select filename from contest_record2 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."'";
-    	 list($FILE)=mysqli_fetch_row(mysql_query($query));
+    	 list($FILE)=mysqli_fetch_row(mysqli_query($conID, $query));
     	 if ($FILE!="") {
     	   //$RR[1]="<a href='".$UPLOAD_U[$TEST['active']].$FILE."' target='_blank'>觀看</a>";
 
@@ -470,7 +470,7 @@ function get_stud_record2_info($TEST,$student_sn) {
     	  }   	 
     	  
      	 $query="select count(*) as num,AVG(score) as score from contest_score_record2 where score>0 and tsn='".$TEST['tsn']."' and student_sn='".$student_sn."'";
-    	 $result=mysql_query($query);
+    	 $result=mysqli_query($conID, $query);
   	 	 $WORKS=mysql_fetch_array($result,1); //會用到 score 欄位
     	 $RR[2]=$WORKS['num'];  //幾個成績 ,0表未評分
     	 $RR[3]=round($WORKS['score'],2); 

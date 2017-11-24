@@ -38,7 +38,7 @@ switch ($key) {
 			and stud_addr.stud_addr_h_b='$h_b'
 			and stud_addr.stud_addr_h_c='$h_c'
 			group by gg  order by gg  ";
-		$result = mysql_query($query) or die($query);		
+		$result = mysqli_query($conID, $query) or die($query);		
 		$list_con .= "<tr class=title_sbody1 ><td align=center>序號</td><td align=center>班級</td><td align=right>人數</td><td align=right>男</td><td align=right>女</td></tr>\n";
 		while ($row= mysql_fetch_array($result)) {
 			$list_con .= sprintf("<tr><td align=center>%d</td><td align=center>%s</td><td align=right>%d</td><td align=right><font color=blue>%d</font></td><td align=right><font color=red>%d</font> </td></tr>\n",++$i,$curr_class[$row[gg]],$row[aa],$row[boy],$row[girl]);
@@ -61,7 +61,7 @@ switch ($key) {
 			and stud_addr.stud_addr_h_b='$h_b'
 			group by stud_addr.stud_addr_h_c  order by aa desc ,stud_addr.stud_addr_h_c  ";
 		
-		$result = mysql_query($query) or die($query);		
+		$result = mysqli_query($conID, $query) or die($query);		
 		$list_con .= "<tr class=title_sbody1 ><td align=center>序號</td><td align=center>村里別</td><td align=right>人數</td><td align=right>男</td><td align=right>女</td></tr>\n";
 		while ($row= mysql_fetch_array($result)) {
 			if ($row[stud_addr_h_c]=="") $row[stud_addr_h_c] ="<font color=red>未輸入村里</font>";
@@ -82,7 +82,7 @@ switch ($key) {
 			where stud_base.addr_id=stud_addr.addr_id
 			and stud_base.stud_study_cond=0 			
 			group by stud_addr.stud_addr_h_b  order by aa desc  ";
-		$result = mysql_query($query) or die($query);		
+		$result = mysqli_query($conID, $query) or die($query);		
 		$list_con .= "<tr class=title_sbody1 ><td align=center>序號</td><td align=center>鄉鎮別</td><td align=right>人數</td><td align=right>男</td><td align=right>女</td></tr>\n";
 		while ($row= mysql_fetch_array($result)) {			
 			$list_con .= sprintf("<tr><td align=center>%d</td><td align=center>%s</td><td align=right>%d</td><td align=right><font color=blue>%d</font></td><td align=right><font color=red>%d</font> </td></tr>\n",++$i,$row[stud_addr_h_b],$row[aa],$row[boy],$row[girl]);
@@ -96,7 +96,7 @@ switch ($key) {
 }
 $query = "select stud_addr.stud_addr_h_b, stud_addr.stud_addr_h_c, count(stud_addr.stud_addr_h_b)as aa  from stud_addr,stud_base where stud_base.addr_id=stud_addr.addr_id and stud_base.stud_study_cond=0 group by  stud_addr.stud_addr_h_c  order by stud_addr.stud_addr_h_b ,aa desc ";
 //echo $query ;
-$result = mysql_query($query) or die ($query);
+$result = mysqli_query($conID, $query) or die ($query);
 $temp_value="";
 $i = 0;
 $tol_num = mysql_num_rows($result);

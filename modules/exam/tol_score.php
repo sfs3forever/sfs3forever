@@ -12,7 +12,7 @@ include "header.php";
 if($key =='按下評量') {
 	$exam_id=intval($exam_id);
 	$query = "select stud_id from exam_stud where exam_id= '$exam_id' ";
-	$result = mysql_query($query);
+	$result = mysqli_query($conID, $query);
 	while ($row = mysql_fetch_array($result)) {
 		$stud_id = $row["stud_id"];	
 		$temp = "tea_comment_".$stud_id;

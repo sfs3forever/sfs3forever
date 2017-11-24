@@ -32,7 +32,7 @@ $c_curr_seme=sprintf('%03d%1d',$curr_year,$curr_seme);
 $SETUP=get_club_setup($c_curr_seme);
 
 $query="select * from stud_club_base where year_seme='$c_curr_seme' and club_teacher='".$_SESSION['session_tea_sn']."'";
-$result=mysql_query($query);
+$result=mysqli_query($conID, $query);
 if (mysql_num_rows($result)) {
 //主程式開始
 //$club_base=mysql_fetch_array($result);
@@ -40,7 +40,7 @@ if (mysql_num_rows($result)) {
 if ($_POST['mode']=="save" and $_POST['club_sn']!='') {
 	foreach ($_POST['score'] as $student_sn=>$score) {
 	  $query="update association set score='$score',description='".$_POST['description'][$student_sn]."',stud_post='".$_POST['stud_post'][$student_sn]."',update_sn='".$_SESSION['session_tea_sn']."' where seme_year_seme='$c_curr_seme' and student_sn='$student_sn' and club_sn='".$_POST['club_sn']."'";
-	  if (!mysql_query($query)) {
+	  if (!mysqli_query($conID, $query)) {
 	   echo "Error! Query=$query";
 	   exit();
 	  }		
@@ -70,7 +70,7 @@ echo "社團名稱：";
  if ($_POST['club_sn']!='') {
 //取得學生成績
  $query="select a.*,b.seme_class,b.seme_num,c.stud_name from association a,stud_seme b,stud_base c where a.seme_year_seme='$c_curr_seme' and a.club_sn='".$_POST['club_sn']."' and b.seme_year_seme='$c_curr_seme' and a.student_sn=b.student_sn and a.student_sn=c.student_sn and (c.stud_study_cond=0 or c.stud_study_cond=5) order by seme_class,seme_num";
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
 ?>
 	<input type="hidden" name="mode" value="">
 <table border="1" style="border-collapse:collapse" bordercolor="#800000">

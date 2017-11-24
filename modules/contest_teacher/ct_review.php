@@ -43,7 +43,7 @@ $Now=date("Y-m-d H:i:s");
 if ($_POST['act']=='') {
 	
    $query="select * from contest_setup where endtime<='$Now' and open_review='1' order by endtime desc";
-   $result=mysql_query($query);
+   $result=mysqli_query($conID, $query);
    if (@mysql_num_rows($result)>0) {
    ?>
   請選擇要瀏覽的作品或成績：
@@ -73,7 +73,7 @@ if (@$_POST['tsn']!="") {
     	//查資料比賽, 僅公告成績
     	if ($TEST['active']==1) {
     		$query="select a.*,b.stud_id,b.stud_name,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c where a.student_sn=b.student_sn and a.student_sn=c.student_sn and c.seme_year_seme='".$TEST['year_seme']."' and a.tsn='".$TEST['tsn']."' and a.prize_id>0 order by prize_id";
-    		$result_user=mysql_query($query);
+    		$result_user=mysqli_query($conID, $query);
     		if (mysql_num_rows($result_user)) {
     			?>
     			<br>
@@ -94,7 +94,7 @@ if (@$_POST['tsn']!="") {
     		  	$i++;
     		  	//檢查是否有組員
 			    	$query="select a.*,b.stud_id,b.stud_name,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c where a.student_sn=b.student_sn and a.student_sn=c.student_sn and c.seme_year_seme='".$TEST['year_seme']."' and  a.tsn='".$TEST['tsn']."' and a.ifgroup='".$Stud['student_sn']."' order by seme_class,seme_num";
-    				$GROUPS=mysql_query($query);
+    				$GROUPS=mysqli_query($conID, $query);
     				$Group_num=mysql_num_rows($GROUPS);
     		  	 //學生已評分記錄
     	       list($chk)=mysqli_fetch_row(mysql_query("select count(*) from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."'")); //總題數
@@ -149,7 +149,7 @@ if (@$_POST['tsn']!="") {
     	//其他，一併公告作品 
     	} else {   //else if active==1
     		$query="select a.*,b.stud_id,b.stud_name,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c where a.student_sn=b.student_sn and a.student_sn=c.student_sn and c.seme_year_seme='".$TEST['year_seme']."' and a.tsn='".$TEST['tsn']."' and a.prize_id>0 order by prize_id";
-    		$result_user=mysql_query($query);
+    		$result_user=mysqli_query($conID, $query);
     		if (mysql_num_rows($result_user)) {
     			?>
     			<br>
@@ -169,11 +169,11 @@ if (@$_POST['tsn']!="") {
     		  	$i++;
     		  	//檢查是否有組員
 			    	$query="select a.*,b.stud_id,b.stud_name,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c where a.student_sn=b.student_sn and a.student_sn=c.student_sn and c.seme_year_seme='".$TEST['year_seme']."' and a.tsn='".$TEST['tsn']."' and a.ifgroup='".$Stud['student_sn']."' order by seme_class,seme_num";
-    				$GROUPS=mysql_query($query);
+    				$GROUPS=mysqli_query($conID, $query);
     				$Group_num=mysql_num_rows($GROUPS);
    		  	 //學生作品記錄
     	       $query="select * from contest_record2 where tsn='".$TEST['tsn']."' and student_sn='".$Stud['student_sn']."'";
-    	       $WORKS=mysql_fetch_array(mysql_query($query),1);
+    	       $WORKS=mysql_fetch_array(mysqli_query($conID, $query),1);
     	       $WORKS['prize_memo']=get_prize_memo($TEST['tsn'],$Stud['student_sn']);
  			    //班級轉中文
 	    				$class_id=sprintf('%03d_%d_%02d_%02d',substr($TEST['year_seme'],0,3),substr($TEST['year_seme'],3,1),substr($Stud['seme_class'],0,1),substr($Stud['seme_class'],1,2));

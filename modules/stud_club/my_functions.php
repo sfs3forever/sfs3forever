@@ -6,7 +6,7 @@ function list_club_select($c_curr_seme,$c_curr_class) {
 	} else {
 	  $query="select * from stud_club_base where year_seme='$c_curr_seme' and club_class='$c_curr_class' order by club_name";
 	}
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	?>
 	<select size="20" name="select_club_sn" onchange="document.myform.club_sn.value=document.myform.select_club_sn.value;document.myform.mode.value='list';document.myform.submit();">
 		<optgroup style="color:#FF00FF" label="請選擇社團"></optgroup>	
@@ -66,7 +66,7 @@ function list_students_select ($club_sn) {
 	$query= ($CLUB['club_class']<100)
 	?"SELECT class_id,c_name FROM `school_class`  WHERE year='".sprintf('%d',substr($CLUB['year_seme'],0,3))."' and semester='".substr($CLUB['year_seme'],-1)."' and c_year='".$CLUB['club_class']."' order by class_id"
 	:"SELECT class_id,c_name FROM `school_class`  WHERE year='".sprintf('%d',substr($CLUB['year_seme'],0,3))."' and semester='".substr($CLUB['year_seme'],-1)."'  order by class_id";
-	$res_class=mysql_query($query);
+	$res_class=mysqli_query($conID, $query);
 	?>
 	<Script language="JavaScript">
 	   document.myform.mode.value="add_members";
@@ -103,7 +103,7 @@ function list_students_select ($club_sn) {
 		$seme_year_seme=substr($c_curr_class,0,3).substr($c_curr_class,4,1);
 		$seme_class=sprintf("%d",substr($c_curr_class,6,2).substr($c_curr_class,9,2));
 		$query="select a.seme_num,a.student_sn,b.stud_name from stud_seme a,stud_base b where a.seme_year_seme='$seme_year_seme' and a.seme_class='$seme_class' and a.student_sn=b.student_sn and (b.stud_study_cond=0 or b.stud_study_cond=2) order by a.seme_num";
-		$result=mysql_query($query)
+		$result=mysqli_query($conID, $query)
 		?>
     	<table border="1" bordercolor="#800000" style="border-collapse:collapse" width="600">
   		<?php
@@ -163,7 +163,7 @@ function listall_club($year_seme) {
 			<?php
       foreach ($class_year_array as $K=>$class_year_name) {
 			  $query="select * from stud_club_base where year_seme='$year_seme' and club_class='$K' order by club_name";
-			  $result=mysql_query($query);
+			  $result=mysqli_query($conID, $query);
 			  if (mysql_num_rows($result)) {
 			?>
                 <td><a href="#<?php echo "class".$K;?>" style="font-size:10pt"><?php echo $school_kind_name[$K];?>級</a></td>
@@ -185,7 +185,7 @@ function listall_club($year_seme) {
 //列出某學期全班學生總表==================================================================================================================
 function student_club_select($classid,$c_curr_seme) {
 	$query="select a.*, b.seme_class,b.seme_num from stud_base a,stud_seme b where b.seme_class='$classid' and b.seme_year_seme='$c_curr_seme' and a.student_sn=b.student_sn order by b.seme_num";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 
 ?>
 
@@ -221,7 +221,7 @@ function list_class_club_choice_detail($year_seme,$club_class,$show_link,$show_c
   $SETUP=get_club_setup($year_seme);
 
 			  $query="select * from stud_club_base where year_seme='$year_seme' and club_class='$club_class' order by club_name";
-			  $result=mysql_query($query);
+			  $result=mysqli_query($conID, $query);
 			  if (mysql_num_rows($result)) {
 
 				?>
@@ -300,7 +300,7 @@ function print_name_list($year_seme,$club_sn) {
 
 	//取得學生名單
  $query="select a.*,b.seme_class,b.seme_num,c.stud_name from association a,stud_seme b,stud_base c where a.seme_year_seme='$year_seme' and a.club_sn='".$club_sn."' and b.seme_year_seme='$year_seme' and a.student_sn=b.student_sn and a.student_sn=c.student_sn and (c.stud_study_cond=0 or c.stud_study_cond=2) order by seme_class,seme_num";
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
 
 $CLUB=get_club_base($club_sn);
 ?>
@@ -361,7 +361,7 @@ function print_class_student($c_curr_seme,$c_curr_class,$show_score,$show_feedba
 	echo $school_kind_name[substr($club_class,0,1)].sprintf('%d',substr($club_class,1,2))."班";
 	$query="select a.stud_name,b.seme_num,b.student_sn from stud_base a,stud_seme b where a.student_sn=b.student_sn and b.seme_class='$club_class' and b.seme_year_seme='$c_curr_seme' and (a.stud_study_cond=0 or a.stud_study_cond=2) order by seme_num";
 	
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	
 	?>
 	<table border="1" style="border-collapse:collapse" bordercolor="#000000" cellpadding="2">
@@ -485,7 +485,7 @@ function list_club ($club_sn) {
 	$Y[1]="是";
 	global $school_kind_name,$SETUP;
 	$query="select * from stud_club_base where club_sn='$club_sn'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	$CLUB=mysql_fetch_array($result);
 	$stud_number=get_club_student_num($CLUB['year_seme'],$CLUB['club_sn']);
 	?>
@@ -916,7 +916,7 @@ function form_club ($CLUB) {
 //========================================================================================
 function get_club_setup($year_seme) {
  $query="select * from stud_club_setup where year_seme='$year_seme'";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  if (mysql_num_rows($result)) {
   $setup=mysql_fetch_array($result);
   $setup['error']=0;
@@ -949,7 +949,7 @@ function get_seme_class_2_name($c_year,$c_name) {
 //取得某學期社團數目
 function get_seme_club_num($year_seme) {
 	$query="select count(*) from stud_club_base where year_seme='$year_seme'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	list($num)=mysqli_fetch_row($result);
 	
 	return $num;
@@ -959,7 +959,7 @@ function get_seme_club_num($year_seme) {
 //取得年級社團數目
 function get_club_num($year_seme,$club_class) {
 	$query="select count(*) from stud_club_base where year_seme='$year_seme' and club_class='$club_class'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	list($num)=mysqli_fetch_row($result);
 	
 	return $num;
@@ -969,15 +969,15 @@ function get_club_num($year_seme,$club_class) {
 //取得社團學生人數
 function get_club_student_num($year_seme,$club_sn) {
 	$query="select * from association where seme_year_seme='$year_seme' and club_sn='$club_sn'";
-  $num[0]=mysql_num_rows(mysql_query($query));
+  $num[0]=mysql_num_rows(mysqli_query($conID, $query));
   
   //男生
 	$query="select a.sn from association a,stud_base b where a.seme_year_seme='$year_seme' and a.club_sn='$club_sn' and a.student_sn=b.student_sn and b.stud_sex='1' and (b.stud_study_cond=0 or b.stud_study_cond=2)";
-  $num[1]=mysql_num_rows(mysql_query($query));
+  $num[1]=mysql_num_rows(mysqli_query($conID, $query));
 
   //女生
 	$query="select a.sn from association a,stud_base b where a.seme_year_seme='$year_seme' and a.club_sn='$club_sn' and a.student_sn=b.student_sn and b.stud_sex='2' and (b.stud_study_cond=0 or b.stud_study_cond=2)";
-  $num[2]=mysql_num_rows(mysql_query($query));
+  $num[2]=mysql_num_rows(mysqli_query($conID, $query));
 
 	return $num;
 	
@@ -986,7 +986,7 @@ function get_club_student_num($year_seme,$club_sn) {
 //取得社團基本資料
 function get_club_base($club_sn) {
 	$query="select * from stud_club_base where club_sn='$club_sn'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	$row=mysql_fetch_array($result);
 	
 	return $row;
@@ -996,7 +996,7 @@ function get_club_base($club_sn) {
 //取得社團所屬年級
 function get_club_class($club_sn) {
 	$query="select club_class from stud_club_base where club_sn='$club_sn'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	$row=mysqli_fetch_row($result);
 	
 	list($club_class)=$row;
@@ -1008,7 +1008,7 @@ function get_club_class($club_sn) {
 //依 sn 取得學生資料 array
 function get_student($student_sn,$seme_year_seme) {
   $query="select a.student_sn,a.seme_class,a.seme_num,b.stud_name from stud_seme a,stud_base b where a.student_sn='$student_sn' and a.seme_year_seme='$seme_year_seme' and b.student_sn='$student_sn'";
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
   $row=mysql_fetch_array($result);
   
   return $row;
@@ -1018,7 +1018,7 @@ function get_student($student_sn,$seme_year_seme) {
 //取學生姓名
 function get_stud_name($student_sn) {
   $query="select stud_name from stud_base where student_sn='$student_sn'";
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
   $row=mysqli_fetch_row($result);
    list($stud_name)=$row;
   return $stud_name;
@@ -1028,7 +1028,7 @@ function get_stud_name($student_sn) {
 //檢查學生是否參加社團
 function check_student_joined_club($student_sn,$seme_year_seme) {
   $query="select * from association where student_sn='$student_sn' and seme_year_seme='$seme_year_seme'";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   if (mysql_num_rows($res)>0) {
   	return true;
   } else {
@@ -1042,7 +1042,7 @@ function get_student_join_club($student_sn,$seme_year_seme="") {
   $query="select a.*,b.club_name from association a,stud_club_base b where a.student_sn='$student_sn' and a.club_sn=b.club_sn";
   if ($seme_year_seme!="") $query.=" and a.seme_year_seme='$seme_year_seme'";
   $query.=" order by seme_year_seme";
-  //$result=mysql_query($query);
+  //$result=mysqli_query($conID, $query);
   
   $result=$CONN->Execute($query) or die("Error! Query=".$query);
   
@@ -1069,7 +1069,7 @@ function get_student_join_club($student_sn,$seme_year_seme="") {
 //取得學生社團成績
 function get_student_score($student_sn,$club_sn) {
   $query="select * from association where student_sn='$student_sn' and club_sn='$club_sn'";
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
   
   $row=mysql_fetch_array($result);
   
@@ -1081,11 +1081,11 @@ function get_student_score($student_sn,$club_sn) {
 function club_for_stud_num($club_class,$year_seme) {
 	//先取得總名額
 	$query="select sum(club_student_num),sum(stud_boy_num),sum(stud_girl_num) from stud_club_base where year_seme='$year_seme' and club_open='1' and club_class='$club_class'"; 
-	list($num[0],$num[1],$num[2])=mysqli_fetch_row(mysql_query($query));
+	list($num[0],$num[1],$num[2])=mysqli_fetch_row(mysqli_query($conID, $query));
   
   //逐一扣除每一個社團已錄取名額
   $query="select club_sn from stud_club_base where year_seme='$year_seme' and club_open='1' and club_class='$club_class'"; 
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
   while ($row=mysqli_fetch_row($result)) {
    list($club_sn)=$row;
    $stud_number=get_club_student_num($year_seme,$club_sn);
@@ -1100,7 +1100,7 @@ function club_for_stud_num($club_class,$year_seme) {
 //取得某社團的某志願的預選志願數
 function get_club_choice_rank($club_sn,$choice_rank) {
 	$query="select count(*) from stud_club_temp where club_sn='$club_sn' and choice_rank='$choice_rank'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	list($num)=mysqli_fetch_row($result);
 	
 	return $num;
@@ -1110,7 +1110,7 @@ function get_club_choice_rank($club_sn,$choice_rank) {
 //取得某學生某學期的某志願 club_sn
 function get_seme_stud_choice_rank($year_seme,$student_sn,$choice_rank) {
  $query="select club_sn from stud_club_temp where year_seme='$year_seme' and student_sn='$student_sn' and choice_rank='$choice_rank'";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  list($club_sn)=mysqli_fetch_row($result);
  
  return $club_sn; 
@@ -1132,7 +1132,7 @@ function get_students_by_club_choice_rank($club_sn,$choice_rank) {
 //取得該年級人數
 function class_student_num($class,$year_seme) {
 	$query="select count(*) from stud_base a,stud_seme b where a.student_sn=b.student_sn and b.seme_class like '".$class."%%' and b.seme_year_seme='$year_seme' and (a.stud_study_cond=0 or a.stud_study_cond=2)";
-	list($num)=mysqli_fetch_row(mysql_query($query));
+	list($num)=mysqli_fetch_row(mysqli_query($conID, $query));
 
   return $num;
 }
@@ -1147,7 +1147,7 @@ function getYearSeme($year_seme) {
 function chk_leader_teacher($c_curr_class) {
   $seme_class=sprintf('%d%02d',substr($c_curr_class,6,2),substr($c_curr_class,9,2));
   $query="select teacher_sn from teacher_post where class_num='$seme_class'";
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
   list($teacher_sn)=mysqli_fetch_row($result);
   
   if ($teacher_sn==$_SESSION['session_tea_sn']) {
@@ -1160,7 +1160,7 @@ function chk_leader_teacher($c_curr_class) {
 //檢驗某師是否已為社團老師
 function chk_if_exist_teacher($year_seme,$teacher_sn) {
 	$query="select count(*) from stud_club_base where year_seme='$year_seme' and club_teacher='$teacher_sn'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	list ($num)=mysqli_fetch_row($result);
 	
 	return $num;
@@ -1170,7 +1170,7 @@ function chk_if_exist_teacher($year_seme,$teacher_sn) {
 //檢驗某生是否已加入某社團
 function chk_if_exist_stud($club_sn,$student_sn) {
 	$query="select count(*) from association where club_sn='$club_sn' and student_sn='$student_sn'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	list ($num)=mysqli_fetch_row($result);
 	
 	return $num;	
@@ -1233,7 +1233,7 @@ function create_table_association() {
   PRIMARY KEY  (`sn`)
 ) ;";
 
-	mysql_query($query);
+	mysqli_query($conID, $query);
 
 } // end function
 
@@ -1260,7 +1260,7 @@ function check_arrange() {
 			//取得所有本年級學生, 再逐筆檢驗 
 			
 			$query="select a.student_sn,a.seme_class,a.seme_num,b.stud_sex from stud_seme a,stud_base b where a.seme_year_seme='$c_curr_seme' and a.seme_class like '".$c_curr_class."%%' and a.student_sn=b.student_sn  and (b.stud_study_cond=0 or b.stud_study_cond=2) order by seme_class,seme_num";
-			$result=mysql_query($query);
+			$result=mysqli_query($conID, $query);
 			$CLASS_choiced=0; //
 			$CLASS_not_choiced=$CLASS_num; //未選課人數
 			$CLASS_arranged=0; //已編班學生數
@@ -1302,7 +1302,7 @@ function check_choice_not_arrange() {
  global $student_choice_not_arrange_sex; //array 未編班名單
  
  $query="select a.student_sn,b.seme_class,b.seme_num,c.stud_sex from stud_club_temp a,stud_seme b,stud_base c where a.arranged='0' and a.year_seme='$c_curr_seme' and b.seme_year_seme='$c_curr_seme' and b.seme_class like '".$c_curr_class."%%' and a.student_sn=b.student_sn and a.student_sn=c.student_sn  and (c.stud_study_cond=0 or c.stud_study_cond=2)";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
   while ($row=mysqli_fetch_row($result)) {
   	list($student_sn,$seme_class,$seme_num,$stud_sex)=$row;
     $student_choice_not_arrange[$seme_class][$seme_num]=$student_sn;
@@ -1320,13 +1320,13 @@ function choice_this_stud($c_curr_seme,$club_sn,$club_name,$student_sn,$arr) {
   }
  //將學生編入此社團
    $query="insert into association (student_sn,seme_year_seme,association_name,club_sn) values ('$student_sn','$c_curr_seme','".addslashes($club_name)."','$club_sn')"; 
-   if (mysql_query($query)) {
+   if (mysqli_query($conID, $query)) {
  //將此學生的選課志願資料皆註記為1
    write_arranged_flag($c_curr_seme,$student_sn);
  //若非落選強迫編班則將此志願註記為2 $arr為志願序, 表示是第幾志願選到課
    if ($arr>0) {
     $query="update stud_club_temp set arranged='2' where year_seme='$c_curr_seme' and student_sn='$student_sn' and club_sn='$club_sn' and choice_rank='$arr'";
-    mysql_query($query);
+    mysqli_query($conID, $query);
    }
    return true; //單筆編班成功 , 傳回 true
   }else{
@@ -1338,7 +1338,7 @@ function choice_this_stud($c_curr_seme,$club_sn,$club_name,$student_sn,$arr) {
 //註記某學生已編班
 function write_arranged_flag($c_curr_seme,$student_sn) {
   $query="update stud_club_temp set arranged='1' where year_seme='$c_curr_seme' and student_sn='$student_sn'";
-	if (!mysql_query($query)) {
+	if (!mysqli_query($conID, $query)) {
 	 echo "Error! query=$query";
 	 exit();
 	}else{
@@ -1349,7 +1349,7 @@ function write_arranged_flag($c_curr_seme,$student_sn) {
 //取得學生所選的社團
 function get_stud_choice($c_curr_seme,$student_sn) {
  $query="select club_sn,choice_rank from stud_club_temp where year_seme='$c_curr_seme' and student_sn='$student_sn' order by choice_rank";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  while ($row=mysqli_fetch_row($result)) {
   list($club_sn,$choice_rank)=$row;
   $C[$choice_rank]=$club_sn;

@@ -37,7 +37,7 @@ $stmt->execute();
 $stmt->bind_result($doc1_id,$doc1_year_limit);
 
 ///mysqli
-	//$result = mysql_query($query);
+	//$result = mysqli_query($conID, $query);
 	//while($row = mysql_fetch_array($result)) {	
       while ($stmt->fetch()) {	
 		$temp = "doc1_year_limit_".$doc1_id;
@@ -158,7 +158,7 @@ $stmt->bind_result($doc1_id,$doc1_year_limitx,$doc1_kind,$doc1_date,$doc1_date_s
 ///mysqli
 
 //$query = "select * from sch_doc1 where  doc1_infile_date='$doc1_infile_date' and doc_stat = '2' order by doc1_id";
-//$result = mysql_query($query);
+//$result = mysqli_query($conID, $query);
 //echo $query;
 
 echo "<center><b>$doc1_infile_date 歸檔文件</b></center>";

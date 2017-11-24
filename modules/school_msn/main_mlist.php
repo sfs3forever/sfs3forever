@@ -18,7 +18,7 @@ if ($_POST['act']=='del') {
  if ($set=='my_pic') {
   foreach($_POST['id'] as $id) {
      	$query="select * from sc_msn_board_pic where id='$id'"; 
- 		 	$result=mysql_query($query);
+ 		 	$result=mysqli_query($conID, $query);
   		$row=mysql_fetch_array($result,1);
   		  //蝮桀?
   		  $a=explode(".",$row['filename']);
@@ -26,20 +26,20 @@ if ($_POST['act']=='del') {
   		 unlink($UPLOAD_PIC.$row['filename']);
        unlink($UPLOAD_PIC.$filename_s);
 			$query="delete from sc_msn_board_pic where id='$id'";
-  		mysql_query($query);
+  		mysqli_query($conID, $query);
   } // end foreach
  //?芸隞?
  } else {
   foreach($_POST['id'] as $id) {
     	$query="select * from sc_msn_data where id='$id'"; //銝??idnumber , 銝撠??臬蝯血?鈭箸?, ??? ?dnumber, ?嗅?銋???銝??獢?
- 		 	$result=mysql_query($query);
+ 		 	$result=mysqli_query($conID, $query);
   		$row=mysql_fetch_array($result,1);
   		if ($row['data_kind']==1 or $row['data_kind']==2) {
   	 	  //?芷??
    		  delete_file ($row['idnumber'],$row['to_id']);
    	  }
 			$query="delete from sc_msn_data where id='$id'";
-  		mysql_query($query);
+  		mysqli_query($conID, $query);
   } // end foreach 
  } // end if else $_POST['set']
  
@@ -66,7 +66,7 @@ switch ($set) {
  break;
 }
 
-$result=mysql_query($query);
+$result=mysqli_query($conID, $query);
 
 $IF_READ[0]="-";
 $IF_READ[1]="已讀取";

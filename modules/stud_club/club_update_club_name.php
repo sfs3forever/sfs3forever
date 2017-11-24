@@ -37,13 +37,13 @@ if ($module_manager!=1) {
 if ($_POST['mode']=="start") {
 	    $N=0;
       $query="select * from association where seme_year_seme='$c_curr_seme' and club_sn!=''";
-      $res=mysql_query($query);
+      $res=mysqli_query($conID, $query);
       while ($row=mysql_fetch_array($res)) {
       	$query="select club_name from stud_club_base where club_sn='".$row['club_sn']."'";
-				$result=mysql_query($query);
+				$result=mysqli_query($conID, $query);
 				list($club_name)=mysqli_fetch_row($result);
 				$query="update association set association_name='".SafeAddSlashes($club_name)."' where sn='".$row['sn']."'";
-				if (mysql_query($query)) {
+				if (mysqli_query($conID, $query)) {
 					$N++;
 				} else {
 				  echo "錯誤發生了！query=$query";
@@ -56,7 +56,7 @@ if ($_POST['mode']=="start") {
 
 
      $query="select * from association where seme_year_seme='$c_curr_seme' and club_sn!=''";
-     $res=mysql_query($query);
+     $res=mysqli_query($conID, $query);
      $N=mysql_num_rows($res);
 ?>
 <form name="myform" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">

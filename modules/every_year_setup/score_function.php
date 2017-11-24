@@ -29,7 +29,7 @@ function del_subject($subject_id){
 function add_exam_set($sel_year="",$sel_seme="",$exam_times=2,$exam="",$exam_class_year=""){
 	global $conID;
 	$sql_insert = "insert into score_setup (year,semester,exam_times,exam,exam_class_year,update_date,enable) values ($sel_year,'$sel_seme',$exam_times,'$exam','$exam_class_year',now(),'1')";
-	if(mysql_query ($sql_insert,$conID)) return mysql_insert_id();
+	if(mysql_query ($sql_insert,$conID)) return mysqli_insert_id($conID);
 	return false;
 }
 

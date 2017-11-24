@@ -2,7 +2,7 @@
 //讀取競賽者資料 return array
 function get_contest_user($tsn,$student_sn) {
 $query="select a.*,b.stud_id,b.stud_name,b.email_pass,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c,contest_setup d where a.student_sn=b.student_sn and a.student_sn=c.student_sn and a.tsn=d.tsn and d.year_seme=c.seme_year_seme and a.tsn='".$tsn."' and a.student_sn='".$student_sn."'";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  $STID=mysql_fetch_array($result,1);
  return $STID;
 }
@@ -10,20 +10,20 @@ $query="select a.*,b.stud_id,b.stud_name,b.email_pass,c.seme_class,c.seme_num fr
 //讀取競賽資料 return array
 function get_test_setup($tsn) {
  $query="select * from contest_setup where tsn='$tsn'";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  $TEST=mysql_fetch_array($result,1);
  //取得已報名人數
  $query="select count(*) as num from contest_user where tsn='$tsn'";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  list($N)=mysqli_fetch_row($result);
  $TEST['testuser_num']=$N;
  //取徥查資料比賽題本題數
  $query="select count(*) from contest_ibgroup where tsn='".$TEST['tsn']."'";
- list($N)=mysqli_fetch_row(mysql_query($query));
+ list($N)=mysqli_fetch_row(mysqli_query($conID, $query));
  $TEST['search_ibgroup']=$N;
  //取資查資料比賽題庫總數
  $query="select count(*) from contest_itembank";
- list($N)=mysqli_fetch_row(mysql_query($query));
+ list($N)=mysqli_fetch_row(mysqli_query($conID, $query));
  $TEST['search_itembank']=$N;
  return $TEST;
 }
@@ -31,7 +31,7 @@ function get_test_setup($tsn) {
 //條列競賽
 function test_list($query) {
 	global $PHP_CONTEST;
-	$TEST=mysql_query($query);
+	$TEST=mysqli_query($conID, $query);
 ?>
    <table border="1" width="100%" style="border-collapse: collapse" bordercolor="#C0C0C0">
    	<tr bgcolor="#FFFFCC">
@@ -46,7 +46,7 @@ function test_list($query) {
  <?php
     while ($row=mysql_fetch_array($TEST,1)) {
     	$query="select count(*) as num from contest_user where tsn='".$row['tsn']."'";
-			list($N)=mysqli_fetch_row(mysql_query($query));
+			list($N)=mysqli_fetch_row(mysqli_query($conID, $query));
   	?>
    	<tr>
    		<td style="font-size:10pt" align="center"><img src="images/edit.png" border="0" style="cursor:hand" onclick="document.myform.option1.value='<?php echo $row['tsn'];?>';document.myform.act.value='listone';document.myform.submit();"></td>
@@ -92,7 +92,7 @@ function title_simple($TEST) {
 function test_main($tsn,$admin) {
 	global $PHP_CONTEST,$MANAGER,$CONN;
   $query="select * from contest_setup where tsn='".$tsn."'";
-  $TEST=mysql_fetch_array(mysql_query($query),1);
+  $TEST=mysql_fetch_array(mysqli_query($conID, $query),1);
 
 ?>
    <table border="1" width="100%" style="border-collapse: collapse" bordercolor="#C0C0C0" cellpadding="5">
@@ -168,7 +168,7 @@ function test_main($tsn,$admin) {
   		<td style="font-size:10pt">
   			<?php
        $query="select * from contest_score_setup where tsn='".$TEST['tsn']."'";
-       $result=mysql_query($query);
+       $result=mysqli_query($conID, $query);
        if (mysql_num_rows($result)) {
         while ($row=mysql_fetch_array($result,1)) {
          echo $row['sco_text']."&nbsp;&nbsp;";
@@ -389,7 +389,7 @@ function form_contest($TEST) {
     <?php
     //取出本競賽的評分細項, 會用到 act, sco
       $query="select * from contest_score_setup where tsn='".$TEST['tsn']."'";
-      $result=mysql_query($query);
+      $result=mysqli_query($conID, $query);
       if (mysql_num_rows($result)) {
     	?>  	
   			<table border="0" cellspacing="2">
@@ -437,7 +437,7 @@ function list_user($tsn,$act) {
   $TEST=get_test_setup($tsn);
   //取出名單
 	$query="select a.*,b.stud_id,b.stud_name,b.email_pass,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c,contest_setup d where a.student_sn=b.student_sn and a.student_sn=c.student_sn and a.tsn=d.tsn and d.year_seme=c.seme_year_seme and a.tsn='".$tsn."' and ifgroup='' order by seme_class,seme_num";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	
 ?>
    <table border="1" width="100%" style="border-collapse: collapse" bordercolor="#C0C0C0" cellpadding="1">
@@ -460,7 +460,7 @@ function list_user($tsn,$act) {
     	//組員資料
     	//$query="select * from contest_user where tsn='".$tsn."' and ifgroup='".$row['stid']."' order by class_num";
     	$query="select a.*,b.stud_id,b.stud_name,b.email_pass,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c,contest_setup d where a.student_sn=b.student_sn and a.student_sn=c.student_sn and a.tsn=d.tsn and d.year_seme=c.seme_year_seme and a.tsn='".$tsn."' and ifgroup='".$row['student_sn']."' order by seme_class,seme_num";
-    	$GROUPS=mysql_query($query);
+    	$GROUPS=mysqli_query($conID, $query);
     	//作答記錄
     	
     	if ($TEST['active']==1) {
@@ -572,7 +572,7 @@ function list_user_print($tsn,$act) {
    
   //取出名單
 	$query="select a.*,b.stud_id,b.stud_name,b.email_pass,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c,contest_setup d where a.student_sn=b.student_sn and a.student_sn=c.student_sn and a.tsn=d.tsn and d.year_seme=c.seme_year_seme and a.tsn='".$tsn."' and ifgroup='' order by seme_class,seme_num";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	
 
 	$Table_Fieles=count($_POST['print_chk']);  //要印的欄位數
@@ -596,7 +596,7 @@ function list_user_print($tsn,$act) {
     	//組員資料
     	//$query="select * from contest_user where tsn='".$tsn."' and ifgroup='".$row['stid']."' order by class_num";
     	$query="select a.*,b.stud_id,b.stud_name,b.email_pass,c.seme_class,c.seme_num from contest_user a,stud_base b,stud_seme c,contest_setup d where a.student_sn=b.student_sn and a.student_sn=c.student_sn and a.tsn=d.tsn and d.year_seme=c.seme_year_seme and a.tsn='".$tsn."' and ifgroup='".$row['student_sn']."' order by seme_class,seme_num";
-    	$GROUPS=mysql_query($query);
+    	$GROUPS=mysqli_query($conID, $query);
     	$GROUPS_num=mysql_num_rows($GROUPS);
 
     	//統計作答記錄
@@ -740,11 +740,11 @@ function print_title() {
 //學生報名
 function contest_add_user($tsn,$STUDENT) {
  	$query="select * from contest_user where tsn='$tsn' and student_sn='".$STUDENT['student_sn']."'";
- 	 if (mysql_num_rows(mysql_query($query))>0) {
+ 	 if (mysql_num_rows(mysqli_query($conID, $query))>0) {
     $INFO=$STUDENT['seme_class'].sprintf('%02d',$STUDENT['seme_num']).$STUDENT['stud_name']."已重覆報名, 不存入!!!";	
  	 } else {
  	  $query="insert into contest_user (tsn,student_sn) values ('".$_POST['option1']."','".$STUDENT['student_sn']."')";
-    if (mysql_query($query)) {
+    if (mysqli_query($conID, $query)) {
     	$INFO="報名成功：".$STUDENT['seme_class'].sprintf('%02d',$STUDENT['seme_num']).$STUDENT['stud_name'];
     } else {
      echo "Error! query=".$query;
@@ -763,7 +763,7 @@ function get100($tsn,$ToNum) {
 	$TEST=get_test_setup($tsn);
 
   $query="select ibsn from contest_ibgroup where tsn='".$tsn."'";
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
   $N=mysql_num_rows($result);
   $start=1;
 	if ($N>$ToNum) {
@@ -790,20 +790,20 @@ function get100($tsn,$ToNum) {
    $IN=rand(0,$IB);
    list($ibsn)=mysqli_fetch_row(mysql_query("select ibsn from contest_itembank limit ".$IN.",1"));
    $query="select count(*) as num from contest_ibgroup where tsn='$tsn' and ibsn='$ibsn'";
-	 $result=mysql_query($query);
+	 $result=mysqli_query($conID, $query);
 	 $row=mysqli_fetch_row($result);
 	 list($D)=$row;
   } while ($D>0);
   //寫入題目代碼
   $query="select * from contest_itembank where ibsn='$ibsn'";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   $row=mysql_fetch_array($res);
   $query="insert into contest_ibgroup (tsn,ibsn,question,ans,ans_url) values ('$tsn','$ibsn','".SafeAddSlashes($row['question'])."','".SafeAddSlashes($row['ans'])."','".$row['ans_url']."')";
-  mysql_query($query);
+  mysqli_query($conID, $query);
  } // end while
  //寫入出題序
  $query="select ibsn from contest_ibgroup where tsn='$tsn'";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  $tsort=0;
  while ($row=mysqli_fetch_row($result)) {
   list($ibsn)=$row;
@@ -819,7 +819,7 @@ function get100($tsn,$ToNum) {
 //清除100題本
 function clear100($tsn) {
    $query="delete from contest_ibgroup where tsn='$tsn'";
-   if (mysql_query($query)) {
+   if (mysqli_query($conID, $query)) {
     //更新id 編碼
   	mysql_query("optimize table contest_ibgroup");
   	mysql_query("alter table contest_ibgroup drop id");
@@ -854,7 +854,7 @@ function list_itembank_for_choice($tsn) {
 		$i++;
 	 //檢驗本題是否已存在題本中
 	 $query="select count(*) as num from contest_ibgroup where tsn='$tsn' and ibsn='".$row['ibsn']."'";
-	 $result=mysql_query($query);
+	 $result=mysqli_query($conID, $query);
 	 $row_double=mysqli_fetch_row($result);
 	 list($D)=$row_double;
 	 if ($D>0) { $DIS="disabled"; $BG="bgcolor='#CCCCCC'"; } else { $DIS=""; $BG=""; }
@@ -891,7 +891,7 @@ function list_test_ibgroup($tsn) {
 
    	<?php
    	$query="select * from contest_ibgroup where tsn='$tsn' order by tsort";
-   	$result=mysql_query($query);
+   	$result=mysqli_query($conID, $query);
    	while ($row=mysql_fetch_array($result)) {
    		   	 	$ans_url=($row['ans_url']=='')?"無":"<a href='".$row['ans_url']."' target='_blank'>".瀏覽."</a>";
 
@@ -920,13 +920,13 @@ function chk_ifgroup($TEST,$student_sn) {
     	if ($TEST['active']==1) {
     	 //查資料
     	 $query="select count(*) as num from contest_record1 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."'";
-    	 list($N)=mysqli_fetch_row(mysql_query($query));
+    	 list($N)=mysqli_fetch_row(mysqli_query($conID, $query));
     	 if ($N==0) { $DEL=1; }
     	}else{
     	 //上傳作品
     	 //查資料
     	 $query="select filename from contest_record2 where tsn='".$TEST['tsn']."' and student_sn='".$student_sn."'";
-    	 list($FILE)=mysqli_fetch_row(mysql_query($query));
+    	 list($FILE)=mysqli_fetch_row(mysqli_query($conID, $query));
     	 if ($FILE=="") {
      	   $DEL=1;
     	  } 
@@ -934,7 +934,7 @@ function chk_ifgroup($TEST,$student_sn) {
     	//檢驗此生是否為別組組長
     	if ($DEL==1) {
     	$query="select id from contest_user where tsn='".$TEST['tsn']."' and ifgroup='".$student_sn."'";
-    	  if (mysql_num_rows(mysql_query($query))>0) {
+    	  if (mysql_num_rows(mysqli_query($conID, $query))>0) {
     	   $DEL=0;
     	  }
       }

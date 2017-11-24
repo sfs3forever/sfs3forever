@@ -43,13 +43,13 @@ $move_year_seme = intval(substr($work_year_seme,0,-1)).substr($work_year_seme,-1
 if ($_POST['act']=='club_add') {
  $year_seme=sprintf("%03d",substr($_POST['year_seme'],0,strlen($_POST['year_seme'])-1)).substr($_POST['year_seme'],-1);
  $query="insert into association (student_sn,seme_year_seme,association_name,score,stud_post,description,update_sn,update_time) values ('".$selected_student."','$year_seme','".$_POST['association_name']."','".$_POST['score']."','".$_POST['stud_post']."','".$_POST['description']."','".$_SESSION['session_tea_sn']."',NOW())";
- mysql_query($query);
+ mysqli_query($conID, $query);
  $_POST['act']='';
 }
 //刪除一個社團記錄
 if ($_POST['act']=='club_delete') {
  $query="delete from association where sn='".$_POST['option1']."'";
- mysql_query($query);
+ mysqli_query($conID, $query);
  $_POST['act']='';
  $_POST['option1']='';
 }
@@ -123,7 +123,7 @@ if ($work_year_seme!='') {
 			  </tr>
 		<?php
 			$query="select * from association where student_sn='$selected_student' order by seme_year_seme";
-			$res=mysql_query($query);
+			$res=mysqli_query($conID, $query);
 			while ($row=mysql_fetch_array($res,1)) {
 			 ?>
 		    <tr>

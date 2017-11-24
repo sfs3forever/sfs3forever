@@ -30,7 +30,7 @@ if ($_POST['act']=='inserting') {
   }
   
   $query="insert into net_base (net_name,net_kind,net_ip,net_ip_show,net_url,net_url_show,net_location,net_memo,net_check) values ('$net_name','$net_kind','$net_ip','$net_ip_show','$net_url','$net_url_show','$net_location','$net_memo','$net_check')";
-  mysql_query($query);
+  mysqli_query($conID, $query);
   $_POST['act']='';
 
 } // end inserting
@@ -39,7 +39,7 @@ if ($_POST['act']=='inserting') {
 if ($_POST['act']=='del') {
   
   $query="delete from net_base where id='".$_POST['option1']."'";
-  mysql_query($query);
+  mysqli_query($conID, $query);
   $_POST['act']='';
 
 } // end inserting
@@ -52,7 +52,7 @@ if ($_POST['act']=='update') {
   }
   
   $query="update net_base set net_name='$net_name',net_kind='$net_kind',net_ip='$net_ip',net_ip_show='$net_ip_show',net_url='$net_url',net_url_show='$net_url_show',net_location='$net_location',net_memo='$net_memo',net_check='$net_check' where id='".$_POST['option1']."'";
-  mysql_query($query);
+  mysqli_query($conID, $query);
   $_POST['act']='';
 
 }
@@ -116,7 +116,7 @@ if ($_POST['act']=='') {
  	</tr>
  <?
  $query="select * from net_base where net_kind=$k order by net_ip";
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
  $i=0;
  while ($E=mysql_fetch_array($res)) {
 		
@@ -178,7 +178,7 @@ if ($_POST['act']=='') {
 function get_equipment($k) {
 	
   $query="select * from net_base where id='$k'";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   $row=mysql_fetch_array($res,1);
   
   return $row;

@@ -26,11 +26,11 @@ if ($module_manager!=1) {
 //submit後的動作 ========================================================================
 if ($_POST['mode']=='save') {
 	$query="delete from `score_eduh_teacher2` where year_seme='$seme_year_seme' and teacher_sn='".$_POST['teacher_sn']."'";
-	mysql_query($query);
+	mysqli_query($conID, $query);
   //依序存入 checkbox 的資料
 	foreach ($_POST['class_id'] as $class_id) {
     $query="insert into `score_eduh_teacher2` (year_seme,teacher_sn,class_id,update_sn) values ('$seme_year_seme','".$_POST['teacher_sn']."','$class_id','".$_SESSION['session_tea_sn']."')";
-    mysql_query($query);	
+    mysqli_query($conID, $query);	
 	}
 	$MESSAGE="已於".date("Y-m-d h:i:s")."設定".get_teacher_name($_POST['teacher_sn'])."資料!";
 }
@@ -41,7 +41,7 @@ if ($_POST['mode']=='save') {
 
 $query="SELECT a.teacher_sn,a.teach_id,a.name, b.post_kind, b.post_office,d.title_name ,b.class_num FROM teacher_base a , teacher_post b, teacher_title d WHERE a.teacher_sn = b.teacher_sn AND b.teach_title_id = d.teach_title_id  AND a.teach_condition = 0 order by a.name" ;
 //echo $query;
-$res_teacher=mysql_query($query);
+$res_teacher=mysqli_query($conID, $query);
 ?>
 <form method="post" name="form_select" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <table border="0">
@@ -76,7 +76,7 @@ $res_teacher=mysql_query($query);
  	<?php
  	//從 school_class 找出班級, 依年級
 $query="SELECT DISTINCT c_year FROM `school_class` WHERE year ='".curr_year()."' AND semester ='".curr_seme()."' order by c_year";
-$res_year=mysql_query($query);
+$res_year=mysqli_query($conID, $query);
 while ($row_year=mysql_fetch_array($res_year)) {
  //列出每一年級的班級
  ?>
@@ -89,7 +89,7 @@ while ($row_year=mysql_fetch_array($res_year)) {
  		</tr>
  <?php
  $query="select class_id,c_year,c_name,c_kind  from `school_class` where c_year='".$row_year['c_year']."' and  year ='".curr_year()."' AND semester ='".curr_seme()."' order by class_id";
- $res_class=mysql_query($query);
+ $res_class=mysqli_query($conID, $query);
  		while($row_class=mysql_fetch_array($res_class)) {
  			$c_year=$row_class['c_year'];
  			$c_name=$row_class['c_name'];

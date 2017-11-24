@@ -165,7 +165,7 @@ function ".$table."_add(\$data){
 	".multiple_var($is_multiple)."
 	\$sql_insert = \"$sql_insert\";
 	\$CONN->Execute(\$sql_insert) or user_error(\"新增失敗！<br>\$sql_insert\",256);
-	\$$sn_col=mysql_insert_id();
+	\$$sn_col=mysqli_insert_id($conID);
 	return \$$sn_col;
 }
 
@@ -392,10 +392,10 @@ function multiple_var($is_multiple=array()){
 
 //先將欄位資料存入資料庫
 function module_maker_col_add($table,$ename,$cname,$col_default){
-	global $CONN;
+	global $CONN,$conID;
 	$sql_insert = "replace into module_maker_col (table_name,ename,cname,default_txt) values ('$table','$ename','$cname','$col_default')";
 	$CONN->Execute($sql_insert) or user_error("新增失敗！<br>$sql_insert",256);
-	$mmscs=mysql_insert_id();
+	$mmscs=mysqli_insert_id($conID);
 	return $mmscs;
 }
 

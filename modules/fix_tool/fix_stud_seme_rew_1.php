@@ -41,7 +41,7 @@ echo $tool_bar;
 <?php
 if ($_POST['mode']=="start") {
 $query="SELECT a.seme_year_seme,a.stud_id,a.student_sn from stud_seme_rew a,stud_seme b where a.seme_year_seme=b.seme_year_seme and a.stud_id=b.stud_id and a.student_sn!=b.student_sn";
-$result=mysql_query($query);
+$result=mysqli_query($conID, $query);
 //取出資料 stud_seme_rew資料, 比對 seme_year_seme, stud_id, student_sn
 $i=0;
  while ($row=mysql_fetch_array($result)) {
@@ -51,13 +51,13 @@ $i=0;
  	$old_student_sn=$row['student_sn'];
  	
  	$query="select a.student_sn,b.stud_name from stud_seme a,stud_base b where a.student_sn=b.student_sn and a.seme_year_seme='$seme_year_seme' and a.stud_id='$stud_id'";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   list($student_sn,$stud_name)=mysqli_fetch_row($res);
   echo "(記錄 $i )".$seme_year_seme."學期 , 學生:".$stud_name."($stud_id) 的 student_sn=".$old_student_sn." ==>應修正為".$student_sn;
   
   if ($_POST['confirm_save']==1) {
   	$query="update stud_seme_rew set student_sn='".$student_sn."' where seme_year_seme='$seme_year_seme' and stud_id='$stud_id' and student_sn='$old_student_sn'";
-    if (mysql_query($query)) {
+    if (mysqli_query($conID, $query)) {
      echo "已修正!";
     } else {
      echo "<font color=red>修正失敗!!!</font>";

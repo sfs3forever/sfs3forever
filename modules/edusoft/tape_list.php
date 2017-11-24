@@ -10,7 +10,7 @@ include "header.php";
 //********上下頁數
 if(!isset($_REQUEST[tapem_id])){ //預設值
 	$query = "select min(tapem_id) from $mastertable ";
-	$result = mysql_query($query);
+	$result = mysqli_query($conID, $query);
 	$row= mysqli_fetch_row($result);
 	$tapem_id = $row[0];
 }

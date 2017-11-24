@@ -38,7 +38,7 @@ if ($_POST['key']=="批次建立資料"){
 		}
 		//更新統計資料
 		$query = "select count(bookch1_id) as cc ,bookch1_id from book group by bookch1_id" ;
-		$result = mysql_query($query);
+		$result = mysqli_query($conID, $query);
 		while ($row = mysqli_fetch_row ($result)) {
 			$query2 = "update bookch1 set tolnum= $row[0] where bookch1_id = '$row[1]' ";
 			mysql_query ($query2);

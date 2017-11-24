@@ -38,12 +38,12 @@ $mysqliconn = get_mysqli_conn();
 if ($sel == "del")
 {
 	$query ="delete from borrow where b_num='$b_num'";
-	mysql_query($query);
+	mysqli_query($conID, $query);
 	//設定為可借
 	$query = "update book
 		set book_isout=0
       		where book_id='$dbook_id'";
-      	$result = mysql_query($query)or die ($query);  
+      	$result = mysqli_query($conID, $query)or die ($query);  
 }	
 
 */
@@ -52,7 +52,7 @@ $reader_flag = 0;
 if ($stud_id !=""){
 	$stud_id=substr($stud_id,0,7);
 	$query = "select stud_name,curr_class_num,stud_study_cond,stud_study_year from stud_base where stud_id = '$stud_id' and stud_study_cond=0";
-	$result = mysql_query($query)or die ($query);
+	$result = mysqli_query($conID, $query)or die ($query);
 	if ( mysql_num_rows($result) >0){
 		$row= mysql_fetch_array($result);
 		$stud_name = $row["stud_name"];
@@ -74,13 +74,13 @@ if ($book_id != ""){
 	$stud_id=substr($stud_id,0,7);
 	$amount_limit_s=$amount_limit_s?$amount_limit_s:7;
 	$query = "SELECT count(*) AS counter FROM borrow WHERE stud_id='$stud_id' and ISNULL(in_date)";
-	$result = mysql_query($query)or die ($query);
+	$result = mysqli_query($conID, $query)or die ($query);
 	$row= mysql_fetch_array($result);
 	if($row["counter"]>=$amount_limit_s) echo "<script language=\"Javascript\"> alert (\"本學生未歸還借書數：{$row['counter']}，已經達到模組變數設定的限制數： $amount_limit_s 本了。\\n\\n 請將欲借出的圖書收回！\")</script>";
 	else {
 		
 		$query = "select book_id,bookch1_id,book_name,book_author from book where book_id='$book_id' and book_isout=0 and book_isborrow=0";
-		$result = mysql_query($query)or die ($query); 
+		$result = mysqli_query($conID, $query)or die ($query); 
 		
 //mysqli		
 $query = "select book_id,bookch1_id,book_name,book_author from book where book_id=? and book_isout=0 and book_isborrow=0";
@@ -108,7 +108,7 @@ $stmt->close();
 			//借書登記
 			/*
 			$query = "insert into borrow(stud_id, bookch1_id, book_id, out_date,curr_class_num) values ('$stud_id', '$bookch1_id', '$book_id', '".$now."','$curr_class_num')";
-			$result = mysql_query($query)or die ($query);
+			$result = mysqli_query($conID, $query)or die ($query);
 			*/
 //mysqli			
 $query = "insert into borrow(stud_id, bookch1_id, book_id, out_date,curr_class_num) values (?, ?, ?, '".$now."',?)";
@@ -122,7 +122,7 @@ $stmt->close();
 			//設定已借出
 			/*
 			$query = "update book set book_isout=1 where book_id='$book_id'";
-			$result = mysql_query($query)or die ($query);
+			$result = mysqli_query($conID, $query)or die ($query);
 			*/
 	
 //mysqli			
@@ -179,7 +179,7 @@ function setfocus() {
 <?php
 $stud_id=substr($stud_id,0,7);
 $query = "SELECT book.bookch1_id, book.book_id, book.book_name, book.book_num, borrow.stud_id,borrow.b_num,book.book_author,borrow.out_date, borrow.in_date FROM book , borrow where  book.book_id = borrow.book_id  and borrow.stud_id= '$stud_id' order by borrow.out_date desc ,borrow.in_date LIMIT 0, 10 ";
-$result = mysql_query($query)or die ($query);
+$result = mysqli_query($conID, $query)or die ($query);
 echo "<center><table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse;' bordercolor='#111111' id='AutoNumber1'>";
 echo "<tr bgcolor=#8080FF align='center'><td>NO.</td><td>總號</td><td>書號</td><td>書名</td><td>借閱日期</td><td>歸還日期</td></tr>";
 while ($row = mysql_fetch_array($result)){

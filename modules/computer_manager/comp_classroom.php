@@ -189,7 +189,7 @@ $COMP[3]=300;
 
  //讀取現有設定
  $query="select * from comp_roomsite where net_edit like '".$COMP_INT."%' and site_num>0 and net_ip!=''";
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
  while ($row=mysql_fetch_array($res,1)) {
    	$net_ip[$row['net_edit']]=$row['net_ip'];
     $site_num[$row['net_edit']]=$row['site_num'];

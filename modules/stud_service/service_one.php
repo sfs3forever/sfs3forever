@@ -73,7 +73,7 @@ $department= $recordSet->fields["post_office"];
 	  	$studmemo=$_POST['studmemo'][$student_sn];
 		$STUD=getService_stud_base($sn,$student_sn);
 		$query="update stud_service_detail set minutes='$minutes',studmemo='$studmemo' where item_sn='".$_GET['sn']."' and student_sn='$student_sn' ";	
-		if (mysql_query($query)) {
+		if (mysqli_query($conID, $query)) {
 		 echo "更新 ".$STUD['seme_class']."班".$STUD['seme_num']."號".$STUD['stud_name']." => (".$minutes."分鐘)_".$STUD['memo'];
 		 if ($studmemo!="") echo "<font color=red><i>".$studmemo."</i>";
 		 echo "<br>";
@@ -101,7 +101,7 @@ if ($_POST['save']==1) {
     //先登錄服務項目 , 新資料則先儲存, 再取得本服務資料的 sn
     if ($sn=="" or $sn=="new") {
     $query="insert into stud_service (year_seme,service_date,department,item,memo,update_sn,input_sn,input_time,confirm,sponsor) values ('$year_seme','$service_date','$department','$item','$memo','$update_sn','$update_sn','".date('Y-m-d H:i:s')."','$CONFIRM','$sponsor')";
-     if (mysql_query($query)) {
+     if (mysqli_query($conID, $query)) {
      		
      	list($item_sn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
 		  $_GET['sn']=$item_sn;
@@ -128,7 +128,7 @@ if ($_POST['save']==1) {
 			 echo "<font color=red>".$student_sn.$name." 登錄資料已存在, 不予重覆登錄! </font><br>";
 		  } else {
 		$query="insert into stud_service_detail (student_sn,item_sn,minutes,studmemo) values ('$student_sn','$item_sn','$minutes','$studmemo')";	
-		if (mysql_query($query)) {
+		if (mysqli_query($conID, $query)) {
 		 //echo $student_sn.$name."(".$minutes."分鐘) _".$memo;
 		 //if ($studmemo!="") echo "<font color=red><i>".$studmemo."</i>";
 		 //echo "<br>";
@@ -167,7 +167,7 @@ if ($_POST['mode']=='updating_service') {
 	if ($S['confirm']==0) { //如果已經認證了, 就不能更改
   //此處不更新 input_sn 及 input_time 欄位(原始登錄記錄)
   $query="update stud_service set service_date='$service_date',department='$department',sponsor='$sponsor',item='$item',memo='$memo',update_sn='".$_SESSION['session_tea_sn']."' where sn='".$_SESSION['sn']."'";
-  if (!mysql_query($query)) {
+  if (!mysqli_query($conID, $query)) {
    echo "Error! Query=$query";
    exit();
   }
@@ -179,13 +179,13 @@ if ($_POST['mode']=='delete_service') {
 	if ($S['confirm']==0) { //如果已經認證了, 就不能刪除
   //先刪除學生
   $query="delete from stud_service_detail where item_sn='".$_SESSION['sn']."'";
-  if (!mysql_query($query)) {
+  if (!mysqli_query($conID, $query)) {
    echo "Error! Query=$query";
    exit();
   }
   //再刪除記錄
   $query="delete from stud_service where sn='".$_SESSION['sn']."'";
-  if (mysql_query($query)) {
+  if (mysqli_query($conID, $query)) {
    $_SESSION['sn']='';
    $_GET['sn']='';
   $sn='';

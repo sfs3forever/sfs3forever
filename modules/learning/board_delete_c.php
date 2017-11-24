@@ -20,14 +20,14 @@ if ($key=="確定刪除"){
 	$b_id=intval($b_id);
 	$query= "UPDATE unit_c SET b_days = '0' ,b_edit_time='$b_post_time' ,update_ip='{$_SERVER['REMOTE_ADDR']}',b_edit_id='$b_edit_id'  where b_id = '$b_id'";  //刪除
 
-	mysql_query($query);
+	mysqli_query($conID, $query);
 		Header ("Location: etoe.php?unit=$unit&entry=$entry");
 }
 
 	include "header_u.php";
 $b_id=intval($b_id);
 $query = "select b_sub,b_con,b_upload,teacher_sn from unit_c where b_id='$b_id'";
-$result = mysql_query($query);
+$result = mysqli_query($conID, $query);
 $row= mysql_fetch_array($result);
 
 if($row["teacher_sn"] ==$_SESSION[session_tea_sn] || checkid($_SERVER[SCRIPT_FILENAME],1)){   //自己可刪除

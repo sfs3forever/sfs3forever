@@ -71,7 +71,7 @@ class move_ps {
 	}
 	//轉換生日
 	function bir($bir){
-		$AA=split("-",$bir);
+		$AA=explode("-",$bir);
 		$y=$AA[0]-1911;
 		$yy=$y."-".$AA[1]."-".$AA[2];
 		return $yy;

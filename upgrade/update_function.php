@@ -177,7 +177,7 @@ function check_sfsbase($table_name) {
 function check_table($mysql_db,$conID,$table_name) {
 	$is_add = false;
 	$query = "show tables from $mysql_db ";
-	$result = mysql_query($query,$conID) or die ($query);	
+	$result = mysqli_query($conID,$query) or die ($query);	
 	while ($row = mysqli_fetch_row($result)) {
 		if($row[0]==$table_name) {
 			$is_add =true;

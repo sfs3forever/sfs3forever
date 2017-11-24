@@ -56,7 +56,7 @@ if ($_POST['class_id']=='all' && $_POST[smenu]=='school2'){
    $rs =$CONN->Execute($SQL) or user_error("讀取失敗！<br>$SQL",256) ; 
    while ($rs and $ro=$rs->FetchNextObject(false)) {
    	$ro->stud_sex=$SEX[$ro->stud_sex];
-      $bir=split("-",$ro->stud_birthday);
+      $bir=explode("-",$ro->stud_birthday);
       $obj_stu[$ro->student_sn] = get_object_vars($ro);
       $obj_stu[$ro->student_sn][birth]=Num2CNum(($bir[0]-1911))."年".Num2CNum($bir[1]+0)."月".Num2CNum($bir[2]+0)."日";
       }
@@ -87,7 +87,7 @@ foreach ($_POST['class_id'] as $class_id =>$NULLnull) {
              $rs =$CONN->Execute($SQL) or user_error("讀取失敗！<br>$SQL",256) ; 
              while ($rs and $ro=$rs->FetchNextObject(false)) {
              	$ro->stud_sex=$SEX[$ro->stud_sex];
-             	$bir=split("-",$ro->stud_birthday);
+             	$bir=explode("-",$ro->stud_birthday);
              	$obj_stu[$ro->student_sn] = get_object_vars($ro);
              	$obj_stu[$ro->student_sn][birth]=Num2CNum(($bir[0]-1911))."年".Num2CNum($bir[1]+0)."月".Num2CNum($bir[2]+0)."日";
              	}
@@ -101,7 +101,7 @@ foreach ($_POST['class_id'] as $class_id =>$NULLnull) {
 	    	$rs =$CONN->Execute($SQL) or user_error("讀取失敗！<br>$SQL",256) ; 
 	    	while ($rs and $ro=$rs->FetchNextObject(false)) {
 	    		$ro->stud_sex=$SEX[$ro->stud_sex];
-	    		$bir=split("-",$ro->stud_birthday);
+	    		$bir=explode("-",$ro->stud_birthday);
             $obj_stu[$ro->student_sn] = get_object_vars($ro);
              }
       		
@@ -115,7 +115,7 @@ foreach ($_POST['class_id'] as $class_id =>$NULLnull) {
 	    	$rs =$CONN->Execute($SQL) or user_error("讀取失敗！<br>$SQL",256) ; 
 	    	while ($rs and $ro=$rs->FetchNextObject(false)) {
 	    		$ro->stud_sex=$SEX[$ro->stud_sex];
-	    		$bir=split("-",$ro->stud_birthday);
+	    		$bir=explode("-",$ro->stud_birthday);
             $obj_stu[$ro->student_sn] = get_object_vars($ro);
              }
       		

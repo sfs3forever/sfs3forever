@@ -42,10 +42,10 @@ include "header.php";
 //刪除
 if ($sel == "del"){
 	$query ="delete from borrow where b_num='$b_num'";
-	mysql_query($query);
+	mysqli_query($conID, $query);
 	//設定為可借
 	$query = "update book set book_isout=0 where book_id='$dbook_id'";
-	$result = mysql_query($query)or die ($query);
+	$result = mysqli_query($conID, $query)or die ($query);
 }	
 */
 
@@ -68,7 +68,7 @@ $stmt->close();
 ///mysqli	
 	
 	//$query = "select teach_id,name from teacher_base  where teach_id = '$teach_id' and teach_condition=0 ";
-	//$result = mysql_query($query)or die ($query); 
+	//$result = mysqli_query($conID, $query)or die ($query); 
 	//if ( mysql_num_rows($result) >0){
 	//	$row= mysql_fetch_array($result);
 	//	$name = $row["name"];
@@ -88,7 +88,7 @@ $stmt->fetch();
 $stmt->close();
 	
 	//$query = "select book_id,bookch1_id,book_name,book_author from book where book_id='$book_id' and book_isout=0 and book_isborrow=0";
-	//$result = mysql_query($query)or die ($query); 
+	//$result = mysqli_query($conID, $query)or die ($query); 
 	$temp_bb = "<font color=red><b>找不到這本書或已被借出</b></font>";
 	//if ( mysql_num_rows($result) >0){
 		//$row= mysql_fetch_array($result);
@@ -101,7 +101,7 @@ $stmt->close();
 		//借書登記
 		/*
 		$query = "insert into borrow (stud_id, bookch1_id, book_id, out_date) values ('$teach_id', '$bookch1_id', '$book_id', '".$now."')";
-		$result = mysql_query($query)or die ($query);
+		$result = mysqli_query($conID, $query)or die ($query);
 		*/
 //mysqli			
 $query = "insert into borrow (stud_id, bookch1_id, book_id, out_date) values (?, ?, ?, '".$now."')";
@@ -116,7 +116,7 @@ $stmt->close();
 		//設定已借出
 		/*
 		$query = "update book set book_isout=1 where book_id='$book_id'";
-		$result = mysql_query($query)or die ($query);
+		$result = mysqli_query($conID, $query)or die ($query);
 		*/
 //mysqli			
 $query = "update book set book_isout=1 where book_id=?";
@@ -170,7 +170,7 @@ function setfocus() {
 
 <?php
 //$query = "SELECT book.bookch1_id, book.book_id, book.book_name, book.book_num, borrow.stud_id,borrow.b_num,book.book_author,borrow.out_date, borrow.in_date FROM book , borrow where  book.book_id = borrow.book_id  and borrow.stud_id= '$teach_id' order by borrow.out_date desc ,borrow.in_date LIMIT 0, 10 ";
-//$result = mysql_query($query)or die ($query); 
+//$result = mysqli_query($conID, $query)or die ($query); 
 
 $query = "SELECT book.bookch1_id, book.book_id, book.book_name, book.book_num, borrow.stud_id,borrow.b_num,book.book_author,borrow.out_date, borrow.in_date FROM book , borrow where  book.book_id = borrow.book_id  and borrow.stud_id= ? order by borrow.out_date desc ,borrow.in_date LIMIT 0, 10 ";
 $stmt = "";

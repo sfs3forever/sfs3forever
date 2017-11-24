@@ -128,13 +128,13 @@ if ($stud_data) {
    
    //以身分證及班級為主要索引, 取得學生的 student_sn
 		$query="select a.student_sn from stud_base a,stud_seme b where a.student_sn=b.student_sn and a.stud_person_id='".$student[$STUD_PERSON_ID]."' and b.seme_year_seme='$c_curr_seme' and b.seme_class='$seme_class'";
-    $result=mysql_query($query);
+    $result=mysqli_query($conID, $query);
    	$row=mysqli_fetch_row($result);
    	list($student_sn)=$row;
     $ERROR=1;
     if ($student_sn and $student[$TALL]>0 and $student[$WEIGH]>0) {
     	  $query="select student_sn from fitness_data where student_sn='".$student_sn."' and c_curr_seme='".$c_curr_seme."'";
-   			$result_chk=mysql_query($query);
+   			$result_chk=mysqli_query($conID, $query);
    			//如果有資料
    			if (mysql_num_rows($result_chk)) {
    			  $query="update `fitness_data` set tall='".$student[$TALL]."',weigh='".$student[$WEIGH]."' where student_sn='".$student_sn."' and c_curr_seme='".$c_curr_seme."'";
@@ -142,7 +142,7 @@ if ($stud_data) {
    				$query="insert into `fitness_data` (c_curr_seme,student_sn,tall,weigh) values ('$c_curr_seme','".$student_sn."','".$student[$TALL]."','".$student[$WEIGH]."')";
 				}	  
 				//echo $query."<br>";
-        if (mysql_query($query)) {
+        if (mysqli_query($conID, $query)) {
         	$ERROR=0;
           $INPUT_NUM++;
         } else {

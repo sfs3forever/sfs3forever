@@ -757,7 +757,7 @@ function downlod_ar($student_sn="",$class_id="",$interface_sn="",$stu_num="",$se
 //增加服務學習資料 2013/06/05 by smallduh
 function getService_allmin($student_sn,$year_seme) {
  $query="select sum(minutes) from stud_service_detail a,stud_service b where a.student_sn='$student_sn' and b.year_seme='$year_seme' and a.item_sn=b.sn and b.confirm=1";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  list($min)=mysqli_fetch_row($result);
  return $min;
 }

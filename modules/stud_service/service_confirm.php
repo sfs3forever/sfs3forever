@@ -50,7 +50,7 @@ if ($_POST['confirm']==1 or $_POST['confirm']==-1) {
  $confirm=($_POST['confirm']+1)/2;
  foreach ($_POST['confirm_check'] as $sn) {
   $query="update stud_service set confirm='$confirm',confirm_sn='".$_SESSION['session_tea_sn']."' where sn='$sn'";
-  mysql_query($query); 
+  mysqli_query($conID, $query); 
  } 
 }
 
@@ -111,7 +111,7 @@ if ($c_curr_seme!="") {
   $query.=" order by service_date desc";
  
  
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
  if (mysql_num_rows($res)>0) {
  	while ($S=mysql_fetch_array($res)) {
  		$INPUT=($S['input_sn']==0)?$S['update_sn']:$S['input_sn'];

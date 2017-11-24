@@ -23,7 +23,7 @@ mysql_query("SET NAMES 'utf8'");
    $nowsec=date("U",mktime(0,0,0,date("n"),date("j"),date("Y")));
    $nowdate=date("Y-m-d 0:0:0");
    $query="select a.idnumber,a.teach_id,a.data,a.data_kind,b.name from sc_msn_data a,sc_msn_online b where a.to_id='' and to_days(curdate())<=(to_days(a.post_date)+last_date) and (a.data_kind=0 or a.data_kind=2) and a.teach_id=b.teach_id order by post_date desc";
-   $result=mysql_query($query);
+   $result=mysqli_query($conID, $query);
    $board_num=mysql_num_rows($result);
     
 ?>

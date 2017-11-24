@@ -12,7 +12,7 @@ include "header.php";
 if ($bookch1_id =="")
 	$bookch1_id = "000";
 $query = "select * from bookch1 order by bookch1_id";
-$result = mysql_query($query,$conID);
+$result = mysqli_query($conID,$query);
 //分類號選項
 $tt=""; 
 while ($row = mysql_fetch_array ($result)){
@@ -52,7 +52,7 @@ $stmt->bind_result($book_id, $book_name, $book_author,$out_dx ,$yet,$stud_id );
 
 
 //$query = "SELECT book.book_id, book.book_name, book.book_author, date_format(borrow.out_date,'%Y-%m-%d')as out_d ,to_days(curdate())-to_days(borrow.out_date)- $yetdate as yet,borrow.stud_id  from book,borrow  where book.book_id=borrow.book_id and  borrow.in_date =0  and borrow.curr_class_num = 0  and book.bookch1_id ='$bookch1_id' and borrow.curr_class_num = 0 order by book.book_id ";
-//$result = mysql_query($query) or die ($query);
+//$result = mysqli_query($conID, $query) or die ($query);
 //$tolnum = mysql_num_rows($result);
 echo "<BR><h3><form action=\"$PHP_SELF\" method=\"post\" name=\"bookform\">";  
 echo  "<center> <select name=\"bookch1_id\" size=1  onchange=\"document.bookform.submit()\">";

@@ -25,7 +25,7 @@ if ($_POST['act']=='del') {
    	$row=mysql_fetch_array($res,1); 
    	delete_file ($row['idnumber'],$row['to_id']);
    	$query="delete from sc_msn_data where id='".$row['id']."'";
-  	mysql_query($query);
+  	mysqli_query($conID, $query);
   }  
  } // end foreach
  

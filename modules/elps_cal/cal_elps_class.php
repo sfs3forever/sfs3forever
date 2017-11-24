@@ -67,7 +67,7 @@ class cal_elps{
 
 	function get_week(){
 		$loop=$this->seme_ary[weeks];
-		//$sday=split("-",$this->seme_ary[sday]);//時間陣列 年月日
+		//$sday=explode("-",$this->seme_ary[sday]);//時間陣列 年月日
 		$sday=explode("-",$this->seme_ary[sday]);//時間陣列 年月日
 		$TT1=mktime(1,1,0,$sday[1],$sday[2],$sday[0]);
 		$one_day=60*60*24;
@@ -96,7 +96,7 @@ class cal_elps{
 		$one_day=60*60*24;
 		foreach ($arr as $ary){
 			$key=$ary[week_no];
-			//$start=split("-",$ary[start_date]);//時間陣列 年月日
+			//$start=explode("-",$ary[start_date]);//時間陣列 年月日
 			$start=explode("-",$ary[start_date]);//時間陣列 年月日
 			$wk_1=mktime(1,1,0,$start[1],$start[2],$start[0]);//週日
 			$wk_2=$wk_1+$one_day*6;//週六

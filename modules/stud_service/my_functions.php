@@ -112,7 +112,7 @@ function student_select($c_curr_class) {
 	$seme_year_seme=substr($c_curr_class,0,3).substr($c_curr_class,4,1);
 	$seme_class=sprintf("%d",substr($c_curr_class,6,2).substr($c_curr_class,9,2));
 	$query="select a.seme_num,a.student_sn,b.stud_name from stud_seme a,stud_base b where a.seme_year_seme='$seme_year_seme' and a.seme_class='$seme_class' and a.student_sn=b.student_sn and (b.stud_study_cond=0 or b.stud_study_cond=5) order by a.seme_num";
-	$result=mysql_query($query)
+	$result=mysqli_query($conID, $query)
 	
 	
 ?>
@@ -160,7 +160,7 @@ function list_pastservice($year_seme) {
 	$confirm[0]="<font color='#CCCCCC'>無<font>";
 	$confirm[1]="<font color='#FF0000'>V</font>";
 	$query="select * from stud_service where year_seme='$year_seme' and update_sn='".$_SESSION['session_tea_sn']."' order by service_date desc";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	?>
   <table border="1" bordercolor="#000000" style="border-collapse:collapse" width="100%">
 	 <tr>
@@ -206,7 +206,7 @@ function list_pastservice($year_seme) {
 function list_service_stud($sn) {
 	$S=getService_one($sn);
 	$query="select year_seme from stud_service where sn='$sn'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	list($c_curr_seme)=mysqli_fetch_row($result);
 
 	$class_array=class_base($c_curr_seme);
@@ -237,7 +237,7 @@ function list_service_stud($sn) {
 
 	   <?php
 		$query="select distinct b.seme_class from stud_service_detail a ,stud_seme b, stud_service c   where a.item_sn='$sn'  and a.student_sn=b.student_sn and a.item_sn=c.sn and b.seme_year_seme=c.year_seme order by b.seme_class";
-	   $result=mysql_query($query);
+	   $result=mysqli_query($conID, $query);
 	   //開始依班級列出
 	   while ($class_array=mysqli_fetch_row($result)) {
 	   	  list($classid)=$class_array;
@@ -247,7 +247,7 @@ function list_service_stud($sn) {
 		   echo "<tr><td width=80 valign='top'>".$class_base[5]."</td><td style='font-size:9pt' valign='top'>";
 		   //取出班級學生
 		   $query="select a.*,b.stud_name,c.seme_num,c.seme_class from stud_service_detail a,stud_base b,stud_seme c where a.item_sn='$sn' and a.student_sn=b.student_sn and a.student_sn=c.student_sn and c.seme_year_seme='$c_curr_seme' and c.seme_class='$classid' and (b.stud_study_cond=0 or b.stud_study_cond=5) order by c.seme_num";
-       $res_class=mysql_query($query);
+       $res_class=mysqli_query($conID, $query);
        ?>
        <table border="0" width="100%" cellspacing="0" cellpadding="0">
        <?php
@@ -291,7 +291,7 @@ function list_service_stud($sn) {
 function list_service_stud_noedit($sn) {
 	$S=getService_one($sn);
 	$query="select year_seme from stud_service where sn='$sn'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	list($c_curr_seme)=mysqli_fetch_row($result);
 
 	$class_array=class_base($c_curr_seme);
@@ -302,7 +302,7 @@ function list_service_stud_noedit($sn) {
 
 	   <?php
 		$query="select distinct b.seme_class from stud_service_detail a ,stud_seme b, stud_service c where a.item_sn='$sn'  and a.student_sn=b.student_sn and a.item_sn=c.sn and b.seme_year_seme=c.year_seme order by b.seme_class";
-	   $result=mysql_query($query);
+	   $result=mysqli_query($conID, $query);
 	   //開始依班級列出
 	   while ($class_array=mysqli_fetch_row($result)) {
 	   	  list($classid)=$class_array;
@@ -312,7 +312,7 @@ function list_service_stud_noedit($sn) {
 		   echo "<tr><td style='color:#0000FF'>".$class_base[5]."</td></tr><tr><td>";
 		   //取出班級學生
 		   $query="select a.*,b.stud_name,c.seme_num,c.seme_class from stud_service_detail a,stud_base b,stud_seme c where a.item_sn='$sn' and a.student_sn=b.student_sn and a.student_sn=c.student_sn and c.seme_year_seme='$c_curr_seme' and c.seme_class='$classid' and (b.stud_study_cond=0 or b.stud_study_cond=5) order by c.seme_num";
-       $res_class=mysql_query($query);
+       $res_class=mysqli_query($conID, $query);
        ?>
        <table border="0" width="100%" cellspacing="0" cellpadding="0">
        <?php
@@ -423,7 +423,7 @@ function update_service_stud($sn) {
 //取得某服務內容
 function getService_one($sn) {
    $query="select * from stud_service where sn='$sn'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	$S=mysql_fetch_array($result);
  return $S; // return array
 }
@@ -432,7 +432,7 @@ function getService_one($sn) {
 //取得某服務的學期============================================================================================================================
 function getService_year_seme($sn) {
  $query="select year_seme from stud_service where sn='$sn'";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  list($year_seme)=mysqli_fetch_row($result);
  return $year_seme;
 	
@@ -440,7 +440,7 @@ function getService_year_seme($sn) {
 //取得某服務的登錄人數=====================================================================================================================
 function getService_num($sn) {
  $query="select count(*) from stud_service_detail where item_sn='$sn'";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  list($num)=mysqli_fetch_row($result);
  return $num;
 }
@@ -448,7 +448,7 @@ function getService_num($sn) {
 //取得某服務的某學生的服務時間=================================================================================================================
 function getService_min($sn,$student_sn) {
  $query="select minutes from stud_service_detail where item_sn='$sn' and student_sn='$student_sn'";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  list($min)=mysqli_fetch_row($result);
  return $min;
 }
@@ -456,7 +456,7 @@ function getService_min($sn,$student_sn) {
 //取得某服務的某學生的服務時間==================================================================================================================
 function getService_allmin($student_sn,$year_seme) {
  $query="select sum(minutes) from stud_service_detail a,stud_service b where a.student_sn='$student_sn' and b.year_seme='$year_seme' and a.item_sn=b.sn and b.confirm=1";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  list($min)=mysqli_fetch_row($result);
  return $min;
 }
@@ -465,7 +465,7 @@ function getService_allmin($student_sn,$year_seme) {
 //取得某服務的某學生的服務註記==================================================================================================================
 function getService_studmemo($sn,$student_sn) {
  $query="select studmemo from stud_service_detail where item_sn='$sn' and student_sn='$student_sn'";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  list($studmemo)=mysqli_fetch_row($result);
  return $studmemo;
 }
@@ -473,7 +473,7 @@ function getService_studmemo($sn,$student_sn) {
 //取得某服務某學生的基本資料 學期班級, 座號, 姓名, 服務詳細內容等. 關聯資料表 stud_base a, stud_seme b, stud_service c, stud_service_detail d===============
 function getService_stud_base($sn,$student_sn) {
 	$query="select a.stud_name,b.seme_class,b.seme_num,c.service_date,c.department,c.item,c.memo,c.sponsor,d.* from stud_base a, stud_seme b, stud_service c , stud_service_detail d where c.sn='$sn' and c.year_seme=b.seme_year_seme and c.sn=d.item_sn and d.student_sn=b.student_sn and d.student_sn=a.student_sn and d.student_sn='$student_sn'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	$row=mysql_fetch_array($result);
 	return $row;
 }
@@ -491,7 +491,7 @@ function getPostRoom($room_id) {
 //刪除某服務的某位學生登錄==================================================================================================================
 function delService_stud($sn,$student_sn) {
 	$query="delete from stud_service_detail where item_sn='$sn' and student_sn='$student_sn'";
-	if (!mysql_query($query)) {
+	if (!mysqli_query($conID, $query)) {
 		echo "Error! Query=".$query;
 		exit();
 	} else {
@@ -503,7 +503,7 @@ function delService_stud($sn,$student_sn) {
 function check_exist_service($sn,$act="") {
 		$item_sn=$sn;
 		 $query="select * from stud_service where sn='$item_sn'";
-		 $result=mysql_query($query);
+		 $result=mysqli_query($conID, $query);
 		 if (mysql_num_rows($result)) {
 		 	$row=mysql_fetch_array($result);
 		 	if ($act) {
@@ -524,7 +524,7 @@ function check_exist_service($sn,$act="") {
 //檢驗某服務是否已登錄某生==================================================================================================================
 function check_exist_service_stud($sn,$student_sn) {
 	$query="select * from stud_service_detail where student_sn='$student_sn' and item_sn='$sn'";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	if (mysql_num_rows($result)) {
 	 return true;
 	} else {
@@ -538,7 +538,7 @@ function check_exist_service_stud($sn,$student_sn) {
 //列出某學期全班學生供點選查詢服務總表==================================================================================================================
 function student_service_select($classid,$c_curr_seme) {
 	$query="select a.*, b.seme_class,b.seme_num from stud_base a,stud_seme b where b.seme_class='$classid' and b.seme_year_seme='$c_curr_seme' and a.student_sn=b.student_sn order by b.seme_num";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 
 ?>
 
@@ -570,7 +570,7 @@ function student_service_select($classid,$c_curr_seme) {
 //傳回學某學生某學期的個資 ==================================================================================================================
 function getStudent_seme($student_sn,$c_curr_seme){
 		$query="select a.*,b.seme_class,b.seme_num from stud_base a,stud_seme b where a.student_sn='$student_sn' and a.student_sn=b.student_sn and b.seme_year_seme='$c_curr_seme'";
-		$result=mysql_query($query);
+		$result=mysqli_query($conID, $query);
 		$student=mysql_fetch_array($result);
 	return $student;
 }
@@ -733,7 +733,7 @@ function list_service_all($student_sn,$class_name) {
 //列出某班某學期所有學生的服務明細==================================================================================================================
 function list_class_all($classid,$c_curr_seme,$class_name) {
 	$query="select a.*, b.seme_class,b.seme_num from stud_base a,stud_seme b where b.seme_class='$classid' and b.seme_year_seme='$c_curr_seme' and a.student_sn=b.student_sn order by b.seme_num";
-	$result=mysql_query($query);
+	$result=mysqli_query($conID, $query);
 	while ($row_stud=mysql_fetch_array($result)) {
 		list_service($row_stud['student_sn'],$c_curr_seme,$class_name);
 	}
@@ -741,7 +741,7 @@ function list_class_all($classid,$c_curr_seme,$class_name) {
 //取得學校名稱 ==================================================================================================================
 function get_school_cname() {
 	$query="select sch_cname from school_base limit 1";
-	$res=mysql_query($query);
+	$res=mysqli_query($conID, $query);
 	list($S)=mysqli_fetch_row($res);
 	
 	return $S;

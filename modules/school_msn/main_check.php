@@ -12,7 +12,7 @@ if ($_SESSION['MSN_LOGIN_ID']!="") {
    $my_ip=$_SERVER['REMOTE_ADDR'];
    $onlinetime=date("Y-m-d H:i:s");
    $query="select ifonline from sc_msn_online where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
-   $result=mysql_query($query);
+   $result=mysqli_query($conID, $query);
    if (mysql_num_rows($result)) {
    	list($ifonline)=mysqli_fetch_row($result);
    	 //?臬撌脰◤隤文?粹蝺?
@@ -21,7 +21,7 @@ if ($_SESSION['MSN_LOGIN_ID']!="") {
    	 }else{
    	  $query="update sc_msn_online set lasttime='".date("Y-m-d H:i:s")."' where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
      }
-    mysql_query($query);
+    mysqli_query($conID, $query);
    }else{
    	if ($IS_UTF8==0) {
    	 mysql_query("SET NAMES 'latin1'");
@@ -31,14 +31,14 @@ if ($_SESSION['MSN_LOGIN_ID']!="") {
      $name=get_teacher_name_by_id($_SESSION['MSN_LOGIN_ID']);
     }
    	$query="insert into sc_msn_online (teach_id,name,from_ip,lasttime,onlinetime,ifonline,state) values ('".$_SESSION['MSN_LOGIN_ID']."','".$name."','".$my_ip."','".$onlinetime."','".$onlinetime."','1','銝?')";
-    if (!mysql_query($query)) {
+    if (!mysqli_query($conID, $query)) {
      echo "query=".$query;
      exit;
     }
    }
 }   
    $query="update sc_msn_online set ifonline=0 where (now()-lasttime)>60";
-   mysql_query($query);
+   mysqli_query($conID, $query);
    
 //銝?鈭箸
 $query="select count(*) from sc_msn_online where ifonline=1";

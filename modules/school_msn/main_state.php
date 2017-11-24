@@ -7,7 +7,7 @@ mysql_query("SET NAMES 'utf8'");
 
 if ($_POST['set']=="" and $_SESSION['MSN_LOGIN_ID']!="") {
 $query="select * from sc_msn_online where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
-$result=mysql_query($query);
+$result=mysqli_query($conID, $query);
 $row=mysql_fetch_array($result,1);
 ?>
 <html>
@@ -135,7 +135,7 @@ exit();
 
 if ($_POST['set']=="updatting") {
 	$query="update sc_msn_online set state='".$_POST['state']."',sound='".$_POST['sound']."',sound_kind='".$_POST['sound_kind']."' where teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
-  mysql_query($query);
+  mysqli_query($conID, $query);
 ?>
 <Script language="JavaScript">
 	opener.window.location.reload(); //?嗉?蝒??

@@ -69,7 +69,7 @@ if (!is_file($up_file_name)){
 	}
 	
 	$query="select club_sn,club_student_num from stud_club_base";
-	$res=mysql_query($query);
+	$res=mysqli_query($conID, $query);
 	if (mysql_num_rows($res)) {
 	  while ($row=mysql_fetch_array($res)) {
 	    
@@ -77,7 +77,7 @@ if (!is_file($up_file_name)){
 	    $stud_girl_num=$row['club_student_num']-$stud_boy_num;
 	    
 	    $query="update stud_club_base set stud_boy_num='$stud_boy_num',stud_girl_num='$stud_girl_num' where club_sn='".$row['club_sn']."'";
-	    mysql_query($query);
+	    mysqli_query($conID, $query);
 	    
 	  } // end while
 	 

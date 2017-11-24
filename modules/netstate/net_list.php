@@ -32,7 +32,7 @@ echo $tool_bar;
  	</tr>
  <?
  $query="select * from net_base where net_kind=$k order by net_ip";
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
  $i=0;
  while ($E=mysql_fetch_array($res)) {
 		

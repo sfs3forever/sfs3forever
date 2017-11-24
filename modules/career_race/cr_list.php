@@ -46,7 +46,7 @@ $module_manager=checkid($_SERVER['SCRIPT_FILENAME'],1);
 if ($_POST['act']=='DeleteOne') {
 	$sn=$_POST['option1'];
 	$query="delete from career_race where sn='$sn'";
-	//mysql_query($query);
+	//mysqli_query($conID, $query);
 	 $res=$CONN->Execute($query) or die("SQL錯誤:$query");
 	$_POST['act']='limit_date';
 }

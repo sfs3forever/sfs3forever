@@ -45,7 +45,7 @@ if ($CLUB['year_seme']=="") $CLUB['year_seme']=$c_curr_seme;
     if ($_POST['mode']=="save") {
 			foreach ($_POST['score'] as $student_sn=>$score) {	  		
 	  		$query="update association set score='$score',description='".$_POST['description'][$student_sn]."',stud_post='".$_POST['stud_post'][$student_sn]."',update_sn='".$_SESSION['session_tea_sn']."' where student_sn='$student_sn' and club_sn='".$_SESSION['club_sn']."'";
-	  		if (!mysql_query($query)) {
+	  		if (!mysqli_query($conID, $query)) {
 	   		 echo "Error! Query=$query";
 	   		 exit();
 	  	  }		
@@ -128,7 +128,7 @@ if ($_POST['club_sn']!="") $c_curr_class=get_club_class($_POST['club_sn']);
  <?php
 //取得學生成績
 $query="select a.*,b.seme_class,b.seme_num,c.stud_name from association a,stud_seme b,stud_base c where a.seme_year_seme='$c_curr_seme' and a.club_sn='".$club_base['club_sn']."' and b.seme_year_seme='$c_curr_seme' and a.student_sn=b.student_sn and a.student_sn=c.student_sn and (c.stud_study_cond=0 or c.stud_study_cond=5) order by seme_class,seme_num";
-$res=mysql_query($query);
+$res=mysqli_query($conID, $query);
 
  $i=0;
   while ($row=mysql_fetch_array($res)) {

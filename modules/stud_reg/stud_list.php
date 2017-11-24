@@ -166,7 +166,7 @@ switch ($do_key){
 		$sql_ins="replace into stud_base(stud_id, stud_sex, stud_study_year, curr_class_num, stud_study_cond,obtain,safeguard) values('$new_stud_id','$new_stud_sex', '$new_stud_study_year', '$new_curr_class_num','0','$obtain','$safeguard')";	
 		$rs_ins=$CONN->Execute($sql_ins) or trigger_error($sql_ins,256);
 		//取出剛加入的流水號
-		$new_student_sn=mysql_insert_id();
+		$new_student_sn=mysqli_insert_id($conID);
 		//echo $sql_ins;
 		
 		//寫入學期資料表

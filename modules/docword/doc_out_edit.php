@@ -25,7 +25,7 @@ $mysqliconn = get_mysqli_conn();
 
 if ($key =="修改"){
 	//$query = "update sch_doc1 set doc1_year_limit='$doc1_year_limit',doc1_kind='$doc1_kind',doc1_date='$doc1_date',doc1_date_sign='$doc1_date_sign',doc1_unit='$doc1_unit',doc1_word='$doc1_word',doc1_main='$doc1_main',doc1_unit_num1='$doc1_unit_num1',doc1_unit_num2='$doc1_unit_num2',teach_id='$session_log_id' where doc1_id='$doc1_id'";
-	//mysql_query($query)or die ($query);
+	//mysqli_query($conID, $query)or die ($query);
 ///mysqli
 $query = "update sch_doc1 set doc1_year_limit=?,doc1_kind=?,doc1_date=?,doc1_date_sign=?,doc1_unit=?,doc1_word=?,doc1_main=?,doc1_unit_num1=?,doc1_unit_num2=?,teach_id=? where doc1_id=?";
 $stmt = "";
@@ -41,7 +41,7 @@ $stmt->close();
 }
 if ($key == "刪除"){
 	//$query = "delete from sch_doc1 where doc1_id = '$doc1_id' ";
-	//mysql_query($query)or die ($query);
+	//mysqli_query($conID, $query)or die ($query);
 ///mysqli
 $query = "delete from sch_doc1 where doc1_id = ? ";
 $stmt = "";

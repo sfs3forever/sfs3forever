@@ -74,7 +74,7 @@ for ($c=1 ; $c<=6 ; $c++) {
 		if ($num<>0 and $num1<>0) 
 		{
 	  		//$query =" replace into class_total set class_id='$class_id', man='$num' ,woman='$num1' ";
-			//$result = mysql_query($query)or die ($query);
+			//$result = mysqli_query($conID, $query)or die ($query);
 			$num_class=$num_class+1;
                       if ($status<>1){
 			if ($i % 2 == 1 ) echo "<tr bgcolor=#FFFF80>";

@@ -50,7 +50,7 @@ if ($_POST['act']=='inserting') {
 	$htmlcode=$_POST['htmlcode'];
 
   $query="insert into contest_news (title,sttime,endtime,memo,updatetime,htmlcode) values ('$title','$sttime','$endtime','$memo','".date('Y-m-d H:i:s')."','$htmlcode')";
-  if (!mysql_query($query)) {
+  if (!mysqli_query($conID, $query)) {
    echo "query=".$query;
   }
     
@@ -76,7 +76,7 @@ if ($_POST['act']=='updating') {
 	$htmlcode=$_POST['htmlcode'];
 
   $query="update contest_news set title='$title',sttime='$sttime',endtime='$endtime',memo='$memo',updatetime='".date('Y-m-d H:i:s')."',htmlcode='$htmlcode' where nsn='$nsn'";
-  if (!mysql_query($query)) {
+  if (!mysqli_query($conID, $query)) {
    echo "query=".$query;
   }
     
@@ -91,16 +91,16 @@ if ($_POST['act']=='updating') {
 if ($_POST['act']=='del') {
  	
  	$query="delete from contest_news where nsn='".$_POST['option1']."'";
- 	mysql_query($query);
+ 	mysqli_query($conID, $query);
  	
  	$query="select * from contest_files where nsn='".$_POST['option1']."'";
- 	$res=mysql_query($query);
+ 	$res=mysqli_query($conID, $query);
  	while ($row=mysql_fetch_array($res,1)) {
  	 unlink ($UPLOAD_P[0].$row['filename']);
  	}
  	
  	$query="delete from contest_files where nsn='".$_POST['option1']."'";
- 	mysql_query($query);
+ 	mysqli_query($conID, $query);
 
   //返回先前狀態
  	$_POST['act']=$_POST['RETURN'];
@@ -111,12 +111,12 @@ if ($_POST['act']=='del') {
 if ($_POST['act']=='del_file') {
  	
  	$query="select * from contest_files where fsn='".$_POST['option2']."'";
- 	$res=mysql_query($query);
+ 	$res=mysqli_query($conID, $query);
  	$row=mysql_fetch_array($res,1);
  	unlink ($UPLOAD_P[0].$row['filename']);
  	
  	$query="delete from contest_files where fsn='".$_POST['option2']."'";
- 	mysql_query($query);
+ 	mysqli_query($conID, $query);
 
   //返回先前狀態
  	$_POST['act']='update';
@@ -211,7 +211,7 @@ if ($_POST['act']=='update') {
   </table>
   <?php
   $query="select * from contest_news where nsn='".$_POST['option1']."'";
-  $res=mysql_query($query);
+  $res=mysqli_query($conID, $query);
   $news=mysql_fetch_array($res);
   
   form_news($news); //傳入, 列出表單
@@ -242,7 +242,7 @@ if ($_POST['act']=='' or $_POST['act']=='all') {
  <table border="0" width="100%" cellpadding="5">
    	<?php
    	 $query=($_POST['act']=='')?"select * from contest_news where sttime<='$Now' and endtime>'$Now' order by updatetime desc":"select * from contest_news order by updatetime desc";
-   	 $result=mysql_query($query);
+   	 $result=mysqli_query($conID, $query);
    	 if (mysql_num_rows($result)) {
    	  while ($NEW=mysql_fetch_array($result)) {
    	   echo "<tr><td>";	

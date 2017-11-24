@@ -13,7 +13,7 @@ if (!isset($_SESSION['MSN_LOGIN_ID'])) {
 //???葦蝑????mail
 mysql_query("set names 'latin1';");
 $query="select a.teacher_sn,a.name,b.email,b.email2,b.email3 from teacher_base a,teacher_connect b where a.teacher_sn=b.teacher_sn and a.teach_id='".$_SESSION['MSN_LOGIN_ID']."'";
-$result=mysql_query($query);
+$result=mysqli_query($conID, $query);
 list($teacher_sn,$MYNAME,$email,$email2,$email3)=mysqli_fetch_row($result);
 $MYEMAIL=($email=="")?$email2:$email;
 if ($MYEMAIL=="") $MYEMAIL=$email3;
@@ -157,7 +157,7 @@ function b_submit() {
 				<?php
 				mysql_query("set names 'utf8';");
 				$query="select * from sc_msn_folder where idnumber!='private' order by foldername";
-				$result=mysql_query($query);
+				$result=mysqli_query($conID, $query);
 				while ($row=mysql_fetch_array($result)) {
 	       ?>
 	       <option value="<?php echo $row['idnumber'];?>"><?php echo $row['foldername'];?></option>
@@ -454,7 +454,7 @@ if ($_GET['act']=='read') {
   } else {
     $query="select id,idnumber,teach_id,post_date,data_kind,data,relay from sc_msn_data where to_id='".$_SESSION['MSN_LOGIN_ID']."' and idnumber='".$_GET['set']."' order by post_date limit 0,1";
   }
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  //蝣箏祕??閮
  if ($row=mysqli_fetch_row($result)) {
 	list($id,$idnumber,$teach_id,$post_date,$data_kind,$data,$relay)=$row;
@@ -653,7 +653,7 @@ $mail->Password   = $SMPTpassword;        	// SMTP account password
 		 foreach($a as $g) {
 		 	
 		 	$query="select a.name,b.email,b.email2,b.email3 from teacher_base a,teacher_connect b where a.teacher_sn=b.teacher_sn and a.teach_id='".$g."'";
-			$result=mysql_query($query);
+			$result=mysqli_query($conID, $query);
 			list($TONAME,$email,$email2,$email3)=mysqli_fetch_row($result);
 			$TOEMAIL=($email=="")?$email2:$email;
 			if ($TOEMAIL=="") $TOEMAIL=$email3;
@@ -692,7 +692,7 @@ $mail->Password   = $SMPTpassword;        	// SMTP account password
 	 		$a=floor(rand(10,99));
 	 		$idnumber_test=$idnumber.$a;
 	 		$query="select id from sc_msn_data where idnumber='".$idnumber_test."'";
-	 		$result=mysql_query($query);
+	 		$result=mysqli_query($conID, $query);
 	 		$exist=mysql_num_rows($result);
 		} while ($exist>0);
 		
@@ -712,7 +712,7 @@ $idnumber=date("y").date("m").date("d").date("H").date("i").date("s");
 	 $a=floor(rand(10,99));
 	 $idnumber_test=$idnumber.$a;
 	 $query="select id from sc_msn_data where idnumber='".$idnumber_test."'";
-	 $result=mysql_query($query);
+	 $result=mysqli_query($conID, $query);
 	 $exist=mysql_num_rows($result);
 	} while ($exist>0);
 
@@ -724,7 +724,7 @@ switch ($data_kind) {
   //?祇?
   case '0':
     $query="insert into sc_msn_data (idnumber,teach_id,to_id,data_kind,post_date,last_date,data,relay,folder) values ('$idnumber','$m_from','','$data_kind','$datetime','$lasttime','$msg','','')";
- 		if (mysql_query($query)) {
+ 		if (mysqli_query($conID, $query)) {
  		  $save=1;
  		}
   break;
@@ -734,10 +734,10 @@ switch ($data_kind) {
 			$a=explode(";",$m_to);
  			 foreach($a as $g) {
  				 	$query="select teach_id from teacher_base where teach_id='".$g."'";
-  				$result=mysql_query($query);
+  				$result=mysqli_query($conID, $query);
   					if (mysql_num_rows($result)) {
  						   $query="insert into sc_msn_data (idnumber,teach_id,to_id,data_kind,post_date,last_date,data,relay,folder) values ('$idnumber','$m_from','$g','$data_kind','$datetime','$lasttime','$msg','$relay','private')";
- 						   mysql_query($query);
+ 						   mysqli_query($conID, $query);
  							 $save=1;
  							 $post_count++;
   				  }
@@ -748,7 +748,7 @@ switch ($data_kind) {
   case '2':
   	if ($m_to=="" and $data_kind==2 and $msg!="" and count($_FILES['thefile']['name'])>0) {
  			$query="insert into sc_msn_data (idnumber,teach_id,to_id,data_kind,post_date,last_date,data,relay,folder) values ('$idnumber','$m_from','$m_to','$data_kind','$datetime','$lasttime','$msg','$relay','$folder')";
- 			mysql_query($query);
+ 			mysqli_query($conID, $query);
  			$save=1;
 		}
   break;
@@ -771,7 +771,7 @@ if ($save==1 and ($data_kind==1 or $data_kind==2)) {
     $filename=$_SESSION['MSN_LOGIN_ID']."_f".date("y").date("m").date("d").date("H").date("i").date("s").$i.".".$expand_name[$nn];
      copy($_FILES['thefile']['tmp_name'][$i],$download_path.$filename);
      $query="insert into sc_msn_file (idnumber,filename,filename_r) values ('$idnumber','$filename','$NowFile')";
-     mysql_query($query);
+     mysqli_query($conID, $query);
    }
  }// end for
  } //end if file 	
@@ -806,7 +806,7 @@ if ($save==1 and ($data_kind==1 or $data_kind==2)) {
         //?
         copy($_FILES['pic_file']['tmp_name'],$UPLOAD_PIC.$filename);
         $query="insert into sc_msn_board_pic (teach_id,stdate,enddate,delay_sec,file_text,filename) values ('$m_from','$stdate','$enddate','$delay_sec','$msg','$filename')";
-        mysql_query($query);
+        mysqli_query($conID, $query);
         $save=1;      
        } else {
        	//????
@@ -818,7 +818,7 @@ if ($save==1 and ($data_kind==1 or $data_kind==2)) {
        	  	//蝮桀?
        	  	ImageResize($_FILES['pic_file']['tmp_name'], $UPLOAD_PIC.$filename_s, 200, 150, 100);
             $query="insert into msn_board_pic (teach_id,stdate,enddate,delay_sec,file_text,filename) values ('$m_from','$stdate','$enddate','$delay_sec','$msg','$filename')";
-            mysql_query($query);
+            mysqli_query($conID, $query);
 					  $save=1;
           }
              

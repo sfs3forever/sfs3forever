@@ -149,7 +149,7 @@ else{
                 '$stud_tel_3[$i]','$stud_kind[$i]','$stud_mschool_name[$i]','$addr_zip[$i]','$addr_move_in[$i]','$edu_key[$i]')";
                 $CONN->Execute($sql_base) or trigger_error($sql_base, E_USER_ERROR);
                 
-								$tmp_auto_inc_id=mysql_insert_id();
+								$tmp_auto_inc_id=mysqli_insert_id($conID);
 
 								//加入家庭狀況資料
 								$sql_domicile="insert into stud_domicile (stud_id,fath_name,moth_name,guardian_name,student_sn) values('$stud_id[$i]','$fath_name','$moth_name','$guardian_name[$i]','$tmp_auto_inc_id')";

@@ -69,16 +69,16 @@ if ($module_manager!=1) {
 if ($_POST['mode']=="update_club_name_start") {
 	    $N=0;
       $query="select * from association where seme_year_seme='$c_curr_seme' and club_sn!=''";
-      $res=mysql_query($query);
+      $res=mysqli_query($conID, $query);
       while ($row=mysql_fetch_array($res)) {
       	$query="select club_name from stud_club_base where club_sn='".$row['club_sn']."'";
-				$result=mysql_query($query);
+				$result=mysqli_query($conID, $query);
 				list($club_name)=mysqli_fetch_row($result);
 				//2013.08.29 強制 addslashes 
 				$query="update association set association_name='".AddSlashes($club_name)."' where sn='".$row['sn']."'";
 				//$query="update association set association_name='".SafeAddSlashes($club_name)."' where sn='".$row['sn']."'";
 			  //$query="update association set association_name='".$club_name."' where sn='".$row['sn']."'";
-				if (mysql_query($query)) {
+				if (mysqli_query($conID, $query)) {
 					$N++;
 				} else {
 				  echo "錯誤發生了！query=$query";
@@ -115,7 +115,7 @@ if ($_POST['mode']=="setting") {
   }
   
 	   $query="update stud_club_setup set choice_sttime='$choice_sttime',choice_endtime='$choice_endtime',choice_num='$choice_num',choice_over='$choice_over',choice_auto='$choice_auto',student_num='$student_num',show_score='$show_score',show_feedback='$show_feedback',show_teacher_feedback='$show_teacher_feedback',update_sn='$update_sn',teacher_double='$teacher_double',multi_join='$multi_join' where year_seme='$year_seme'";
-     if (mysql_query($query)) {
+     if (mysqli_query($conID, $query)) {
 		 
 		  $INFO="在".date("Y-m-d H:i:s")."已修改了【".getYearSeme($year_seme)."】的期初設定";
 			//將動作改為setup
@@ -141,7 +141,7 @@ if ($_POST['mode']=="setting_pass_score") {
   }
        
 	   $query="update stud_club_base set pass_score='$pass_score',update_sn='$update_sn' where year_seme='$year_seme'";
-     if (mysql_query($query)) {
+     if (mysqli_query($conID, $query)) {
 		  
 		  $seme_club_num=get_seme_club_num($year_seme);
 		 
@@ -166,7 +166,7 @@ if ($_POST['mode']=="inserting") {
 	$club_memo=$club_memo;
 	   
 	   $query="insert into stud_club_base (year_seme,club_name,club_teacher,club_class,club_open,club_student_num,club_memo,club_location,update_sn,stud_boy_num,stud_girl_num,ignore_sex) values ('$year_seme','$club_name','$club_teacher','$club_class','$club_open','$club_student_num','$club_memo','$club_location','$update_sn','$stud_boy_num','$stud_girl_num','$ignore_sex')";
-     if (mysql_query($query)) {
+     if (mysqli_query($conID, $query)) {
      		
      	list($club_sn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
 		 
@@ -193,7 +193,7 @@ if ($_POST['mode']=="updating") {
 	$club_memo=$club_memo;
 	   
 	   $query="update stud_club_base set year_seme='$year_seme',club_name='$club_name',club_teacher='$club_teacher',pass_score='$pass_score',club_class='$club_class',club_open='$club_open',club_student_num='$club_student_num',club_memo='$club_memo',club_location='$club_location',update_sn='$update_sn',stud_boy_num='$stud_boy_num',stud_girl_num='$stud_girl_num',ignore_sex='$ignore_sex' where club_sn='".$_SESSION['club_sn']."'";
-     if (mysql_query($query)) {
+     if (mysqli_query($conID, $query)) {
      		
 		  $INFO="在".date("Y-m-d H:i:s")."編修社團【".$club_name."】!";
 			//將動作改為顯示此社團
@@ -216,7 +216,7 @@ if ($_POST['mode']=="adding_members") {
 	if (chk_if_exist_table("association")) {
 		//檢查欄位 club_sn 是否存在
 		$query="select club_sn from association limit 1";
-		if (!mysql_query($query)) {
+		if (!mysqli_query($conID, $query)) {
       mysql_query("ALTER TABLE `association` ADD `update_sn` int(10) unsigned NOT NULL;");
       mysql_query("ALTER TABLE `association` ADD `club_sn` INT(10) UNSIGNED NOT NULL");
       mysql_query("ALTER TABLE `association` ADD `update_time` timestamp NOT NULL default CURRENT_TIMESTAMP");
@@ -278,7 +278,7 @@ if ($_POST['mode']=="copying") {
     $stud_girl_num=$CLUB['stud_girl_num'];    
 
     $query="insert into stud_club_base (year_seme,club_name,club_teacher,club_class,club_open,club_student_num,club_memo,club_location,update_sn,stud_boy_num,stud_girl_num) values ('$year_seme','$club_name','$club_teacher','$club_class','$club_open','$club_student_num','$club_memo','$club_location','$update_sn','$stud_boy_num','$stud_girl_num')";
-     if (mysql_query($query)) {
+     if (mysqli_query($conID, $query)) {
      	list($club_sn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
 	   } else {
 	    echo "複製社團失敗! query=$query";
@@ -288,7 +288,7 @@ if ($_POST['mode']=="copying") {
     if ($_POST[$POST_STUD_KEY][$last_club_sn]==1) {
       //取得社團所有學生
        $query="select a.student_sn from association a,stud_base b where a.club_sn='$last_club_sn' and a.student_sn=b.student_sn and (b.stud_study_cond=0 or b.stud_study_cond=2)";
-       $res=mysql_query($query);
+       $res=mysqli_query($conID, $query);
        if (mysql_num_rows($res)>0) {
         while ($row=mysql_fetch_array($res)) {
            if (chk_if_exist_stud($club_sn,$row['student_sn'])==0) {
@@ -452,7 +452,7 @@ if ($_POST['club_sn']!="") $c_curr_class=get_club_class($_POST['club_sn']);
 		//重新更正成績單的社團名稱**********************************************************88*****
 		if ($_POST['mode']=="update_club_name") {
 	    $query="select * from association where seme_year_seme='$c_curr_seme' and club_sn!=''";
-     	$res=mysql_query($query);
+     	$res=mysqli_query($conID, $query);
      	$N=mysql_num_rows($res);
      	?>
 		 <table border="0" width="100%">
@@ -594,7 +594,7 @@ if ($_POST['club_sn']!="") $c_curr_class=get_club_class($_POST['club_sn']);
 	    	//第1學期時, 最高年級由於學生已畢業, 跳過
 	    	if (($club_class=='9' or $club_class=='6') and $curr_seme==1) continue;
 	    	$query="select * from stud_club_base where year_seme='$last_seme' and club_class='$club_class' order by club_name";
-				$result=mysql_query($query);
+				$result=mysqli_query($conID, $query);
 			  if (mysql_num_rows($result)) {
 			  	
 			  	echo "<br>※".$school_kind_name[$club_class]."級社團";
@@ -616,7 +616,7 @@ if ($_POST['club_sn']!="") $c_curr_class=get_club_class($_POST['club_sn']);
 			 	   	$stud_number=get_club_student_num($row['year_seme'],$row['club_sn']);
 			 	   	//檢查是否社團在本學期已重覆
 			 	   	$query="select * from stud_club_base where year_seme='$c_curr_seme' and club_teacher='".$row['club_teacher']."' and club_class='".$row['club_class']."' and club_name='".$row['club_name']."'";
-			 	   	$res_double=mysql_query($query);
+			 	   	$res_double=mysqli_query($conID, $query);
 			 	   	$DOUBLE=(mysql_num_rows($res_double)>0)?1:0;
 			 	    ?>
 			 	  <tr>

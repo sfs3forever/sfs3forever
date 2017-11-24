@@ -1,7 +1,7 @@
 <?php             
 $m_id=intval($m_id);                                                                                                          
 $query = "select  * from unit_c  where b_id='$m_id'  and b_days > 0 ";
-$result = mysql_query($query);
+$result = mysqli_query($conID, $query);
 $row= mysql_fetch_array($result);
 $b_id = $row['b_id'];
 $bk_id = $row['bk_id'];

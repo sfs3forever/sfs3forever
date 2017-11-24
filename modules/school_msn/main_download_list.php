@@ -32,7 +32,7 @@ $folder=$_GET['folder'];
 <table border="1" style="border-collapse:collapse" color="#800000" cellpadding="2">
  <?php
  $query="select * from sc_msn_folder where idnumber!='private' order by idnumber";
- $result=mysql_query($query);
+ $result=mysqli_query($conID, $query);
  $i=0;
  while ($row=mysql_fetch_array($result)) {
  $i++;
@@ -57,7 +57,7 @@ if ($folder!='' and $folder!='private') {
     </tr>
 <?php
 $query="select id,idnumber,teach_id,post_date,data from sc_msn_data where to_id='' and data_kind=2 and folder='$folder' order by post_date desc";
-$result=mysql_query($query);
+$result=mysqli_query($conID, $query);
 
 while ($row=mysqli_fetch_row($result)) {
  list($id,$idnumber,$teach_id,$post_date,$data)=$row;

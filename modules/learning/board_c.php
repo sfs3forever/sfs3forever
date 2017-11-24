@@ -37,7 +37,7 @@ if ($key == "確定"){
 
 	mysql_query($sql_insert) or die ($sql_insert); 
 	$query = "select max(b_id) as mm from unit_c ";
-	$result = mysql_query($query);
+	$result = mysqli_query($conID, $query);
 	$row = mysql_fetch_array($result);
 	$mm = $row["mm"] ;
 	$b_upload_name = $mm."_".$_FILES[b_upload][name];

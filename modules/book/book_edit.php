@@ -40,7 +40,7 @@ if ($_REQUEST['key'] == "回書目修改區"){
 if ($_POST['key'] == "確定刪除"){
 	/*
 	$query = "delete from book where book_id = '$book_id'";
-	mysql_query($query,$conID) or die($query);
+	mysqli_query($conID,$query) or die($query);
 	*/
 ///mysqli
 $query = "delete from book where book_id = ?";
@@ -53,7 +53,7 @@ $stmt->close();
 	
 	/*
 	$query = "update  bookch1 set tolnum = tolnum -1 where bookch1_id = '$bookch1_id'";
-	mysql_query($query,$conID) or die($query);
+	mysqli_query($conID,$query) or die($query);
 	*/
 ///mysqli
 $query = "update  bookch1 set tolnum = tolnum -1 where bookch1_id = ?";

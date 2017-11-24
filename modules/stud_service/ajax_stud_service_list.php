@@ -14,7 +14,7 @@ if (isset($sn)) {
 
 	$S=getService_one($sn);
 	//$query="select year_seme from stud_service where sn='$sn'";
-	//$result=mysql_query($query);
+	//$result=mysqli_query($conID, $query);
 	//list($c_curr_seme)=mysqli_fetch_row($result);
   $c_curr_seme=$S['year_seme'];
 	$class_array=class_base($c_curr_seme);
@@ -24,7 +24,7 @@ if (isset($sn)) {
 
    
 		$query="select distinct b.seme_class from stud_service_detail a ,stud_seme b, stud_service c where a.item_sn='$sn'  and a.student_sn=b.student_sn and a.item_sn=c.sn and b.seme_year_seme=c.year_seme order by b.seme_class";
-	   $result=mysql_query($query);
+	   $result=mysqli_query($conID, $query);
 	   //開始依班級列出
 	   while ($class_array=mysqli_fetch_row($result)) {
 	   	  list($classid)=$class_array;
@@ -34,7 +34,7 @@ if (isset($sn)) {
 		   $data.="<tr><td style='color:#0000FF'>".$class_base[5]."</td></tr><tr><td>";
 		   //取出班級學生
 		   $query="select a.*,b.stud_name,c.seme_num,c.seme_class from stud_service_detail a,stud_base b,stud_seme c where a.item_sn='$sn' and a.student_sn=b.student_sn and a.student_sn=c.student_sn and c.seme_year_seme='$c_curr_seme' and c.seme_class='$classid' and (b.stud_study_cond=0 or b.stud_study_cond=5) order by c.seme_num";
-       $res_class=mysql_query($query);
+       $res_class=mysqli_query($conID, $query);
        
        $data.="<table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\">";
        $i=0;

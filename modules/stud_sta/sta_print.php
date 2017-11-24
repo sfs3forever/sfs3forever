@@ -115,7 +115,7 @@ class stud_sta {
     }
 
     function CD($d, $type) {
-        $d = split("-", $d);
+        $d = explode("-", $d);
         if ($type == 'Y')
             return $d[0] - 1911;
         if ($type == 'm')
@@ -125,7 +125,7 @@ class stud_sta {
     }
 
     function CD2($d, $type) {
-        $d = split("-", $d);
+        $d = explode("-", $d);
         if ($type == 'Y')
             return $d[0];
         if ($type == 'm') {

@@ -26,7 +26,7 @@ if ($_POST['act']=='save') {
   $net_ip=$_POST['net_ip'][$net_edit];
   
   $query="replace into net_roomsite (net_edit,net_ip,site_num) values ('$net_edit','$net_ip','$site_num')";
-  mysql_query($query);
+  mysqli_query($conID, $query);
     
  } // end foreach
  
@@ -56,7 +56,7 @@ if ($comproom!="") {
  $COMP[3]=300;
  //讀取現有設定
  $query="select * from net_roomsite where net_edit like '".$COMP_INT."%' and site_num>'0' and net_ip!=''";
- $res=mysql_query($query);
+ $res=mysqli_query($conID, $query);
  while ($row=mysql_fetch_array($res,1)) {
    	 	$net_ip[$row['net_edit']]=$row['net_ip'];
       $site_num[$row['net_edit']]=$row['site_num'];

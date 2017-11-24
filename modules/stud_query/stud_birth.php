@@ -27,7 +27,7 @@ echo "<h2 align=\"center\"> 全校學生各月份人數統計名冊 </hr><br>"  
   $query = "select count(*) as tc ,substring(curr_class_num,1,1) as gg from stud_base
             where stud_study_cond=0 
             group by gg order by gg   ";
-  //$result = mysql_query($query) or die($query);
+  //$result = mysqli_query($conID, $query) or die($query);
   $recordSet=$CONN->Execute($query) or die($query);
   while($row = $recordSet->FetchRow() ){		
 		if ($row[gg]==0)

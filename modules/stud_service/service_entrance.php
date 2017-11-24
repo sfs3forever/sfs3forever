@@ -70,12 +70,12 @@ if ($_POST['act']=='service_add') {
  $query="insert into stud_service (year_seme,service_date,department,item,memo,update_sn,input_sn,input_time,confirm,sponsor) values ('$year_seme','$service_date','$department','$item','$memo','$update_sn','$update_sn','".date('Y-m-d H:i:s')."','1','$sponsor')";
 
   //存入成功則再記錄學生
-  if (mysql_query($query)) {
+  if (mysqli_query($conID, $query)) {
    	list($item_sn)=mysqli_fetch_row(mysql_query("SELECT LAST_INSERT_ID()"));
 		 $minutes=$_POST['minutes'];
 		 $studmemo="外校記錄";
 		 $query="insert into stud_service_detail (student_sn,item_sn,minutes,studmemo) values ('$selected_student','$item_sn','$minutes','$studmemo')";	
-     mysql_query($query);
+     mysqli_query($conID, $query);
    }
  $_POST['act']='';
 } // end if service_add
@@ -83,9 +83,9 @@ if ($_POST['act']=='service_add') {
 //刪除一個服務記錄
 if ($_POST['act']=='service_delete') {
  $query="delete from stud_service where sn='".$_POST['option1']."'";
- mysql_query($query);
+ mysqli_query($conID, $query);
  $query="delete from stud_service_detail where item_sn='".$_POST['option1']."'";
- mysql_query($query);
+ mysqli_query($conID, $query);
  $_POST['act']='';
 } // end if service_delete
 
@@ -259,7 +259,7 @@ if ($work_year_seme!='') {
 		//列出該生的所有記錄
    	$query="select a.*,b.student_sn,b.item_sn,b.minutes,b.studmemo from stud_service a,stud_service_detail b where a.sn=b.item_sn and b.student_sn='$selected_student' order by service_date";
     
-    $res=mysql_query($query);
+    $res=mysqli_query($conID, $query);
     while ($row=mysql_fetch_array($res,1)) {
     ?>
 	 	<tr>

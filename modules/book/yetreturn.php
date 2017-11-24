@@ -10,7 +10,7 @@ $query = "SELECT book.book_id, book.book_name, book.book_author, date_format(bor
 //echo $query;
 //exit;
 
-$result = mysql_query($query,$conID) or die ($query);
+$result = mysqli_query($conID,$query) or die ($query);
 $tolnum = mysql_num_rows($result);
 echo  "<center><BR><H3>逾期歸還書籍計 $tolnum 冊：統計時間：".date("Y-m-d")."</H3></center>";
 echo  "<table border=1 width=95% align=center>";

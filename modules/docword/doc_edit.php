@@ -31,7 +31,7 @@ $mysqliconn = get_mysqli_conn();
 
 if ($key =="修改"){
 	//$query = "update sch_doc1 set doc1_year_limit='$doc1_year_limit',doc1_kind='$doc1_kind',doc1_date='$doc1_date',doc1_date_sign='$doc1_date_sign',doc1_unit='$doc1_unit',doc1_word='$doc1_word',doc1_main='$doc1_main',doc1_unit_num1='$doc1_unit_num1',doc1_infile_date='$doc1_infile_date',doc_stat='$doc_stat',doc1_end_date='$doc1_end_date',teach_id='$session_log_id' where doc1_id='$doc1_id'";	
-	//mysql_query($query)or die ($query);
+	//mysqli_query($conID, $query)or die ($query);
 ///mysqli
 $query = "update sch_doc1 set doc1_year_limit=?,doc1_kind=?,doc1_date=?,doc1_date_sign=?,doc1_unit=?,doc1_word=?,doc1_main=?,doc1_unit_num1=?,doc1_infile_date=?,doc_stat=?,doc1_end_date=?,teach_id=? where doc1_id=?";
 $stmt = "";
@@ -49,7 +49,7 @@ $stmt->close();
 }
 if ($key == "刪除"){
 	//$query = "delete from sch_doc1 where doc1_id = '$doc1_id' ";
-	//mysql_query($query)or die ($query);
+	//mysqli_query($conID, $query)or die ($query);
 ///mysqli
 $query = "delete from sch_doc1 where doc1_id =?  ";
 $stmt = "";
@@ -229,7 +229,7 @@ while(list($tkey,$tvalue)= each ($doc_stat_array)){
 
 $today  = date("Y-m-d");
 $query = "select * from sch_doc1 where doc1_k_id=0 and doc1_date_sign > '$today' ";
-$result = mysql_query($query);
+$result = mysqli_query($conID, $query);
 echo "<center><b>今日來文</b></center>";
 echo "<table width=100% ><tr bgcolor=#C0C0C0><td>文號</td><td>來文單位</td><td>摘要</td><td>承辦處室</td></tr>";
 while($row = mysql_fetch_array($result)) {

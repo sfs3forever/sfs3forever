@@ -77,7 +77,7 @@ if ($module_manager!=1) {
 	  	$CLASS_name=$school_kind_name[$c_curr_class];
 	  	//先取出本學期所有學生, 逐筆檢驗
      $query="select student_sn,seme_class,seme_num from stud_seme where seme_year_seme='$c_curr_seme' and seme_class like '".$c_curr_class."%%' order by seme_class,seme_num";
-     $result=mysql_query($query);
+     $result=mysqli_query($conID, $query);
 			while ($row=mysqli_fetch_row($result)) {
 			  list($student_sn,$seme_class,$seme_num)=$row;
 			  //檢查有沒有寫自我省思

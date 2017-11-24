@@ -12,7 +12,7 @@ $post_office_p[99] = "所有教師";
 $title_p = array();
 $query = "SELECT *  FROM teacher_title ";
 $query .= " where title_kind >= '$titl_kind' and enable=1 order by title_kind,teach_title_id ";
-$result = mysql_query($query,$conID) or die ($query);          
+$result = mysqli_query($conID,$query) or die ($query);          
 while ($row= mysql_fetch_array($result))
 	$title_p[$row["teach_title_id"]] = $row["title_name"];
 

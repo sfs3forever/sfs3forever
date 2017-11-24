@@ -55,7 +55,7 @@ if($_POST){
 	$smarty->assign("img_3",$img_3);
 	
   $query="select title_name from teacher_title where teach_title_id=3";
-  list($sign_3_title)=mysqli_fetch_row(mysql_query($query));
+  list($sign_3_title)=mysqli_fetch_row(mysqli_query($conID, $query));
 	
 	$smarty->assign("sign_3_title",$sign_3_title);
 
@@ -183,7 +183,7 @@ if($_POST){
 	   while ($row=$res->fetchRow()) {
 	   	//校內社團, 要檢查分數, 外校社團則一律通過
 	   		$query="select pass_score from stud_club_base where club_sn='".$row['club_sn']."'";
-	   		$res_pass=mysql_query($query);
+	   		$res_pass=mysqli_query($conID, $query);
 	   		list($pass_score)=mysqli_fetch_row($res_pass);
 	     
 	   	if ((($row['score']>=$pass_score and $row['club_sn']>0) or ($row['club_sn']==0) and $row['stud_post']!="")) {
@@ -342,7 +342,7 @@ if($_POST){
    	//取得服務學習與社團活動記錄 2012/12/7 以 $student_sn及 $seme_year_seme 為條件索引
    	if ($IS_JHORES==6 and $stud_service=='checked') {
 	   $query="select b.sn,a.minutes,a.feedback,b.service_date,b.department,b.item,b.memo,b.sponsor from stud_service_detail a,stud_service b where a.item_sn=b.sn and b.year_seme='$seme_year_seme' and b.confirm=1 and a.student_sn=$student_sn order by service_date";
-	   $res=mysql_query($query);
+	   $res=mysqli_query($conID, $query);
 	   $service_detail="";
 	   $MINS=0; $HOURS=0;
 	   while ($row=mysql_fetch_array($res)) {
@@ -366,14 +366,14 @@ if($_POST){
 	  //社團活動=================================================================
 	  if ($IS_JHORES==6 and $stud_club=='checked') {
 	   $query="select association_name,score,description,club_sn,stud_feedback from association where seme_year_seme='$seme_year_seme' and student_sn=$student_sn";
-	   $res=mysql_query($query);
+	   $res=mysqli_query($conID, $query);
 	   $club_detail="";
 	   $j=0;
 	    
 	   while ($row=mysql_fetch_array($res)) {
 	   	//校內社團, 要檢查分數, 外校社團則一律通過
 	   		$query="select pass_score from stud_club_base where club_sn='".$row['club_sn']."'";
-	   		$res_pass=mysql_query($query);
+	   		$res_pass=mysqli_query($conID, $query);
 	   		list($pass_score)=mysqli_fetch_row($res_pass);
 	     
 	   	if (($row['score']>=$pass_score and $row['club_sn']>0) or ($row['club_sn']==0) ) {

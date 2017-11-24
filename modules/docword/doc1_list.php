@@ -60,7 +60,7 @@ $stmt->close();
 
 ///mysqli
 
-//$result = mysql_query($query)or die($query);
+//$result = mysqli_query($conID, $query)or die($query);
 //$row = mysqli_fetch_row($result);
 
 //總筆數
@@ -220,7 +220,7 @@ if ($QueryString!="")$stmt->bind_param('sss',$QueryString,$QueryString,$QueryStr
 $stmt->execute();
 $stmt->bind_result($doc1_id,$doc1_year_limit,$doc1_kind,$doc1_date,$doc1_date_sign,$doc1_unit,$doc1_word,$doc1_main,$doc1_unit_num1,$doc1_unit_num2,$teach_id,$doc1_k_id,$doc_stat,$doc1_end_date,$doc1_infile_date,$do_teacher );
 
-//$result = mysql_query($query);
+//$result = mysqli_query($conID, $query);
 //while ($row = mysql_fetch_array($result)) {
 	while ($stmt->fetch()) {
 

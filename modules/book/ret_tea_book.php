@@ -64,7 +64,7 @@ $stmt->fetch();
 $stmt->close();
 
 ///mysqli	
-		//$result = mysql_query($query);
+		//$result = mysqli_query($conID, $query);
 	
 	//if (mysql_num_rows($result) >0 ){
 	if ($b_num >0 ){
@@ -74,11 +74,11 @@ $stmt->close();
 		//$book_name = $row["book_name"];	
 		//$b_num = $row["b_num"];	
 		$query = "update borrow set in_date='".$now."'where b_num='$b_num'";
-		mysql_query($query);
+		mysqli_query($conID, $query);
 
 		//設定為可借閱
 		$query = "update book set book_isout=0  where book_id='$book_id'";
-		$result = mysql_query($query)or die ($query);
+		$result = mysqli_query($conID, $query)or die ($query);
 		$book_flag = 1;
 	}
 }
@@ -105,7 +105,7 @@ if ($book_flag){
 	if ($name !="")
 		echo "<table><tr><td>讀者：$teach_id -- $name</td><td>已還書名：$book_name</td></tr></table>";
 	$query = "SELECT book.bookch1_id, book.book_id, book.book_name, book.book_num, borrow.stud_id,borrow.b_num,book.book_author,borrow.out_date, borrow.in_date FROM book , borrow where  book.book_id = borrow.book_id  and borrow.stud_id= '$teach_id' order by borrow.in_date ,borrow.out_date desc LIMIT 0, 10 ";
-	$result = mysql_query($query)or die ($query);
+	$result = mysqli_query($conID, $query)or die ($query);
 
 	echo "<center><table border=1>";
 	echo "<tr bgcolor=#8080FF><td>總號</td><td>書號</td><td>書名</td><td>借閱日期</td><td>歸還日期</td></tr>";

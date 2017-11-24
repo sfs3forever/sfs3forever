@@ -51,7 +51,7 @@ switch ($key){
 	break;
 	case $editBtn: //修改		
 		$query = " select sick_id from stud_sick_f where stud_id='$stud_id' order by sick_id";
-		$result = mysql_query($query);
+		$result = mysqli_query($conID, $query);
 		while($row = mysqli_fetch_row($result)) {
 			$chk_str = "fam_$row[0]"; // 辨別值
 			reset($fam_sick_kind_p);

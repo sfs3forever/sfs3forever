@@ -26,7 +26,7 @@ class data_stud {
 				$this->study_cond=$ro->STUD_STUDY_COND;
 				$this->person_id = $ro->STUD_PERSON_ID;
 				$this->birthday = $ro->STUD_BIRTHDAY;
-				$C_birth = split("-",$ro->STUD_BIRTHDAY);
+				$C_birth = explode("-",$ro->STUD_BIRTHDAY);
 				$this->C_birth=($C_birth[0]-1911)."年".($C_birth[1]+0)."月".($C_birth[2]+0)."日";
 				$this->stud_study_year= $ro->STUD_STUDY_YEAR;//入學年
 				//---- 從 stud_seme 取出所有的班級與座號

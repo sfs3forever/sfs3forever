@@ -49,7 +49,7 @@ if ($_POST['act']=='save') {
 		$query="insert into career_race set student_sn='$student_sn',level='$level',squad='$squad',name='$name',
 		rank='$rank',certificate_date='$certificate_date',sponsor='$sponsor',memo='$memo',
 		word='{$word}', weight='{$weight}', weight_tech='{$weight_tech}',year='$year',nature='$nature' ,	update_sn='".$_SESSION['session_tea_sn']."'";
-   		if (!mysql_query($query)) {
+   		if (!mysqli_query($conID, $query)) {
    		 $MSG="儲存資料失敗!";
    		  echo $query;die($MSG);
 			} 

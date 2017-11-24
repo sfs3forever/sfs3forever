@@ -10,7 +10,7 @@ $ann_num=-1;
    $nowsec=date("U",mktime(0,0,0,date("n"),date("j"),date("Y")));
    $nowdate=date("Y-m-d 0:0:0");
    $query="select idnumber,data,data_kind from sc_msn_data where to_id='' and to_days(curdate())<=(to_days(post_date)+last_date) and (data_kind=0 or data_kind=2) order by post_date desc";
-   $result=mysql_query($query);
+   $result=mysqli_query($conID, $query);
    $board_num=mysql_num_rows($result);
    while($row=mysqli_fetch_row($result)) {
    	 $ann_num++;
@@ -55,7 +55,7 @@ $ann_data[$ann_num]=big52utf8(addslashes($row['b_sub']))."<font size=5 color=#00
  mysql_query("SET NAMES 'utf8'");
 
    $query="select data from sc_msn_data where to_id='' and to_days(curdate())<=(to_days(post_date)+last_date) and data_kind=3 order by post_date desc";
-   $result=mysql_query($query);
+   $result=mysqli_query($conID, $query);
    while($row=mysqli_fetch_row($result)) {
     list($data)=$row;
     $ann_data[$ann_num]=$data;

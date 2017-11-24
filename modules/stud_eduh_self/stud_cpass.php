@@ -47,7 +47,7 @@ if ($_POST[key]=="更改密碼") {
 		} else {
 			$ldap_password = createLdapPassword($_POST['login_pass']);
 			$query = "update stud_base set email_pass ='".$_POST[login_pass]."' , ldap_password='$ldap_password' where student_sn ='{$_SESSION['session_tea_sn']}' ";
-			mysql_query($query,$conID);
+			mysqli_query($conID,$query);
 			echo "<tr><td class=title_mbody >密碼更改成功</td></tr>";
 			$_SESSION['session_login_chk']=stud_pass_check(trim($_POST[login_pass]),$_SESSION['session_log_id']);;
 		}

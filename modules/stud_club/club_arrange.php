@@ -52,7 +52,7 @@ if ($_POST['mode']=='arrange') {
   if ($SETUP['multi_join']==0) {
   	//取得本年級的所有學生
   	$query="select student_sn from stud_seme where seme_year_seme='$c_curr_seme' and seme_class like '".$c_curr_class."%%'";
-  	$res=mysql_query($query);
+  	$res=mysqli_query($conID, $query);
   	while ($row=mysql_fetch_array($res,1)) {
   		$sql="select student_sn from association where seme_year_seme='$c_curr_seme' and student_sn='".$row['student_sn']."'";
   		$res_stud=mysql_query($sql);
@@ -60,7 +60,7 @@ if ($_POST['mode']=='arrange') {
   		if (mysql_num_rows($res_stud)) {
   			//逐一比對 association 裡是否已有這個學生, 若有, 將 選課暫存資料註記為已編班 , 但不更動 arranged 資料 , 除非尚未編班
   			$query="update stud_club_temp set arranged='1' where year_seme='$c_curr_seme' and student_sn='".$row['student_sn']."' and arranged='0'";  //
-  			mysql_query($query);
+  			mysqli_query($conID, $query);
   		}
   	} // end while  
   } // end if ($SETUP['multi_join']==0)
@@ -69,7 +69,7 @@ if ($_POST['mode']=='arrange') {
   
   //取出所有本學期，本年級且開放選課的社團
   $query="select * from stud_club_base where year_seme='$c_curr_seme' and (club_class='$c_curr_class' or club_class='100') and club_open='1' order by club_class,club_name";
-  $result=mysql_query($query);
+  $result=mysqli_query($conID, $query);
   //以陣列記錄社團資料
   $club_all=0; //計數
   $club_for_this_class=0; //可提供給本年級選課的社團數,用於最後落選者編排部分，只能編入該年級的社團，不能編入跨年級社團
@@ -125,7 +125,7 @@ if ($_POST['mode']=='arrange') {
     	    arrange_run($the_club,$query,$need,"不限男女");
     	  }
     	  /***
-    	  $result=mysql_query($query);
+    	  $result=mysqli_query($conID, $query);
     	  $the_choice_stud_num=mysql_num_rows($result); //此志願,選此社團人數
     	  if ($the_choice_stud_num==0) {
     	    continue;
@@ -299,7 +299,7 @@ if ($_POST['mode']=='arrange') {
   //記錄編班過程
   $Write_Record=addslashes($RECORD."<br>".$SETUP['arrange_record']);
   $query="update stud_club_setup set arrange_record='$Write_Record' where year_seme='$c_curr_seme'";
-  if (mysql_query($query)) {
+  if (mysqli_query($conID, $query)) {
   	?>
   	<table border="0" width="100%">
   	 <tr>
@@ -470,7 +470,7 @@ function arrange_run($the_club,$query,$NEED,$limit) {
     
    global $RECORD;
    
-     	  $result=mysql_query($query);
+     	  $result=mysqli_query($conID, $query);
     	  $the_choice_stud_num=mysql_num_rows($result); //此志願,選此社團人數
     	  if ($the_choice_stud_num>0) {
     	    
