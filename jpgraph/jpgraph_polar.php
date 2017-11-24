@@ -405,7 +405,7 @@ class PolarAxis extends Axis {
 		if( $a != 0 && $a != 180 ) {
 		    $t->Align($ha,$va);
 		    if( $this->show_angle_mark )
-			$a .= '?;
+			$a .= '?';
 		    $t->Set($a);
 		    $t->Stroke($this->img,$xt,$yt);   
 		    if( $this->show_angle_tick )

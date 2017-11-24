@@ -10,8 +10,8 @@ if(!empty($_REQUEST['year_seme'])){
 	$sel_year=$ys[0];
 	$sel_seme=$ys[1];
 }else{
-	$sel_year=(empty($_REQUEST[sel_year]))?curr_year():$_REQUEST[sel_year]; //目前學年
-	$sel_seme=(empty($_REQUEST[sel_seme]))?curr_seme():$_REQUEST[sel_seme]; //目前學期
+	$sel_year=(empty($_REQUEST['sel_year']))?curr_year():$_REQUEST['sel_year']; //目前學年
+	$sel_seme=(empty($_REQUEST['sel_seme']))?curr_seme():$_REQUEST['sel_seme']; //目前學期
 }
 
 /*
@@ -31,11 +31,11 @@ if(empty($class_num)){
 //主選單設定
 $school_menu_p=(empty($school_menu_p))?array():$school_menu_p;
 
-$act=$_REQUEST[act];
+$act=$_REQUEST['act'];
 
 
-if($_REQUEST[chknext]){
-	$ss_temp = "&chknext=$_REQUEST[chknext]&nav_next=$_REQUEST[nav_next]";
+if($_REQUEST['chknext']){
+	$ss_temp = "&chknext={$_REQUEST['chknext']}&nav_next={$_REQUEST['nav_next']}";
 }
 
 //$stud_id=$_REQUEST[stud_id];
@@ -50,7 +50,7 @@ $main=&main_form($sel_year,$sel_seme,$_REQUEST['class_id'],$stud_id);
 if($act=="save"){
 	save_score_nor($sel_year,$sel_seme,$_REQUEST['student_sn'],$_REQUEST[nor_score],$_REQUEST[nor_score_memo]);
 	save_score_oth($sel_year,$sel_seme,$stud_id);
-	header("location: {$_SERVER['PHP_SELF']}?sel_year=$sel_year&sel_seme=$sel_seme&class_id=$_REQUEST['class_id']&stud_id=$stud_id".$ss_temp);
+	header("location: {$_SERVER['PHP_SELF']}?sel_year=$sel_year&sel_seme=$sel_seme&class_id={$_REQUEST['class_id']}&stud_id=$stud_id".$ss_temp);
 }elseif($_REQUEST[error]==1){
 	user_error("該班級無學生資料，無法繼續。<ol>
 	<li>請確認您有任教班級。

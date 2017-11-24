@@ -258,7 +258,7 @@ function get_school_setup(){
 	global $CONN;
 	$sql_select = "select * from school_base";
 	$recordSet=$CONN->Execute($sql_select);
-	$array = $recordSet->FetchRow();
+	$array = $recordSet->FetchRowAssoc();
 	return $array;
 }
 
